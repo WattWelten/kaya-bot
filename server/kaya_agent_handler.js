@@ -4,38 +4,69 @@ const path = require('path');
 class KAYAAgentHandler {
     constructor() {
         this.agentData = {};
-        this.loadAgentData();
+        this.agentDataDir = path.join(__dirname, '../ki_backend', new Date().toISOString().split('T')[0]);
+        this.agents = ['buergerdienste', 'ratsinfo', 'stellenportal', 'kontakte', 'jugend', 'soziales'];
+        
+        // Lazy Loading - nur Metadaten beim Start laden
+        this.loadAgentMetadata();
     }
     
-    loadAgentData() {
-        const agentDataDir = path.join(__dirname, '../ki_backend', new Date().toISOString().split('T')[0]);
+    loadAgentMetadata() {
+        console.log('🔧 Lazy Loading: Lade nur Agent-Metadaten...');
         
-        const agents = ['buergerdienste', 'ratsinfo', 'stellenportal', 'kontakte', 'jugend', 'soziales'];
-        
-        agents.forEach(agent => {
-            const dataFile = path.join(agentDataDir, `${agent}_data.json`);
+        this.agents.forEach(agent => {
+            const dataFile = path.join(this.agentDataDir, `${agent}_data.json`);
             if (fs.existsSync(dataFile)) {
-                this.agentData[agent] = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
-                console.log(`✅ Agent ${agent}: ${this.agentData[agent].length} Einträge geladen`);
+                // Nur Dateigröße prüfen, nicht den ganzen Inhalt laden
+                const stats = fs.statSync(dataFile);
+                this.agentData[agent] = {
+                    loaded: false,
+                    filePath: dataFile,
+                    fileSize: stats.size,
+                    entryCount: 0 // Wird beim ersten Laden gesetzt
+                };
+                console.log(`✅ Agent ${agent}: Datei gefunden (${Math.round(stats.size/1024)}KB)`);
             } else {
                 console.log(`⚠️ Agent ${agent}: Keine Daten gefunden`);
+                this.agentData[agent] = { loaded: false, filePath: null, fileSize: 0, entryCount: 0 };
             }
         });
         
-        // Validiere Datenqualität
-        this.validateAgentData();
+        console.log('📊 Lazy Loading aktiviert - Daten werden bei Bedarf geladen');
     }
     
-    validateAgentData() {
-        const totalEntries = Object.values(this.agentData).reduce((sum, data) => sum + data.length, 0);
-        console.log(`📊 Gesamt Einträge: ${totalEntries}`);
+    loadAgentData(agent) {
+        if (!this.agentData[agent] || this.agentData[agent].loaded) {
+            return this.agentData[agent];
+        }
         
-        // Prüfe auf leere Agenten
-        Object.entries(this.agentData).forEach(([agent, data]) => {
-            if (data.length === 0) {
-                console.log(`⚠️ Agent ${agent} ist leer!`);
+        console.log(`🔄 Lade Agent ${agent} bei Bedarf...`);
+        
+        try {
+            const data = JSON.parse(fs.readFileSync(this.agentData[agent].filePath, 'utf8'));
+            this.agentData[agent] = {
+                loaded: true,
+                data: data,
+                entryCount: data.length
+            };
+            console.log(`✅ Agent ${agent}: ${data.length} Einträge geladen`);
+            return this.agentData[agent];
+        } catch (error) {
+            console.error(`❌ Fehler beim Laden von Agent ${agent}:`, error.message);
+            this.agentData[agent] = { loaded: false, data: [], entryCount: 0 };
+            return this.agentData[agent];
+        }
+    }
+    
+    getTotalEntries() {
+        let total = 0;
+        this.agents.forEach(agent => {
+            const agentInfo = this.agentData[agent];
+            if (agentInfo && agentInfo.loaded) {
+                total += agentInfo.entryCount;
             }
         });
+        return total;
     }
     
     routeToAgent(query) {
@@ -75,11 +106,13 @@ class KAYAAgentHandler {
     }
     
     getAgentData(agent) {
-        return this.agentData[agent] || [];
+        const agentInfo = this.loadAgentData(agent);
+        return agentInfo.data || [];
     }
     
     searchAgentData(agent, query) {
-        const data = this.getAgentData(agent);
+        const agentInfo = this.loadAgentData(agent);
+        const data = agentInfo.data || [];
         const queryLower = query.toLowerCase();
         
         console.log(`Suche in Agent ${agent}: "${query}"`);
