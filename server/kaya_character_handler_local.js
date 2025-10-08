@@ -7,53 +7,13 @@ class KAYACharacterHandler {
         this.llmService = new LLMService();
         this.useLLM = process.env.USE_LLM === 'true';
         
-        // Erweiterte Bürgerzentrierte Perspektiven mit Fuzzy-Matching
+        // Bürgerzentrierte Perspektiven
         this.citizenPersonas = {
-            'familie': {
-                'keywords': ['kind', 'kita', 'schule', 'familie', 'eltern', 'betreuung', 'jugend', 'baby', 'kleinkind', 'schüler', 'student', 'ausbildung', 'lehre', 'kindergarten', 'hort', 'tagesmutter', 'erziehung', 'sorgerecht', 'unterhalt', 'alleinerziehend', 'geschieden', 'getrennt', 'adoption', 'pflegekind', 'vormundschaft'],
-                'contexts': ['anmeldung', 'beantragen', 'hilfe', 'beratung', 'unterstützung', 'geld', 'zuschuss', 'förderung'],
-                'phrases': ['mein kind', 'meine tochter', 'mein sohn', 'unser baby', 'die kinder', 'familie mit', 'alleinerziehend', 'geschieden', 'sorgerecht']
-            },
-            'unternehmen': {
-                'keywords': ['gewerbe', 'firma', 'unternehmen', 'bewerbung', 'stellen', 'arbeit', 'job', 'karriere', 'personal', 'mitarbeiter', 'angestellte', 'ausbildung', 'lehre', 'praktikum', 'werkstudent', 'freelancer', 'selbstständig', 'gründung', 'startup', 'handwerk', 'handel', 'dienstleistung', 'produktion', 'vertrieb', 'marketing'],
-                'contexts': ['anmeldung', 'genehmigung', 'lizenz', 'zulassung', 'förderung', 'beratung', 'hilfe', 'support', 'finanzierung', 'kredit', 'zuschuss'],
-                'phrases': ['mein unternehmen', 'meine firma', 'ich gründe', 'selbstständig', 'freiberufler', 'handwerker', 'händler', 'dienstleister']
-            },
-            'senioren': {
-                'keywords': ['pflege', 'senioren', 'alt', 'rente', 'hilfe', 'betreuung', 'demenz', 'alzheimer', 'rollstuhl', 'gehhilfe', 'badewanne', 'treppenlift', 'hausnotruf', 'tagespflege', 'vollzeitpflege', 'pflegestufe', 'pflegegeld', 'pflegeversicherung', 'heim', 'wohnheim', 'ambulant', 'stationär', 'ruhestand', 'pension', 'witwe', 'witwer'],
-                'contexts': ['beantragen', 'hilfe', 'unterstützung', 'beratung', 'pflege', 'betreuung', 'wohnen', 'umzug', 'anpassung'],
-                'phrases': ['mein vater', 'meine mutter', 'meine oma', 'mein opa', 'pflegebedürftig', 'hilfe im alltag', 'nicht mehr allein', 'pflegeheim', 'zu hause pflegen']
-            },
-            'bauherren': {
-                'keywords': ['bau', 'bauantrag', 'genehmigung', 'grundstück', 'haus', 'wohnung', 'garage', 'carport', 'terrasse', 'balkon', 'umbau', 'sanierung', 'renovierung', 'dach', 'fassade', 'fenster', 'tür', 'heizung', 'klimaanlage', 'solar', 'photovoltaik', 'wärmepumpe', 'isolierung', 'dämmung', 'keller', 'dachboden', 'ausbau'],
-                'contexts': ['bauen', 'bauantrag', 'genehmigung', 'planung', 'architekt', 'bauherr', 'handwerker', 'finanzierung', 'kredit', 'bausparvertrag'],
-                'phrases': ['ich baue', 'wir bauen', 'haus bauen', 'umbauen', 'sanieren', 'renovieren', 'grundstück kaufen', 'bauplatz', 'eigenheim']
-            },
-            'studenten': {
-                'keywords': ['student', 'studium', 'universität', 'hochschule', 'fachhochschule', 'bachelor', 'master', 'doktor', 'promotion', 'semester', 'vorlesung', 'prüfung', 'thesis', 'praktikum', 'werkstudent', 'bafög', 'stipendium', 'wohnheim', 'studentenwohnung', 'mensa', 'bibliothek'],
-                'contexts': ['studieren', 'bewerbung', 'einschreibung', 'immatrikulation', 'bafög', 'stipendium', 'wohnen', 'jobben'],
-                'phrases': ['ich studiere', 'ich will studieren', 'student sein', 'studium beginnen', 'hochschule', 'universität']
-            },
-            'arbeitslose': {
-                'keywords': ['arbeitslos', 'arbeitslosigkeit', 'alg', 'arbeitslosengeld', 'jobcenter', 'arbeitsagentur', 'bewerbung', 'jobsuche', 'stellenangebot', 'qualifizierung', 'umschulung', 'fortbildung', 'weiterbildung', 'berufsberatung', 'coaching', 'bewerbungstraining'],
-                'contexts': ['arbeitslos', 'jobsuche', 'bewerbung', 'qualifizierung', 'hilfe', 'beratung', 'unterstützung'],
-                'phrases': ['ich bin arbeitslos', 'arbeitslos geworden', 'job verloren', 'stelle verloren', 'kündigung', 'arbeitslosengeld']
-            },
-            'behinderte': {
-                'keywords': ['behinderung', 'behindert', 'rollstuhl', 'gehhilfe', 'blind', 'taub', 'hörbehindert', 'sehbehindert', 'geistig behindert', 'körperlich behindert', 'schwerbehindert', 'grad der behinderung', 'ausweis', 'nachteilsausgleich', 'assistenz', 'betreuung', 'pflege'],
-                'contexts': ['behinderung', 'ausweis', 'nachteilsausgleich', 'assistenz', 'betreuung', 'hilfe', 'unterstützung'],
-                'phrases': ['ich bin behindert', 'schwerbehindert', 'behindertenausweis', 'nachteilsausgleich', 'assistenz']
-            },
-            'migranten': {
-                'keywords': ['migrant', 'ausländer', 'einwanderer', 'flüchtling', 'asyl', 'aufenthalt', 'visum', 'einbürgerung', 'staatsbürgerschaft', 'deutsch lernen', 'integrationskurs', 'sprachkurs', 'deutschkurs', 'anerkennung', 'qualifikation', 'beruf', 'ausbildung'],
-                'contexts': ['aufenthalt', 'visum', 'einbürgerung', 'deutsch lernen', 'integrationskurs', 'anerkennung', 'qualifikation'],
-                'phrases': ['ich bin ausländer', 'ausländisch', 'deutsch lernen', 'einbürgerung', 'aufenthalt', 'visum']
-            },
-            'allgemein': {
-                'keywords': ['antrag', 'formular', 'dokument', 'bescheinigung', 'urkunde', 'ausweis', 'pass', 'führerschein', 'kfz', 'auto', 'fahrzeug', 'anmeldung', 'abmeldung', 'ummelden', 'anmelden', 'wohnen', 'miete', 'eigentum', 'grundstück', 'immobilie'],
-                'contexts': ['beantragen', 'anmelden', 'abmelden', 'ummelden', 'bescheinigung', 'dokument', 'ausweis'],
-                'phrases': ['ich brauche', 'ich möchte', 'ich will', 'hilfe bei', 'wie geht', 'wo kann ich']
-            }
+            'familie': ['kind', 'kita', 'schule', 'familie', 'eltern', 'betreuung', 'jugend'],
+            'unternehmen': ['gewerbe', 'firma', 'unternehmen', 'bewerbung', 'stellen', 'arbeit'],
+            'senioren': ['pflege', 'senioren', 'alt', 'rente', 'hilfe', 'betreuung'],
+            'bauherren': ['bau', 'bauantrag', 'genehmigung', 'grundstück', 'haus', 'wohnung'],
+            'allgemein': ['antrag', 'formular', 'dokument', 'bescheinigung', 'urkunde']
         };
         
         // Lokale Struktur des Landkreises Oldenburg
@@ -398,219 +358,10 @@ class KAYACharacterHandler {
     detectCitizenPersona(query) {
         const queryLower = query.toLowerCase();
         
-        // Bereinige die Anfrage von häufigen Fehlern
-        const cleanedQuery = this.cleanQuery(queryLower);
-        
-        // Erkenne Persona mit erweitertem Matching
-        const personaScores = this.calculatePersonaScores(cleanedQuery);
-        
-        // Finde die beste Übereinstimmung
-        const bestPersona = this.findBestPersonaMatch(personaScores);
-        
-        // Wenn keine klare Persona erkannt, verwende Frage-Funnel
-        if (bestPersona.score < 0.3) {
-            return this.useQuestionFunnel(cleanedQuery);
-        }
-        
-        return bestPersona.name;
-    }
-    
-    cleanQuery(query) {
-        // Entferne häufige Rechtschreibfehler und normalisiere
-        const corrections = {
-            'kindergarden': 'kindergarten',
-            'kinderkrippe': 'kita',
-            'schüler': 'schüler',
-            'student': 'student',
-            'studium': 'studium',
-            'universität': 'universität',
-            'hochschule': 'hochschule',
-            'arbeit': 'arbeit',
-            'job': 'job',
-            'stelle': 'stelle',
-            'bewerbung': 'bewerbung',
-            'pflege': 'pflege',
-            'senior': 'senioren',
-            'alt': 'alt',
-            'bau': 'bau',
-            'haus': 'haus',
-            'wohnung': 'wohnung',
-            'bauantrag': 'bauantrag',
-            'genehmigung': 'genehmigung'
-        };
-        
-        let cleaned = query;
-        for (const [wrong, correct] of Object.entries(corrections)) {
-            cleaned = cleaned.replace(new RegExp(wrong, 'gi'), correct);
-        }
-        
-        return cleaned;
-    }
-    
-    calculatePersonaScores(query) {
-        const scores = {};
-        
-        for (const [personaName, personaData] of Object.entries(this.citizenPersonas)) {
-            let score = 0;
-            
-            // Keyword-Matching (höchste Gewichtung)
-            const keywordMatches = personaData.keywords.filter(keyword => 
-                query.includes(keyword) || this.fuzzyMatch(query, keyword)
-            );
-            score += keywordMatches.length * 0.4;
-            
-            // Context-Matching (mittlere Gewichtung)
-            const contextMatches = personaData.contexts.filter(context => 
-                query.includes(context) || this.fuzzyMatch(query, context)
-            );
-            score += contextMatches.length * 0.3;
-            
-            // Phrase-Matching (höchste Gewichtung für natürliche Sprache)
-            const phraseMatches = personaData.phrases.filter(phrase => 
-                query.includes(phrase) || this.fuzzyMatch(query, phrase)
-            );
-            score += phraseMatches.length * 0.5;
-            
-            // Länge der Anfrage berücksichtigen (längere Anfragen = mehr Kontext)
-            const lengthBonus = Math.min(query.length / 100, 0.2);
-            score += lengthBonus;
-            
-            scores[personaName] = score;
-        }
-        
-        return scores;
-    }
-    
-    fuzzyMatch(query, target) {
-        // Einfaches Fuzzy-Matching für Rechtschreibfehler
-        const queryWords = query.split(' ');
-        const targetWords = target.split(' ');
-        
-        for (const queryWord of queryWords) {
-            for (const targetWord of targetWords) {
-                // Exakte Übereinstimmung
-                if (queryWord === targetWord) return true;
-                
-                // Teilstring-Übereinstimmung
-                if (queryWord.includes(targetWord) || targetWord.includes(queryWord)) return true;
-                
-                // Levenshtein-Distanz für ähnliche Wörter
-                if (this.levenshteinDistance(queryWord, targetWord) <= 2) return true;
+        for (const [persona, keywords] of Object.entries(this.citizenPersonas)) {
+            if (keywords.some(keyword => queryLower.includes(keyword))) {
+                return persona;
             }
-        }
-        
-        return false;
-    }
-    
-    levenshteinDistance(str1, str2) {
-        const matrix = [];
-        
-        for (let i = 0; i <= str2.length; i++) {
-            matrix[i] = [i];
-        }
-        
-        for (let j = 0; j <= str1.length; j++) {
-            matrix[0][j] = j;
-        }
-        
-        for (let i = 1; i <= str2.length; i++) {
-            for (let j = 1; j <= str1.length; j++) {
-                if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
-                    matrix[i][j] = matrix[i - 1][j - 1];
-                } else {
-                    matrix[i][j] = Math.min(
-                        matrix[i - 1][j - 1] + 1,
-                        matrix[i][j - 1] + 1,
-                        matrix[i - 1][j] + 1
-                    );
-                }
-            }
-        }
-        
-        return matrix[str2.length][str1.length];
-    }
-    
-    findBestPersonaMatch(scores) {
-        let bestPersona = { name: 'allgemein', score: 0 };
-        
-        for (const [personaName, score] of Object.entries(scores)) {
-            if (score > bestPersona.score) {
-                bestPersona = { name: personaName, score: score };
-            }
-        }
-        
-        return bestPersona;
-    }
-    
-    useQuestionFunnel(query) {
-        // Intelligenter Frage-Funnel für unklare Anfragen
-        const funnelQuestions = {
-            'familie': [
-                'Haben Sie Fragen zu Kindern, Familie oder Betreuung?',
-                'Geht es um Kita, Schule oder Jugendhilfe?',
-                'Suchen Sie Hilfe für Ihre Familie?'
-            ],
-            'unternehmen': [
-                'Haben Sie gewerbliche Angelegenheiten?',
-                'Suchen Sie nach Arbeit oder Stellen?',
-                'Geht es um Ihr Unternehmen oder Ihre Firma?'
-            ],
-            'senioren': [
-                'Haben Sie Fragen zu Pflege oder Seniorenangeboten?',
-                'Suchen Sie Hilfe für ältere Menschen?',
-                'Geht es um Pflegegeld oder Betreuung?'
-            ],
-            'bauherren': [
-                'Haben Sie Bauvorhaben oder Baugenehmigungen?',
-                'Planen Sie zu bauen oder zu renovieren?',
-                'Geht es um Grundstück oder Immobilien?'
-            ],
-            'studenten': [
-                'Sind Sie Student oder planen Sie zu studieren?',
-                'Haben Sie Fragen zu BAföG oder Stipendien?',
-                'Geht es um Hochschule oder Universität?'
-            ],
-            'arbeitslose': [
-                'Sind Sie arbeitslos oder suchen Sie Arbeit?',
-                'Haben Sie Fragen zu Arbeitslosengeld?',
-                'Benötigen Sie Hilfe bei der Jobsuche?'
-            ],
-            'behinderte': [
-                'Haben Sie eine Behinderung oder benötigen Sie Hilfe?',
-                'Geht es um Behindertenausweis oder Nachteilsausgleich?',
-                'Suchen Sie Assistenz oder Betreuung?'
-            ],
-            'migranten': [
-                'Sind Sie Ausländer oder Migrant?',
-                'Haben Sie Fragen zu Aufenthalt oder Einbürgerung?',
-                'Möchten Sie Deutsch lernen oder sich integrieren?'
-            ]
-        };
-        
-        // Erkenne Hinweise in der Anfrage für gezielte Fragen
-        if (query.includes('kind') || query.includes('familie')) {
-            return 'familie';
-        }
-        if (query.includes('arbeit') || query.includes('job') || query.includes('stelle')) {
-            return 'unternehmen';
-        }
-        if (query.includes('pflege') || query.includes('alt') || query.includes('senior')) {
-            return 'senioren';
-        }
-        if (query.includes('bau') || query.includes('haus') || query.includes('wohnung')) {
-            return 'bauherren';
-        }
-        if (query.includes('studium') || query.includes('universität') || query.includes('hochschule')) {
-            return 'studenten';
-        }
-        if (query.includes('arbeitslos') || query.includes('alg') || query.includes('jobcenter')) {
-            return 'arbeitslose';
-        }
-        if (query.includes('behindert') || query.includes('behinderung') || query.includes('rollstuhl')) {
-            return 'behinderte';
-        }
-        if (query.includes('ausländer') || query.includes('migrant') || query.includes('deutsch lernen')) {
-            return 'migranten';
         }
         
         return 'allgemein';
@@ -622,10 +373,6 @@ class KAYACharacterHandler {
             'unternehmen': "Gerne unterstütze ich Sie bei gewerblichen Angelegenheiten, Anträgen und Verwaltungsaufgaben. Womit kann ich Ihnen helfen?",
             'senioren': "Ich bin da, um Ihnen bei allen Fragen rund um Pflege, Unterstützung und Seniorenangebote zu helfen. Was beschäftigt Sie?",
             'bauherren': "Bei Bauvorhaben und Baugenehmigungen begleite ich Sie gerne durch den Prozess. Was planen Sie zu bauen?",
-            'studenten': "Gerne unterstütze ich Sie bei allen Fragen rund um Studium, BAföG und studentische Angelegenheiten. Womit kann ich Ihnen helfen?",
-            'arbeitslose': "Ich helfe Ihnen gerne bei der Jobsuche, Bewerbungen und arbeitslosenbezogenen Angelegenheiten. Was benötigen Sie?",
-            'behinderte': "Ich unterstütze Sie gerne bei allen Fragen rund um Behinderung, Nachteilsausgleich und Assistenz. Womit kann ich Ihnen helfen?",
-            'migranten': "Gerne helfe ich Ihnen bei Fragen zu Aufenthalt, Einbürgerung und Integration. Womit kann ich Ihnen helfen?",
             'allgemein': "Wie kann ich Ihnen heute helfen? Ich unterstütze Sie bei allen Anliegen rund um den Landkreis Oldenburg."
         };
         
@@ -638,65 +385,25 @@ class KAYACharacterHandler {
                 "Kita-Anmeldung",
                 "Schulangelegenheiten", 
                 "Familienberatung",
-                "Jugendhilfe",
-                "Sorgerecht",
-                "Unterhalt"
+                "Jugendhilfe"
             ],
             'unternehmen': [
                 "Gewerbeanmeldung",
                 "Stellenausschreibungen",
                 "Fördermöglichkeiten",
-                "Wirtschaftsförderung",
-                "Gründungsberatung",
-                "Personal"
+                "Wirtschaftsförderung"
             ],
             'senioren': [
                 "Pflegegeld beantragen",
                 "Seniorenberatung",
                 "Betreuungsangebote",
-                "Hilfe im Alltag",
-                "Pflegestufe",
-                "Wohnheim"
+                "Hilfe im Alltag"
             ],
             'bauherren': [
                 "Baugenehmigung",
                 "Bauantrag stellen",
                 "Bauaufsicht",
-                "Grundstücksangelegenheiten",
-                "Architekt",
-                "Finanzierung"
-            ],
-            'studenten': [
-                "BAföG beantragen",
-                "Stipendien",
-                "Wohnheim",
-                "Studienberatung",
-                "Praktikum",
-                "Werkstudent"
-            ],
-            'arbeitslose': [
-                "Arbeitslosengeld",
-                "Jobsuche",
-                "Bewerbungstraining",
-                "Qualifizierung",
-                "Umschulung",
-                "Berufsberatung"
-            ],
-            'behinderte': [
-                "Behindertenausweis",
-                "Nachteilsausgleich",
-                "Assistenz",
-                "Betreuung",
-                "Pflege",
-                "Barrierefreiheit"
-            ],
-            'migranten': [
-                "Aufenthalt",
-                "Einbürgerung",
-                "Deutsch lernen",
-                "Integrationskurs",
-                "Anerkennung",
-                "Qualifikation"
+                "Grundstücksangelegenheiten"
             ],
             'allgemein': [
                 "Formulare und Anträge",
