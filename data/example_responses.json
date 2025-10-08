@@ -1,0 +1,20 @@
+{
+  "formulare_beispiel": {
+    "user_query": "Ich brauche ein Formular für einen Bauantrag",
+    "agent_response": "Für Bauanträge finden Sie mehrere Formulare. Hier sind die wichtigsten: Antrag auf Baugenehmigung, Bauvoranfrage, Antrag auf Vorbescheid.",
+    "data_source": "buergerdienste_agent",
+    "confidence": "high"
+  },
+  "kontakt_beispiel": {
+    "user_query": "Wer ist mein Ansprechpartner im Bauamt?",
+    "agent_response": "Ihr Ansprechpartner im Bauamt ist Herr/Frau [Name]. Kontakt: [Telefon] [Email]",
+    "data_source": "kontakte_agent",
+    "confidence": "high"
+  },
+  "oeffnungszeiten_beispiel": {
+    "user_query": "Wann hat das Bürgerbüro geöffnet?",
+    "agent_response": "Die Öffnungszeiten des Bürgerbüros sind: Mo-Fr 8:00-12:00, Do zusätzlich 14:00-18:00",
+    "data_source": "oeffnungszeiten_agent",
+    "confidence": "medium"
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Kreistagsinformationssystem",
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/",
+    "content": "Das Kreistagsinformationssystem bietet Zugang zu allen Kreistagssitzungen, Tagesordnungen und Beschlüssen.",
+    "category": "kreistag",
+    "keywords": ["kreistag", "sitzung", "tagesordnung", "beschluss"]
+  },
+  {
+    "title": "Nächste Kreistagssitzung",
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/sitzungen",
+    "content": "Termine und Tagesordnungen der kommenden Kreistagssitzungen. Aktuelle Informationen zu geplanten Sitzungen.",
+    "category": "termine",
+    "keywords": ["kreistag", "sitzung", "termin", "tagesordnung"]
+  },
+  {
+    "title": "Kreistagsbeschlüsse",
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/beschluesse",
+    "content": "Alle Beschlüsse des Kreistags. Durchsuchbar nach Themen und Zeitraum.",
+    "category": "beschluesse",
+    "keywords": ["beschluss", "kreistag", "entscheidung", "vorlage"]
+  },
+  {
+    "title": "Kreistagsvorlagen",
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/vorlagen",
+    "content": "Vorlagen und Anträge für Kreistagssitzungen. Alle eingereichten Vorlagen im Überblick.",
+    "category": "vorlagen",
+    "keywords": ["vorlage", "antrag", "kreistag", "sitzung"]
+  }
+]

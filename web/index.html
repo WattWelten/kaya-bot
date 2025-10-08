@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0056b3"/>
+    <title>KAYA - Ihr kommunaler KI-Assistent | Landkreis Oldenburg</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <style>
+        /* Landkreis Oldenburg Design */
+        :root {
+            --lk-primary: #0056b3;        /* Dunkelblau - Landkreis-Farbe */
+            --lk-secondary: #007bff;      /* Hellblau - Akzent */
+            --lk-accent: #28a745;         /* Grün - Erfolg/Aktion */
+            --lk-warning: #ffc107;        /* Gelb - Warnung */
+            --lk-danger: #dc3545;         /* Rot - Fehler */
+            --lk-light: #f8f9fa;          /* Hellgrau - Hintergrund */
+            --lk-dark: #212529;           /* Dunkelgrau - Text */
+            --lk-white: #ffffff;          /* Weiß */
+            --lk-border: #dee2e6;         /* Grau - Rahmen */
+            --lk-shadow: rgba(0, 86, 179, 0.15); /* Schatten */
+            --lk-gradient: linear-gradient(135deg, var(--lk-primary), var(--lk-secondary));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--lk-light);
+            color: var(--lk-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header mit Landkreis-Branding */
+        .header {
+            background: var(--lk-gradient);
+            color: var(--lk-white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px var(--lk-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--lk-accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Hauptcontainer */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Chat-Bereich */
+        .chat-section {
+            background: var(--lk-white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--lk-shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .chat-header {
+            background: var(--lk-gradient);
+            color: var(--lk-white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .chat-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .chat-info p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .messages-container {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            display: flex;
+            gap: 0.75rem;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+            background: var(--lk-primary);
+            color: var(--lk-white);
+        }
+
+        .message.kaya .message-avatar {
+            background: var(--lk-accent);
+            color: var(--lk-white);
+        }
+
+        .message-content {
+            background: var(--lk-light);
+            padding: 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+            position: relative;
+        }
+
+        .message.user .message-content {
+            background: var(--lk-primary);
+            color: var(--lk-white);
+        }
+
+        .message-content::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            width: 0;
+            height: 0;
+            border: 8px solid transparent;
+        }
+
+        .message.user .message-content::before {
+            right: -16px;
+            border-left-color: var(--lk-primary);
+        }
+
+        .message.kaya .message-content::before {
+            left: -16px;
+            border-right-color: var(--lk-light);
+        }
+
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            color: var(--lk-dark);
+            opacity: 0.7;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--lk-primary);
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* Eingabebereich */
+        .input-section {
+            padding: 1rem 1.5rem;
+            background: var(--lk-white);
+            border-top: 1px solid var(--lk-border);
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .input-container {
+            flex: 1;
+            position: relative;
+        }
+
+        .message-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--lk-border);
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .message-input:focus {
+            border-color: var(--lk-primary);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--lk-primary);
+            font-size: 1.2rem;
+        }
+
+        .send-button, .voice-button {
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: var(--lk-gradient);
+            color: var(--lk-white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-button:hover, .voice-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px var(--lk-shadow);
+        }
+
+        .voice-button.recording {
+            background: var(--lk-danger);
+            animation: pulse 1s infinite;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--lk-white);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px var(--lk-shadow);
+        }
+
+        .info-card h3 {
+            color: var(--lk-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .agent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .agent-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--lk-light);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .agent-item:hover {
+            background: var(--lk-primary);
+            color: var(--lk-white);
+            transform: translateX(5px);
+        }
+
+        .agent-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--lk-accent);
+            color: var(--lk-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .agent-info h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .agent-info p {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .quick-action {
+            padding: 1rem;
+            background: var(--lk-gradient);
+            color: var(--lk-white);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .quick-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--lk-shadow);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .chat-section {
+                height: 500px;
+            }
+
+            .sidebar {
+                order: -1;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --lk-light: #1a1a2e;
+                --lk-white: #2e2e4a;
+                --lk-dark: #e0e0e0;
+                --lk-border: #444466;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🤖</div>
+                <div class="logo-text">
+                    <h1>KAYA</h1>
+                    <p>Ihr kommunaler KI-Assistent</p>
+                </div>
+            </div>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>Online</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hauptcontainer -->
+    <div class="container">
+        <!-- Chat-Bereich -->
+        <section class="chat-section">
+            <div class="chat-header">
+                <div class="chat-avatar">🤖</div>
+                <div class="chat-info">
+                    <h3>KAYA</h3>
+                    <p>Landkreis Oldenburg</p>
+                </div>
+            </div>
+            
+            <div class="messages-container" id="messagesContainer">
+                <div class="message kaya">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <strong>Moin! Ich bin KAYA</strong><br>
+                        Ihr kommunaler KI-Assistent für den Landkreis Oldenburg. Wie kann ich Ihnen heute helfen?
+                    </div>
+                </div>
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator">
+                <span>KAYA tippt</span>
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+            
+            <div class="input-section">
+                <div class="input-container">
+                    <div class="input-icon">💬</div>
+                    <input type="text" class="message-input" id="messageInput" placeholder="Ihre Nachricht an KAYA..." maxlength="500">
+                </div>
+                <button class="voice-button" id="voiceButton" title="Sprachaufnahme">
+                    🎤
+                </button>
+                <button class="send-button" id="sendButton" title="Nachricht senden">
+                    ➤
+                </button>
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Agenten-Info -->
+            <div class="info-card">
+                <h3>🎯 Spezialisierte Agenten</h3>
+                <div class="agent-list">
+                    <div class="agent-item" data-agent="buergerdienste">
+                        <div class="agent-icon">📋</div>
+                        <div class="agent-info">
+                            <h4>Bürgerdienste</h4>
+                            <p>Formulare & Anträge</p>
+                        </div>
+                    </div>
+                    <div class="agent-item" data-agent="ratsinfo">
+                        <div class="agent-icon">🏛️</div>
+                        <div class="agent-info">
+                            <h4>Ratsinfo</h4>
+                            <p>Kreistag & Sitzungen</p>
+                        </div>
+                    </div>
+                    <div class="agent-item" data-agent="stellenportal">
+                        <div class="agent-icon">💼</div>
+                        <div class="agent-info">
+                            <h4>Stellenportal</h4>
+                            <p>Jobs & Karriere</p>
+                        </div>
+                    </div>
+                    <div class="agent-item" data-agent="kontakte">
+                        <div class="agent-icon">📞</div>
+                        <div class="agent-info">
+                            <h4>Kontakte</h4>
+                            <p>Ansprechpartner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schnellaktionen -->
+            <div class="info-card">
+                <h3>⚡ Schnellaktionen</h3>
+                <div class="quick-actions">
+                    <button class="quick-action" data-action="formular">📋 Formular finden</button>
+                    <button class="quick-action" data-action="kontakt">📞 Kontakt suchen</button>
+                    <button class="quick-action" data-action="oeffnungszeiten">🕒 Öffnungszeiten</button>
+                    <button class="quick-action" data-action="stelle">💼 Stellen suchen</button>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="info-card">
+                <h3>ℹ️ Über KAYA</h3>
+                <p style="font-size: 0.9rem; line-height: 1.5;">
+                    KAYA hilft Ihnen bei allen Anliegen rund um den Landkreis Oldenburg. 
+                    Nutzen Sie die norddeutsch-freundliche Beratung für Formulare, 
+                    Kontakte, Termine und mehr.
+                </p>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // KAYA Chat-Funktionalität
+        class KAYAChat {
+            constructor() {
+                this.messagesContainer = document.getElementById('messagesContainer');
+                this.messageInput = document.getElementById('messageInput');
+                this.sendButton = document.getElementById('sendButton');
+                this.voiceButton = document.getElementById('voiceButton');
+                this.typingIndicator = document.getElementById('typingIndicator');
+                
+                this.isRecording = false;
+                this.recognition = null;
+                
+                this.initEventListeners();
+                this.initSpeechRecognition();
+            }
+            
+            initEventListeners() {
+                this.sendButton.addEventListener('click', () => this.sendMessage());
+                this.messageInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.sendMessage();
+                });
+                this.voiceButton.addEventListener('click', () => this.toggleRecording());
+                
+                // Schnellaktionen
+                document.querySelectorAll('.quick-action').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const action = e.target.dataset.action;
+                        this.handleQuickAction(action);
+                    });
+                });
+                
+                // Agenten-Klicks
+                document.querySelectorAll('.agent-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        const agent = e.currentTarget.dataset.agent;
+                        this.handleAgentClick(agent);
+                    });
+                });
+            }
+            
+            initSpeechRecognition() {
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    this.recognition = new SpeechRecognition();
+                    this.recognition.continuous = false;
+                    this.recognition.interimResults = false;
+                    this.recognition.lang = 'de-DE';
+                    
+                    this.recognition.onresult = (event) => {
+                        const transcript = event.results[0][0].transcript;
+                        this.messageInput.value = transcript;
+                        this.sendMessage();
+                    };
+                    
+                    this.recognition.onerror = (event) => {
+                        console.error('Spracherkennung Fehler:', event.error);
+                        this.stopRecording();
+                    };
+                }
+            }
+            
+            async sendMessage() {
+                const message = this.messageInput.value.trim();
+                if (!message) return;
+                
+                // Benutzer-Nachricht anzeigen
+                this.addMessage(message, 'user');
+                this.messageInput.value = '';
+                this.sendButton.disabled = true;
+                
+                // Typing-Indikator anzeigen
+                this.showTypingIndicator();
+                
+                try {
+                    // Nachricht an KAYA-Backend senden
+                    const response = await fetch('http://localhost:3002/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ message: message })
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        this.hideTypingIndicator();
+                        this.addMessage(data.response, 'kaya', data);
+                    } else {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error('Chat-Fehler:', error);
+                    this.hideTypingIndicator();
+                    this.addMessage('Entschuldigung, es gab einen Fehler. Bitte versuchen Sie es erneut.', 'kaya');
+                }
+                
+                this.sendButton.disabled = false;
+            }
+            
+            addMessage(text, sender, data = null) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}`;
+                
+                const avatar = sender === 'user' ? '👤' : '🤖';
+                const name = sender === 'user' ? 'Sie' : 'KAYA';
+                
+                messageDiv.innerHTML = `
+                    <div class="message-avatar">${avatar}</div>
+                    <div class="message-content">
+                        <strong>${name}:</strong><br>
+                        ${text}
+                        ${data && data.links ? this.formatLinks(data.links) : ''}
+                    </div>
+                `;
+                
+                this.messagesContainer.appendChild(messageDiv);
+                this.scrollToBottom();
+            }
+            
+            formatLinks(links) {
+                if (!links || links.length === 0) return '';
+                
+                let linkHtml = '<br><br><strong>🔗 Links:</strong><br>';
+                links.forEach(link => {
+                    linkHtml += `<a href="${link.url}" target="_blank" style="color: var(--lk-primary); text-decoration: none;">${link.title}</a><br>`;
+                });
+                return linkHtml;
+            }
+            
+            showTypingIndicator() {
+                this.typingIndicator.style.display = 'flex';
+                this.scrollToBottom();
+            }
+            
+            hideTypingIndicator() {
+                this.typingIndicator.style.display = 'none';
+            }
+            
+            scrollToBottom() {
+                this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+            }
+            
+            toggleRecording() {
+                if (!this.recognition) {
+                    alert('Spracherkennung wird in diesem Browser nicht unterstützt.');
+                    return;
+                }
+                
+                if (this.isRecording) {
+                    this.stopRecording();
+                } else {
+                    this.startRecording();
+                }
+            }
+            
+            startRecording() {
+                this.isRecording = true;
+                this.voiceButton.classList.add('recording');
+                this.voiceButton.textContent = '⏹️';
+                this.recognition.start();
+            }
+            
+            stopRecording() {
+                this.isRecording = false;
+                this.voiceButton.classList.remove('recording');
+                this.voiceButton.textContent = '🎤';
+                if (this.recognition) {
+                    this.recognition.stop();
+                }
+            }
+            
+            handleQuickAction(action) {
+                const actions = {
+                    'formular': 'Ich brauche ein Formular',
+                    'kontakt': 'Ich suche einen Ansprechpartner',
+                    'oeffnungszeiten': 'Wann hat das Bürgerbüro geöffnet?',
+                    'stelle': 'Gibt es offene Stellen?'
+                };
+                
+                const message = actions[action];
+                if (message) {
+                    this.messageInput.value = message;
+                    this.sendMessage();
+                }
+            }
+            
+            handleAgentClick(agent) {
+                const agentMessages = {
+                    'buergerdienste': 'Ich brauche Hilfe bei Bürgerdienstleistungen',
+                    'ratsinfo': 'Ich möchte Informationen über den Kreistag',
+                    'stellenportal': 'Ich suche eine Stelle',
+                    'kontakte': 'Ich brauche Kontaktdaten'
+                };
+                
+                const message = agentMessages[agent];
+                if (message) {
+                    this.messageInput.value = message;
+                    this.sendMessage();
+                }
+            }
+        }
+        
+        // KAYA-Chat initialisieren
+        document.addEventListener('DOMContentLoaded', () => {
+            new KAYAChat();
+        });
+    </script>
+</body>
+</html>

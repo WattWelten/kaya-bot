@@ -1,0 +1,29 @@
+{
+  "name": "kaya-bot",
+  "version": "1.0.0",
+  "description": "KAYA - Kommunaler KI-Assistent für Landkreis Oldenburg",
+  "main": "kaya_server.js",
+  "scripts": {
+    "start": "node kaya_server.js",
+    "dev": "nodemon kaya_server.js"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "path": "^0.12.7",
+    "ws": "^8.18.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "chatbot",
+    "ai",
+    "municipal",
+    "oldenburg"
+  ],
+  "author": "Landkreis Oldenburg",
+  "license": "MIT"
+}

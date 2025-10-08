@@ -1,0 +1,62 @@
+{
+  "formulare": {
+    "query_pattern": "Ich brauche ein Formular für...",
+    "responsible_agent": "buergerdienste",
+    "data_available": {
+      "forms": 0,
+      "contacts": 0,
+      "meetings": 0,
+      "jobs": 0
+    },
+    "response_template": "Für {topic} finden Sie {count} Formulare. Hier sind die wichtigsten: {forms}",
+    "confidence_level": "low"
+  },
+  "kontakt": {
+    "query_pattern": "Wer ist mein Ansprechpartner für...",
+    "responsible_agent": "kontakte",
+    "data_available": {
+      "forms": 0,
+      "contacts": 29,
+      "meetings": 0,
+      "jobs": 0
+    },
+    "response_template": "Ihr Ansprechpartner ist {contact_name}. Kontakt: {contact_info}",
+    "confidence_level": "high"
+  },
+  "oeffnungszeiten": {
+    "query_pattern": "Wann hat das Amt geöffnet?",
+    "responsible_agent": "oeffnungszeiten",
+    "data_available": {
+      "forms": 0,
+      "contacts": 0,
+      "meetings": 0,
+      "jobs": 0
+    },
+    "response_template": "Die Öffnungszeiten sind: {opening_hours}",
+    "confidence_level": "low"
+  },
+  "ratsinfo": {
+    "query_pattern": "Wann ist die nächste Kreistagssitzung?",
+    "responsible_agent": "ratsinfo",
+    "data_available": {
+      "forms": 0,
+      "contacts": 0,
+      "meetings": 1,
+      "jobs": 0
+    },
+    "response_template": "Die nächste Sitzung ist am {date}. Agenda: {agenda}",
+    "confidence_level": "high"
+  },
+  "stellen": {
+    "query_pattern": "Gibt es offene Stellen?",
+    "responsible_agent": "stellenportal",
+    "data_available": {
+      "forms": 0,
+      "contacts": 0,
+      "meetings": 0,
+      "jobs": 0
+    },
+    "response_template": "Aktuell sind {count} Stellen ausgeschrieben: {jobs}",
+    "confidence_level": "low"
+  }
+}

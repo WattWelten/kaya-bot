@@ -1,0 +1,42 @@
+{
+  "crawl_timestamp": "2025-10-02T08:46:47.683926",
+  "total_content_items": 15,
+  "agents": {
+    "kaya": {
+      "name": "Kaya - Allgemeine Bürgerhilfe",
+      "content_count": 15,
+      "forms_count": 500,
+      "contacts_count": 49
+    },
+    "buergerdienste": {
+      "name": "Bürgerdienste Agent",
+      "content_count": 2,
+      "forms_count": 0,
+      "contacts_count": 0
+    },
+    "ratsinfo": {
+      "name": "Ratsinfo Agent",
+      "content_count": 1,
+      "forms_count": 3,
+      "contacts_count": 0
+    },
+    "kontakte": {
+      "name": "Kontakte Agent",
+      "content_count": 6,
+      "forms_count": 247,
+      "contacts_count": 29
+    },
+    "stellenportal": {
+      "name": "Stellenportal Agent",
+      "content_count": 0,
+      "forms_count": 0,
+      "contacts_count": 0
+    },
+    "oeffnungszeiten": {
+      "name": "Öffnungszeiten Agent",
+      "content_count": 0,
+      "forms_count": 0,
+      "contacts_count": 0
+    }
+  }
+}
