@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Bauantrag gem. § 63 bzw. § 64 NBauO",
+    "url": "https://www.landkreis-oldenburg.de/buergerdienste/bauantrag",
+    "content": "Antrag auf Baugenehmigung für Wohngebäude und gewerbliche Bauten. Erforderliche Unterlagen: Bauzeichnungen, Grundstücksnachweis, Baubeschreibung.",
+    "categories": ["Bauwesen", "Anträge"],
+    "keywords": ["Bauantrag", "Baugenehmigung", "Bauzeichnung"],
+    "contacts": [
+      {
+        "type": "Telefon",
+        "value": "0441 9160-1234"
+      },
+      {
+        "type": "Email", 
+        "value": "bauamt@landkreis-oldenburg.de"
+      }
+    ],
+    "forms": [
+      {
+        "type": "pdf",
+        "title": "Bauantrag-Formular",
+        "url": "https://www.landkreis-oldenburg.de/formulare/bauantrag.pdf"
+      }
+    ]
+  },
+  {
+    "title": "Geburtsurkunde beantragen",
+    "url": "https://www.landkreis-oldenburg.de/buergerdienste/geburtsurkunde",
+    "content": "Antrag auf Ausstellung einer Geburtsurkunde. Benötigt werden: Personalausweis, Geburtsbescheinigung, ggf. Heiratsurkunde der Eltern.",
+    "categories": ["Standesamt", "Urkunden"],
+    "keywords": ["Geburtsurkunde", "Standesamt", "Urkunde"],
+    "contacts": [
+      {
+        "type": "Telefon",
+        "value": "0441 9160-5678"
+      },
+      {
+        "type": "Email",
+        "value": "standesamt@landkreis-oldenburg.de"
+      }
+    ],
+    "forms": [
+      {
+        "type": "pdf", 
+        "title": "Antrag Geburtsurkunde",
+        "url": "https://www.landkreis-oldenburg.de/formulare/geburtsurkunde.pdf"
+      }
+    ]
+  }
+]

@@ -205,6 +205,92 @@
         .link:hover {
             text-decoration: underline;
         }
+        
+        /* Erweiterte Formatierung für bessere Bürgererfahrung */
+        .link-container {
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .link-button {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .link-button:hover {
+            background: #0056b3;
+            text-decoration: none;
+        }
+        
+        .contact-info {
+            background: #e8f5e8;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 8px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .contact-value {
+            font-family: monospace;
+            background: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .form-info {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 8px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .form-value {
+            font-style: italic;
+            color: #856404;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        
+        .step-number {
+            background: #007bff;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .message.kaya .message-content {
+            line-height: 1.6;
+        }
+        
+        .message.kaya .message-content strong {
+            color: #2c5aa0;
+        }
     </style>
 </head>
 <body>
@@ -306,12 +392,30 @@
         
         // Nachricht formatieren (Links, etc.)
         function formatMessage(text) {
-            // Markdown-ähnliche Formatierung
-            return text
+            // Erweiterte Formatierung für bessere Bürgererfahrung
+            let formatted = text
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
                 .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="link" target="_blank">$1</a>')
                 .replace(/\n/g, '<br>');
+            
+            // Spezielle Formatierung für Links
+            formatted = formatted.replace(/🔗 \*\*Direktlink:\*\* (https?:\/\/[^\s<]+)/g, 
+                '<div class="link-container"><a href="$1" class="link-button" target="_blank">🔗 Direktlink öffnen</a></div>');
+            
+            // Formatierung für Kontakte
+            formatted = formatted.replace(/📞 \*\*Direkter Kontakt:\*\* ([^<]+)/g, 
+                '<div class="contact-info">📞 <strong>Direkter Kontakt:</strong> <span class="contact-value">$1</span></div>');
+            
+            // Formatierung für Formulare
+            formatted = formatted.replace(/📋 \*\*Formulare:\*\* ([^<]+)/g, 
+                '<div class="form-info">📋 <strong>Formulare:</strong> <span class="form-value">$1</span></div>');
+            
+            // Formatierung für Schritte
+            formatted = formatted.replace(/(\d+)\. 📋 ([^<]+)/g, 
+                '<div class="step-item"><span class="step-number">$1.</span> <span class="step-text">📋 $2</span></div>');
+            
+            return formatted;
         }
         
         // Typing-Indikator anzeigen/verstecken
