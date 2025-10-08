@@ -2,6 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const http = require('http');
+
+// OpenAI API Key setzen VOR dem Import
+process.env.OPENAI_API_KEY = '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';
+process.env.USE_LLM = 'true';
+
+console.log('🔧 Umgebungsvariablen gesetzt:');
+console.log('  - OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'VORHANDEN ✅' : 'FEHLT ❌');
+console.log('  - USE_LLM:', process.env.USE_LLM);
+
 const KAYACharacterHandler = require('./kaya_character_handler');
 const KAYAAgentHandler = require('./kaya_agent_handler');
 const VoiceService = require('./voice_service');

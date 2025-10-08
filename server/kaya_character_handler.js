@@ -1,11 +1,19 @@
 const KAYAAgentHandler = require('./kaya_agent_handler');
-const LLMService = require('./llm_service');
 
 class KAYACharacterHandler {
     constructor() {
         this.agentHandler = new KAYAAgentHandler();
-        this.llmService = new LLMService();
+        this.llmService = null; // Lazy loading
         this.useLLM = process.env.USE_LLM === 'true';
+    }
+    
+    // Lazy loading für LLM Service
+    getLLMService() {
+        if (!this.llmService) {
+            const LLMService = require('./llm_service');
+            this.llmService = new LLMService();
+        }
+        return this.llmService;
     }
     
     async generateResponse(query, userMessage) {
@@ -22,7 +30,8 @@ class KAYACharacterHandler {
         // LLM-Enhancement falls aktiviert
         if (this.useLLM && !response.fallback) {
             try {
-                response = await this.llmService.enhanceResponse(response, query);
+                const llmService = this.getLLMService();
+                response = await llmService.enhanceResponse(response, query);
             } catch (error) {
                 console.error('LLM-Enhancement Fehler:', error);
                 // Verwende ursprüngliche Antwort als Fallback

@@ -2,9 +2,14 @@ const axios = require('axios');
 
 class LLMService {
     constructor() {
+        // Umgebungsvariablen direkt aus process.env laden
         this.openaiApiKey = process.env.OPENAI_API_KEY;
         this.elevenlabsApiKey = process.env.ELEVENLABS_API_KEY;
         this.openaiBaseUrl = process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1';
+        
+        console.log('🔧 LLM Service initialisiert:');
+        console.log('  - OpenAI API Key:', this.openaiApiKey ? 'VORHANDEN ✅' : 'FEHLT ❌');
+        console.log('  - ElevenLabs API Key:', this.elevenlabsApiKey ? 'VORHANDEN ✅' : 'FEHLT ❌');
     }
 
     async generateTextResponse(prompt, context = '') {
