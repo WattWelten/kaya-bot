@@ -64,8 +64,8 @@ class KAYACharacterHandler {
             intention: intention // Speichere die Intention für Kontext
         });
 
-        // LLM-Enhancement nur für allgemeine Anfragen, NICHT für Action-orientierte Antworten
-        if (this.useLLM && !response.fallback && agent === 'kaya' && !this.isActionOrientedResponse(intention)) {
+        // LLM-Enhancement nur für allgemeine Anfragen, NICHT für Action-orientierte Antworten oder Begrüßungen
+        if (this.useLLM && !response.fallback && agent === 'kaya' && !this.isActionOrientedResponse(intention) && !this.isGreeting(query)) {
             try {
                 const llmService = this.getLLMService();
                 const contextPrompt = this.contextMemory.generateContextPrompt(session);
@@ -74,8 +74,8 @@ class KAYACharacterHandler {
                 console.error('LLM-Enhancement Fehler:', error);
                 // Verwende ursprüngliche Antwort als Fallback
             }
-        } else if (agent === 'kaya' && this.isActionOrientedResponse(intention)) {
-            console.log('🎯 Action-orientierte Antwort - LLM-Enhancement übersprungen');
+        } else if (agent === 'kaya' && (this.isActionOrientedResponse(intention) || this.isGreeting(query))) {
+            console.log('🎯 Action-orientierte Antwort oder Begrüßung - LLM-Enhancement übersprungen');
         }
 
         return response;
@@ -306,10 +306,25 @@ class KAYACharacterHandler {
     }
 
     /**
+     * Prüft, ob es sich um eine Begrüßung handelt
+     */
+    isGreeting(query) {
+        const greetings = ['moin', 'hallo', 'hi', 'hey', 'guten tag', 'guten morgen', 'guten abend'];
+        const queryLower = query.toLowerCase().trim();
+        
+        return greetings.includes(queryLower) || queryLower.length <= 10;
+    }
+
+    /**
      * UNIVERSALE Bürgerzentrierte Antwort-Generierung
      * Funktioniert für ALLE Bürger und ALLE Anliegen
      */
     generateDirectResponse(query, intention, personaAnalysis) {
+        // BEGRÜSSUNGEN - Keine LLM-Enhancement
+        if (this.isGreeting(query)) {
+            return this.generateGreetingResponse(intention, personaAnalysis);
+        }
+        
         // 1. TONE basierend auf emotionalem Zustand
         const tone = this.determineTone(intention.emotionalState, intention.urgency);
         
@@ -332,6 +347,42 @@ class KAYACharacterHandler {
             language: languageAdaptations,
             urgency: intention.urgency
         });
+    }
+
+    /**
+     * Generiert eine einfache Begrüßungsantwort
+     */
+    generateGreetingResponse(intention, personaAnalysis) {
+        const citizenType = intention.citizenType;
+        const language = intention.language;
+        
+        let greeting = "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent. Wie kann ich Ihnen heute helfen?";
+        
+        // Anpassung für verschiedene Bürger-Typen
+        if (citizenType === 'senior') {
+            greeting = "Moin! Ich bin KAYA, Ihr digitaler Assistent für den Landkreis Oldenburg. Wie kann ich Ihnen heute helfen?";
+        } else if (citizenType === 'youth') {
+            greeting = "Moin! Ich bin KAYA, Ihr digitaler Assistent. Wie kann ich dir heute helfen?";
+        } else if (citizenType === 'family') {
+            greeting = "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent. Wie kann ich Ihrer Familie heute helfen?";
+        } else if (citizenType === 'migrant') {
+            greeting = "Moin! Ich bin KAYA, Ihr digitaler Assistent. Wie kann ich Ihnen heute helfen?";
+        } else if (citizenType === 'disabled') {
+            greeting = "Moin! Ich bin KAYA, Ihr barrierefreier digitaler Assistent. Wie kann ich Ihnen heute helfen?";
+        }
+        
+        // Sprach-Anpassung
+        if (language === 'english') {
+            greeting = "Hello! I'm KAYA, your digital assistant for Landkreis Oldenburg. How can I help you today?";
+        } else if (language === 'turkish') {
+            greeting = "Merhaba! Ben KAYA, Landkreis Oldenburg için dijital asistanınızım. Bugün size nasıl yardımcı olabilirim?";
+        }
+        
+        return {
+            response: greeting,
+            links: [],
+            fallback: false
+        };
     }
 
     /**
