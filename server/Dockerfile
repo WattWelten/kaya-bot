@@ -16,3 +16,6 @@ EXPOSE 3002
 
 # Starte Anwendung
 CMD ["node", "kaya_server.js"]
+
+
+

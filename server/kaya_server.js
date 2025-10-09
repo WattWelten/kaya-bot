@@ -12,7 +12,7 @@ console.log('  - OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'VORHANDEN ✅' 
 console.log('  - USE_LLM:', process.env.USE_LLM);
 
 const KAYACharacterHandler = require('./kaya_character_handler');
-const KAYAAgentHandler = require('./kaya_agent_handler');
+// KAYAAgentHandler wird lazy geladen - nicht beim Start importieren
 const VoiceService = require('./voice_service');
 
 const app = express();

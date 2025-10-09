@@ -205,6 +205,34 @@
         .link:hover {
             text-decoration: underline;
         }
+        
+        .phone-link {
+            color: #28a745;
+            text-decoration: none;
+        }
+        
+        .phone-link:hover {
+            text-decoration: underline;
+        }
+        
+        .email-link {
+            color: #dc3545;
+            text-decoration: none;
+        }
+        
+        .email-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* PDF-Links speziell stylen */
+        .link[href$=".pdf"] {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .link[href$=".pdf"]:before {
+            content: "📄 ";
+        }
     </style>
 </head>
 <body>
@@ -311,6 +339,8 @@
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
                 .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="link" target="_blank">$1</a>')
+                .replace(/\*\*Tel\.: ([^*]+)\*\*/g, '<strong><a href="tel:$1" class="phone-link">Tel.: $1</a></strong>')
+                .replace(/\*\*E-Mail: ([^*]+)\*\*/g, '<strong><a href="mailto:$1" class="email-link">E-Mail: $1</a></strong>')
                 .replace(/\n/g, '<br>');
         }
         

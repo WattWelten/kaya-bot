@@ -25,7 +25,7 @@ class KAYAAgentHandler {
                     fileSize: stats.size,
                     entryCount: 0 // Wird beim ersten Laden gesetzt
                 };
-                console.log(`✅ Agent ${agent}: Datei gefunden (${Math.round(stats.size/1024)}KB)`);
+                console.log(`✅ Agent ${agent}: Datei gefunden (${Math.round(stats.size/1024)}KB) - NICHT geladen`);
             } else {
                 console.log(`⚠️ Agent ${agent}: Keine Daten gefunden`);
                 this.agentData[agent] = { loaded: false, filePath: null, fileSize: 0, entryCount: 0 };

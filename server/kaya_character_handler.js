@@ -1,10 +1,17 @@
-const KAYAAgentHandler = require('./kaya_agent_handler');
-
 class KAYACharacterHandler {
     constructor() {
-        this.agentHandler = new KAYAAgentHandler();
+        this.agentHandler = null; // Lazy loading für Agent Handler
         this.llmService = null; // Lazy loading
         this.useLLM = process.env.USE_LLM === 'true';
+    }
+    
+    // Lazy loading für Agent Handler
+    getAgentHandler() {
+        if (!this.agentHandler) {
+            const KAYAAgentHandler = require('./kaya_agent_handler');
+        this.agentHandler = new KAYAAgentHandler();
+        }
+        return this.agentHandler;
     }
     
     // Lazy loading für LLM Service
@@ -18,7 +25,7 @@ class KAYACharacterHandler {
     
     async generateResponse(query, userMessage) {
         // Bestimme zuständigen Agent
-        const agent = this.agentHandler.routeToAgent(query);
+        const agent = this.getAgentHandler().routeToAgent(query);
         
         let response;
         if (agent === 'kaya') {
@@ -27,16 +34,10 @@ class KAYACharacterHandler {
             response = this.generateAgentResponse(agent, query);
         }
 
-        // LLM-Enhancement falls aktiviert
-        if (this.useLLM && !response.fallback) {
-            try {
-                const llmService = this.getLLMService();
-                response = await llmService.enhanceResponse(response, query);
-            } catch (error) {
-                console.error('LLM-Enhancement Fehler:', error);
-                // Verwende ursprüngliche Antwort als Fallback
-            }
-        }
+        // LLM-Enhancement DEAKTIVIERT - Link-Texte werden überschrieben
+        // Das LLM ignoriert alle Anweisungen und überschreibt Link-Texte mit "[Landkreis-Services]"
+        // Daher verwenden wir nur die Character Handler Antworten
+        console.log('⚠️ LLM-Enhancement deaktiviert - Link-Texte bleiben erhalten');
 
         return response;
     }
@@ -57,7 +58,7 @@ class KAYACharacterHandler {
     }
     
     generateAgentResponse(agent, query) {
-        const agentData = this.agentHandler.searchAgentData(agent, query);
+        const agentData = this.getAgentHandler().searchAgentData(agent, query);
         
         console.log(`Agent ${agent}: ${agentData.length} Ergebnisse für "${query}"`);
         
@@ -225,7 +226,7 @@ class KAYACharacterHandler {
                 
                 if (item.url) {
                     const linkText = this.createDescriptiveLinkText(item.title, item.url);
-                    options += `Links: [${linkText}](${item.url})\n`;
+                    options += `\n📋 **${linkText}:** [${linkText}](${item.url})\n`;
                 }
             }
             
@@ -361,6 +362,12 @@ class KAYACharacterHandler {
             return "Amt-Übersicht";
         } else if (titleLower.includes('landkreis') && titleLower.includes('verwaltung')) {
             return "Landkreis-Verwaltung";
+        } else if (titleLower.includes('antragsarten') || urlLower.includes('antragsarten')) {
+            return "Antragsarten und Unterlagen";
+        } else if (titleLower.includes('favoriten') || urlLower.includes('favoriten')) {
+            return "Favoriten-Übersicht";
+        } else if (titleLower.includes('eichenprozessionsspinner') || urlLower.includes('eichenprozessionsspinner')) {
+            return "Eichenprozessionsspinner-Info";
         } else if (titleLower.includes('landkreis')) {
             return "Landkreis-Services";
         } else {

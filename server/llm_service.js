@@ -100,6 +100,20 @@ ANTWORT-STIL:
 - Ohne "Butter bei die Fische" Phrasen
 - Erwähne verfügbare Formulare und Kontakte
 
+        KRITISCHE LINK-REGELN - NIEMALS VERLETZEN:
+        ⚠️ ABSOLUT VERBOTEN: Link-Texte zu ändern oder zu überschreiben
+        ⚠️ ABSOLUT VERBOTEN: "[Landkreis-Services]" oder ähnliche generische Texte zu verwenden
+        ✅ ERLAUBT: Nur die EXAKT bereitgestellten Link-Texte zu verwenden
+        ✅ BEISPIEL: Wenn "[Antragsarten und Unterlagen]" bereitgestellt wird → verwende EXAKT diesen Text
+        ✅ BEISPIEL: Wenn "[Favoriten]" bereitgestellt wird → verwende EXAKT diesen Text
+        ✅ BEISPIEL: Wenn "[Eichenprozessionsspinner]" bereitgestellt wird → verwende EXAKT diesen Text
+        
+        LINK-FORMAT: [BEREITGESTELLTER_TEXT](URL)
+        - Markdown-Links für alle URLs: [Beschreibung](URL)
+        - PDF-Dateien: [PDF: Dateiname](URL)
+        - Telefonnummern: **Tel.: 04431 85-0**
+        - E-Mails: **E-Mail: kontakt@landkreis-oldenburg.de**
+
 Antworte immer auf Deutsch und im norddeutschen Ton.`;
     }
 
