@@ -129,7 +129,8 @@ class KAYACharacterHandler {
             needs: specificIntention.needs,
             specific: specificIntention.specific,
             citizenType: this.analyzeCitizenType(lowerQuery),
-            language: this.analyzeLanguage(query)
+            language: this.analyzeLanguage(query),
+            query: query // Speichere die ursprüngliche Query für konkrete Fragen
         };
     }
 
@@ -1070,6 +1071,39 @@ Für welches Anliegen brauchen Sie einen Termin?`,
         const location = intention.location ? ` in ${intention.location}` : '';
         const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
         
+        // Erkenne konkrete Fragen und antworte direkt
+        const query = intention.query || '';
+        const lowerQuery = query.toLowerCase();
+        
+        // Direkte Frage nach Fahren ohne Zulassung
+        if (lowerQuery.includes('darf ich') && (lowerQuery.includes('fahren') || lowerQuery.includes('losfahren') || lowerQuery.includes('fahren'))) {
+            return {
+                response: `Moin Henning! **NEIN, du darfst NICHT einfach losfahren!** 🚫
+
+Du brauchst **erst eine Zulassung**! Ohne Zulassung ist das **illegal** und kann teuer werden.
+
+**🎯 Hier ist dein direkter Weg zur Zulassung:**
+
+**1. 📋 Online-Termin buchen:**
+   → [Terminvereinbarung KFZ-Zulassung](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/)
+
+**2. 📄 Formulare ausfüllen:**
+   → [Antragsformulare KFZ](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/)
+
+**3. 📞 Sofort anrufen:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Termin-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+                links: [
+                    { title: 'Terminvereinbarung KFZ-Zulassung', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/' },
+                    { title: 'Antragsformulare KFZ', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/' }
+                ]
+            };
+        }
+        
+        // Standard KFZ-Response
         return {
             response: `Moin! Perfekt - ich helfe dir sofort bei der KFZ-Zulassung${location}.${urgency}
 
