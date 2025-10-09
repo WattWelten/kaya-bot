@@ -92,112 +92,423 @@ class KAYACharacterHandler {
     }
 
     /**
-     * Analysiert die wahre Intention des Bürgers
+     * UNIVERSALE Bürgerzentrierte Intention-Analyse
+     * Funktioniert für ALLE Bürger und ALLE Anliegen
      */
     analyzeCitizenIntention(query) {
         const lowerQuery = query.toLowerCase();
         
-        // Bauantrag-Intentionen
-        if (lowerQuery.includes('bauantrag') || lowerQuery.includes('bauen') || lowerQuery.includes('haus')) {
-            return {
-                type: 'bauantrag',
-                urgency: lowerQuery.includes('eilig') || lowerQuery.includes('dringend') ? 'high' : 'normal',
-                needs: ['formulare', 'unterlagen', 'termin', 'kosten'],
-                location: this.extractLocation(query)
-            };
-        }
+        // 1. URGENCY-Analyse (für alle Bürger)
+        const urgency = this.analyzeUrgency(lowerQuery);
         
-        // Formular-Intentionen
-        if (lowerQuery.includes('formular') || lowerQuery.includes('antrag') || lowerQuery.includes('beantragen')) {
-            return {
-                type: 'formular',
-                urgency: 'normal',
-                needs: ['download', 'ausfüllen', 'einreichen'],
-                specific: this.extractSpecificForm(query)
-            };
-        }
+        // 2. EMOTIONAL STATE (für alle Bürger)
+        const emotionalState = this.analyzeEmotionalState(lowerQuery);
         
-        // Kontakt-Intentionen
-        if (lowerQuery.includes('kontakt') || lowerQuery.includes('telefon') || lowerQuery.includes('anrufen')) {
-            return {
-                type: 'kontakt',
-                urgency: 'high',
-                needs: ['telefonnummer', 'email', 'adresse', 'öffnungszeiten']
-            };
-        }
+        // 3. ACCESSIBILITY NEEDS (inklusiv für alle Bürger)
+        const accessibilityNeeds = this.analyzeAccessibilityNeeds(lowerQuery);
         
-        // Führerschein-Intentionen
-        if (lowerQuery.includes('führerschein') || lowerQuery.includes('führerschein') || lowerQuery.includes('fahrerlaubnis')) {
-            return {
-                type: 'führerschein',
-                urgency: lowerQuery.includes('eilig') || lowerQuery.includes('dringend') ? 'high' : 'normal',
-                needs: ['termin', 'formulare', 'unterlagen', 'kosten'],
-                location: this.extractLocation(query)
-            };
-        }
+        // 4. LOCATION (für alle Bürger)
+        const location = this.extractLocation(query);
         
-        // Gewerbe-Intentionen
-        if (lowerQuery.includes('gewerbe') || lowerQuery.includes('gewerbeanmeldung') || lowerQuery.includes('selbständig')) {
-            return {
-                type: 'gewerbe',
-                urgency: 'normal',
-                needs: ['formulare', 'unterlagen', 'beratung'],
-                location: this.extractLocation(query)
-            };
-        }
+        // 5. SPECIFIC INTENTION (erweitert für alle Anliegen)
+        const specificIntention = this.analyzeSpecificIntention(lowerQuery);
         
-        // KFZ-Zulassung-Intentionen
-        if (lowerQuery.includes('auto') || lowerQuery.includes('fahrzeug') || lowerQuery.includes('zulassen') || 
-            lowerQuery.includes('kfz') || lowerQuery.includes('kennzeichen') || lowerQuery.includes('zulassung')) {
-            return {
-                type: 'kfz_zulassung',
-                urgency: lowerQuery.includes('eilig') || lowerQuery.includes('dringend') ? 'high' : 'normal',
-                needs: ['termin', 'formulare', 'unterlagen', 'kosten'],
-                location: this.extractLocation(query)
-            };
-        }
-        
-        // Termin-Intentionen
-        if (lowerQuery.includes('termin') || lowerQuery.includes('vereinbaren') || lowerQuery.includes('wann')) {
-            return {
-                type: 'termin',
-                urgency: 'normal',
-                needs: ['online_termin', 'öffnungszeiten', 'verfügbarkeit']
-            };
-        }
-        
-        // Allgemeine Information
         return {
-            type: 'information',
-            urgency: 'normal',
-            needs: ['übersicht', 'erklärung', 'hilfe']
+            type: specificIntention.type,
+            urgency: urgency,
+            emotionalState: emotionalState,
+            accessibilityNeeds: accessibilityNeeds,
+            location: location,
+            needs: specificIntention.needs,
+            specific: specificIntention.specific,
+            citizenType: this.analyzeCitizenType(lowerQuery),
+            language: this.analyzeLanguage(query)
         };
     }
 
     /**
-     * Generiert direkte, bürgerzentrierte Antworten
+     * Analysiert Dringlichkeit für alle Bürger
+     */
+    analyzeUrgency(query) {
+        const urgentKeywords = ['eilig', 'dringend', 'sofort', 'heute', 'morgen', 'schnell', 'notfall'];
+        const veryUrgentKeywords = ['notfall', 'kritisch', 'lebensgefahr', 'sofort'];
+        
+        if (veryUrgentKeywords.some(keyword => query.includes(keyword))) {
+            return 'critical';
+        }
+        if (urgentKeywords.some(keyword => query.includes(keyword))) {
+            return 'high';
+        }
+        return 'normal';
+    }
+
+    /**
+     * Analysiert emotionalen Zustand für alle Bürger
+     */
+    analyzeEmotionalState(query) {
+        const frustratedKeywords = ['frustriert', 'ärgerlich', 'verwirrt', 'hilflos', 'verzweifelt'];
+        const anxiousKeywords = ['sorge', 'angst', 'unsicher', 'nervös'];
+        const positiveKeywords = ['freundlich', 'danke', 'hilfreich', 'gut'];
+        
+        if (frustratedKeywords.some(keyword => query.includes(keyword))) {
+            return 'frustrated';
+        }
+        if (anxiousKeywords.some(keyword => query.includes(keyword))) {
+            return 'anxious';
+        }
+        if (positiveKeywords.some(keyword => query.includes(keyword))) {
+            return 'positive';
+        }
+        return 'neutral';
+    }
+
+    /**
+     * Analysiert Barrierefreiheits-Bedürfnisse (inklusiv)
+     */
+    analyzeAccessibilityNeeds(query) {
+        const needs = [];
+        
+        if (query.includes('blind') || query.includes('sehbehindert')) {
+            needs.push('visual');
+        }
+        if (query.includes('taub') || query.includes('hörbehindert')) {
+            needs.push('hearing');
+        }
+        if (query.includes('rollstuhl') || query.includes('behindert')) {
+            needs.push('mobility');
+        }
+        if (query.includes('einfach') || query.includes('leicht')) {
+            needs.push('simple_language');
+        }
+        
+        return needs;
+    }
+
+    /**
+     * Analysiert Bürger-Typ (inklusiv für alle)
+     */
+    analyzeCitizenType(query) {
+        if (query.includes('senior') || query.includes('rentner') || query.includes('alt')) {
+            return 'senior';
+        }
+        if (query.includes('jugend') || query.includes('schüler') || query.includes('student')) {
+            return 'youth';
+        }
+        if (query.includes('familie') || query.includes('kind') || query.includes('baby')) {
+            return 'family';
+        }
+        if (query.includes('geflüchtet') || query.includes('migrant') || query.includes('ausländer')) {
+            return 'migrant';
+        }
+        if (query.includes('behindert') || query.includes('beeinträchtigt')) {
+            return 'disabled';
+        }
+        return 'general';
+    }
+
+    /**
+     * Analysiert Sprache (inklusiv)
+     */
+    analyzeLanguage(query) {
+        // Einfache Erkennung von nicht-deutschen Wörtern
+        const englishWords = ['hello', 'help', 'please', 'thank you'];
+        const turkishWords = ['merhaba', 'yardım', 'lütfen'];
+        
+        if (englishWords.some(word => query.toLowerCase().includes(word))) {
+            return 'english';
+        }
+        if (turkishWords.some(word => query.toLowerCase().includes(word))) {
+            return 'turkish';
+        }
+        return 'german';
+    }
+
+    /**
+     * Analysiert spezifische Intention (erweitert für alle Anliegen)
+     */
+    analyzeSpecificIntention(query) {
+        // Erweiterte Kategorien für alle Bürgeranliegen
+        const intentions = [
+            // Verwaltung
+            { keywords: ['bauantrag', 'bauen', 'haus', 'gebäude'], type: 'bauantrag', needs: ['formulare', 'unterlagen', 'termin', 'kosten'] },
+            { keywords: ['auto', 'fahrzeug', 'zulassen', 'kfz', 'kennzeichen'], type: 'kfz_zulassung', needs: ['termin', 'formulare', 'unterlagen', 'kosten'] },
+            { keywords: ['führerschein', 'fahrerlaubnis'], type: 'führerschein', needs: ['termin', 'formulare', 'unterlagen', 'kosten'] },
+            { keywords: ['gewerbe', 'gewerbeanmeldung', 'selbständig'], type: 'gewerbe', needs: ['formulare', 'unterlagen', 'beratung'] },
+            
+            // Soziales
+            { keywords: ['kindergeld', 'elterngeld', 'sozialhilfe'], type: 'soziales', needs: ['formulare', 'beratung', 'unterlagen'] },
+            { keywords: ['wohngeld', 'miete', 'wohnung'], type: 'wohngeld', needs: ['formulare', 'beratung', 'unterlagen'] },
+            { keywords: ['pflege', 'pflegegeld', 'pflegeheim'], type: 'pflege', needs: ['beratung', 'formulare', 'unterlagen'] },
+            
+            // Gesundheit
+            { keywords: ['gesundheit', 'arzt', 'krankenhaus'], type: 'gesundheit', needs: ['kontakt', 'informationen', 'termin'] },
+            { keywords: ['impfung', 'impfpass'], type: 'impfung', needs: ['termin', 'informationen', 'formulare'] },
+            
+            // Bildung
+            { keywords: ['schule', 'kindergarten', 'bildung'], type: 'bildung', needs: ['anmeldung', 'informationen', 'kontakt'] },
+            { keywords: ['studium', 'universität', 'hochschule'], type: 'studium', needs: ['informationen', 'beratung', 'anmeldung'] },
+            
+            // Umwelt
+            { keywords: ['müll', 'abfall', 'entsorgung'], type: 'umwelt', needs: ['informationen', 'termin', 'kosten'] },
+            { keywords: ['wasser', 'kanalisation'], type: 'wasser', needs: ['informationen', 'kontakt', 'kosten'] },
+            
+            // Allgemeine Verwaltung
+            { keywords: ['formular', 'antrag', 'beantragen'], type: 'formular', needs: ['download', 'ausfüllen', 'einreichen'] },
+            { keywords: ['termin', 'vereinbaren', 'wann'], type: 'termin', needs: ['online_termin', 'öffnungszeiten', 'verfügbarkeit'] },
+            { keywords: ['kontakt', 'telefon', 'anrufen'], type: 'kontakt', needs: ['telefonnummer', 'email', 'adresse', 'öffnungszeiten'] },
+            { keywords: ['öffnungszeiten', 'wann', 'geöffnet'], type: 'öffnungszeiten', needs: ['zeiten', 'kontakt', 'adresse'] },
+            
+            // Notfälle
+            { keywords: ['notfall', 'hilfe', 'krisen'], type: 'notfall', needs: ['sofortige_hilfe', 'kontakt', 'informationen'] }
+        ];
+        
+        // Suche passende Intention
+        for (const intention of intentions) {
+            if (intention.keywords.some(keyword => query.includes(keyword))) {
+                return {
+                    type: intention.type,
+                    needs: intention.needs,
+                    specific: this.extractSpecificForm(query)
+                };
+            }
+        }
+        
+        // Fallback für unbekannte Anliegen
+        return {
+            type: 'general_inquiry',
+            needs: ['informationen', 'beratung', 'kontakt'],
+            specific: null
+        };
+    }
+
+    /**
+     * UNIVERSALE Bürgerzentrierte Antwort-Generierung
+     * Funktioniert für ALLE Bürger und ALLE Anliegen
      */
     generateDirectResponse(query, intention, personaAnalysis) {
-        const tone = personaAnalysis?.emotionalState?.state === 'frustrated' ? 'beruhigend' : 'freundlich';
+        // 1. TONE basierend auf emotionalem Zustand
+        const tone = this.determineTone(intention.emotionalState, intention.urgency);
         
-        switch (intention.type) {
-            case 'bauantrag':
-                return this.generateBauantragResponse(intention, tone);
-            case 'formular':
-                return this.generateFormularResponse(intention, tone);
-            case 'kontakt':
-                return this.generateKontaktResponse(intention, tone);
-            case 'termin':
-                return this.generateTerminResponse(intention, tone);
-            case 'kfz_zulassung':
-                return this.generateKFZZulassungResponse(intention, tone);
-            case 'führerschein':
-                return this.generateFührerscheinResponse(intention, tone);
-            case 'gewerbe':
-                return this.generateGewerbeResponse(intention, tone);
-            default:
-                return this.generateGeneralResponse(query, tone);
+        // 2. ACCESSIBILITY-Anpassungen
+        const accessibilityAdaptations = this.getAccessibilityAdaptations(intention.accessibilityNeeds);
+        
+        // 3. CITIZEN-TYPE-Anpassungen
+        const citizenAdaptations = this.getCitizenTypeAdaptations(intention.citizenType);
+        
+        // 4. LANGUAGE-Anpassungen
+        const languageAdaptations = this.getLanguageAdaptations(intention.language);
+        
+        // 5. Spezifische Antwort generieren
+        const baseResponse = this.generateSpecificResponse(intention, tone);
+        
+        // 6. Alle Anpassungen kombinieren
+        return this.combineAdaptations(baseResponse, {
+            accessibility: accessibilityAdaptations,
+            citizenType: citizenAdaptations,
+            language: languageAdaptations,
+            urgency: intention.urgency
+        });
+    }
+
+    /**
+     * Bestimmt den richtigen Ton für alle Bürger
+     */
+    determineTone(emotionalState, urgency) {
+        if (urgency === 'critical') {
+            return 'urgent_helpful';
         }
+        if (emotionalState === 'frustrated') {
+            return 'calming_reassuring';
+        }
+        if (emotionalState === 'anxious') {
+            return 'gentle_supportive';
+        }
+        if (emotionalState === 'positive') {
+            return 'enthusiastic_helpful';
+        }
+        return 'friendly_professional';
+    }
+
+    /**
+     * Barrierefreiheits-Anpassungen (inklusiv)
+     */
+    getAccessibilityAdaptations(needs) {
+        const adaptations = {
+            visual: {
+                emphasis: '**', // Markdown für Screen Reader
+                structure: 'clear_headers',
+                links: 'descriptive_text'
+            },
+            hearing: {
+                emphasis: '📞', // Visuelle Hinweise
+                structure: 'written_instructions',
+                links: 'text_based'
+            },
+            mobility: {
+                emphasis: '♿', // Barrierefreiheit-Symbol
+                structure: 'step_by_step',
+                links: 'accessible_locations'
+            },
+            simple_language: {
+                emphasis: '📝', // Einfache Sprache
+                structure: 'short_sentences',
+                links: 'easy_explanations'
+            }
+        };
+        
+        return needs.map(need => adaptations[need]).filter(Boolean);
+    }
+
+    /**
+     * Bürger-Typ-Anpassungen (inklusiv)
+     */
+    getCitizenTypeAdaptations(citizenType) {
+        const adaptations = {
+            senior: {
+                tone: 'respectful_patient',
+                structure: 'detailed_step_by_step',
+                emphasis: 'clear_explanations'
+            },
+            youth: {
+                tone: 'modern_friendly',
+                structure: 'quick_direct',
+                emphasis: 'digital_options'
+            },
+            family: {
+                tone: 'warm_supportive',
+                structure: 'family_focused',
+                emphasis: 'child_friendly_options'
+            },
+            migrant: {
+                tone: 'welcoming_helpful',
+                structure: 'multilingual_support',
+                emphasis: 'cultural_sensitivity'
+            },
+            disabled: {
+                tone: 'inclusive_supportive',
+                structure: 'accessible_format',
+                emphasis: 'accommodation_options'
+            },
+            general: {
+                tone: 'professional_friendly',
+                structure: 'standard_format',
+                emphasis: 'comprehensive_info'
+            }
+        };
+        
+        return adaptations[citizenType] || adaptations.general;
+    }
+
+    /**
+     * Sprach-Anpassungen (inklusiv)
+     */
+    getLanguageAdaptations(language) {
+        const adaptations = {
+            english: {
+                greeting: 'Hello!',
+                closing: 'If you need help in German, just ask!',
+                emphasis: '🇬🇧'
+            },
+            turkish: {
+                greeting: 'Merhaba!',
+                closing: 'Almanca yardıma ihtiyacınız varsa, sadece sorun!',
+                emphasis: '🇹🇷'
+            },
+            german: {
+                greeting: 'Moin!',
+                closing: 'Gerne helfe ich Ihnen weiter!',
+                emphasis: '🇩🇪'
+            }
+        };
+        
+        return adaptations[language] || adaptations.german;
+    }
+
+    /**
+     * Generiert spezifische Antworten für alle Anliegen
+     */
+    generateSpecificResponse(intention, tone) {
+        const responseMap = {
+            // Verwaltung
+            'bauantrag': () => this.generateBauantragResponse(intention, tone),
+            'kfz_zulassung': () => this.generateKFZZulassungResponse(intention, tone),
+            'führerschein': () => this.generateFührerscheinResponse(intention, tone),
+            'gewerbe': () => this.generateGewerbeResponse(intention, tone),
+            
+            // Soziales
+            'soziales': () => this.generateSozialesResponse(intention, tone),
+            'wohngeld': () => this.generateWohngeldResponse(intention, tone),
+            'pflege': () => this.generatePflegeResponse(intention, tone),
+            
+            // Gesundheit
+            'gesundheit': () => this.generateGesundheitResponse(intention, tone),
+            'impfung': () => this.generateImpfungResponse(intention, tone),
+            
+            // Bildung
+            'bildung': () => this.generateBildungResponse(intention, tone),
+            'studium': () => this.generateStudiumResponse(intention, tone),
+            
+            // Umwelt
+            'umwelt': () => this.generateUmweltResponse(intention, tone),
+            'wasser': () => this.generateWasserResponse(intention, tone),
+            
+            // Allgemeine Verwaltung
+            'formular': () => this.generateFormularResponse(intention, tone),
+            'termin': () => this.generateTerminResponse(intention, tone),
+            'kontakt': () => this.generateKontaktResponse(intention, tone),
+            'öffnungszeiten': () => this.generateÖffnungszeitenResponse(intention, tone),
+            
+            // Notfälle
+            'notfall': () => this.generateNotfallResponse(intention, tone),
+            
+            // Fallback
+            'general_inquiry': () => this.generateGeneralResponse(intention, tone)
+        };
+        
+        const responseGenerator = responseMap[intention.type] || responseMap['general_inquiry'];
+        return responseGenerator();
+    }
+
+    /**
+     * Kombiniert alle Anpassungen für universelle Antworten
+     */
+    combineAdaptations(baseResponse, adaptations) {
+        let response = baseResponse.response;
+        
+        // Accessibility-Anpassungen
+        if (adaptations.accessibility.length > 0) {
+            adaptations.accessibility.forEach(adaptation => {
+                if (adaptation.emphasis) {
+                    response = response.replace(/\*\*/g, adaptation.emphasis);
+                }
+            });
+        }
+        
+        // Citizen-Type-Anpassungen
+        if (adaptations.citizenType) {
+            const greeting = adaptations.citizenType.tone === 'respectful_patient' ? 'Sehr geehrte Damen und Herren,' : 'Moin!';
+            response = response.replace(/Moin!/g, greeting);
+        }
+        
+        // Language-Anpassungen
+        if (adaptations.language) {
+            response = adaptations.language.greeting + ' ' + response.replace(/Moin!/g, '');
+            response += '\n\n' + adaptations.language.closing;
+        }
+        
+        // Urgency-Anpassungen
+        if (adaptations.urgency === 'critical') {
+            response = '🚨 ' + response;
+        }
+        
+        return {
+            response: response,
+            links: baseResponse.links,
+            urgency: adaptations.urgency,
+            accessibility: adaptations.accessibility,
+            citizenType: adaptations.citizenType,
+            language: adaptations.language
+        };
     }
 
     generateBauantragResponse(intention, tone) {
@@ -395,6 +706,279 @@ Für welches Anliegen brauchen Sie einen Termin?`,
 
 Was genau benötigen Sie? Je konkreter Sie fragen, desto besser kann ich helfen!`,
             links: []
+        };
+    }
+
+    // NEUE UNIVERSALE RESPONSE-FUNKTIONEN FÜR ALLE BÜRGERANLIEGEN
+
+    generateSozialesResponse(intention, tone) {
+        return {
+            response: `Moin! Gerne helfe ich Ihnen bei sozialen Leistungen.
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Online-Services:**
+   → [Soziale Leistungen](https://www.oldenburg-kreis.de/soziales/)
+
+**2. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**3. 📄 Formulare:**
+   → [Anträge Soziales](https://www.oldenburg-kreis.de/soziales/antraege/)
+
+**🎯 Ihre nächste Aktion:** Rufen Sie an oder besuchen Sie die Online-Services!
+
+**Brauchen Sie Hilfe bei einem bestimmten Antrag?**`,
+            links: [
+                { title: 'Soziale Leistungen', url: 'https://www.oldenburg-kreis.de/soziales/' },
+                { title: 'Anträge Soziales', url: 'https://www.oldenburg-kreis.de/soziales/antraege/' }
+            ]
+        };
+    }
+
+    generateWohngeldResponse(intention, tone) {
+        return {
+            response: `Moin! Gerne helfe ich Ihnen beim Wohngeld.
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Wohngeld-Antrag:**
+   → [Wohngeld online](https://www.oldenburg-kreis.de/soziales/wohngeld/)
+
+**2. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**3. 📄 Unterlagen:**
+   → [Wohngeld-Formulare](https://www.oldenburg-kreis.de/soziales/wohngeld/formulare/)
+
+**🎯 Ihre nächste Aktion:** Antrag online stellen oder anrufen!
+
+**Haben Sie alle Unterlagen bereit?**`,
+            links: [
+                { title: 'Wohngeld online', url: 'https://www.oldenburg-kreis.de/soziales/wohngeld/' },
+                { title: 'Wohngeld-Formulare', url: 'https://www.oldenburg-kreis.de/soziales/wohngeld/formulare/' }
+            ]
+        };
+    }
+
+    generatePflegeResponse(intention, tone) {
+        return {
+            response: `Moin! Gerne helfe ich Ihnen bei Pflege-Angelegenheiten.
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Pflege-Services:**
+   → [Pflegeportal](https://www.oldenburg-kreis.de/soziales/pflege/)
+
+**2. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**3. 📄 Anträge:**
+   → [Pflege-Anträge](https://www.oldenburg-kreis.de/soziales/pflege/antraege/)
+
+**🎯 Ihre nächste Aktion:** Beratung anrufen oder Online-Services nutzen!
+
+**Brauchen Sie Hilfe bei der Antragstellung?**`,
+            links: [
+                { title: 'Pflegeportal', url: 'https://www.oldenburg-kreis.de/soziales/pflege/' },
+                { title: 'Pflege-Anträge', url: 'https://www.oldenburg-kreis.de/soziales/pflege/antraege/' }
+            ]
+        };
+    }
+
+    generateGesundheitResponse(intention, tone) {
+        return {
+            response: `Moin! Gerne helfe ich Ihnen bei Gesundheits-Angelegenheiten.
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Gesundheits-Services:**
+   → [Gesundheitsamt](https://www.oldenburg-kreis.de/gesundheit/)
+
+**2. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**3. 📄 Informationen:**
+   → [Gesundheits-Info](https://www.oldenburg-kreis.de/gesundheit/informationen/)
+
+**🎯 Ihre nächste Aktion:** Anrufen oder Online-Informationen nutzen!
+
+**Worum geht es genau?**`,
+            links: [
+                { title: 'Gesundheitsamt', url: 'https://www.oldenburg-kreis.de/gesundheit/' },
+                { title: 'Gesundheits-Info', url: 'https://www.oldenburg-kreis.de/gesundheit/informationen/' }
+            ]
+        };
+    }
+
+    generateImpfungResponse(intention, tone) {
+        return {
+            response: `Moin! Gerne helfe ich Ihnen bei Impfungen.
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Impf-Termin:**
+   → [Impf-Terminvereinbarung](https://www.oldenburg-kreis.de/gesundheit/impfungen/)
+
+**2. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**3. 📄 Informationen:**
+   → [Impf-Informationen](https://www.oldenburg-kreis.de/gesundheit/impfungen/informationen/)
+
+**🎯 Ihre nächste Aktion:** Termin online buchen oder anrufen!
+
+**Welche Impfung benötigen Sie?**`,
+            links: [
+                { title: 'Impf-Terminvereinbarung', url: 'https://www.oldenburg-kreis.de/gesundheit/impfungen/' },
+                { title: 'Impf-Informationen', url: 'https://www.oldenburg-kreis.de/gesundheit/impfungen/informationen/' }
+            ]
+        };
+    }
+
+    generateBildungResponse(intention, tone) {
+        return {
+            response: `Moin! Gerne helfe ich Ihnen bei Bildungs-Angelegenheiten.
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Bildungs-Services:**
+   → [Bildungsportal](https://www.oldenburg-kreis.de/bildung/)
+
+**2. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**3. 📄 Anmeldungen:**
+   → [Schul-Anmeldungen](https://www.oldenburg-kreis.de/bildung/schulen/)
+
+**🎯 Ihre nächste Aktion:** Online-Services nutzen oder anrufen!
+
+**Um welche Bildungseinrichtung geht es?**`,
+            links: [
+                { title: 'Bildungsportal', url: 'https://www.oldenburg-kreis.de/bildung/' },
+                { title: 'Schul-Anmeldungen', url: 'https://www.oldenburg-kreis.de/bildung/schulen/' }
+            ]
+        };
+    }
+
+    generateStudiumResponse(intention, tone) {
+        return {
+            response: `Moin! Gerne helfe ich Ihnen bei Studien-Angelegenheiten.
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Studien-Informationen:**
+   → [Studienberatung](https://www.oldenburg-kreis.de/bildung/studium/)
+
+**2. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**3. 📄 Anträge:**
+   → [Studien-Anträge](https://www.oldenburg-kreis.de/bildung/studium/antraege/)
+
+**🎯 Ihre nächste Aktion:** Beratung anrufen oder Online-Info nutzen!
+
+**Welche Studien-Angelegenheit betrifft Sie?**`,
+            links: [
+                { title: 'Studienberatung', url: 'https://www.oldenburg-kreis.de/bildung/studium/' },
+                { title: 'Studien-Anträge', url: 'https://www.oldenburg-kreis.de/bildung/studium/antraege/' }
+            ]
+        };
+    }
+
+    generateUmweltResponse(intention, tone) {
+        return {
+            response: `Moin! Gerne helfe ich Ihnen bei Umwelt-Angelegenheiten.
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Umwelt-Services:**
+   → [Umweltamt](https://www.oldenburg-kreis.de/umwelt/)
+
+**2. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**3. 📄 Informationen:**
+   → [Umwelt-Info](https://www.oldenburg-kreis.de/umwelt/informationen/)
+
+**🎯 Ihre nächste Aktion:** Online-Services nutzen oder anrufen!
+
+**Um welches Umwelt-Thema geht es?**`,
+            links: [
+                { title: 'Umweltamt', url: 'https://www.oldenburg-kreis.de/umwelt/' },
+                { title: 'Umwelt-Info', url: 'https://www.oldenburg-kreis.de/umwelt/informationen/' }
+            ]
+        };
+    }
+
+    generateWasserResponse(intention, tone) {
+        return {
+            response: `Moin! Gerne helfe ich Ihnen bei Wasser-Angelegenheiten.
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Wasser-Services:**
+   → [Wasserwirtschaft](https://www.oldenburg-kreis.de/umwelt/wasser/)
+
+**2. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**3. 📄 Informationen:**
+   → [Wasser-Info](https://www.oldenburg-kreis.de/umwelt/wasser/informationen/)
+
+**🎯 Ihre nächste Aktion:** Online-Services nutzen oder anrufen!
+
+**Welche Wasser-Angelegenheit betrifft Sie?**`,
+            links: [
+                { title: 'Wasserwirtschaft', url: 'https://www.oldenburg-kreis.de/umwelt/wasser/' },
+                { title: 'Wasser-Info', url: 'https://www.oldenburg-kreis.de/umwelt/wasser/informationen/' }
+            ]
+        };
+    }
+
+    generateÖffnungszeitenResponse(intention, tone) {
+        return {
+            response: `Moin! Hier sind die Öffnungszeiten des Landkreises Oldenburg:
+
+**🕒 Öffnungszeiten:**
+
+**Verwaltung:**
+• **Mo-Do:** 8:00 - 16:00 Uhr
+• **Fr:** 8:00 - 13:00 Uhr
+
+**📞 Telefonische Erreichbarkeit:**
+• **Mo-Fr:** 8:00 - 16:00 Uhr
+• **Tel.:** 04431 85-0
+
+**🎯 Ihre nächste Aktion:** Rufen Sie an oder besuchen Sie uns!
+
+**Brauchen Sie einen Termin?**`,
+            links: [
+                { title: 'Terminvereinbarung', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/' }
+            ]
+        };
+    }
+
+    generateNotfallResponse(intention, tone) {
+        return {
+            response: `🚨 **NOTFALL-HILFE**
+
+**Sofortige Hilfe:**
+• **Notruf:** 112 (Feuerwehr/Rettung)
+• **Polizei:** 110
+• **Ärztlicher Bereitschaftsdienst:** 116 117
+
+**Landkreis Oldenburg:**
+• **Tel.:** 04431 85-0 (Mo-Fr 8-16 Uhr)
+• **E-Mail:** kontakt@landkreis-oldenburg.de
+
+**🎯 Ihre nächste Aktion:** Bei Notfall sofort 112 anrufen!
+
+**Ist es ein Notfall oder können wir Ihnen anderweitig helfen?**`,
+            links: [
+                { title: 'Notruf 112', url: 'tel:112' },
+                { title: 'Polizei 110', url: 'tel:110' }
+            ]
         };
     }
 
