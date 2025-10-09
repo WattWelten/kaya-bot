@@ -45,6 +45,13 @@ class KAYACharacterHandler {
             conversationHistory: session.messages.slice(-3) // Letzte 3 Nachrichten
         };
         
+        // DEBUG: Session-Kontext ausgeben
+        console.log(`🔍 Session-Kontext Debug:`);
+        console.log(`  - Session-ID: ${sessionId}`);
+        console.log(`  - Messages: ${session.messages.length}`);
+        console.log(`  - Previous Intention: ${sessionContext.previousIntention?.type || 'KEINE'}`);
+        console.log(`  - Query: ${query}`);
+        
         const agent = this.getAgentHandler().routeToAgent(query, sessionContext);
         
         let response;

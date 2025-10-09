@@ -58,6 +58,7 @@ class ContextMemory {
             timestamp: new Date(),
             sender: sender, // 'user' oder 'kaya'
             content: message,
+            context: metadata, // Speichere den kompletten Context
             metadata: {
                 ...metadata,
                 messageLength: message.length,
@@ -326,3 +327,5 @@ Reagiere als empathischer Bürgerservice-Mitarbeiter:
 }
 
 module.exports = ContextMemory;
+
+
