@@ -245,17 +245,22 @@ class KAYACharacterHandler {
     }
 
     /**
-     * Analysiert Sprache (inklusiv) mit erweiterter Erkennung
+     * Analysiert Sprache (inklusiv) mit erweiterter Erkennung für Landkreis Oldenburg
      */
     analyzeLanguage(query) {
         const lowerQuery = query.toLowerCase();
         
-        // Erweiterte Sprach-Erkennung
+        // Erweiterte Sprach-Erkennung basierend auf Bevölkerungsstruktur Landkreis Oldenburg
         const englishWords = ['hello', 'help', 'please', 'thank you', 'sorry', 'excuse me', 'i need', 'can you'];
-        const turkishWords = ['merhaba', 'yardım', 'lütfen', 'teşekkür', 'özür', 'yardım edin'];
-        const arabicWords = ['مرحبا', 'مساعدة', 'من فضلك', 'شكرا'];
-        const polishWords = ['dzień dobry', 'pomoc', 'proszę', 'dziękuję'];
-        const russianWords = ['привет', 'помощь', 'пожалуйста', 'спасибо'];
+        const turkishWords = ['merhaba', 'yardım', 'lütfen', 'teşekkür', 'özür', 'yardım edin', 'nasıl', 'ne'];
+        const arabicWords = ['مرحبا', 'مساعدة', 'من فضلك', 'شكرا', 'أحتاج', 'كيف'];
+        const polishWords = ['dzień dobry', 'pomoc', 'proszę', 'dziękuję', 'potrzebuję', 'jak'];
+        const russianWords = ['привет', 'помощь', 'пожалуйста', 'спасибо', 'нужен', 'как'];
+        const romanianWords = ['bună', 'ajutor', 'vă rog', 'mulțumesc', 'am nevoie', 'cum'];
+        const ukrainianWords = ['привіт', 'допомога', 'будь ласка', 'дякую', 'потрібно', 'як'];
+        const dutchWords = ['hallo', 'hulp', 'alsjeblieft', 'dank je', 'ik heb nodig', 'hoe'];
+        const danishWords = ['hej', 'hjælp', 'tak', 'undskyld', 'jeg har brug for', 'hvordan'];
+        const plattdeutschWords = ['moin', 'hülp', 'bitte', 'danke', 'ik bruuk', 'wo'];
         
         if (englishWords.some(word => lowerQuery.includes(word))) {
             return 'english';
@@ -271,6 +276,21 @@ class KAYACharacterHandler {
         }
         if (russianWords.some(word => lowerQuery.includes(word))) {
             return 'russian';
+        }
+        if (romanianWords.some(word => lowerQuery.includes(word))) {
+            return 'romanian';
+        }
+        if (ukrainianWords.some(word => lowerQuery.includes(word))) {
+            return 'ukrainian';
+        }
+        if (dutchWords.some(word => lowerQuery.includes(word))) {
+            return 'dutch';
+        }
+        if (danishWords.some(word => lowerQuery.includes(word))) {
+            return 'danish';
+        }
+        if (plattdeutschWords.some(word => lowerQuery.includes(word))) {
+            return 'plattdeutsch';
         }
         return 'german';
     }
@@ -713,7 +733,7 @@ class KAYACharacterHandler {
     }
 
     /**
-     * Generiert eine einfache Begrüßungsantwort mit regionalem Humor
+     * Generiert eine einfache Begrüßungsantwort mit regionalem Humor für Landkreis Oldenburg
      */
     generateGreetingResponse(intention, personaAnalysis) {
         const citizenType = intention.citizenType;
@@ -734,11 +754,27 @@ class KAYACharacterHandler {
             greeting = "Moin! Ich bin KAYA, Ihr barrierefreier digitaler Assistent. Wie kann ich Ihnen heute helfen?";
         }
         
-        // Sprach-Anpassung
+        // Erweiterte Sprach-Anpassung für Landkreis Oldenburg
         if (language === 'english') {
             greeting = "Hello! I'm KAYA, your digital assistant for Landkreis Oldenburg. How can I help you today?";
         } else if (language === 'turkish') {
             greeting = "Merhaba! Ben KAYA, Landkreis Oldenburg için dijital asistanınızım. Bugün size nasıl yardımcı olabilirim?";
+        } else if (language === 'arabic') {
+            greeting = "مرحبا! أنا KAYA، مساعدك الرقمي لمقاطعة أولدنبورغ. كيف يمكنني مساعدتك اليوم؟";
+        } else if (language === 'polish') {
+            greeting = "Dzień dobry! Jestem KAYA, Twój cyfrowy asystent dla Landkreis Oldenburg. Jak mogę Ci dziś pomóc?";
+        } else if (language === 'russian') {
+            greeting = "Привет! Я KAYA, ваш цифровой помощник для Landkreis Oldenburg. Как я могу вам помочь сегодня?";
+        } else if (language === 'romanian') {
+            greeting = "Bună! Sunt KAYA, asistentul dvs. digital pentru Landkreis Oldenburg. Cum vă pot ajuta astăzi?";
+        } else if (language === 'ukrainian') {
+            greeting = "Привіт! Я KAYA, ваш цифровий помічник для Landkreis Oldenburg. Як я можу вам допомогти сьогодні?";
+        } else if (language === 'dutch') {
+            greeting = "Hallo! Ik ben KAYA, uw digitale assistent voor Landkreis Oldenburg. Hoe kan ik u vandaag helpen?";
+        } else if (language === 'danish') {
+            greeting = "Hej! Jeg er KAYA, din digitale assistent for Landkreis Oldenburg. Hvordan kan jeg hjælpe dig i dag?";
+        } else if (language === 'plattdeutsch') {
+            greeting = "Moin! Ik bin KAYA, dien digitalen Assistent för den Landkreis Oldenburg. Wo kann ik di hüüt helpen?";
         }
         
         return {
@@ -838,7 +874,7 @@ class KAYACharacterHandler {
     }
 
     /**
-     * Sprach-Anpassungen (inklusiv)
+     * Sprach-Anpassungen (inklusiv) für Landkreis Oldenburg
      */
     getLanguageAdaptations(language) {
         const adaptations = {
@@ -851,6 +887,46 @@ class KAYACharacterHandler {
                 greeting: 'Merhaba!',
                 closing: 'Almanca yardıma ihtiyacınız varsa, sadece sorun!',
                 emphasis: '🇹🇷'
+            },
+            arabic: {
+                greeting: 'مرحبا!',
+                closing: 'إذا كنت تحتاج مساعدة باللغة الألمانية، فقط اسأل!',
+                emphasis: '🇸🇦'
+            },
+            polish: {
+                greeting: 'Dzień dobry!',
+                closing: 'Jeśli potrzebujesz pomocy w języku niemieckim, po prostu zapytaj!',
+                emphasis: '🇵🇱'
+            },
+            russian: {
+                greeting: 'Привет!',
+                closing: 'Если вам нужна помощь на немецком языке, просто спросите!',
+                emphasis: '🇷🇺'
+            },
+            romanian: {
+                greeting: 'Bună!',
+                closing: 'Dacă aveți nevoie de ajutor în limba germană, doar întrebați!',
+                emphasis: '🇷🇴'
+            },
+            ukrainian: {
+                greeting: 'Привіт!',
+                closing: 'Якщо вам потрібна допомога німецькою мовою, просто запитайте!',
+                emphasis: '🇺🇦'
+            },
+            dutch: {
+                greeting: 'Hallo!',
+                closing: 'Als je hulp nodig hebt in het Duits, vraag het gewoon!',
+                emphasis: '🇳🇱'
+            },
+            danish: {
+                greeting: 'Hej!',
+                closing: 'Hvis du har brug for hjælp på tysk, spørg bare!',
+                emphasis: '🇩🇰'
+            },
+            plattdeutsch: {
+                greeting: 'Moin!',
+                closing: 'Ik helpe di gern wieter!',
+                emphasis: '🏴󠁧󠁢󠁳󠁣󠁴󠁿'
             },
             german: {
                 greeting: 'Moin!',
