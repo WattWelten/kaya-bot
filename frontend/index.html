@@ -184,6 +184,11 @@
             animation: pulse 1s infinite;
         }
         
+        .voice-button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -254,7 +259,7 @@
         
         <div class="chat-input">
             <input type="text" id="messageInput" placeholder="Schreiben Sie Ihre Nachricht..." maxlength="500">
-            <button type="button" id="voiceButton" class="voice-button" title="Sprachaufnahme">
+            <button type="button" id="voiceButton" class="voice-button" title="Sprachaufnahme" disabled>
                 🎤
             </button>
             <button type="button" id="sendButton">Senden</button>
@@ -271,6 +276,9 @@
         let isRecording = false;
         let mediaRecorder = null;
         let audioChunks = [];
+        let voiceWebSocket = null;
+        let isVoiceConnected = false;
+        let currentAudio = null;
         
         // Nachricht senden
         async function sendMessage() {
@@ -363,10 +371,97 @@
             }
         });
         
+        // Voice WebSocket Verbindung initialisieren
+        function initVoiceConnection() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}/voice`;
+            
+            voiceWebSocket = new WebSocket(wsUrl);
+            
+            voiceWebSocket.onopen = () => {
+                console.log('🎤 Voice WebSocket verbunden');
+                isVoiceConnected = true;
+                voiceButton.disabled = false;
+            };
+            
+            voiceWebSocket.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                handleVoiceMessage(data);
+            };
+            
+            voiceWebSocket.onclose = () => {
+                console.log('🎤 Voice WebSocket getrennt');
+                isVoiceConnected = false;
+                voiceButton.disabled = true;
+                // Reconnect nach 3 Sekunden
+                setTimeout(initVoiceConnection, 3000);
+            };
+            
+            voiceWebSocket.onerror = (error) => {
+                console.error('🎤 Voice WebSocket Fehler:', error);
+            };
+        }
+        
+        // Voice-Nachrichten verarbeiten
+        function handleVoiceMessage(data) {
+            switch (data.type) {
+                case 'transcription':
+                    addMessage(data.text, 'user');
+                    break;
+                case 'response':
+                    addMessage(data.text, 'kaya');
+                    break;
+                case 'audio':
+                    playAudioResponse(data.data);
+                    break;
+                case 'error':
+                    addMessage(`Fehler: ${data.message}`, 'kaya');
+                    break;
+            }
+        }
+        
+        // Audio-Antwort abspielen
+        function playAudioResponse(base64Audio) {
+            try {
+                // Stoppe aktuelles Audio
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio = null;
+                }
+                
+                // Konvertiere Base64 zu Audio
+                const audioData = atob(base64Audio);
+                const audioArray = new Uint8Array(audioData.length);
+                for (let i = 0; i < audioData.length; i++) {
+                    audioArray[i] = audioData.charCodeAt(i);
+                }
+                
+                const audioBlob = new Blob([audioArray], { type: 'audio/mp3' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                
+                currentAudio = new Audio(audioUrl);
+                currentAudio.play();
+                
+                // Cleanup nach dem Abspielen
+                currentAudio.onended = () => {
+                    URL.revokeObjectURL(audioUrl);
+                    currentAudio = null;
+                };
+                
+            } catch (error) {
+                console.error('Fehler beim Abspielen der Audio-Antwort:', error);
+            }
+        }
+        
         // Sprachaufnahme
         voiceButton.addEventListener('click', toggleRecording);
         
         async function toggleRecording() {
+            if (!isVoiceConnected) {
+                alert('Voice-Verbindung nicht verfügbar. Bitte verwenden Sie die Tastatur.');
+                return;
+            }
+            
             if (!isRecording) {
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -400,20 +495,23 @@
             }
         }
         
-        // Sprachnachricht senden
+        // Sprachnachricht über WebSocket senden
         async function sendVoiceMessage(audioBlob) {
-            const formData = new FormData();
-            formData.append('audio', audioBlob);
-            
             try {
-                const response = await fetch('/voice', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                const data = await response.json();
-                addMessage(data.transcription, 'user');
-                addMessage(data.response, 'kaya');
+                // Konvertiere Audio zu Base64
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64Audio = reader.result.split(',')[1];
+                    
+                    // Sende über WebSocket
+                    if (voiceWebSocket && isVoiceConnected) {
+                        voiceWebSocket.send(JSON.stringify({
+                            type: 'audio',
+                            data: base64Audio
+                        }));
+                    }
+                };
+                reader.readAsDataURL(audioBlob);
                 
             } catch (error) {
                 console.error('Fehler beim Senden der Sprachnachricht:', error);
@@ -423,6 +521,9 @@
         
         // Fokus auf Eingabefeld setzen
         messageInput.focus();
+        
+        // Voice-WebSocket-Verbindung initialisieren
+        initVoiceConnection();
     </script>
 </body>
 </html>
