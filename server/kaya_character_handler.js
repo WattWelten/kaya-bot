@@ -72,47 +72,248 @@ class KAYACharacterHandler {
     }
     
     generateKAYAResponse(query, personaAnalysis = null) {
-        const greeting = "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent.";
+        // Bürgerzentrierte Dialog-Optimierung
+        const intention = this.analyzeCitizenIntention(query);
+        const response = this.generateDirectResponse(query, intention, personaAnalysis);
         
-        // Persona-basierte Anpassungen
-        let response = {
+        return {
             agent: 'kaya',
-            response: `${greeting} Wie kann ich Ihnen heute helfen?`,
-            suggestions: [
-                "Formulare und Anträge",
-                "Kontakte und Öffnungszeiten", 
-                "Stellenausschreibungen",
-                "Ratsinfo und Sitzungen"
-            ]
-        };
-        
-        if (personaAnalysis) {
-            // Anpassung basierend auf Persona
-            if (personaAnalysis.persona.persona === 'first_time_visitor') {
-                response.response = `${greeting} Willkommen! Ist das Ihr erster Besuch bei uns? Ich erkläre Ihnen gerne alles Schritt für Schritt.`;
-                response.suggestions = [
-                    "Kann ich Ihnen den Ablauf erklären?",
-                    "Welche Unterlagen brauchen Sie?",
-                    "Wie kann ich Ihnen helfen?"
-                ];
-            } else if (personaAnalysis.persona.persona === 'confused_citizen') {
-                response.response = `${greeting} Keine Sorge, ich helfe Ihnen gerne. Verstehe ich Sie richtig?`;
-                response.suggestions = [
-                    "Soll ich das nochmal erklären?",
-                    "Welche Fragen haben Sie?",
-                    "Kann ich Ihnen helfen?"
-                ];
-            } else if (personaAnalysis.persona.persona === 'urgent_case') {
-                response.response = `${greeting} Ich verstehe, dass es eilig ist. Wie kann ich Ihnen schnell helfen?`;
-                response.suggestions = [
-                    "Wie dringend ist das?",
-                    "Bis wann brauchen Sie das?",
-                    "Kann ich einen Express-Termin anbieten?"
-                ];
+            response: response.response,
+            links: response.links,
+            confidence: 0.9,
+            source: 'kaya',
+            enhanced: false,
+            context: {
+                persona: personaAnalysis?.persona?.persona || 'standard_citizen',
+                emotionalState: personaAnalysis?.emotionalState?.state || 'neutral',
+                urgency: intention.urgency
             }
+        };
+    }
+
+    /**
+     * Analysiert die wahre Intention des Bürgers
+     */
+    analyzeCitizenIntention(query) {
+        const lowerQuery = query.toLowerCase();
+        
+        // Bauantrag-Intentionen
+        if (lowerQuery.includes('bauantrag') || lowerQuery.includes('bauen') || lowerQuery.includes('haus')) {
+            return {
+                type: 'bauantrag',
+                urgency: lowerQuery.includes('eilig') || lowerQuery.includes('dringend') ? 'high' : 'normal',
+                needs: ['formulare', 'unterlagen', 'termin', 'kosten'],
+                location: this.extractLocation(query)
+            };
         }
         
-        return response;
+        // Formular-Intentionen
+        if (lowerQuery.includes('formular') || lowerQuery.includes('antrag') || lowerQuery.includes('beantragen')) {
+            return {
+                type: 'formular',
+                urgency: 'normal',
+                needs: ['download', 'ausfüllen', 'einreichen'],
+                specific: this.extractSpecificForm(query)
+            };
+        }
+        
+        // Kontakt-Intentionen
+        if (lowerQuery.includes('kontakt') || lowerQuery.includes('telefon') || lowerQuery.includes('anrufen')) {
+            return {
+                type: 'kontakt',
+                urgency: 'high',
+                needs: ['telefonnummer', 'email', 'adresse', 'öffnungszeiten']
+            };
+        }
+        
+        // Termin-Intentionen
+        if (lowerQuery.includes('termin') || lowerQuery.includes('vereinbaren') || lowerQuery.includes('wann')) {
+            return {
+                type: 'termin',
+                urgency: 'normal',
+                needs: ['online_termin', 'öffnungszeiten', 'verfügbarkeit']
+            };
+        }
+        
+        // Allgemeine Information
+        return {
+            type: 'information',
+            urgency: 'normal',
+            needs: ['übersicht', 'erklärung', 'hilfe']
+        };
+    }
+
+    /**
+     * Generiert direkte, bürgerzentrierte Antworten
+     */
+    generateDirectResponse(query, intention, personaAnalysis) {
+        const tone = personaAnalysis?.emotionalState?.state === 'frustrated' ? 'beruhigend' : 'freundlich';
+        
+        switch (intention.type) {
+            case 'bauantrag':
+                return this.generateBauantragResponse(intention, tone);
+            case 'formular':
+                return this.generateFormularResponse(intention, tone);
+            case 'kontakt':
+                return this.generateKontaktResponse(intention, tone);
+            case 'termin':
+                return this.generateTerminResponse(intention, tone);
+            default:
+                return this.generateGeneralResponse(query, tone);
+        }
+    }
+
+    generateBauantragResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Gerne helfe ich Ihnen beim Bauantrag${location}.${urgency}
+
+**Was Sie brauchen:**
+1. **Formulare:** [Bauantrag online](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/bauantrag-online/)
+2. **Unterlagen:** [Anträge und Formulare](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)
+3. **Termin:** [Online-Terminvereinbarung](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/)
+
+**Direkter Kontakt:**
+• **Tel.: 04431 85-0** (Mo-Fr 8-16 Uhr)
+• **E-Mail:** kontakt@landkreis-oldenburg.de
+
+Haben Sie bereits alle Unterlagen oder brauchen Sie Hilfe bei einem bestimmten Schritt?`,
+            links: [
+                { title: 'Bauantrag online', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/bauantrag-online/' },
+                { title: 'Anträge und Formulare', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/' },
+                { title: 'Online-Terminvereinbarung', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/' }
+            ]
+        };
+    }
+
+    generateFormularResponse(intention, tone) {
+        const specific = intention.specific ? ` für ${intention.specific}` : '';
+        
+        return {
+            response: `Hier sind die wichtigsten Formulare${specific}:
+
+**Direkte Downloads:**
+• [Alle Anträge und Formulare](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)
+• [Online-Services](https://www.oldenburg-kreis.de/portal/)
+
+**Schnelle Hilfe:**
+• **Tel.: 04431 85-0** - Wir helfen beim Ausfüllen
+• **E-Mail:** kontakt@landkreis-oldenburg.de
+
+Welches Formular benötigen Sie genau? Dann kann ich Ihnen den direkten Link geben.`,
+            links: [
+                { title: 'Alle Anträge und Formulare', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/' },
+                { title: 'Online-Services', url: 'https://www.oldenburg-kreis.de/portal/' }
+            ]
+        };
+    }
+
+    generateKontaktResponse(intention, tone) {
+        return {
+            response: `**Direkte Kontakte:**
+
+**Hauptnummer:** 04431 85-0
+• Mo-Fr: 8-16 Uhr
+• Für alle Anliegen
+
+**E-Mail:** kontakt@landkreis-oldenburg.de
+• Antwort innerhalb 24h
+
+**Adresse:**
+Landkreis Oldenburg
+Delmenhorster Straße 6
+27793 Wildeshausen
+
+**Online-Termin:** [Terminvereinbarung](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/)
+
+Wofür genau brauchen Sie Kontakt? Dann kann ich Ihnen die richtige Abteilung nennen.`,
+            links: [
+                { title: 'Kontaktformular', url: 'https://www.oldenburg-kreis.de/portal/kontakt.html' },
+                { title: 'Online-Terminvereinbarung', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/' }
+            ]
+        };
+    }
+
+    generateTerminResponse(intention, tone) {
+        return {
+            response: `**Terminvereinbarung:**
+
+**Online-Termin:** [Terminvereinbarung](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/)
+• Schnell und einfach
+• Verfügbare Zeiten sofort sichtbar
+
+**Telefonisch:** 04431 85-0
+• Mo-Fr: 8-16 Uhr
+• Persönliche Beratung
+
+**Öffnungszeiten:**
+• Mo-Do: 8-16 Uhr
+• Fr: 8-13 Uhr
+
+Für welches Anliegen brauchen Sie einen Termin?`,
+            links: [
+                { title: 'Online-Terminvereinbarung', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/' }
+            ]
+        };
+    }
+
+    generateGeneralResponse(query, tone) {
+        return {
+            response: `Moin! Ich bin KAYA, Ihr digitaler Assistent für den Landkreis Oldenburg.
+
+**Was kann ich für Sie tun:**
+• Formulare und Anträge
+• Terminvereinbarungen  
+• Kontakte und Öffnungszeiten
+• Informationen zu allen Dienstleistungen
+
+**Schnelle Hilfe:**
+• **Tel.: 04431 85-0**
+• **E-Mail:** kontakt@landkreis-oldenburg.de
+
+Was genau benötigen Sie? Je konkreter Sie fragen, desto besser kann ich helfen!`,
+            links: []
+        };
+    }
+
+    /**
+     * Extrahiert Ortsangaben aus der Anfrage
+     */
+    extractLocation(query) {
+        const locations = ['wildeshausen', 'hude', 'ganderkesee', 'hatten', 'wardenburg', 'dötlingen', 'großenkneten'];
+        const lowerQuery = query.toLowerCase();
+        
+        for (const location of locations) {
+            if (lowerQuery.includes(location)) {
+                return location.charAt(0).toUpperCase() + location.slice(1);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Extrahiert spezifische Formular-Typen
+     */
+    extractSpecificForm(query) {
+        const forms = {
+            'bauantrag': 'Bauantrag',
+            'führerschein': 'Führerschein',
+            'kfz': 'KFZ-Zulassung',
+            'gewerbe': 'Gewerbeanmeldung',
+            'kita': 'Kita-Anmeldung',
+            'wohngeld': 'Wohngeld',
+            'sozialhilfe': 'Sozialhilfe'
+        };
+        
+        const lowerQuery = query.toLowerCase();
+        for (const [key, value] of Object.entries(forms)) {
+            if (lowerQuery.includes(key)) {
+                return value;
+            }
+        }
+        return null;
     }
     
     generateAgentResponse(agent, query, personaAnalysis = null) {
