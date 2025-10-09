@@ -4,7 +4,13 @@ const path = require('path');
 class KAYAAgentHandler {
     constructor() {
         this.agentData = {};
-        this.agentDataDir = path.join(__dirname, '../ki_backend', new Date().toISOString().split('T')[0]);
+        // Verwende den aktuellen Tag im deutschen Format
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const dateString = `${year}-${month}-${day}`;
+        this.agentDataDir = path.join(__dirname, '../ki_backend', dateString);
         this.agents = ['buergerdienste', 'ratsinfo', 'stellenportal', 'kontakte', 'jugend', 'soziales'];
         
         // Lazy Loading - nur Metadaten beim Start laden
