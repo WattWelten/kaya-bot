@@ -1075,14 +1075,65 @@ Für welches Anliegen brauchen Sie einen Termin?`,
         const query = intention.query || '';
         const lowerQuery = query.toLowerCase();
         
-        // Direkte Frage nach Fahren ohne Zulassung
-        if (lowerQuery.includes('darf ich') && (lowerQuery.includes('fahren') || lowerQuery.includes('losfahren') || lowerQuery.includes('fahren'))) {
+        // Direkte Frage nach Fahren ohne Zulassung - ALLE VARIANTEN
+        const fahrenKeywords = ['darf ich', 'kann ich', 'ist das erlaubt', 'darf ich damit', 'kann ich damit'];
+        const fahrenActions = ['fahren', 'losfahren', 'fahren', 'fahre', 'fahrt'];
+        const fahrenQuestions = ['was passiert', 'was kostet', 'wie lange', 'wie teuer', 'wie viel'];
+        const emotionalKeywords = ['kompliziert', 'schwierig', 'verstehe nicht', 'angst', 'sorge', 'nervös', 'eilig', 'heute noch', 'schnell'];
+        const practicalKeywords = ['unterlagen', 'dokumente', 'papiere', 'wo ist', 'adresse', 'ort', 'online', 'internet', 'digital'];
+        const targetGroupKeywords = ['sohn', 'tochter', 'kinder', 'deutsch', 'sprache', 'verstehe', 'laufen', 'rollstuhl', 'behindert'];
+        
+        if ((fahrenKeywords.some(keyword => lowerQuery.includes(keyword)) && 
+             fahrenActions.some(action => lowerQuery.includes(action))) ||
+            fahrenQuestions.some(question => lowerQuery.includes(question)) ||
+            emotionalKeywords.some(keyword => lowerQuery.includes(keyword)) ||
+            practicalKeywords.some(keyword => lowerQuery.includes(keyword)) ||
+            targetGroupKeywords.some(keyword => lowerQuery.includes(keyword))) {
+            
+            // Erkenne spezifische Fragen
+            let specificAnswer = '';
+            let emotionalSupport = '';
+            
+            // EMOTIONALE ZUSTÄNDE ERKENNEN
+            if (lowerQuery.includes('kompliziert') || lowerQuery.includes('schwierig') || lowerQuery.includes('verstehe nicht')) {
+                emotionalSupport = '**Keine Sorge!** Ich erkläre dir alles Schritt für Schritt. Das ist gar nicht so kompliziert! 😊\n\n';
+            } else if (lowerQuery.includes('angst') || lowerQuery.includes('sorge') || lowerQuery.includes('nervös')) {
+                emotionalSupport = '**Alles gut!** Wir sind hier um dir zu helfen. Das Amt ist freundlich und hilfsbereit! 🤗\n\n';
+            } else if (lowerQuery.includes('eilig') || lowerQuery.includes('heute noch') || lowerQuery.includes('schnell')) {
+                emotionalSupport = '**Verstehe ich!** Lass uns das schnell lösen. Du kannst noch heute einen Termin bekommen! ⚡\n\n';
+            }
+            
+            // SPEZIFISCHE FRAGEN
+            if (lowerQuery.includes('was passiert')) {
+                specificAnswer = '**Was passiert wenn du ohne Zulassung fährst:**\n• **Bußgeld:** 70-120€\n• **Punkte:** 1 Punkt in Flensburg\n• **Versicherung:** Deckt NICHT bei Unfall\n• **Polizei:** Kann Fahrzeug beschlagnahmen\n\n';
+            } else if (lowerQuery.includes('was kostet') || lowerQuery.includes('wie teuer') || lowerQuery.includes('wie viel')) {
+                specificAnswer = '**Was kostet die KFZ-Zulassung:**\n• **Zulassung:** 26,80€\n• **Kennzeichen:** 10,20€\n• **EVB-Nummer:** 7,50€\n• **Gesamt:** ca. 45€\n\n';
+            } else if (lowerQuery.includes('wie lange')) {
+                specificAnswer = '**Wie lange dauert die Zulassung:**\n• **Termin:** 15-30 Minuten\n• **Bearbeitung:** Sofort\n• **Kennzeichen:** Sofort verfügbar\n• **Fahrzeugschein:** Sofort mit\n\n';
+            } else if (lowerQuery.includes('unterlagen') || lowerQuery.includes('dokumente') || lowerQuery.includes('papiere')) {
+                specificAnswer = '**Welche Unterlagen du brauchst:**\n• **Personalausweis** oder Reisepass\n• **EVB-Nummer** von der Versicherung\n• **Fahrzeugbrief** und Fahrzeugschein\n• **Altes Kennzeichen** (falls gewünscht)\n\n';
+            } else if (lowerQuery.includes('wo ist') || lowerQuery.includes('adresse') || lowerQuery.includes('ort')) {
+                specificAnswer = '**Wo ist die Zulassungsstelle:**\n• **Adresse:** Delmenhorster Straße 6, 27793 Wildeshausen\n• **Öffnungszeiten:** Mo-Do 8-16 Uhr, Fr 8-13 Uhr\n• **Parkplätze:** Direkt vor dem Gebäude\n• **Barrierefrei:** Rollstuhlgerecht\n\n';
+            } else if (lowerQuery.includes('online') || lowerQuery.includes('internet') || lowerQuery.includes('digital')) {
+                specificAnswer = '**Online-Services:**\n• **Termin buchen:** Online möglich\n• **Formulare:** Online ausfüllen\n• **Antrag:** Teilweise online\n• **Status:** Online abfragen\n\n';
+            }
+            
+            // ZIELGRUPPEN-SPEZIFISCHE HILFE
+            let targetGroupHelp = '';
+            if (lowerQuery.includes('sohn') || lowerQuery.includes('tochter') || lowerQuery.includes('kinder')) {
+                targetGroupHelp = '**Für Senioren:** Dein Sohn kann dir helfen! Du kannst auch eine Vollmacht mitbringen.\n\n';
+            } else if (lowerQuery.includes('deutsch') || lowerQuery.includes('sprache') || lowerQuery.includes('verstehe')) {
+                targetGroupHelp = '**Mehrsprachige Hilfe:** Wir haben Dolmetscher! Ruf einfach an: 04431 85-0\n\n';
+            } else if (lowerQuery.includes('laufen') || lowerQuery.includes('rollstuhl') || lowerQuery.includes('behindert')) {
+                targetGroupHelp = '**Barrierefreiheit:** Das Gebäude ist rollstuhlgerecht! Parkplätze direkt vor der Tür.\n\n';
+            }
+            
             return {
                 response: `Moin Henning! **NEIN, du darfst NICHT einfach losfahren!** 🚫
 
 Du brauchst **erst eine Zulassung**! Ohne Zulassung ist das **illegal** und kann teuer werden.
 
-**🎯 Hier ist dein direkter Weg zur Zulassung:**
+${emotionalSupport}${specificAnswer}${targetGroupHelp}**🎯 Hier ist dein direkter Weg zur Zulassung:**
 
 **1. 📋 Online-Termin buchen:**
    → [Terminvereinbarung KFZ-Zulassung](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/)
