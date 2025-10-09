@@ -10,7 +10,20 @@ class KAYAAgentHandler {
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
         const dateString = `${year}-${month}-${day}`;
-        this.agentDataDir = path.join(__dirname, '../ki_backend', dateString);
+        
+        // Prüfe zuerst komprimierte Daten, dann Original
+        const compressedDir = path.join(__dirname, '../ki_backend', `${dateString}-compressed`);
+        const originalDir = path.join(__dirname, '../ki_backend', dateString);
+        
+        if (fs.existsSync(compressedDir)) {
+            this.agentDataDir = compressedDir;
+            this.useCompressedData = true;
+            console.log('📦 Verwende komprimierte Agent-Daten');
+        } else {
+            this.agentDataDir = originalDir;
+            this.useCompressedData = false;
+            console.log('📁 Verwende Original Agent-Daten');
+        }
         this.agents = ['buergerdienste', 'ratsinfo', 'stellenportal', 'kontakte', 'jugend', 'soziales'];
         
         // Lazy Loading - nur Metadaten beim Start laden
@@ -21,7 +34,9 @@ class KAYAAgentHandler {
         console.log('🔧 Lazy Loading: Lade nur Agent-Metadaten...');
         
         this.agents.forEach(agent => {
-            const dataFile = path.join(this.agentDataDir, `${agent}_data.json`);
+            // Verwende komprimierte Dateien wenn verfügbar
+            const fileName = this.useCompressedData ? `${agent}_data_compressed.json` : `${agent}_data.json`;
+            const dataFile = path.join(this.agentDataDir, fileName);
             if (fs.existsSync(dataFile)) {
                 // Nur Dateigröße prüfen, nicht den ganzen Inhalt laden
                 const stats = fs.statSync(dataFile);
