@@ -818,48 +818,84 @@ class KAYACharacterHandler {
     }
 
     /**
-     * Generiert eine einfache Begrüßungsantwort mit regionalem Humor für Landkreis Oldenburg
+     * Generiert dynamische, persona-adaptierte Begrüßungen
      */
     generateGreetingResponse(intention, personaAnalysis) {
         const citizenType = intention.citizenType;
         const language = intention.language;
+        const emotionalState = intention.emotionalState;
         
-        let greeting = "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg. Wie kann ich Ihnen heute helfen?";
+        // DYNAMISCHE BEGRÜSSUNGEN basierend auf Persona und Sprache
+        const greetings = {
+            // DEUTSCHE BEGRÜSSUNGEN
+            german: {
+                senior: "Guten Tag! Ich bin KAYA, Ihr digitaler Assistent. Was kann ich für Sie tun?",
+                youth: "Hey! Ich bin KAYA. Wie kann ich dir helfen?",
+                family: "Hallo! Ich bin KAYA. Wie kann ich Ihrer Familie helfen?",
+                migrant: "Hallo! Ich bin KAYA. Wie kann ich Ihnen helfen?",
+                disabled: "Hallo! Ich bin KAYA, Ihr barrierefreier Assistent. Was kann ich für Sie tun?",
+                farmer: "Moin! Ich bin KAYA. Was brauchst du für deinen Hof?",
+                craftsman: "Moin! Ich bin KAYA. Wie kann ich dir bei deinem Handwerk helfen?",
+                student: "Hey! Ich bin KAYA. Was brauchst du für dein Studium?",
+                tourist: "Hallo! Ich bin KAYA, Ihr Reiseführer für den Landkreis. Was möchten Sie entdecken?",
+                camper: "Moin! Ich bin KAYA. Wo möchtet ihr campen?",
+                general: "Hallo! Ich bin KAYA. Wie kann ich Ihnen helfen?"
+            },
+            // ENGLISCHE BEGRÜSSUNGEN
+            english: {
+                senior: "Good day! I'm KAYA, your digital assistant. How can I help you?",
+                youth: "Hey! I'm KAYA. What do you need?",
+                family: "Hello! I'm KAYA. How can I help your family?",
+                migrant: "Hello! I'm KAYA. How can I assist you?",
+                disabled: "Hello! I'm KAYA, your accessible assistant. What can I do for you?",
+                farmer: "Hello! I'm KAYA. What do you need for your farm?",
+                craftsman: "Hello! I'm KAYA. How can I help with your craft?",
+                student: "Hey! I'm KAYA. What do you need for your studies?",
+                tourist: "Welcome! I'm KAYA, your guide for Landkreis Oldenburg. What would you like to explore?",
+                camper: "Hello! I'm KAYA. Where would you like to camp?",
+                general: "Hello! I'm KAYA. How can I help you?"
+            },
+            // TÜRKISCHE BEGRÜSSUNGEN
+            turkish: {
+                senior: "İyi günler! Ben KAYA, dijital asistanınızım. Size nasıl yardımcı olabilirim?",
+                youth: "Merhaba! Ben KAYA. Ne yapabilirim?",
+                family: "Merhaba! Ben KAYA. Ailenize nasıl yardımcı olabilirim?",
+                migrant: "Merhaba! Ben KAYA. Size nasıl yardımcı olabilirim?",
+                disabled: "Merhaba! Ben KAYA, erişilebilir asistanınızım. Size nasıl yardımcı olabilirim?",
+                farmer: "Merhaba! Ben KAYA. Çiftliğiniz için ne gerekiyor?",
+                craftsman: "Merhaba! Ben KAYA. Zanaatınızda size nasıl yardımcı olabilirim?",
+                student: "Merhaba! Ben KAYA. Eğitiminiz için ne gerekiyor?",
+                tourist: "Hoş geldiniz! Ben KAYA, Landkreis Oldenburg rehberinizim. Ne keşfetmek istersiniz?",
+                camper: "Merhaba! Ben KAYA. Nerede kamp yapmak istersiniz?",
+                general: "Merhaba! Ben KAYA. Size nasıl yardımcı olabilirim?"
+            },
+            // PLATTDEUTSCHE BEGRÜSSUNGEN
+            plattdeutsch: {
+                senior: "Moin! Ik bin KAYA, dien digitalen Assistent. Wo kann ik di helpen?",
+                youth: "Moin! Ik bin KAYA. Wo kann ik di helpen?",
+                family: "Moin! Ik bin KAYA. Wo kann ik dien Familie helpen?",
+                migrant: "Moin! Ik bin KAYA. Wo kann ik di helpen?",
+                disabled: "Moin! Ik bin KAYA, dien toegänglichen Assistent. Wo kann ik di helpen?",
+                farmer: "Moin! Ik bin KAYA. Wo bruukst du för dien Hoff?",
+                craftsman: "Moin! Ik bin KAYA. Wo kann ik di bi dien Handwark helpen?",
+                student: "Moin! Ik bin KAYA. Wo bruukst du för dien Studium?",
+                tourist: "Moin! Ik bin KAYA, dien Reisföhrer för den Landkreis. Wo wullt du wat sehn?",
+                camper: "Moin! Ik bin KAYA. Wo wullt ji kampern?",
+                general: "Moin! Ik bin KAYA. Wo kann ik di helpen?"
+            }
+        };
         
-        // Anpassung für verschiedene Bürger-Typen mit regionalem Humor
-        if (citizenType === 'senior') {
-            greeting = "Moin! Ich bin KAYA, Ihr digitaler Assistent für den Landkreis Oldenburg. Wie kann ich Ihnen heute helfen?";
-        } else if (citizenType === 'youth') {
-            greeting = "Moin! Ich bin KAYA, Ihr digitaler Assistent. Wie kann ich dir heute helfen?";
-        } else if (citizenType === 'family') {
-            greeting = "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent. Wie kann ich Ihrer Familie heute helfen?";
-        } else if (citizenType === 'migrant') {
-            greeting = "Moin! Ich bin KAYA, Ihr digitaler Assistent. Wie kann ich Ihnen heute helfen?";
-        } else if (citizenType === 'disabled') {
-            greeting = "Moin! Ich bin KAYA, Ihr barrierefreier digitaler Assistent. Wie kann ich Ihnen heute helfen?";
-        }
+        // Wähle passende Begrüßung
+        const languageGreetings = greetings[language] || greetings.german;
+        const greeting = languageGreetings[citizenType] || languageGreetings.general;
         
-        // Erweiterte Sprach-Anpassung für Landkreis Oldenburg
-        if (language === 'english') {
-            greeting = "Hello! I'm KAYA, your digital assistant for Landkreis Oldenburg. How can I help you today?";
-        } else if (language === 'turkish') {
-            greeting = "Merhaba! Ben KAYA, Landkreis Oldenburg için dijital asistanınızım. Bugün size nasıl yardımcı olabilirim?";
-        } else if (language === 'arabic') {
-            greeting = "مرحبا! أنا KAYA، مساعدك الرقمي لمقاطعة أولدنبورغ. كيف يمكنني مساعدتك اليوم؟";
-        } else if (language === 'polish') {
-            greeting = "Dzień dobry! Jestem KAYA, Twój cyfrowy asystent dla Landkreis Oldenburg. Jak mogę Ci dziś pomóc?";
-        } else if (language === 'russian') {
-            greeting = "Привет! Я KAYA, ваш цифровой помощник для Landkreis Oldenburg. Как я могу вам помочь сегодня?";
-        } else if (language === 'romanian') {
-            greeting = "Bună! Sunt KAYA, asistentul dvs. digital pentru Landkreis Oldenburg. Cum vă pot ajuta astăzi?";
-        } else if (language === 'ukrainian') {
-            greeting = "Привіт! Я KAYA, ваш цифровий помічник для Landkreis Oldenburg. Як я можу вам допомогти сьогодні?";
-        } else if (language === 'dutch') {
-            greeting = "Hallo! Ik ben KAYA, uw digitale assistent voor Landkreis Oldenburg. Hoe kan ik u vandaag helpen?";
-        } else if (language === 'danish') {
-            greeting = "Hej! Jeg er KAYA, din digitale assistent for Landkreis Oldenburg. Hvordan kan jeg hjælpe dig i dag?";
-        } else if (language === 'plattdeutsch') {
-            greeting = "Moin! Ik bin KAYA, dien digitalen Assistent för den Landkreis Oldenburg. Wo kann ik di hüüt helpen?";
+        // EMOTIONALE ANPASSUNG
+        if (emotionalState === 'frustrated') {
+            return `${greeting} Ich verstehe, dass es frustrierend sein kann. Lass uns das gemeinsam lösen!`;
+        } else if (emotionalState === 'anxious') {
+            return `${greeting} Keine Sorge, ich helfe dir gerne!`;
+        } else if (emotionalState === 'positive') {
+            return `${greeting} Schön, dass du da bist!`;
         }
         
         return {
@@ -1478,115 +1514,196 @@ Für welches Anliegen brauchen Sie einen Termin?`,
     }
 
     generateKFZZulassungResponse(intention, tone) {
-        const location = intention.location ? ` in ${intention.location}` : '';
-        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
-        
-        // Erkenne konkrete Fragen und antworte direkt
         const query = intention.query || '';
         const lowerQuery = query.toLowerCase();
+        const citizenType = intention.citizenType;
+        const language = intention.language;
+        const emotionalState = intention.emotionalState;
+        const urgency = intention.urgency;
         
-        // Direkte Frage nach Fahren ohne Zulassung - ALLE VARIANTEN
-        const fahrenKeywords = ['darf ich', 'kann ich', 'ist das erlaubt', 'darf ich damit', 'kann ich damit'];
-        const fahrenActions = ['fahren', 'losfahren', 'fahren', 'fahre', 'fahrt'];
-        const fahrenQuestions = ['was passiert', 'was kostet', 'wie lange', 'wie teuer', 'wie viel'];
-        const emotionalKeywords = ['kompliziert', 'schwierig', 'verstehe nicht', 'angst', 'sorge', 'nervös', 'eilig', 'heute noch', 'schnell'];
-        const practicalKeywords = ['unterlagen', 'dokumente', 'papiere', 'wo ist', 'adresse', 'ort', 'online', 'internet', 'digital'];
-        const targetGroupKeywords = ['sohn', 'tochter', 'kinder', 'deutsch', 'sprache', 'verstehe', 'laufen', 'rollstuhl', 'behindert'];
+        // DYNAMISCHE BEGRÜSSUNG basierend auf Persona
+        let greeting = this.getDynamicGreeting(citizenType, language, 'kfz');
         
-        if ((fahrenKeywords.some(keyword => lowerQuery.includes(keyword)) && 
-             fahrenActions.some(action => lowerQuery.includes(action))) ||
-            fahrenQuestions.some(question => lowerQuery.includes(question)) ||
-            emotionalKeywords.some(keyword => lowerQuery.includes(keyword)) ||
-            practicalKeywords.some(keyword => lowerQuery.includes(keyword)) ||
-            targetGroupKeywords.some(keyword => lowerQuery.includes(keyword))) {
-            
-            // Erkenne spezifische Fragen
-            let specificAnswer = '';
-            let emotionalSupport = '';
-            
-            // EMOTIONALE ZUSTÄNDE ERKENNEN
-            if (lowerQuery.includes('kompliziert') || lowerQuery.includes('schwierig') || lowerQuery.includes('verstehe nicht')) {
-                emotionalSupport = '**Keine Sorge!** Ich erkläre dir alles Schritt für Schritt. Das ist gar nicht so kompliziert! 😊\n\n';
-            } else if (lowerQuery.includes('angst') || lowerQuery.includes('sorge') || lowerQuery.includes('nervös')) {
-                emotionalSupport = '**Alles gut!** Wir sind hier um dir zu helfen. Das Amt ist freundlich und hilfsbereit! 🤗\n\n';
-            } else if (lowerQuery.includes('eilig') || lowerQuery.includes('heute noch') || lowerQuery.includes('schnell')) {
-                emotionalSupport = '**Verstehe ich!** Lass uns das schnell lösen. Du kannst noch heute einen Termin bekommen! ⚡\n\n';
+        // ERKENNE KONKRETE FRAGEN
+        const concreteAnswer = this.analyzeConcreteQuestion(query, 'kfz_zulassung');
+        
+        // DYNAMISCHE ANTWORT-STRUKTUR
+        let response = '';
+        
+        // 1. BEGRÜSSUNG
+        response += greeting;
+        
+        // 2. KONKRETE ANTWORT (falls vorhanden)
+        if (concreteAnswer) {
+            response += '\n\n' + concreteAnswer.specificAnswer;
+            if (concreteAnswer.emotionalSupport) {
+                response += concreteAnswer.emotionalSupport;
             }
-            
-            // SPEZIFISCHE FRAGEN
-            if (lowerQuery.includes('was passiert')) {
-                specificAnswer = '**Was passiert wenn du ohne Zulassung fährst:**\n• **Bußgeld:** 70-120€\n• **Punkte:** 1 Punkt in Flensburg\n• **Versicherung:** Deckt NICHT bei Unfall\n• **Polizei:** Kann Fahrzeug beschlagnahmen\n\n';
-            } else if (lowerQuery.includes('was kostet') || lowerQuery.includes('wie teuer') || lowerQuery.includes('wie viel')) {
-                specificAnswer = '**Was kostet die KFZ-Zulassung:**\n• **Zulassung:** 26,80€\n• **Kennzeichen:** 10,20€\n• **EVB-Nummer:** 7,50€\n• **Gesamt:** ca. 45€\n\n';
-            } else if (lowerQuery.includes('wie lange')) {
-                specificAnswer = '**Wie lange dauert die Zulassung:**\n• **Termin:** 15-30 Minuten\n• **Bearbeitung:** Sofort\n• **Kennzeichen:** Sofort verfügbar\n• **Fahrzeugschein:** Sofort mit\n\n';
-            } else if (lowerQuery.includes('unterlagen') || lowerQuery.includes('dokumente') || lowerQuery.includes('papiere')) {
-                specificAnswer = '**Welche Unterlagen du brauchst:**\n• **Personalausweis** oder Reisepass\n• **EVB-Nummer** von der Versicherung\n• **Fahrzeugbrief** und Fahrzeugschein\n• **Altes Kennzeichen** (falls gewünscht)\n\n';
-            } else if (lowerQuery.includes('wo ist') || lowerQuery.includes('adresse') || lowerQuery.includes('ort')) {
-                specificAnswer = '**Wo ist die Zulassungsstelle:**\n• **Adresse:** Delmenhorster Straße 6, 27793 Wildeshausen\n• **Öffnungszeiten:** Mo-Do 8-16 Uhr, Fr 8-13 Uhr\n• **Parkplätze:** Direkt vor dem Gebäude\n• **Barrierefrei:** Rollstuhlgerecht\n\n';
-            } else if (lowerQuery.includes('online') || lowerQuery.includes('internet') || lowerQuery.includes('digital')) {
-                specificAnswer = '**Online-Services:**\n• **Termin buchen:** Online möglich\n• **Formulare:** Online ausfüllen\n• **Antrag:** Teilweise online\n• **Status:** Online abfragen\n\n';
+            if (concreteAnswer.targetGroupHelp) {
+                response += concreteAnswer.targetGroupHelp;
             }
-            
-            // ZIELGRUPPEN-SPEZIFISCHE HILFE
-            let targetGroupHelp = '';
-            if (lowerQuery.includes('sohn') || lowerQuery.includes('tochter') || lowerQuery.includes('kinder')) {
-                targetGroupHelp = '**Für Senioren:** Dein Sohn kann dir helfen! Du kannst auch eine Vollmacht mitbringen.\n\n';
-            } else if (lowerQuery.includes('deutsch') || lowerQuery.includes('sprache') || lowerQuery.includes('verstehe')) {
-                targetGroupHelp = '**Mehrsprachige Hilfe:** Wir haben Dolmetscher! Ruf einfach an: 04431 85-0\n\n';
-            } else if (lowerQuery.includes('laufen') || lowerQuery.includes('rollstuhl') || lowerQuery.includes('behindert')) {
-                targetGroupHelp = '**Barrierefreiheit:** Das Gebäude ist rollstuhlgerecht! Parkplätze direkt vor der Tür.\n\n';
-            }
-            
-            return {
-                response: `Moin Henning! **NEIN, du darfst NICHT einfach losfahren!** 🚫
-
-Du brauchst **erst eine Zulassung**! Ohne Zulassung ist das **illegal** und kann teuer werden.
-
-${emotionalSupport}${specificAnswer}${targetGroupHelp}**🎯 Hier ist dein direkter Weg zur Zulassung:**
-
-**1. 📋 Online-Termin buchen:**
-   → [Terminvereinbarung KFZ-Zulassung](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/)
-
-**2. 📄 Formulare ausfüllen:**
-   → [Antragsformulare KFZ](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/)
-
-**3. 📞 Sofort anrufen:**
-   → **04431 85-0** (Mo-Fr 8-16 Uhr)
-
-**🎯 Deine nächste Aktion:** Klick auf den Termin-Link oder ruf direkt an!
-
-**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
-                links: [
-                    { title: 'Terminvereinbarung KFZ-Zulassung', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/' },
-                    { title: 'Antragsformulare KFZ', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/' }
-                ]
-            };
         }
         
-        // Standard KFZ-Response
+        // 3. DYNAMISCHE HANDLUNGSANWEISUNGEN
+        response += '\n\n' + this.getDynamicActionSteps('kfz_zulassung', citizenType, urgency, language);
+        
+        // 4. DYNAMISCHE ENDUNG
+        response += '\n\n' + this.getDynamicEnding(citizenType, language, emotionalState);
+        
         return {
-            response: `Moin! Perfekt - ich helfe dir sofort bei der KFZ-Zulassung${location}.${urgency}
-
-**🎯 Hier ist dein direkter Weg:**
-
-**1. 📋 Online-Termin buchen:**
-   → [Terminvereinbarung KFZ-Zulassung](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/)
-
-**2. 📄 Formulare ausfüllen:**
-   → [Antragsformulare KFZ](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/)
-
-**3. 📞 Sofort anrufen:**
-   → **04431 85-0** (Mo-Fr 8-16 Uhr)
-
-**🎯 Deine nächste Aktion:** Klick auf den Termin-Link oder ruf direkt an!
-
-**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
-            links: [
+            response: response,
+            links: this.getRelevantLinks('kfz_zulassung'),
+            fallback: false
+        };
+    }
+    
+    /**
+     * Generiert dynamische Begrüßungen basierend auf Persona und Kontext
+     */
+    getDynamicGreeting(citizenType, language, context) {
+        const greetings = {
+            german: {
+                senior: "Guten Tag! Ich helfe Ihnen gerne bei der KFZ-Zulassung.",
+                youth: "Hey! Ich helfe dir bei der Autozulassung.",
+                family: "Hallo! Ich helfe Ihrer Familie bei der KFZ-Zulassung.",
+                farmer: "Moin! Ich helfe dir bei der Traktor-Zulassung.",
+                craftsman: "Moin! Ich helfe dir bei der Werkzeug-Zulassung.",
+                student: "Hey! Ich helfe dir bei der Auto-Zulassung fürs Studium.",
+                tourist: "Hallo! Ich helfe Ihnen bei der KFZ-Zulassung für Ihren Aufenthalt.",
+                general: "Hallo! Ich helfe Ihnen bei der KFZ-Zulassung."
+            },
+            english: {
+                senior: "Good day! I'll help you with your vehicle registration.",
+                youth: "Hey! I'll help you register your car.",
+                family: "Hello! I'll help your family with vehicle registration.",
+                farmer: "Hello! I'll help you register your tractor.",
+                craftsman: "Hello! I'll help you register your work vehicle.",
+                student: "Hey! I'll help you register your car for university.",
+                tourist: "Hello! I'll help you with vehicle registration for your stay.",
+                general: "Hello! I'll help you with vehicle registration."
+            },
+            turkish: {
+                senior: "İyi günler! Araç tescilinizde size yardımcı olacağım.",
+                youth: "Merhaba! Arabanızı tescil ettirmenizde size yardımcı olacağım.",
+                family: "Merhaba! Ailenizin araç tescilinde size yardımcı olacağım.",
+                farmer: "Merhaba! Traktörünüzü tescil ettirmenizde size yardımcı olacağım.",
+                craftsman: "Merhaba! İş aracınızı tescil ettirmenizde size yardımcı olacağım.",
+                student: "Merhaba! Üniversite için arabanızı tescil ettirmenizde size yardımcı olacağım.",
+                tourist: "Merhaba! Kalışınız için araç tescilinde size yardımcı olacağım.",
+                general: "Merhaba! Araç tescilinizde size yardımcı olacağım."
+            },
+            plattdeutsch: {
+                senior: "Moin! Ik helpe di gern bi de KFZ-Anmeldung.",
+                youth: "Moin! Ik helpe di bi de Auto-Anmeldung.",
+                family: "Moin! Ik helpe dien Familie bi de KFZ-Anmeldung.",
+                farmer: "Moin! Ik helpe di bi de Traktor-Anmeldung.",
+                craftsman: "Moin! Ik helpe di bi de Warktüüch-Anmeldung.",
+                student: "Moin! Ik helpe di bi de Auto-Anmeldung för dat Studium.",
+                tourist: "Moin! Ik helpe di bi de KFZ-Anmeldung för dien Upenthalt.",
+                general: "Moin! Ik helpe di bi de KFZ-Anmeldung."
+            }
+        };
+        
+        const languageGreetings = greetings[language] || greetings.german;
+        return languageGreetings[citizenType] || languageGreetings.general;
+    }
+    
+    /**
+     * Generiert dynamische Handlungsschritte
+     */
+    getDynamicActionSteps(context, citizenType, urgency, language) {
+        if (urgency === 'critical') {
+            return this.getUrgentActionSteps(context, language);
+        }
+        
+        const steps = {
+            german: {
+                senior: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung vornehmen:** Persönlich oder mit Vollmacht",
+                youth: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung machen:** Geh hin oder lass jemanden für dich gehen",
+                family: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung vornehmen:** Als Familie oder mit Vollmacht",
+                farmer: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, EVB-Nummer, Traktorpapiere\n3. **Zulassung machen:** Geh hin oder lass jemanden für dich gehen",
+                general: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung vornehmen:** Persönlich oder mit Vollmacht"
+            },
+            english: {
+                general: "**Your next steps:**\n1. **Book appointment:** Online or by phone\n2. **Prepare documents:** ID, insurance number, vehicle papers\n3. **Complete registration:** In person or with power of attorney"
+            },
+            turkish: {
+                general: "**Sonraki adımlarınız:**\n1. **Randevu alın:** Online veya telefonla\n2. **Belgeleri hazırlayın:** Kimlik, sigorta numarası, araç belgeleri\n3. **Tescil işlemini tamamlayın:** Şahsen veya vekaletname ile"
+            },
+            plattdeutsch: {
+                general: "**Dien nächsten Schritte:**\n1. **Termin boken:** Online oder telefonisch\n2. **Unnerlagen vörbereiten:** Personalausweis, EVB-Nummer, Fohrtüüch-Papiere\n3. **Anmeldung maken:** Persönlich oder mit Vullmacht"
+            }
+        };
+        
+        const languageSteps = steps[language] || steps.german;
+        return languageSteps[citizenType] || languageSteps.general;
+    }
+    
+    /**
+     * Generiert dynamische Endungen
+     */
+    getDynamicEnding(citizenType, language, emotionalState) {
+        const endings = {
+            german: {
+                senior: "Haben Sie noch Fragen? Ich helfe Ihnen gerne weiter!",
+                youth: "Hast du noch Fragen? Ich helfe dir gerne!",
+                family: "Haben Sie noch Fragen? Ich helfe Ihrer Familie gerne!",
+                farmer: "Hast du noch Fragen? Ich helfe dir gerne!",
+                craftsman: "Hast du noch Fragen? Ich helfe dir gerne!",
+                student: "Hast du noch Fragen? Ich helfe dir gerne!",
+                tourist: "Haben Sie noch Fragen? Ich helfe Ihnen gerne!",
+                general: "Haben Sie noch Fragen? Ich helfe Ihnen gerne!"
+            },
+            english: {
+                general: "Do you have any questions? I'm happy to help!"
+            },
+            turkish: {
+                general: "Başka sorularınız var mı? Size yardımcı olmaktan mutluluk duyarım!"
+            },
+            plattdeutsch: {
+                general: "Hest du noch Fragen? Ik helpe di gern wieter!"
+            }
+        };
+        
+        const languageEndings = endings[language] || endings.german;
+        let ending = languageEndings[citizenType] || languageEndings.general;
+        
+        // Emotionale Anpassung
+        if (emotionalState === 'frustrated') {
+            ending += " Lass uns das gemeinsam lösen!";
+        } else if (emotionalState === 'anxious') {
+            ending += " Keine Sorge, das schaffen wir!";
+        }
+        
+        return ending;
+    }
+    
+    /**
+     * Generiert dringende Handlungsschritte
+     */
+    getUrgentActionSteps(context, language) {
+        const urgentSteps = {
+            german: "**SOFORT-HILFE:**\n🚨 **Ruf JETZT an:** 04431 85-0\n🚨 **Oder komm vorbei:** Delmenhorster Straße 6, Wildeshausen\n🚨 **Notfall-Termin:** Möglich!",
+            english: "**URGENT HELP:**\n🚨 **Call NOW:** 04431 85-0\n🚨 **Or come by:** Delmenhorster Straße 6, Wildeshausen\n🚨 **Emergency appointment:** Possible!",
+            turkish: "**ACİL YARDIM:**\n🚨 **ŞİMDİ ara:** 04431 85-0\n🚨 **Veya gel:** Delmenhorster Straße 6, Wildeshausen\n🚨 **Acil randevu:** Mümkün!",
+            plattdeutsch: "**SOFORT-HÜLP:**\n🚨 **Roop NU an:** 04431 85-0\n🚨 **Oder kumm vörbi:** Delmenhorster Straße 6, Wildeshausen\n🚨 **Notfall-Termin:** Mööglich!"
+        };
+        
+        return urgentSteps[language] || urgentSteps.german;
+    }
+    
+    /**
+     * Gibt relevante Links zurück
+     */
+    getRelevantLinks(context) {
+        const links = {
+            kfz_zulassung: [
                 { title: 'Terminvereinbarung KFZ-Zulassung', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/' },
                 { title: 'Antragsformulare KFZ', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/' }
             ]
         };
+        
+        return links[context] || [];
     }
 
     generateFührerscheinResponse(intention, tone) {
