@@ -863,6 +863,122 @@ class KAYACharacterHandler {
     }
 
     /**
+     * Universelle Funktion für konkrete Fragen-Erkennung
+     */
+    analyzeConcreteQuestion(query, intentionType) {
+        const lowerQuery = query.toLowerCase();
+        
+        // Universelle Keywords für alle Bereiche
+        const fahrenKeywords = ['darf ich', 'kann ich', 'ist das erlaubt', 'darf ich damit', 'kann ich damit'];
+        const fahrenActions = ['fahren', 'losfahren', 'fahren', 'fahre', 'fahrt'];
+        const fahrenQuestions = ['was passiert', 'was kostet', 'wie lange', 'wie teuer', 'wie viel'];
+        const emotionalKeywords = ['kompliziert', 'schwierig', 'verstehe nicht', 'angst', 'sorge', 'nervös', 'eilig', 'heute noch', 'schnell'];
+        const practicalKeywords = ['unterlagen', 'dokumente', 'papiere', 'wo ist', 'adresse', 'ort', 'online', 'internet', 'digital'];
+        const targetGroupKeywords = ['sohn', 'tochter', 'kinder', 'deutsch', 'sprache', 'verstehe', 'laufen', 'rollstuhl', 'behindert'];
+        
+        // Prüfe ob konkrete Frage erkannt wird
+        const isConcreteQuestion = (fahrenKeywords.some(keyword => lowerQuery.includes(keyword)) && 
+             fahrenActions.some(action => lowerQuery.includes(action))) ||
+            fahrenQuestions.some(question => lowerQuery.includes(question)) ||
+            emotionalKeywords.some(keyword => lowerQuery.includes(keyword)) ||
+            practicalKeywords.some(keyword => lowerQuery.includes(keyword)) ||
+            targetGroupKeywords.some(keyword => lowerQuery.includes(keyword));
+        
+        if (!isConcreteQuestion) return null;
+        
+        // Erkenne spezifische Fragen
+        let specificAnswer = '';
+        let emotionalSupport = '';
+        let targetGroupHelp = '';
+        
+        // EMOTIONALE ZUSTÄNDE ERKENNEN
+        if (lowerQuery.includes('kompliziert') || lowerQuery.includes('schwierig') || lowerQuery.includes('verstehe nicht')) {
+            emotionalSupport = '**Keine Sorge!** Ich erkläre dir alles Schritt für Schritt. Das ist gar nicht so kompliziert! 😊\n\n';
+        } else if (lowerQuery.includes('angst') || lowerQuery.includes('sorge') || lowerQuery.includes('nervös')) {
+            emotionalSupport = '**Alles gut!** Wir sind hier um dir zu helfen. Das Amt ist freundlich und hilfsbereit! 🤗\n\n';
+        } else if (lowerQuery.includes('eilig') || lowerQuery.includes('heute noch') || lowerQuery.includes('schnell')) {
+            emotionalSupport = '**Verstehe ich!** Lass uns das schnell lösen. Du kannst noch heute einen Termin bekommen! ⚡\n\n';
+        }
+        
+        // SPEZIFISCHE FRAGEN
+        if (lowerQuery.includes('was passiert')) {
+            specificAnswer = this.getConsequenceAnswer(intentionType);
+        } else if (lowerQuery.includes('was kostet') || lowerQuery.includes('wie teuer') || lowerQuery.includes('wie viel')) {
+            specificAnswer = this.getCostAnswer(intentionType);
+        } else if (lowerQuery.includes('wie lange')) {
+            specificAnswer = this.getTimeAnswer(intentionType);
+        } else if (lowerQuery.includes('unterlagen') || lowerQuery.includes('dokumente') || lowerQuery.includes('papiere')) {
+            specificAnswer = this.getDocumentAnswer(intentionType);
+        } else if (lowerQuery.includes('wo ist') || lowerQuery.includes('adresse') || lowerQuery.includes('ort')) {
+            specificAnswer = this.getLocationAnswer(intentionType);
+        } else if (lowerQuery.includes('online') || lowerQuery.includes('internet') || lowerQuery.includes('digital')) {
+            specificAnswer = this.getOnlineAnswer(intentionType);
+        }
+        
+        // ZIELGRUPPEN-SPEZIFISCHE HILFE
+        if (lowerQuery.includes('sohn') || lowerQuery.includes('tochter') || lowerQuery.includes('kinder')) {
+            targetGroupHelp = '**Für Senioren:** Dein Sohn kann dir helfen! Du kannst auch eine Vollmacht mitbringen.\n\n';
+        } else if (lowerQuery.includes('deutsch') || lowerQuery.includes('sprache') || lowerQuery.includes('verstehe')) {
+            targetGroupHelp = '**Mehrsprachige Hilfe:** Wir haben Dolmetscher! Ruf einfach an: 04431 85-0\n\n';
+        } else if (lowerQuery.includes('laufen') || lowerQuery.includes('rollstuhl') || lowerQuery.includes('behindert')) {
+            targetGroupHelp = '**Barrierefreiheit:** Das Gebäude ist rollstuhlgerecht! Parkplätze direkt vor der Tür.\n\n';
+        }
+        
+        return {
+            specificAnswer,
+            emotionalSupport,
+            targetGroupHelp
+        };
+    }
+    
+    /**
+     * Hilfsfunktionen für spezifische Antworten
+     */
+    getConsequenceAnswer(intentionType) {
+        const consequences = {
+            'kfz_zulassung': '**Was passiert wenn du ohne Zulassung fährst:**\n• **Bußgeld:** 70-120€\n• **Punkte:** 1 Punkt in Flensburg\n• **Versicherung:** Deckt NICHT bei Unfall\n• **Polizei:** Kann Fahrzeug beschlagnahmen\n\n',
+            'bauantrag': '**Was passiert ohne Baugenehmigung:**\n• **Bußgeld:** 500-50.000€\n• **Rückbau:** Muss abgerissen werden\n• **Versicherung:** Deckt NICHT bei Schäden\n• **Nachbarn:** Können klagen\n\n',
+            'führerschein': '**Was passiert ohne Führerschein:**\n• **Bußgeld:** 10-15€\n• **Fahrzeug:** Wird beschlagnahmt\n• **Versicherung:** Deckt NICHT bei Unfall\n• **Strafverfahren:** Möglich\n\n'
+        };
+        return consequences[intentionType] || '**Konsequenzen:** Ohne Genehmigung kann es teuer werden!\n\n';
+    }
+    
+    getCostAnswer(intentionType) {
+        const costs = {
+            'kfz_zulassung': '**Was kostet die KFZ-Zulassung:**\n• **Zulassung:** 26,80€\n• **Kennzeichen:** 10,20€\n• **EVB-Nummer:** 7,50€\n• **Gesamt:** ca. 45€\n\n',
+            'bauantrag': '**Was kostet ein Bauantrag:**\n• **Baugenehmigung:** 0,5% des Bauwerts\n• **Grundgebühr:** 25€\n• **Nebenkosten:** 50-200€\n• **Gesamt:** je nach Bauvorhaben\n\n',
+            'führerschein': '**Was kostet ein Führerschein:**\n• **Antrag:** 43,40€\n• **Führerschein:** 24,30€\n• **Sehtest:** 6,43€\n• **Gesamt:** ca. 75€\n\n'
+        };
+        return costs[intentionType] || '**Kosten:** Je nach Anliegen unterschiedlich. Ruf an: 04431 85-0\n\n';
+    }
+    
+    getTimeAnswer(intentionType) {
+        const times = {
+            'kfz_zulassung': '**Wie lange dauert die Zulassung:**\n• **Termin:** 15-30 Minuten\n• **Bearbeitung:** Sofort\n• **Kennzeichen:** Sofort verfügbar\n• **Fahrzeugschein:** Sofort mit\n\n',
+            'bauantrag': '**Wie lange dauert ein Bauantrag:**\n• **Bearbeitung:** 1-3 Monate\n• **Genehmigung:** 2-4 Wochen\n• **Widerspruch:** 1 Monat\n• **Baubeginn:** Nach Genehmigung\n\n',
+            'führerschein': '**Wie lange dauert ein Führerschein:**\n• **Antrag:** 15-30 Minuten\n• **Bearbeitung:** 2-4 Wochen\n• **Führerschein:** Per Post\n• **Gültigkeit:** 15 Jahre\n\n'
+        };
+        return times[intentionType] || '**Bearbeitungszeit:** Je nach Anliegen unterschiedlich. Ruf an: 04431 85-0\n\n';
+    }
+    
+    getDocumentAnswer(intentionType) {
+        const documents = {
+            'kfz_zulassung': '**Welche Unterlagen du brauchst:**\n• **Personalausweis** oder Reisepass\n• **EVB-Nummer** von der Versicherung\n• **Fahrzeugbrief** und Fahrzeugschein\n• **Altes Kennzeichen** (falls gewünscht)\n\n',
+            'bauantrag': '**Welche Unterlagen du brauchst:**\n• **Grundstücksnachweis** (Grundbuchauszug)\n• **Bauzeichnungen** (Maßstab 1:100)\n• **Statik** (bei größeren Bauten)\n• **Baubeschreibung** und Kostenberechnung\n\n',
+            'führerschein': '**Welche Unterlagen du brauchst:**\n• **Personalausweis** oder Reisepass\n• **Sehtest** (nicht älter als 2 Jahre)\n• **Erste-Hilfe-Kurs** (nicht älter als 2 Jahre)\n• **Biometrisches Foto** (35x45mm)\n\n'
+        };
+        return documents[intentionType] || '**Unterlagen:** Je nach Anliegen unterschiedlich. Ruf an: 04431 85-0\n\n';
+    }
+    
+    getLocationAnswer(intentionType) {
+        return '**Wo ist die zuständige Stelle:**\n• **Adresse:** Delmenhorster Straße 6, 27793 Wildeshausen\n• **Öffnungszeiten:** Mo-Do 8-16 Uhr, Fr 8-13 Uhr\n• **Parkplätze:** Direkt vor dem Gebäude\n• **Barrierefrei:** Rollstuhlgerecht\n\n';
+    }
+    
+    getOnlineAnswer(intentionType) {
+        return '**Online-Services:**\n• **Termin buchen:** Online möglich\n• **Formulare:** Online ausfüllen\n• **Antrag:** Teilweise online\n• **Status:** Online abfragen\n\n';
+    }
+
+    /**
      * Generiert spezifische Antworten für alle Anliegen
      */
     generateSpecificResponse(intention, tone) {
@@ -972,6 +1088,37 @@ class KAYACharacterHandler {
         const location = intention.location ? ` in ${intention.location}` : '';
         const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
         
+        // Prüfe auf konkrete Fragen
+        const concreteQuestion = this.analyzeConcreteQuestion(intention.query, 'bauantrag');
+        
+        if (concreteQuestion) {
+            return {
+                response: `Moin! **NEIN, du darfst NICHT einfach losbauen!** 🚫
+
+Du brauchst **erst eine Baugenehmigung**! Ohne Genehmigung ist das **illegal** und kann teuer werden.
+
+${concreteQuestion.emotionalSupport}${concreteQuestion.specificAnswer}${concreteQuestion.targetGroupHelp}**🎯 Hier ist dein direkter Weg zur Baugenehmigung:**
+
+**1. 📋 Online-Bauantrag:**
+   → [Bauantrag online](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/bauantrag-online/)
+
+**2. 📄 Formulare ausfüllen:**
+   → [Bauantrag-Formulare](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)
+
+**3. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Bauantrag-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+                links: [
+                    { title: 'Bauantrag online', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/bauantrag-online/' },
+                    { title: 'Bauantrag-Formulare', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/' }
+                ]
+            };
+        }
+        
+        // Standard Bauantrag-Response
         return {
             response: `Moin! Perfekt - ich helfe dir sofort beim Bauantrag${location}.${urgency}
 
