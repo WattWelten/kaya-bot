@@ -670,6 +670,25 @@ class KAYACharacterHandler {
             // Notfälle
             'notfall': () => this.generateNotfallResponse(intention, tone),
             
+            // Erweiterte Landkreis-spezifische Anliegen
+            'landwirtschaft': () => this.generateLandwirtschaftResponse(intention, tone),
+            'tierhaltung': () => this.generateTierhaltungResponse(intention, tone),
+            'handwerk': () => this.generateHandwerkResponse(intention, tone),
+            'ausbildung': () => this.generateAusbildungResponse(intention, tone),
+            'studium': () => this.generateStudiumResponse(intention, tone),
+            'bafög': () => this.generateBafögResponse(intention, tone),
+            'arbeitslosigkeit': () => this.generateArbeitslosigkeitResponse(intention, tone),
+            'rente': () => this.generateRenteResponse(intention, tone),
+            'senioren': () => this.generateSeniorenResponse(intention, tone),
+            'alleinerziehende': () => this.generateAlleinerziehendeResponse(intention, tone),
+            'unterhalt': () => this.generateUnterhaltResponse(intention, tone),
+            'behinderung': () => this.generateBehinderungResponse(intention, tone),
+            'migration': () => this.generateMigrationResponse(intention, tone),
+            'aufenthaltsrecht': () => this.generateAufenthaltsrechtResponse(intention, tone),
+            'eu_bürger': () => this.generateEUBürgerResponse(intention, tone),
+            'kleinunternehmer': () => this.generateKleinunternehmerResponse(intention, tone),
+            'steuern': () => this.generateSteuernResponse(intention, tone),
+            
             // Fallback
             'general_inquiry': () => this.generateGeneralResponse(intention, tone)
         };
@@ -1575,6 +1594,484 @@ Was genau benötigen Sie? Je konkreter Sie fragen, desto besser kann ich helfen!
             }
         });
         return links;
+    }
+
+    // ERWEITERTE LANDKREIS-SPEZIFISCHE RESPONSE-FUNKTIONEN
+
+    generateLandwirtschaftResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen landwirtschaftlichen Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 EU-Anträge:**
+   → [EU-Anträge Landwirtschaft](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/eu-antraege/)
+
+**2. 📄 Tierhaltung:**
+   → [Tierhaltung Genehmigungen](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierhaltung/)
+
+**3. 📞 Agrarberatung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den EU-Antrag-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'EU-Anträge Landwirtschaft', url: 'https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/eu-antraege/' },
+                { title: 'Tierhaltung Genehmigungen', url: 'https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierhaltung/' }
+            ]
+        };
+    }
+
+    generateTierhaltungResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Tierhaltungs-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Genehmigungen:**
+   → [Tierhaltung Genehmigungen](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierhaltung/)
+
+**2. 📄 Tierschutz:**
+   → [Tierschutz Bestimmungen](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierschutz/)
+
+**3. 📞 Veterinär:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Genehmigung-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Tierhaltung Genehmigungen', url: 'https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierhaltung/' },
+                { title: 'Tierschutz Bestimmungen', url: 'https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierschutz/' }
+            ]
+        };
+    }
+
+    generateHandwerkResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen handwerklichen Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Meisterprüfung:**
+   → [Meisterprüfung Handwerk](https://www.oldenburg-kreis.de/wirtschaft/handwerk/meisterpruefung/)
+
+**2. 📄 Handwerkskammer:**
+   → [Handwerkskammer Kontakt](https://www.oldenburg-kreis.de/wirtschaft/handwerk/handwerkskammer/)
+
+**3. 📞 Ausbildung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Meisterprüfung-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Meisterprüfung Handwerk', url: 'https://www.oldenburg-kreis.de/wirtschaft/handwerk/meisterpruefung/' },
+                { title: 'Handwerkskammer Kontakt', url: 'https://www.oldenburg-kreis.de/wirtschaft/handwerk/handwerkskammer/' }
+            ]
+        };
+    }
+
+    generateAusbildungResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Ausbildungs-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Ausbildungsplatz:**
+   → [Ausbildungsplätze finden](https://www.oldenburg-kreis.de/bildung/ausbildung/)
+
+**2. 📄 Berufsschule:**
+   → [Berufsschule Kontakt](https://www.oldenburg-kreis.de/bildung/berufsschule/)
+
+**3. 📞 Prüfung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Ausbildungsplatz-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Ausbildungsplätze finden', url: 'https://www.oldenburg-kreis.de/bildung/ausbildung/' },
+                { title: 'Berufsschule Kontakt', url: 'https://www.oldenburg-kreis.de/bildung/berufsschule/' }
+            ]
+        };
+    }
+
+    generateStudiumResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Studien-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 BAföG-Antrag:**
+   → [BAföG-Antrag online](https://www.oldenburg-kreis.de/bildung/bafoeg/)
+
+**2. 📄 Wohnheim:**
+   → [Wohnheimplatz beantragen](https://www.oldenburg-kreis.de/bildung/wohnheim/)
+
+**3. 📞 Studienberatung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den BAföG-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'BAföG-Antrag online', url: 'https://www.oldenburg-kreis.de/bildung/bafoeg/' },
+                { title: 'Wohnheimplatz beantragen', url: 'https://www.oldenburg-kreis.de/bildung/wohnheim/' }
+            ]
+        };
+    }
+
+    generateBafögResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen BAföG-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 BAföG-Antrag:**
+   → [BAföG-Antrag online](https://www.oldenburg-kreis.de/bildung/bafoeg/)
+
+**2. 📄 Unterlagen:**
+   → [BAföG-Unterlagen](https://www.oldenburg-kreis.de/bildung/bafoeg/unterlagen/)
+
+**3. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den BAföG-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'BAföG-Antrag online', url: 'https://www.oldenburg-kreis.de/bildung/bafoeg/' },
+                { title: 'BAföG-Unterlagen', url: 'https://www.oldenburg-kreis.de/bildung/bafoeg/unterlagen/' }
+            ]
+        };
+    }
+
+    generateArbeitslosigkeitResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Arbeitslosigkeits-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 ALG-Antrag:**
+   → [ALG-Antrag online](https://www.oldenburg-kreis.de/soziales/alg/)
+
+**2. 📄 Jobcenter:**
+   → [Jobcenter Kontakt](https://www.oldenburg-kreis.de/soziales/jobcenter/)
+
+**3. 📞 Weiterbildung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den ALG-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'ALG-Antrag online', url: 'https://www.oldenburg-kreis.de/soziales/alg/' },
+                { title: 'Jobcenter Kontakt', url: 'https://www.oldenburg-kreis.de/soziales/jobcenter/' }
+            ]
+        };
+    }
+
+    generateRenteResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Renten-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Rentenantrag:**
+   → [Rentenantrag online](https://www.oldenburg-kreis.de/soziales/rente/)
+
+**2. 📄 Pension:**
+   → [Pension Informationen](https://www.oldenburg-kreis.de/soziales/pension/)
+
+**3. 📞 Seniorenservices:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Rentenantrag-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Rentenantrag online', url: 'https://www.oldenburg-kreis.de/soziales/rente/' },
+                { title: 'Pension Informationen', url: 'https://www.oldenburg-kreis.de/soziales/pension/' }
+            ]
+        };
+    }
+
+    generateSeniorenResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe Ihnen sofort bei Ihren Senioren-Anliegen${location}.${urgency}
+
+**🎯 Hier ist Ihr direkter Weg:**
+
+**1. 📋 Seniorenservices:**
+   → [Seniorenservices](https://www.oldenburg-kreis.de/soziales/senioren/)
+
+**2. 📄 Pflege:**
+   → [Pflege Informationen](https://www.oldenburg-kreis.de/soziales/pflege/)
+
+**3. 📞 Betreuung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Ihre nächste Aktion:** Klick auf den Seniorenservices-Link oder ruf direkt an!
+
+**Brauchen Sie Hilfe bei den Unterlagen? Sagen Sie mir, was Sie schon haben!**`,
+            links: [
+                { title: 'Seniorenservices', url: 'https://www.oldenburg-kreis.de/soziales/senioren/' },
+                { title: 'Pflege Informationen', url: 'https://www.oldenburg-kreis.de/soziales/pflege/' }
+            ]
+        };
+    }
+
+    generateAlleinerziehendeResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Alleinerziehenden-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Kindergeld-Antrag:**
+   → [Kindergeld-Antrag online](https://www.oldenburg-kreis.de/soziales/kindergeld/)
+
+**2. 📄 Unterhaltsvorschuss:**
+   → [Unterhaltsvorschuss](https://www.oldenburg-kreis.de/soziales/unterhalt/)
+
+**3. 📞 Betreuung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Kindergeld-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Kindergeld-Antrag online', url: 'https://www.oldenburg-kreis.de/soziales/kindergeld/' },
+                { title: 'Unterhaltsvorschuss', url: 'https://www.oldenburg-kreis.de/soziales/unterhalt/' }
+            ]
+        };
+    }
+
+    generateUnterhaltResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Unterhalts-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Unterhaltsvorschuss:**
+   → [Unterhaltsvorschuss](https://www.oldenburg-kreis.de/soziales/unterhalt/)
+
+**2. 📄 Antrag:**
+   → [Unterhalt-Antrag](https://www.oldenburg-kreis.de/soziales/unterhalt/antrag/)
+
+**3. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Unterhaltsvorschuss-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Unterhaltsvorschuss', url: 'https://www.oldenburg-kreis.de/soziales/unterhalt/' },
+                { title: 'Unterhalt-Antrag', url: 'https://www.oldenburg-kreis.de/soziales/unterhalt/antrag/' }
+            ]
+        };
+    }
+
+    generateBehinderungResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Behinderungs-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Schwerbehindertenausweis:**
+   → [Schwerbehindertenausweis](https://www.oldenburg-kreis.de/soziales/behinderung/)
+
+**2. 📄 Eingliederungshilfe:**
+   → [Eingliederungshilfe](https://www.oldenburg-kreis.de/soziales/eingliederungshilfe/)
+
+**3. 📞 Barrierefreiheit:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Schwerbehindertenausweis-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Schwerbehindertenausweis', url: 'https://www.oldenburg-kreis.de/soziales/behinderung/' },
+                { title: 'Eingliederungshilfe', url: 'https://www.oldenburg-kreis.de/soziales/eingliederungshilfe/' }
+            ]
+        };
+    }
+
+    generateMigrationResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Migrations-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Asylverfahren:**
+   → [Asylverfahren](https://www.oldenburg-kreis.de/soziales/asyl/)
+
+**2. 📄 Sprachkurs:**
+   → [Sprachkurs](https://www.oldenburg-kreis.de/soziales/integration/)
+
+**3. 📞 Integration:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Asylverfahren-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Asylverfahren', url: 'https://www.oldenburg-kreis.de/soziales/asyl/' },
+                { title: 'Sprachkurs', url: 'https://www.oldenburg-kreis.de/soziales/integration/' }
+            ]
+        };
+    }
+
+    generateAufenthaltsrechtResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Aufenthaltsrecht-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Aufenthaltsrecht:**
+   → [Aufenthaltsrecht](https://www.oldenburg-kreis.de/soziales/aufenthaltsrecht/)
+
+**2. 📄 Arbeitserlaubnis:**
+   → [Arbeitserlaubnis](https://www.oldenburg-kreis.de/soziales/arbeitserlaubnis/)
+
+**3. 📞 Familiennachzug:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Aufenthaltsrecht-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Aufenthaltsrecht', url: 'https://www.oldenburg-kreis.de/soziales/aufenthaltsrecht/' },
+                { title: 'Arbeitserlaubnis', url: 'https://www.oldenburg-kreis.de/soziales/arbeitserlaubnis/' }
+            ]
+        };
+    }
+
+    generateEUBürgerResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen EU-Bürger-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Aufenthaltsrecht:**
+   → [EU-Aufenthaltsrecht](https://www.oldenburg-kreis.de/soziales/eu-aufenthaltsrecht/)
+
+**2. 📄 Arbeitserlaubnis:**
+   → [EU-Arbeitserlaubnis](https://www.oldenburg-kreis.de/soziales/eu-arbeitserlaubnis/)
+
+**3. 📞 Familiennachzug:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den EU-Aufenthaltsrecht-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'EU-Aufenthaltsrecht', url: 'https://www.oldenburg-kreis.de/soziales/eu-aufenthaltsrecht/' },
+                { title: 'EU-Arbeitserlaubnis', url: 'https://www.oldenburg-kreis.de/soziales/eu-arbeitserlaubnis/' }
+            ]
+        };
+    }
+
+    generateKleinunternehmerResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Kleinunternehmer-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Kleinunternehmerregelung:**
+   → [Kleinunternehmerregelung](https://www.oldenburg-kreis.de/wirtschaft/kleinunternehmer/)
+
+**2. 📄 Gewerbesteuer:**
+   → [Gewerbesteuer](https://www.oldenburg-kreis.de/wirtschaft/gewerbesteuer/)
+
+**3. 📞 Buchhaltung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Kleinunternehmerregelung-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Kleinunternehmerregelung', url: 'https://www.oldenburg-kreis.de/wirtschaft/kleinunternehmer/' },
+                { title: 'Gewerbesteuer', url: 'https://www.oldenburg-kreis.de/wirtschaft/gewerbesteuer/' }
+            ]
+        };
+    }
+
+    generateSteuernResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei deinen Steuer-Anliegen${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Steuerberatung:**
+   → [Steuerberatung](https://www.oldenburg-kreis.de/wirtschaft/steuerberatung/)
+
+**2. 📄 Buchhaltung:**
+   → [Buchhaltung](https://www.oldenburg-kreis.de/wirtschaft/buchhaltung/)
+
+**3. 📞 Gewerbesteuer:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Steuerberatung-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Steuerberatung', url: 'https://www.oldenburg-kreis.de/wirtschaft/steuerberatung/' },
+                { title: 'Buchhaltung', url: 'https://www.oldenburg-kreis.de/wirtschaft/buchhaltung/' }
+            ]
+        };
     }
 }
 
