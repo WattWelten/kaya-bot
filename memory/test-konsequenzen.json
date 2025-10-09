@@ -1,0 +1,118 @@
+{
+  "id": "test-konsequenzen",
+  "createdAt": "2025-10-09T18:55:04.155Z",
+  "lastActivity": "2025-10-09T18:55:04.161Z",
+  "messages": [
+    {
+      "id": "mgjs1xi3pjn9vtk7qt",
+      "timestamp": "2025-10-09T18:55:04.155Z",
+      "sender": "user",
+      "content": "moin. ich bin henning. ich habe gerade ein auto gekauft. was passiert wenn ich damit fahre?",
+      "context": {},
+      "metadata": {
+        "messageLength": 91,
+        "containsQuestion": true,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjs1xi96wjspi4qstr",
+      "timestamp": "2025-10-09T18:55:04.161Z",
+      "sender": "kaya",
+      "content": "Moin! Moin Henning! **NEIN, du darfst NICHT einfach losfahren!** 🚫\n\nDu brauchst **erst eine Zulassung**! Ohne Zulassung ist das **illegal** und kann teuer werden.\n\n**Was passiert wenn du ohne Zulassung fährst:**\n• **Bußgeld:** 70-120€\n• **Punkte:** 1 Punkt in Flensburg\n• **Versicherung:** Deckt NICHT bei Unfall\n• **Polizei:** Kann Fahrzeug beschlagnahmen\n\n**🎯 Hier ist dein direkter Weg zur Zulassung:**\n\n**1. 📋 Online-Termin buchen:**\n   → [Terminvereinbarung KFZ-Zulassung](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/)\n\n**2. 📄 Formulare ausfüllen:**\n   → [Antragsformulare KFZ](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/)\n\n**3. 📞 Sofort anrufen:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den Termin-Link oder ruf direkt an!\n\n**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**\n\nGerne helfe ich Ihnen weiter!",
+      "context": {
+        "agent": "kaya",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "kfz_zulassung",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "termin",
+            "formulare",
+            "unterlagen",
+            "kosten"
+          ],
+          "specific": null,
+          "citizenType": "general",
+          "language": "german",
+          "query": "moin. ich bin henning. ich habe gerade ein auto gekauft. was passiert wenn ich damit fahre?"
+        }
+      },
+      "metadata": {
+        "agent": "kaya",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "kfz_zulassung",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "termin",
+            "formulare",
+            "unterlagen",
+            "kosten"
+          ],
+          "specific": null,
+          "citizenType": "general",
+          "language": "german",
+          "query": "moin. ich bin henning. ich habe gerade ein auto gekauft. was passiert wenn ich damit fahre?"
+        },
+        "messageLength": 921,
+        "containsQuestion": true,
+        "containsEmotion": "urgent",
+        "containsLocation": null,
+        "containsUrgency": "high"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "high",
+    "emotionalState": "urgent",
+    "citizenType": "urgent_case",
+    "currentTopic": "sozialhilfe",
+    "problemProgress": [
+      {
+        "topic": "general",
+        "started": "2025-10-09T18:55:04.156Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T18:55:04.156Z",
+            "content": "moin. ich bin henning. ich habe gerade ein auto gekauft. was passiert wenn ich damit fahre?",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "sozialhilfe",
+        "started": "2025-10-09T18:55:04.162Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T18:55:04.162Z",
+            "content": "Moin! Moin Henning! **NEIN, du darfst NICHT einfach losfahren!** 🚫\n\nDu brauchst **erst eine Zulassung**! Ohne Zulassung ist das **illegal** und kann teuer werden.\n\n**Was passiert wenn du ohne Zulassung fährst:**\n• **Bußgeld:** 70-120€\n• **Punkte:** 1 Punkt in Flensburg\n• **Versicherung:** Deckt NICHT bei Unfall\n• **Polizei:** Kann Fahrzeug beschlagnahmen\n\n**🎯 Hier ist dein direkter Weg zur Zulassung:**\n\n**1. 📋 Online-Termin buchen:**\n   → [Terminvereinbarung KFZ-Zulassung](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/)\n\n**2. 📄 Formulare ausfüllen:**\n   → [Antragsformulare KFZ](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/)\n\n**3. 📞 Sofort anrufen:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den Termin-Link oder ruf direkt an!\n\n**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**\n\nGerne helfe ich Ihnen weiter!",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 2,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}

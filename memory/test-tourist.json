@@ -1,0 +1,116 @@
+{
+  "id": "test-tourist",
+  "createdAt": "2025-10-09T19:13:34.117Z",
+  "lastActivity": "2025-10-09T19:13:34.125Z",
+  "messages": [
+    {
+      "id": "mgjsppyd1gjcvi5qu36",
+      "timestamp": "2025-10-09T19:13:34.117Z",
+      "sender": "user",
+      "content": "ich bin im urlaub hier und möchte sehenswürdigkeiten besuchen",
+      "context": {},
+      "metadata": {
+        "messageLength": 61,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjsppylzf9d5c2n8f9",
+      "timestamp": "2025-10-09T19:13:34.125Z",
+      "sender": "kaya",
+      "content": "Moin!  Ich bin KAYA, Ihr digitaler Assistent für den Landkreis Oldenburg.\n\n**Was kann ich für Sie tun:**\n• Formulare und Anträge\n• Terminvereinbarungen  \n• Kontakte und Öffnungszeiten\n• Informationen zu allen Dienstleistungen\n\n**Schnelle Hilfe:**\n• **Tel.: 04431 85-0**\n• **E-Mail:** kontakt@landkreis-oldenburg.de\n\nWas genau benötigen Sie? Je konkreter Sie fragen, desto besser kann ich helfen!\n\nGerne helfe ich Ihnen weiter!",
+      "context": {
+        "agent": "kaya",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "general_inquiry",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "informationen",
+            "beratung",
+            "kontakt"
+          ],
+          "specific": null,
+          "citizenType": "tourist",
+          "language": "german",
+          "query": "ich bin im urlaub hier und möchte sehenswürdigkeiten besuchen"
+        }
+      },
+      "metadata": {
+        "agent": "kaya",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "general_inquiry",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "informationen",
+            "beratung",
+            "kontakt"
+          ],
+          "specific": null,
+          "citizenType": "tourist",
+          "language": "german",
+          "query": "ich bin im urlaub hier und möchte sehenswürdigkeiten besuchen"
+        },
+        "messageLength": 426,
+        "containsQuestion": true,
+        "containsEmotion": "urgent",
+        "containsLocation": null,
+        "containsUrgency": "high"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "high",
+    "emotionalState": "urgent",
+    "citizenType": "urgent_case",
+    "currentTopic": "sozialhilfe",
+    "problemProgress": [
+      {
+        "topic": "general",
+        "started": "2025-10-09T19:13:34.118Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T19:13:34.118Z",
+            "content": "ich bin im urlaub hier und möchte sehenswürdigkeiten besuchen",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "sozialhilfe",
+        "started": "2025-10-09T19:13:34.125Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T19:13:34.125Z",
+            "content": "Moin!  Ich bin KAYA, Ihr digitaler Assistent für den Landkreis Oldenburg.\n\n**Was kann ich für Sie tun:**\n• Formulare und Anträge\n• Terminvereinbarungen  \n• Kontakte und Öffnungszeiten\n• Informationen zu allen Dienstleistungen\n\n**Schnelle Hilfe:**\n• **Tel.: 04431 85-0**\n• **E-Mail:** kontakt@landkreis-oldenburg.de\n\nWas genau benötigen Sie? Je konkreter Sie fragen, desto besser kann ich helfen!\n\nGerne helfe ich Ihnen weiter!",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 2,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": "test-child",
+  "createdAt": "2025-10-09T19:09:15.111Z",
+  "lastActivity": "2025-10-09T19:09:15.117Z",
+  "messages": [
+    {
+      "id": "mgjsk63r2t1xaoayhyh",
+      "timestamp": "2025-10-09T19:09:15.111Z",
+      "sender": "user",
+      "content": "ich bin ein kind und möchte zum spielplatz",
+      "context": {},
+      "metadata": {
+        "messageLength": 42,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjsk63xd55emjw62k",
+      "timestamp": "2025-10-09T19:09:15.117Z",
+      "sender": "kaya",
+      "content": "Moin!  Ich bin KAYA, Ihr digitaler Assistent für den Landkreis Oldenburg.\n\n**Was kann ich für Sie tun:**\n• Formulare und Anträge\n• Terminvereinbarungen  \n• Kontakte und Öffnungszeiten\n• Informationen zu allen Dienstleistungen\n\n**Schnelle Hilfe:**\n• **Tel.: 04431 85-0**\n• **E-Mail:** kontakt@landkreis-oldenburg.de\n\nWas genau benötigen Sie? Je konkreter Sie fragen, desto besser kann ich helfen!\n\nGerne helfe ich Ihnen weiter!",
+      "context": {
+        "agent": "kaya",
+        "persona": "young_family",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "general_inquiry",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "informationen",
+            "beratung",
+            "kontakt"
+          ],
+          "specific": null,
+          "citizenType": "family",
+          "language": "german",
+          "query": "ich bin ein kind und möchte zum spielplatz"
+        }
+      },
+      "metadata": {
+        "agent": "kaya",
+        "persona": "young_family",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "general_inquiry",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "informationen",
+            "beratung",
+            "kontakt"
+          ],
+          "specific": null,
+          "citizenType": "family",
+          "language": "german",
+          "query": "ich bin ein kind und möchte zum spielplatz"
+        },
+        "messageLength": 426,
+        "containsQuestion": true,
+        "containsEmotion": "urgent",
+        "containsLocation": null,
+        "containsUrgency": "high"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "high",
+    "emotionalState": "urgent",
+    "citizenType": "urgent_case",
+    "currentTopic": "sozialhilfe",
+    "problemProgress": [
+      {
+        "topic": "kita",
+        "started": "2025-10-09T19:09:15.111Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T19:09:15.111Z",
+            "content": "ich bin ein kind und möchte zum spielplatz",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "sozialhilfe",
+        "started": "2025-10-09T19:09:15.117Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T19:09:15.117Z",
+            "content": "Moin!  Ich bin KAYA, Ihr digitaler Assistent für den Landkreis Oldenburg.\n\n**Was kann ich für Sie tun:**\n• Formulare und Anträge\n• Terminvereinbarungen  \n• Kontakte und Öffnungszeiten\n• Informationen zu allen Dienstleistungen\n\n**Schnelle Hilfe:**\n• **Tel.: 04431 85-0**\n• **E-Mail:** kontakt@landkreis-oldenburg.de\n\nWas genau benötigen Sie? Je konkreter Sie fragen, desto besser kann ich helfen!\n\nGerne helfe ich Ihnen weiter!",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 2,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "id": "test-session",
+  "createdAt": "2025-10-09T18:41:54.828Z",
+  "lastActivity": "2025-10-09T18:42:03.355Z",
+  "messages": [
+    {
+      "id": "mgjrl0gcf7ey1afeahc",
+      "timestamp": "2025-10-09T18:41:54.828Z",
+      "sender": "user",
+      "content": "ich bin ein Bauer und brauche Hilfe bei EU-Anträgen",
+      "metadata": {
+        "messageLength": 51,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjrl0ghjrdvc1zz3dm",
+      "timestamp": "2025-10-09T18:41:54.833Z",
+      "sender": "kaya",
+      "content": "Moin!  Perfekt - ich helfe dir sofort bei deinen landwirtschaftlichen Anliegen.\n\n**🎯 Hier ist dein direkter Weg:**\n\n**1. 📋 EU-Anträge:**\n   → [EU-Anträge Landwirtschaft](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/eu-antraege/)\n\n**2. 📄 Tierhaltung:**\n   → [Tierhaltung Genehmigungen](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierhaltung/)\n\n**3. 📞 Agrarberatung:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den EU-Antrag-Link oder ruf direkt an!\n\n**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**\n\nGerne helfe ich Ihnen weiter!",
+      "metadata": {
+        "agent": "kaya",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "landwirtschaft",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "eu-anträge",
+            "tierhaltung",
+            "agrarberatung"
+          ],
+          "specific": null,
+          "citizenType": "farmer",
+          "language": "german"
+        },
+        "messageLength": 614,
+        "containsQuestion": true,
+        "containsEmotion": "urgent",
+        "containsLocation": null,
+        "containsUrgency": "high"
+      }
+    },
+    {
+      "id": "mgjrl3gra57udprv3er",
+      "timestamp": "2025-10-09T18:41:58.731Z",
+      "sender": "user",
+      "content": "ich habe alle unterlagen und den flächennachweis",
+      "metadata": {
+        "messageLength": 48,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjrl3p2rbkg1nx3fy",
+      "timestamp": "2025-10-09T18:41:59.030Z",
+      "sender": "kaya",
+      "content": "Ich verstehe, dass Behördengänge manchmal kompliziert sein können. Lassen Sie mich Ihnen dabei helfen, den richtigen Weg zu finden.\n\nDer Prozess ist eigentlich ganz übersichtlich: Ich zeige Ihnen die benötigten Unterlagen und erkläre, wie Sie vorgehen sollten.\n\n**Anträge und Formulare Bauen | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)\n\n**Anträge und Formulare Immissionsschutz | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/umwelt-und-abfall/immissionsschutz/antraege-und-formulare/)\n\n**Antragsarten (erforderliche Unterlagen, Kosten etc.) | Landkreis Oldenburg**\n\n📋 **Antragsarten und Unterlagen:** [Antragsarten und Unterlagen](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)\n\n\n\nHaben Sie bereits alle benötigten Unterlagen zusammen? Ich kann Ihnen dabei helfen, eine Checkliste zu erstellen.",
+      "metadata": {
+        "agent": "buergerdienste",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "general_inquiry",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "informationen",
+            "beratung",
+            "kontakt"
+          ],
+          "specific": null,
+          "citizenType": "general",
+          "language": "german"
+        },
+        "messageLength": 1269,
+        "containsQuestion": true,
+        "containsEmotion": "sad",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjrl70z24omg1n8c42i",
+      "timestamp": "2025-10-09T18:42:03.347Z",
+      "sender": "user",
+      "content": "ich habe alle unterlagen",
+      "metadata": {
+        "messageLength": 24,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjrl7173kudit47izh",
+      "timestamp": "2025-10-09T18:42:03.356Z",
+      "sender": "kaya",
+      "content": "Ich verstehe, dass Behördengänge manchmal kompliziert sein können. Lassen Sie mich Ihnen dabei helfen, den richtigen Weg zu finden.\n\nHier ist der Ablauf: Zuerst schauen wir uns an, welche Formulare Sie benötigen, dann erkläre ich Ihnen die einzelnen Schritte und was Sie beachten müssen.\n\n**Antragsarten (erforderliche Unterlagen, Kosten etc.) | Landkreis Oldenburg**\n\n📋 **Antragsarten und Unterlagen:** [Antragsarten und Unterlagen](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)\n\n**Frauen- und Kinderschutzhaus | Landkreis Oldenburg**\n\n📋 **Sozialleistungen:** [Sozialleistungen](https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/frauen-und-kinderschutzhaus/)\n\n**Hilfe zur Pflege | Landkreis Oldenburg**\n\n📋 **Sozialleistungen:** [Sozialleistungen](https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/hilfe-zur-pflege/)\n\n\n\nBrauchen Sie Hilfe bei der Terminvereinbarung oder haben Sie andere Fragen zum Ablauf?",
+      "metadata": {
+        "agent": "buergerdienste",
+        "persona": "elderly_citizen",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "general_inquiry",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "informationen",
+            "beratung",
+            "kontakt"
+          ],
+          "specific": null,
+          "citizenType": "general",
+          "language": "german"
+        },
+        "messageLength": 1064,
+        "containsQuestion": true,
+        "containsEmotion": "sad",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "normal",
+    "emotionalState": "sad",
+    "citizenType": "urgent_case",
+    "currentTopic": "bauantrag",
+    "problemProgress": [
+      {
+        "topic": "sozialhilfe",
+        "started": "2025-10-09T18:41:54.828Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T18:41:54.828Z",
+            "content": "ich bin ein Bauer und brauche Hilfe bei EU-Anträgen",
+            "step": 1
+          },
+          {
+            "timestamp": "2025-10-09T18:41:54.833Z",
+            "content": "Moin!  Perfekt - ich helfe dir sofort bei deinen landwirtschaftlichen Anliegen.\n\n**🎯 Hier ist dein direkter Weg:**\n\n**1. 📋 EU-Anträge:**\n   → [EU-Anträge Landwirtschaft](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/eu-antraege/)\n\n**2. 📄 Tierhaltung:**\n   → [Tierhaltung Genehmigungen](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierhaltung/)\n\n**3. 📞 Agrarberatung:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den EU-Antrag-Link oder ruf direkt an!\n\n**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**\n\nGerne helfe ich Ihnen weiter!",
+            "step": 2
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "general",
+        "started": "2025-10-09T18:41:58.731Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T18:41:58.731Z",
+            "content": "ich habe alle unterlagen und den flächennachweis",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "bauantrag",
+        "started": "2025-10-09T18:41:59.031Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T18:41:59.031Z",
+            "content": "Ich verstehe, dass Behördengänge manchmal kompliziert sein können. Lassen Sie mich Ihnen dabei helfen, den richtigen Weg zu finden.\n\nDer Prozess ist eigentlich ganz übersichtlich: Ich zeige Ihnen die benötigten Unterlagen und erkläre, wie Sie vorgehen sollten.\n\n**Anträge und Formulare Bauen | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)\n\n**Anträge und Formulare Immissionsschutz | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/umwelt-und-abfall/immissionsschutz/antraege-und-formulare/)\n\n**Antragsarten (erforderliche Unterlagen, Kosten etc.) | Landkreis Oldenburg**\n\n📋 **Antragsarten und Unterlagen:** [Antragsarten und Unterlagen](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)\n\n\n\nHaben Sie bereits alle benötigten Unterlagen zusammen? Ich kann Ihnen dabei helfen, eine Checkliste zu erstellen.",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "general",
+        "started": "2025-10-09T18:42:03.347Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T18:42:03.347Z",
+            "content": "ich habe alle unterlagen",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "bauantrag",
+        "started": "2025-10-09T18:42:03.356Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T18:42:03.356Z",
+            "content": "Ich verstehe, dass Behördengänge manchmal kompliziert sein können. Lassen Sie mich Ihnen dabei helfen, den richtigen Weg zu finden.\n\nHier ist der Ablauf: Zuerst schauen wir uns an, welche Formulare Sie benötigen, dann erkläre ich Ihnen die einzelnen Schritte und was Sie beachten müssen.\n\n**Antragsarten (erforderliche Unterlagen, Kosten etc.) | Landkreis Oldenburg**\n\n📋 **Antragsarten und Unterlagen:** [Antragsarten und Unterlagen](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)\n\n**Frauen- und Kinderschutzhaus | Landkreis Oldenburg**\n\n📋 **Sozialleistungen:** [Sozialleistungen](https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/frauen-und-kinderschutzhaus/)\n\n**Hilfe zur Pflege | Landkreis Oldenburg**\n\n📋 **Sozialleistungen:** [Sozialleistungen](https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/hilfe-zur-pflege/)\n\n\n\nBrauchen Sie Hilfe bei der Terminvereinbarung oder haben Sie andere Fragen zum Ablauf?",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 6,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}

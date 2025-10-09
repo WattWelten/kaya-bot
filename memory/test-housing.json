@@ -1,0 +1,109 @@
+{
+  "id": "test-housing",
+  "createdAt": "2025-10-09T19:09:23.610Z",
+  "lastActivity": "2025-10-09T19:09:23.612Z",
+  "messages": [
+    {
+      "id": "mgjskcnujluextkn01d",
+      "timestamp": "2025-10-09T19:09:23.610Z",
+      "sender": "user",
+      "content": "ich suche eine wohnung",
+      "context": {},
+      "metadata": {
+        "messageLength": 22,
+        "containsQuestion": true,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjskcnwp0a4kyq42li",
+      "timestamp": "2025-10-09T19:09:23.612Z",
+      "sender": "kaya",
+      "content": "Merhaba!  Gerne helfe ich Ihnen beim Wohngeld.\n\n**🎯 Hier ist Ihr direkter Weg:**\n\n**1. 📋 Wohngeld-Antrag:**\n   → [Wohngeld online](https://www.oldenburg-kreis.de/soziales/wohngeld/)\n\n**2. 📞 Beratung:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**3. 📄 Unterlagen:**\n   → [Wohngeld-Formulare](https://www.oldenburg-kreis.de/soziales/wohngeld/formulare/)\n\n**🎯 Ihre nächste Aktion:** Antrag online stellen oder anrufen!\n\n**Haben Sie alle Unterlagen bereit?**\n\nAlmanca yardıma ihtiyacınız varsa, sadece sorun!",
+      "context": {
+        "agent": "kaya",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "wohngeld",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "formulare",
+            "beratung",
+            "unterlagen"
+          ],
+          "specific": null,
+          "citizenType": "housing_seeker",
+          "language": "turkish",
+          "query": "ich suche eine wohnung"
+        }
+      },
+      "metadata": {
+        "agent": "kaya",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "wohngeld",
+          "urgency": "normal",
+          "emotionalState": "neutral",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "formulare",
+            "beratung",
+            "unterlagen"
+          ],
+          "specific": null,
+          "citizenType": "housing_seeker",
+          "language": "turkish",
+          "query": "ich suche eine wohnung"
+        },
+        "messageLength": 505,
+        "containsQuestion": true,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "normal",
+    "emotionalState": "neutral",
+    "citizenType": "standard",
+    "currentTopic": "wohngeld",
+    "problemProgress": [
+      {
+        "topic": "wohngeld",
+        "started": "2025-10-09T19:09:23.610Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T19:09:23.610Z",
+            "content": "ich suche eine wohnung",
+            "step": 1
+          },
+          {
+            "timestamp": "2025-10-09T19:09:23.612Z",
+            "content": "Merhaba!  Gerne helfe ich Ihnen beim Wohngeld.\n\n**🎯 Hier ist Ihr direkter Weg:**\n\n**1. 📋 Wohngeld-Antrag:**\n   → [Wohngeld online](https://www.oldenburg-kreis.de/soziales/wohngeld/)\n\n**2. 📞 Beratung:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**3. 📄 Unterlagen:**\n   → [Wohngeld-Formulare](https://www.oldenburg-kreis.de/soziales/wohngeld/formulare/)\n\n**🎯 Ihre nächste Aktion:** Antrag online stellen oder anrufen!\n\n**Haben Sie alle Unterlagen bereit?**\n\nAlmanca yardıma ihtiyacınız varsa, sadece sorun!",
+            "step": 2
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 2,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}

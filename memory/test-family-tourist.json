@@ -1,0 +1,116 @@
+{
+  "id": "test-family-tourist",
+  "createdAt": "2025-10-09T19:13:42.833Z",
+  "lastActivity": "2025-10-09T19:13:42.835Z",
+  "messages": [
+    {
+      "id": "mgjspwoh5zs6n1sb13m",
+      "timestamp": "2025-10-09T19:13:42.833Z",
+      "sender": "user",
+      "content": "wir machen familienurlaub und suchen kinderfreundliche aktivitäten",
+      "context": {},
+      "metadata": {
+        "messageLength": 66,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjspwoj3zgddmmcudt",
+      "timestamp": "2025-10-09T19:13:42.835Z",
+      "sender": "kaya",
+      "content": "Moin!  Perfekt - ich helfe dir sofort bei deinen EU-Bürger-Anliegen.\n\n**🎯 Hier ist dein direkter Weg:**\n\n**1. 📋 Aufenthaltsrecht:**\n   → [EU-Aufenthaltsrecht](https://www.oldenburg-kreis.de/soziales/eu-aufenthaltsrecht/)\n\n**2. 📄 Arbeitserlaubnis:**\n   → [EU-Arbeitserlaubnis](https://www.oldenburg-kreis.de/soziales/eu-arbeitserlaubnis/)\n\n**3. 📞 Familiennachzug:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den EU-Aufenthaltsrecht-Link oder ruf direkt an!\n\n**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**\n\nGerne helfe ich Ihnen weiter!",
+      "context": {
+        "agent": "kaya",
+        "persona": "young_family",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "eu_bürger",
+          "urgency": "normal",
+          "emotionalState": "positive",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "aufenthaltsrecht",
+            "arbeitserlaubnis",
+            "familiennachzug"
+          ],
+          "specific": null,
+          "citizenType": "family",
+          "language": "german",
+          "query": "wir machen familienurlaub und suchen kinderfreundliche aktivitäten"
+        }
+      },
+      "metadata": {
+        "agent": "kaya",
+        "persona": "young_family",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "intention": {
+          "type": "eu_bürger",
+          "urgency": "normal",
+          "emotionalState": "positive",
+          "accessibilityNeeds": [],
+          "location": null,
+          "needs": [
+            "aufenthaltsrecht",
+            "arbeitserlaubnis",
+            "familiennachzug"
+          ],
+          "specific": null,
+          "citizenType": "family",
+          "language": "german",
+          "query": "wir machen familienurlaub und suchen kinderfreundliche aktivitäten"
+        },
+        "messageLength": 596,
+        "containsQuestion": true,
+        "containsEmotion": "urgent",
+        "containsLocation": null,
+        "containsUrgency": "high"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "high",
+    "emotionalState": "urgent",
+    "citizenType": "urgent_case",
+    "currentTopic": "sozialhilfe",
+    "problemProgress": [
+      {
+        "topic": "kita",
+        "started": "2025-10-09T19:13:42.833Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T19:13:42.833Z",
+            "content": "wir machen familienurlaub und suchen kinderfreundliche aktivitäten",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "sozialhilfe",
+        "started": "2025-10-09T19:13:42.835Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T19:13:42.835Z",
+            "content": "Moin!  Perfekt - ich helfe dir sofort bei deinen EU-Bürger-Anliegen.\n\n**🎯 Hier ist dein direkter Weg:**\n\n**1. 📋 Aufenthaltsrecht:**\n   → [EU-Aufenthaltsrecht](https://www.oldenburg-kreis.de/soziales/eu-aufenthaltsrecht/)\n\n**2. 📄 Arbeitserlaubnis:**\n   → [EU-Arbeitserlaubnis](https://www.oldenburg-kreis.de/soziales/eu-arbeitserlaubnis/)\n\n**3. 📞 Familiennachzug:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den EU-Aufenthaltsrecht-Link oder ruf direkt an!\n\n**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**\n\nGerne helfe ich Ihnen weiter!",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 2,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}
