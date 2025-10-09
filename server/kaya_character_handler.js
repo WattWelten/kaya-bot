@@ -1563,14 +1563,72 @@ Für welches Anliegen brauchen Sie einen Termin?`,
     getDynamicGreeting(citizenType, language, context) {
         const greetings = {
             german: {
-                senior: "Guten Tag! Ich helfe Ihnen gerne bei der KFZ-Zulassung.",
-                youth: "Hey! Ich helfe dir bei der Autozulassung.",
-                family: "Hallo! Ich helfe Ihrer Familie bei der KFZ-Zulassung.",
-                farmer: "Moin! Ich helfe dir bei der Traktor-Zulassung.",
-                craftsman: "Moin! Ich helfe dir bei der Werkzeug-Zulassung.",
-                student: "Hey! Ich helfe dir bei der Auto-Zulassung fürs Studium.",
-                tourist: "Hallo! Ich helfe Ihnen bei der KFZ-Zulassung für Ihren Aufenthalt.",
-                general: "Hallo! Ich helfe Ihnen bei der KFZ-Zulassung."
+                // KFZ-ZULASSUNG
+                kfz: {
+                    senior: "Guten Tag! Ich helfe Ihnen gerne bei der KFZ-Zulassung.",
+                    youth: "Hey! Ich helfe dir bei der Autozulassung.",
+                    family: "Hallo! Ich helfe Ihrer Familie bei der KFZ-Zulassung.",
+                    farmer: "Moin! Ich helfe dir bei der Traktor-Zulassung.",
+                    craftsman: "Moin! Ich helfe dir bei der Werkzeug-Zulassung.",
+                    student: "Hey! Ich helfe dir bei der Auto-Zulassung fürs Studium.",
+                    tourist: "Hallo! Ich helfe Ihnen bei der KFZ-Zulassung für Ihren Aufenthalt.",
+                    general: "Hallo! Ich helfe Ihnen bei der KFZ-Zulassung."
+                },
+                // FÜHRERSCHEIN
+                führerschein: {
+                    senior: "Guten Tag! Ich helfe Ihnen gerne beim Führerschein.",
+                    youth: "Hey! Ich helfe dir beim Führerschein.",
+                    family: "Hallo! Ich helfe Ihrer Familie beim Führerschein.",
+                    farmer: "Moin! Ich helfe dir beim Traktor-Führerschein.",
+                    craftsman: "Moin! Ich helfe dir beim LKW-Führerschein.",
+                    student: "Hey! Ich helfe dir beim Führerschein fürs Studium.",
+                    tourist: "Hallo! Ich helfe Ihnen beim Führerschein für Ihren Aufenthalt.",
+                    general: "Hallo! Ich helfe Ihnen beim Führerschein."
+                },
+                // GEWERBE
+                gewerbe: {
+                    senior: "Guten Tag! Ich helfe Ihnen gerne bei der Gewerbeanmeldung.",
+                    youth: "Hey! Ich helfe dir bei der Gewerbeanmeldung.",
+                    family: "Hallo! Ich helfe Ihrer Familie bei der Gewerbeanmeldung.",
+                    farmer: "Moin! Ich helfe dir bei der landwirtschaftlichen Gewerbeanmeldung.",
+                    craftsman: "Moin! Ich helfe dir bei der Handwerks-Gewerbeanmeldung.",
+                    student: "Hey! Ich helfe dir bei der Gewerbeanmeldung für dein Studium.",
+                    tourist: "Hallo! Ich helfe Ihnen bei der Gewerbeanmeldung für Ihren Aufenthalt.",
+                    general: "Hallo! Ich helfe Ihnen bei der Gewerbeanmeldung."
+                },
+                // BAUANTRAG
+                bauantrag: {
+                    senior: "Guten Tag! Ich helfe Ihnen gerne beim Bauantrag.",
+                    youth: "Hey! Ich helfe dir beim Bauantrag.",
+                    family: "Hallo! Ich helfe Ihrer Familie beim Bauantrag.",
+                    farmer: "Moin! Ich helfe dir beim landwirtschaftlichen Bauantrag.",
+                    craftsman: "Moin! Ich helfe dir beim Handwerks-Bauantrag.",
+                    student: "Hey! Ich helfe dir beim Bauantrag für dein Studium.",
+                    tourist: "Hallo! Ich helfe Ihnen beim Bauantrag für Ihren Aufenthalt.",
+                    general: "Hallo! Ich helfe Ihnen beim Bauantrag."
+                },
+                // LANDWIRTSCHAFT
+                landwirtschaft: {
+                    senior: "Guten Tag! Ich helfe Ihnen gerne bei Ihren landwirtschaftlichen Anliegen.",
+                    youth: "Hey! Ich helfe dir bei deinen landwirtschaftlichen Anliegen.",
+                    family: "Hallo! Ich helfe Ihrer Familie bei den landwirtschaftlichen Anliegen.",
+                    farmer: "Moin! Ich helfe dir bei deinen Hof-Anliegen.",
+                    craftsman: "Moin! Ich helfe dir bei deinen landwirtschaftlichen Anliegen.",
+                    student: "Hey! Ich helfe dir bei deinen landwirtschaftlichen Anliegen fürs Studium.",
+                    tourist: "Hallo! Ich helfe Ihnen bei den landwirtschaftlichen Anliegen für Ihren Aufenthalt.",
+                    general: "Hallo! Ich helfe Ihnen bei Ihren landwirtschaftlichen Anliegen."
+                },
+                // GENERAL
+                general: {
+                    senior: "Guten Tag! Ich helfe Ihnen gerne.",
+                    youth: "Hey! Ich helfe dir gerne.",
+                    family: "Hallo! Ich helfe Ihrer Familie gerne.",
+                    farmer: "Moin! Ich helfe dir gerne.",
+                    craftsman: "Moin! Ich helfe dir gerne.",
+                    student: "Hey! Ich helfe dir gerne.",
+                    tourist: "Hallo! Ich helfe Ihnen gerne.",
+                    general: "Hallo! Ich helfe Ihnen gerne."
+                }
             },
             english: {
                 senior: "Good day! I'll help you with your vehicle registration.",
@@ -1605,7 +1663,8 @@ Für welches Anliegen brauchen Sie einen Termin?`,
         };
         
         const languageGreetings = greetings[language] || greetings.german;
-        return languageGreetings[citizenType] || languageGreetings.general;
+        const contextGreetings = languageGreetings[context] || languageGreetings.general;
+        return contextGreetings[citizenType] || contextGreetings.general;
     }
     
     /**
@@ -1618,11 +1677,54 @@ Für welches Anliegen brauchen Sie einen Termin?`,
         
         const steps = {
             german: {
-                senior: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung vornehmen:** Persönlich oder mit Vollmacht",
-                youth: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung machen:** Geh hin oder lass jemanden für dich gehen",
-                family: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung vornehmen:** Als Familie oder mit Vollmacht",
-                farmer: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, EVB-Nummer, Traktorpapiere\n3. **Zulassung machen:** Geh hin oder lass jemanden für dich gehen",
-                general: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung vornehmen:** Persönlich oder mit Vollmacht"
+                // KFZ-ZULASSUNG
+                kfz_zulassung: {
+                    senior: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung vornehmen:** Persönlich oder mit Vollmacht",
+                    youth: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung machen:** Geh hin oder lass jemanden für dich gehen",
+                    family: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung vornehmen:** Als Familie oder mit Vollmacht",
+                    farmer: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, EVB-Nummer, Traktorpapiere\n3. **Zulassung machen:** Geh hin oder lass jemanden für dich gehen",
+                    general: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, EVB-Nummer, Fahrzeugpapiere\n3. **Zulassung vornehmen:** Persönlich oder mit Vollmacht"
+                },
+                // FÜHRERSCHEIN
+                führerschein: {
+                    senior: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, Führerschein, Sehtest\n3. **Führerschein beantragen:** Persönlich oder mit Vollmacht",
+                    youth: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, Führerschein, Sehtest\n3. **Führerschein machen:** Geh hin oder lass jemanden für dich gehen",
+                    family: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, Führerschein, Sehtest\n3. **Führerschein beantragen:** Als Familie oder mit Vollmacht",
+                    farmer: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, Traktor-Führerschein, Sehtest\n3. **Führerschein machen:** Geh hin oder lass jemanden für dich gehen",
+                    general: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, Führerschein, Sehtest\n3. **Führerschein beantragen:** Persönlich oder mit Vollmacht"
+                },
+                // GEWERBE
+                gewerbe: {
+                    senior: "**Ihre nächsten Schritte:**\n1. **Gewerbe anmelden:** Online oder persönlich\n2. **Unterlagen vorbereiten:** Personalausweis, Gewerbeschein, Steuernummer\n3. **Gewerbe registrieren:** Persönlich oder mit Vollmacht",
+                    youth: "**Deine nächsten Schritte:**\n1. **Gewerbe anmelden:** Online oder persönlich\n2. **Unterlagen sammeln:** Personalausweis, Gewerbeschein, Steuernummer\n3. **Gewerbe registrieren:** Geh hin oder lass jemanden für dich gehen",
+                    family: "**Ihre nächsten Schritte:**\n1. **Gewerbe anmelden:** Online oder persönlich\n2. **Unterlagen vorbereiten:** Personalausweis, Gewerbeschein, Steuernummer\n3. **Gewerbe registrieren:** Als Familie oder mit Vollmacht",
+                    farmer: "**Deine nächsten Schritte:**\n1. **Gewerbe anmelden:** Online oder persönlich\n2. **Unterlagen sammeln:** Personalausweis, landwirtschaftlicher Gewerbeschein\n3. **Gewerbe registrieren:** Geh hin oder lass jemanden für dich gehen",
+                    general: "**Ihre nächsten Schritte:**\n1. **Gewerbe anmelden:** Online oder persönlich\n2. **Unterlagen vorbereiten:** Personalausweis, Gewerbeschein, Steuernummer\n3. **Gewerbe registrieren:** Persönlich oder mit Vollmacht"
+                },
+                // BAUANTRAG
+                bauantrag: {
+                    senior: "**Ihre nächsten Schritte:**\n1. **Bauantrag stellen:** Online oder persönlich\n2. **Unterlagen vorbereiten:** Personalausweis, Grundstücksunterlagen, Baupläne\n3. **Bauantrag einreichen:** Persönlich oder mit Vollmacht",
+                    youth: "**Deine nächsten Schritte:**\n1. **Bauantrag stellen:** Online oder persönlich\n2. **Unterlagen sammeln:** Personalausweis, Grundstücksunterlagen, Baupläne\n3. **Bauantrag einreichen:** Geh hin oder lass jemanden für dich gehen",
+                    family: "**Ihre nächsten Schritte:**\n1. **Bauantrag stellen:** Online oder persönlich\n2. **Unterlagen vorbereiten:** Personalausweis, Grundstücksunterlagen, Baupläne\n3. **Bauantrag einreichen:** Als Familie oder mit Vollmacht",
+                    farmer: "**Deine nächsten Schritte:**\n1. **Bauantrag stellen:** Online oder persönlich\n2. **Unterlagen sammeln:** Personalausweis, landwirtschaftliche Unterlagen, Baupläne\n3. **Bauantrag einreichen:** Geh hin oder lass jemanden für dich gehen",
+                    general: "**Ihre nächsten Schritte:**\n1. **Bauantrag stellen:** Online oder persönlich\n2. **Unterlagen vorbereiten:** Personalausweis, Grundstücksunterlagen, Baupläne\n3. **Bauantrag einreichen:** Persönlich oder mit Vollmacht"
+                },
+                // LANDWIRTSCHAFT
+                landwirtschaft: {
+                    senior: "**Ihre nächsten Schritte:**\n1. **EU-Anträge stellen:** Online oder persönlich\n2. **Unterlagen vorbereiten:** Personalausweis, Flächennachweis, Tierbestand\n3. **Anträge einreichen:** Persönlich oder mit Vollmacht",
+                    youth: "**Deine nächsten Schritte:**\n1. **EU-Anträge stellen:** Online oder persönlich\n2. **Unterlagen sammeln:** Personalausweis, Flächennachweis, Tierbestand\n3. **Anträge einreichen:** Geh hin oder lass jemanden für dich gehen",
+                    family: "**Ihre nächsten Schritte:**\n1. **EU-Anträge stellen:** Online oder persönlich\n2. **Unterlagen vorbereiten:** Personalausweis, Flächennachweis, Tierbestand\n3. **Anträge einreichen:** Als Familie oder mit Vollmacht",
+                    farmer: "**Deine nächsten Schritte:**\n1. **EU-Anträge stellen:** Online oder persönlich\n2. **Unterlagen sammeln:** Personalausweis, Flächennachweis, Tierbestand\n3. **Anträge einreichen:** Geh hin oder lass jemanden für dich gehen",
+                    general: "**Ihre nächsten Schritte:**\n1. **EU-Anträge stellen:** Online oder persönlich\n2. **Unterlagen vorbereiten:** Personalausweis, Flächennachweis, Tierbestand\n3. **Anträge einreichen:** Persönlich oder mit Vollmacht"
+                },
+                // GENERAL
+                general: {
+                    senior: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, relevante Dokumente\n3. **Anliegen klären:** Persönlich oder mit Vollmacht",
+                    youth: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, relevante Dokumente\n3. **Anliegen klären:** Geh hin oder lass jemanden für dich gehen",
+                    family: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, relevante Dokumente\n3. **Anliegen klären:** Als Familie oder mit Vollmacht",
+                    farmer: "**Deine nächsten Schritte:**\n1. **Termin buchen:** Online oder anrufen\n2. **Unterlagen sammeln:** Personalausweis, relevante Dokumente\n3. **Anliegen klären:** Geh hin oder lass jemanden für dich gehen",
+                    general: "**Ihre nächsten Schritte:**\n1. **Termin buchen:** Online oder telefonisch\n2. **Unterlagen vorbereiten:** Personalausweis, relevante Dokumente\n3. **Anliegen klären:** Persönlich oder mit Vollmacht"
+                }
             },
             english: {
                 general: "**Your next steps:**\n1. **Book appointment:** Online or by phone\n2. **Prepare documents:** ID, insurance number, vehicle papers\n3. **Complete registration:** In person or with power of attorney"
@@ -1700,6 +1802,22 @@ Für welches Anliegen brauchen Sie einen Termin?`,
             kfz_zulassung: [
                 { title: 'Terminvereinbarung KFZ-Zulassung', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/' },
                 { title: 'Antragsformulare KFZ', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/' }
+            ],
+            führerschein: [
+                { title: 'Terminvereinbarung Führerscheine', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/terminvereinbarung-fuehrerscheine/' },
+                { title: 'Führerschein-Anträge', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/' }
+            ],
+            gewerbe: [
+                { title: 'Gewerbeanmeldung online', url: 'https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/' },
+                { title: 'Gewerbe-Formulare', url: 'https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/formulare/' }
+            ],
+            bauantrag: [
+                { title: 'Bauantrag online', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/bauantrag-online/' },
+                { title: 'Bauantrag-Formulare', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/' }
+            ],
+            landwirtschaft: [
+                { title: 'EU-Anträge Landwirtschaft', url: 'https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/eu-antraege/' },
+                { title: 'Tierhaltung Genehmigungen', url: 'https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierhaltung/' }
             ]
         };
         
@@ -1707,58 +1825,88 @@ Für welches Anliegen brauchen Sie einen Termin?`,
     }
 
     generateFührerscheinResponse(intention, tone) {
-        const location = intention.location ? ` in ${intention.location}` : '';
-        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        const query = intention.query || '';
+        const citizenType = intention.citizenType;
+        const language = intention.language;
+        const emotionalState = intention.emotionalState;
+        const urgency = intention.urgency;
+        
+        // DYNAMISCHE BEGRÜSSUNG basierend auf Persona
+        let greeting = this.getDynamicGreeting(citizenType, language, 'führerschein');
+        
+        // ERKENNE KONKRETE FRAGEN
+        const concreteAnswer = this.analyzeConcreteQuestion(query, 'führerschein');
+        
+        // DYNAMISCHE ANTWORT-STRUKTUR
+        let response = '';
+        
+        // 1. BEGRÜSSUNG
+        response += greeting;
+        
+        // 2. KONKRETE ANTWORT (falls vorhanden)
+        if (concreteAnswer) {
+            response += '\n\n' + concreteAnswer.specificAnswer;
+            if (concreteAnswer.emotionalSupport) {
+                response += concreteAnswer.emotionalSupport;
+            }
+            if (concreteAnswer.targetGroupHelp) {
+                response += concreteAnswer.targetGroupHelp;
+            }
+        }
+        
+        // 3. DYNAMISCHE HANDLUNGSANWEISUNGEN
+        response += '\n\n' + this.getDynamicActionSteps('führerschein', citizenType, urgency, language);
+        
+        // 4. DYNAMISCHE ENDUNG
+        response += '\n\n' + this.getDynamicEnding(citizenType, language, emotionalState);
         
         return {
-            response: `Moin! Perfekt - ich helfe dir sofort beim Führerschein${location}.${urgency}
-
-**🎯 Hier ist dein direkter Weg:**
-
-**1. 📋 Online-Termin buchen:**
-   → [Terminvereinbarung Führerscheine](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/terminvereinbarung-fuehrerscheine/)
-
-**2. 📄 Anträge und Formulare:**
-   → [Führerschein-Anträge](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)
-
-**3. 📞 Sofort anrufen:**
-   → **04431 85-0** (Mo-Fr 8-16 Uhr)
-
-**🎯 Deine nächste Aktion:** Klick auf den Termin-Link oder ruf direkt an!
-
-**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
-            links: [
-                { title: 'Terminvereinbarung Führerscheine', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/terminvereinbarung-fuehrerscheine/' },
-                { title: 'Führerschein-Anträge', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/' }
-            ]
+            response: response,
+            links: this.getRelevantLinks('führerschein'),
+            fallback: false
         };
     }
 
     generateGewerbeResponse(intention, tone) {
-        const location = intention.location ? ` in ${intention.location}` : '';
-        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        const query = intention.query || '';
+        const citizenType = intention.citizenType;
+        const language = intention.language;
+        const emotionalState = intention.emotionalState;
+        const urgency = intention.urgency;
+        
+        // DYNAMISCHE BEGRÜSSUNG basierend auf Persona
+        let greeting = this.getDynamicGreeting(citizenType, language, 'gewerbe');
+        
+        // ERKENNE KONKRETE FRAGEN
+        const concreteAnswer = this.analyzeConcreteQuestion(query, 'gewerbe');
+        
+        // DYNAMISCHE ANTWORT-STRUKTUR
+        let response = '';
+        
+        // 1. BEGRÜSSUNG
+        response += greeting;
+        
+        // 2. KONKRETE ANTWORT (falls vorhanden)
+        if (concreteAnswer) {
+            response += '\n\n' + concreteAnswer.specificAnswer;
+            if (concreteAnswer.emotionalSupport) {
+                response += concreteAnswer.emotionalSupport;
+            }
+            if (concreteAnswer.targetGroupHelp) {
+                response += concreteAnswer.targetGroupHelp;
+            }
+        }
+        
+        // 3. DYNAMISCHE HANDLUNGSANWEISUNGEN
+        response += '\n\n' + this.getDynamicActionSteps('gewerbe', citizenType, urgency, language);
+        
+        // 4. DYNAMISCHE ENDUNG
+        response += '\n\n' + this.getDynamicEnding(citizenType, language, emotionalState);
         
         return {
-            response: `Moin! Perfekt - ich helfe dir sofort bei der Gewerbeanmeldung${location}.${urgency}
-
-**🎯 Hier ist dein direkter Weg:**
-
-**1. 📋 Online-Formular:**
-   → [Gewerbeanmeldung online](https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/)
-
-**2. 📄 Anträge und Formulare:**
-   → [Gewerbe-Anträge](https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/antraege-und-formulare/)
-
-**3. 📞 Beratung:**
-   → **04431 85-0** (Mo-Fr 8-16 Uhr)
-
-**🎯 Deine nächste Aktion:** Klick auf den Gewerbe-Link oder ruf direkt an!
-
-**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
-            links: [
-                { title: 'Gewerbeanmeldung online', url: 'https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/' },
-                { title: 'Gewerbe-Anträge', url: 'https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/antraege-und-formulare/' }
-            ]
+            response: response,
+            links: this.getRelevantLinks('gewerbe'),
+            fallback: false
         };
     }
 
