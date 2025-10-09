@@ -49,13 +49,13 @@ class KAYACharacterHandler {
         
         let response;
         if (agent === 'kaya') {
-            response = this.generateKAYAResponse(query, personaAnalysis);
+            response = this.generateKAYAResponse(query, personaAnalysis, sessionContext);
         } else {
             response = this.generateAgentResponse(agent, query, personaAnalysis);
         }
 
         // Context-Memory: KAYA-Antwort hinzufügen mit Intention
-        const intention = this.analyzeCitizenIntention(query);
+        const intention = this.analyzeCitizenIntention(query, sessionContext);
         this.contextMemory.addMessage(sessionId, response.response, 'kaya', {
             agent: agent,
             persona: personaAnalysis.persona.persona,
@@ -71,9 +71,9 @@ class KAYACharacterHandler {
         return response;
     }
     
-    generateKAYAResponse(query, personaAnalysis = null) {
-        // Bürgerzentrierte Dialog-Optimierung
-        const intention = this.analyzeCitizenIntention(query);
+    generateKAYAResponse(query, personaAnalysis = null, sessionContext = null) {
+        // Bürgerzentrierte Dialog-Optimierung mit Kontext
+        const intention = this.analyzeCitizenIntention(query, sessionContext);
         const response = this.generateDirectResponse(query, intention, personaAnalysis);
         
         return {
@@ -95,7 +95,7 @@ class KAYACharacterHandler {
      * UNIVERSALE Bürgerzentrierte Intention-Analyse
      * Funktioniert für ALLE Bürger und ALLE Anliegen
      */
-    analyzeCitizenIntention(query) {
+    analyzeCitizenIntention(query, sessionContext = null) {
         const lowerQuery = query.toLowerCase();
         
         // 1. URGENCY-Analyse (für alle Bürger)
@@ -110,8 +110,8 @@ class KAYACharacterHandler {
         // 4. LOCATION (für alle Bürger)
         const location = this.extractLocation(query);
         
-        // 5. SPECIFIC INTENTION (erweitert für alle Anliegen)
-        const specificIntention = this.analyzeSpecificIntention(lowerQuery);
+        // 5. SPECIFIC INTENTION (erweitert für alle Anliegen mit Kontext)
+        const specificIntention = this.analyzeSpecificIntention(lowerQuery, sessionContext);
         
         return {
             type: specificIntention.type,
@@ -332,12 +332,12 @@ class KAYACharacterHandler {
     /**
      * Analysiert spezifische Intention (erweitert für alle Anliegen)
      */
-    analyzeSpecificIntention(query) {
+    analyzeSpecificIntention(query, sessionContext = null) {
         // Erweiterte Kategorien für alle Bürgeranliegen - Landkreis-spezifisch
         const intentions = [
             // Verwaltung
             { keywords: ['bauantrag', 'bauen', 'haus', 'gebäude'], type: 'bauantrag', needs: ['formulare', 'unterlagen', 'termin', 'kosten'] },
-            { keywords: ['auto', 'fahrzeug', 'zulassen', 'kfz', 'kennzeichen'], type: 'kfz_zulassung', needs: ['termin', 'formulare', 'unterlagen', 'kosten'] },
+            { keywords: ['auto', 'fahrzeug', 'zulassen', 'kfz', 'kennzeichen', 'zulassungsbescheinigung', 'evb', 'versicherung', 'fahrzeugbrief', 'fahrzeugschein'], type: 'kfz_zulassung', needs: ['termin', 'formulare', 'unterlagen', 'kosten'] },
             { keywords: ['führerschein', 'fahrerlaubnis'], type: 'führerschein', needs: ['termin', 'formulare', 'unterlagen', 'kosten'] },
             { keywords: ['gewerbe', 'gewerbeanmeldung', 'selbständig'], type: 'gewerbe', needs: ['formulare', 'unterlagen', 'beratung'] },
             
@@ -405,6 +405,47 @@ class KAYACharacterHandler {
             // Notfälle
             { keywords: ['notfall', 'hilfe', 'krisen'], type: 'notfall', needs: ['sofortige_hilfe', 'kontakt', 'informationen'] }
         ];
+        
+        // KONTEXT-BASIERTE INTENTION-ERKENNUNG
+        if (sessionContext && sessionContext.previousIntention) {
+            const previousType = sessionContext.previousIntention.type;
+            
+            // KFZ-Follow-up Erkennung
+            if (previousType === 'kfz_zulassung') {
+                const kfzFollowUpKeywords = ['zulassungsbescheinigung', 'evb', 'versicherung', 'fahrzeugbrief', 'fahrzeugschein', 'unterlagen', 'dokumente', 'papiere'];
+                if (kfzFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'kfz_zulassung',
+                        needs: ['termin', 'formulare', 'unterlagen', 'kosten'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Bauantrag-Follow-up Erkennung
+            if (previousType === 'bauantrag') {
+                const bauFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'grundstück', 'bauplan', 'genehmigung'];
+                if (bauFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'bauantrag',
+                        needs: ['formulare', 'unterlagen', 'termin', 'kosten'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Führerschein-Follow-up Erkennung
+            if (previousType === 'führerschein') {
+                const fsFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'prüfung', 'theorie', 'praxis'];
+                if (fsFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'führerschein',
+                        needs: ['termin', 'formulare', 'unterlagen', 'kosten'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+        }
         
         // Suche passende Intention
         for (const intention of intentions) {
