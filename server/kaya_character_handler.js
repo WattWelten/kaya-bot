@@ -64,8 +64,8 @@ class KAYACharacterHandler {
             intention: intention // Speichere die Intention für Kontext
         });
 
-        // LLM-Enhancement mit Context
-        if (this.useLLM && !response.fallback) {
+        // LLM-Enhancement nur für allgemeine Anfragen, NICHT für Action-orientierte Antworten
+        if (this.useLLM && !response.fallback && agent === 'kaya' && !this.isActionOrientedResponse(intention)) {
             try {
                 const llmService = this.getLLMService();
                 const contextPrompt = this.contextMemory.generateContextPrompt(session);
@@ -74,6 +74,8 @@ class KAYACharacterHandler {
                 console.error('LLM-Enhancement Fehler:', error);
                 // Verwende ursprüngliche Antwort als Fallback
             }
+        } else if (agent === 'kaya' && this.isActionOrientedResponse(intention)) {
+            console.log('🎯 Action-orientierte Antwort - LLM-Enhancement übersprungen');
         }
 
         return response;
@@ -287,6 +289,20 @@ class KAYACharacterHandler {
             needs: ['informationen', 'beratung', 'kontakt'],
             specific: null
         };
+    }
+
+    /**
+     * Prüft, ob es sich um eine Action-orientierte Antwort handelt
+     */
+    isActionOrientedResponse(intention) {
+        const actionOrientedTypes = [
+            'bauantrag', 'kfz_zulassung', 'führerschein', 'gewerbe',
+            'soziales', 'wohngeld', 'pflege', 'gesundheit', 'impfung',
+            'bildung', 'studium', 'umwelt', 'wasser', 'notfall',
+            'formular', 'termin', 'kontakt', 'öffnungszeiten'
+        ];
+        
+        return actionOrientedTypes.includes(intention.type);
     }
 
     /**
