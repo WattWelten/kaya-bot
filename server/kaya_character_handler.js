@@ -284,6 +284,48 @@ class KAYACharacterHandler {
             return 'mobility_needs';
         }
         
+        // KRITISCHE TOURISMUS-PERSONAS basierend auf 425.000 Übernachtungen (2024)
+        if (lowerQuery.includes('urlaub') || lowerQuery.includes('ferien') || lowerQuery.includes('reise') || 
+            lowerQuery.includes('besucher') || lowerQuery.includes('gast') || lowerQuery.includes('tourist')) {
+            return 'tourist';
+        }
+        if (lowerQuery.includes('camping') || lowerQuery.includes('zelt') || lowerQuery.includes('wohnmobil') || 
+            lowerQuery.includes('glamping') || lowerQuery.includes('campingplatz')) {
+            return 'camper';
+        }
+        if (lowerQuery.includes('hotel') || lowerQuery.includes('unterkunft') || lowerQuery.includes('übernachtung') || 
+            lowerQuery.includes('ferienwohnung') || lowerQuery.includes('pension')) {
+            return 'accommodation_seeker';
+        }
+        if (lowerQuery.includes('sehenswürdigkeit') || lowerQuery.includes('attraktion') || lowerQuery.includes('museum') || 
+            lowerQuery.includes('denkmal') || lowerQuery.includes('wildeshausen') || lowerQuery.includes('dötlingen')) {
+            return 'sightseeing_tourist';
+        }
+        if (lowerQuery.includes('radweg') || lowerQuery.includes('wanderweg') || lowerQuery.includes('aktivurlaub') || 
+            lowerQuery.includes('sporturlaub') || lowerQuery.includes('natur')) {
+            return 'active_tourist';
+        }
+        if (lowerQuery.includes('familienurlaub') || lowerQuery.includes('kinderfreundlich') || lowerQuery.includes('familie') || 
+            lowerQuery.includes('spielplatz') || lowerQuery.includes('kinderspiel')) {
+            return 'family_tourist';
+        }
+        if (lowerQuery.includes('wellness') || lowerQuery.includes('entspannung') || lowerQuery.includes('spa') || 
+            lowerQuery.includes('massage') || lowerQuery.includes('erholung')) {
+            return 'wellness_tourist';
+        }
+        if (lowerQuery.includes('kulinarisch') || lowerQuery.includes('restaurant') || lowerQuery.includes('essen') || 
+            lowerQuery.includes('regional') || lowerQuery.includes('speise')) {
+            return 'culinary_tourist';
+        }
+        if (lowerQuery.includes('shopping') || lowerQuery.includes('einkaufen') || lowerQuery.includes('markt') || 
+            lowerQuery.includes('boutique') || lowerQuery.includes('geschäft')) {
+            return 'shopping_tourist';
+        }
+        if (lowerQuery.includes('veranstaltung') || lowerQuery.includes('festival') || lowerQuery.includes('konzert') || 
+            lowerQuery.includes('event') || lowerQuery.includes('feier')) {
+            return 'event_tourist';
+        }
+        
         return 'general';
     }
 
@@ -956,6 +998,57 @@ class KAYACharacterHandler {
                 tone: 'practical_helpful',
                 structure: 'location_based',
                 emphasis: 'accessibility_info'
+            },
+            // KRITISCHE TOURISMUS-PERSONAS basierend auf 425.000 Übernachtungen (2024)
+            tourist: {
+                tone: 'welcoming_enthusiastic',
+                structure: 'discovery_focused',
+                emphasis: 'local_highlights'
+            },
+            camper: {
+                tone: 'adventurous_outdoor',
+                structure: 'nature_focused',
+                emphasis: 'camping_facilities'
+            },
+            accommodation_seeker: {
+                tone: 'helpful_accommodating',
+                structure: 'booking_focused',
+                emphasis: 'comfort_options'
+            },
+            sightseeing_tourist: {
+                tone: 'cultural_engaging',
+                structure: 'attraction_focused',
+                emphasis: 'historical_significance'
+            },
+            active_tourist: {
+                tone: 'energetic_adventurous',
+                structure: 'activity_focused',
+                emphasis: 'outdoor_experiences'
+            },
+            family_tourist: {
+                tone: 'family_friendly_warm',
+                structure: 'child_safe_focused',
+                emphasis: 'family_activities'
+            },
+            wellness_tourist: {
+                tone: 'calm_relaxing',
+                structure: 'wellness_focused',
+                emphasis: 'relaxation_options'
+            },
+            culinary_tourist: {
+                tone: 'appetizing_engaging',
+                structure: 'food_focused',
+                emphasis: 'regional_specialties'
+            },
+            shopping_tourist: {
+                tone: 'exciting_helpful',
+                structure: 'shopping_focused',
+                emphasis: 'local_products'
+            },
+            event_tourist: {
+                tone: 'festive_engaging',
+                structure: 'event_focused',
+                emphasis: 'entertainment_options'
             },
             general: {
                 tone: 'professional_friendly',
