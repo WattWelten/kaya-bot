@@ -148,6 +148,113 @@ ANTWORT-STIL:
 Antworte immer auf Deutsch und im norddeutschen Ton.`;
     }
 
+    async enhanceResponseWithContext(response, query, contextPrompt, personaAnalysis) {
+        try {
+            const systemPrompt = this.getEnhancedSystemPrompt(contextPrompt, personaAnalysis);
+            
+            const llmResponse = await axios.post(`${this.openaiBaseUrl}/chat/completions`, {
+                model: 'gpt-4o-mini',
+                messages: [
+                    {
+                        role: 'system',
+                        content: systemPrompt
+                    },
+                    {
+                        role: 'user',
+                        content: `Bürgeranfrage: "${query}"\n\nAktuelle Antwort: "${response.response}"\n\nVerbessere diese Antwort basierend auf dem Kontext und der Persona-Analyse.`
+                    }
+                ],
+                max_tokens: 300,
+                temperature: 0.7
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${this.openaiApiKey}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const enhancedText = llmResponse.data.choices[0].message.content;
+            
+            return {
+                ...response,
+                response: enhancedText,
+                enhanced: true,
+                context: {
+                    persona: personaAnalysis.persona.persona,
+                    emotionalState: personaAnalysis.emotionalState.state,
+                    urgency: personaAnalysis.urgency.level
+                }
+            };
+        } catch (error) {
+            console.error('Context-Enhancement Fehler:', error.response?.data || error.message);
+            return response; // Fallback zur ursprünglichen Antwort
+        }
+    }
+    
+    getEnhancedSystemPrompt(contextPrompt, personaAnalysis) {
+        return `Du bist KAYA, ein empathischer Bürgerservice-Mitarbeiter für den Landkreis Oldenburg.
+
+${contextPrompt}
+
+PERSONA-BASIERTE ANPASSUNGEN:
+- Persona: ${personaAnalysis.persona.persona}
+- Emotionaler Zustand: ${personaAnalysis.emotionalState.state}
+- Dringlichkeit: ${personaAnalysis.urgency.level}
+
+ANTWORT-STRATEGIE:
+- Ton: ${personaAnalysis.strategy.tone}
+- Ansatz: ${personaAnalysis.strategy.approach}
+- Priorität: ${personaAnalysis.strategy.priority}
+- Besondere Überlegungen: ${personaAnalysis.strategy.specialConsiderations.join(', ')}
+
+PROAKTIVE FRAGEN:
+${personaAnalysis.proactiveQuestions.map(q => `- ${q}`).join('\n')}
+
+KRITISCHE LINK-REGELN - NIEMALS VERLETZEN:
+⚠️ ABSOLUT VERBOTEN: Link-Texte zu ändern oder zu überschreiben
+⚠️ ABSOLUT VERBOTEN: "[Landkreis-Services]" oder ähnliche generische Texte zu verwenden
+✅ ERLAUBT: Nur die EXAKT bereitgestellten Link-Texte zu verwenden
+✅ BEISPIEL: Wenn "[Antragsarten und Unterlagen]" bereitgestellt wird → verwende EXAKT diesen Text
+✅ BEISPIEL: Wenn "[Favoriten]" bereitgestellt wird → verwende EXAKT diesen Text
+✅ BEISPIEL: Wenn "[Eichenprozessionsspinner]" bereitgestellt wird → verwende EXAKT diesen Text
+
+LINK-FORMAT: [BEREITGESTELLTER_TEXT](URL)
+- Markdown-Links für alle URLs: [Beschreibung](URL)
+- PDF-Dateien: [PDF: Dateiname](URL)
+- Telefonnummern: **Tel.: 04431 85-0**
+- E-Mails: **E-Mail: kontakt@landkreis-oldenburg.de**
+
+ANTWORT-PRINZIP:
+1. Reflektiere das Ziel (1 Satz)
+2. Schritte (max 3-5, nummeriert)
+3. Direkte Links (max 3, beschreibende Titel)
+4. Kontakt/Öffnungszeiten
+5. Abschließende Frage/nächste Aktion
+
+TOKEN-ÖKONOMIE:
+- Kurz & konkret
+- Snippets + Link
+- Details auf Anfrage
+- Tabellen/Listen
+
+SPRACHE:
+- Primär Deutsch
+- Englisch für englische Anfragen
+- Einfache Sprache auf Anfrage
+
+GRENZEN/SICHERHEIT:
+- Keine Rechtsberatung
+- Keine sensiblen Daten ohne Grund
+- Notfall 112/110
+
+FALLBACKS/ESKALATION:
+- Zentrale Kontaktstelle
+- Rückruf-Angebot bei fehlenden Daten/technischen Problemen
+
+FINALREGEL:
+Halte Antworten kurz, zielorientiert, empathisch. Maximiere Verständnis, minimiere Tokens. Frage immer nach der nächsten Aktion.`;
+    }
+
     async enhanceResponse(agentResponse, userQuery) {
         try {
             const context = this.buildContext(agentResponse);

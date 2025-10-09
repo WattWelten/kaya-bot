@@ -1,0 +1,77 @@
+{
+  "id": "test-session-1",
+  "createdAt": "2025-10-09T11:33:20.564Z",
+  "lastActivity": "2025-10-09T11:33:20.583Z",
+  "messages": [
+    {
+      "id": "mgjc9v78vpsikl6ehuh",
+      "timestamp": "2025-10-09T11:33:20.564Z",
+      "sender": "user",
+      "content": "Hallo, ich bin verwirrt und brauche Hilfe bei einem Bauantrag",
+      "metadata": {
+        "messageLength": 61,
+        "containsQuestion": false,
+        "containsEmotion": "confused",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjc9v7rek0iuxrskc",
+      "timestamp": "2025-10-09T11:33:20.583Z",
+      "sender": "kaya",
+      "content": "Keine Sorge, ich helfe Ihnen gerne bei Formulare, Anträge und Dienstleistungen. Welches Formular oder welche Dienstleistung benötigen Sie genau?",
+      "metadata": {
+        "agent": "buergerdienste",
+        "persona": "confused_citizen",
+        "emotionalState": "confused",
+        "urgency": "normal",
+        "messageLength": 144,
+        "containsQuestion": true,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "normal",
+    "emotionalState": "neutral",
+    "citizenType": "needs_guidance",
+    "currentTopic": "general",
+    "problemProgress": [
+      {
+        "topic": "bauantrag",
+        "started": "2025-10-09T11:33:20.564Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T11:33:20.564Z",
+            "content": "Hallo, ich bin verwirrt und brauche Hilfe bei einem Bauantrag",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "general",
+        "started": "2025-10-09T11:33:20.583Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T11:33:20.583Z",
+            "content": "Keine Sorge, ich helfe Ihnen gerne bei Formulare, Anträge und Dienstleistungen. Welches Formular oder welche Dienstleistung benötigen Sie genau?",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 2,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}

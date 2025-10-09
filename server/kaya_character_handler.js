@@ -1,8 +1,13 @@
+const ContextMemory = require('./context_memory');
+const AdvancedPersonaDetection = require('./advanced_persona_detection');
+
 class KAYACharacterHandler {
     constructor() {
         this.agentHandler = null; // Lazy loading für Agent Handler
         this.llmService = null; // Lazy loading
         this.useLLM = process.env.USE_LLM === 'true';
+        this.contextMemory = new ContextMemory();
+        this.personaDetection = new AdvancedPersonaDetection();
     }
     
     // Lazy loading für Agent Handler
@@ -23,29 +28,54 @@ class KAYACharacterHandler {
         return this.llmService;
     }
     
-    async generateResponse(query, userMessage) {
+    async generateResponse(query, userMessage, sessionId = 'default') {
+        // Context-Memory: Nachricht zur Session hinzufügen
+        this.contextMemory.addMessage(sessionId, query, 'user');
+        
+        // Persona-Analyse durchführen
+        const session = this.contextMemory.getSession(sessionId);
+        const personaAnalysis = this.personaDetection.analyzePersona(session.messages, session.context);
+        
+        console.log(`🧠 Persona-Analyse: ${personaAnalysis.persona.persona} (${personaAnalysis.emotionalState.state}, ${personaAnalysis.urgency.level})`);
+        
         // Bestimme zuständigen Agent
         const agent = this.getAgentHandler().routeToAgent(query);
         
         let response;
         if (agent === 'kaya') {
-            response = this.generateKAYAResponse(query);
+            response = this.generateKAYAResponse(query, personaAnalysis);
         } else {
-            response = this.generateAgentResponse(agent, query);
+            response = this.generateAgentResponse(agent, query, personaAnalysis);
         }
 
-        // LLM-Enhancement DEAKTIVIERT - Link-Texte werden überschrieben
-        // Das LLM ignoriert alle Anweisungen und überschreibt Link-Texte mit "[Landkreis-Services]"
-        // Daher verwenden wir nur die Character Handler Antworten
-        console.log('⚠️ LLM-Enhancement deaktiviert - Link-Texte bleiben erhalten');
+        // Context-Memory: KAYA-Antwort hinzufügen
+        this.contextMemory.addMessage(sessionId, response.response, 'kaya', {
+            agent: agent,
+            persona: personaAnalysis.persona.persona,
+            emotionalState: personaAnalysis.emotionalState.state,
+            urgency: personaAnalysis.urgency.level
+        });
+
+        // LLM-Enhancement mit Context
+        if (this.useLLM && !response.fallback) {
+            try {
+                const llmService = this.getLLMService();
+                const contextPrompt = this.contextMemory.generateContextPrompt(session);
+                response = await llmService.enhanceResponseWithContext(response, query, contextPrompt, personaAnalysis);
+            } catch (error) {
+                console.error('LLM-Enhancement Fehler:', error);
+                // Verwende ursprüngliche Antwort als Fallback
+            }
+        }
 
         return response;
     }
     
-    generateKAYAResponse(query) {
+    generateKAYAResponse(query, personaAnalysis = null) {
         const greeting = "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent.";
         
-        return {
+        // Persona-basierte Anpassungen
+        let response = {
             agent: 'kaya',
             response: `${greeting} Wie kann ich Ihnen heute helfen?`,
             suggestions: [
@@ -55,9 +85,37 @@ class KAYACharacterHandler {
                 "Ratsinfo und Sitzungen"
             ]
         };
+        
+        if (personaAnalysis) {
+            // Anpassung basierend auf Persona
+            if (personaAnalysis.persona.persona === 'first_time_visitor') {
+                response.response = `${greeting} Willkommen! Ist das Ihr erster Besuch bei uns? Ich erkläre Ihnen gerne alles Schritt für Schritt.`;
+                response.suggestions = [
+                    "Kann ich Ihnen den Ablauf erklären?",
+                    "Welche Unterlagen brauchen Sie?",
+                    "Wie kann ich Ihnen helfen?"
+                ];
+            } else if (personaAnalysis.persona.persona === 'confused_citizen') {
+                response.response = `${greeting} Keine Sorge, ich helfe Ihnen gerne. Verstehe ich Sie richtig?`;
+                response.suggestions = [
+                    "Soll ich das nochmal erklären?",
+                    "Welche Fragen haben Sie?",
+                    "Kann ich Ihnen helfen?"
+                ];
+            } else if (personaAnalysis.persona.persona === 'urgent_case') {
+                response.response = `${greeting} Ich verstehe, dass es eilig ist. Wie kann ich Ihnen schnell helfen?`;
+                response.suggestions = [
+                    "Wie dringend ist das?",
+                    "Bis wann brauchen Sie das?",
+                    "Kann ich einen Express-Termin anbieten?"
+                ];
+            }
+        }
+        
+        return response;
     }
     
-    generateAgentResponse(agent, query) {
+    generateAgentResponse(agent, query, personaAnalysis = null) {
         const agentData = this.getAgentHandler().searchAgentData(agent, query);
         
         console.log(`Agent ${agent}: ${agentData.length} Ergebnisse für "${query}"`);
@@ -65,7 +123,7 @@ class KAYACharacterHandler {
         if (agentData.length === 0) {
             // Fallback: Zeige allgemeine Informationen über den Agent
             const agentInfo = this.getAgentInfo(agent);
-            return {
+            let response = {
                 agent: agent,
                 response: `Gerne helfe ich Ihnen bei ${agentInfo.description}. ${agentInfo.suggestion}`,
                 fallback: true,
@@ -73,6 +131,17 @@ class KAYACharacterHandler {
                 confidence: 0, // Keine Daten = niedrige Konfidenz
                 source: 'fallback'
             };
+            
+            // Persona-basierte Anpassungen für Fallback
+            if (personaAnalysis) {
+                if (personaAnalysis.persona.persona === 'confused_citizen') {
+                    response.response = `Keine Sorge, ich helfe Ihnen gerne bei ${agentInfo.description}. ${agentInfo.suggestion}`;
+                } else if (personaAnalysis.persona.persona === 'urgent_case') {
+                    response.response = `Ich verstehe, dass es eilig ist. Für ${agentInfo.description} kann ich Ihnen schnell helfen. ${agentInfo.suggestion}`;
+                }
+            }
+            
+            return response;
         }
         
         // Validiere Datenqualität vor Antwort
