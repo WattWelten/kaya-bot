@@ -406,13 +406,13 @@ class KAYACharacterHandler {
             { keywords: ['notfall', 'hilfe', 'krisen'], type: 'notfall', needs: ['sofortige_hilfe', 'kontakt', 'informationen'] }
         ];
         
-        // KONTEXT-BASIERTE INTENTION-ERKENNUNG
+        // KONTEXT-BASIERTE INTENTION-ERKENNUNG FÜR ALLE BEREICHE
         if (sessionContext && sessionContext.previousIntention) {
             const previousType = sessionContext.previousIntention.type;
             
             // KFZ-Follow-up Erkennung
             if (previousType === 'kfz_zulassung') {
-                const kfzFollowUpKeywords = ['zulassungsbescheinigung', 'evb', 'versicherung', 'fahrzeugbrief', 'fahrzeugschein', 'unterlagen', 'dokumente', 'papiere'];
+                const kfzFollowUpKeywords = ['zulassungsbescheinigung', 'evb', 'versicherung', 'fahrzeugbrief', 'fahrzeugschein', 'unterlagen', 'dokumente', 'papiere', 'kennzeichen', 'nummernschild'];
                 if (kfzFollowUpKeywords.some(keyword => query.includes(keyword))) {
                     return {
                         type: 'kfz_zulassung',
@@ -424,7 +424,7 @@ class KAYACharacterHandler {
             
             // Bauantrag-Follow-up Erkennung
             if (previousType === 'bauantrag') {
-                const bauFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'grundstück', 'bauplan', 'genehmigung'];
+                const bauFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'grundstück', 'bauplan', 'genehmigung', 'grundriss', 'statik', 'architekt', 'bauherr'];
                 if (bauFollowUpKeywords.some(keyword => query.includes(keyword))) {
                     return {
                         type: 'bauantrag',
@@ -436,11 +436,191 @@ class KAYACharacterHandler {
             
             // Führerschein-Follow-up Erkennung
             if (previousType === 'führerschein') {
-                const fsFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'prüfung', 'theorie', 'praxis'];
+                const fsFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'prüfung', 'theorie', 'praxis', 'fahrschule', 'sehtest', 'erstehilfe', 'führerscheinantrag'];
                 if (fsFollowUpKeywords.some(keyword => query.includes(keyword))) {
                     return {
                         type: 'führerschein',
                         needs: ['termin', 'formulare', 'unterlagen', 'kosten'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Gewerbe-Follow-up Erkennung
+            if (previousType === 'gewerbe') {
+                const gewerbeFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'gewerbeschein', 'handelsregister', 'steuernummer', 'finanzamt', 'ihk'];
+                if (gewerbeFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'gewerbe',
+                        needs: ['formulare', 'unterlagen', 'beratung'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Landwirtschaft-Follow-up Erkennung
+            if (previousType === 'landwirtschaft') {
+                const landwirtschaftFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'eu-antrag', 'agrarantrag', 'flächennachweis', 'tierbestand', 'hofbescheinigung', 'flaeche', 'hektar', 'acker', 'wiese', 'weide'];
+                if (landwirtschaftFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'landwirtschaft',
+                        needs: ['eu-anträge', 'tierhaltung', 'agrarberatung'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Handwerk-Follow-up Erkennung
+            if (previousType === 'handwerk') {
+                const handwerkFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'meisterprüfung', 'gesellenprüfung', 'handwerkskammer', 'ausbildungsnachweis', 'berufserfahrung'];
+                if (handwerkFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'handwerk',
+                        needs: ['meisterprüfung', 'handwerkskammer', 'ausbildung'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Studium-Follow-up Erkennung
+            if (previousType === 'studium') {
+                const studiumFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'bafög', 'studienbescheinigung', 'immatrikulation', 'semesterticket', 'wohnheim'];
+                if (studiumFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'studium',
+                        needs: ['bafög-antrag', 'wohnheim', 'semesterticket'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // BAföG-Follow-up Erkennung
+            if (previousType === 'bafög') {
+                const bafögFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'einkommen', 'eltern', 'studienbescheinigung', 'bankauszug', 'miete'];
+                if (bafögFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'bafög',
+                        needs: ['antrag', 'unterlagen', 'beratung'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Arbeitslosigkeit-Follow-up Erkennung
+            if (previousType === 'arbeitslosigkeit') {
+                const arbeitslosigkeitFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'alg', 'arbeitslosengeld', 'bewerbung', 'jobcenter', 'arbeitsamt'];
+                if (arbeitslosigkeitFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'arbeitslosigkeit',
+                        needs: ['alg-antrag', 'jobcenter', 'weiterbildung'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Rente-Follow-up Erkennung
+            if (previousType === 'rente') {
+                const renteFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'rentenantrag', 'versicherungsverlauf', 'arbeitszeugnis', 'pension'];
+                if (renteFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'rente',
+                        needs: ['rentenantrag', 'pension', 'seniorenservices'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Senioren-Follow-up Erkennung
+            if (previousType === 'senioren') {
+                const seniorenFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'pflege', 'betreuung', 'seniorenheim', 'ambulante', 'stationäre'];
+                if (seniorenFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'senioren',
+                        needs: ['seniorenservices', 'pflege', 'betreuung'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Alleinerziehende-Follow-up Erkennung
+            if (previousType === 'alleinerziehende') {
+                const alleinerziehendeFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'kindergeld', 'unterhalt', 'vater', 'mutter', 'sorge'];
+                if (alleinerziehendeFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'alleinerziehende',
+                        needs: ['kindergeld-antrag', 'unterhaltsvorschuss', 'betreuung'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Behinderung-Follow-up Erkennung
+            if (previousType === 'behinderung') {
+                const behinderungFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'schwerbehindertenausweis', 'eingliederungshilfe', 'barrierefreiheit', 'hilfsmittel'];
+                if (behinderungFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'behinderung',
+                        needs: ['schwerbehindertenausweis', 'eingliederungshilfe', 'barrierefreiheit'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Migration-Follow-up Erkennung
+            if (previousType === 'migration') {
+                const migrationFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'asyl', 'aufenthalt', 'sprachkurs', 'integration', 'pass'];
+                if (migrationFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'migration',
+                        needs: ['asylverfahren', 'sprachkurs', 'integration'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Kleinunternehmer-Follow-up Erkennung
+            if (previousType === 'kleinunternehmer') {
+                const kleinunternehmerFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'steuern', 'gewerbesteuer', 'umsatzsteuer', 'buchhaltung', 'finanzamt'];
+                if (kleinunternehmerFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'kleinunternehmer',
+                        needs: ['kleinunternehmerregelung', 'gewerbesteuer', 'buchhaltung'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Soziales-Follow-up Erkennung
+            if (previousType === 'soziales') {
+                const sozialesFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'kindergeld', 'elterngeld', 'sozialhilfe', 'grundsicherung'];
+                if (sozialesFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'soziales',
+                        needs: ['formulare', 'beratung', 'unterlagen'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Gesundheit-Follow-up Erkennung
+            if (previousType === 'gesundheit') {
+                const gesundheitFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'arzt', 'krankenhaus', 'behandlung', 'rezept', 'krankenkasse'];
+                if (gesundheitFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'gesundheit',
+                        needs: ['kontakt', 'informationen', 'termin'],
+                        specific: 'follow_up'
+                    };
+                }
+            }
+            
+            // Bildung-Follow-up Erkennung
+            if (previousType === 'bildung') {
+                const bildungFollowUpKeywords = ['unterlagen', 'dokumente', 'papiere', 'schule', 'kindergarten', 'anmeldung', 'zeugnis', 'noten'];
+                if (bildungFollowUpKeywords.some(keyword => query.includes(keyword))) {
+                    return {
+                        type: 'bildung',
+                        needs: ['anmeldung', 'informationen', 'kontakt'],
                         specific: 'follow_up'
                     };
                 }

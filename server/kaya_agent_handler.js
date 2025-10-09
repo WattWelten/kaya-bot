@@ -112,6 +112,76 @@ class KAYAAgentHandler {
             if (previousType === 'führerschein' && this.containsKeywords(queryLower, ['antrag', 'formular', 'termin', 'prüfung'])) {
                 return 'kaya';
             }
+            
+            // Landwirtschaft-Kontext beibehalten
+            if (previousType === 'landwirtschaft' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'eu-antrag', 'agrarantrag', 'flächennachweis', 'tierbestand', 'hofbescheinigung', 'flaeche', 'hektar', 'acker', 'wiese', 'weide'])) {
+                return 'kaya';
+            }
+            
+            // Handwerk-Kontext beibehalten
+            if (previousType === 'handwerk' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'meisterprüfung', 'gesellenprüfung', 'handwerkskammer', 'ausbildungsnachweis', 'berufserfahrung'])) {
+                return 'kaya';
+            }
+            
+            // Studium-Kontext beibehalten
+            if (previousType === 'studium' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'bafög', 'studienbescheinigung', 'immatrikulation', 'semesterticket', 'wohnheim'])) {
+                return 'kaya';
+            }
+            
+            // BAföG-Kontext beibehalten
+            if (previousType === 'bafög' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'einkommen', 'eltern', 'studienbescheinigung', 'bankauszug', 'miete'])) {
+                return 'kaya';
+            }
+            
+            // Arbeitslosigkeit-Kontext beibehalten
+            if (previousType === 'arbeitslosigkeit' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'alg', 'arbeitslosengeld', 'bewerbung', 'jobcenter', 'arbeitsamt'])) {
+                return 'kaya';
+            }
+            
+            // Rente-Kontext beibehalten
+            if (previousType === 'rente' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'rentenantrag', 'versicherungsverlauf', 'arbeitszeugnis', 'pension'])) {
+                return 'kaya';
+            }
+            
+            // Senioren-Kontext beibehalten
+            if (previousType === 'senioren' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'pflege', 'betreuung', 'seniorenheim', 'ambulante', 'stationäre'])) {
+                return 'kaya';
+            }
+            
+            // Alleinerziehende-Kontext beibehalten
+            if (previousType === 'alleinerziehende' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'kindergeld', 'unterhalt', 'vater', 'mutter', 'sorge'])) {
+                return 'kaya';
+            }
+            
+            // Behinderung-Kontext beibehalten
+            if (previousType === 'behinderung' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'schwerbehindertenausweis', 'eingliederungshilfe', 'barrierefreiheit', 'hilfsmittel'])) {
+                return 'kaya';
+            }
+            
+            // Migration-Kontext beibehalten
+            if (previousType === 'migration' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'asyl', 'aufenthalt', 'sprachkurs', 'integration', 'pass'])) {
+                return 'kaya';
+            }
+            
+            // Kleinunternehmer-Kontext beibehalten
+            if (previousType === 'kleinunternehmer' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'steuern', 'gewerbesteuer', 'umsatzsteuer', 'buchhaltung', 'finanzamt'])) {
+                return 'kaya';
+            }
+            
+            // Soziales-Kontext beibehalten
+            if (previousType === 'soziales' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'kindergeld', 'elterngeld', 'sozialhilfe', 'grundsicherung'])) {
+                return 'kaya';
+            }
+            
+            // Gesundheit-Kontext beibehalten
+            if (previousType === 'gesundheit' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'arzt', 'krankenhaus', 'behandlung', 'rezept', 'krankenkasse'])) {
+                return 'kaya';
+            }
+            
+            // Bildung-Kontext beibehalten
+            if (previousType === 'bildung' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'schule', 'kindergarten', 'anmeldung', 'zeugnis', 'noten'])) {
+                return 'kaya';
+            }
         }
         
         // SPEZIFISCHE KFZ-ERKENNUNG
