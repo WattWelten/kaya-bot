@@ -1,0 +1,77 @@
+{
+  "id": "test-formular",
+  "createdAt": "2025-10-09T13:06:16.195Z",
+  "lastActivity": "2025-10-09T13:06:16.212Z",
+  "messages": [
+    {
+      "id": "mgjflddv6a2h1b7lge",
+      "timestamp": "2025-10-09T13:06:16.195Z",
+      "sender": "user",
+      "content": "Ich brauche ein Formular für Gewerbeanmeldung",
+      "metadata": {
+        "messageLength": 45,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjfldec29os9bf5dx6",
+      "timestamp": "2025-10-09T13:06:16.212Z",
+      "sender": "kaya",
+      "content": "Ich verstehe, dass Behördengänge manchmal kompliziert sein können. Lassen Sie mich Ihnen dabei helfen, den richtigen Weg zu finden.\n\nLassen Sie mich Ihnen den Weg durch die Behörden erklären: Welche Formulare, welche Unterlagen und welche Termine Sie einhalten müssen.\n\n**Anträge und Formulare Bauen | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)\n\n**Anträge und Formulare Immissionsschutz | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/umwelt-und-abfall/immissionsschutz/antraege-und-formulare/)\n\n**Antragsarten (erforderliche Unterlagen, Kosten etc.) | Landkreis Oldenburg**\n\n📋 **Antragsarten und Unterlagen:** [Antragsarten und Unterlagen](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)\n\n\n\nSoll ich Ihnen auch die Fristen und Bearbeitungszeiten erklären?",
+      "metadata": {
+        "agent": "buergerdienste",
+        "persona": "business_owner",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "messageLength": 1228,
+        "containsQuestion": true,
+        "containsEmotion": "sad",
+        "containsLocation": null,
+        "containsUrgency": "high"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "high",
+    "emotionalState": "sad",
+    "citizenType": "urgent_case",
+    "currentTopic": "bauantrag",
+    "problemProgress": [
+      {
+        "topic": "gewerbe",
+        "started": "2025-10-09T13:06:16.195Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T13:06:16.195Z",
+            "content": "Ich brauche ein Formular für Gewerbeanmeldung",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "bauantrag",
+        "started": "2025-10-09T13:06:16.212Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T13:06:16.212Z",
+            "content": "Ich verstehe, dass Behördengänge manchmal kompliziert sein können. Lassen Sie mich Ihnen dabei helfen, den richtigen Weg zu finden.\n\nLassen Sie mich Ihnen den Weg durch die Behörden erklären: Welche Formulare, welche Unterlagen und welche Termine Sie einhalten müssen.\n\n**Anträge und Formulare Bauen | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)\n\n**Anträge und Formulare Immissionsschutz | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/umwelt-und-abfall/immissionsschutz/antraege-und-formulare/)\n\n**Antragsarten (erforderliche Unterlagen, Kosten etc.) | Landkreis Oldenburg**\n\n📋 **Antragsarten und Unterlagen:** [Antragsarten und Unterlagen](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)\n\n\n\nSoll ich Ihnen auch die Fristen und Bearbeitungszeiten erklären?",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 2,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}

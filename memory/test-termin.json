@@ -1,0 +1,70 @@
+{
+  "id": "test-termin",
+  "createdAt": "2025-10-09T13:06:06.178Z",
+  "lastActivity": "2025-10-09T13:06:06.180Z",
+  "messages": [
+    {
+      "id": "mgjfl5nmkr1hpsbz8b",
+      "timestamp": "2025-10-09T13:06:06.178Z",
+      "sender": "user",
+      "content": "Ich brauche einen Termin",
+      "metadata": {
+        "messageLength": 24,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjfl5noblkns9mbpek",
+      "timestamp": "2025-10-09T13:06:06.180Z",
+      "sender": "kaya",
+      "content": "**Terminvereinbarung:**\n\n**Online-Termin:** [Terminvereinbarung](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/)\n• Schnell und einfach\n• Verfügbare Zeiten sofort sichtbar\n\n**Telefonisch:** 04431 85-0\n• Mo-Fr: 8-16 Uhr\n• Persönliche Beratung\n\n**Öffnungszeiten:**\n• Mo-Do: 8-16 Uhr\n• Fr: 8-13 Uhr\n\nFür welches Anliegen brauchen Sie einen Termin?",
+      "metadata": {
+        "agent": "kaya",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "messageLength": 394,
+        "containsQuestion": true,
+        "containsEmotion": "urgent",
+        "containsLocation": null,
+        "containsUrgency": "high"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "high",
+    "emotionalState": "urgent",
+    "citizenType": "urgent_case",
+    "currentTopic": "general",
+    "problemProgress": [
+      {
+        "topic": "general",
+        "started": "2025-10-09T13:06:06.178Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T13:06:06.178Z",
+            "content": "Ich brauche einen Termin",
+            "step": 1
+          },
+          {
+            "timestamp": "2025-10-09T13:06:06.180Z",
+            "content": "**Terminvereinbarung:**\n\n**Online-Termin:** [Terminvereinbarung](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/)\n• Schnell und einfach\n• Verfügbare Zeiten sofort sichtbar\n\n**Telefonisch:** 04431 85-0\n• Mo-Fr: 8-16 Uhr\n• Persönliche Beratung\n\n**Öffnungszeiten:**\n• Mo-Do: 8-16 Uhr\n• Fr: 8-13 Uhr\n\nFür welches Anliegen brauchen Sie einen Termin?",
+            "step": 2
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 2,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}
