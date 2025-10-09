@@ -64,19 +64,9 @@ class KAYACharacterHandler {
             intention: intention // Speichere die Intention für Kontext
         });
 
-        // LLM-Enhancement nur für allgemeine Anfragen, NICHT für Action-orientierte Antworten oder Begrüßungen
-        if (this.useLLM && !response.fallback && agent === 'kaya' && !this.isActionOrientedResponse(intention) && !this.isGreeting(query)) {
-            try {
-                const llmService = this.getLLMService();
-                const contextPrompt = this.contextMemory.generateContextPrompt(session);
-                response = await llmService.enhanceResponseWithContext(response, query, contextPrompt, personaAnalysis);
-            } catch (error) {
-                console.error('LLM-Enhancement Fehler:', error);
-                // Verwende ursprüngliche Antwort als Fallback
-            }
-        } else if (agent === 'kaya' && (this.isActionOrientedResponse(intention) || this.isGreeting(query))) {
-            console.log('🎯 Action-orientierte Antwort oder Begrüßung - LLM-Enhancement übersprungen');
-        }
+        // LLM-Enhancement DEAKTIVIERT für bürgernähere Antworten
+        // Bürger wollen direkte Lösungen, nicht lange Erklärungen!
+        console.log('🎯 LLM-Enhancement deaktiviert - Bürgerzentrierte direkte Antworten');
 
         return response;
     }
@@ -350,15 +340,15 @@ class KAYACharacterHandler {
     }
 
     /**
-     * Generiert eine einfache Begrüßungsantwort
+     * Generiert eine einfache Begrüßungsantwort mit regionalem Humor
      */
     generateGreetingResponse(intention, personaAnalysis) {
         const citizenType = intention.citizenType;
         const language = intention.language;
         
-        let greeting = "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent. Wie kann ich Ihnen heute helfen?";
+        let greeting = "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg. Wie kann ich Ihnen heute helfen?";
         
-        // Anpassung für verschiedene Bürger-Typen
+        // Anpassung für verschiedene Bürger-Typen mit regionalem Humor
         if (citizenType === 'senior') {
             greeting = "Moin! Ich bin KAYA, Ihr digitaler Assistent für den Landkreis Oldenburg. Wie kann ich Ihnen heute helfen?";
         } else if (citizenType === 'youth') {
@@ -591,22 +581,25 @@ class KAYACharacterHandler {
         const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
         
         return {
-            response: `Moin! Gerne helfe ich Ihnen beim Bauantrag${location}.${urgency}
+            response: `Moin! Perfekt - ich helfe dir sofort beim Bauantrag${location}.${urgency}
 
-**Was Sie brauchen:**
-1. **Formulare:** [Bauantrag online](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/bauantrag-online/)
-2. **Unterlagen:** [Anträge und Formulare](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)
-3. **Termin:** [Online-Terminvereinbarung](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/)
+**🎯 Hier ist dein direkter Weg:**
 
-**Direkter Kontakt:**
-• **Tel.: 04431 85-0** (Mo-Fr 8-16 Uhr)
-• **E-Mail:** kontakt@landkreis-oldenburg.de
+**1. 📋 Online-Bauantrag:**
+   → [Bauantrag online](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/bauantrag-online/)
 
-Haben Sie bereits alle Unterlagen oder brauchen Sie Hilfe bei einem bestimmten Schritt?`,
+**2. 📄 Formulare ausfüllen:**
+   → [Bauantrag-Formulare](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)
+
+**3. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Bauantrag-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
             links: [
                 { title: 'Bauantrag online', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/bauantrag-online/' },
-                { title: 'Anträge und Formulare', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/' },
-                { title: 'Online-Terminvereinbarung', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/' }
+                { title: 'Bauantrag-Formulare', url: 'https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/' }
             ]
         };
     }
@@ -715,7 +708,7 @@ Für welches Anliegen brauchen Sie einen Termin?`,
         const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
         
         return {
-            response: `Moin! Gerne helfe ich dir beim Führerschein${location}.${urgency}
+            response: `Moin! Perfekt - ich helfe dir sofort beim Führerschein${location}.${urgency}
 
 **🎯 Hier ist dein direkter Weg:**
 
@@ -740,9 +733,10 @@ Für welches Anliegen brauchen Sie einen Termin?`,
 
     generateGewerbeResponse(intention, tone) {
         const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
         
         return {
-            response: `Moin! Perfekt - ich helfe dir bei der Gewerbeanmeldung${location}.
+            response: `Moin! Perfekt - ich helfe dir sofort bei der Gewerbeanmeldung${location}.${urgency}
 
 **🎯 Hier ist dein direkter Weg:**
 
