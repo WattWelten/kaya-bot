@@ -126,6 +126,37 @@ class KAYACharacterHandler {
             };
         }
         
+        // Führerschein-Intentionen
+        if (lowerQuery.includes('führerschein') || lowerQuery.includes('führerschein') || lowerQuery.includes('fahrerlaubnis')) {
+            return {
+                type: 'führerschein',
+                urgency: lowerQuery.includes('eilig') || lowerQuery.includes('dringend') ? 'high' : 'normal',
+                needs: ['termin', 'formulare', 'unterlagen', 'kosten'],
+                location: this.extractLocation(query)
+            };
+        }
+        
+        // Gewerbe-Intentionen
+        if (lowerQuery.includes('gewerbe') || lowerQuery.includes('gewerbeanmeldung') || lowerQuery.includes('selbständig')) {
+            return {
+                type: 'gewerbe',
+                urgency: 'normal',
+                needs: ['formulare', 'unterlagen', 'beratung'],
+                location: this.extractLocation(query)
+            };
+        }
+        
+        // KFZ-Zulassung-Intentionen
+        if (lowerQuery.includes('auto') || lowerQuery.includes('fahrzeug') || lowerQuery.includes('zulassen') || 
+            lowerQuery.includes('kfz') || lowerQuery.includes('kennzeichen') || lowerQuery.includes('zulassung')) {
+            return {
+                type: 'kfz_zulassung',
+                urgency: lowerQuery.includes('eilig') || lowerQuery.includes('dringend') ? 'high' : 'normal',
+                needs: ['termin', 'formulare', 'unterlagen', 'kosten'],
+                location: this.extractLocation(query)
+            };
+        }
+        
         // Termin-Intentionen
         if (lowerQuery.includes('termin') || lowerQuery.includes('vereinbaren') || lowerQuery.includes('wann')) {
             return {
@@ -158,6 +189,12 @@ class KAYACharacterHandler {
                 return this.generateKontaktResponse(intention, tone);
             case 'termin':
                 return this.generateTerminResponse(intention, tone);
+            case 'kfz_zulassung':
+                return this.generateKFZZulassungResponse(intention, tone);
+            case 'führerschein':
+                return this.generateFührerscheinResponse(intention, tone);
+            case 'gewerbe':
+                return this.generateGewerbeResponse(intention, tone);
             default:
                 return this.generateGeneralResponse(query, tone);
         }
@@ -255,6 +292,89 @@ Wofür genau brauchen Sie Kontakt? Dann kann ich Ihnen die richtige Abteilung ne
 Für welches Anliegen brauchen Sie einen Termin?`,
             links: [
                 { title: 'Online-Terminvereinbarung', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/online-terminvereinbarung/' }
+            ]
+        };
+    }
+
+    generateKFZZulassungResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir sofort bei der KFZ-Zulassung${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Online-Termin buchen:**
+   → [Terminvereinbarung KFZ-Zulassung](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/)
+
+**2. 📄 Formulare ausfüllen:**
+   → [Antragsformulare KFZ](https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/)
+
+**3. 📞 Sofort anrufen:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Termin-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Terminvereinbarung KFZ-Zulassung', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/terminvereinbarung/' },
+                { title: 'Antragsformulare KFZ', url: 'https://www.oldenburg-kreis.de/verkehr/kfz-zulassung/formulare/' }
+            ]
+        };
+    }
+
+    generateFührerscheinResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        const urgency = intention.urgency === 'high' ? ' Ich verstehe, dass es eilig ist.' : '';
+        
+        return {
+            response: `Moin! Gerne helfe ich dir beim Führerschein${location}.${urgency}
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Online-Termin buchen:**
+   → [Terminvereinbarung Führerscheine](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/terminvereinbarung-fuehrerscheine/)
+
+**2. 📄 Anträge und Formulare:**
+   → [Führerschein-Anträge](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)
+
+**3. 📞 Sofort anrufen:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Termin-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Terminvereinbarung Führerscheine', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/terminvereinbarung-fuehrerscheine/' },
+                { title: 'Führerschein-Anträge', url: 'https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/' }
+            ]
+        };
+    }
+
+    generateGewerbeResponse(intention, tone) {
+        const location = intention.location ? ` in ${intention.location}` : '';
+        
+        return {
+            response: `Moin! Perfekt - ich helfe dir bei der Gewerbeanmeldung${location}.
+
+**🎯 Hier ist dein direkter Weg:**
+
+**1. 📋 Online-Formular:**
+   → [Gewerbeanmeldung online](https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/)
+
+**2. 📄 Anträge und Formulare:**
+   → [Gewerbe-Anträge](https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/antraege-und-formulare/)
+
+**3. 📞 Beratung:**
+   → **04431 85-0** (Mo-Fr 8-16 Uhr)
+
+**🎯 Deine nächste Aktion:** Klick auf den Gewerbe-Link oder ruf direkt an!
+
+**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**`,
+            links: [
+                { title: 'Gewerbeanmeldung online', url: 'https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/' },
+                { title: 'Gewerbe-Anträge', url: 'https://www.oldenburg-kreis.de/wirtschaft/gewerbeanmeldung/antraege-und-formulare/' }
             ]
         };
     }
