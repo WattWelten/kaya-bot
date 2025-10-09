@@ -42,6 +42,66 @@ class AdvancedPersonaDetection {
                 characteristics: ['geschäftlich', 'effizient', 'kostenbewusst'],
                 approach: 'professionell, kostentransparent, zeiteffizient',
                 questions: ['Für Ihr Unternehmen?', 'Welche Kosten entstehen?']
+            },
+            'farmer': {
+                name: 'Landwirt/Bauer',
+                characteristics: ['landwirtschaft', 'tiere', 'eu-anträge', 'agrar'],
+                approach: 'praktisch, landwirtschaftsbezogen, saisonal',
+                questions: ['Für Ihren Hof?', 'Welche Tiere halten Sie?', 'EU-Anträge?']
+            },
+            'craftsman': {
+                name: 'Handwerker',
+                characteristics: ['handwerk', 'meister', 'kammer', 'ausbildung'],
+                approach: 'handwerksbezogen, praktisch, kammerorientiert',
+                questions: ['Welches Handwerk?', 'Meisterprüfung?', 'Handwerkskammer?']
+            },
+            'student': {
+                name: 'Studierende',
+                characteristics: ['studium', 'bafög', 'wohnheim', 'semester'],
+                approach: 'studentenfreundlich, bafög-orientiert, flexibel',
+                questions: ['Welche Hochschule?', 'BAföG-Antrag?', 'Wohnheimplatz?']
+            },
+            'unemployed': {
+                name: 'Arbeitslose',
+                characteristics: ['arbeitssuchend', 'alg', 'jobcenter', 'weiterbildung'],
+                approach: 'unterstützend, jobcenter-orientiert, motivierend',
+                questions: ['Jobcenter-Kontakt?', 'ALG-Antrag?', 'Weiterbildung?']
+            },
+            'pensioner': {
+                name: 'Rentner',
+                characteristics: ['rente', 'pension', 'senioren', 'pflege'],
+                approach: 'seniorenfreundlich, rentenorientiert, geduldig',
+                questions: ['Rentenantrag?', 'Pflegebedarf?', 'Seniorenservices?']
+            },
+            'single_parent': {
+                name: 'Alleinerziehende',
+                characteristics: ['alleinerziehend', 'kindergeld', 'unterhalt', 'betreuung'],
+                approach: 'familienunterstützend, kindergeld-orientiert, flexibel',
+                questions: ['Kindergeld-Antrag?', 'Unterhaltsvorschuss?', 'Betreuung?']
+            },
+            'disabled_person': {
+                name: 'Behinderte Person',
+                characteristics: ['behinderung', 'schwerbehindertenausweis', 'eingliederungshilfe'],
+                approach: 'barrierefrei, unterstützend, inklusiv',
+                questions: ['Schwerbehindertenausweis?', 'Eingliederungshilfe?', 'Barrierefreiheit?']
+            },
+            'refugee': {
+                name: 'Geflüchtete',
+                characteristics: ['asyl', 'flüchtling', 'integration', 'sprachkurs'],
+                approach: 'integrationsunterstützend, mehrsprachig, geduldig',
+                questions: ['Asylverfahren?', 'Sprachkurs?', 'Integration?']
+            },
+            'eu_citizen': {
+                name: 'EU-Bürger',
+                characteristics: ['eu', 'aufenthaltsrecht', 'freizügigkeit', 'arbeit'],
+                approach: 'eu-rechtlich, aufenthaltsorientiert, integrationsunterstützend',
+                questions: ['Aufenthaltsrecht?', 'Arbeitserlaubnis?', 'Familiennachzug?']
+            },
+            'small_business': {
+                name: 'Kleinunternehmer',
+                characteristics: ['kleinunternehmer', 'steuern', 'gewerbe', 'buchhaltung'],
+                approach: 'steuerorientiert, gewerblich, buchhalterisch',
+                questions: ['Kleinunternehmerregelung?', 'Gewerbesteuer?', 'Buchhaltung?']
             }
         };
         
@@ -338,3 +398,5 @@ class AdvancedPersonaDetection {
 }
 
 module.exports = AdvancedPersonaDetection;
+
+

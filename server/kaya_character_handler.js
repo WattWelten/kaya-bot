@@ -188,52 +188,197 @@ class KAYACharacterHandler {
      * Analysiert Bürger-Typ (inklusiv für alle)
      */
     analyzeCitizenType(query) {
-        if (query.includes('senior') || query.includes('rentner') || query.includes('alt')) {
+        const lowerQuery = query.toLowerCase();
+        
+        // Erweiterte Landkreis-spezifische Erkennung
+        if (lowerQuery.includes('landwirt') || lowerQuery.includes('bauer') || lowerQuery.includes('hof') || 
+            lowerQuery.includes('kuh') || lowerQuery.includes('schwein') || lowerQuery.includes('eu-antrag')) {
+            return 'farmer';
+        }
+        if (lowerQuery.includes('handwerker') || lowerQuery.includes('meister') || lowerQuery.includes('kammer') || 
+            lowerQuery.includes('ausbildung') || lowerQuery.includes('lehre')) {
+            return 'craftsman';
+        }
+        if (lowerQuery.includes('student') || lowerQuery.includes('studium') || lowerQuery.includes('bafög') || 
+            lowerQuery.includes('wohnheim') || lowerQuery.includes('semester')) {
+            return 'student';
+        }
+        if (lowerQuery.includes('arbeitssuchend') || lowerQuery.includes('alg') || lowerQuery.includes('jobcenter') || 
+            lowerQuery.includes('weiterbildung') || lowerQuery.includes('arbeitslos')) {
+            return 'unemployed';
+        }
+        if (lowerQuery.includes('senior') || lowerQuery.includes('rentner') || lowerQuery.includes('alt') || 
+            lowerQuery.includes('pension') || lowerQuery.includes('ruhestand')) {
             return 'senior';
         }
-        if (query.includes('jugend') || query.includes('schüler') || query.includes('student')) {
+        if (lowerQuery.includes('jugend') || lowerQuery.includes('schüler') || lowerQuery.includes('ausbildung')) {
             return 'youth';
         }
-        if (query.includes('familie') || query.includes('kind') || query.includes('baby')) {
+        if (lowerQuery.includes('familie') || lowerQuery.includes('kind') || lowerQuery.includes('baby') || 
+            lowerQuery.includes('alleinerziehend') || lowerQuery.includes('unterhalt')) {
             return 'family';
         }
-        if (query.includes('geflüchtet') || query.includes('migrant') || query.includes('ausländer')) {
+        if (lowerQuery.includes('geflüchtet') || lowerQuery.includes('migrant') || lowerQuery.includes('ausländer') || 
+            lowerQuery.includes('asyl') || lowerQuery.includes('integration') || lowerQuery.includes('sprachkurs')) {
             return 'migrant';
         }
-        if (query.includes('behindert') || query.includes('beeinträchtigt')) {
+        if (lowerQuery.includes('behindert') || lowerQuery.includes('beeinträchtigt') || lowerQuery.includes('schwerbehindertenausweis') || 
+            lowerQuery.includes('eingliederungshilfe')) {
             return 'disabled';
+        }
+        if (lowerQuery.includes('eu') || lowerQuery.includes('aufenthaltsrecht') || lowerQuery.includes('freizügigkeit')) {
+            return 'eu_citizen';
+        }
+        if (lowerQuery.includes('kleinunternehmer') || lowerQuery.includes('steuern') || lowerQuery.includes('buchhaltung') || 
+            lowerQuery.includes('gewerbesteuer')) {
+            return 'small_business';
         }
         return 'general';
     }
 
     /**
-     * Analysiert Sprache (inklusiv)
+     * Analysiert Sprache (inklusiv) mit erweiterter Erkennung
      */
     analyzeLanguage(query) {
-        // Einfache Erkennung von nicht-deutschen Wörtern
-        const englishWords = ['hello', 'help', 'please', 'thank you'];
-        const turkishWords = ['merhaba', 'yardım', 'lütfen'];
+        const lowerQuery = query.toLowerCase();
         
-        if (englishWords.some(word => query.toLowerCase().includes(word))) {
+        // Erweiterte Sprach-Erkennung
+        const englishWords = ['hello', 'help', 'please', 'thank you', 'sorry', 'excuse me', 'i need', 'can you'];
+        const turkishWords = ['merhaba', 'yardım', 'lütfen', 'teşekkür', 'özür', 'yardım edin'];
+        const arabicWords = ['مرحبا', 'مساعدة', 'من فضلك', 'شكرا'];
+        const polishWords = ['dzień dobry', 'pomoc', 'proszę', 'dziękuję'];
+        const russianWords = ['привет', 'помощь', 'пожалуйста', 'спасибо'];
+        
+        if (englishWords.some(word => lowerQuery.includes(word))) {
             return 'english';
         }
-        if (turkishWords.some(word => query.toLowerCase().includes(word))) {
+        if (turkishWords.some(word => lowerQuery.includes(word))) {
             return 'turkish';
         }
+        if (arabicWords.some(word => lowerQuery.includes(word))) {
+            return 'arabic';
+        }
+        if (polishWords.some(word => lowerQuery.includes(word))) {
+            return 'polish';
+        }
+        if (russianWords.some(word => lowerQuery.includes(word))) {
+            return 'russian';
+        }
         return 'german';
+    }
+
+    /**
+     * Analysiert Tipp-Verhalten für Persona-Erkennung
+     */
+    analyzeTypingBehavior(query, sessionContext = null) {
+        const behavior = {
+            typingSpeed: this.estimateTypingSpeed(query),
+            languageLevel: this.analyzeLanguageLevel(query),
+            formality: this.analyzeFormality(query),
+            urgency: this.analyzeUrgencyFromTyping(query)
+        };
+        
+        return behavior;
+    }
+
+    /**
+     * Schätzt Tipp-Geschwindigkeit basierend auf Query-Länge und Zeit
+     */
+    estimateTypingSpeed(query) {
+        // Vereinfachte Schätzung basierend auf Query-Charakteristika
+        if (query.length < 10) return 'fast'; // Kurze, direkte Anfragen
+        if (query.length > 100) return 'slow'; // Lange, detaillierte Anfragen
+        return 'normal';
+    }
+
+    /**
+     * Analysiert Sprach-Niveau
+     */
+    analyzeLanguageLevel(query) {
+        const lowerQuery = query.toLowerCase();
+        
+        // Einfache Sprache
+        if (lowerQuery.includes('hilfe') || lowerQuery.includes('brauche') || lowerQuery.includes('kann nicht')) {
+            return 'simple';
+        }
+        
+        // Komplexe Sprache
+        if (lowerQuery.includes('beantragen') || lowerQuery.includes('erforderlich') || lowerQuery.includes('voraussetzung')) {
+            return 'complex';
+        }
+        
+        return 'normal';
+    }
+
+    /**
+     * Analysiert Formellität
+     */
+    analyzeFormality(query) {
+        const lowerQuery = query.toLowerCase();
+        
+        // Formell
+        if (lowerQuery.includes('sie') || lowerQuery.includes('ihr') || lowerQuery.includes('bitte')) {
+            return 'formal';
+        }
+        
+        // Informell
+        if (lowerQuery.includes('du') || lowerQuery.includes('dein') || lowerQuery.includes('hey')) {
+            return 'informal';
+        }
+        
+        return 'neutral';
     }
 
     /**
      * Analysiert spezifische Intention (erweitert für alle Anliegen)
      */
     analyzeSpecificIntention(query) {
-        // Erweiterte Kategorien für alle Bürgeranliegen
+        // Erweiterte Kategorien für alle Bürgeranliegen - Landkreis-spezifisch
         const intentions = [
             // Verwaltung
             { keywords: ['bauantrag', 'bauen', 'haus', 'gebäude'], type: 'bauantrag', needs: ['formulare', 'unterlagen', 'termin', 'kosten'] },
             { keywords: ['auto', 'fahrzeug', 'zulassen', 'kfz', 'kennzeichen'], type: 'kfz_zulassung', needs: ['termin', 'formulare', 'unterlagen', 'kosten'] },
             { keywords: ['führerschein', 'fahrerlaubnis'], type: 'führerschein', needs: ['termin', 'formulare', 'unterlagen', 'kosten'] },
             { keywords: ['gewerbe', 'gewerbeanmeldung', 'selbständig'], type: 'gewerbe', needs: ['formulare', 'unterlagen', 'beratung'] },
+            
+            // Landwirtschaft
+            { keywords: ['landwirt', 'bauer', 'hof', 'kuh', 'schwein', 'eu-antrag'], type: 'landwirtschaft', needs: ['eu-anträge', 'tierhaltung', 'agrarberatung'] },
+            { keywords: ['tierhaltung', 'stall', 'weide', 'futter'], type: 'tierhaltung', needs: ['genehmigung', 'tierschutz', 'veterinär'] },
+            
+            // Handwerk
+            { keywords: ['handwerker', 'meister', 'kammer', 'ausbildung'], type: 'handwerk', needs: ['meisterprüfung', 'handwerkskammer', 'ausbildung'] },
+            { keywords: ['lehre', 'ausbildung', 'geselle'], type: 'ausbildung', needs: ['ausbildungsplatz', 'berufsschule', 'prüfung'] },
+            
+            // Studium
+            { keywords: ['studium', 'universität', 'hochschule', 'bafög'], type: 'studium', needs: ['bafög-antrag', 'wohnheim', 'semesterticket'] },
+            { keywords: ['bafög', 'studentenwerk', 'wohnheim'], type: 'bafög', needs: ['antrag', 'unterlagen', 'beratung'] },
+            
+            // Arbeitslosigkeit
+            { keywords: ['arbeitssuchend', 'alg', 'jobcenter', 'weiterbildung'], type: 'arbeitslosigkeit', needs: ['alg-antrag', 'jobcenter', 'weiterbildung'] },
+            { keywords: ['arbeitslos', 'arbeitsamt', 'bewerbung'], type: 'arbeitslosigkeit', needs: ['alg-antrag', 'jobcenter', 'weiterbildung'] },
+            
+            // Rente
+            { keywords: ['rente', 'pension', 'ruhestand'], type: 'rente', needs: ['rentenantrag', 'pension', 'seniorenservices'] },
+            { keywords: ['senioren', 'älter', 'ruhestand'], type: 'senioren', needs: ['seniorenservices', 'pflege', 'betreuung'] },
+            
+            // Alleinerziehende
+            { keywords: ['alleinerziehend', 'unterhalt', 'kindergeld'], type: 'alleinerziehende', needs: ['kindergeld-antrag', 'unterhaltsvorschuss', 'betreuung'] },
+            { keywords: ['unterhaltsvorschuss', 'alleinerziehend'], type: 'unterhalt', needs: ['antrag', 'unterlagen', 'beratung'] },
+            
+            // Behinderung
+            { keywords: ['behindert', 'schwerbehindertenausweis', 'eingliederungshilfe'], type: 'behinderung', needs: ['schwerbehindertenausweis', 'eingliederungshilfe', 'barrierefreiheit'] },
+            { keywords: ['beeinträchtigt', 'behinderung', 'inklusion'], type: 'behinderung', needs: ['schwerbehindertenausweis', 'eingliederungshilfe', 'barrierefreiheit'] },
+            
+            // Migration
+            { keywords: ['geflüchtet', 'asyl', 'integration', 'sprachkurs'], type: 'migration', needs: ['asylverfahren', 'sprachkurs', 'integration'] },
+            { keywords: ['migrant', 'ausländer', 'aufenthaltsrecht'], type: 'aufenthaltsrecht', needs: ['aufenthaltsrecht', 'arbeitserlaubnis', 'familiennachzug'] },
+            
+            // EU-Bürger
+            { keywords: ['eu', 'freizügigkeit', 'aufenthaltsrecht'], type: 'eu_bürger', needs: ['aufenthaltsrecht', 'arbeitserlaubnis', 'familiennachzug'] },
+            
+            // Kleinunternehmer
+            { keywords: ['kleinunternehmer', 'steuern', 'buchhaltung'], type: 'kleinunternehmer', needs: ['kleinunternehmerregelung', 'gewerbesteuer', 'buchhaltung'] },
+            { keywords: ['gewerbesteuer', 'steuerberater', 'buchhaltung'], type: 'steuern', needs: ['steuerberatung', 'buchhaltung', 'gewerbesteuer'] },
             
             // Soziales
             { keywords: ['kindergeld', 'elterngeld', 'sozialhilfe'], type: 'soziales', needs: ['formulare', 'beratung', 'unterlagen'] },
@@ -246,7 +391,6 @@ class KAYACharacterHandler {
             
             // Bildung
             { keywords: ['schule', 'kindergarten', 'bildung'], type: 'bildung', needs: ['anmeldung', 'informationen', 'kontakt'] },
-            { keywords: ['studium', 'universität', 'hochschule'], type: 'studium', needs: ['informationen', 'beratung', 'anmeldung'] },
             
             // Umwelt
             { keywords: ['müll', 'abfall', 'entsorgung'], type: 'umwelt', needs: ['informationen', 'termin', 'kosten'] },
