@@ -40,12 +40,14 @@ class VoiceService {
     }
 
     async handleVoiceMessage(ws, message) {
+        const sessionId = message.sessionId || 'default';
+        
         switch (message.type) {
             case 'audio':
-                await this.processAudioInput(ws, message.data);
+                await this.processAudioInput(ws, message.data, sessionId);
                 break;
             case 'text':
-                await this.processTextInput(ws, message.text);
+                await this.processTextInput(ws, message.text, sessionId);
                 break;
             case 'ping':
                 ws.send(JSON.stringify({ type: 'pong' }));
@@ -58,7 +60,7 @@ class VoiceService {
         }
     }
 
-    async processAudioInput(ws, audioData) {
+    async processAudioInput(ws, audioData, sessionId = 'default') {
         try {
             console.log('🎤 Audio-zu-Text Konvertierung...');
             
@@ -76,8 +78,8 @@ class VoiceService {
                 confidence: transcription.confidence || 0.9
             }));
 
-            // Verarbeite die transkribierte Nachricht
-            await this.processTextInput(ws, transcription.text);
+            // Verarbeite die transkribierte Nachricht mit Session-ID
+            await this.processTextInput(ws, transcription.text, sessionId);
             
         } catch (error) {
             console.error('Audio-Verarbeitung Fehler:', error);
@@ -88,10 +90,10 @@ class VoiceService {
         }
     }
 
-    async processTextInput(ws, text) {
+    async processTextInput(ws, text, sessionId = 'default') {
         try {
-            // Generiere Text-Antwort mit LLM
-            const textResponse = await this.llmService.generateTextResponse(text);
+            // Generiere Text-Antwort mit LLM und Session-ID
+            const textResponse = await this.llmService.generateTextResponse(text, '', sessionId);
             
             ws.send(JSON.stringify({
                 type: 'response',

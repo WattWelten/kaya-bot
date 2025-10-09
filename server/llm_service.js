@@ -12,7 +12,7 @@ class LLMService {
         console.log('  - ElevenLabs API Key:', this.elevenlabsApiKey ? 'VORHANDEN ✅' : 'FEHLT ❌');
     }
 
-    async generateTextResponse(prompt, context = '') {
+    async generateTextResponse(prompt, context = '', sessionId = 'default') {
         try {
             const response = await axios.post(`${this.openaiBaseUrl}/chat/completions`, {
                 model: 'gpt-4o-mini', // Kostengünstig für Produktion

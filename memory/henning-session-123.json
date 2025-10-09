@@ -1,0 +1,131 @@
+{
+  "id": "henning-session-123",
+  "createdAt": "2025-10-09T11:41:11.353Z",
+  "lastActivity": "2025-10-09T11:41:16.742Z",
+  "messages": [
+    {
+      "id": "mgjcjygpt89bs6vqvm",
+      "timestamp": "2025-10-09T11:41:11.353Z",
+      "sender": "user",
+      "content": "Hallo, ich bin Henning und brauche Hilfe bei einem Bauantrag",
+      "metadata": {
+        "messageLength": 60,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjcjygukhj2ymby65g",
+      "timestamp": "2025-10-09T11:41:11.358Z",
+      "sender": "kaya",
+      "content": "Gerne helfe ich Ihnen bei Formulare, Anträge und Dienstleistungen. Welches Formular oder welche Dienstleistung benötigen Sie genau?",
+      "metadata": {
+        "agent": "buergerdienste",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "messageLength": 131,
+        "containsQuestion": true,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjck2mc32jffrrco7p",
+      "timestamp": "2025-10-09T11:41:16.740Z",
+      "sender": "user",
+      "content": "Ich möchte bauen",
+      "metadata": {
+        "messageLength": 16,
+        "containsQuestion": false,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    },
+    {
+      "id": "mgjck2meodpm7hmwkk",
+      "timestamp": "2025-10-09T11:41:16.742Z",
+      "sender": "kaya",
+      "content": "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent. Willkommen! Ist das Ihr erster Besuch bei uns? Ich erkläre Ihnen gerne alles Schritt für Schritt.",
+      "metadata": {
+        "agent": "kaya",
+        "persona": "first_time_visitor",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "messageLength": 146,
+        "containsQuestion": true,
+        "containsEmotion": "neutral",
+        "containsLocation": null,
+        "containsUrgency": "normal"
+      }
+    }
+  ],
+  "context": {
+    "location": null,
+    "persona": null,
+    "urgency": "normal",
+    "emotionalState": "neutral",
+    "citizenType": "standard",
+    "currentTopic": "general",
+    "problemProgress": [
+      {
+        "topic": "bauantrag",
+        "started": "2025-10-09T11:41:11.354Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T11:41:11.354Z",
+            "content": "Hallo, ich bin Henning und brauche Hilfe bei einem Bauantrag",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "general",
+        "started": "2025-10-09T11:41:11.359Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T11:41:11.359Z",
+            "content": "Gerne helfe ich Ihnen bei Formulare, Anträge und Dienstleistungen. Welches Formular oder welche Dienstleistung benötigen Sie genau?",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "bauantrag",
+        "started": "2025-10-09T11:41:16.740Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T11:41:16.740Z",
+            "content": "Ich möchte bauen",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      },
+      {
+        "topic": "general",
+        "started": "2025-10-09T11:41:16.742Z",
+        "steps": [
+          {
+            "timestamp": "2025-10-09T11:41:16.742Z",
+            "content": "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent. Willkommen! Ist das Ihr erster Besuch bei uns? Ich erkläre Ihnen gerne alles Schritt für Schritt.",
+            "step": 1
+          }
+        ],
+        "status": "in_progress"
+      }
+    ],
+    "preferences": {}
+  },
+  "metadata": {
+    "totalMessages": 4,
+    "averageResponseTime": 0,
+    "satisfactionScore": null
+  }
+}

@@ -279,11 +279,29 @@
         let voiceWebSocket = null;
         let isVoiceConnected = false;
         let currentAudio = null;
+        let sessionId = null; // Session-ID für Context-Memory
+        
+        // Session-ID generieren oder laden
+        function getSessionId() {
+            if (!sessionId) {
+                // Prüfe localStorage für bestehende Session
+                sessionId = localStorage.getItem('kaya-session-id');
+                if (!sessionId) {
+                    // Neue Session-ID generieren
+                    sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+                    localStorage.setItem('kaya-session-id', sessionId);
+                }
+            }
+            return sessionId;
+        }
         
         // Nachricht senden
         async function sendMessage() {
             const message = messageInput.value.trim();
             if (!message) return;
+            
+            // Session-ID sicherstellen
+            const currentSessionId = getSessionId();
             
             // Benutzernachricht anzeigen
             addMessage(message, 'user');
@@ -299,7 +317,10 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ message: message })
+                    body: JSON.stringify({ 
+                        message: message,
+                        sessionId: currentSessionId
+                    })
                 });
                 
                 const data = await response.json();
@@ -498,16 +519,20 @@
         // Sprachnachricht über WebSocket senden
         async function sendVoiceMessage(audioBlob) {
             try {
+                // Session-ID sicherstellen
+                const currentSessionId = getSessionId();
+                
                 // Konvertiere Audio zu Base64
                 const reader = new FileReader();
                 reader.onload = () => {
                     const base64Audio = reader.result.split(',')[1];
                     
-                    // Sende über WebSocket
+                    // Sende über WebSocket mit Session-ID
                     if (voiceWebSocket && isVoiceConnected) {
                         voiceWebSocket.send(JSON.stringify({
                             type: 'audio',
-                            data: base64Audio
+                            data: base64Audio,
+                            sessionId: currentSessionId
                         }));
                     }
                 };
