@@ -44,11 +44,42 @@ class LLMService {
         }
     }
 
-    async generateAudioResponse(text, voiceId = 'otF9rqKzRHFgfwf6serQ') {
+    async transcribeAudio(audioBuffer) {
+        try {
+            const FormData = require('form-data');
+            const form = new FormData();
+            
+            // Erstelle eine temporäre Datei für das Audio
+            form.append('file', audioBuffer, {
+                filename: 'audio.wav',
+                contentType: 'audio/wav'
+            });
+            form.append('model', 'whisper-1');
+            form.append('language', 'de');
+            form.append('response_format', 'verbose_json');
+
+            const response = await axios.post(`${this.openaiBaseUrl}/audio/transcriptions`, form, {
+                headers: {
+                    'Authorization': `Bearer ${this.openaiApiKey}`,
+                    ...form.getHeaders()
+                }
+            });
+
+            return {
+                text: response.data.text,
+                confidence: response.data.segments?.[0]?.avg_logprob || 0.9
+            };
+        } catch (error) {
+            console.error('Whisper API Fehler:', error.response?.data || error.message);
+            throw new Error('Audio-Transkription fehlgeschlagen');
+        }
+    }
+
+    async generateAudioResponse(text, voiceId = 'otF9rqKzRHFgfwf6serQ') { // KAYA Voice ID
         try {
             const response = await axios.post(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
                 text: text,
-                model_id: 'eleven_multilingual_v2',
+                model_id: 'eleven_flash_v2_5',
                 voice_settings: {
                     stability: 0.5,
                     similarity_boost: 0.5,

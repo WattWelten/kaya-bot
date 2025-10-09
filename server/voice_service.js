@@ -60,18 +60,24 @@ class VoiceService {
 
     async processAudioInput(ws, audioData) {
         try {
-            // Hier würde Audio-zu-Text Konvertierung stattfinden
-            // Für Demo: Simuliere Text-Input
-            const simulatedText = "Ich möchte einen Bauantrag stellen";
+            console.log('🎤 Audio-zu-Text Konvertierung...');
+            
+            // Konvertiere Base64 zu Buffer
+            const audioBuffer = Buffer.from(audioData, 'base64');
+            
+            // Verwende OpenAI Whisper für Audio-zu-Text
+            const transcription = await this.llmService.transcribeAudio(audioBuffer);
+            
+            console.log(`🎤 Transkribiert: "${transcription.text}"`);
             
             ws.send(JSON.stringify({
                 type: 'transcription',
-                text: simulatedText,
-                confidence: 0.95
+                text: transcription.text,
+                confidence: transcription.confidence || 0.9
             }));
 
             // Verarbeite die transkribierte Nachricht
-            await this.processTextInput(ws, simulatedText);
+            await this.processTextInput(ws, transcription.text);
             
         } catch (error) {
             console.error('Audio-Verarbeitung Fehler:', error);
