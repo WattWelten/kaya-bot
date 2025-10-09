@@ -38,8 +38,14 @@ class KAYACharacterHandler {
         
         console.log(`🧠 Persona-Analyse: ${personaAnalysis.persona.persona} (${personaAnalysis.emotionalState.state}, ${personaAnalysis.urgency.level})`);
         
-        // Bestimme zuständigen Agent
-        const agent = this.getAgentHandler().routeToAgent(query);
+        // Bestimme zuständigen Agent mit Session-Kontext
+        const sessionContext = {
+            previousIntention: session.messages.length > 1 ? 
+                session.messages[session.messages.length - 2].context?.intention : null,
+            conversationHistory: session.messages.slice(-3) // Letzte 3 Nachrichten
+        };
+        
+        const agent = this.getAgentHandler().routeToAgent(query, sessionContext);
         
         let response;
         if (agent === 'kaya') {
@@ -48,12 +54,14 @@ class KAYACharacterHandler {
             response = this.generateAgentResponse(agent, query, personaAnalysis);
         }
 
-        // Context-Memory: KAYA-Antwort hinzufügen
+        // Context-Memory: KAYA-Antwort hinzufügen mit Intention
+        const intention = this.analyzeCitizenIntention(query);
         this.contextMemory.addMessage(sessionId, response.response, 'kaya', {
             agent: agent,
             persona: personaAnalysis.persona.persona,
             emotionalState: personaAnalysis.emotionalState.state,
-            urgency: personaAnalysis.urgency.level
+            urgency: intention.urgency,
+            intention: intention // Speichere die Intention für Kontext
         });
 
         // LLM-Enhancement mit Context

@@ -90,10 +90,85 @@ class KAYAAgentHandler {
         return total;
     }
     
-    routeToAgent(query) {
+    routeToAgent(query, sessionContext = null) {
         const queryLower = query.toLowerCase();
         
-        // Routing-Logik basierend auf Keywords
+        // KONTEXTBEWUSSTES ROUTING mit Session-Memory
+        if (sessionContext && sessionContext.previousIntention) {
+            // Verwende vorherigen Kontext für bessere Zuordnung
+            const previousType = sessionContext.previousIntention.type;
+            
+            // KFZ-Kontext beibehalten
+            if (previousType === 'kfz_zulassung' && this.containsKeywords(queryLower, ['anmeldung', 'zulassung', 'kennzeichen', 'termin'])) {
+                return 'kaya'; // KAYA's universelle Logik verwenden
+            }
+            
+            // Bauantrag-Kontext beibehalten
+            if (previousType === 'bauantrag' && this.containsKeywords(queryLower, ['formular', 'unterlagen', 'termin', 'kosten'])) {
+                return 'kaya';
+            }
+            
+            // Führerschein-Kontext beibehalten
+            if (previousType === 'führerschein' && this.containsKeywords(queryLower, ['antrag', 'formular', 'termin', 'prüfung'])) {
+                return 'kaya';
+            }
+        }
+        
+        // SPEZIFISCHE KFZ-ERKENNUNG
+        if (this.containsKeywords(queryLower, ['auto', 'fahrzeug', 'kfz', 'kennzeichen', 'zulassung', 'anmeldung']) ||
+            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'kfz_zulassung')) {
+            return 'kaya'; // KAYA's universelle KFZ-Logik verwenden
+        }
+        
+        // SPEZIFISCHE BAUANTRAG-ERKENNUNG
+        if (this.containsKeywords(queryLower, ['bauantrag', 'bauen', 'haus', 'gebäude', 'baugenehmigung']) ||
+            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'bauantrag')) {
+            return 'kaya'; // KAYA's universelle Bauantrag-Logik verwenden
+        }
+        
+        // SPEZIFISCHE FÜHRERSCHEIN-ERKENNUNG
+        if (this.containsKeywords(queryLower, ['führerschein', 'fahrerlaubnis', 'fahrschule']) ||
+            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'führerschein')) {
+            return 'kaya'; // KAYA's universelle Führerschein-Logik verwenden
+        }
+        
+        // SPEZIFISCHE GEWERBE-ERKENNUNG
+        if (this.containsKeywords(queryLower, ['gewerbe', 'gewerbeanmeldung', 'selbständig', 'unternehmen']) ||
+            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'gewerbe')) {
+            return 'kaya'; // KAYA's universelle Gewerbe-Logik verwenden
+        }
+        
+        // SPEZIFISCHE SOZIALES-ERKENNUNG
+        if (this.containsKeywords(queryLower, ['sozialhilfe', 'wohngeld', 'pflege', 'kindergeld', 'elterngeld']) ||
+            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'soziales')) {
+            return 'kaya'; // KAYA's universelle Soziales-Logik verwenden
+        }
+        
+        // SPEZIFISCHE GESUNDHEIT-ERKENNUNG
+        if (this.containsKeywords(queryLower, ['gesundheit', 'arzt', 'krankenhaus', 'impfung', 'gesundheitsamt']) ||
+            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'gesundheit')) {
+            return 'kaya'; // KAYA's universelle Gesundheit-Logik verwenden
+        }
+        
+        // SPEZIFISCHE BILDUNG-ERKENNUNG
+        if (this.containsKeywords(queryLower, ['schule', 'kindergarten', 'studium', 'bildung', 'anmeldung']) ||
+            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'bildung')) {
+            return 'kaya'; // KAYA's universelle Bildung-Logik verwenden
+        }
+        
+        // SPEZIFISCHE UMWELT-ERKENNUNG
+        if (this.containsKeywords(queryLower, ['müll', 'abfall', 'wasser', 'umwelt', 'entsorgung']) ||
+            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'umwelt')) {
+            return 'kaya'; // KAYA's universelle Umwelt-Logik verwenden
+        }
+        
+        // SPEZIFISCHE NOTFALL-ERKENNUNG
+        if (this.containsKeywords(queryLower, ['notfall', 'hilfe', 'krisen', '112', '110']) ||
+            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'notfall')) {
+            return 'kaya'; // KAYA's universelle Notfall-Logik verwenden
+        }
+        
+        // ALLGEMEINE VERWALTUNG
         if (this.containsKeywords(queryLower, ['formular', 'antrag', 'dienstleistung', 'gebühr', 'unterlage'])) {
             return 'buergerdienste';
         }
@@ -106,20 +181,11 @@ class KAYAAgentHandler {
         if (this.containsKeywords(queryLower, ['kontakt', 'telefon', 'email', 'sprechzeit', 'öffnungszeit'])) {
             return 'kontakte';
         }
-        if (this.containsKeywords(queryLower, ['arbeitslosengeld', 'jobsuche', 'vermittlung', 'beratung'])) {
-            return 'jobcenter';
-        }
-        if (this.containsKeywords(queryLower, ['schule', 'schulanmeldung', 'schulwechsel', 'bildung'])) {
-            return 'schule';
-        }
         if (this.containsKeywords(queryLower, ['jugend', 'jugendamt', 'jugendhilfe', 'freizeit'])) {
             return 'jugend';
         }
-        if (this.containsKeywords(queryLower, ['sozialhilfe', 'wohngeld', 'hilfe zur pflege', 'sozialleistung'])) {
-            return 'soziales';
-        }
         
-        return 'kaya'; // Fallback
+        return 'kaya'; // Fallback zu KAYA's universeller Logik
     }
     
     containsKeywords(text, keywords) {
