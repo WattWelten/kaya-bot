@@ -1153,7 +1153,7 @@ class KAYACharacterHandler {
             },
             german: {
                 greeting: 'Moin!',
-                closing: 'Gerne helfe ich Ihnen weiter!',
+                closing: '',
                 emphasis: '🇩🇪'
             }
         };
@@ -1607,6 +1607,45 @@ Für welches Anliegen brauchen Sie einen Termin?`,
                     tourist: "Hallo! Ich helfe Ihnen beim Bauantrag für Ihren Aufenthalt.",
                     general: "Hallo! Ich helfe Ihnen beim Bauantrag."
                 },
+                // LANDWIRTSCHAFT
+                landwirtschaft: {
+                    senior: "Guten Tag! Ich helfe Ihnen gerne bei den EU-Anträgen.",
+                    youth: "Hey! Ich helfe dir bei den EU-Anträgen.",
+                    family: "Hallo! Ich helfe Ihrer Familie bei den EU-Anträgen.",
+                    farmer: "Moin! Ich helfe dir bei deinen EU-Anträgen.",
+                    craftsman: "Moin! Ich helfe dir bei den EU-Anträgen.",
+                    student: "Hey! Ich helfe dir bei den EU-Anträgen.",
+                    tourist: "Hallo! Ich helfe Ihnen bei den EU-Anträgen.",
+                    general: "Hallo! Ich helfe Ihnen bei den EU-Anträgen."
+                },
+                // GENERAL
+                general: {
+                    senior: "Guten Tag! Ich bin KAYA, Ihr digitaler Assistent.",
+                    youth: "Hey! Ich bin KAYA, dein digitaler Assistent.",
+                    family: "Hallo! Ich bin KAYA, Ihr digitaler Assistent.",
+                    farmer: "Moin! Ich bin KAYA, dein digitaler Assistent.",
+                    craftsman: "Moin! Ich bin KAYA, dein digitaler Assistent.",
+                    student: "Hey! Ich bin KAYA, dein digitaler Assistent.",
+                    tourist: "Hallo! Ich bin KAYA, Ihr digitaler Assistent.",
+                    general: "Hallo! Ich bin KAYA, Ihr digitaler Assistent."
+                }
+            },
+            english: {
+                general: "Hello! I'm KAYA, your digital assistant."
+            },
+            turkish: {
+                general: "Merhaba! Ben KAYA, dijital asistanınızım."
+            },
+            plattdeutsch: {
+                general: "Moin! Ik bin KAYA, dien digitalen Assistent."
+            }
+        };
+        
+        // Wähle passende Begrüßung
+        const languageGreetings = greetings[language] || greetings.german;
+        const contextGreetings = languageGreetings[context] || languageGreetings.general;
+        return contextGreetings[citizenType] || contextGreetings.general;
+    }
                 // LANDWIRTSCHAFT
                 landwirtschaft: {
                     senior: "Guten Tag! Ich helfe Ihnen gerne bei Ihren landwirtschaftlichen Anliegen.",
