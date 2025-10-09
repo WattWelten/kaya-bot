@@ -198,7 +198,7 @@ class KAYACharacterHandler {
     analyzeCitizenType(query) {
         const lowerQuery = query.toLowerCase();
         
-        // Erweiterte Landkreis-spezifische Erkennung
+        // Erweiterte Landkreis-spezifische Erkennung basierend auf Bevölkerungsstruktur
         if (lowerQuery.includes('landwirt') || lowerQuery.includes('bauer') || lowerQuery.includes('hof') || 
             lowerQuery.includes('kuh') || lowerQuery.includes('schwein') || lowerQuery.includes('eu-antrag')) {
             return 'farmer';
@@ -241,6 +241,49 @@ class KAYACharacterHandler {
             lowerQuery.includes('gewerbesteuer')) {
             return 'small_business';
         }
+        
+        // NEUE KRITISCHE PERSONAS basierend auf Bevölkerungsstruktur
+        if (lowerQuery.includes('kind') || lowerQuery.includes('kindergarten') || lowerQuery.includes('spielplatz') || 
+            lowerQuery.includes('schule') || lowerQuery.includes('spiel') || lowerQuery.includes('baby')) {
+            return 'child';
+        }
+        if (lowerQuery.includes('pendler') || lowerQuery.includes('pendeln') || lowerQuery.includes('bus') || 
+            lowerQuery.includes('bahn') || lowerQuery.includes('fahrplan') || lowerQuery.includes('verkehr')) {
+            return 'commuter';
+        }
+        if (lowerQuery.includes('wohnung') || lowerQuery.includes('miete') || lowerQuery.includes('wohnen') || 
+            lowerQuery.includes('mietvertrag') || lowerQuery.includes('wohnungssuche')) {
+            return 'housing_seeker';
+        }
+        if (lowerQuery.includes('pflege') || lowerQuery.includes('pflegebedürftig') || lowerQuery.includes('betreuung') || 
+            lowerQuery.includes('pflegestützpunkt') || lowerQuery.includes('pflegeheim')) {
+            return 'care_dependent';
+        }
+        if (lowerQuery.includes('armut') || lowerQuery.includes('arm') || lowerQuery.includes('sozialhilfe') || 
+            lowerQuery.includes('wohngeld') || lowerQuery.includes('grundsicherung')) {
+            return 'low_income';
+        }
+        if (lowerQuery.includes('sport') || lowerQuery.includes('verein') || lowerQuery.includes('fitness') || 
+            lowerQuery.includes('schwimmen') || lowerQuery.includes('fußball')) {
+            return 'sports_interested';
+        }
+        if (lowerQuery.includes('kultur') || lowerQuery.includes('museum') || lowerQuery.includes('veranstaltung') || 
+            lowerQuery.includes('konzert') || lowerQuery.includes('theater')) {
+            return 'culture_interested';
+        }
+        if (lowerQuery.includes('platt') || lowerQuery.includes('plattdeutsch') || lowerQuery.includes('moin') || 
+            lowerQuery.includes('hülp') || lowerQuery.includes('tradition')) {
+            return 'plattdeutsch_speaker';
+        }
+        if (lowerQuery.includes('einfach') || lowerQuery.includes('verstehe nicht') || lowerQuery.includes('hilfe') || 
+            lowerQuery.includes('erklären') || lowerQuery.includes('langsam')) {
+            return 'low_education';
+        }
+        if (lowerQuery.includes('mobil') || lowerQuery.includes('fahrrad') || lowerQuery.includes('e-mobilität') || 
+            lowerQuery.includes('ladesäule') || lowerQuery.includes('radweg')) {
+            return 'mobility_needs';
+        }
+        
         return 'general';
     }
 
@@ -834,7 +877,7 @@ class KAYACharacterHandler {
     }
 
     /**
-     * Bürger-Typ-Anpassungen (inklusiv)
+     * Bürger-Typ-Anpassungen (inklusiv) für Landkreis Oldenburg
      */
     getCitizenTypeAdaptations(citizenType) {
         const adaptations = {
@@ -862,6 +905,57 @@ class KAYACharacterHandler {
                 tone: 'inclusive_supportive',
                 structure: 'accessible_format',
                 emphasis: 'accommodation_options'
+            },
+            // NEUE KRITISCHE PERSONAS basierend auf Bevölkerungsstruktur
+            child: {
+                tone: 'playful_encouraging',
+                structure: 'simple_visual',
+                emphasis: 'fun_interactive'
+            },
+            commuter: {
+                tone: 'efficient_direct',
+                structure: 'quick_info',
+                emphasis: 'time_sensitive'
+            },
+            housing_seeker: {
+                tone: 'supportive_understanding',
+                structure: 'step_by_step',
+                emphasis: 'practical_solutions'
+            },
+            care_dependent: {
+                tone: 'gentle_caring',
+                structure: 'detailed_support',
+                emphasis: 'family_involvement'
+            },
+            low_income: {
+                tone: 'respectful_helpful',
+                structure: 'clear_guidance',
+                emphasis: 'financial_support'
+            },
+            sports_interested: {
+                tone: 'energetic_motivating',
+                structure: 'action_oriented',
+                emphasis: 'community_activities'
+            },
+            culture_interested: {
+                tone: 'cultured_engaging',
+                structure: 'event_focused',
+                emphasis: 'cultural_offerings'
+            },
+            plattdeutsch_speaker: {
+                tone: 'regional_warm',
+                structure: 'traditional_format',
+                emphasis: 'local_identity'
+            },
+            low_education: {
+                tone: 'patient_explaining',
+                structure: 'simple_language',
+                emphasis: 'step_by_step'
+            },
+            mobility_needs: {
+                tone: 'practical_helpful',
+                structure: 'location_based',
+                emphasis: 'accessibility_info'
             },
             general: {
                 tone: 'professional_friendly',
