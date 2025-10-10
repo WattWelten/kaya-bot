@@ -4,241 +4,27 @@ const path = require('path');
 class KAYAAgentHandler {
     constructor() {
         this.agentData = {};
-        // Verwende den aktuellen Tag im deutschen Format
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        const dateString = `${year}-${month}-${day}`;
-        
-        // Prüfe zuerst komprimierte Daten, dann Original
-        const compressedDir = path.join(__dirname, '../ki_backend', `${dateString}-compressed`);
-        const originalDir = path.join(__dirname, '../ki_backend', dateString);
-        
-        if (fs.existsSync(compressedDir)) {
-            this.agentDataDir = compressedDir;
-            this.useCompressedData = true;
-            console.log('📦 Verwende komprimierte Agent-Daten');
-        } else {
-            this.agentDataDir = originalDir;
-            this.useCompressedData = false;
-            console.log('📁 Verwende Original Agent-Daten');
-        }
-        this.agents = ['buergerdienste', 'ratsinfo', 'stellenportal', 'kontakte', 'jugend', 'soziales'];
-        
-        // Lazy Loading - nur Metadaten beim Start laden
-        this.loadAgentMetadata();
+        this.loadAgentData();
     }
     
-    loadAgentMetadata() {
-        console.log('🔧 Lazy Loading: Lade nur Agent-Metadaten...');
+    loadAgentData() {
+        const agentDataDir = path.join(__dirname, '../ki_backend', new Date().toISOString().split('T')[0]);
         
-        this.agents.forEach(agent => {
-            // Verwende komprimierte Dateien wenn verfügbar
-            const fileName = this.useCompressedData ? `${agent}_data_compressed.json` : `${agent}_data.json`;
-            const dataFile = path.join(this.agentDataDir, fileName);
+        const agents = ['buergerdienste', 'ratsinfo', 'stellenportal', 'kontakte', 'jobcenter', 'schule', 'jugend', 'soziales'];
+        
+        agents.forEach(agent => {
+            const dataFile = path.join(agentDataDir, `${agent}_data.json`);
             if (fs.existsSync(dataFile)) {
-                // Nur Dateigröße prüfen, nicht den ganzen Inhalt laden
-                const stats = fs.statSync(dataFile);
-                this.agentData[agent] = {
-                    loaded: false,
-                    filePath: dataFile,
-                    fileSize: stats.size,
-                    entryCount: 0 // Wird beim ersten Laden gesetzt
-                };
-                console.log(`✅ Agent ${agent}: Datei gefunden (${Math.round(stats.size/1024)}KB) - NICHT geladen`);
-            } else {
-                console.log(`⚠️ Agent ${agent}: Keine Daten gefunden`);
-                this.agentData[agent] = { loaded: false, filePath: null, fileSize: 0, entryCount: 0 };
+                this.agentData[agent] = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
+                console.log(`Agent ${agent}: ${this.agentData[agent].length} Einträge geladen`);
             }
         });
-        
-        console.log('📊 Lazy Loading aktiviert - Daten werden bei Bedarf geladen');
     }
     
-    loadAgentData(agent) {
-        if (!this.agentData[agent] || this.agentData[agent].loaded) {
-            return this.agentData[agent];
-        }
-        
-        console.log(`🔄 Lade Agent ${agent} bei Bedarf...`);
-        
-        try {
-            const data = JSON.parse(fs.readFileSync(this.agentData[agent].filePath, 'utf8'));
-            this.agentData[agent] = {
-                loaded: true,
-                data: data,
-                entryCount: data.length
-            };
-            console.log(`✅ Agent ${agent}: ${data.length} Einträge geladen`);
-            return this.agentData[agent];
-        } catch (error) {
-            console.error(`❌ Fehler beim Laden von Agent ${agent}:`, error.message);
-            this.agentData[agent] = { loaded: false, data: [], entryCount: 0 };
-            return this.agentData[agent];
-        }
-    }
-    
-    getTotalEntries() {
-        let total = 0;
-        this.agents.forEach(agent => {
-            const agentInfo = this.agentData[agent];
-            if (agentInfo && agentInfo.loaded) {
-                total += agentInfo.entryCount;
-            }
-        });
-        return total;
-    }
-    
-    routeToAgent(query, sessionContext = null) {
+    routeToAgent(query) {
         const queryLower = query.toLowerCase();
         
-        // KONTEXTBEWUSSTES ROUTING mit Session-Memory
-        if (sessionContext && sessionContext.previousIntention) {
-            // Verwende vorherigen Kontext für bessere Zuordnung
-            const previousType = sessionContext.previousIntention.type;
-            
-            // KFZ-Kontext beibehalten
-            if (previousType === 'kfz_zulassung' && this.containsKeywords(queryLower, ['anmeldung', 'zulassung', 'kennzeichen', 'termin'])) {
-                return 'kaya'; // KAYA's universelle Logik verwenden
-            }
-            
-            // Bauantrag-Kontext beibehalten
-            if (previousType === 'bauantrag' && this.containsKeywords(queryLower, ['formular', 'unterlagen', 'termin', 'kosten'])) {
-                return 'kaya';
-            }
-            
-            // Führerschein-Kontext beibehalten
-            if (previousType === 'führerschein' && this.containsKeywords(queryLower, ['antrag', 'formular', 'termin', 'prüfung'])) {
-                return 'kaya';
-            }
-            
-            // Landwirtschaft-Kontext beibehalten
-            if (previousType === 'landwirtschaft' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'eu-antrag', 'agrarantrag', 'flächennachweis', 'tierbestand', 'hofbescheinigung', 'flaeche', 'hektar', 'acker', 'wiese', 'weide'])) {
-                return 'kaya';
-            }
-            
-            // Handwerk-Kontext beibehalten
-            if (previousType === 'handwerk' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'meisterprüfung', 'gesellenprüfung', 'handwerkskammer', 'ausbildungsnachweis', 'berufserfahrung'])) {
-                return 'kaya';
-            }
-            
-            // Studium-Kontext beibehalten
-            if (previousType === 'studium' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'bafög', 'studienbescheinigung', 'immatrikulation', 'semesterticket', 'wohnheim'])) {
-                return 'kaya';
-            }
-            
-            // BAföG-Kontext beibehalten
-            if (previousType === 'bafög' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'einkommen', 'eltern', 'studienbescheinigung', 'bankauszug', 'miete'])) {
-                return 'kaya';
-            }
-            
-            // Arbeitslosigkeit-Kontext beibehalten
-            if (previousType === 'arbeitslosigkeit' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'alg', 'arbeitslosengeld', 'bewerbung', 'jobcenter', 'arbeitsamt'])) {
-                return 'kaya';
-            }
-            
-            // Rente-Kontext beibehalten
-            if (previousType === 'rente' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'rentenantrag', 'versicherungsverlauf', 'arbeitszeugnis', 'pension'])) {
-                return 'kaya';
-            }
-            
-            // Senioren-Kontext beibehalten
-            if (previousType === 'senioren' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'pflege', 'betreuung', 'seniorenheim', 'ambulante', 'stationäre'])) {
-                return 'kaya';
-            }
-            
-            // Alleinerziehende-Kontext beibehalten
-            if (previousType === 'alleinerziehende' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'kindergeld', 'unterhalt', 'vater', 'mutter', 'sorge'])) {
-                return 'kaya';
-            }
-            
-            // Behinderung-Kontext beibehalten
-            if (previousType === 'behinderung' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'schwerbehindertenausweis', 'eingliederungshilfe', 'barrierefreiheit', 'hilfsmittel'])) {
-                return 'kaya';
-            }
-            
-            // Migration-Kontext beibehalten
-            if (previousType === 'migration' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'asyl', 'aufenthalt', 'sprachkurs', 'integration', 'pass'])) {
-                return 'kaya';
-            }
-            
-            // Kleinunternehmer-Kontext beibehalten
-            if (previousType === 'kleinunternehmer' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'steuern', 'gewerbesteuer', 'umsatzsteuer', 'buchhaltung', 'finanzamt'])) {
-                return 'kaya';
-            }
-            
-            // Soziales-Kontext beibehalten
-            if (previousType === 'soziales' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'kindergeld', 'elterngeld', 'sozialhilfe', 'grundsicherung'])) {
-                return 'kaya';
-            }
-            
-            // Gesundheit-Kontext beibehalten
-            if (previousType === 'gesundheit' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'arzt', 'krankenhaus', 'behandlung', 'rezept', 'krankenkasse'])) {
-                return 'kaya';
-            }
-            
-            // Bildung-Kontext beibehalten
-            if (previousType === 'bildung' && this.containsKeywords(queryLower, ['unterlagen', 'dokumente', 'papiere', 'schule', 'kindergarten', 'anmeldung', 'zeugnis', 'noten'])) {
-                return 'kaya';
-            }
-        }
-        
-        // SPEZIFISCHE KFZ-ERKENNUNG
-        if (this.containsKeywords(queryLower, ['auto', 'fahrzeug', 'kfz', 'kennzeichen', 'zulassung', 'anmeldung']) ||
-            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'kfz_zulassung')) {
-            return 'kaya'; // KAYA's universelle KFZ-Logik verwenden
-        }
-        
-        // SPEZIFISCHE BAUANTRAG-ERKENNUNG
-        if (this.containsKeywords(queryLower, ['bauantrag', 'bauen', 'haus', 'gebäude', 'baugenehmigung']) ||
-            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'bauantrag')) {
-            return 'kaya'; // KAYA's universelle Bauantrag-Logik verwenden
-        }
-        
-        // SPEZIFISCHE FÜHRERSCHEIN-ERKENNUNG
-        if (this.containsKeywords(queryLower, ['führerschein', 'fahrerlaubnis', 'fahrschule']) ||
-            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'führerschein')) {
-            return 'kaya'; // KAYA's universelle Führerschein-Logik verwenden
-        }
-        
-        // SPEZIFISCHE GEWERBE-ERKENNUNG
-        if (this.containsKeywords(queryLower, ['gewerbe', 'gewerbeanmeldung', 'selbständig', 'unternehmen']) ||
-            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'gewerbe')) {
-            return 'kaya'; // KAYA's universelle Gewerbe-Logik verwenden
-        }
-        
-        // SPEZIFISCHE SOZIALES-ERKENNUNG
-        if (this.containsKeywords(queryLower, ['sozialhilfe', 'wohngeld', 'pflege', 'kindergeld', 'elterngeld']) ||
-            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'soziales')) {
-            return 'kaya'; // KAYA's universelle Soziales-Logik verwenden
-        }
-        
-        // SPEZIFISCHE GESUNDHEIT-ERKENNUNG
-        if (this.containsKeywords(queryLower, ['gesundheit', 'arzt', 'krankenhaus', 'impfung', 'gesundheitsamt']) ||
-            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'gesundheit')) {
-            return 'kaya'; // KAYA's universelle Gesundheit-Logik verwenden
-        }
-        
-        // SPEZIFISCHE BILDUNG-ERKENNUNG
-        if (this.containsKeywords(queryLower, ['schule', 'kindergarten', 'studium', 'bildung', 'anmeldung']) ||
-            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'bildung')) {
-            return 'kaya'; // KAYA's universelle Bildung-Logik verwenden
-        }
-        
-        // SPEZIFISCHE UMWELT-ERKENNUNG
-        if (this.containsKeywords(queryLower, ['müll', 'abfall', 'wasser', 'umwelt', 'entsorgung']) ||
-            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'umwelt')) {
-            return 'kaya'; // KAYA's universelle Umwelt-Logik verwenden
-        }
-        
-        // SPEZIFISCHE NOTFALL-ERKENNUNG
-        if (this.containsKeywords(queryLower, ['notfall', 'hilfe', 'krisen', '112', '110']) ||
-            (sessionContext && sessionContext.previousIntention && sessionContext.previousIntention.type === 'notfall')) {
-            return 'kaya'; // KAYA's universelle Notfall-Logik verwenden
-        }
-        
-        // ALLGEMEINE VERWALTUNG
+        // Routing-Logik basierend auf Keywords
         if (this.containsKeywords(queryLower, ['formular', 'antrag', 'dienstleistung', 'gebühr', 'unterlage'])) {
             return 'buergerdienste';
         }
@@ -251,11 +37,20 @@ class KAYAAgentHandler {
         if (this.containsKeywords(queryLower, ['kontakt', 'telefon', 'email', 'sprechzeit', 'öffnungszeit'])) {
             return 'kontakte';
         }
+        if (this.containsKeywords(queryLower, ['arbeitslosengeld', 'jobsuche', 'vermittlung', 'beratung'])) {
+            return 'jobcenter';
+        }
+        if (this.containsKeywords(queryLower, ['schule', 'schulanmeldung', 'schulwechsel', 'bildung'])) {
+            return 'schule';
+        }
         if (this.containsKeywords(queryLower, ['jugend', 'jugendamt', 'jugendhilfe', 'freizeit'])) {
             return 'jugend';
         }
+        if (this.containsKeywords(queryLower, ['sozialhilfe', 'wohngeld', 'hilfe zur pflege', 'sozialleistung'])) {
+            return 'soziales';
+        }
         
-        return 'kaya'; // Fallback zu KAYA's universeller Logik
+        return 'kaya'; // Fallback
     }
     
     containsKeywords(text, keywords) {
@@ -263,13 +58,11 @@ class KAYAAgentHandler {
     }
     
     getAgentData(agent) {
-        const agentInfo = this.loadAgentData(agent);
-        return agentInfo.data || [];
+        return this.agentData[agent] || [];
     }
     
     searchAgentData(agent, query) {
-        const agentInfo = this.loadAgentData(agent);
-        const data = agentInfo.data || [];
+        const data = this.getAgentData(agent);
         const queryLower = query.toLowerCase();
         
         console.log(`Suche in Agent ${agent}: "${query}"`);

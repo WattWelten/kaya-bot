@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/kontakt.html?titel=Kontaktformular&naviID=1",
+    "title": "kontakt.html",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/",
+    "title": "ansprechpartner-in-der-kreisverwaltung",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/projekt-kontaktzeit-/",
+    "title": "projekt-kontaktzeit-",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/veranstaltungen-gesundheitsamt/projekt-kontaktzeit-/",
+    "title": "projekt-kontaktzeit-",
+    "type": "web_content",
+    "source": "crawler_v2"
+  }
+]

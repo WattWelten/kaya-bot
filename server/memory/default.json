@@ -1,0 +1,185 @@
+{
+  "id": "default",
+  "messages": [
+    {
+      "id": "1760123336554",
+      "sender": "Moin! Ich mÃ¶chte mein Auto zulassen.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:08:56.554Z",
+      "context": {}
+    },
+    {
+      "id": "1760123336621",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:08:56.621Z",
+      "context": {
+        "intention": "general",
+        "persona": "mobility_needs",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760123340187",
+      "sender": "Moin! Ich mÃ¶chte mein Auto zulassen.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:09:00.187Z",
+      "context": {}
+    },
+    {
+      "id": "1760123340196",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:09:00.196Z",
+      "context": {
+        "intention": "general",
+        "persona": "mobility_needs",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760123354886",
+      "sender": "Moin! Ich mÃ¶chte mein Auto zulassen.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:09:14.886Z",
+      "context": {}
+    },
+    {
+      "id": "1760123354897",
+      "sender": "Hallo! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg.\n\nSie möchten eine Dienstleistung im Landkreis Oldenburg nutzen.\n\n1. Kontaktieren Sie uns.\n2. Unterlagen einreichen.\n3. Bearbeitung abwarten.\n\n📞 **Kontakt:** 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n📋 **Quelle:** Landkreis Oldenburg | **Stand:** 01/2025\n\nWie kann ich Ihnen weiterhelfen?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:09:14.897Z",
+      "context": {
+        "intention": "general",
+        "persona": "mobility_needs",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760123358439",
+      "sender": "Ich brauche einen FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:09:18.439Z",
+      "context": {}
+    },
+    {
+      "id": "1760123358448",
+      "sender": "Guten Tag! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg.\n\nSie möchten eine Dienstleistung im Landkreis Oldenburg nutzen.\n\n1. Kontaktieren Sie uns.\n2. Unterlagen einreichen.\n3. Bearbeitung abwarten.\n\n📞 **Kontakt:** 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n📋 **Quelle:** Landkreis Oldenburg | **Stand:** 01/2025\n\nWie kann ich Ihnen weiterhelfen?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:09:18.448Z",
+      "context": {
+        "intention": "general",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760123373703",
+      "sender": "Ich brauche einen FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:09:33.703Z",
+      "context": {}
+    },
+    {
+      "id": "1760123373716",
+      "sender": "Moin! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg.\n\nSie möchten eine Dienstleistung im Landkreis Oldenburg nutzen.\n\n1. Kontaktieren Sie uns.\n2. Unterlagen einreichen.\n3. Bearbeitung abwarten.\n\n📞 **Kontakt:** 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n📋 **Quelle:** Landkreis Oldenburg | **Stand:** 01/2025\n\nWie kann ich Ihnen weiterhelfen?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:09:33.716Z",
+      "context": {
+        "intention": "general",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760123388459",
+      "sender": "Ich brauche einen FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:09:48.459Z",
+      "context": {}
+    },
+    {
+      "id": "1760123388469",
+      "sender": "Guten Tag! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg.\n\nSie möchten eine Dienstleistung im Landkreis Oldenburg nutzen.\n\n1. Kontaktieren Sie uns.\n2. Unterlagen einreichen.\n3. Bearbeitung abwarten.\n\n📞 **Kontakt:** 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n📋 **Quelle:** Landkreis Oldenburg | **Stand:** 01/2025\n\nWie kann ich Ihnen weiterhelfen?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:09:48.469Z",
+      "context": {
+        "intention": "general",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760123404347",
+      "sender": "Ich brauche einen FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:10:04.347Z",
+      "context": {}
+    },
+    {
+      "id": "1760123404354",
+      "sender": "Guten Tag! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg.\n\nSie möchten einen Führerschein im Landkreis Oldenburg machen.\n\n1. Fahrschule finden und anmelden.\n2. Theorie- und Praxisprüfung absolvieren.\n3. Führerschein beantragen.\n\n📋 Fahrschulen: [Link zu Fahrschulen-Verzeichnis](https://www.oldenburg-kreis.de/buergerservice/fuehrerschein/fahrschulen)\n\n📞 **Kontakt:** 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n📋 **Quelle:** Führerscheinstelle Landkreis Oldenburg | **Stand:** 01/2025\n\nMöchten Sie eine Fahrschule finden?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:10:04.354Z",
+      "context": {
+        "intention": "führerschein",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760123408535",
+      "sender": "Ich mÃ¶chte mein Auto zulassen.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:10:08.536Z",
+      "context": {}
+    },
+    {
+      "id": "1760123408544",
+      "sender": "Hallo! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg.\n\nButter bei die Fische: Sie möchten Ihr Fahrzeug im Landkreis Oldenburg zulassen.\n\n1. Benötigt: Ausweis, Zulassungsbescheinigung I/II, eVB-Nummer.\n2. Termin online buchen oder Unterlagen digital vorbereiten.\n3. Gebühren vor Ort bezahlen.\n\n📋 Terminvereinbarung: [Link zur Online-Terminbuchung](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/terminvereinbarung)\n\n📞 **Kontakt:** 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n📋 **Quelle:** Zulassungsstelle Landkreis Oldenburg | **Stand:** 01/2025\n\nSollen wir den Termin jetzt wählen?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:10:08.544Z",
+      "context": {
+        "intention": "kfz_zulassung",
+        "persona": "mobility_needs",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760123412019",
+      "sender": "Hello, I need help with my car registration.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:10:12.019Z",
+      "context": {}
+    },
+    {
+      "id": "1760123412027",
+      "sender": "Shall I continue in English?\n\nHi! I am KAYA, your municipal AI assistant for Landkreis Oldenburg.\n\nYou want to use social services in Landkreis Oldenburg.\n\n1. Kontaktieren Sie uns.\n2. Unterlagen einreichen.\n3. Bearbeitung abwarten.\n\n📞 **Contact:** 04431 85-0 (Mon-Fri 8-16)\n\n📋 **Quelle:** Landkreis Oldenburg | **Stand:** 01/2025\n\nHow can I help you further?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:10:12.027Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    }
+  ],
+  "createdAt": "2025-10-10T19:08:56.553Z",
+  "lastActivity": "2025-10-10T19:10:12.027Z"
+}

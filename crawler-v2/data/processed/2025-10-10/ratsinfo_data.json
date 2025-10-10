@@ -1,0 +1,170 @@
+[
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/login/",
+    "title": "login",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/",
+    "title": "Unbekannt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/startseite",
+    "title": "startseite",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/news",
+    "title": "news",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/aemter",
+    "title": "aemter",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien",
+    "title": "gremien",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen",
+    "title": "fraktionen",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen",
+    "title": "personen",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/vorlagen",
+    "title": "vorlagen",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/termine",
+    "title": "termine",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/recherche",
+    "title": "recherche",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/diverses/downloads/1",
+    "title": "1",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/kennwort?__=UGhVM0hpd2NXNFdFcExjZQ4rVHVtuI-BnC7-z0MspoU",
+    "title": "kennwort",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/tops/?__=UGhVM0hpd2NXNFdFcExjZWwjL-ODvqygWFxRUBfwQgA",
+    "title": "tops",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/tops/?__=UGhVM0hpd2NXNFdFcExjZbSQmZjZRIhLpqwcVvr0Ldk",
+    "title": "tops",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/tops/?__=UGhVM0hpd2NXNFdFcExjZU8uUgu-odqQ4aOOFmFYvhg",
+    "title": "tops",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/tops/?__=UGhVM0hpd2NXNFdFcExjZZzWSej0uDzg5QN1wGzoGOo",
+    "title": "tops",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/tops/?__=UGhVM0hpd2NXNFdFcExjZWsJU3RPM_IGqZE49u6Wfwk",
+    "title": "tops",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/tops/?__=UGhVM0hpd2NXNFdFcExjZcyxPuopaSdAp4W0GAKDluE",
+    "title": "tops",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/tops/?__=UGhVM0hpd2NXNFdFcExjZRSMddRLO7hMK5laStu7BZE",
+    "title": "tops",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/tops/?__=UGhVM0hpd2NXNFdFcExjZRkoPCRAPS5qtttq5aR3PPc",
+    "title": "tops",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/recherche/",
+    "title": "recherche",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/diverses/downloads/1/?__=UGhVM0hpd2NXNFdFcExjZT8nf6NBS3Ii7UInv2M3grU",
+    "title": "1",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/diverses/downloads/1/?__=UGhVM0hpd2NXNFdFcExjZWxYzeVb0zFd7iyiu4-2SQ4",
+    "title": "1",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/seite/impressum",
+    "title": "impressum",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/datenschutz/",
+    "title": "datenschutz",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/barrierefreiheit/",
+    "title": "barrierefreiheit",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://oldenburg-kreis.ratsinfomanagement.net/ris/",
+    "title": "ris",
+    "type": "web_content",
+    "source": "crawler_v2"
+  }
+]

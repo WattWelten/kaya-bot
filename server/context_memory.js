@@ -1,331 +1,143 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 class ContextMemory {
     constructor() {
-        this.memoryDir = path.join(__dirname, '../memory');
-        this.sessions = new Map(); // In-Memory für aktive Sessions
-        this.maxSessions = 100; // Maximale Anzahl aktiver Sessions
-        this.sessionTimeout = 30 * 60 * 1000; // 30 Minuten
-        
+        this.sessions = new Map();
+        this.memoryDir = path.join(__dirname, 'memory');
         this.ensureMemoryDir();
-        this.startCleanupInterval();
+        this.loadPersistentSessions();
+        
+        console.log('🧠 Context Memory initialisiert');
     }
     
     ensureMemoryDir() {
-        if (!fs.existsSync(this.memoryDir)) {
-            fs.mkdirSync(this.memoryDir, { recursive: true });
+        try {
+            fs.ensureDirSync(this.memoryDir);
+        } catch (error) {
+            console.error('Fehler beim Erstellen des Memory-Verzeichnisses:', error);
         }
     }
     
-    // Session erstellen oder laden
+    loadPersistentSessions() {
+        try {
+            const files = fs.readdirSync(this.memoryDir);
+            files.forEach(file => {
+                if (file.endsWith('.json')) {
+                    const sessionId = path.basename(file, '.json');
+                    const sessionPath = path.join(this.memoryDir, file);
+                    const sessionData = fs.readJsonSync(sessionPath);
+                    this.sessions.set(sessionId, sessionData);
+                }
+            });
+            console.log(`📁 ${files.length} Sessions aus Dateisystem geladen`);
+        } catch (error) {
+            console.log('Keine persistenten Sessions gefunden oder Fehler beim Laden');
+        }
+    }
+    
+    saveSession(sessionId) {
+        try {
+            const session = this.sessions.get(sessionId);
+            if (session) {
+                const sessionPath = path.join(this.memoryDir, `${sessionId}.json`);
+                fs.writeJsonSync(sessionPath, session, { spaces: 2 });
+            }
+        } catch (error) {
+            console.error(`Fehler beim Speichern der Session ${sessionId}:`, error);
+        }
+    }
+    
     getSession(sessionId) {
         if (!this.sessions.has(sessionId)) {
             this.sessions.set(sessionId, {
                 id: sessionId,
-                createdAt: new Date(),
-                lastActivity: new Date(),
                 messages: [],
-                context: {
-                    location: null,
-                    persona: null,
-                    urgency: 'normal',
-                    emotionalState: 'neutral',
-                    citizenType: 'unknown',
-                    currentTopic: null,
-                    problemProgress: [],
-                    preferences: {}
-                },
-                metadata: {
-                    totalMessages: 0,
-                    averageResponseTime: 0,
-                    satisfactionScore: null
-                }
+                createdAt: new Date().toISOString(),
+                lastActivity: new Date().toISOString()
             });
         }
         
         const session = this.sessions.get(sessionId);
-        session.lastActivity = new Date();
+        session.lastActivity = new Date().toISOString();
         return session;
     }
     
-    // Nachricht zur Session hinzufügen
-    addMessage(sessionId, message, sender, metadata = {}) {
+    addMessage(sessionId, sender, content, metadata = {}) {
         const session = this.getSession(sessionId);
         
         const messageObj = {
-            id: this.generateMessageId(),
-            timestamp: new Date(),
-            sender: sender, // 'user' oder 'kaya'
-            content: message,
-            context: metadata, // Speichere den kompletten Context
-            metadata: {
-                ...metadata,
-                messageLength: message.length,
-                containsQuestion: this.containsQuestion(message),
-                containsEmotion: this.detectEmotion(message),
-                containsLocation: this.extractLocation(message),
-                containsUrgency: this.detectUrgency(message)
-            }
+            id: Date.now().toString(),
+            sender: sender,
+            content: content,
+            timestamp: new Date().toISOString(),
+            context: metadata
         };
         
         session.messages.push(messageObj);
-        session.metadata.totalMessages++;
-        
-        // Context aktualisieren
-        this.updateContext(session, messageObj);
         
         // Session speichern
-        this.saveSession(session);
+        this.saveSession(sessionId);
         
         return messageObj;
     }
     
-    // Context basierend auf Nachrichten aktualisieren
-    updateContext(session, message) {
-        const { content, metadata } = message;
-        
-        // Location aktualisieren
-        if (metadata.containsLocation) {
-            session.context.location = metadata.containsLocation;
-        }
-        
-        // Emotional State aktualisieren
-        if (metadata.containsEmotion) {
-            session.context.emotionalState = metadata.containsEmotion;
-        }
-        
-        // Urgency aktualisieren
-        if (metadata.containsUrgency) {
-            session.context.urgency = metadata.containsUrgency;
-        }
-        
-        // Current Topic aktualisieren
-        session.context.currentTopic = this.extractTopic(content);
-        
-        // Citizen Type bestimmen
-        session.context.citizenType = this.determineCitizenType(session);
-        
-        // Problem Progress verfolgen
-        this.updateProblemProgress(session, content);
-    }
-    
-    // Emotionen in Text erkennen
-    detectEmotion(text) {
-        const emotions = {
-            frustrated: ['ärgerlich', 'frustriert', 'genervt', 'verärgert', 'wütend'],
-            confused: ['verwirrt', 'verstehe nicht', 'unsicher', 'ratlos'],
-            urgent: ['eilig', 'dringend', 'schnell', 'sofort', 'heute noch'],
-            happy: ['freut', 'danke', 'super', 'toll', 'perfekt'],
-            sad: ['traurig', 'probleme', 'schwierig', 'kompliziert']
-        };
-        
-        const textLower = text.toLowerCase();
-        for (const [emotion, keywords] of Object.entries(emotions)) {
-            if (keywords.some(keyword => textLower.includes(keyword))) {
-                return emotion;
-            }
-        }
-        
-        return 'neutral';
-    }
-    
-    // Dringlichkeit erkennen
-    detectUrgency(text) {
-        const urgentKeywords = ['eilig', 'dringend', 'schnell', 'sofort', 'heute', 'morgen', 'frist'];
-        const textLower = text.toLowerCase();
-        
-        if (urgentKeywords.some(keyword => textLower.includes(keyword))) {
-            return 'high';
-        }
-        
-        return 'normal';
-    }
-    
-    // Ort/Location extrahieren
-    extractLocation(text) {
-        const locations = [
-            'wildeshausen', 'delmenhorst', 'ganderkesee', 'hude', 'grossenkneten',
-            'harpstedt', 'dötlingen', 'winkelsett', 'kirchseelte', 'neerstedt'
-        ];
-        
-        const textLower = text.toLowerCase();
-        for (const location of locations) {
-            if (textLower.includes(location)) {
-                return location;
-            }
-        }
-        
-        return null;
-    }
-    
-    // Topic/Thema extrahieren
-    extractTopic(text) {
-        const topics = {
-            'bauantrag': ['bauantrag', 'bauen', 'haus', 'umbau', 'anbau'],
-            'kita': ['kita', 'kindergarten', 'krippe', 'betreuung', 'kind'],
-            'sozialhilfe': ['sozialhilfe', 'alg', 'arbeitslos', 'hilfe', 'unterstützung'],
-            'wohngeld': ['wohngeld', 'miete', 'wohnung', 'wohnen'],
-            'gewerbe': ['gewerbe', 'geschäft', 'selbständig', 'unternehmen'],
-            'ausweis': ['ausweis', 'personalausweis', 'reisepass', 'dokument'],
-            'meldeamt': ['anmelden', 'ummelden', 'abmelden', 'wohnsitz']
-        };
-        
-        const textLower = text.toLowerCase();
-        for (const [topic, keywords] of Object.entries(topics)) {
-            if (keywords.some(keyword => textLower.includes(keyword))) {
-                return topic;
-            }
-        }
-        
-        return 'general';
-    }
-    
-    // Bürger-Typ bestimmen
-    determineCitizenType(session) {
-        const messages = session.messages;
-        const totalMessages = messages.length;
-        
-        if (totalMessages === 1) {
-            return 'first_time';
-        } else if (totalMessages > 10) {
-            return 'regular';
-        } else if (messages.some(m => m.metadata.containsEmotion === 'confused')) {
-            return 'needs_guidance';
-        } else if (messages.some(m => m.metadata.containsUrgency === 'high')) {
-            return 'urgent_case';
-        }
-        
-        return 'standard';
-    }
-    
-    // Problem Progress verfolgen
-    updateProblemProgress(session, content) {
-        const progress = session.context.problemProgress;
-        const currentTopic = session.context.currentTopic;
-        
-        // Prüfe ob neues Problem oder Fortschritt
-        if (progress.length === 0 || progress[progress.length - 1].topic !== currentTopic) {
-            progress.push({
-                topic: currentTopic,
-                started: new Date(),
-                steps: [],
-                status: 'in_progress'
-            });
-        }
-        
-        // Aktuellen Schritt hinzufügen
-        const currentProblem = progress[progress.length - 1];
-        currentProblem.steps.push({
-            timestamp: new Date(),
-            content: content,
-            step: currentProblem.steps.length + 1
-        });
-    }
-    
-    // Frage erkennen
-    containsQuestion(text) {
-        return text.includes('?') || 
-               text.toLowerCase().includes('wie') ||
-               text.toLowerCase().includes('was') ||
-               text.toLowerCase().includes('wo') ||
-               text.toLowerCase().includes('wann') ||
-               text.toLowerCase().includes('warum');
-    }
-    
-    // Message ID generieren
-    generateMessageId() {
-        return Date.now().toString(36) + Math.random().toString(36).substr(2);
-    }
-    
-    // Session speichern
-    saveSession(session) {
-        const filePath = path.join(this.memoryDir, `${session.id}.json`);
-        fs.writeFileSync(filePath, JSON.stringify(session, null, 2));
-    }
-    
-    // Session laden
-    loadSession(sessionId) {
-        const filePath = path.join(this.memoryDir, `${sessionId}.json`);
-        if (fs.existsSync(filePath)) {
-            const data = fs.readFileSync(filePath, 'utf8');
-            return JSON.parse(data);
-        }
-        return null;
-    }
-    
-    // Context für LLM generieren
-    generateContextPrompt(session) {
-        const context = session.context;
-        const recentMessages = session.messages.slice(-5); // Letzte 5 Nachrichten
-        
-        let prompt = `KONTEXT-ANALYSE für KAYA:
-        
-BÜRGER-PROFIL:
-- Typ: ${context.citizenType}
-- Emotionaler Zustand: ${context.emotionalState}
-- Dringlichkeit: ${context.urgency}
-- Standort: ${context.location || 'Landkreis Oldenburg'}
-- Aktuelles Thema: ${context.currentTopic}
-
-PROBLEM-PROGRESS:
-`;
-        
-        if (context.problemProgress.length > 0) {
-            const currentProblem = context.problemProgress[context.problemProgress.length - 1];
-            prompt += `- Thema: ${currentProblem.topic}
-- Status: ${currentProblem.status}
-- Schritte: ${currentProblem.steps.length}
-`;
-        }
-        
-        prompt += `
-LETZTE NACHRICHTEN:
-`;
-        
-        recentMessages.forEach(msg => {
-            prompt += `- ${msg.sender}: ${msg.content}\n`;
-        });
-        
-        prompt += `
-KAYA-SYSTEMPROMPT:
-Reagiere als empathischer Bürgerservice-Mitarbeiter:
-1. Berücksichtige den emotionalen Zustand
-2. Stelle proaktive Fragen basierend auf dem Kontext
-3. Biete konkrete Lösungswege an
-4. Denke mit und erkenne implizite Bedürfnisse
-5. Verwende den Standort für lokale Informationen
-6. Verfolge den Problem-Progress und biete nächste Schritte`;
-        
-        return prompt;
-    }
-    
-    // Cleanup alte Sessions
-    startCleanupInterval() {
-        setInterval(() => {
-            const now = new Date();
-            for (const [sessionId, session] of this.sessions.entries()) {
-                if (now - session.lastActivity > this.sessionTimeout) {
-                    this.sessions.delete(sessionId);
-                }
-            }
-        }, 5 * 60 * 1000); // Alle 5 Minuten
-    }
-    
-    // Session-Statistiken
-    getSessionStats(sessionId) {
+    getMessages(sessionId, limit = 10) {
         const session = this.getSession(sessionId);
+        return session.messages.slice(-limit);
+    }
+    
+    clearSession(sessionId) {
+        this.sessions.delete(sessionId);
+        
+        // Datei löschen
+        try {
+            const sessionPath = path.join(this.memoryDir, `${sessionId}.json`);
+            if (fs.existsSync(sessionPath)) {
+                fs.removeSync(sessionPath);
+            }
+        } catch (error) {
+            console.error(`Fehler beim Löschen der Session-Datei ${sessionId}:`, error);
+        }
+    }
+    
+    getAllSessions() {
+        return Array.from(this.sessions.values());
+    }
+    
+    cleanupOldSessions(maxAge = 24 * 60 * 60 * 1000) { // 24 Stunden
+        const now = new Date();
+        const sessionsToDelete = [];
+        
+        this.sessions.forEach((session, sessionId) => {
+            const lastActivity = new Date(session.lastActivity);
+            const age = now - lastActivity;
+            
+            if (age > maxAge) {
+                sessionsToDelete.push(sessionId);
+            }
+        });
+        
+        sessionsToDelete.forEach(sessionId => {
+            this.clearSession(sessionId);
+        });
+        
+        if (sessionsToDelete.length > 0) {
+            console.log(`🧹 ${sessionsToDelete.length} alte Sessions bereinigt`);
+        }
+    }
+    
+    getSessionStats() {
         return {
-            totalMessages: session.metadata.totalMessages,
-            sessionDuration: new Date() - session.createdAt,
-            currentTopic: session.context.currentTopic,
-            citizenType: session.context.citizenType,
-            emotionalState: session.context.emotionalState,
-            urgency: session.context.urgency
+            totalSessions: this.sessions.size,
+            totalMessages: Array.from(this.sessions.values())
+                .reduce((sum, session) => sum + session.messages.length, 0),
+            averageMessagesPerSession: this.sessions.size > 0 
+                ? Array.from(this.sessions.values())
+                    .reduce((sum, session) => sum + session.messages.length, 0) / this.sessions.size
+                : 0
         };
     }
 }
 
 module.exports = ContextMemory;
-
-

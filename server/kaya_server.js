@@ -1,24 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const http = require('http');
-
-// API Keys setzen VOR dem Import
-process.env.OPENAI_API_KEY = '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';
-process.env.ELEVENLABS_API_KEY = 'sk_d6715146b252ecd47c10277d1889e94dc14122081087f7c4';
-process.env.USE_LLM = 'true';
-
-console.log('🔧 Umgebungsvariablen gesetzt:');
-console.log('  - OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'VORHANDEN ✅' : 'FEHLT ❌');
-console.log('  - ELEVENLABS_API_KEY:', process.env.ELEVENLABS_API_KEY ? 'VORHANDEN ✅' : 'FEHLT ❌');
-console.log('  - USE_LLM:', process.env.USE_LLM);
-
 const KAYACharacterHandler = require('./kaya_character_handler');
-// KAYAAgentHandler wird lazy geladen - nicht beim Start importieren
-const VoiceService = require('./voice_service');
+const KAYAAgentHandler = require('./kaya_agent_handler');
 
 const app = express();
-const server = http.createServer(app);
 const PORT = process.env.PORT || 3002;
 
 // Middleware
@@ -28,9 +14,6 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 // KAYA-Handler initialisieren
 const kayaHandler = new KAYACharacterHandler();
-
-// Voice-Service initialisieren
-const voiceService = new VoiceService(server);
 
 // Health Check
 app.get('/health', (req, res) => {
@@ -42,10 +25,10 @@ app.get('/health', (req, res) => {
     });
 });
 
-// Chat-Endpoint mit Session-Support
+// Chat-Endpoint
 app.post('/chat', async (req, res) => {
     try {
-        const { message, sessionId = 'default' } = req.body;
+        const { message } = req.body;
         
         if (!message) {
             return res.status(400).json({ error: 'Message is required' });
@@ -53,8 +36,8 @@ app.post('/chat', async (req, res) => {
         
         console.log(`KAYA empfängt: ${message}`);
         
-        // Generiere KAYA-Antwort mit Session-ID
-        const response = await kayaHandler.generateResponse(message, message, sessionId);
+        // Generiere KAYA-Antwort
+        const response = kayaHandler.generateResponse(message, message);
         
         console.log(`KAYA antwortet: ${response.response}`);
         
@@ -141,14 +124,12 @@ app.get('/', (req, res) => {
 });
 
 // Server starten
-server.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`🚀 KAYA-Bot läuft auf Port ${PORT}`);
     console.log(`📱 Frontend: http://localhost:${PORT}`);
     console.log(`🔧 API: http://localhost:${PORT}/health`);
     console.log(`💬 Chat: http://localhost:${PORT}/chat`);
     console.log(`🎯 Routing: http://localhost:${PORT}/route`);
-    console.log(`🎤 Voice: ws://localhost:${PORT}/voice`);
-    console.log(`🤖 LLM: ${process.env.USE_LLM === 'true' ? 'Aktiviert' : 'Deaktiviert'}`);
     console.log();
     console.log('Moin! KAYA ist bereit für Bürgeranliegen! 🤖');
 });

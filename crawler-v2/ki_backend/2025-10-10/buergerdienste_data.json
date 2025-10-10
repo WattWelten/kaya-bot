@@ -1,0 +1,536 @@
+[
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
+    "title": "startseite.html",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/suche.html",
+    "title": "suche.html",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/favoriten/uebersicht.html",
+    "title": "uebersicht.html",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/oeffnungszeiten-900000003-21700.html?titel=%C3%96ffnungszeiten",
+    "title": "oeffnungszeiten-900000003-21700.html",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/",
+    "title": "landkreis-und-verwaltung",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/arbeitgeber-landkreis-oldenburg/",
+    "title": "arbeitgeber-landkreis-oldenburg",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/arbeitgeber-landkreis-oldenburg/ausbildung-und-studium/",
+    "title": "ausbildung-und-studium",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/arbeitgeber-landkreis-oldenburg/ausbildung-und-studium/ausbildungsberufe/",
+    "title": "ausbildungsberufe",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/arbeitgeber-landkreis-oldenburg/ausbildung-und-studium/praktika/",
+    "title": "praktika",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/arbeitgeber-landkreis-oldenburg/haeufige-fragen-von-bewerberinnen-und-bewerbern/",
+    "title": "haeufige-fragen-von-bewerberinnen-und-bewerbern",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/",
+    "title": "kreistag",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/staedte-und-gemeinden/",
+    "title": "staedte-und-gemeinden",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/vergabeportal-landkreis-oldenburg/",
+    "title": "vergabeportal-landkreis-oldenburg",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/vergabeportal-landkreis-oldenburg/auftragsvergaben-ex-post-transparenz-/",
+    "title": "auftragsvergaben-ex-post-transparenz-",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/vergabeportal-landkreis-oldenburg/dokumentation-gem-20-vob-a/",
+    "title": "dokumentation-gem-20-vob-a",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/wahlen/",
+    "title": "wahlen",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/wahlen/kommunalwahl-2026/",
+    "title": "kommunalwahl-2026",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/wahlen/bundestagswahl-2025/",
+    "title": "bundestagswahl-2025",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/krippe-und-tagespflegeeinrichtung-luette-lue/",
+    "title": "krippe-und-tagespflegeeinrichtung-luette-lue",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/",
+    "title": "kreisverwaltung",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/dienstleistungen/",
+    "title": "dienstleistungen",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/",
+    "title": "kurzvorstellung-der-aemter",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+    "title": "amt-fuer-teilhabe-und-soziale-sicherung",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-bodenschutz-und-abfallwirtschaft/",
+    "title": "amt-fuer-bodenschutz-und-abfallwirtschaft",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-brand-und-katastrophenschutz-rettungsdienst/",
+    "title": "amt-fuer-brand-und-katastrophenschutz-rettungsdienst",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-brand-und-katastrophenschutz-rettungsdienst/katastrophenschutz/",
+    "title": "katastrophenschutz",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-brand-und-katastrophenschutz-rettungsdienst/zivil-und-bevoelkerungsschutz/",
+    "title": "zivil-und-bevoelkerungsschutz",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-brand-und-katastrophenschutz-rettungsdienst/rettungsdienst/",
+    "title": "rettungsdienst",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-brand-und-katastrophenschutz-rettungsdienst/brandschutzpruefung/",
+    "title": "brandschutzpruefung",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-brand-und-katastrophenschutz-rettungsdienst/feuerwehrtechnische-zentrale/",
+    "title": "feuerwehrtechnische-zentrale",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-brand-und-katastrophenschutz-rettungsdienst/kreisfeuerwehr-hilfsorganisationen/",
+    "title": "kreisfeuerwehr-hilfsorganisationen",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-regionale-entwicklung-und-naturschutz/",
+    "title": "amt-fuer-regionale-entwicklung-und-naturschutz",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-zentrale-dienste/",
+    "title": "amt-fuer-zentrale-dienste",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-zentrale-dienste/kommunalaufsicht/",
+    "title": "kommunalaufsicht",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-zentrale-dienste/redaktion-amtsblatt/",
+    "title": "redaktion-amtsblatt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-zentrale-dienste/wahlen/",
+    "title": "wahlen",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-zentrale-dienste/arbeitgeber-landkreis-oldenburg/",
+    "title": "arbeitgeber-landkreis-oldenburg",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-zentrale-dienste/kultur/",
+    "title": "kultur",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/bauordnungsamt/",
+    "title": "bauordnungsamt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/jobcenter/",
+    "title": "jobcenter",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/kaemmerei-kreiskasse/",
+    "title": "kaemmerei-kreiskasse",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/kaemmerei/haushaltswirtschaft/",
+    "title": "haushaltswirtschaft",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/kaemmerei/haushaltsplan/",
+    "title": "haushaltsplan",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/kaemmerei/jahresrechnung/",
+    "title": "jahresrechnung",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/kaemmerei/kreiskasse/",
+    "title": "kreiskasse",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/kaemmerei/jagdsteuer/",
+    "title": "jagdsteuer",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/kaemmerei/zentrale-submissionsstelle/",
+    "title": "zentrale-submissionsstelle",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/",
+    "title": "ordnungsamt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/rechnungspruefungsamt/",
+    "title": "rechnungspruefungsamt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/rechtsamt/",
+    "title": "rechtsamt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/schulamt-und-hochbau/",
+    "title": "schulamt-und-hochbau",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/schulamt-und-hochbau/schulangelegenheiten/",
+    "title": "schulangelegenheiten",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/schulamt-und-hochbau/hochbau/",
+    "title": "hochbau",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/schulamt-und-hochbau/kreismedienzentrum/",
+    "title": "kreismedienzentrum",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/strassenverkehrsamt/",
+    "title": "strassenverkehrsamt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/veterinaeramt/",
+    "title": "veterinaeramt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/der-personalrat/",
+    "title": "der-personalrat",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/unser-leitbild/",
+    "title": "unser-leitbild",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/zensus-2022/",
+    "title": "zensus-2022",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/der-landkreis-oldenburg/",
+    "title": "der-landkreis-oldenburg",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/",
+    "title": "gleichstellungsbeauftragte",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte-neu/frauen-in-politik-und-wirtschaft/",
+    "title": "frauen-in-politik-und-wirtschaft",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/gewaltschutz-hilfetelefone-und-beratungsangebote/",
+    "title": "gewaltschutz-hilfetelefone-und-beratungsangebote",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/k-o-mittel-was-tun-/",
+    "title": "k-o-mittel-was-tun-",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/orange-bank-kein-platz-fuer-gewalt-/",
+    "title": "orange-bank-kein-platz-fuer-gewalt-",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/pressespiegel/",
+    "title": "pressespiegel",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/ehrenamt/",
+    "title": "ehrenamt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/",
+    "title": "breitbandausbau",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+    "title": "geoportal",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/unterstuetzung-fuer-ukrainische-fluechtlinge/",
+    "title": "unterstuetzung-fuer-ukrainische-fluechtlinge",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/",
+    "title": "wirtschaft-und-arbeit",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/",
+    "title": "jobcenter-landkreis-oldenburg",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/arbeitgeberservice-des-jobcenter-landkreis-oldenburg/",
+    "title": "arbeitgeberservice-des-jobcenter-landkreis-oldenburg",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/leistungen-fuer-bildung-und-teilhabe/",
+    "title": "leistungen-fuer-bildung-und-teilhabe",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/mietobergrenzen-fuer-angemessene-unterkunftskosten/",
+    "title": "mietobergrenzen-fuer-angemessene-unterkunftskosten",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/oertlicher-beirat-jobcenter-gem-18-d-sgb-ii/",
+    "title": "oertlicher-beirat-jobcenter-gem-18-d-sgb-ii",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/wirtschaftsfoerderung/",
+    "title": "wirtschaftsfoerderung",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/sportstaettenfoerderung/",
+    "title": "sportstaettenfoerderung",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/",
+    "title": "schwarzarbeitsbekaempfung",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/schwarzarbeit-oder-unerlaubte-handwerkliche-taetigkeit/",
+    "title": "schwarzarbeit-oder-unerlaubte-handwerkliche-taetigkeit",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/illegale-ausuebung-von-handwerk-oder-gewerbe/",
+    "title": "illegale-ausuebung-von-handwerk-oder-gewerbe",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/geldwaeschepraevention/",
+    "title": "geldwaeschepraevention",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/zentrale-submissionsstelle/",
+    "title": "zentrale-submissionsstelle",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/gewerbe/",
+    "title": "gewerbe",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/gewerbe/reisegewerbe/",
+    "title": "reisegewerbe",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/gewerbe/maklergewerbe/",
+    "title": "maklergewerbe",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/gewerbe/spielhallen/",
+    "title": "spielhallen",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/gewerbe/bewachungsgewerbe/",
+    "title": "bewachungsgewerbe",
+    "type": "web_content",
+    "source": "crawler_v2"
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/",
+    "title": "Unbekannt",
+    "type": "web_content",
+    "source": "crawler_v2"
+  }
+]
