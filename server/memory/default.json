@@ -178,8 +178,1179 @@
         "urgency": "normal",
         "agent": "kaya"
       }
+    },
+    {
+      "id": "1760124022598",
+      "sender": "Moin! Ich bin Henning und brauche Hilfe beim FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:20:22.598Z",
+      "context": {}
+    },
+    {
+      "id": "1760124022607",
+      "sender": "Shall I continue in English?\n\nGood day! I am KAYA, your municipal AI assistant for Landkreis Oldenburg.\n\nYou want to get a driver's license in Landkreis Oldenburg.\n\n1. Find and register at driving school.\n2. Complete theory and practical exam.\n3. Apply for driver's license.\n\n📋 Driving schools: [Link to driving schools directory](https://www.oldenburg-kreis.de/buergerservice/fuehrerschein/fahrschulen)\n\n📞 **Contact:** 04431 85-0 (Mon-Fri 8-16)\n\n📋 **Quelle:** Driver's License Office Landkreis Oldenburg | **Stand:** 01/2025\n\nWould you like to find a driving school?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:20:22.607Z",
+      "context": {
+        "intention": "führerschein",
+        "persona": "disabled",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124026342",
+      "sender": "Hallo, ich bin verzweifelt. Mein Auto ist kaputt und ich muss heute noch zur Arbeit.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:20:26.342Z",
+      "context": {}
+    },
+    {
+      "id": "1760124026353",
+      "sender": "Hallo! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg.\n\nButter bei die Fische: Sie möchten Ihr Fahrzeug im Landkreis Oldenburg zulassen.\n\n1. Benötigt: Ausweis, Zulassungsbescheinigung I/II, eVB-Nummer.\n2. Termin online buchen oder Unterlagen digital vorbereiten.\n3. Gebühren vor Ort bezahlen.\n\n📋 Terminvereinbarung: [Link zur Online-Terminbuchung](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/terminvereinbarung)\n\n📞 **Kontakt:** 04431 85-0 (Mo-Fr 8-16 Uhr)\n🚨 **Dringend?** Ruf sofort an oder komm vorbei!\n\n📋 **Quelle:** Zulassungsstelle Landkreis Oldenburg | **Stand:** 01/2025\n\nSollen wir den Termin jetzt wählen?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:20:26.353Z",
+      "context": {
+        "intention": "kfz_zulassung",
+        "persona": "mobility_needs",
+        "emotionalState": "neutral",
+        "urgency": "critical",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124032548",
+      "sender": "Ich verstehe das alles nicht. Das ist alles so kompliziert.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:20:32.548Z",
+      "context": {}
+    },
+    {
+      "id": "1760124032560",
+      "sender": "Hallo! Ich bin KAYA, Ihr kommunaler KI-Assistent für den Landkreis Oldenburg.\n\nSie möchten soziale Dienstleistungen im Landkreis Oldenburg nutzen.\n\n1. Kontaktieren Sie uns.\n2. Unterlagen einreichen.\n3. Bearbeitung abwarten.\n\n📞 **Kontakt:** 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n📋 **Quelle:** Landkreis Oldenburg | **Stand:** 01/2025\n\nWie kann ich Ihnen weiterhelfen?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:20:32.560Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124078764",
+      "sender": "Moin! Ich bin Henning und brauche Hilfe beim FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:21:18.764Z",
+      "context": {}
+    },
+    {
+      "id": "1760124078777",
+      "sender": "Moin Henning! Wie kann ich Ihnen helfen?Beim Führerschein unterstütze ich Sie gerne. Henning, beim Führerschein ist das so: Gerne helfe ich weiter.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:21:18.777Z",
+      "context": {
+        "intention": "führerschein",
+        "persona": "disabled",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124083682",
+      "sender": "Ich verstehe das alles nicht. Das ist alles so kompliziert.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:21:23.682Z",
+      "context": {}
+    },
+    {
+      "id": "1760124083696",
+      "sender": "Moin! Ich verstehe, dass das gerade schwierig ist.\n\nIch weiß, dass das alles kompliziert wirken kann. Aber keine Sorge - Schritt für Schritt kriegen wir das hin. Ich helfe Ihnen gerne bei Ihrem Anliegen. Kriegen wir zusammen hin!",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:21:23.696Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "frustrated",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124088481",
+      "sender": "Hallo, ich bin verzweifelt. Mein Auto ist kaputt und ich muss heute noch zur Arbeit.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:21:28.481Z",
+      "context": {}
+    },
+    {
+      "id": "1760124088493",
+      "sender": "Moin verzweifelt! Keine Sorge, wir kriegen das hin.\n\nIch bin hier, um Ihnen zu helfen. Gemeinsam finden wir eine Lösung. Bei der KFZ-Zulassung helfe ich Ihnen gerne. verzweifelt, bei der KFZ-Zulassung geht es so: Ich bin für Sie da.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:21:28.493Z",
+      "context": {
+        "intention": "kfz_zulassung",
+        "persona": "mobility_needs",
+        "emotionalState": "anxious",
+        "urgency": "critical",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124102766",
+      "sender": "Hallo, ich bin verzweifelt. Mein Auto ist kaputt und ich muss heute noch zur Arbeit.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:21:42.766Z",
+      "context": {}
+    },
+    {
+      "id": "1760124102781",
+      "sender": "Moin! Keine Sorge, wir kriegen das hin.\n\nIch bin hier, um Ihnen zu helfen. Gemeinsam finden wir eine Lösung. Bei der KFZ-Zulassung helfe ich Ihnen gerne. Ich bin für Sie da.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:21:42.781Z",
+      "context": {
+        "intention": "kfz_zulassung",
+        "persona": "mobility_needs",
+        "emotionalState": "anxious",
+        "urgency": "critical",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124106992",
+      "sender": "Moin! Ich bin Henning und brauche Hilfe beim FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:21:46.992Z",
+      "context": {}
+    },
+    {
+      "id": "1760124107003",
+      "sender": "Moin Henning! Wie kann ich Ihnen helfen?Beim Führerschein unterstütze ich Sie gerne. Henning, beim Führerschein ist das so: Gerne helfe ich weiter.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:21:47.003Z",
+      "context": {
+        "intention": "führerschein",
+        "persona": "disabled",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124111933",
+      "sender": "Hello, I need help with my car registration.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:21:51.933Z",
+      "context": {}
+    },
+    {
+      "id": "1760124111943",
+      "sender": "Hello! How can I help you?I'd be happy to help you with your request. Happy to help further.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:21:51.943Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124792414",
+      "sender": "Hello, I need help with my car registration.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:33:12.414Z",
+      "context": {}
+    },
+    {
+      "id": "1760124792422",
+      "sender": "Hello! How can I help you?I'd be happy to help you with your request. Happy to help further.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:33:12.422Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124792424",
+      "sender": "What documents do I need?",
+      "content": "user",
+      "timestamp": "2025-10-10T19:33:12.424Z",
+      "context": {}
+    },
+    {
+      "id": "1760124792427",
+      "sender": "Moin! Wie kann ich Ihnen helfen?Ich helfe Ihnen gerne bei Ihrem Anliegen. Gerne helfe ich weiter.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:33:12.427Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124792429",
+      "sender": "Thank you very much!",
+      "content": "user",
+      "timestamp": "2025-10-10T19:33:12.429Z",
+      "context": {}
+    },
+    {
+      "id": "1760124792431",
+      "sender": "Moin! Wie kann ich Ihnen helfen?Ich helfe Ihnen gerne bei Ihrem Anliegen. Gerne helfe ich weiter.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:33:12.431Z",
+      "context": {
+        "intention": "general",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124797347",
+      "sender": "Ich brauche einen FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:33:17.347Z",
+      "context": {}
+    },
+    {
+      "id": "1760124797358",
+      "sender": "Moin! Wie kann ich Ihnen helfen?Beim Führerschein unterstütze ich Sie gerne. Gerne helfe ich weiter.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:33:17.358Z",
+      "context": {
+        "intention": "führerschein",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124801744",
+      "sender": "Ich bin verzweifelt und weiÃŸ nicht weiter.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:33:21.744Z",
+      "context": {}
+    },
+    {
+      "id": "1760124801752",
+      "sender": "Moin! Keine Sorge, wir kriegen das hin.\n\nIch bin hier, um Ihnen zu helfen. Gemeinsam finden wir eine Lösung. Bei der KFZ-Zulassung helfe ich Ihnen gerne. Ich bin für Sie da.",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:33:21.752Z",
+      "context": {
+        "intention": "kfz_zulassung",
+        "persona": "event_tourist",
+        "emotionalState": "anxious",
+        "urgency": "normal",
+        "agent": "kaya"
+      }
+    },
+    {
+      "id": "1760124856396",
+      "sender": "Ich brauche einen FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:34:16.396Z",
+      "context": {}
+    },
+    {
+      "id": "1760124870534",
+      "sender": "Ich brauche einen FÃ¼hrerschein.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:34:30.534Z",
+      "context": {}
+    },
+    {
+      "id": "1760124870543",
+      "sender": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Fahrschule finden\n2. Anmelden und Prüfungen machen\n3. Führerschein beantragen\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:34:30.543Z",
+      "context": {
+        "intention": "führerschein",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german"
+      }
+    },
+    {
+      "id": "1760124875317",
+      "sender": "Hello, I need help with my car registration.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:34:35.317Z",
+      "context": {}
+    },
+    {
+      "id": "1760124875326",
+      "sender": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:34:35.326Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english"
+      }
+    },
+    {
+      "id": "1760124875337",
+      "sender": "What documents do I need?",
+      "content": "user",
+      "timestamp": "2025-10-10T19:34:35.337Z",
+      "context": {}
+    },
+    {
+      "id": "1760124875340",
+      "sender": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:34:35.340Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german"
+      }
+    },
+    {
+      "id": "1760124879928",
+      "sender": "Ich bin verzweifelt und weiÃŸ nicht weiter.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:34:39.928Z",
+      "context": {}
+    },
+    {
+      "id": "1760124879938",
+      "sender": "Moin! Keine Sorge, wir kriegen das hin.\n\nIch bin hier, um Ihnen zu helfen. Gemeinsam finden wir eine Lösung. Ich löse das für Sie: 1. Termin online buchen\n2. Unterlagen vorbereiten\n3. Zur Zulassungsstelle gehen\n\nIch führe Sie Schritt für Schritt. Womit starten wir?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:34:39.938Z",
+      "context": {
+        "intention": "kfz_zulassung",
+        "persona": "event_tourist",
+        "emotionalState": "anxious",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german"
+      }
+    },
+    {
+      "id": "1760125245218",
+      "sender": "Hello, I need help with my car registration.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:40:45.218Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125245227",
+      "sender": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:40:45.227Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125245230",
+      "sender": "What documents do I need?",
+      "content": "user",
+      "timestamp": "2025-10-10T19:40:45.230Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125245234",
+      "sender": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:40:45.234Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125249538",
+      "sender": "I need help with voice input for car registration.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:40:49.538Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125249547",
+      "sender": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:40:49.547Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125253421",
+      "sender": "I need help with voice input for car registration.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:40:53.421Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125253430",
+      "sender": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:40:53.430Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125253440",
+      "sender": "What documents do I need?",
+      "content": "user",
+      "timestamp": "2025-10-10T19:40:53.440Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125253443",
+      "sender": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:40:53.443Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125266141",
+      "sender": "I need help with voice input for car registration.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:41:06.141Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125266152",
+      "sender": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:41:06.152Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125266155",
+      "sender": "What documents do I need?",
+      "content": "user",
+      "timestamp": "2025-10-10T19:41:06.155Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125266158",
+      "sender": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:41:06.158Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125270605",
+      "sender": "I need help with voice input for car registration.",
+      "content": "user",
+      "timestamp": "2025-10-10T19:41:10.605Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125270615",
+      "sender": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "content": "assistant",
+      "timestamp": "2025-10-10T19:41:10.615Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125296790",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:41:36.790Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125296801",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:41:36.801Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125296812",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:41:36.812Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125296816",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:41:36.816Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125301851",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:41:41.851Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125301864",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:41:41.864Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125301868",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:41:41.868Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125301873",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:41:41.873Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125318608",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:41:58.608Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125318617",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:41:58.617Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125318626",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:41:58.626Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125318630",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:41:58.630Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125332297",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:42:12.297Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125332307",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:42:12.307Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125332317",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:42:12.317Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125332321",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:42:12.321Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125345545",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:42:25.545Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125345557",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:42:25.557Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125345565",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:42:25.565Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125345569",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:42:25.569Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125360552",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:42:40.552Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125360568",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:42:40.568Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125360575",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:42:40.575Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1760125360579",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:42:40.579Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    },
+    {
+      "id": "1760125402092",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:43:22.092Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125402102",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:43:22.102Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125402105",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:43:22.105Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125402109",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:43:22.109Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125435259",
+      "sender": "user",
+      "content": "Hello, I need help with my car registration.",
+      "timestamp": "2025-10-10T19:43:55.259Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125435268",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:43:55.268Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125435273",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:43:55.273Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125435278",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:43:55.278Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125435281",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:43:55.281Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125435285",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:43:55.285Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125457779",
+      "sender": "user",
+      "content": "Hello, I need help with my car registration.",
+      "timestamp": "2025-10-10T19:44:17.779Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125457786",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:44:17.786Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125457799",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:44:17.799Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125457803",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:44:17.803Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125457805",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:44:17.805Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125457809",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:44:17.809Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125470680",
+      "sender": "user",
+      "content": "Hello, I need help with my car registration.",
+      "timestamp": "2025-10-10T19:44:30.680Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125470691",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:44:30.691Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125470703",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:44:30.703Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125470707",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:44:30.707Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125470710",
+      "sender": "user",
+      "content": "I need help with voice input for car registration.",
+      "timestamp": "2025-10-10T19:44:30.710Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125470714",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:44:30.714Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
+    },
+    {
+      "id": "1760125470717",
+      "sender": "user",
+      "content": "What documents do I need?",
+      "timestamp": "2025-10-10T19:44:30.717Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1760125470720",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-10T19:44:30.720Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
     }
   ],
   "createdAt": "2025-10-10T19:08:56.553Z",
-  "lastActivity": "2025-10-10T19:10:12.027Z"
+  "lastActivity": "2025-10-10T19:44:30.720Z"
 }

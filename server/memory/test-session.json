@@ -1,0 +1,16 @@
+{
+  "id": "test-session",
+  "messages": [
+    {
+      "id": "1760125306464",
+      "sender": "user",
+      "content": "test message",
+      "timestamp": "2025-10-10T19:41:46.464Z",
+      "context": {
+        "test": "data"
+      }
+    }
+  ],
+  "createdAt": "2025-10-10T19:41:46.462Z",
+  "lastActivity": "2025-10-10T19:41:46.464Z"
+}

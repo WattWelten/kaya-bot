@@ -263,10 +263,10 @@ class KAYACharacterHandler {
         const queryLower = query.toLowerCase();
         
         const emotions = {
-            frustrated: ['frustriert', 'ärgerlich', 'wütend', 'nervig', 'blöd', 'doof'],
-            anxious: ['angst', 'sorge', 'besorgt', 'unsicher', 'nervös', 'panik'],
-            positive: ['gut', 'super', 'toll', 'fantastisch', 'wunderbar', 'perfekt'],
-            neutral: ['ok', 'okay', 'normal', 'standard', 'üblich']
+            frustrated: ['frustriert', 'ärgerlich', 'wütend', 'nervig', 'blöd', 'doof', 'verzweifelt', 'kompliziert', 'verstehe nicht', 'verwirrt', 'hilflos', 'überfordert', 'schwierig', 'unmöglich', 'stress'],
+            anxious: ['angst', 'sorge', 'besorgt', 'unsicher', 'nervös', 'panik', 'befürchte', 'zweifel', 'unsicher', 'sorge'],
+            positive: ['gut', 'super', 'toll', 'fantastisch', 'wunderbar', 'perfekt', 'danke', 'freue mich', 'schön', 'freudig', 'zufrieden'],
+            neutral: ['ok', 'okay', 'normal', 'standard', 'üblich', 'möchte', 'brauche', 'suche']
         };
         
         const scores = {};
@@ -523,16 +523,22 @@ class KAYACharacterHandler {
         
         try {
             // Cache-Check
+            // Cache prüfen (nur für identische Queries ohne Audio-Kontext)
             const cachedResponse = this.getFromCache(query, sessionId);
             if (cachedResponse) {
-                console.log('📦 Cache-Hit für Query:', query.substring(0, 50));
-                return cachedResponse;
+                // Session-Kontext prüfen für Audio-Modus
+                const session = this.contextMemory.getSession(sessionId);
+                const hasAudioContext = session.messages.some(msg => 
+                    msg.context && msg.context.communicationMode === 'audio'
+                );
+                
+                if (!hasAudioContext) {
+                    console.log('📦 Cache-Hit für Query:', query.substring(0, 50));
+                    return cachedResponse;
+                }
             }
             
-            // Context-Memory: Nachricht zur Session hinzufügen
-            this.contextMemory.addMessage(sessionId, query, 'user');
-            
-            // Session-Kontext abrufen
+            // Session-Kontext abrufen (vor User-Nachricht hinzufügen)
             const session = this.contextMemory.getSession(sessionId);
             const sessionContext = {
                 previousIntention: session.messages.length > 1 ? 
@@ -540,30 +546,65 @@ class KAYACharacterHandler {
                 conversationHistory: session.messages.slice(-3)
             };
             
+            // Kommunikationsmodus für User-Eingabe erkennen (mit Session-Kontext)
+            const userCommunicationMode = this.detectCommunicationMode(query, sessionContext);
+            
+            // Context-Memory: Nachricht zur Session hinzufügen
+            this.contextMemory.addMessage(sessionId, 'user', query, {
+                communicationMode: userCommunicationMode.mode
+            });
+            
+            // Session-Kontext erneut abrufen (nach User-Nachricht)
+            const updatedSession = this.contextMemory.getSession(sessionId);
+            const updatedSessionContext = {
+                previousIntention: updatedSession.messages.length > 1 ? 
+                    updatedSession.messages[updatedSession.messages.length - 2].context?.intention : null,
+                conversationHistory: updatedSession.messages.slice(-3)
+            };
+            
+            // Session-Kontext für Debugging (optional)
+            // console.log('🔍 Session-Kontext:', updatedSessionContext);
+            
             // Persona-Analyse
-            const personaAnalysis = this.analyzePersona(query, sessionContext);
+            const personaAnalysis = this.analyzePersona(query, updatedSessionContext);
             
             // Intention-Analyse
-            const intentionAnalysis = this.analyzeIntention(query, sessionContext);
+            const intentionAnalysis = this.analyzeIntention(query, updatedSessionContext);
+            
+            // Kommunikationsmodus erkennen (Text/Audio)
+            const communicationMode = this.detectCommunicationMode(query, updatedSessionContext);
             
             // System-Prompt konforme Antwort generieren
             const response = await this.generateSystemPromptResponse(
                 intentionAnalysis.type, 
                 personaAnalysis, 
                 query, 
-                sessionContext
+                updatedSessionContext
             );
+            
+            // Finale Sprache für Session-Memory bestimmen
+            const finalLanguage = this.determineFinalLanguage(
+                this.detectLanguageSwitch(query), 
+                updatedSessionContext, 
+                personaAnalysis.language.detected
+            );
+            
+            // Dual-Response für Text und Audio generieren
+            const dualResponse = this.generateDualResponse(response.response, communicationMode, finalLanguage);
             
             // Cache speichern
             this.setCache(query, sessionId, response);
             
             // Context-Memory: KAYA-Antwort hinzufügen
-            this.contextMemory.addMessage(sessionId, response.response, 'assistant', {
+            this.contextMemory.addMessage(sessionId, 'assistant', dualResponse.text, {
                 intention: intentionAnalysis.intention,
                 persona: personaAnalysis.persona.type,
                 emotionalState: personaAnalysis.emotionalState.state,
                 urgency: personaAnalysis.urgency.level,
-                agent: response.agent || 'kaya'
+                agent: response.agent || 'kaya',
+                language: finalLanguage || personaAnalysis.language.detected,
+                communicationMode: communicationMode.mode,
+                audioResponse: dualResponse.audio
             });
             
             // Performance-Metriken aktualisieren
@@ -572,7 +613,13 @@ class KAYACharacterHandler {
             
             console.log(`✅ Response generiert in ${responseTime}ms`);
             
-            return response;
+            return {
+                response: dualResponse.text,
+                audio: dualResponse.audio,
+                mode: dualResponse.mode,
+                language: finalLanguage,
+                communicationMode: communicationMode.mode
+            };
             
         } catch (error) {
             console.error('❌ Response-Generierung Fehler:', error);
@@ -1045,73 +1092,346 @@ class KAYACharacterHandler {
         
         // Sprachwechsel prüfen
         const languageSwitch = this.detectLanguageSwitch(query);
-        const finalLanguage = languageSwitch.detected ? languageSwitch.language : language;
         
-        // 1. Ziel in einem Satz spiegeln
-        const goalReflection = this.getGoalReflection(intention, query, finalLanguage);
+        // Sprache aus Session-Kontext oder aktuelle Sprache verwenden
+        const finalLanguage = this.determineFinalLanguage(languageSwitch, sessionContext, language);
         
-        // 2. Schritte (max. 3-5, nummeriert)
-        const steps = this.getActionSteps(intention, persona, urgency, finalLanguage);
+        // Empathische, menschliche Antwort generieren
+        const response = this.generateEmpatheticResponse(intention, personaAnalysis, query, sessionContext, finalLanguage);
         
-        // 3. Direktlinks (max. 3, sprechende Linktitel)
-        const directLinks = this.getDirectLinks(intention, finalLanguage);
-        
-        // 4. Kontakt/Öffnungszeiten (falls relevant)
-        const contactInfo = this.getContactInfo(intention, urgency, finalLanguage);
-        
-        // 5. Abschlussfrage / nächste Aktion
-        const nextAction = this.getNextAction(intention, persona, finalLanguage);
-        
-        // Quellenhinweise hinzufügen
-        const sourceInfo = this.getSourceInfo(intention, finalLanguage);
-        
-        // Norddeutsche Redewendungen einbauen
-        const norddeutschePhrases = this.getNorddeutschePhrases(emotionalState, urgency, finalLanguage);
-        
-        // Token-optimierte Antwort zusammenbauen
-        let response = '';
-        
-        // Sprachwechsel-Angebot
+        return { response };
+    }
+    
+    determineFinalLanguage(languageSwitch, sessionContext, currentLanguage) {
+        // Wenn Sprachwechsel erkannt wurde, diese Sprache verwenden
         if (languageSwitch.detected) {
-            response += `${languageSwitch.switchPhrase}\n\n`;
+            return languageSwitch.language;
         }
         
-        // Begrüßung mit norddeutscher Tonalität
-        response += `${this.getDynamicGreeting(persona, emotionalState, finalLanguage)}\n\n`;
-        
-        // Norddeutsche Einleitung
-        if (norddeutschePhrases.intro) {
-            response += `${norddeutschePhrases.intro}\n\n`;
+        // Session-Kontext prüfen für Sprachkonsistenz
+        if (sessionContext && sessionContext.conversationHistory && sessionContext.conversationHistory.length > 0) {
+            // Letzte Nachrichten durchgehen um Sprache zu finden
+            for (let i = sessionContext.conversationHistory.length - 1; i >= 0; i--) {
+                const message = sessionContext.conversationHistory[i];
+                if (message && message.context && message.context.language) {
+                    return message.context.language;
+                }
+            }
         }
         
-        // 1. Ziel spiegeln
-        response += `${goalReflection}\n\n`;
+        // Fallback auf aktuelle Sprache
+        return currentLanguage;
+    }
+    
+    // Audio-Chat-Integration
+    detectCommunicationMode(query, sessionContext) {
+        // Prüfen ob es sich um Audio-Eingabe handelt
+        const audioIndicators = ['audio', 'voice', 'spoken', 'speech', 'microphone'];
+        const queryLower = query.toLowerCase();
         
-        // 2. Schritte
-        response += `${steps}\n\n`;
+        const isAudioInput = audioIndicators.some(indicator => queryLower.includes(indicator));
         
-        // 3. Direktlinks
-        if (directLinks) {
-            response += `${directLinks}\n\n`;
+        // Session-Kontext prüfen für Kommunikationsmodus
+        let communicationMode = 'text'; // Standard: Text
+        
+        if (sessionContext && sessionContext.conversationHistory && sessionContext.conversationHistory.length > 0) {
+            // Letzte Nachrichten durchgehen um Kommunikationsmodus zu finden
+            for (let i = sessionContext.conversationHistory.length - 1; i >= 0; i--) {
+                const message = sessionContext.conversationHistory[i];
+                if (message && message.context && message.context.communicationMode) {
+                    communicationMode = message.context.communicationMode;
+                    // console.log('🔍 Kommunikationsmodus gefunden:', message.context.communicationMode);
+                    break;
+                }
+            }
         }
         
-        // 4. Kontakt
-        if (contactInfo) {
-            response += `${contactInfo}\n\n`;
+        // Audio-Kontext beibehalten: Wenn letzte Nachricht Audio war, bleibt Audio-Modus aktiv
+        const shouldMaintainAudioMode = communicationMode === 'audio' && !isAudioInput;
+        
+        const result = {
+            mode: isAudioInput ? 'audio' : (shouldMaintainAudioMode ? 'audio' : communicationMode),
+            isAudioInput,
+            requiresDualResponse: isAudioInput || communicationMode === 'audio' || shouldMaintainAudioMode
+        };
+        
+        // console.log('🔍 Kommunikationsmodus-Erkennung:', result);
+        
+        return result;
+    }
+    
+    // Dual-Response-System für Text und Audio
+    generateDualResponse(textResponse, communicationMode, language) {
+        if (communicationMode.mode === 'audio' || communicationMode.requiresDualResponse) {
+            return {
+                text: textResponse,
+                audio: this.generateAudioResponse(textResponse, language),
+                mode: 'dual'
+            };
         }
         
-        // Quellenhinweise
-        response += `${sourceInfo}\n\n`;
+        return {
+            text: textResponse,
+            audio: null,
+            mode: 'text'
+        };
+    }
+    
+    generateAudioResponse(textResponse, language) {
+        // Audio-spezifische Anpassungen
+        const audioAdaptations = {
+            german: {
+                // Kürzere Sätze für Audio
+                'Ich löse das für Sie:': 'Ich löse das für Sie.',
+                'Los geht\'s!': 'Los geht\'s!',
+                'Was ist Ihr nächster Schritt?': 'Was ist Ihr nächster Schritt?'
+            },
+            english: {
+                'I\'ll solve this for you:': 'I\'ll solve this for you.',
+                'Let\'s go!': 'Let\'s go!',
+                'What\'s your next step?': 'What\'s your next step?'
+            }
+        };
         
-        // 5. Abschlussfrage
-        response += `${nextAction}`;
+        const languageAdaptations = audioAdaptations[language] || audioAdaptations.german;
+        let audioResponse = textResponse;
+        
+        // Audio-spezifische Anpassungen anwenden
+        Object.keys(languageAdaptations).forEach(text => {
+            const audio = languageAdaptations[text];
+            audioResponse = audioResponse.replace(text, audio);
+        });
+        
+        return audioResponse;
+    }
+    
+    // Empathische, menschliche Antwort-Generierung
+    generateEmpatheticResponse(intention, personaAnalysis, query, sessionContext, language) {
+        const { persona, emotionalState, urgency, accessibility } = personaAnalysis;
+        
+        // User-Namen extrahieren
+        const userName = this.extractUserName(query);
+        
+        // Empathische Begrüßung basierend auf Emotion und Persona
+        let response = this.getEmpatheticGreeting(userName, persona, emotionalState, language);
+        
+        // Emotionale Unterstützung bei Frustration/Ängsten
+        if (emotionalState.state === 'frustrated' || emotionalState.state === 'anxious') {
+            response += this.getEmotionalSupport(emotionalState.state, language);
+        }
+        
+        // Zielstrebiges Lösen statt nur Helfen
+        response += this.getSolutionOrientedResponse(intention, query, language);
+        
+        // Konkrete Lösungsschritte
+        response += this.getConcreteSolutionSteps(intention, urgency, language);
+        
+        // Persönliche Ansprache
+        if (userName) {
+            response += this.getPersonalAddress(userName, intention, language);
+        }
+        
+        // Dynamische Abschlussfrage mit Handlungsaufforderung
+        response += this.getActionOrientedClosing(intention, emotionalState, persona, language);
         
         // Barrierefreie Anpassungen
         if (accessibility && accessibility.needs.length > 0) {
-            response = this.generateAccessibleResponse(response, accessibility.needs, finalLanguage);
+            response = this.generateAccessibleResponse(response, accessibility.needs, language);
         }
         
-        return { response };
+        return response;
+    }
+    
+    extractUserName(query) {
+        // Einfache Namenserkennung mit Filterung
+        const namePatterns = [
+            /ich bin (\w+)/i,
+            /mein name ist (\w+)/i,
+            /ich heiße (\w+)/i,
+            /ich bin der (\w+)/i,
+            /ich bin die (\w+)/i
+        ];
+        
+        // Wörter die keine Namen sind
+        const notNames = ['verzweifelt', 'hilflos', 'überfordert', 'verwirrt', 'gestresst', 'nervös', 'unsicher'];
+        
+        for (const pattern of namePatterns) {
+            const match = query.match(pattern);
+            if (match && !notNames.includes(match[1].toLowerCase())) {
+                return match[1];
+            }
+        }
+        
+        return null;
+    }
+    
+    getEmpatheticGreeting(userName, persona, emotionalState, language) {
+        const greetings = {
+            german: {
+                frustrated: userName ? `Moin ${userName}! Ich verstehe, dass das gerade schwierig ist.` : 'Moin! Ich verstehe, dass das gerade schwierig ist.',
+                anxious: userName ? `Moin ${userName}! Keine Sorge, wir kriegen das hin.` : 'Moin! Keine Sorge, wir kriegen das hin.',
+                positive: userName ? `Moin ${userName}! Schön, dass Sie da sind.` : 'Moin! Schön, dass Sie da sind.',
+                neutral: userName ? `Moin ${userName}! Wie kann ich Ihnen helfen?` : 'Moin! Wie kann ich Ihnen helfen?'
+            },
+            english: {
+                frustrated: userName ? `Hello ${userName}! I understand this is difficult right now.` : 'Hello! I understand this is difficult right now.',
+                anxious: userName ? `Hello ${userName}! Don\'t worry, we\'ll figure this out.` : 'Hello! Don\'t worry, we\'ll figure this out.',
+                positive: userName ? `Hello ${userName}! Great to see you here.` : 'Hello! Great to see you here.',
+                neutral: userName ? `Hello ${userName}! How can I help you?` : 'Hello! How can I help you?'
+            }
+        };
+        
+        const languageGreetings = greetings[language] || greetings.german;
+        return languageGreetings[emotionalState.state] || languageGreetings.neutral;
+    }
+    
+    getEmotionalSupport(emotion, language) {
+        const support = {
+            german: {
+                frustrated: '\n\nIch weiß, dass das alles kompliziert wirken kann. Aber keine Sorge - Schritt für Schritt kriegen wir das hin. ',
+                anxious: '\n\nIch bin hier, um Ihnen zu helfen. Gemeinsam finden wir eine Lösung. '
+            },
+            english: {
+                frustrated: '\n\nI know this can seem complicated. But don\'t worry - step by step we\'ll get this done. ',
+                anxious: '\n\nI\'m here to help you. Together we\'ll find a solution. '
+            }
+        };
+        
+        const languageSupport = support[language] || support.german;
+        return languageSupport[emotion] || '';
+    }
+    
+    getConcreteHelp(intention, query, language) {
+        // Konkrete Hilfe basierend auf Intention und Query
+        const help = {
+            german: {
+                kfz_zulassung: 'Bei der KFZ-Zulassung helfe ich Ihnen gerne. ',
+                führerschein: 'Beim Führerschein unterstütze ich Sie gerne. ',
+                bauantrag: 'Bei Bauanträgen bin ich Ihr Ansprechpartner. ',
+                gewerbe: 'Bei der Gewerbeanmeldung helfe ich Ihnen. ',
+                general: 'Ich helfe Ihnen gerne bei Ihrem Anliegen. '
+            },
+            english: {
+                kfz_zulassung: 'I\'d be happy to help you with vehicle registration. ',
+                führerschein: 'I\'d be happy to help you with driver\'s license. ',
+                bauantrag: 'I\'m your contact for building permits. ',
+                gewerbe: 'I\'d be happy to help you with business registration. ',
+                general: 'I\'d be happy to help you with your request. '
+            }
+        };
+        
+        const languageHelp = help[language] || help.german;
+        return languageHelp[intention] || languageHelp.general;
+    }
+    
+    getPersonalAddress(userName, intention, language) {
+        const address = {
+            german: {
+                kfz_zulassung: `${userName}, bei der KFZ-Zulassung geht es so: `,
+                führerschein: `${userName}, beim Führerschein ist das so: `,
+                bauantrag: `${userName}, bei Bauanträgen läuft das so: `,
+                gewerbe: `${userName}, bei der Gewerbeanmeldung ist das so: `,
+                general: `${userName}, so funktioniert das: `
+            },
+            english: {
+                kfz_zulassung: `${userName}, vehicle registration works like this: `,
+                führerschein: `${userName}, driver\'s license works like this: `,
+                bauantrag: `${userName}, building permits work like this: `,
+                gewerbe: `${userName}, business registration works like this: `,
+                general: `${userName}, this is how it works: `
+            }
+        };
+        
+        const languageAddress = address[language] || address.german;
+        return languageAddress[intention] || languageAddress.general;
+    }
+    
+    getSolutionOrientedResponse(intention, query, language) {
+        const solutions = {
+            german: {
+                kfz_zulassung: 'Ich löse das für Sie: ',
+                führerschein: 'Ich löse das für Sie: ',
+                bauantrag: 'Ich löse das für Sie: ',
+                gewerbe: 'Ich löse das für Sie: ',
+                general: 'Ich löse das für Sie: '
+            },
+            english: {
+                kfz_zulassung: 'I\'ll solve this for you: ',
+                führerschein: 'I\'ll solve this for you: ',
+                bauantrag: 'I\'ll solve this for you: ',
+                gewerbe: 'I\'ll solve this for you: ',
+                general: 'I\'ll solve this for you: '
+            }
+        };
+        
+        const languageSolutions = solutions[language] || solutions.german;
+        return languageSolutions[intention] || languageSolutions.general;
+    }
+    
+    getConcreteSolutionSteps(intention, urgency, language) {
+        const steps = {
+            german: {
+                kfz_zulassung: urgency.level === 'critical' ? 
+                    '1. Sofort anrufen: 04431 85-0\n2. Notfall-Termin vereinbaren\n3. Unterlagen mitbringen\n\n' :
+                    '1. Termin online buchen\n2. Unterlagen vorbereiten\n3. Zur Zulassungsstelle gehen\n\n',
+                führerschein: '1. Fahrschule finden\n2. Anmelden und Prüfungen machen\n3. Führerschein beantragen\n\n',
+                bauantrag: '1. Bauplan erstellen\n2. Antrag stellen\n3. Genehmigung abwarten\n\n',
+                gewerbe: '1. Gewerbeanmeldung ausfüllen\n2. Unterlagen einreichen\n3. Gewerbeschein erhalten\n\n',
+                general: '1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\n'
+            },
+            english: {
+                kfz_zulassung: urgency.level === 'critical' ? 
+                    '1. Call immediately: 04431 85-0\n2. Book emergency appointment\n3. Bring documents\n\n' :
+                    '1. Book appointment online\n2. Prepare documents\n3. Go to registration office\n\n',
+                führerschein: '1. Find driving school\n2. Register and take exams\n3. Apply for driver\'s license\n\n',
+                bauantrag: '1. Create building plan\n2. Submit application\n3. Wait for approval\n\n',
+                gewerbe: '1. Fill out business registration\n2. Submit documents\n3. Receive business license\n\n',
+                general: '1. Make contact\n2. Prepare documents\n3. Wait for processing\n\n'
+            }
+        };
+        
+        const languageSteps = steps[language] || steps.german;
+        return languageSteps[intention] || languageSteps.general;
+    }
+    
+    getActionOrientedClosing(intention, emotionalState, persona, language) {
+        const closings = {
+            german: {
+                frustrated: 'Jetzt handeln wir! Was brauchen Sie zuerst?',
+                anxious: 'Ich führe Sie Schritt für Schritt. Womit starten wir?',
+                positive: 'Perfekt! Dann machen wir das jetzt!',
+                neutral: 'Los geht\'s! Was ist Ihr nächster Schritt?'
+            },
+            english: {
+                frustrated: 'Let\'s act now! What do you need first?',
+                anxious: 'I\'ll guide you step by step. Where do we start?',
+                positive: 'Perfect! Let\'s do this now!',
+                neutral: 'Let\'s go! What\'s your next step?'
+            }
+        };
+        
+        const languageClosings = closings[language] || closings.german;
+        return languageClosings[emotionalState.state] || languageClosings.neutral;
+    }
+    
+    getDynamicClosing(intention, emotionalState, persona, language) {
+        const closings = {
+            german: {
+                frustrated: 'Kriegen wir zusammen hin!',
+                anxious: 'Ich bin für Sie da.',
+                positive: 'Perfekt!',
+                neutral: 'Gerne helfe ich weiter.'
+            },
+            english: {
+                frustrated: 'We\'ll get this done together!',
+                anxious: 'I\'m here for you.',
+                positive: 'Perfect!',
+                neutral: 'Happy to help further.'
+            }
+        };
+        
+        const languageClosings = closings[language] || closings.german;
+        return languageClosings[emotionalState.state] || languageClosings.neutral;
     }
     
     getGoalReflection(intention, query, language) {
@@ -1473,14 +1793,22 @@ class KAYACharacterHandler {
     
     // Sprachwechsel-Logik nach System-Prompt
     detectLanguageSwitch(query) {
-        const englishKeywords = ['hello', 'hi', 'help', 'please', 'thank you', 'thanks'];
         const queryLower = query.toLowerCase();
         
-        const hasEnglishKeywords = englishKeywords.some(keyword => 
-            queryLower.includes(keyword)
+        // Nur bei eindeutig englischen Anfragen wechseln
+        const englishPhrases = ['hello', 'hi there', 'good morning', 'good afternoon', 'good evening'];
+        const germanPhrases = ['moin', 'hallo', 'guten tag', 'guten morgen', 'guten abend'];
+        
+        const hasEnglishPhrases = englishPhrases.some(phrase => 
+            queryLower.includes(phrase)
         );
         
-        if (hasEnglishKeywords) {
+        const hasGermanPhrases = germanPhrases.some(phrase => 
+            queryLower.includes(phrase)
+        );
+        
+        // Nur wechseln wenn eindeutig englisch UND nicht deutsch
+        if (hasEnglishPhrases && !hasGermanPhrases) {
             return {
                 detected: true,
                 language: 'english',
