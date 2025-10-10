@@ -495,3 +495,4 @@ class KAYAPerformanceOptimizer extends EventEmitter {
 }
 
 module.exports = KAYAPerformanceOptimizer;
+

@@ -184,11 +184,6 @@
             animation: pulse 1s infinite;
         }
         
-        .voice-button:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
-        }
-        
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -209,34 +204,6 @@
         
         .link:hover {
             text-decoration: underline;
-        }
-        
-        .phone-link {
-            color: #28a745;
-            text-decoration: none;
-        }
-        
-        .phone-link:hover {
-            text-decoration: underline;
-        }
-        
-        .email-link {
-            color: #dc3545;
-            text-decoration: none;
-        }
-        
-        .email-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* PDF-Links speziell stylen */
-        .link[href$=".pdf"] {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-        
-        .link[href$=".pdf"]:before {
-            content: "📄 ";
         }
     </style>
 </head>
@@ -259,7 +226,7 @@
         
         <div class="chat-input">
             <input type="text" id="messageInput" placeholder="Schreiben Sie Ihre Nachricht..." maxlength="500">
-            <button type="button" id="voiceButton" class="voice-button" title="Sprachaufnahme" disabled>
+            <button type="button" id="voiceButton" class="voice-button" title="Sprachaufnahme">
                 🎤
             </button>
             <button type="button" id="sendButton">Senden</button>
@@ -276,32 +243,11 @@
         let isRecording = false;
         let mediaRecorder = null;
         let audioChunks = [];
-        let voiceWebSocket = null;
-        let isVoiceConnected = false;
-        let currentAudio = null;
-        let sessionId = null; // Session-ID für Context-Memory
-        
-        // Session-ID generieren oder laden
-        function getSessionId() {
-            if (!sessionId) {
-                // Prüfe localStorage für bestehende Session
-                sessionId = localStorage.getItem('kaya-session-id');
-                if (!sessionId) {
-                    // Neue Session-ID generieren
-                    sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-                    localStorage.setItem('kaya-session-id', sessionId);
-                }
-            }
-            return sessionId;
-        }
         
         // Nachricht senden
         async function sendMessage() {
             const message = messageInput.value.trim();
             if (!message) return;
-            
-            // Session-ID sicherstellen
-            const currentSessionId = getSessionId();
             
             // Benutzernachricht anzeigen
             addMessage(message, 'user');
@@ -317,10 +263,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ 
-                        message: message,
-                        sessionId: currentSessionId
-                    })
+                    body: JSON.stringify({ message: message })
                 });
                 
                 const data = await response.json();
@@ -368,8 +311,6 @@
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
                 .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="link" target="_blank">$1</a>')
-                .replace(/\*\*Tel\.: ([^*]+)\*\*/g, '<strong><a href="tel:$1" class="phone-link">Tel.: $1</a></strong>')
-                .replace(/\*\*E-Mail: ([^*]+)\*\*/g, '<strong><a href="mailto:$1" class="email-link">E-Mail: $1</a></strong>')
                 .replace(/\n/g, '<br>');
         }
         
@@ -392,97 +333,10 @@
             }
         });
         
-        // Voice WebSocket Verbindung initialisieren
-        function initVoiceConnection() {
-            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsUrl = `${protocol}//${window.location.host}/voice`;
-            
-            voiceWebSocket = new WebSocket(wsUrl);
-            
-            voiceWebSocket.onopen = () => {
-                console.log('🎤 Voice WebSocket verbunden');
-                isVoiceConnected = true;
-                voiceButton.disabled = false;
-            };
-            
-            voiceWebSocket.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                handleVoiceMessage(data);
-            };
-            
-            voiceWebSocket.onclose = () => {
-                console.log('🎤 Voice WebSocket getrennt');
-                isVoiceConnected = false;
-                voiceButton.disabled = true;
-                // Reconnect nach 3 Sekunden
-                setTimeout(initVoiceConnection, 3000);
-            };
-            
-            voiceWebSocket.onerror = (error) => {
-                console.error('🎤 Voice WebSocket Fehler:', error);
-            };
-        }
-        
-        // Voice-Nachrichten verarbeiten
-        function handleVoiceMessage(data) {
-            switch (data.type) {
-                case 'transcription':
-                    addMessage(data.text, 'user');
-                    break;
-                case 'response':
-                    addMessage(data.text, 'kaya');
-                    break;
-                case 'audio':
-                    playAudioResponse(data.data);
-                    break;
-                case 'error':
-                    addMessage(`Fehler: ${data.message}`, 'kaya');
-                    break;
-            }
-        }
-        
-        // Audio-Antwort abspielen
-        function playAudioResponse(base64Audio) {
-            try {
-                // Stoppe aktuelles Audio
-                if (currentAudio) {
-                    currentAudio.pause();
-                    currentAudio = null;
-                }
-                
-                // Konvertiere Base64 zu Audio
-                const audioData = atob(base64Audio);
-                const audioArray = new Uint8Array(audioData.length);
-                for (let i = 0; i < audioData.length; i++) {
-                    audioArray[i] = audioData.charCodeAt(i);
-                }
-                
-                const audioBlob = new Blob([audioArray], { type: 'audio/mp3' });
-                const audioUrl = URL.createObjectURL(audioBlob);
-                
-                currentAudio = new Audio(audioUrl);
-                currentAudio.play();
-                
-                // Cleanup nach dem Abspielen
-                currentAudio.onended = () => {
-                    URL.revokeObjectURL(audioUrl);
-                    currentAudio = null;
-                };
-                
-            } catch (error) {
-                console.error('Fehler beim Abspielen der Audio-Antwort:', error);
-            }
-        }
-        
         // Sprachaufnahme
         voiceButton.addEventListener('click', toggleRecording);
         
         async function toggleRecording() {
-            if (!isVoiceConnected) {
-                alert('Voice-Verbindung nicht verfügbar. Bitte verwenden Sie die Tastatur.');
-                return;
-            }
-            
             if (!isRecording) {
                 try {
                     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -516,27 +370,20 @@
             }
         }
         
-        // Sprachnachricht über WebSocket senden
+        // Sprachnachricht senden
         async function sendVoiceMessage(audioBlob) {
+            const formData = new FormData();
+            formData.append('audio', audioBlob);
+            
             try {
-                // Session-ID sicherstellen
-                const currentSessionId = getSessionId();
+                const response = await fetch('/voice', {
+                    method: 'POST',
+                    body: formData
+                });
                 
-                // Konvertiere Audio zu Base64
-                const reader = new FileReader();
-                reader.onload = () => {
-                    const base64Audio = reader.result.split(',')[1];
-                    
-                    // Sende über WebSocket mit Session-ID
-                    if (voiceWebSocket && isVoiceConnected) {
-                        voiceWebSocket.send(JSON.stringify({
-                            type: 'audio',
-                            data: base64Audio,
-                            sessionId: currentSessionId
-                        }));
-                    }
-                };
-                reader.readAsDataURL(audioBlob);
+                const data = await response.json();
+                addMessage(data.transcription, 'user');
+                addMessage(data.response, 'kaya');
                 
             } catch (error) {
                 console.error('Fehler beim Senden der Sprachnachricht:', error);
@@ -546,9 +393,6 @@
         
         // Fokus auf Eingabefeld setzen
         messageInput.focus();
-        
-        // Voice-WebSocket-Verbindung initialisieren
-        initVoiceConnection();
     </script>
 </body>
 </html>

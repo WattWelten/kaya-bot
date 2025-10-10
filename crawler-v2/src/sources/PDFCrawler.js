@@ -106,3 +106,4 @@ class PDFCrawler {
 }
 
 module.exports = PDFCrawler;
+

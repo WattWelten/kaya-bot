@@ -144,3 +144,4 @@ class DataCompressor {
 }
 
 module.exports = DataCompressor;
+

@@ -238,3 +238,4 @@ KAYA Character Handler v2.0
 - Performance-Optimierung
 
 **Bereit für Phase 2: Frontend-Entwicklung mit Unity Avatar!**
+

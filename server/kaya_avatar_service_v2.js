@@ -519,3 +519,4 @@ class KAYAAvatarService extends EventEmitter {
 }
 
 module.exports = KAYAAvatarService;
+

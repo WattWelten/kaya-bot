@@ -1,15 +1,16 @@
 {
   "id": "default",
-  "createdAt": "2025-10-09T18:39:04.109Z",
-  "lastActivity": "2025-10-09T18:39:10.704Z",
+  "createdAt": "2025-10-10T08:40:06.665Z",
+  "lastActivity": "2025-10-10T08:40:06.741Z",
   "messages": [
     {
-      "id": "mgjrhcq55q9xqo2jep6",
-      "timestamp": "2025-10-09T18:39:04.109Z",
+      "id": "mgklixvtvw2hnq9zpd",
+      "timestamp": "2025-10-10T08:40:06.665Z",
       "sender": "user",
-      "content": "ich bin ein Bauer und brauche Hilfe bei EU-Anträgen",
+      "content": "ich brauche einen fÃ¼hrerschein",
+      "context": {},
       "metadata": {
-        "messageLength": 51,
+        "messageLength": 31,
         "containsQuestion": false,
         "containsEmotion": "neutral",
         "containsLocation": null,
@@ -17,127 +18,90 @@
       }
     },
     {
-      "id": "mgjrhcqbsk6l1f31hhr",
-      "timestamp": "2025-10-09T18:39:04.115Z",
-      "sender": "kaya",
-      "content": "Moin!  Perfekt - ich helfe dir sofort bei deinen landwirtschaftlichen Anliegen.\n\n**🎯 Hier ist dein direkter Weg:**\n\n**1. 📋 EU-Anträge:**\n   → [EU-Anträge Landwirtschaft](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/eu-antraege/)\n\n**2. 📄 Tierhaltung:**\n   → [Tierhaltung Genehmigungen](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierhaltung/)\n\n**3. 📞 Agrarberatung:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den EU-Antrag-Link oder ruf direkt an!\n\n**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**\n\nGerne helfe ich Ihnen weiter!",
-      "metadata": {
-        "agent": "kaya",
-        "persona": "first_time_visitor",
-        "emotionalState": "neutral",
-        "urgency": "normal",
+      "id": "mgklixxx29ivg138vb1",
+      "timestamp": "2025-10-10T08:40:06.741Z",
+      "sender": "assistant",
+      "content": "Moin! Ich bin KAYA, dein digitaler Assistent für den Landkreis Oldenburg.\n\n**🎯 Hier ist dein direkter Weg:**\n\n**1. 📋 Online-Services:**\n   → [Alle Online-Services](https://www.oldenburg-kreis.de/online-services/)\n\n**2. 📄 Formulare und Anträge:**\n   → [Alle Formulare](https://www.oldenburg-kreis.de/formulare/)\n\n**3. 📞 Sofort anrufen:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den Service-Link oder ruf direkt an!\n\n**Brauchst du Hilfe? Sag mir, was du suchst!**",
+      "context": {
         "intention": {
-          "type": "landwirtschaft",
-          "urgency": "normal",
+          "type": "general",
+          "citizenType": "general",
+          "language": "german",
           "emotionalState": "neutral",
-          "accessibilityNeeds": [],
+          "urgency": "normal",
           "location": null,
-          "needs": [
-            "eu-anträge",
-            "tierhaltung",
-            "agrarberatung"
-          ],
-          "specific": null,
-          "citizenType": "farmer",
-          "language": "german"
+          "query": "ich brauche einen fÃ¼hrerschein",
+          "context": "general"
         },
-        "messageLength": 614,
+        "agent": "kaya",
+        "links": [
+          {
+            "title": "Alle Online-Services",
+            "url": "https://www.oldenburg-kreis.de/online-services/"
+          },
+          {
+            "title": "Alle Formulare",
+            "url": "https://www.oldenburg-kreis.de/formulare/"
+          }
+        ]
+      },
+      "metadata": {
+        "intention": {
+          "type": "general",
+          "citizenType": "general",
+          "language": "german",
+          "emotionalState": "neutral",
+          "urgency": "normal",
+          "location": null,
+          "query": "ich brauche einen fÃ¼hrerschein",
+          "context": "general"
+        },
+        "agent": "kaya",
+        "links": [
+          {
+            "title": "Alle Online-Services",
+            "url": "https://www.oldenburg-kreis.de/online-services/"
+          },
+          {
+            "title": "Alle Formulare",
+            "url": "https://www.oldenburg-kreis.de/formulare/"
+          }
+        ],
+        "messageLength": 502,
         "containsQuestion": true,
         "containsEmotion": "urgent",
         "containsLocation": null,
         "containsUrgency": "high"
-      }
-    },
-    {
-      "id": "mgjrhhldy55owpynqtf",
-      "timestamp": "2025-10-09T18:39:10.417Z",
-      "sender": "user",
-      "content": "ich habe alle unterlagen und den flächennachweis",
-      "metadata": {
-        "messageLength": 48,
-        "containsQuestion": false,
-        "containsEmotion": "neutral",
-        "containsLocation": null,
-        "containsUrgency": "normal"
-      }
-    },
-    {
-      "id": "mgjrhhtcdw4oco4db9",
-      "timestamp": "2025-10-09T18:39:10.704Z",
-      "sender": "kaya",
-      "content": "Gerne unterstütze ich Sie bei Ihrem Anliegen. Ich erkläre Ihnen Schritt für Schritt, was zu tun ist.\n\nLassen Sie mich Ihnen den Weg durch die Behörden erklären: Welche Formulare, welche Unterlagen und welche Termine Sie einhalten müssen.\n\n**Anträge und Formulare Bauen | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)\n\n**Anträge und Formulare Immissionsschutz | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/umwelt-und-abfall/immissionsschutz/antraege-und-formulare/)\n\n**Antragsarten (erforderliche Unterlagen, Kosten etc.) | Landkreis Oldenburg**\n\n📋 **Antragsarten und Unterlagen:** [Antragsarten und Unterlagen](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)\n\n\n\nBrauchen Sie Hilfe bei der Terminvereinbarung oder haben Sie andere Fragen zum Ablauf?",
-      "metadata": {
-        "agent": "buergerdienste",
-        "persona": "first_time_visitor",
-        "emotionalState": "neutral",
-        "urgency": "normal",
-        "intention": {
-          "type": "general_inquiry",
-          "urgency": "normal",
-          "emotionalState": "neutral",
-          "accessibilityNeeds": [],
-          "location": null,
-          "needs": [
-            "informationen",
-            "beratung",
-            "kontakt"
-          ],
-          "specific": null,
-          "citizenType": "general",
-          "language": "german"
-        },
-        "messageLength": 1219,
-        "containsQuestion": true,
-        "containsEmotion": "neutral",
-        "containsLocation": null,
-        "containsUrgency": "normal"
       }
     }
   ],
   "context": {
     "location": null,
     "persona": null,
-    "urgency": "normal",
-    "emotionalState": "neutral",
+    "urgency": "high",
+    "emotionalState": "urgent",
     "citizenType": "urgent_case",
-    "currentTopic": "bauantrag",
+    "currentTopic": "sozialhilfe",
     "problemProgress": [
       {
-        "topic": "sozialhilfe",
-        "started": "2025-10-09T18:39:04.109Z",
-        "steps": [
-          {
-            "timestamp": "2025-10-09T18:39:04.109Z",
-            "content": "ich bin ein Bauer und brauche Hilfe bei EU-Anträgen",
-            "step": 1
-          },
-          {
-            "timestamp": "2025-10-09T18:39:04.115Z",
-            "content": "Moin!  Perfekt - ich helfe dir sofort bei deinen landwirtschaftlichen Anliegen.\n\n**🎯 Hier ist dein direkter Weg:**\n\n**1. 📋 EU-Anträge:**\n   → [EU-Anträge Landwirtschaft](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/eu-antraege/)\n\n**2. 📄 Tierhaltung:**\n   → [Tierhaltung Genehmigungen](https://www.oldenburg-kreis.de/wirtschaft/landwirtschaft/tierhaltung/)\n\n**3. 📞 Agrarberatung:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den EU-Antrag-Link oder ruf direkt an!\n\n**Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!**\n\nGerne helfe ich Ihnen weiter!",
-            "step": 2
-          }
-        ],
-        "status": "in_progress"
-      },
-      {
         "topic": "general",
-        "started": "2025-10-09T18:39:10.417Z",
+        "started": "2025-10-10T08:40:06.665Z",
         "steps": [
           {
-            "timestamp": "2025-10-09T18:39:10.417Z",
-            "content": "ich habe alle unterlagen und den flächennachweis",
+            "timestamp": "2025-10-10T08:40:06.665Z",
+            "content": "ich brauche einen fÃ¼hrerschein",
             "step": 1
           }
         ],
         "status": "in_progress"
       },
       {
-        "topic": "bauantrag",
-        "started": "2025-10-09T18:39:10.704Z",
+        "topic": "sozialhilfe",
+        "started": "2025-10-10T08:40:06.741Z",
         "steps": [
           {
-            "timestamp": "2025-10-09T18:39:10.704Z",
-            "content": "Gerne unterstütze ich Sie bei Ihrem Anliegen. Ich erkläre Ihnen Schritt für Schritt, was zu tun ist.\n\nLassen Sie mich Ihnen den Weg durch die Behörden erklären: Welche Formulare, welche Unterlagen und welche Termine Sie einhalten müssen.\n\n**Anträge und Formulare Bauen | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)\n\n**Anträge und Formulare Immissionsschutz | Landkreis Oldenburg**\nHier finden Sie das benötigte Formular. Ich empfehle Ihnen, es online auszufüllen - das spart Zeit und Fehler.\n\n📋 **Antragsformular:** [Antragsformular](https://www.oldenburg-kreis.de/umwelt-und-abfall/immissionsschutz/antraege-und-formulare/)\n\n**Antragsarten (erforderliche Unterlagen, Kosten etc.) | Landkreis Oldenburg**\n\n📋 **Antragsarten und Unterlagen:** [Antragsarten und Unterlagen](https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/antragsarten-erforderliche-unterlagen-kosten-etc-/)\n\n\n\nBrauchen Sie Hilfe bei der Terminvereinbarung oder haben Sie andere Fragen zum Ablauf?",
+            "timestamp": "2025-10-10T08:40:06.741Z",
+            "content": "Moin! Ich bin KAYA, dein digitaler Assistent für den Landkreis Oldenburg.\n\n**🎯 Hier ist dein direkter Weg:**\n\n**1. 📋 Online-Services:**\n   → [Alle Online-Services](https://www.oldenburg-kreis.de/online-services/)\n\n**2. 📄 Formulare und Anträge:**\n   → [Alle Formulare](https://www.oldenburg-kreis.de/formulare/)\n\n**3. 📞 Sofort anrufen:**\n   → **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n**🎯 Deine nächste Aktion:** Klick auf den Service-Link oder ruf direkt an!\n\n**Brauchst du Hilfe? Sag mir, was du suchst!**",
             "step": 1
           }
         ],
@@ -147,7 +111,7 @@
     "preferences": {}
   },
   "metadata": {
-    "totalMessages": 4,
+    "totalMessages": 2,
     "averageResponseTime": 0,
     "satisfactionScore": null
   }
