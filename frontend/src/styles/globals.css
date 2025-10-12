@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS-Variablen für Landkreis Oldenburg CI */
+:root {
+  /* Primary Colors (Teal/Grün) */
+  --lc-primary-50: #EBF8F7;
+  --lc-primary-100: #D1F2EB;
+  --lc-primary-200: #BFE3DF;
+  --lc-primary-300: #7DD3C4;
+  --lc-primary-400: #4ECDC4;
+  --lc-primary-500: #26A69A;
+  --lc-primary-600: #0F766E;
+  --lc-primary-700: #0A5A55;
+  --lc-primary-800: #064E4B;
+  --lc-primary-900: #043C39;
+
+  /* Accent Colors (Blau) */
+  --lc-accent-50: #EFF6FF;
+  --lc-accent-100: #DBEAFE;
+  --lc-accent-200: #BFDBFE;
+  --lc-accent-300: #93C5FD;
+  --lc-accent-400: #60A5FA;
+  --lc-accent-500: #3B82F6;
+  --lc-accent-600: #2563EB;
+  --lc-accent-700: #1D4ED8;
+  --lc-accent-800: #1E40AF;
+  --lc-accent-900: #1E3A8A;
+
+  /* Neutral Colors (Grau) */
+  --lc-neutral-50: #F8FAFC;
+  --lc-neutral-100: #F1F5F9;
+  --lc-neutral-200: #E2E8F0;
+  --lc-neutral-300: #CBD5E1;
+  --lc-neutral-400: #94A3B8;
+  --lc-neutral-500: #64748B;
+  --lc-neutral-600: #475569;
+  --lc-neutral-700: #334155;
+  --lc-neutral-800: #1F2937;
+  --lc-neutral-900: #0F172A;
+
+  /* Animation Settings */
+  --animation-duration: 300ms;
+  --animation-iteration-count: 1;
+}
+
+/* Dark Theme Variablen */
+.dark {
+  --lc-neutral-50: #0F172A;
+  --lc-neutral-100: #1F2937;
+  --lc-neutral-200: #334155;
+  --lc-neutral-300: #475569;
+  --lc-neutral-400: #64748B;
+  --lc-neutral-500: #94A3B8;
+  --lc-neutral-600: #CBD5E1;
+  --lc-neutral-700: #E2E8F0;
+  --lc-neutral-800: #F1F5F9;
+  --lc-neutral-900: #F8FAFC;
+}
+
+/* Base Styles */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-lc-neutral-50 text-lc-neutral-800;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Focus Styles für Accessibility */
+  *:focus {
+    @apply outline-none ring-2 ring-lc-accent-600 ring-offset-2;
+  }
+
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* High Contrast Mode */
+  @media (prefers-contrast: high) {
+    .contrast-125 {
+      filter: contrast(1.25);
+    }
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Skiplink für Accessibility */
+  .skiplink {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:bg-white focus:text-lc-neutral-900 focus:px-3 focus:py-1 focus:rounded-xl focus:shadow-soft focus:z-50;
+  }
+
+  /* Button Styles */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-xl h-9 w-9 text-lc-neutral-700 hover:bg-lc-neutral-100 active:bg-lc-neutral-200 transition-colors duration-200 focus:ring-2 focus:ring-lc-accent-600 focus:ring-offset-2;
+  }
+
+  .btn-solid {
+    @apply inline-flex items-center justify-center rounded-xl h-9 px-3 bg-lc-primary-600 text-white hover:bg-lc-primary-700 active:bg-lc-primary-800 shadow-sm transition-colors duration-200 focus:ring-2 focus:ring-lc-accent-600 focus:ring-offset-2;
+  }
+
+  .btn-solid:disabled {
+    @apply opacity-50 cursor-not-allowed hover:bg-lc-primary-600;
+  }
+
+  /* Chip/Link Styles */
+  .chip-link {
+    @apply inline-flex items-center gap-1 rounded-full border border-lc-neutral-300 px-3 py-1 text-sm hover:bg-lc-neutral-100 active:bg-lc-neutral-200 transition-colors duration-200 focus:ring-2 focus:ring-lc-accent-600 focus:ring-offset-2;
+  }
+
+  /* Einfache Sprache */
+  .simple-language p {
+    line-height: 1.6;
+    font-size: 1.05rem;
+  }
+
+  .simple-language .chip-link {
+    @apply text-base py-2 px-4;
+  }
+
+  .simple-language .btn-ghost,
+  .simple-language .btn-solid {
+    @apply h-10 px-4;
+  }
+
+  /* Reduced Motion Override */
+  .reduce-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* Custom Scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.lc-neutral-300') theme('colors.lc-neutral-100');
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: theme('colors.lc-neutral-100');
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: theme('colors.lc-neutral-300');
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.lc-neutral-400');
+  }
+
+  /* Text Selection */
+  ::selection {
+    background: theme('colors.lc-primary-200');
+    color: theme('colors.lc-primary-900');
+  }
+
+  /* Print Styles */
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
+}
+
+/* Unity WebGL Canvas Styles */
+#unity-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: transparent;
+}
+
+/* Loading Animation */
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
+  
+  .mobile-full {
+    width: 100%;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Screen Reader Only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
