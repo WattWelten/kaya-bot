@@ -52,6 +52,14 @@
         console.warn('WebGL wird nicht unterstützt. Unity-Avatar wird nicht verfügbar sein.');
       }
       
+      // KAYA Unity Bridge (wird dynamisch geladen)
+      window.ReactUnityBridge = {
+        handleUnityMessage: function(message) {
+          console.log('Unity Message:', message);
+          // Hier können wir später React-Events triggern
+        }
+      };
+      
       // Service Worker deaktiviert - nicht benötigt für MVP
     </script>
   </body>

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "KAYA Crawler System v2 - Intelligente Daten-Extraktion für Landkreis Oldenburg",
   "main": "src/core/CrawlerEngine.js",
-  "scripts": {
+  "scripts": {''''''''''''''''''''''''''
     "start": "node src/core/CrawlerEngine.js",
     "crawl": "node scripts/crawl.js",
     "schedule": "node scripts/schedule.js",

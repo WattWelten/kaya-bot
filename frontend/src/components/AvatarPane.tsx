@@ -25,18 +25,20 @@ export const AvatarPane: React.FC<AvatarPaneProps> = ({
 
   // Unity initialisieren
   useEffect(() => {
-    // Temporär deaktiviert bis Unity-Build verfügbar
-    console.log('Unity-Avatar temporär deaktiviert - Build noch nicht verfügbar');
-    setIsInitialized(true);
+    // Unity-Avatar aktiviert - bereit für Build
+    console.log('Unity-Avatar bereit für Initialisierung');
     
-    // if (!isInitialized && !isLoading && !isLoaded) {
-    //   initialize().then(() => {
-    //     setIsInitialized(true);
-    //   }).catch((err) => {
-    //     console.error('❌ Unity-Initialisierung fehlgeschlagen:', err);
-    //   });
-    // }
-  }, []);
+    if (!isInitialized && !isLoading && !isLoaded) {
+      initialize().then(() => {
+        setIsInitialized(true);
+        console.log('✅ Unity-Avatar erfolgreich initialisiert');
+      }).catch((err) => {
+        console.error('❌ Unity-Initialisierung fehlgeschlagen:', err);
+        // Fallback: Avatar als statisches Bild anzeigen
+        setIsInitialized(true);
+      });
+    }
+  }, [initialize, isInitialized, isLoading, isLoaded]);
 
   // Sprechen-Status an Unity weiterleiten
   useEffect(() => {
