@@ -25,14 +25,18 @@ export const AvatarPane: React.FC<AvatarPaneProps> = ({
 
   // Unity initialisieren
   useEffect(() => {
-    if (!isInitialized && !isLoading && !isLoaded) {
-      initialize().then(() => {
-        setIsInitialized(true);
-      }).catch((err) => {
-        console.error('❌ Unity-Initialisierung fehlgeschlagen:', err);
-      });
-    }
-  }, [initialize, isInitialized, isLoading, isLoaded]);
+    // Temporär deaktiviert bis Unity-Build verfügbar
+    console.log('Unity-Avatar temporär deaktiviert - Build noch nicht verfügbar');
+    setIsInitialized(true);
+    
+    // if (!isInitialized && !isLoading && !isLoaded) {
+    //   initialize().then(() => {
+    //     setIsInitialized(true);
+    //   }).catch((err) => {
+    //     console.error('❌ Unity-Initialisierung fehlgeschlagen:', err);
+    //   });
+    // }
+  }, []);
 
   // Sprechen-Status an Unity weiterleiten
   useEffect(() => {

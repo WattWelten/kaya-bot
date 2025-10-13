@@ -52,19 +52,7 @@
         console.warn('WebGL wird nicht unterstützt. Unity-Avatar wird nicht verfügbar sein.');
       }
       
-      // Service Worker Registration (für PWA) - Optional
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
-              console.log('SW registered: ', registration);
-            })
-            .catch((registrationError) => {
-              console.log('SW registration failed: ', registrationError);
-              // Service Worker ist optional, Fehler ignorieren
-            });
-        });
-      }
+      // Service Worker deaktiviert - nicht benötigt für MVP
     </script>
   </body>
 </html>

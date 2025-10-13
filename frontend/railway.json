@@ -8,16 +8,5 @@
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
-  },
-  "headers": {
-    "*.wasm": {
-      "Content-Type": "application/wasm"
-    },
-    "*.data": {
-      "Content-Type": "application/octet-stream"
-    },
-    "*.js": {
-      "Content-Type": "application/javascript"
-    }
   }
 }

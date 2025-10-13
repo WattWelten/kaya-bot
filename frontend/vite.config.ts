@@ -28,7 +28,7 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -36,12 +36,6 @@ export default defineConfig({
           'ui-vendor': ['lucide-react', 'clsx']
         }
       }
-    }
-  },
-  server: {
-    headers: {
-      'Cross-Origin-Embedder-Policy': 'require-corp',
-      'Cross-Origin-Opener-Policy': 'same-origin'
     }
   }
 })
