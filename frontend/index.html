@@ -31,6 +31,7 @@
     <meta name="theme-color" content="#0F766E" />
     
     <!-- PWA -->
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="KAYA" />
@@ -51,7 +52,7 @@
         console.warn('WebGL wird nicht unterstützt. Unity-Avatar wird nicht verfügbar sein.');
       }
       
-      // Service Worker Registration (für PWA)
+      // Service Worker Registration (für PWA) - Optional
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
@@ -60,6 +61,7 @@
             })
             .catch((registrationError) => {
               console.log('SW registration failed: ', registrationError);
+              // Service Worker ist optional, Fehler ignorieren
             });
         });
       }
