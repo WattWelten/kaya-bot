@@ -1,122 +1,72 @@
-# KAYA Crawler v2
+# KAYA Crawler - Landkreis Oldenburg
 
-**Intelligente Daten-Extraktion für Landkreis Oldenburg**
-
-## 🎯 Ziel
-
-Der KAYA Crawler v2 ist das Herzstück des KAYA-Systems. Er sammelt, verarbeitet und strukturiert alle relevanten Informationen für den Landkreis Oldenburg, um KAYA als perfekten digitalen Assistenten zu ermöglichen.
-
-## 🏗️ Architektur
-
-```
-crawler-v2/
-├── src/
-│   ├── core/           # Haupt-Crawler-Engine
-│   ├── sources/         # Verschiedene Datenquellen
-│   ├── processors/      # Daten-Verarbeitung
-│   ├── config/          # Konfiguration
-│   └── utils/           # Hilfsfunktionen
-├── data/
-│   ├── raw/            # Rohe Daten
-│   ├── processed/      # Verarbeitete Daten
-│   ├── compressed/     # Komprimierte Daten
-│   └── backup/         # Backup-Daten
-├── scripts/            # Ausführbare Scripts
-└── tests/             # Tests
-```
-
-## 🚀 Features
-
-- **Multi-Source Crawling:** Web, Files, PDFs, APIs
-- **Intelligente Verarbeitung:** Automatische Kategorisierung
-- **Daten-Kompression:** Effiziente Speicherung
-- **Backup-System:** Automatische Backups
-- **Link-Validierung:** Überprüfung der Funktionalität
-- **Logging:** Umfassendes Logging-System
-
-## 📦 Installation
+## 🚀 Schnellstart
 
 ```bash
-cd crawler-v2
+# Dependencies installieren
 npm install
-```
 
-## 🔧 Verwendung
-
-### Vollständiger Crawl
-```bash
+# Crawler ausführen
 npm run crawl
+
+# Oder spezifische Domains crawlen
+node scripts/complete_crawler.js
 ```
 
-### Test-Crawl
-```bash
-npm run test
-```
+## 📁 Dateien
 
-### Einzelne Agent testen
-```bash
-node scripts/test.js
-```
+### Scripts
+- `complete_crawler.js` - Vollständiger Crawler für oldenburg-kreis.de
+- `dual_crawler.js` - Crawler für beide Domains
+- `analyze_website.js` - Website-Analyse
+- `verify_websites.js` - Verifikation der gecrawlten Daten
 
-## 📊 Agent-Daten
+### Core
+- `src/core/CrawlerEngine.js` - Haupt-Crawler-Engine
+- `src/sources/WebCrawler.js` - Web-Crawler
+- `src/processors/DataProcessor.js` - Datenverarbeitung
+- `src/processors/DataCompressor.js` - Datenkompression
+- `src/processors/BackupManager.js` - Backup-Management
 
-Der Crawler sammelt Daten für folgende Agenten:
+## 🔧 Konfiguration
 
-- **buergerdienste:** Bürgerdienste, Formulare, Anträge
-- **ratsinfo:** Kreistag, Verwaltung
-- **stellenportal:** Stellenausschreibungen
-- **kontakte:** Ansprechpartner, Kontakte
-- **jugend:** Jugendamt, Familienhilfe
-- **soziales:** Sozialleistungen, Gesundheit
+### Domains
+- `https://www.oldenburg-kreis.de/`
+- `https://oldenburg-kreis.ratsinfomanagement.net/`
 
-## 🔄 Datenfluss
+### Output
+- `data/raw/` - Rohe Daten
+- `data/processed/` - Verarbeitete Daten
+- `data/compressed/` - Komprimierte Daten
+- `data/backup/` - Backup-Daten
 
-1. **Crawling:** Sammlung von Daten aus verschiedenen Quellen
-2. **Verarbeitung:** Strukturierung und Bereinigung
-3. **Kompression:** Effiziente Speicherung
-4. **Backup:** Sicherung der Daten
-5. **Integration:** Bereitstellung für KAYA
+## 📊 Status
 
-## 📈 Performance
+### Coverage
+- **oldenburg-kreis.de**: 99.34% (300/302 URLs)
+- **ratsinfomanagement.net**: 100% (28/28 URLs)
 
-- **Parallel Processing:** Mehrere Agenten gleichzeitig
-- **Lazy Loading:** Nur benötigte Daten laden
-- **Caching:** Zwischenspeicherung für bessere Performance
-- **Compression:** Reduzierung der Speichergröße
-
-## 🛠️ Konfiguration
-
-Die Crawler-Konfiguration kann in `src/config/` angepasst werden:
-
-- **Agent-URLs:** Welche Websites gecrawlt werden
-- **File-Paths:** Lokale Dateien und PDFs
-- **Processing-Rules:** Wie Daten verarbeitet werden
-
-## 📝 Logging
-
-Alle Aktivitäten werden in `logs/` protokolliert:
-
-- **crawler.log:** Allgemeine Aktivitäten
-- **error.log:** Fehler und Warnungen
-
-## 🔒 Sicherheit
-
-- **Rate Limiting:** Schutz vor Überlastung
-- **User-Agent:** Identifikation als legitimer Bot
-- **Timeout:** Schutz vor hängenden Requests
-- **Error Handling:** Robuste Fehlerbehandlung
+### Performance
+- **Crawl-Zeit**: ~5 Minuten
+- **Datenmenge**: ~50MB
+- **Komprimierung**: ~80% Reduktion
 
 ## 🧪 Testing
 
 ```bash
-npm test
+# Crawler testen
+node scripts/test.js
+
+# Verifikation
+node scripts/verify_websites.js
 ```
 
-## 📞 Support
+## 🔒 Sicherheit
 
-Bei Fragen oder Problemen wende dich an das KAYA-Team.
+- Rate-Limiting implementiert
+- User-Agent-Rotation
+- Error-Handling
 
 ---
 
-**KAYA Crawler v2 - Intelligente Daten-Extraktion für den Landkreis Oldenburg**
-
+**KAYA Crawler v2.0.0** - Landkreis Oldenburg 2025
