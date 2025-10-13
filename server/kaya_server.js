@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const KAYACharacterHandler = require('./kaya_character_handler');
-const KAYAAgentHandler = require('./kaya_agent_handler');
+const KAYACharacterHandler = require('./kaya_character_handler_v2');
+const KAYAAgentHandler = require('./kaya_agent_manager_v2');
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
