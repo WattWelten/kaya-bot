@@ -4,6 +4,7 @@
   "description": "KAYA - Kommunaler KI-Assistent für Landkreis Oldenburg",
   "main": "server/kaya_server.js",
   "scripts": {
+    "postinstall": "cd server && npm install",
     "start": "cd server && node kaya_server.js",
     "dev": "cd server && nodemon kaya_server.js",
     "build": "echo 'No build step required'",
