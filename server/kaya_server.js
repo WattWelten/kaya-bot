@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -37,7 +38,7 @@ app.post('/chat', async (req, res) => {
         console.log(`KAYA empfängt: ${message}`);
         
         // Generiere KAYA-Antwort
-        const response = kayaHandler.generateResponse(message, message);
+        const response = await kayaHandler.generateResponse(message, message);
         
         console.log(`KAYA antwortet: ${response.response}`);
         
