@@ -322,3 +322,4 @@ public class GLBAnalyzer : MonoBehaviour
         Debug.Log(report);
     }
 }
+

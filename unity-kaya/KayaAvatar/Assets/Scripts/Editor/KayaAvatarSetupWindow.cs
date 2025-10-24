@@ -234,3 +234,4 @@ public class AutoSetupConfig
     public float fillLightIntensity = 0.4f;
     public float rimLightIntensity = 0.3f;
 }
+

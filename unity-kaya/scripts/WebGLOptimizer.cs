@@ -534,3 +534,4 @@ public class WebGLPerformanceMetrics
     public float buildSize;
     public float loadTime;
 }
+

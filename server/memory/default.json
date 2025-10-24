@@ -1349,8 +1349,33 @@
         "communicationMode": "audio",
         "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
       }
+    },
+    {
+      "id": "1761309954592",
+      "sender": "user",
+      "content": "Moin KAYA!",
+      "timestamp": "2025-10-24T12:45:54.592Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1761309954644",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-24T12:45:54.644Z",
+      "context": {
+        "intention": "general",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
+      }
     }
   ],
   "createdAt": "2025-10-10T19:08:56.553Z",
-  "lastActivity": "2025-10-10T19:44:30.720Z"
+  "lastActivity": "2025-10-24T12:45:54.644Z"
 }

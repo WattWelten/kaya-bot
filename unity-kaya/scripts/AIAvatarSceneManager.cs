@@ -349,3 +349,4 @@ public class AIAvatarSceneManager : MonoBehaviour
         Debug.Log("✅ WebGL Optimization Test completed");
     }
 }
+

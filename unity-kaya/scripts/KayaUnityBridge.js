@@ -55,3 +55,4 @@ function LogToConsole(message) {
 
 // Export for global access
 window.KayaUnityBridge = KayaUnityBridge;
+

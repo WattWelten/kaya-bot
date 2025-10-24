@@ -263,3 +263,4 @@ jawShapes: [11, 12] // Automatisch erkannt
 
 ---
 **Das Unity-Projekt ist jetzt perfekt für AI-Avatar optimiert!** 🎮✨
+

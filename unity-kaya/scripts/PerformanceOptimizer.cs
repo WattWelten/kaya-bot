@@ -473,3 +473,4 @@ public class PerformanceMetrics
     public int lodLevel;
     public float distanceToCamera;
 }
+

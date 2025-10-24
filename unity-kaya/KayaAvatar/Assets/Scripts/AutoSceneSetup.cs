@@ -424,3 +424,4 @@ public class AutoSceneSetup : MonoBehaviour
         Debug.Log("✅ Scene cleanup completed");
     }
 }
+
