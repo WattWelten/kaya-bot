@@ -1,0 +1,11 @@
+# Railway ignore file - exclude unnecessary directories from build
+crawler-v2/
+frontend/
+unity-kaya/
+data/
+memory/
+ki_backend/
+web/
+test_clean.py
+*.md
+.gitignore
