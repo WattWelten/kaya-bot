@@ -30,7 +30,7 @@ class AudioService extends EventEmitter {
         this.config = {
             elevenlabsApiUrl: 'https://api.elevenlabs.io/v1',
             openaiApiUrl: 'https://api.openai.com/v1/audio/transcriptions',
-            defaultVoice: 'Rachel', // Weiblich, Deutsch, natürlich
+            defaultVoice: 'Dana', // Persönliche Stimme für KAYA
             fallbackVoice: 'Bella', // Warm, empathisch
             modelId: 'eleven_turbo_v2', // Niedrige Latenz (~300ms)
             stability: 0.5,
@@ -266,9 +266,9 @@ class AudioService extends EventEmitter {
      * Helper: Default Voice ID
      */
     getDefaultVoiceId() {
-        // ElevenLabs Voice IDs (Standard Voices)
-        // Zurück zu den korrekten ElevenLabs Standard Voice IDs
+        // ElevenLabs Voice IDs
         const voices = {
+            'Dana': 'otF9rqKzRHFgfwf6serQ', // Persönliche KAYA-Stimme
             'Rachel': 'pNInz6obpgDQGcFmaJgB', // Female
             'Bella': 'EXAVITQu4vr4xnSDxMaL', // Female, warm
             'Antoni': 'ErXwobaYiN019PkySvjV', // Male
@@ -280,8 +280,8 @@ class AudioService extends EventEmitter {
             'Alice': 'XB0fDUnXU5powFXDhCwa' // Female
         };
         
-        // Fallback: Verwende Rachel als Standard
-        return voices[this.config.defaultVoice] || 'pNInz6obpgDQGcFmaJgB';
+        // Fallback: Verwende Dana als Standard
+        return voices[this.config.defaultVoice] || 'otF9rqKzRHFgfwf6serQ';
     }
     
     /**
