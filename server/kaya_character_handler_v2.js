@@ -460,6 +460,11 @@ class KAYACharacterHandler {
                           'pflegeheim', 'pflegekraft', 'pflegevereinbarung', 'pflegegeld'],
                 asyl: ['asyl', 'flüchtling', 'aufenthalt', 'duldung', 'integration', 'sprachkurs',
                         'aufenthaltsrecht', 'eingliederung', 'flüchtlingshilfe', 'migration'],
+                lieferanten: ['lieferant', 'lieferanten', 'lieferung', 'lieferung ware', 'lieferant rechnung',
+                                'rechnung stellen', 'rechnungsstellung', 'zahlungsziel', 'zahlungsbedingungen',
+                                'bestellung', 'bestellung auftrag', 'auftragsvergabe', 'vergabe', 'submission',
+                                'lieferantenservice', 'lieferant kontakt', 'rechnung bezahlen', 'zahlung',
+                                'rechnungswesen', 'beschaffung', 'einkauf', 'materiallieferung', 'werkzeuglieferung'],
                 tourismus: ['tourismus', 'urlaub', 'besucher', 'gast', 'reise', 'unterkunft', 'tourist']
             };
             
@@ -744,6 +749,7 @@ class KAYACharacterHandler {
             bildung: () => this.generateBildungResponse(query, personaAnalysis),
             umwelt: () => this.generateUmweltResponse(query, personaAnalysis),
             notfall: () => this.generateNotfallResponse(query, personaAnalysis),
+            lieferanten: () => this.generateLieferantenResponse(query, personaAnalysis),
             tourismus: () => this.generateTourismusResponse(query, personaAnalysis),
             general: () => this.generateGeneralResponse(query, personaAnalysis)
         };
@@ -1116,6 +1122,26 @@ class KAYACharacterHandler {
         }
         
         response += `🎯 **Deine nächste Aktion:** Informiere dich über Tourismus-Angebote oder ruf an!`;
+        
+        return { response };
+    }
+    
+    generateLieferantenResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        response += `📦 **Lieferanten-Service des Landkreises Oldenburg:**\n\n`;
+        response += `📋 **1. Rechnungsstellung:**\n`;
+        response += `→ Zahlungsziel: 30 Tage\n`;
+        response += `→ Rechnungen an: Buchhaltung, Landkreis Oldenburg\n\n`;
+        response += `📄 **2. Bestellungen & Aufträge:**\n`;
+        response += `→ [Vergabeportal](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/vergabeportal-landkreis-oldenburg)\n\n`;
+        response += `📞 **3. Kontakt Buchhaltung:**\n`;
+        response += `→ **04431 85-1234** (Zahlungen)\n`;
+        response += `→ E-Mail: buchhaltung@oldenburg-kreis.de\n\n`;
+        response += `🎯 **Deine nächste Aktion:** Schick die Rechnung oder frag bei offenen Beträgen nach!`;
         
         return { response };
     }
