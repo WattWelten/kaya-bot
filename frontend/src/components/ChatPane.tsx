@@ -233,8 +233,19 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     const parts: (string | JSX.Element)[] = [];
     let lastIndex = 0;
     let match;
+    let linkCount = 0;
+
+    // Debug: Prüfe ob Links vorhanden sind
+    const hasLinks = linkRegex.test(content);
+    linkRegex.lastIndex = 0; // Reset für weitere Verwendung
+    if (hasLinks) {
+      console.log('🔗 Links gefunden in:', content.substring(0, 100));
+    }
 
     while ((match = linkRegex.exec(content)) !== null) {
+      linkCount++;
+      console.log(`🔗 Link ${linkCount}: "${match[1]}" -> "${match[2]}"`);
+      
       // Text vor dem Link
       if (match.index > lastIndex) {
         parts.push(content.substring(lastIndex, match.index));
@@ -245,11 +256,15 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
       const linkUrl = match[2];
       parts.push(
         <a 
-          key={`link-${match.index}`}
+          key={`link-${match.index}-${linkCount}`}
           href={linkUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-lc-primary-600 hover:text-lc-primary-700 underline decoration-2 decoration-lc-primary-300 hover:decoration-lc-primary-500 transition-colors duration-200 font-medium"
+          onClick={(e) => {
+            console.log('🔗 Link geklickt:', linkUrl);
+            e.stopPropagation();
+          }}
         >
           {linkText}
           <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -269,7 +284,12 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     }
 
     // Falls keine Links gefunden: normaler Text
-    return parts.length === 0 ? content : parts;
+    if (parts.length === 0) {
+      console.log('⚠️ Keine Links konvertiert für:', content.substring(0, 100));
+      return content;
+    }
+
+    return parts;
   };
 
   // Smart Quick-Actions basierend auf letzter Nachricht
