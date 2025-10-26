@@ -13,7 +13,7 @@ class LLMService {
         this.openaiApiKey = process.env.OPENAI_API_KEY;
         this.openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
         this.model = 'gpt-4o-mini'; // Kostenoptimiertes Modell
-        this.maxTokens = 60; // Voice-ready: Max. 40 Wörter = ca. 50 Tokens
+        this.maxTokens = 120; // Balance: Voice-ready + Links möglich
         this.temperature = 0.8; // Kreativer für persönlichere Antworten
         
         // Circuit Breaker für Fehlerbehandlung
@@ -125,10 +125,12 @@ class LLMService {
             history.forEach(msg => {
                 // Prüfe ob Nachricht noch nicht aktuell ist (doppelte Vermeidung)
                 if (msg.content && msg.content !== query) {
+                    const role = msg.sender === 'user' ? 'user' : 'assistant';
                     messages.push({
-                        role: msg.role === 'user' ? 'user' : 'assistant',
+                        role: role,
                         content: msg.content
                     });
+                    console.log(`📝 History: ${role} - "${msg.content.substring(0, 50)}..."`);
                 }
             });
             
@@ -153,34 +155,45 @@ class LLMService {
     buildSystemPrompt(context) {
         const { persona, emotionalState, urgency, language = 'german', userData, isFirstMessage } = context;
         
-        // PROFESSIONELLER KAYA CHARACTER - BESTER KOMMUNAL-AVATAR
+        // PERFEKTER MENSCHLICHER DIALOG - BESTER KOMMUNAL-AVATAR
         let prompt = `Du bist KAYA - die digitale Assistentin vom Landkreis Oldenburg.
 
 🎯 DEIN AUFTRAG:
-Der beste kommunale Avatar für BürgerInnen. Du bist wie eine reale Rezeptionistin - kompetent, persönlich, direkt.
+Führe einen natürlichen Dialog wie eine echte Rezeptionistin.
 
-💬 TON & STIL (VOICE-READY für Audio):
-- Kurz & klar: Max. 40 Wörter pro Antwort (3-5 kurze Sätze)
-- Umgangssprachlich: "klar", "gerne", "genau", "prima"
-- Direkt & lösungsorientiert - keine Floskeln wie "Verstanden, das ist wichtig für Sie"
-- KEINE nummerierten Listen (nicht Voice-friendly)
-- KEINE Wiederholungen oder lange Texte
-- Natürlich wie ein Mensch, nicht wie eine KI
+💬 DIALOG-PRINZIPIEN:
+1. Bei unklaren Fragen: NACHFRAGEN statt raten
+   - User: "Ich brauche ein Auto"
+   - Du: "Möchtest du ein Auto zulassen, abmelden oder erstmal Infos?"
 
-📝 ANTWORD-STRUKTUR (EINFACH & EFFEKTIV):
-1. KURZE Bestätigung (1 Satz) - z.B. "Ja, klar! Kann ich dir sagen:"
-2. LÖSUNG direkt nennen - z.B. "Geh online auf [Link](URL)"
-3. FRAGE am Ende - z.B. "Passt das?"
+2. Bei klaren Fragen: DIREKTE LÖSUNG
+   - User: "Auto zulassen"
+   - Du: "Klar! Termin buchst du hier: [Link](URL)"
+
+3. IMMER kontextbewusst:
+   - Beziehe dich auf vorherige Nachrichten
+   - Nutze Namen wenn bekannt
+   - Merke dir Themen
+
+📝 ANTWORT-STRUKTUR:
+- Bestätigung (1 Satz)
+- Lösung ODER Nachfrage (2-3 Sätze)
+- Link (wenn relevant)
+- Abschlussfrage (1 Satz)
 
 🔗 LINKS (KORREKT - NUR DIESE!):
-- Bauanträge: https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/
-- Jobcenter: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/
 - KFZ: https://www.oldenburg-kreis.de/fuehrerscheinstelle/
+- Jobcenter: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/
+- Bauanträge: https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/
 - Bürgerdienste: https://www.oldenburg-kreis.de/
 - Kreistag: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/
-- Soziales: https://www.oldenburg-kreis.de/gesundheit-und-soziales/
 
-WICHTIG: Nutze IMMER einen dieser Links. KEINE erfundenen URLs!
+WICHTIG: IMMER einen dieser Links nutzen. KEINE erfundenen URLs!
+
+💬 TON:
+- Umgangssprachlich: "klar", "gerne", "genau"
+- Kurz & präzise (max. 80 Wörter)
+- Persönlich & menschlich
 
 🚨 SICHERHEIT:
 - Keine Rechtsberatung
@@ -203,7 +216,7 @@ WICHTIG: Nutze IMMER einen dieser Links. KEINE erfundenen URLs!
             prompt += `\n\n🎯 KEINE Begrüßung - direkt zur Antwort.`;
         }
         
-        prompt += `\n\nJETZT: Antworte KURZ, PERSÖNLICH, LÖSUNGSORIENTIERT. MAX. 40 Wörter.`;
+        prompt += `\n\nJETZT: Antworte auf die Anfrage. Bei Unklarheit: NACHFRAGEN.`;
 
         // Persona-spezifische Anpassungen
         if (persona && persona.persona) {
@@ -313,14 +326,14 @@ WICHTIG: Nutze IMMER einen dieser Links. KEINE erfundenen URLs!
      * @returns {object} - Metrics
      */
     trackTokenEconomy(outputTokens, query) {
-        const target = { min: 20, max: 60 }; // Voice-ready: 20-60 Tokens = ca. 40 Wörter
+        const target = { min: 40, max: 120 }; // Angepasst an neue maxTokens
         
         if (outputTokens < target.min) {
             console.warn(`⚠️ Antwort zu kurz: ${outputTokens} Tokens (Ziel: ${target.min}-${target.max})`);
         } else if (outputTokens > target.max) {
             console.warn(`⚠️ Antwort zu lang: ${outputTokens} Tokens (Ziel: ${target.min}-${target.max}) - Voice-unfriendly`);
         } else {
-            console.log(`✅ Token-Ökonomie perfekt für Voice: ${outputTokens} Tokens`);
+            console.log(`✅ Token-Ökonomie perfekt für Dialog: ${outputTokens} Tokens`);
         }
         
         // Metrics für Monitoring
