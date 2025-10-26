@@ -17,5 +17,5 @@ RUN npm run build
 # Port freigeben
 EXPOSE 3000
 
-# Preview-Server starten
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "3000"]
+# Static-Server starten
+CMD ["npx", "serve", "dist", "-s", "-l", "tcp://0.0.0.0:$PORT"]
