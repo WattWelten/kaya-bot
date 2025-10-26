@@ -17,5 +17,5 @@ RUN npm run build
 # Port freigeben
 EXPOSE 3000
 
-# Static-Server starten
-CMD ["npx", "serve", "dist", "-s", "-l", "tcp://0.0.0.0:$PORT"]
+# Static-Server starten (Port wird von Railway gesetzt)
+CMD ["sh", "-c", "npx serve dist -s -l ${PORT:-3000}"]
