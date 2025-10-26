@@ -414,13 +414,12 @@ class KAYACharacterHandler {
             const intentions = {
                 // Bürgerdienste & Dokumente (NEU - PRIORITÄT!)
                 buergerdienste: ['meldebescheinigung', 'meldebestätigung', 'wohnsitz', 'wohnsitzbescheinigung', 
-                                'meldebescheinigung', 'melderegister', 'wohnungsnachweis',
-                                'ausweis', 'personalausweis', 'reisepass', 'pass beantragen', 'pass verlängern',
-                                'identitätskarte', 'ausweis beantragen', 'ausweis verloren', 'ausweis neu',
-                                'dokumente', 'dokument', 'papier'],
+                                'melderegister', 'wohnungsnachweis',
+                                'ausweis', 'personalausweis', 'reisepass', 'pass', 'identitätskarte',
+                                'dokumente', 'dokument', 'papier', 'anmeldung', 'anmelden'],
                 // KFZ
-                kfz_zulassung: ['kfz', 'auto', 'fahrzeug', 'zulassung', 'anmeldung', 'kennzeichen', 'fahrzeugbrief', 'evb', 'versicherung'],
-                führerschein: ['führerschein', 'fuehrerschein', 'fã¼hrerschein', 'fahrerlaubnis', 'fahrschule', 'prüfung', 'schein'],
+                kfz_zulassung: ['kfz', 'auto', 'fahrzeug', 'zulassung', 'kennzeichen', 'fahrzeugbrief', 'evb', 'versicherung'],
+                führerschein: ['führerschein', 'fuehrerschein', 'fã¼hrerschein', 'fahrerlaubnis', 'fahrprüfung', 'schein'],
                 // Amtliche Angelegenheiten
                 bauantrag: ['bauantrag', 'bauen', 'haus', 'gebäude', 'baugenehmigung', 'planung'],
                 gewerbe: ['gewerbe', 'gewerbeanmeldung', 'selbständig', 'unternehmen', 'firma'],
@@ -446,6 +445,13 @@ class KAYACharacterHandler {
             const bestIntention = Object.keys(scores).reduce((a, b) => 
                 scores[a] > scores[b] ? a : b
             );
+            
+            // Debug: Log Top 3 Intentions
+            const topIntentions = Object.keys(scores)
+                .sort((a, b) => scores[b] - scores[a])
+                .slice(0, 3)
+                .map(key => `${key}:${scores[key].toFixed(3)}`);
+            console.log(`🔍 Top Intentions: ${topIntentions.join(', ')}`);
             
             const confidence = scores[bestIntention];
             const isSpecific = confidence > 0.1; // Threshold für spezifische Intention
