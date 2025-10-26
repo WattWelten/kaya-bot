@@ -1,0 +1,62 @@
+{
+  "timestamp": "2025-10-26T22:47:03.028Z",
+  "total": 9,
+  "valid": 6,
+  "invalid": 3,
+  "results": [
+    {
+      "url": "https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/",
+      "status": 200,
+      "valid": true,
+      "message": "OK"
+    },
+    {
+      "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/",
+      "status": 200,
+      "valid": true,
+      "message": "OK"
+    },
+    {
+      "url": "https://www.oldenburg-kreis.de/fuehrerscheinstelle/",
+      "status": 404,
+      "valid": false,
+      "message": "Error: 404"
+    },
+    {
+      "url": "https://www.oldenburg-kreis.de/",
+      "status": 200,
+      "valid": true,
+      "message": "OK"
+    },
+    {
+      "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
+      "status": 200,
+      "valid": true,
+      "message": "OK"
+    },
+    {
+      "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/",
+      "status": 200,
+      "valid": true,
+      "message": "OK"
+    },
+    {
+      "url": "https://www.oldenburg-kreis.de/bauen-und-wohnen/",
+      "status": 404,
+      "valid": false,
+      "message": "Error: 404"
+    },
+    {
+      "url": "https://www.oldenburg-kreis.de/verkehr/",
+      "status": 404,
+      "valid": false,
+      "message": "Error: 404"
+    },
+    {
+      "url": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "status": 200,
+      "valid": true,
+      "message": "OK"
+    }
+  ]
+}

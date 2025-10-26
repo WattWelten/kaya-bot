@@ -196,9 +196,9 @@ LINKS (immer benennend):
 VERIFIZIERTE LINKS:
 - Bauanträge: https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/
 - Jobcenter: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/
-- KFZ/Führerschein: https://www.oldenburg-kreis.de/online-kreishaus/fuehrerscheinstelle/
-- Bürgerdienste: https://www.oldenburg-kreis.de/online-kreishaus/
-- Kreistag: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/
+- KFZ/Führerschein: https://www.oldenburg-kreis.de/
+- Bürgerdienste: https://www.oldenburg-kreis.de/
+- Kreistag: https://www.oldenburg-kreis.de/
 
 QUELLE & AKTUALITÄT (IMMER am Ende):
 - Format: "Quelle: [Bereich] • Stand: MM/JJJJ"
