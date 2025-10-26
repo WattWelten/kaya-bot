@@ -855,3 +855,18 @@
     height: 400px;
   }
 }
+
+/* Quellen-Fußzeile */
+.source-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(203, 213, 225, 0.5);
+  font-size: 0.875rem;
+  color: #6B7280;
+  font-style: italic;
+}
+
+.source-footer strong {
+  color: #475569;
+  font-weight: 500;
+}

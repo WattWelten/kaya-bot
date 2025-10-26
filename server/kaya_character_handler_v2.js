@@ -738,6 +738,9 @@ class KAYACharacterHandler {
                         console.log('✅ LLM hat bereits Markdown-Links generiert');
                     }
                     
+                    // NEU: Quellen-Fußzeile hinzufügen
+                    finalResponse = this.addSourceFooter(finalResponse, intentionAnalysis);
+                    
                     console.log('✅ OpenAI-Integration erfolgreich');
                     response = { 
                         response: finalResponse,
@@ -2495,6 +2498,51 @@ Shall I set a notification?`
             questionType: null,
             answer: null
         };
+    }
+    
+    /**
+     * Fügt Quellen-Fußzeile zur Antwort hinzu
+     * 
+     * @param {string} response - KAYA-Antwort
+     * @param {object} intentionAnalysis - Intention-Analyse
+     * @returns {string} - Antwort mit Quellen-Fußzeile
+     */
+    addSourceFooter(response, intentionAnalysis) {
+        // Prüfe ob schon Quelle vorhanden
+        if (response.includes('Quelle:') || response.includes('Stand:')) {
+            return response;
+        }
+        
+        // Quelle bestimmen basierend auf Intention
+        const sourceMap = {
+            bauantrag: 'Bauen & Wohnen',
+            buergerdienste: 'Bürgerdienste',
+            jobcenter: 'Jobcenter',
+            kfz_zulassung: 'KFZ-Zulassung',
+            politik: 'Kreistag',
+            soziales: 'Soziales',
+            jugend: 'Jugend',
+            schule: 'Bildung',
+            verkehr: 'Verkehr',
+            wirtschaft: 'Wirtschaft',
+            ordnungsamt: 'Ordnung & Sicherheit',
+            senioren: 'Senioren',
+            inklusion: 'Inklusion',
+            digitalisierung: 'Digitalisierung',
+            gleichstellung: 'Gleichstellung',
+            lieferanten: 'Vergabe',
+            tourismus: 'Tourismus'
+        };
+        
+        const source = sourceMap[intentionAnalysis.type] || 'Landkreis Oldenburg';
+        const timestamp = new Date().toLocaleDateString('de-DE', { month: '2-digit', year: 'numeric' });
+        
+        // Fußzeile im Markdown-Format (wird im Frontend gerendert)
+        const footer = `\n\n---\n*Quelle: ${source} • Stand: ${timestamp}*`;
+        
+        console.log(`📝 Quellen-Fußzeile hinzugefügt: ${source} (${timestamp})`);
+        
+        return response + footer;
     }
     
     /**

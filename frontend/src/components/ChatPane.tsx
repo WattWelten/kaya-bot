@@ -297,7 +297,98 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
 
     // Falls keine Links gefunden: normaler Text
     if (parts.length === 0 || matches.length === 0) {
+      // Prüfe auf Quellen-Fußzeile
+      const footerMatch = content.match(/---\n\*Quelle: (.+?) • Stand: (.+?)\*/);
+      if (footerMatch) {
+        const [fullMatch, source, timestamp] = footerMatch;
+        const contentWithoutFooter = content.replace(fullMatch, '').trim();
+        
+        return (
+          <>
+            <span className="whitespace-pre-wrap">{contentWithoutFooter}</span>
+            <div className="source-footer mt-3">
+              <strong>Quelle:</strong> {source} • <strong>Stand:</strong> {timestamp}
+            </div>
+          </>
+        );
+      }
       return content;
+    }
+
+    // Prüfe auf Quellen-Fußzeile
+    const footerMatch = content.match(/---\n\*Quelle: (.+?) • Stand: (.+?)\*/);
+    if (footerMatch) {
+      const [fullMatch, source, timestamp] = footerMatch;
+      
+      // Entferne Fußzeile aus Inhalt für Link-Rendering
+      const contentWithoutFooter = content.replace(fullMatch, '').trim();
+      
+      // Führe Link-Rendering für Content ohne Footer durch
+      const footerMatches: RegExpExecArray[] = [];
+      const footerLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+      let footerLinkMatch;
+      
+      while ((footerLinkMatch = footerLinkRegex.exec(contentWithoutFooter)) !== null) {
+        footerMatches.push(footerLinkMatch);
+      }
+      
+      const footerParts: (string | JSX.Element)[] = [];
+      let footerLastIndex = 0;
+      
+      footerMatches.forEach((match, index) => {
+        if (match.index > footerLastIndex) {
+          footerParts.push(contentWithoutFooter.substring(footerLastIndex, match.index));
+        }
+        
+        const linkText = match[1];
+        const linkUrl = match[2];
+        footerParts.push(
+          <a 
+            key={`footer-link-${match.index}-${index}`}
+            href={linkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="
+              inline-flex items-center gap-1.5
+              text-lc-primary-600 hover:text-lc-primary-700
+              underline decoration-2 decoration-lc-primary-300
+              hover:decoration-lc-primary-500
+              transition-all duration-300
+              font-medium
+              hover:gap-2
+              group
+            "
+            onClick={(e) => {
+              console.log('🔗 Link geklickt:', linkUrl);
+              e.stopPropagation();
+            }}
+          >
+            {linkText}
+            <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
+        );
+        
+        footerLastIndex = match.index + match[0].length;
+      });
+      
+      if (footerLastIndex < contentWithoutFooter.length) {
+        footerParts.push(contentWithoutFooter.substring(footerLastIndex));
+      }
+      
+      return (
+        <>
+          {/* Haupt-Content mit Links */}
+          <span className="whitespace-pre-wrap">{footerParts.length > 0 ? footerParts : contentWithoutFooter}</span>
+          {/* Quellen-Fußzeile */}
+          <div className="source-footer mt-3">
+            <strong>Quelle:</strong> {source} • <strong>Stand:</strong> {timestamp}
+          </div>
+        </>
+      );
     }
 
     return parts;
@@ -446,9 +537,9 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
                     : 'chat-message-assistant'
                 }`}
               >
-                <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                <div className="text-sm leading-relaxed">
                   {renderMessageContent(message.content)}
-                </p>
+                </div>
                 {message.metadata && (
                   <div className="mt-2 text-xs opacity-70">
                     {message.metadata.emotion && (
