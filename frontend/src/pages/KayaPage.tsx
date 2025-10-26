@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { AvatarPane } from '@/components/AvatarPane';
 import { ChatPane } from '@/components/ChatPane';
+import { AccessibilityToolbar } from '@/components/AccessibilityToolbar';
 import { AccessibilitySettings, UserPreferences } from '@/types';
 
 /**
@@ -163,6 +164,9 @@ export default function KayaPage() {
       >
         Zum Chat springen
       </a>
+
+      {/* Accessibility Toolbar */}
+      <AccessibilityToolbar />
 
       {/* Header */}
       <Header

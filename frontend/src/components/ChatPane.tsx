@@ -436,10 +436,14 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           
           {isProcessing && (
             <div className="flex justify-start">
-              <div className="max-w-[70ch] md:max-w-[62ch] rounded-2xl px-4 py-3 bg-lc-primary-50 border border-lc-primary-200">
+              <div className="max-w-[70ch] md:max-w-[62ch] rounded-2xl px-4 py-3 bg-lc-primary-50 border border-lc-primary-200 message-animate">
                 <div className="flex items-center gap-2">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-lc-primary-600"></div>
-                  <p className="text-sm text-lc-neutral-600">KAYA denkt nach...</p>
+                  <div className="flex gap-1">
+                    <span className="w-2 h-2 bg-lc-primary-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-2 h-2 bg-lc-primary-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-2 h-2 bg-lc-primary-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                  </div>
+                  <p className="text-sm text-lc-neutral-600">KAYA antwortet...</p>
                 </div>
               </div>
             </div>
@@ -458,22 +462,28 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
             className="flex items-end gap-2"
             aria-label="Nachricht verfassen"
           >
-            {/* Audio-Button */}
+            {/* Audio-Button - Größer für Accessibility */}
             <button
               type="button"
-              className={`btn-ghost ${isRecording ? 'bg-red-100 text-red-600 animate-pulse' : ''} ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`
+                w-14 h-14 rounded-full
+                flex items-center justify-center
+                transition-all duration-200
+                ${isRecording ? 'bg-red-100 text-red-600 animate-pulse' : 'bg-lc-primary-50 hover:bg-lc-primary-100 text-lc-primary-700'}
+                ${isProcessing ? 'opacity-50 cursor-not-allowed' : 'btn-interactive'}
+              `}
               aria-label={isRecording ? "Aufnahme stoppen" : "Diktieren starten"}
               onClick={handleAudioToggle}
               disabled={isProcessing}
-              title={isRecording ? "Aufnahme läuft... (Klicken zum Stoppen)" : "Mikrofon aktivieren"}
+              title={isRecording ? "Aufnahme läuft... (Klicken zum Stoppen)" : "Mikrofon aktivieren (44x44px für Accessibility)"}
             >
               {isRecording ? (
-                <div className="relative">
-                  <Mic className="size-5" />
-                  <span className="absolute inset-0 bg-red-500 rounded-full opacity-20 animate-ping"></span>
+                <div className="relative flex items-center justify-center">
+                  <Mic className="size-7" />
+                  <span className="absolute inset-0 bg-red-500 rounded-full opacity-20 animate-ping" />
                 </div>
               ) : (
-                <Mic className="size-5" />
+                <Mic className="size-7" />
               )}
             </button>
 
