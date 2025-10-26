@@ -82,7 +82,7 @@ export const AvatarPane: React.FC<AvatarPaneProps> = ({
   return (
     <section 
       aria-label="Avatar Bereich" 
-      className="relative bg-gradient-to-b from-lc-neutral-100 to-lc-neutral-100 md:h-[calc(100svh-4rem)] h-[60svh] overflow-hidden"
+      className="relative bg-gradient-to-b from-lc-primary-50/40 to-lc-neutral-50/60 md:h-[calc(100svh-4rem)] h-[60svh] overflow-hidden backdrop-blur-sm"
     >
       {/* Unity Canvas / Placeholder */}
       <div className="absolute inset-0">
