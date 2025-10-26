@@ -412,14 +412,23 @@ class KAYACharacterHandler {
             
             // Erweiterte Intention-Keywords
             const intentions = {
+                // Bürgerdienste & Dokumente (NEU - PRIORITÄT!)
+                buergerdienste: ['meldebescheinigung', 'meldebestätigung', 'wohnsitz', 'wohnsitzbescheinigung', 
+                                'meldebescheinigung', 'melderegister', 'wohnungsnachweis',
+                                'ausweis', 'personalausweis', 'reisepass', 'pass beantragen', 'pass verlängern',
+                                'identitätskarte', 'ausweis beantragen', 'ausweis verloren', 'ausweis neu',
+                                'dokumente', 'dokument', 'papier'],
+                // KFZ
                 kfz_zulassung: ['kfz', 'auto', 'fahrzeug', 'zulassung', 'anmeldung', 'kennzeichen', 'fahrzeugbrief', 'evb', 'versicherung'],
                 führerschein: ['führerschein', 'fuehrerschein', 'fã¼hrerschein', 'fahrerlaubnis', 'fahrschule', 'prüfung', 'schein'],
+                // Amtliche Angelegenheiten
                 bauantrag: ['bauantrag', 'bauen', 'haus', 'gebäude', 'baugenehmigung', 'planung'],
                 gewerbe: ['gewerbe', 'gewerbeanmeldung', 'selbständig', 'unternehmen', 'firma'],
                 landwirtschaft: ['landwirtschaft', 'landwirt', 'bauer', 'hof', 'tier', 'pflanze'],
                 handwerk: ['handwerk', 'handwerker', 'meister', 'ausbildung', 'lehre'],
                 studium: ['studium', 'universität', 'hochschule', 'student', 'bafög'],
-                soziales: ['sozialhilfe', 'grundsicherung', 'hilfe', 'unterstützung', 'sozial'],
+                // Soziale Dienste
+                soziales: ['sozialhilfe', 'grundsicherung', 'hilfe', 'unterstützung', 'sozial', 'bürgergeld', 'wohngeld'],
                 gesundheit: ['gesundheit', 'arzt', 'krankenhaus', 'medizin', 'behandlung'],
                 bildung: ['bildung', 'schule', 'lernen', 'kurs', 'ausbildung'],
                 umwelt: ['umwelt', 'müll', 'abfall', 'recycling', 'nachhaltigkeit'],
@@ -1313,8 +1322,8 @@ class KAYACharacterHandler {
     }
     
     getEmpatheticGreeting(userName, persona, emotionalState, language) {
-        // Sprache explizit auf Deutsch setzen (außer bei eindeutigem Englisch)
-        const finalLanguage = 'german'; // Immer Deutsch als Standard
+        // Verwende die übergebene Sprache
+        const finalLanguage = language || 'german';
         
         const greetings = {
             german: {
@@ -1336,8 +1345,8 @@ class KAYACharacterHandler {
     }
     
     getEmotionalSupport(emotion, language) {
-        // Sprache explizit auf Deutsch setzen
-        const finalLanguage = 'german';
+        // Verwende die übergebene Sprache
+        const finalLanguage = language || 'german';
         
         const support = {
             german: {
@@ -1355,6 +1364,9 @@ class KAYACharacterHandler {
     }
     
     getConcreteHelp(intention, query, language) {
+        // Verwende die übergebene Sprache
+        const finalLanguage = language || 'german';
+        
         // Konkrete Hilfe basierend auf Intention und Query
         const help = {
             german: {
@@ -1373,13 +1385,13 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageHelp = help['german'] || help.german;
+        const languageHelp = help[finalLanguage] || help.german;
         return languageHelp[intention] || languageHelp.general;
     }
     
     getPersonalAddress(userName, intention, language) {
-        // Sprache explizit auf Deutsch setzen
-        const finalLanguage = 'german';
+        // Verwende die übergebene Sprache
+        const finalLanguage = language || 'german';
         
         const address = {
             german: {
@@ -1403,8 +1415,8 @@ class KAYACharacterHandler {
     }
     
     getSolutionOrientedResponse(intention, query, language) {
-        // Sprache explizit auf Deutsch setzen
-        const finalLanguage = 'german';
+        // Verwende die übergebene Sprache
+        const finalLanguage = language || 'german';
         
         const solutions = {
             german: {
@@ -1454,8 +1466,8 @@ class KAYACharacterHandler {
     }
     
     getActionOrientedClosing(intention, emotionalState, persona, language) {
-        // Sprache explizit auf Deutsch setzen
-        const finalLanguage = 'german';
+        // Verwende die übergebene Sprache
+        const finalLanguage = language || 'german';
         
         const closings = {
             german: {
@@ -1477,8 +1489,8 @@ class KAYACharacterHandler {
     }
     
     getDynamicClosing(intention, emotionalState, persona, language) {
-        // Sprache explizit auf Deutsch setzen
-        const finalLanguage = 'german';
+        // Verwende die übergebene Sprache
+        const finalLanguage = language || 'german';
         
         const closings = {
             german: {
