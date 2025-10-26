@@ -75,10 +75,11 @@ class ContextMemory {
         
         const lowerMsg = message.toLowerCase();
         
-        // Name-Extraction
+        // Name-Extraction - Erweiterte Patterns für bessere Trefferquote
         const namePatterns = [
-            /(?:ich bin|ich heiße|mein name ist|ich heisse)\s+([a-zäöüß]+)/i,
-            /^([A-ZÄÖÜ][a-zäöüß]+)(?:\s|$)/ // Erster Großbuchstabe am Anfang
+            /(?:ich bin|ich heiße|mein name ist|ich heisse|ich heiße|ich nenne mich)\s+([a-zäöüß]+)/i,
+            /(?:name|heiße)\s+(?:ist|)\s*([A-ZÄÖÜ][a-zäöüß]+)/i,
+            /[A-ZÄÖÜ][a-zäöüß]+\s+(?:ist\s+)?mein Name/i // "Klara ist mein Name"
         ];
         
         for (const pattern of namePatterns) {
