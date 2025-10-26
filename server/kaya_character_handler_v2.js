@@ -432,11 +432,35 @@ class KAYACharacterHandler {
                 studium: ['studium', 'universität', 'hochschule', 'student', 'bafög'],
                 // Soziale Dienste
                 soziales: ['sozialhilfe', 'grundsicherung', 'hilfe', 'unterstützung', 'sozial', 'bürgergeld', 'wohngeld'],
-                gesundheit: ['gesundheit', 'arzt', 'krankenhaus', 'medizin', 'behandlung'],
-                bildung: ['bildung', 'schule', 'lernen', 'kurs', 'ausbildung'],
-                umwelt: ['umwelt', 'müll', 'abfall', 'recycling', 'nachhaltigkeit'],
-                notfall: ['notfall', 'notruf', 'hilfe', 'schnell', 'dringend'],
-                tourismus: ['tourismus', 'urlaub', 'besucher', 'gast', 'reise', 'unterkunft']
+                // NEUE AGENTEN (Basierend auf Crawler-Analyse)
+                jugend: ['jugend', 'jugendamt', 'jugendhilfe', 'kind', 'kinder', 'kita', 'kindergarten', 
+                         'erziehung', 'betreuung', 'jugendzentrum', 'schulsozialarbeit', 'jugendpsychologie',
+                         'elterngeld', 'kindergeld', 'jugendliche', 'teenager'],
+                bildung: ['schule', 'schulamt', 'grundschule', 'gymnasium', 'realschule', 'schulanmeldung',
+                          'schuleingangsuntersuchung', 'kultur', 'kulturzentrum', 'bibliothek', 'plattdeutsch',
+                          'volkskultur', 'musikschule', 'schulessen', 'schulbus', 'unterricht', 'lehrer'],
+                verkehr: ['verkehr', 'straße', 'radweg', 'verkehrssicherheit', 'parkplatz', 'gehweg',
+                          'busverkehr', 'öffentlicher nahverkehr', 'buslinie', 'fahrplan', 'nordwestbahn',
+                          'haltestelle', 'busse', 'taxi', 'strassenverkehr', 'fahrbahn'],
+                umwelt: ['umwelt', 'umweltschutz', 'abfall', 'müll', 'bio', 'papiertonne', 'wertstoffhof',
+                         'recycling', 'kompost', 'sperrmüll', 'altlasten', 'naturschutz', 'landschaftsschutz',
+                         'wasser', 'kanalisation', 'grundwasser', 'wasserrecht', 'trinkwasser', 'schmutzwasser'],
+                tierhaltung: ['tier', 'tierhaltung', 'hund', 'katze', 'veterinär', 'tierarzt', 'tierheim',
+                               'hundehaltung', 'leinenpflicht', 'hundesteuer', 'tierschutz', 'viehhaltung',
+                               'stall', 'weide', 'nutztier'],
+                gesundheit: ['gesundheit', 'gesundheitsamt', 'impfung', 'impfpass', 'impfstelle', 'seuchenbekämpfung',
+                             'umwelthygiene', 'psychiatrie', 'sport', 'sportstätte', 'wellness', 'prävention',
+                             'ärzte', 'krankenhäuser', 'gesundheitsvorsorge'],
+                wahlen: ['wahl', 'wahlen', 'kreistag', 'kommunalwahl', 'bundestagswahl', 'europawahl',
+                         'wahltermin', 'wahlbeteiligung', 'wahlvorstand', 'wahlbenachrichtigung', 'demokratie'],
+                nichtfall: ['notfall', 'notruf', 'hilfe', 'schnell', 'dringend'],
+                katastrophenschutz: ['katastrophenschutz', 'brand', 'feuerwehr', 'rettungsdienst', 'alarm',
+                                      'evakuierung', 'warnung', 'sirene', 'notfallplan'],
+                pflege: ['pflege', 'pflegedienst', 'betreuung', 'ambulante pflege', 'stationäre pflege',
+                          'pflegeheim', 'pflegekraft', 'pflegevereinbarung', 'pflegegeld'],
+                asyl: ['asyl', 'flüchtling', 'aufenthalt', 'duldung', 'integration', 'sprachkurs',
+                        'aufenthaltsrecht', 'eingliederung', 'flüchtlingshilfe', 'migration'],
+                tourismus: ['tourismus', 'urlaub', 'besucher', 'gast', 'reise', 'unterkunft', 'tourist']
             };
             
             // Intention-Scoring mit Fuzzy Matching

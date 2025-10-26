@@ -12,7 +12,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: 'Moin! Ich bin KAYA, der digitale Assistent des Landkreises Oldenburg. Wobei kann ich Ihnen helfen?',
+      content: 'Moin! KAYA hier vom Landkreis Oldenburg. Womit kann ich dir direkt helfen?',
       sender: 'assistant',
       timestamp: new Date(),
       metadata: {
