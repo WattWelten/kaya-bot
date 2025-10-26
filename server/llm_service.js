@@ -160,12 +160,13 @@ REGELN:
 
 BEISPIEL:
 Frage: "Grundstück gekauft"
-Antwort: "Für den Bauantrag brauchst du die [Formulare hier](https://www.oldenburg-kreis.de/bauen-und-wohnen/). Ruf an (04431 85-0) für Beratung. Hast du den Bebauungsplan geprüft?"
+Antwort: "Für den Bauantrag brauchst du die [Formulare hier](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/). Ruf an (04431 85-0) für Beratung. Hast du den Bebauungsplan geprüft?"
 
-LINKS (immer verwenden):
-- Bauanträge: https://www.oldenburg-kreis.de/bauen-und-wohnen/
+LINKS (immer verwenden - VERIFIZIERT!):
+- Bauanträge: https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/
 - Jobcenter: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/
-- KFZ: https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/
+- KFZ/Führerschein: https://www.oldenburg-kreis.de/online-kreishaus/fuehrerscheinstelle/
+- Bürgerdienste: https://www.oldenburg-kreis.de/online-kreishaus/
 - Kreistag: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/`;
 
         // NEU: User-Kontext hinzufügen

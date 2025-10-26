@@ -704,10 +704,10 @@ class KAYACharacterHandler {
                     if (!hasLinks) {
                         // Append template links based on intention
                         const intentionLinks = {
-                            bauantrag: '\n\n[Bauantragsformulare](https://www.oldenburg-kreis.de/bauen-und-wohnen/)',
-                            jobcenter: '\n\n[Antrag Bürgergeld](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/)',
-                            kfz_zulassung: '\n\n[KFZ-Termin buchen](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/)',
-                            buergerdienste: '\n\n[Terminvereinbarung](https://www.oldenburg-kreis.de/buergerservice/)',
+                            bauantrag: '\n\n[Formulare Bauen](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)',
+                            jobcenter: '\n\n[Jobcenter Landkreis Oldenburg](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/)',
+                            kfz_zulassung: '\n\n[KFZ-Zulassungsstelle](https://www.oldenburg-kreis.de/online-kreishaus/fuehrerscheinstelle/)',
+                            buergerdienste: '\n\n[Online-Kreishaus](https://www.oldenburg-kreis.de/online-kreishaus/)',
                             politik: '\n\n[Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/)',
                         };
                         
