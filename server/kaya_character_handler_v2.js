@@ -412,11 +412,10 @@ class KAYACharacterHandler {
             
             // Erweiterte Intention-Keywords
             const intentions = {
-                // Bürgerdienste & Dokumente (NEU - PRIORITÄT!)
-                buergerdienste: ['meldebescheinigung', 'meldebestätigung', 'wohnsitz', 'wohnsitzbescheinigung', 
-                                'melderegister', 'wohnungsnachweis', 'wohnsitznachweis',
-                                'ausweis', 'personalausweis', 'reisepass', 'pass', 'identitätskarte',
-                                'dokumente', 'dokument', 'papier', 'bürgerdienste', 'standesamt', 'behörde'],
+                // Bürgerdienste & Dokumente (NEU - PRIORITÄT!) - Kurze Liste für höhere Gewichtung
+                buergerdienste: ['meldebescheinigung', 'meldebestätigung', 'wohnsitzbescheinigung', 'wohnsitznachweis',
+                                'personalausweis beantragen', 'reisepass verlängern', 'pass beantragen',
+                                'bürgerdienste', 'standesamt meldewesen', 'anmeldung wohnung', 'ummelden', 'wohnsitz anmelden'],
                 // KFZ
                 kfz_zulassung: ['kfz', 'auto', 'fahrzeug', 'zulassung', 'kennzeichen', 'fahrzeugbrief', 'evb', 'versicherung'],
                 führerschein: ['führerschein', 'fuehrerschein', 'fahrerlaubnis', 'fahren lernen', 'fahrschule'],
@@ -492,7 +491,7 @@ class KAYACharacterHandler {
         // Exakte Matches haben höchste Priorität
         keywords.forEach(keyword => {
             if (query.includes(keyword)) {
-                score += 2; // Exakte Matches zählen doppelt
+                score += 10; // Exakte Matches zählen stark
                 exactMatches++;
             }
         });
@@ -506,7 +505,8 @@ class KAYACharacterHandler {
             });
         }
         
-        return score / keywords.length;
+        // Score ist jetzt absolute Zahl, nicht relativ zu keywords.length
+        return score;
     }
     
     fuzzyMatch(query, keyword) {
