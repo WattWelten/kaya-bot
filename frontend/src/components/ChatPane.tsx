@@ -3,6 +3,7 @@ import { Mic, Paperclip, Send, Volume2 } from 'lucide-react';
 import { useWebSocket } from '@/hooks/useWebSocket';
 import { useAudio } from '@/hooks/useAudio';
 import { Message, ChatPaneProps } from '@/types';
+import { getAudioService } from '@/services/AudioService';
 
 export const ChatPane: React.FC<ChatPaneProps> = ({
   setCaptionText,
@@ -113,7 +114,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
 
       try {
         // Audio abrufen (from AudioService)
-        const audioService = require('@/services/AudioService').getAudioService();
+        const audioService = getAudioService();
         const audioBlob = audioService.getRecordedAudio();
         
         if (!audioBlob) {
@@ -147,8 +148,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           id: `msg_${Date.now()}`,
           content: result.transcription,
           sender: 'user',
-          timestamp: new Date(),
-          metadata: { type: 'audio' }
+          timestamp: new Date()
         };
 
         // KAYA-Response (Text)
@@ -157,7 +157,12 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           content: result.response,
           sender: 'assistant',
           timestamp: new Date(),
-          metadata: { type: 'audio', audioUrl: result.audioUrl }
+          metadata: {
+            emotion: 'friendly',
+            urgency: 'normal',
+            persona: 'general',
+            language: 'de'
+          }
         };
 
         setMessages(prev => [...prev, userMessage, assistantMessage]);

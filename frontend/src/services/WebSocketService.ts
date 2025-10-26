@@ -2,7 +2,7 @@ import { WebSocketMessage, KayaResponse, ErrorState } from '@/types';
 
 export class WebSocketService {
   private ws: WebSocket | null = null;
-  private sessionId: string;
+  public sessionId: string;
   private reconnectAttempts = 0;
   private maxReconnectAttempts = 5;
   private reconnectDelay = 1000;
