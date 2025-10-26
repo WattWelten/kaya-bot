@@ -75,11 +75,18 @@ class ContextMemory {
         
         const lowerMsg = message.toLowerCase();
         
-        // Name-Extraction - Erweiterte Patterns für bessere Trefferquote
+        // Name-Extraction - Robuste Patterns für bessere Trefferquote
         const namePatterns = [
+            // "ich bin Klara" oder "ich heiße Sandra"
             /(?:ich bin|ich heiße|mein name ist|ich heisse|ich heiße|ich nenne mich)\s+([a-zäöüß]+)/i,
-            /(?:name|heiße)\s+(?:ist|)\s*([A-ZÄÖÜ][a-zäöüß]+)/i,
-            /[A-ZÄÖÜ][a-zäöüß]+\s+(?:ist\s+)?mein Name/i // "Klara ist mein Name"
+            // "ich bin Klara und bin 78" - nur Name vor Konjunktionen
+            /(?:ich bin|ich heiße)\s+([a-zäöüß]+)(?:\s+und|\s+bin|\s+habe|\s+ist)/i,
+            // "mein Name ist Wilhelm"
+            /mein name ist\s+([a-zäöüß]+)/i,
+            // "Ich heiße Michael"
+            /ich heiße\s+([a-zäöüß]+)/i,
+            // "mein Name ist Sandra und..."
+            /mein name ist\s+([a-zäöüß]+)(?:\s+und|\s+habe|\s+bin)/i
         ];
         
         for (const pattern of namePatterns) {

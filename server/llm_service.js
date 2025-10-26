@@ -171,7 +171,12 @@ LINKS (immer verwenden - VERIFIZIERT!):
 
         // NEU: User-Kontext hinzufügen
         if (userData && userData.name) {
-            prompt += `\n\n👤 INFO: Der Nutzer heißt ${userData.name}. Nutze den Namen wenn angebracht!`;
+            prompt += `\n\n👤 WICHTIG: Der Nutzer heißt ${userData.name}. Nutze den Namen in JEDER Antwort persönlich! Beispiel: "Sarah, für dein Anliegen..." oder "Michael, du kannst hier...". Sei persönlich und verständnisvoll!`;
+        }
+        
+        // Context-Historie Check
+        if (context.conversationHistory && context.conversationHistory.length > 1) {
+            prompt += `\n\n🔍 HINWEIS: Dies ist NICHT die erste Nachricht. Der Nutzer kennt dich bereits. Referenziere vorherige Gespräche wenn relevant.`;
         }
         
         prompt += `\n\nJETZT ANTWORTEN:`;

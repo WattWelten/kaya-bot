@@ -294,8 +294,14 @@ class KAYACharacterHandler {
         const queryLower = query.toLowerCase();
         
         const urgencyKeywords = {
-            critical: ['sofort', 'dringend', 'notfall', 'heute', 'jetzt', 'eilig', 'wichtig'],
-            high: ['bald', 'schnell', 'wichtig', 'priorität', 'dringend'],
+            critical: [
+                'sofort', 'dringend', 'notfall', 'heute', 'jetzt', 'eilig', 'wichtig',
+                'gewalt', 'bedroht', 'misshandelt', 'schlägt mich', 'häusliche gewalt', 
+                'angst', 'panik', 'hilfe brauche ich', 'gefahr', 'unsicher zu hause',
+                'polizei', '112', '110', 'notfall', 'krise', 'gefährlich', 'bedrohung',
+                'verlassen möchte', 'weg muss', 'hilfe dringend'
+            ],
+            high: ['bald', 'schnell', 'wichtig', 'priorität', 'dringend', 'sorge', 'sorgen'],
             normal: ['normal', 'standard', 'üblich', 'regulär']
         };
         
