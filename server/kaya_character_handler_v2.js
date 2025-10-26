@@ -676,6 +676,12 @@ class KAYACharacterHandler {
             const sessionData = this.contextMemory.getSession(sessionId);
             const userData = sessionData.context.userData || {};
             
+            // Sprache erkennen (DE oder EN - Standard ist DE)
+            const lowerQuery = query.toLowerCase();
+            const englishWords = ['hello', 'help', 'please', 'thank you', 'sorry', 'need'];
+            const isEnglish = englishWords.some(word => lowerQuery.includes(word));
+            const detectedLanguage = isEnglish ? 'english' : 'german';
+            
             // OpenAI-Integration: Versuche mit LLM, sonst Fallback auf Templates
             let response;
             if (this.useLLM && this.getLLMService().isAvailable()) {
