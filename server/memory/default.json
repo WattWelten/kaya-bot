@@ -1949,8 +1949,33 @@
         "communicationMode": "audio",
         "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Find driving school\n2. Register and take exams\n3. Apply for driver's license\n\nLet's go! What's your next step?"
       }
+    },
+    {
+      "id": "1761519001557",
+      "sender": "user",
+      "content": "Ich brauche einen F�hrerschein",
+      "timestamp": "2025-10-26T22:50:01.557Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1761519001788",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Find driving school\n2. Register and take exams\n3. Apply for driver's license\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-26T22:50:01.788Z",
+      "context": {
+        "intention": "führerschein",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Find driving school\n2. Register and take exams\n3. Apply for driver's license\n\nLet's go! What's your next step?"
+      }
     }
   ],
   "createdAt": "2025-10-10T19:08:56.553Z",
-  "lastActivity": "2025-10-26T15:32:51.668Z"
+  "lastActivity": "2025-10-26T22:50:01.788Z"
 }

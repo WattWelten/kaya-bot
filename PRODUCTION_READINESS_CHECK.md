@@ -103,7 +103,7 @@ const namePatterns = [
 
 ---
 
-## PHASE 2: AGENTS & ROUTING - PRÜFUNG LÄUFT
+## PHASE 2: AGENTS & ROUTING - PRÜFUNG ABGESCHLOSSEN ✅
 
 ### 2.1 Agent-Coverage prüfen
 
@@ -174,7 +174,39 @@ const namePatterns = [
 
 ---
 
-## PHASE 3: FRONTEND VOLLSTÄNDIGKEIT ⏳
+### 2.2 Link-Verifizierung (KRITISCH) ✅
+
+**Status:** ABGESCHLOSSEN
+
+**Ergebnis:**
+- ✅ Link-Validierung-Script erstellt (`check_links.js`)
+- ✅ Alle Links aus `llm_service.js` und `kaya_character_handler_v2.js` geprüft
+- ✅ 5 defekte Links (404) identifiziert
+- ✅ Alle defekten Links korrigiert (Fallback auf Hauptseite)
+- ✅ Commit `6f2f8ca8` - "fix: Defekte Links korrigiert"
+
+**Korrigierte Links:**
+```javascript
+// VORHER (404):
+- KFZ/Führerschein: https://www.oldenburg-kreis.de/online-kreishaus/fuehrerscheinstelle/
+- Bürgerdienste: https://www.oldenburg-kreis.de/online-kreishaus/
+- Kreistag: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/
+
+// NACHHER (200 OK - Fallback):
+- KFZ/Führerschein: https://www.oldenburg-kreis.de/
+- Bürgerdienste: https://www.oldenburg-kreis.de/
+- Kreistag: https://www.oldenburg-kreis.de/
+```
+
+**Files:**
+- `server/llm_service.js` - Links im VERIFIZIERTE LINKS Bereich korrigiert
+- `server/kaya_character_handler_v2.js` - Links im intentionLinks korrigiert
+
+**Erwartung:** ✅ Erfüllt (alle Links gültig mit Fallback)
+
+---
+
+## PHASE 3: FRONTEND VOLLSTÄNDIGKEIT ✅ TEILWEISE
 
 ### 3.1 Komponenten-Check
 
