@@ -235,17 +235,16 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     let match;
     let linkCount = 0;
 
-    // Debug: Prüfe ob Links vorhanden sind
-    const hasLinks = linkRegex.test(content);
-    linkRegex.lastIndex = 0; // Reset für weitere Verwendung
-    if (hasLinks) {
-      console.log('🔗 Links gefunden in:', content.substring(0, 100));
+    // Alle Matches finden ohne .test() vorher
+    const matches: RegExpExecArray[] = [];
+    while ((match = linkRegex.exec(content)) !== null) {
+      matches.push(match);
     }
 
-    while ((match = linkRegex.exec(content)) !== null) {
-      linkCount++;
-      console.log(`🔗 Link ${linkCount}: "${match[1]}" -> "${match[2]}"`);
-      
+    console.log(`🔗 ${matches.length} Markdown-Links gefunden in Nachricht`);
+
+    // Jetzt die Matches verarbeiten
+    matches.forEach((match, index) => {
       // Text vor dem Link
       if (match.index > lastIndex) {
         parts.push(content.substring(lastIndex, match.index));
@@ -254,6 +253,10 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
       // Link als <a> Element mit verbessertem Styling
       const linkText = match[1];
       const linkUrl = match[2];
+      linkCount++;
+      
+      console.log(`🔗 Link ${linkCount}: "${linkText}" -> "${linkUrl}"`);
+      
       parts.push(
         <a 
           key={`link-${match.index}-${linkCount}`}
@@ -285,7 +288,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
       );
 
       lastIndex = match.index + match[0].length;
-    }
+    });
 
     // Rest-Text nach dem letzten Link
     if (lastIndex < content.length) {
@@ -293,8 +296,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     }
 
     // Falls keine Links gefunden: normaler Text
-    if (parts.length === 0) {
-      console.log('⚠️ Keine Links konvertiert für:', content.substring(0, 100));
+    if (parts.length === 0 || matches.length === 0) {
       return content;
     }
 
