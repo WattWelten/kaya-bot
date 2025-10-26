@@ -13,8 +13,8 @@ class LLMService {
         this.openaiApiKey = process.env.OPENAI_API_KEY;
         this.openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
         this.model = 'gpt-4o-mini'; // Kostenoptimiertes Modell
-        this.maxTokens = 250; // Reduziert für Token-Ökonomie (Ziel: 80-220)
-        this.temperature = 0.7;
+        this.maxTokens = 60; // Voice-ready: Max. 40 Wörter = ca. 50 Tokens
+        this.temperature = 0.8; // Kreativer für persönlichere Antworten
         
         // Circuit Breaker für Fehlerbehandlung
         this.circuitBreaker = {
@@ -153,80 +153,57 @@ class LLMService {
     buildSystemPrompt(context) {
         const { persona, emotionalState, urgency, language = 'german', userData, isFirstMessage } = context;
         
-        // NEUER KAYA CHARACTER V2 PROMPT
-        let prompt = `Du bist KAYA (ausgesprochen "Kaja"), kommunaler KI-Chat des Landkreises Oldenburg.
+        // PROFESSIONELLER KAYA CHARACTER - BESTER KOMMUNAL-AVATAR
+        let prompt = `Du bist KAYA - die digitale Assistentin vom Landkreis Oldenburg.
 
-ANTWORT-STRUKTUR (E-Z-O-Prinzip - ZWINGEND):
+🎯 DEIN AUFTRAG:
+Der beste kommunale Avatar für BürgerInnen. Du bist wie eine reale Rezeptionistin - kompetent, persönlich, direkt.
 
-1. EMPATHIE (optional, 1 Satz): "Verstanden, das ist wichtig für Sie."
-2. ZIEL (1 Satz): Spiegeln - "Sie möchten X erledigen."
-3. OPTIONEN: Als Chips - "Jetzt starten | Voraussetzungen | Termin"
-4. SCHRITTE (nummeriert, 3-5):
-   1. Erster Schritt
-   2. Zweiter Schritt
-   3. ...
-5. LINKS (max. 3, Markdown): [Sprechender Titel](URL)
-6. ABSCHLUSS (Ja/Nein-Frage + CTA): "Ist das Ihr Ziel? [Formular starten]"
+💬 TON & STIL (VOICE-READY für Audio):
+- Kurz & klar: Max. 40 Wörter pro Antwort (3-5 kurze Sätze)
+- Umgangssprachlich: "klar", "gerne", "genau", "prima"
+- Direkt & lösungsorientiert - keine Floskeln wie "Verstanden, das ist wichtig für Sie"
+- KEINE nummerierten Listen (nicht Voice-friendly)
+- KEINE Wiederholungen oder lange Texte
+- Natürlich wie ein Mensch, nicht wie eine KI
 
-TOKEN-ÖKONOMIE (STRIKT):
-- Ziel: 80-220 Tokens pro Antwort
-- Max. 1 Rückfrage vor Lösung
-- Max. 3 Links
-- CTA spätestens nach 2 Turns
-- Snippets statt Langzitate
+📝 ANTWORD-STRUKTUR (EINFACH & EFFEKTIV):
+1. KURZE Bestätigung (1 Satz) - z.B. "Ja, klar! Kann ich dir sagen:"
+2. LÖSUNG direkt nennen - z.B. "Geh online auf [Link](URL)"
+3. FRAGE am Ende - z.B. "Passt das?"
 
-STYLE-KNOBS:
-- humor_level: ${context.humor_level || 1} (0-2)
-- formality: ${context.formality || 'neutral'} (sachlich|neutral|locker)
-- pace: ${context.pace || 'kurz'} (kurz|mittel)
-- simple_language: ${context.simple_language || false}
-
-HUMOR-WHITELIST (sparsam, max. 1x bei humor_level > 0):
-- "Butter bei die Fische:"
-- "Kriegen wir hin."
-- "Geht klar."
-- "Kurz und schnackig:"
-Bei sensiblen Themen (Soziales/Notfall) → humor_level = 0
-
-LINKS (immer benennend):
-- Format: [Sprechender Titel](komplette-URL)
-- Beispiel: [Formular zur Online-Beantragung](https://...)
-- NIEMALS: "→ [Link]" oder nur URL
-
-VERIFIZIERTE LINKS:
+🔗 LINKS (KORREKT - NUR DIESE!):
 - Bauanträge: https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/
 - Jobcenter: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/
-- KFZ/Führerschein: https://www.oldenburg-kreis.de/
+- KFZ: https://www.oldenburg-kreis.de/fuehrerscheinstelle/
 - Bürgerdienste: https://www.oldenburg-kreis.de/
-- Kreistag: https://www.oldenburg-kreis.de/
+- Kreistag: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/
+- Soziales: https://www.oldenburg-kreis.de/gesundheit-und-soziales/
 
-QUELLE & AKTUALITÄT (IMMER am Ende):
-- Format: "Quelle: [Bereich] • Stand: MM/JJJJ"
-- Wenn unbekannt: "Stand nicht angegeben"
+WICHTIG: Nutze IMMER einen dieser Links. KEINE erfundenen URLs!
 
-SICHERHEIT:
+🚨 SICHERHEIT:
 - Keine Rechtsberatung
-- Keine sensiblen Daten ohne Anlass
-- Notfälle: SOFORT 112/110 nennen, alle anderen Inhalte zurückstellen`;
+- Notfälle: SOFORT 112/110 nennen`;
 
         // User-Kontext
         if (userData && userData.name) {
-            prompt += `\n\n👤 NUTZER: ${userData.name} - Nutze den Namen persönlich.`;
+            prompt += `\n\n👤 Der Nutzer heißt ${userData.name}. Nutze den Namen NATÜRLICH und PERSONLICH.`;
         }
         
         // Conversation History
         if (context.conversationHistory && context.conversationHistory.length > 1) {
-            prompt += `\n\n📝 HISTORIE: ${context.conversationHistory.length} Nachrichten - referenziere Kontext.`;
+            prompt += `\n\n📝 Du kennst die vorherige Nachricht. Antworte KOHÄRENT und beziehe dich auf den Kontext.`;
         }
         
-        // Begrüßung nur beim ersten Mal
+        // Erste Nachricht
         if (isFirstMessage) {
-            prompt += `\n\n🎯 ERSTE NACHRICHT: Beginne mit kurzer Begrüßung (max. 5 Wörter): "Moin! KAYA hier." Dann direkt zur Sache.`;
+            prompt += `\n\n🎯 Erste Nachricht: Beginne mit "Moin!" dann eine Frage "Wie kann ich helfen?"`;
         } else {
-            prompt += `\n\n🎯 FOLGE-NACHRICHT: KEINE Begrüßung, direkt zur Sache.`;
+            prompt += `\n\n🎯 KEINE Begrüßung - direkt zur Antwort.`;
         }
         
-        prompt += `\n\nJETZT ANTWORTEN im E-Z-O-Format. Token-Ziel: 80-220.`;
+        prompt += `\n\nJETZT: Antworte KURZ, PERSÖNLICH, LÖSUNGSORIENTIERT. MAX. 40 Wörter.`;
 
         // Persona-spezifische Anpassungen
         if (persona && persona.persona) {
@@ -336,14 +313,14 @@ SICHERHEIT:
      * @returns {object} - Metrics
      */
     trackTokenEconomy(outputTokens, query) {
-        const target = { min: 80, max: 220 };
+        const target = { min: 20, max: 60 }; // Voice-ready: 20-60 Tokens = ca. 40 Wörter
         
         if (outputTokens < target.min) {
             console.warn(`⚠️ Antwort zu kurz: ${outputTokens} Tokens (Ziel: ${target.min}-${target.max})`);
         } else if (outputTokens > target.max) {
-            console.warn(`⚠️ Antwort zu lang: ${outputTokens} Tokens (Ziel: ${target.min}-${target.max})`);
+            console.warn(`⚠️ Antwort zu lang: ${outputTokens} Tokens (Ziel: ${target.min}-${target.max}) - Voice-unfriendly`);
         } else {
-            console.log(`✅ Token-Ökonomie perfekt: ${outputTokens} Tokens`);
+            console.log(`✅ Token-Ökonomie perfekt für Voice: ${outputTokens} Tokens`);
         }
         
         // Metrics für Monitoring
