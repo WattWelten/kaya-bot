@@ -177,6 +177,13 @@ class AudioService extends EventEmitter {
             // Voice ID bestimmen
             const finalVoiceId = voiceId || this.getDefaultVoiceId();
             
+            // Debug: Prüfe ob API Key vorhanden
+            if (!this.elevenlabsApiKey) {
+                throw new Error('ELEVENLABS_API_KEY ist nicht gesetzt');
+            }
+            
+            console.log(`🔊 TTS Voice ID: ${finalVoiceId}, Text: "${text.substring(0, 30)}..."`);
+            
             // ElevenLabs API Call
             const response = await axios.post(
                 `${this.config.elevenlabsApiUrl}/text-to-speech/${finalVoiceId}`,
@@ -259,15 +266,22 @@ class AudioService extends EventEmitter {
      * Helper: Default Voice ID
      */
     getDefaultVoiceId() {
-        // ElevenLabs Voice IDs (für deutsch)
+        // ElevenLabs Voice IDs (Standard Voices)
+        // Zurück zu den korrekten ElevenLabs Standard Voice IDs
         const voices = {
-            'Rachel': 'pNInz6obpgDQGcFmaJgB', // Weiblich, Deutsch
-            'Bella': 'EXAVITQu4vr4xnSDxMaL', // Warm, empathisch
-            'Antoni': 'ErXwobaYiN019PkySvjV', // Männlich
-            'Adam': 'pNInz6obpgDQGcFmaJgB' // Neutral
+            'Rachel': 'pNInz6obpgDQGcFmaJgB', // Female
+            'Bella': 'EXAVITQu4vr4xnSDxMaL', // Female, warm
+            'Antoni': 'ErXwobaYiN019PkySvjV', // Male
+            'Adam': 'pNInz6obpgDQGcFmaJgB', // Male
+            'Domi': 'AZnzlk1XvdvUeBnXmlld', // Female
+            'Elli': 'MF3mGyEYCl7XYWbV9V6O', // Female
+            'Josh': 'TxGEqnHWrfWFTfGW9XjX', // Male
+            'Arnold': 'VR6AewLTigWG4xSOukaG', // Male
+            'Alice': 'XB0fDUnXU5powFXDhCwa' // Female
         };
         
-        return voices[this.config.defaultVoice] || voices['Rachel'];
+        // Fallback: Verwende Rachel als Standard
+        return voices[this.config.defaultVoice] || 'pNInz6obpgDQGcFmaJgB';
     }
     
     /**
