@@ -226,6 +226,47 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     }
   };
 
+  // Markdown-Links in HTML umwandeln
+  const renderMessageContent = (content: string) => {
+    // Markdown-Links: [Text](URL) → <a href="URL">Text</a>
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    const parts: (string | JSX.Element)[] = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = linkRegex.exec(content)) !== null) {
+      // Text vor dem Link
+      if (match.index > lastIndex) {
+        parts.push(content.substring(lastIndex, match.index));
+      }
+
+      // Link als <a> Element
+      const linkText = match[1];
+      const linkUrl = match[2];
+      parts.push(
+        <a 
+          key={`link-${match.index}`}
+          href={linkUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline decoration-1 hover:decoration-2 transition-all font-medium"
+        >
+          {linkText}
+        </a>
+      );
+
+      lastIndex = match.index + match[0].length;
+    }
+
+    // Rest-Text nach dem letzten Link
+    if (lastIndex < content.length) {
+      parts.push(content.substring(lastIndex));
+    }
+
+    // Falls keine Links gefunden: normaler Text
+    return parts.length === 0 ? content : parts;
+  };
+
   // Top-Intents
   const topIntents = [
     { id: 'kfz', label: 'KFZ', description: 'Fahrzeug-Zulassung' },
@@ -289,7 +330,9 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
                     : 'bg-lc-primary-50 border border-lc-primary-200 text-lc-neutral-900'
                 }`}
               >
-                <p className="text-sm leading-relaxed">{message.content}</p>
+                <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                  {renderMessageContent(message.content)}
+                </p>
                 {message.metadata && (
                   <div className="mt-2 text-xs opacity-70">
                     {message.metadata.emotion && (

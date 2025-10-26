@@ -811,77 +811,95 @@ class KAYACharacterHandler {
     // Specific Response Generators
     generateBuergerdiensteResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
-        
-        // Dynamische Begrüßung basierend auf Persona
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
         
-        response += `🎯 **Bürgerdienste im Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Meldebescheinigung beantragen:**\n`;
-        response += `→ [Terminvereinbarung](https://www.oldenburg-kreis.de/buergerservice/meldewesen)\n\n`;
-        response += `🆔 **2. Personalausweis oder Reisepass:**\n`;
-        response += `→ [Ausweis-Beratung](https://www.oldenburg-kreis.de/buergerservice/dokumente)\n\n`;
-        response += `📞 **3. Sofort anrufen:**\n`;
-        response += `→ **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n`;
-        
-        if (urgency.level === 'critical') {
-            response += `🚨 **Dringend?** Ruf sofort an oder komm vorbei!\n\n`;
+        // Kontextabhängig antworten
+        if (queryLower.includes('meldebescheinigung') || queryLower.includes('anmeld')) {
+            response += `Meldebescheinigung brauchst du? Kein Problem.\n\n`;
+            
+            if (urgency.level === 'critical') {
+                response += `Eilbedarf? **Ruf direkt an: 04431 85-0** – die sagen dir, ob du heute noch vorbeikommen kannst.\n\n`;
+            } else {
+                response += `Kannst du [hier einen Termin buchen](https://www.oldenburg-kreis.de/buergerservice/meldewesen) oder einfach anrufen (04431 85-0, Mo-Fr 8-16 Uhr).\n\n`;
+            }
+            
+            response += `Geht's um An-, Ab- oder Ummeldung?`;
+            
+        } else if (queryLower.includes('ausweis') || queryLower.includes('pass') || queryLower.includes('reise')) {
+            response += `Personalausweis oder Reisepass?\n\n`;
+            response += `[Hier findest du alle Infos zu Ausweisen](https://www.oldenburg-kreis.de/buergerservice/dokumente). Für den Termin ruf am besten an: 04431 85-0\n\n`;
+            
+            if (urgency.level === 'critical') {
+                response += `Falls es dringend ist (z.B. Reise kurzfristig): Sag das direkt am Telefon, manchmal geht's dann schneller.\n\n`;
+            }
+            
+            response += `Neuer Ausweis oder Verlängerung?`;
+            
+        } else {
+            // Allgemeine Bürgerdienst-Anfrage
+            response += `Bürgerdienste – okay. Worum geht's konkret?\n\n`;
+            response += `Wenn du eine Meldebescheinigung brauchst: [Termin hier](https://www.oldenburg-kreis.de/buergerservice/meldewesen)\n`;
+            response += `Für Ausweis oder Reisepass: [Infos hier](https://www.oldenburg-kreis.de/buergerservice/dokumente)\n\n`;
+            response += `Oder ruf direkt an: 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n`;
+            response += `Was brauchst du genau?`;
         }
-        
-        response += `🎯 **Deine nächste Aktion:** Termin buchen oder direkt anrufen!\n\n`;
-        response += `Brauchst du spezielle Hilfe? Sag mir, was du brauchst!`;
         
         return { response };
     }
     
     generateGeneralResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
-        
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        
-        response += `🎯 **Landkreis Oldenburg - Ihre Ansprechpartner:**\n\n`;
-        response += `📞 **Hotline:** **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n`;
-        response += `📋 **Online-Services:**\n`;
-        response += `→ [Bürgerportal](https://www.oldenburg-kreis.de)\n`;
-        response += `→ [Terminvereinbarung](https://www.oldenburg-kreis.de/buergerservice/termine)\n\n`;
-        response += `🎯 **Wie kann ich Ihnen konkret helfen?**\n`;
-        response += `Sagen Sie mir, was Sie benötigen - ich unterstütze Sie gerne!`;
+        response += `Okay – sag mir gerne genauer, was du brauchst, dann kann ich dir direkt weiterhelfen.\n\n`;
+        response += `Falls du nicht weißt, wo du anfangen sollst: Ruf einfach an (**04431 85-0**, Mo-Fr 8-16 Uhr) – die leiten dich zur richtigen Stelle.\n\n`;
+        response += `Oder schau mal im [Bürgerportal](https://www.oldenburg-kreis.de), da findest du alle Services.\n\n`;
+        response += `Was beschäftigt dich?`;
         
         return { response };
     }
     
     generateKFZZulassungResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
-        
-        // Dynamische Begrüßung basierend auf Persona
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
-        
-        // Konkrete Fragen erkennen
-        const concreteQuestion = this.analyzeConcreteQuestion(query, 'kfz_zulassung');
         
         let response = `${greeting}\n\n`;
         
-        if (concreteQuestion.hasQuestion) {
-            response += `${concreteQuestion.answer}\n\n`;
+        // Kontextabhängig antworten
+        if (queryLower.includes('zulassen') || queryLower.includes('anmeld')) {
+            response += `Auto zulassen – verstanden.\n\n`;
+            
+            if (urgency.level === 'critical') {
+                response += `Musst du das heute noch schaffen? **Ruf sofort an: 04431 85-0** – manchmal geht noch ein Termin kurzfristig.\n\n`;
+            } else {
+                response += `Termin kannst du [hier online buchen](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/terminvereinbarung) oder telefonisch (04431 85-0).\n\n`;
+            }
+            
+            response += `Hast du die Unterlagen schon parat (Fahrzeugbrief, Versicherung, etc.)?`;
+            
+        } else if (queryLower.includes('abmeld') || queryLower.includes('stillleg')) {
+            response += `Auto abmelden? Das geht oft auch online. [Schau mal hier](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/formulare).\n\n`;
+            response += `Wenn du lieber persönlich vorbeikommst: [Termin buchen](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/terminvereinbarung) oder anrufen (04431 85-0)\n\n`;
+            response += `Verkaufst du das Auto oder stellst du es still?`;
+            
+        } else if (queryLower.includes('kosten') || queryLower.includes('preis') || queryLower.includes('gebühr')) {
+            response += `Kosten für KFZ-Zulassung:\n\n`;
+            response += `Zulassung ca. 26€, Kennzeichen ca. 20-30€. [Alle Details hier](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/)\n\n`;
+            response += `Brauchst du auch neue Kennzeichen oder hast du schon welche?`;
+            
+        } else {
+            // Allgemeine KFZ-Anfrage
+            response += `KFZ-Zulassung – okay. Was willst du machen?\n\n`;
+            response += `Auto zulassen: [Termin hier](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/terminvereinbarung)\n`;
+            response += `Auto abmelden: Oft online möglich, [Formulare hier](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/formulare)\n\n`;
+            response += `Oder ruf an: 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n`;
+            response += `Zulassung, Abmeldung oder was anderes?`;
         }
-        
-        response += `🎯 **KFZ-Zulassung im Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Online-Termin buchen:**\n`;
-        response += `→ [Terminvereinbarung KFZ-Zulassung](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/terminvereinbarung)\n\n`;
-        response += `📄 **2. Formulare ausfüllen:**\n`;
-        response += `→ [Antragsformulare KFZ](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/formulare)\n\n`;
-        response += `📞 **3. Sofort anrufen:**\n`;
-        response += `→ **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n`;
-        
-        if (urgency.level === 'critical') {
-            response += `🚨 **Dringend?** Ruf sofort an oder komm vorbei!\n\n`;
-        }
-        
-        response += `🎯 **Deine nächste Aktion:** Klick auf den Termin-Link oder ruf direkt an!\n\n`;
-        response += `Brauchst du Hilfe bei den Unterlagen? Sag mir, was du schon hast!`;
         
         return { response };
     }
@@ -1185,136 +1203,214 @@ class KAYACharacterHandler {
     
     generatePolitikResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🏛️ **Kreistag & Politik im Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Aktuelle Sitzungen:**\n`;
-        response += `→ [Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/)\n\n`;
-        response += `📄 **2. Gremien & Ausschüsse:**\n`;
-        response += `→ [Gremienübersicht](https://oldenburg-kreis.ratsinfomanagement.net/gremien/)\n\n`;
-        response += `👥 **3. Fraktionen & Personen:**\n`;
-        response += `→ [Fraktionen](https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/)\n`;
-        response += `→ [Mandatsträger](https://oldenburg-kreis.ratsinfomanagement.net/personen/)\n\n`;
-        response += `📑 **4. Vorlagen & Beschlüsse:**\n`;
-        response += `→ [Vorlagensuche](https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/)\n\n`;
-        response += `📞 **Kreistag-Büro:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
-        response += `🎯 **Deine nächste Aktion:** Sitzung finden oder Vorlage recherchieren!`;
+        
+        // Kontextabhängige Antwort
+        if (queryLower.includes('sitzung') || queryLower.includes('tagt')) {
+            response += `Die aktuellen Sitzungstermine findest du im [Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/). Dort siehst du auch gleich die Tagesordnung.\n\n`;
+            response += `Suchst du was Bestimmtes oder möchtest du dich generell informieren?`;
+        } else if (queryLower.includes('fraktion') || queryLower.includes('partei')) {
+            response += `Im Kreistag gibt es verschiedene Fraktionen. Schau mal hier: [Alle Fraktionen im Überblick](https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/).\n\n`;
+            response += `Wenn du wissen willst, wer dich vertritt, findest du alle [Mandatsträger hier](https://oldenburg-kreis.ratsinfomanagement.net/personen/).\n\n`;
+            response += `Interessierst du dich für eine bestimmte Fraktion?`;
+        } else if (queryLower.includes('beschluss') || queryLower.includes('vorlage')) {
+            response += `Beschlüsse und Vorlagen kannst du in der [Vorlagensuche](https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/) recherchieren. Da ist alles öffentlich einsehbar.\n\n`;
+            response += `Wonach genau suchst du? Kann ich dir dabei helfen?`;
+        } else {
+            // Allgemeine politische Anfrage
+            response += `Okay, Kreistag und Politik – da gibt's verschiedene Anlaufstellen:\n\n`;
+            response += `Wenn du zu einer Sitzung willst oder die Tagesordnung suchst: [Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/)\n\n`;
+            response += `Falls du wissen willst, welche Fraktionen es gibt: [Fraktionen-Übersicht](https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/)\n\n`;
+            response += `Oder suchst du eher nach Beschlüssen? Dann schau hier: [Vorlagensuche](https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/)\n\n`;
+            response += `Was davon passt am ehesten?`;
+        }
         
         return { response };
     }
     
     generateJobcenterResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `💼 **Jobcenter Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Bürgergeld beantragen:**\n`;
-        response += `→ [Antrag stellen](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/)\n\n`;
-        response += `📄 **2. Arbeitsvermittlung:**\n`;
-        response += `→ [Arbeitgeberservice](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/arbeitgeberservice-des-jobcenter-landkreis-oldenburg/)\n\n`;
-        response += `💰 **3. Bildung & Teilhabe:**\n`;
-        response += `→ [Leistungen](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/leistungen-fuer-bildung-und-teilhabe/)\n\n`;
-        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
-        response += `🎯 **Deine nächste Aktion:** Termin vereinbaren oder online Antrag stellen!`;
+        
+        // Empathischer, situationsabhängiger Ansatz
+        if (queryLower.includes('bürgergeld') || queryLower.includes('antrag') || queryLower.includes('beantragen')) {
+            response += `Verstehe – Bürgergeld beantragen. Das machen wir direkt:\n\n`;
+            
+            if (urgency.level === 'critical') {
+                response += `Hört sich dringend an. Am schnellsten geht's wenn du **heute noch anrufst: 04431 85-0**. Die können dir am Telefon direkt sagen, was du brauchst und einen Termin geben.\n\n`;
+            } else {
+                response += `Du kannst den [Antrag hier online starten](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/). Alternativ ruf an (04431 85-0, Mo-Fr 8-16 Uhr) – die helfen dir auch beim Ausfüllen.\n\n`;
+            }
+            
+            response += `Brauchst du auch Infos zu Bildung & Teilhabe? Das gibt's zusätzlich für Kinder.`;
+            
+        } else if (queryLower.includes('arbeit') || queryLower.includes('job') || queryLower.includes('stelle')) {
+            response += `Okay, Jobsuche – da kann das Jobcenter helfen. Die haben einen [Arbeitgeberservice](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/arbeitgeberservice-des-jobcenter-landkreis-oldenburg/) mit aktuellen Stellen.\n\n`;
+            response += `Oder suchst du eher Weiterbildung? Bildungsgutschein gibt's auch. Ruf am besten direkt an: 04431 85-0\n\n`;
+            response += `Was passt besser – Stellensuche oder Weiterbildung?`;
+            
+        } else if (queryLower.includes('bildung') || queryLower.includes('teilhabe') || queryLower.includes('kind')) {
+            response += `Bildung & Teilhabe – das ist für Kinder zusätzlich zum Bürgergeld. Damit können Schulausflüge, Sportverein oder Nachhilfe bezahlt werden.\n\n`;
+            response += `[Hier sind alle Leistungen](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/leistungen-fuer-bildung-und-teilhabe/). Den Antrag kannst du direkt beim Jobcenter stellen.\n\n`;
+            response += `Hast du schon Bürgergeld oder ist das auch neu für dich?`;
+            
+        } else {
+            // Allgemeine Jobcenter-Anfrage
+            response += `Jobcenter – okay. Was brauchst du konkret?\n\n`;
+            response += `Falls du Bürgergeld beantragen willst: [Hier geht's zum Antrag](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/)\n\n`;
+            response += `Wenn du Arbeit suchst: Ruf am besten direkt an (04431 85-0), die vermitteln auch Jobs.\n\n`;
+            response += `Oder geht's um was anderes? Sag mir gerne mehr.`;
+        }
         
         return { response };
     }
     
     generateWirtschaftResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `💼 **Wirtschaftsförderung Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Wirtschaftsförderung & Beratung:**\n`;
-        response += `→ [Wirtschaftsförderung](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/wirtschaftsfoerderung/)\n\n`;
-        response += `📄 **2. Schwarzarbeitsbekämpfung:**\n`;
-        response += `→ [Meldestelle](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/)\n\n`;
-        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
-        response += `🎯 **Deine nächste Aktion:** Wirtschaftsförderung kontaktieren oder melden!`;
+        
+        if (queryLower.includes('gründ') || queryLower.includes('existenz') || queryLower.includes('startup') || queryLower.includes('selbst')) {
+            response += `Du willst gründen? Super! Die [Wirtschaftsförderung](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/wirtschaftsfoerderung/) berät dich kostenlos – von Businessplan bis Fördermittel.\n\n`;
+            response += `Ruf am besten direkt an (04431 85-0), dann können die dir gleich einen Termin geben.\n\n`;
+            response += `Hast du schon einen konkreten Plan oder bist du noch in der Ideenphase?`;
+        } else if (queryLower.includes('schwarz') || queryLower.includes('illegal') || queryLower.includes('meld')) {
+            response += `Schwarzarbeit melden – das machst du [hier bei der Meldestelle](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/).\n\n`;
+            response += `Die Meldung ist anonym möglich. Falls du Fragen hast: 04431 85-0\n\n`;
+            response += `Möchtest du direkt melden oder erst mal Infos?`;
+        } else {
+            response += `Wirtschaft und Förderung – da gibt's zwei Bereiche:\n\n`;
+            response += `Wenn du ein Unternehmen gründen oder ausbauen willst: [Wirtschaftsförderung](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/wirtschaftsfoerderung/) (Beratung + Fördermittel)\n\n`;
+            response += `Falls du Schwarzarbeit melden willst: [Meldestelle](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/)\n\n`;
+            response += `Was trifft bei dir zu?`;
+        }
         
         return { response };
     }
     
     generateOrdnungsamtResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🏛️ **Ordnungsamt Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Ordnungswidrigkeiten:**\n`;
-        response += `→ [Bußgeldstelle](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/)\n\n`;
-        response += `📄 **2. Fundbüro:**\n`;
-        response += `→ Fundsachen abholen oder melden\n\n`;
-        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
-        response += `🎯 **Deine nächste Aktion:** Ordnungsamt kontaktieren oder Fundbüro besuchen!`;
+        
+        if (queryLower.includes('bußgeld') || queryLower.includes('strafzettel') || queryLower.includes('knöll')) {
+            response += `Strafzettel oder Bußgeldbescheid? Das regelt die [Bußgeldstelle](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/).\n\n`;
+            response += `Falls du Fragen zum Bescheid hast oder Einspruch einlegen willst: Ruf an (04431 85-0) oder schreib eine E-Mail.\n\n`;
+            response += `Willst du Einspruch einlegen oder einfach bezahlen?`;
+        } else if (queryLower.includes('fund') || queryLower.includes('verloren') || queryLower.includes('gefunden')) {
+            response += `Etwas verloren oder gefunden? Das Fundbüro ist beim [Ordnungsamt](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/).\n\n`;
+            response += `Am besten anrufen (04431 85-0) und beschreiben, was du suchst oder gefunden hast.\n\n`;
+            response += `Hast du was verloren oder willst du was abgeben?`;
+        } else {
+            response += `Ordnungsamt – okay. Geht's um ein Bußgeld oder um Fundsachen?\n\n`;
+            response += `Für beides erreichst du das [Ordnungsamt hier](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/) oder telefonisch: 04431 85-0\n\n`;
+            response += `Sag mir gerne, worum es konkret geht.`;
+        }
         
         return { response };
     }
     
     generateSeniorenResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `👴 **Seniorenberatung Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Beratung & Unterstützung:**\n`;
-        response += `→ [Seniorenberatung](https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren/)\n\n`;
-        response += `📄 **2. Pflege & Betreuung:**\n`;
-        response += `→ [Amt für Teilhabe](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/)\n\n`;
-        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
-        response += `🎯 **Deine nächste Aktion:** Seniorenberatung kontaktieren!`;
+        
+        if (queryLower.includes('pflege') || queryLower.includes('betreuung') || queryLower.includes('pflegeheim')) {
+            response += `Pflege und Betreuung – da hilft das [Amt für Teilhabe](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/). Die beraten zu Pflegeleistungen, Pflegediensten und Heimen.\n\n`;
+            response += `Ruf am besten direkt an (04431 85-0), die nehmen sich Zeit für ein Beratungsgespräch.\n\n`;
+            response += `Geht's um dich selbst oder um jemand anderen?`;
+        } else {
+            response += `Seniorenberatung – da gibt's verschiedene Anlaufstellen. Die [Seniorenberatung](https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren/) hilft bei allen Fragen rund ums Alter.\n\n`;
+            response += `Wenn's speziell um Pflege geht: [Amt für Teilhabe](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/) (Tel. 04431 85-0)\n\n`;
+            response += `Was beschäftigt dich konkret?`;
+        }
         
         return { response };
     }
     
     generateInklusionResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `♿ **Teilhabe & Inklusion Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Schwerbehindertenausweis beantragen:**\n`;
-        response += `→ [Amt für Teilhabe](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/)\n\n`;
-        response += `📄 **2. Barrierefreiheit & Teilhabe:**\n`;
-        response += `→ [Teilhabeleistungen](https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/)\n\n`;
-        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
-        response += `🎯 **Deine nächste Aktion:** Teilhabe-Amt kontaktieren!`;
+        
+        if (queryLower.includes('schwerbehindertenausweis') || queryLower.includes('ausweis')) {
+            response += `Schwerbehindertenausweis beantragen – das machst du beim [Amt für Teilhabe](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/).\n\n`;
+            response += `Die brauchen ärztliche Unterlagen. Ruf am besten an (04431 85-0), dann können die dir genau sagen, was du mitbringen musst.\n\n`;
+            response += `Hast du schon die ärztlichen Unterlagen oder brauchst du noch Infos dazu?`;
+        } else if (queryLower.includes('barriere') || queryLower.includes('rollstuhl') || queryLower.includes('zugäng')) {
+            response += `Barrierefreiheit und Teilhabe – da berät dich das [Amt für Teilhabe](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/). Die kennen sich aus mit Umbaumaßnahmen, Hilfsmitteln und Förderungen.\n\n`;
+            response += `Telefon: 04431 85-0 (Mo-Fr 8-16 Uhr)\n\n`;
+            response += `Geht's um deine Wohnung oder um was anderes?`;
+        } else {
+            response += `Inklusion und Teilhabe – da gibt's viele Unterstützungsmöglichkeiten. [Alle Infos findest du hier](https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/).\n\n`;
+            response += `Für Schwerbehindertenausweis, Teilhabeleistungen oder Beratung: [Amt für Teilhabe](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/) (Tel. 04431 85-0)\n\n`;
+            response += `Was suchst du genau?`;
+        }
         
         return { response };
     }
     
     generateDigitalisierungResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `💻 **Digitalisierung & E-Government Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Bürgerportal:**\n`;
-        response += `→ [Online-Services](https://www.oldenburg-kreis.de/portal/)\n\n`;
-        response += `📄 **2. Breitbandausbau:**\n`;
-        response += `→ [Glasfaser & Internet](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/)\n\n`;
-        response += `🗺️ **3. Geoportal:**\n`;
-        response += `→ [Karten & GIS](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/)\n\n`;
-        response += `🎯 **Deine nächste Aktion:** Online-Service nutzen oder Infos anfordern!`;
+        
+        if (queryLower.includes('breitband') || queryLower.includes('glasfaser') || queryLower.includes('internet')) {
+            response += `Breitbandausbau und Glasfaser – [hier siehst du den aktuellen Stand](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/).\n\n`;
+            response += `Falls du konkret wissen willst, wann Glasfaser zu dir kommt: Ruf an (04431 85-0) oder schau auf der Seite nach deinem Ort.\n\n`;
+            response += `Suchst du Infos für zu Hause oder fürs Unternehmen?`;
+        } else if (queryLower.includes('geoportal') || queryLower.includes('karte') || queryLower.includes('gis')) {
+            response += `Karten und Geodaten findest du im [Geoportal](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/). Da sind alle Karten online abrufbar.\n\n`;
+            response += `Was suchst du konkret – Flurstücke, Bebauungspläne oder was anderes?`;
+        } else {
+            response += `Online-Services und Digitales – da gibt's verschiedene Angebote:\n\n`;
+            response += `Für Anträge online: [Bürgerportal](https://www.oldenburg-kreis.de/portal/)\n`;
+            response += `Für Breitband-Ausbau: [Glasfaser-Infos](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/)\n`;
+            response += `Für Karten: [Geoportal](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/)\n\n`;
+            response += `Was davon brauchst du?`;
+        }
         
         return { response };
     }
     
     generateGleichstellungResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `⚖️ **Gleichstellung & Gewaltschutz Landkreis Oldenburg:**\n\n`;
-        response += `📋 **1. Gleichstellungsbeauftragte:**\n`;
-        response += `→ [Beratung & Unterstützung](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/)\n\n`;
-        response += `🚨 **2. Hilfe bei Gewalt:**\n`;
-        response += `→ [Hilfetelefone](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/gewaltschutz-hilfetelefone-und-beratungsangebote/)\n\n`;
-        response += `📞 **Notfall-Telefon:** 08000 116 016 (24/7 erreichbar)\n\n`;
-        response += `🎯 **Deine nächste Aktion:** Beratung kontaktieren oder Hilfsangebote nutzen!`;
+        
+        if (queryLower.includes('gewalt') || queryLower.includes('hilfe') || queryLower.includes('notfall')) {
+            response += `Bei Gewalt gibt's sofort Hilfe:\n\n`;
+            response += `**Hilfetelefon Gewalt gegen Frauen: 08000 116 016** (kostenlos, 24/7, anonym)\n\n`;
+            response += `[Weitere Beratungsstellen findest du hier](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/gewaltschutz-hilfetelefone-und-beratungsangebote/)\n\n`;
+            
+            if (urgency.level === 'critical') {
+                response += `Falls akute Gefahr besteht: **Notruf 110**\n\n`;
+            }
+            
+            response += `Du kannst dich auch anonym beraten lassen. Brauchst du noch was anderes?`;
+        } else {
+            response += `Gleichstellung und Chancengleichheit – die [Gleichstellungsbeauftragte](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/) berät dich bei allen Fragen.\n\n`;
+            response += `Wenn's um Gewaltschutz geht: [Hilfetelefone und Beratung](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/gewaltschutz-hilfetelefone-und-beratungsangebote/) (24/7: 08000 116 016)\n\n`;
+            response += `Worum geht's konkret?`;
+        }
         
         return { response };
     }
