@@ -453,7 +453,7 @@ class KAYACharacterHandler {
             console.log(`🔍 Top Intentions: ${topIntentions.join(', ')}`);
             
             const confidence = scores[bestIntention];
-            const isSpecific = confidence > 0.1; // Threshold für spezifische Intention
+            const isSpecific = confidence > 0; // Jede Intention erkannt, auch wenn gering
             
             const result = {
                 type: isSpecific ? bestIntention : 'general',
