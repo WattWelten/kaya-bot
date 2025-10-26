@@ -412,10 +412,15 @@ class KAYACharacterHandler {
             
             // Erweiterte Intention-Keywords
             const intentions = {
-                // Bürgerdienste & Dokumente (NEU - PRIORITÄT!) - Kurze Liste für höhere Gewichtung
-                buergerdienste: ['meldebescheinigung', 'meldebestätigung', 'wohnsitzbescheinigung', 'wohnsitznachweis',
-                                'personalausweis beantragen', 'reisepass verlängern', 'pass beantragen',
-                                'bürgerdienste', 'standesamt meldewesen', 'anmeldung wohnung', 'ummelden', 'wohnsitz anmelden'],
+                // Bürgerdienste & Dokumente (NEU - PRIORITÄT!) - Erweiterte Liste für bessere Erkennung
+                buergerdienste: ['meldebescheinigung', 'meldebescheinigung beantragen', 'meldebescheinigung erhalten',
+                                'meldebestätigung', 'wohnsitzbescheinigung', 'wohnsitznachweis',
+                                'personalausweis beantragen', 'personalausweis neu', 'personalausweis verlängern',
+                                'reisepass verlängern', 'reisepass neu', 'pass beantragen',
+                                'bürgerdienste', 'bürgerservice', 'bürgerbüro', 'standesamt meldewesen',
+                                'anmeldung', 'anmeldung wohnung', 'wohnsitz anmelden',
+                                'ummelden', 'ummelden alt', 'ummelden neu', 'adressänderung',
+                                'melderegister', 'melderechtlich', 'meldepflicht'],
                 // KFZ
                 kfz_zulassung: ['kfz', 'auto', 'fahrzeug', 'zulassung', 'kennzeichen', 'fahrzeugbrief', 'evb', 'versicherung'],
                 führerschein: ['führerschein', 'fuehrerschein', 'fahrerlaubnis', 'fahren lernen', 'fahrschule'],
@@ -1493,6 +1498,9 @@ class KAYACharacterHandler {
     }
     
     getConcreteSolutionSteps(intention, urgency, language) {
+        // Verwende die übergebene Sprache
+        const finalLanguage = language || 'german';
+        
         const steps = {
             german: {
                 kfz_zulassung: urgency.level === 'critical' ? 
@@ -1514,7 +1522,7 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageSteps = steps['german'] || steps.german;
+        const languageSteps = steps[finalLanguage] || steps.german;
         return languageSteps[intention] || languageSteps.general;
     }
     
