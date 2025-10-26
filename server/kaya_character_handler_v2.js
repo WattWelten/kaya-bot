@@ -453,7 +453,7 @@ class KAYACharacterHandler {
                              'ärzte', 'krankenhäuser', 'gesundheitsvorsorge'],
                 wahlen: ['wahl', 'wahlen', 'kreistag', 'kommunalwahl', 'bundestagswahl', 'europawahl',
                          'wahltermin', 'wahlbeteiligung', 'wahlvorstand', 'wahlbenachrichtigung', 'demokratie'],
-                nichtfall: ['notfall', 'notruf', 'hilfe', 'schnell', 'dringend'],
+                notfall: ['notfall', 'notruf', 'hilfe', 'schnell', 'dringend'],
                 katastrophenschutz: ['katastrophenschutz', 'brand', 'feuerwehr', 'rettungsdienst', 'alarm',
                                       'evakuierung', 'warnung', 'sirene', 'notfallplan'],
                 pflege: ['pflege', 'pflegedienst', 'betreuung', 'ambulante pflege', 'stationäre pflege',
