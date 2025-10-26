@@ -317,33 +317,46 @@ class KAYACharacterHandler {
     analyzeLanguage(query) {
         const queryLower = query.toLowerCase();
         
-        const languages = {
-            german: ['deutsch', 'german'],
-            english: ['english', 'englisch'],
-            turkish: ['türkisch', 'turkish'],
-            arabic: ['arabisch', 'arabic'],
-            polish: ['polnisch', 'polish'],
-            russian: ['russisch', 'russian'],
-            romanian: ['rumänisch', 'romanian'],
-            ukrainian: ['ukrainisch', 'ukrainian'],
-            dutch: ['holländisch', 'dutch'],
-            danish: ['dänisch', 'danish'],
-            plattdeutsch: ['platt', 'plattdeutsch', 'niederdeutsch']
-        };
+        // Deutsche Indikatoren (inklusive norddeutsche Begrüßungen)
+        const germanIndicators = [
+            'moin', 'hallo', 'guten tag', 'guten morgen', 'guten abend',
+            'deutsch', 'german', 'ich', 'du', 'sie', 'wir', 'ihr',
+            'bitte', 'danke', 'entschuldigung', 'ja', 'nein',
+            'hilfe', 'brauche', 'möchte', 'kann', 'muss', 'soll',
+            'wie', 'was', 'wo', 'wann', 'warum', 'wer'
+        ];
         
-        // Einfache Spracherkennung basierend auf Keywords
-        for (const [lang, keywords] of Object.entries(languages)) {
-            if (keywords.some(keyword => queryLower.includes(keyword))) {
-                return {
-                    detected: lang,
-                    confidence: 80
-                };
-            }
+        // Englische Indikatoren (nur eindeutige)
+        const englishIndicators = [
+            'hello', 'hi there', 'good morning', 'good afternoon', 'good evening',
+            'english', 'englisch', 'i', 'you', 'we', 'they', 'he', 'she',
+            'please', 'thank you', 'sorry', 'yes', 'no',
+            'help', 'need', 'want', 'can', 'must', 'should',
+            'how', 'what', 'where', 'when', 'why', 'who'
+        ];
+        
+        // Prüfe deutsche Indikatoren
+        const germanMatches = germanIndicators.filter(indicator => 
+            queryLower.includes(indicator)
+        ).length;
+        
+        // Prüfe englische Indikatoren
+        const englishMatches = englishIndicators.filter(indicator => 
+            queryLower.includes(indicator)
+        ).length;
+        
+        // Entscheidung: Nur bei eindeutig englischen Anfragen wechseln
+        if (englishMatches > 0 && germanMatches === 0) {
+            return {
+                detected: 'english',
+                confidence: 90
+            };
         }
         
+        // Default: Deutsch (auch bei gemischten oder unklaren Anfragen)
         return {
-            detected: 'german', // Default
-            confidence: 60
+            detected: 'german',
+            confidence: Math.min(germanMatches * 20 + 60, 100)
         };
     }
     
@@ -993,6 +1006,9 @@ class KAYACharacterHandler {
     
     // Dynamic Response Helpers
     getDynamicGreeting(persona, emotionalState, language = 'german') {
+        // Sprache automatisch bestimmen basierend auf Persona-Kontext
+        // Default: Deutsch (norddeutsche Begrüßung)
+        const finalLanguage = language || 'german';
         // Norddeutsche Begrüßungen mit System-Prompt konformen Redewendungen
         const norddeutscheGreetings = {
             german: {
@@ -1062,7 +1078,7 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageGreetings = norddeutscheGreetings[language] || norddeutscheGreetings.german;
+        const languageGreetings = norddeutscheGreetings[finalLanguage] || norddeutscheGreetings.german;
         const personaGreetings = languageGreetings[persona.type] || languageGreetings.general;
         const randomGreeting = personaGreetings[Math.floor(Math.random() * personaGreetings.length)];
         
@@ -1081,34 +1097,63 @@ class KAYACharacterHandler {
             plattdeutsch: 'Ik bin KAYA, dien kommunalen KI-Assistent för den Landkreis Oldenburg.'
         };
         
-        const introduction = introductions[language] || introductions.german;
+        const introduction = introductions[finalLanguage] || introductions.german;
         
         return `${randomGreeting} ${introduction}`;
     }
     
     // 5-Schritte-Antwortprinzip nach System-Prompt
     generateSystemPromptResponse(intention, personaAnalysis, query, sessionContext) {
-        const { persona, emotionalState, urgency, language, accessibility } = personaAnalysis;
+        const { persona, emotionalState, urgency, accessibility } = personaAnalysis;
+        
+        // Sprache explizit auf Deutsch setzen (außer bei eindeutigem Englisch)
+        const queryLower = query.toLowerCase();
+        const hasEnglishPhrases = ['hello', 'hi there', 'good morning', 'good afternoon', 'good evening'].some(phrase => 
+            queryLower.includes(phrase)
+        );
+        const hasGermanPhrases = ['moin', 'hallo', 'guten tag', 'guten morgen', 'guten abend'].some(phrase => 
+            queryLower.includes(phrase)
+        );
+        
+        // Nur bei eindeutig englischen Anfragen ohne deutsche Indikatoren wechseln
+        const finalLanguage = (hasEnglishPhrases && !hasGermanPhrases) ? 'english' : 'german';
+        
+        console.log(`🔍 Language Detection Debug:`);
+        console.log(`  - Query: "${query}"`);
+        console.log(`  - Has English: ${hasEnglishPhrases}`);
+        console.log(`  - Has German: ${hasGermanPhrases}`);
+        console.log(`  - Final Language: ${finalLanguage}`);
         
         // Sprachwechsel prüfen
         const languageSwitch = this.detectLanguageSwitch(query);
         
         // Sprache aus Session-Kontext oder aktuelle Sprache verwenden
-        const finalLanguage = this.determineFinalLanguage(languageSwitch, sessionContext, language);
+        const sessionLanguage = this.determineFinalLanguage(languageSwitch, sessionContext, finalLanguage);
+        
+        console.log(`🔍 determineFinalLanguage Debug:`);
+        console.log(`  - Current Language: ${finalLanguage}`);
+        console.log(`  - Session Language: ${sessionLanguage}`);
         
         // Empathische, menschliche Antwort generieren
-        const response = this.generateEmpatheticResponse(intention, personaAnalysis, query, sessionContext, finalLanguage);
+        const response = this.generateEmpatheticResponse(intention, personaAnalysis, query, sessionContext, sessionLanguage);
         
         return { response };
     }
     
     determineFinalLanguage(languageSwitch, sessionContext, currentLanguage) {
+        // WICHTIG: Query-Sprache hat höchste Priorität!
+        
+        // Wenn aktuelle Query eindeutig Englisch/Deutsch ist, verwende diese
+        if (currentLanguage === 'english' || currentLanguage === 'german') {
+            return currentLanguage;
+        }
+        
         // Wenn Sprachwechsel erkannt wurde, diese Sprache verwenden
         if (languageSwitch.detected) {
             return languageSwitch.language;
         }
         
-        // Session-Kontext prüfen für Sprachkonsistenz
+        // Session-Kontext prüfen für Sprachkonsistenz (nur wenn Query-Sprache unklar)
         if (sessionContext && sessionContext.conversationHistory && sessionContext.conversationHistory.length > 0) {
             // Letzte Nachrichten durchgehen um Sprache zu finden
             for (let i = sessionContext.conversationHistory.length - 1; i >= 0; i--) {
@@ -1119,8 +1164,8 @@ class KAYACharacterHandler {
             }
         }
         
-        // Fallback auf aktuelle Sprache
-        return currentLanguage;
+        // Fallback: Immer Deutsch als Standard
+        return 'german';
     }
     
     // Audio-Chat-Integration
@@ -1209,34 +1254,46 @@ class KAYACharacterHandler {
     generateEmpatheticResponse(intention, personaAnalysis, query, sessionContext, language) {
         const { persona, emotionalState, urgency, accessibility } = personaAnalysis;
         
+        // Sprache explizit auf Deutsch setzen (außer bei eindeutigem Englisch)
+        const queryLower = query.toLowerCase();
+        const hasEnglishPhrases = ['hello', 'hi there', 'good morning', 'good afternoon', 'good evening'].some(phrase => 
+            queryLower.includes(phrase)
+        );
+        const hasGermanPhrases = ['moin', 'hallo', 'guten tag', 'guten morgen', 'guten abend'].some(phrase => 
+            queryLower.includes(phrase)
+        );
+        
+        // Nur bei eindeutig englischen Anfragen ohne deutsche Indikatoren wechseln
+        const finalLanguage = (hasEnglishPhrases && !hasGermanPhrases) ? 'english' : 'german';
+        
         // User-Namen extrahieren
         const userName = this.extractUserName(query);
         
         // Empathische Begrüßung basierend auf Emotion und Persona
-        let response = this.getEmpatheticGreeting(userName, persona, emotionalState, language);
+        let response = this.getEmpatheticGreeting(userName, persona, emotionalState, finalLanguage);
         
         // Emotionale Unterstützung bei Frustration/Ängsten
         if (emotionalState.state === 'frustrated' || emotionalState.state === 'anxious') {
-            response += this.getEmotionalSupport(emotionalState.state, language);
+            response += this.getEmotionalSupport(emotionalState.state, finalLanguage);
         }
         
         // Zielstrebiges Lösen statt nur Helfen
-        response += this.getSolutionOrientedResponse(intention, query, language);
+        response += this.getSolutionOrientedResponse(intention, query, finalLanguage);
         
         // Konkrete Lösungsschritte
-        response += this.getConcreteSolutionSteps(intention, urgency, language);
+        response += this.getConcreteSolutionSteps(intention, urgency, finalLanguage);
         
         // Persönliche Ansprache
         if (userName) {
-            response += this.getPersonalAddress(userName, intention, language);
+            response += this.getPersonalAddress(userName, intention, finalLanguage);
         }
         
         // Dynamische Abschlussfrage mit Handlungsaufforderung
-        response += this.getActionOrientedClosing(intention, emotionalState, persona, language);
+        response += this.getActionOrientedClosing(intention, emotionalState, persona, finalLanguage);
         
         // Barrierefreie Anpassungen
         if (accessibility && accessibility.needs.length > 0) {
-            response = this.generateAccessibleResponse(response, accessibility.needs, language);
+            response = this.generateAccessibleResponse(response, accessibility.needs, finalLanguage);
         }
         
         return response;
@@ -1266,6 +1323,9 @@ class KAYACharacterHandler {
     }
     
     getEmpatheticGreeting(userName, persona, emotionalState, language) {
+        // Sprache explizit auf Deutsch setzen (außer bei eindeutigem Englisch)
+        const finalLanguage = 'german'; // Immer Deutsch als Standard
+        
         const greetings = {
             german: {
                 frustrated: userName ? `Moin ${userName}! Ich verstehe, dass das gerade schwierig ist.` : 'Moin! Ich verstehe, dass das gerade schwierig ist.',
@@ -1277,15 +1337,18 @@ class KAYACharacterHandler {
                 frustrated: userName ? `Hello ${userName}! I understand this is difficult right now.` : 'Hello! I understand this is difficult right now.',
                 anxious: userName ? `Hello ${userName}! Don\'t worry, we\'ll figure this out.` : 'Hello! Don\'t worry, we\'ll figure this out.',
                 positive: userName ? `Hello ${userName}! Great to see you here.` : 'Hello! Great to see you here.',
-                neutral: userName ? `Hello ${userName}! How can I help you?` : 'Hello! How can I help you?'
+                neutral: 'Moin! Wie kann ich Ihnen helfen?'
             }
         };
         
-        const languageGreetings = greetings[language] || greetings.german;
+        const languageGreetings = greetings[finalLanguage] || greetings.german;
         return languageGreetings[emotionalState.state] || languageGreetings.neutral;
     }
     
     getEmotionalSupport(emotion, language) {
+        // Sprache explizit auf Deutsch setzen
+        const finalLanguage = 'german';
+        
         const support = {
             german: {
                 frustrated: '\n\nIch weiß, dass das alles kompliziert wirken kann. Aber keine Sorge - Schritt für Schritt kriegen wir das hin. ',
@@ -1297,7 +1360,7 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageSupport = support[language] || support.german;
+        const languageSupport = support[finalLanguage] || support.german;
         return languageSupport[emotion] || '';
     }
     
@@ -1320,11 +1383,14 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageHelp = help[language] || help.german;
+        const languageHelp = help['german'] || help.german;
         return languageHelp[intention] || languageHelp.general;
     }
     
     getPersonalAddress(userName, intention, language) {
+        // Sprache explizit auf Deutsch setzen
+        const finalLanguage = 'german';
+        
         const address = {
             german: {
                 kfz_zulassung: `${userName}, bei der KFZ-Zulassung geht es so: `,
@@ -1342,11 +1408,14 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageAddress = address[language] || address.german;
+        const languageAddress = address[finalLanguage] || address.german;
         return languageAddress[intention] || languageAddress.general;
     }
     
     getSolutionOrientedResponse(intention, query, language) {
+        // Sprache explizit auf Deutsch setzen
+        const finalLanguage = 'german';
+        
         const solutions = {
             german: {
                 kfz_zulassung: 'Ich löse das für Sie: ',
@@ -1364,7 +1433,7 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageSolutions = solutions[language] || solutions.german;
+        const languageSolutions = solutions[finalLanguage] || solutions.german;
         return languageSolutions[intention] || languageSolutions.general;
     }
     
@@ -1390,11 +1459,14 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageSteps = steps[language] || steps.german;
+        const languageSteps = steps['german'] || steps.german;
         return languageSteps[intention] || languageSteps.general;
     }
     
     getActionOrientedClosing(intention, emotionalState, persona, language) {
+        // Sprache explizit auf Deutsch setzen
+        const finalLanguage = 'german';
+        
         const closings = {
             german: {
                 frustrated: 'Jetzt handeln wir! Was brauchen Sie zuerst?',
@@ -1410,11 +1482,14 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageClosings = closings[language] || closings.german;
+        const languageClosings = closings[finalLanguage] || closings.german;
         return languageClosings[emotionalState.state] || languageClosings.neutral;
     }
     
     getDynamicClosing(intention, emotionalState, persona, language) {
+        // Sprache explizit auf Deutsch setzen
+        const finalLanguage = 'german';
+        
         const closings = {
             german: {
                 frustrated: 'Kriegen wir zusammen hin!',
@@ -1430,7 +1505,7 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageClosings = closings[language] || closings.german;
+        const languageClosings = closings[finalLanguage] || closings.german;
         return languageClosings[emotionalState.state] || languageClosings.neutral;
     }
     
@@ -1468,7 +1543,7 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageReflections = reflections[language] || reflections.german;
+        const languageReflections = reflections['german'] || reflections.german;
         return languageReflections[intention] || languageReflections.general || 'Sie möchten eine Dienstleistung im Landkreis Oldenburg nutzen.';
     }
     
@@ -1530,7 +1605,7 @@ class KAYACharacterHandler {
             }
         };
         
-        const languageSteps = steps[language] || steps.german;
+        const languageSteps = steps['german'] || steps.german;
         const intentionSteps = languageSteps[intention] || languageSteps.general || ['1. Kontaktieren Sie uns.', '2. Unterlagen einreichen.', '3. Bearbeitung abwarten.'];
         
         return intentionSteps.join('\n');
