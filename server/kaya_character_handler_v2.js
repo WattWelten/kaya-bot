@@ -347,6 +347,7 @@ class KAYACharacterHandler {
         
         // Entscheidung: Nur bei eindeutig englischen Anfragen wechseln
         if (englishMatches > 0 && germanMatches === 0) {
+            console.log(`🔍 analyzeLanguage: English detected (matches: ${englishMatches})`);
             return {
                 detected: 'english',
                 confidence: 90
@@ -354,8 +355,10 @@ class KAYACharacterHandler {
         }
         
         // Default: Deutsch (auch bei gemischten oder unklaren Anfragen)
+        const detectedLanguage = 'german';
+        console.log(`🔍 analyzeLanguage: ${detectedLanguage} detected (german matches: ${germanMatches}, english matches: ${englishMatches})`);
         return {
-            detected: 'german',
+            detected: detectedLanguage,
             confidence: Math.min(germanMatches * 20 + 60, 100)
         };
     }
@@ -596,14 +599,17 @@ class KAYACharacterHandler {
             );
             
             // Finale Sprache für Session-Memory bestimmen
+            console.log(`🔍 personaAnalysis.language.detected: ${personaAnalysis.language.detected}`);
             const finalLanguage = this.determineFinalLanguage(
                 this.detectLanguageSwitch(query), 
                 updatedSessionContext, 
                 personaAnalysis.language.detected
             );
+            console.log(`🔍 finalLanguage after determineFinalLanguage: ${finalLanguage}`);
             
             // Dual-Response für Text und Audio generieren
             const dualResponse = this.generateDualResponse(response.response, communicationMode, finalLanguage);
+            console.log(`🔍 dualResponse.text (first 100 chars): ${dualResponse.text.substring(0, 100)}`);
             
             // Cache speichern
             this.setCache(query, sessionId, response);
