@@ -666,16 +666,43 @@ class KAYACharacterHandler {
             // Kommunikationsmodus erkennen (Text/Audio)
             const communicationMode = this.detectCommunicationMode(query, updatedSessionContext);
             
+            // Prüfen ob erste Nachricht in Session
+            const isFirstMessage = !session || session.messages.length <= 1;
+            
             // OpenAI-Integration: Versuche mit LLM, sonst Fallback auf Templates
             let response;
             if (this.useLLM && this.getLLMService().isAvailable()) {
                 console.log('🤖 Versuche OpenAI-Integration...');
-                const llmResponse = await this.getLLMService().generateResponse(query, personaAnalysis);
+                const llmResponse = await this.getLLMService().generateResponse(query, personaAnalysis, { isFirstMessage });
                 
                 if (llmResponse.success) {
+                    let finalResponse = llmResponse.response;
+                    
+                    // Check if response has Markdown links
+                    const hasLinks = /\[([^\]]+)\]\(([^)]+)\)/.test(finalResponse);
+                    
+                    if (!hasLinks) {
+                        // Append template links based on intention
+                        const intentionLinks = {
+                            bauantrag: '\n\n[Bauantragsformulare](https://www.oldenburg-kreis.de/bauen-und-wohnen/)',
+                            jobcenter: '\n\n[Antrag Bürgergeld](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/)',
+                            kfz_zulassung: '\n\n[KFZ-Termin buchen](https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/)',
+                            buergerdienste: '\n\n[Terminvereinbarung](https://www.oldenburg-kreis.de/buergerservice/)',
+                            politik: '\n\n[Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/)',
+                        };
+                        
+                        const link = intentionLinks[intentionAnalysis.type];
+                        if (link) {
+                            finalResponse += link;
+                            console.log('🔗 Template-Link angehängt für Intention:', intentionAnalysis.type);
+                        }
+                    } else {
+                        console.log('✅ LLM hat bereits Markdown-Links generiert');
+                    }
+                    
                     console.log('✅ OpenAI-Integration erfolgreich');
                     response = { 
-                        response: llmResponse.response,
+                        response: finalResponse,
                         agent: 'kaya',
                         source: 'openai',
                         enhanced: true
@@ -686,7 +713,8 @@ class KAYACharacterHandler {
                         intentionAnalysis.type, 
                         personaAnalysis, 
                         query, 
-                        updatedSessionContext
+                        updatedSessionContext,
+                        isFirstMessage
                     );
                 }
             } else {
@@ -695,7 +723,8 @@ class KAYACharacterHandler {
                     intentionAnalysis.type, 
                     personaAnalysis, 
                     query, 
-                    updatedSessionContext
+                    updatedSessionContext,
+                    isFirstMessage
                 );
             }
             
