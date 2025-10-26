@@ -6,6 +6,7 @@ const cors = require('cors');
 const path = require('path');
 const KAYACharacterHandler = require('./kaya_character_handler_v2');
 const KAYAAgentHandler = require('./kaya_agent_manager_v2');
+const errorLogger = require('./utils/error_logger');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -30,6 +31,8 @@ app.get('/health', (req, res) => {
 
 // Chat-Endpoint
 app.post('/chat', async (req, res) => {
+    const startTime = Date.now();
+    
     try {
         const { message } = req.body;
         
@@ -44,9 +47,19 @@ app.post('/chat', async (req, res) => {
         
         console.log(`KAYA antwortet: ${response.response}`);
         
+        // Performance loggen
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/chat', responseTime, true);
+        errorLogger.logRequest(req, res, responseTime);
+        
         res.json(response);
         
     } catch (error) {
+        errorLogger.logError(error, { endpoint: '/chat', body: req.body });
+        
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/chat', responseTime, false, error);
+        
         console.error('Chat-Fehler:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
