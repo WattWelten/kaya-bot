@@ -16,6 +16,25 @@
   --lc-primary-800: #064E4B;
   --lc-primary-900: #043C39;
 
+  /* Warm Tones */
+  --color-primary: #26A69A;
+  --color-primary-dark: #0F766E;
+  --color-primary-light: #7DD3C4;
+  
+  /* Accent Colors */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  
+  /* Text Colors (warm) */
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #6B7280;
+  
+  /* Easing Functions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
   /* Accent Colors (Blau) */
   --lc-accent-50: #EFF6FF;
   --lc-accent-100: #DBEAFE;
@@ -69,6 +88,7 @@
   body {
     @apply bg-lc-neutral-50 text-lc-neutral-800;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    letter-spacing: -0.01em;
   }
 
   /* Focus Styles für Accessibility */
@@ -286,6 +306,149 @@
 
 .btn-interactive:active {
   transform: scale(0.98);
+}
+
+/* Chat Bubble Enhancements */
+.chat-message-assistant {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fcfb 100%);
+  border: none;
+  box-shadow: 
+    0 2px 12px rgba(38, 166, 154, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+  padding: 16px 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chat-message-assistant:hover {
+  box-shadow: 
+    0 4px 20px rgba(38, 166, 154, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.chat-message-user {
+  background: linear-gradient(135deg, #26A69A 0%, #0F766E 100%);
+  box-shadow: 
+    0 4px 16px rgba(38, 166, 154, 0.25),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+/* Quick Actions with Glow */
+.quick-action {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quick-action::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #26A69A, #4ECDC4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.quick-action:hover {
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 8px 24px rgba(38, 166, 154, 0.3);
+  transform: translateY(-3px);
+}
+
+.quick-action:hover::before {
+  opacity: 1;
+}
+
+/* Mic Button Pulsing Glow */
+.mic-button {
+  box-shadow: 
+    0 4px 16px rgba(38, 166, 154, 0.3),
+    0 0 0 0 rgba(38, 166, 154, 0.4);
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 
+      0 4px 16px rgba(38, 166, 154, 0.3),
+      0 0 0 0 rgba(38, 166, 154, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 4px 20px rgba(38, 166, 154, 0.4),
+      0 0 0 8px rgba(38, 166, 154, 0.1);
+  }
+}
+
+.mic-button.recording {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  animation: pulse-red 1s infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% {
+    box-shadow: 
+      0 4px 16px rgba(239, 68, 68, 0.4),
+      0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    box-shadow: 
+      0 4px 20px rgba(239, 68, 68, 0.6),
+      0 0 0 12px rgba(239, 68, 68, 0.2);
+  }
+}
+
+/* Input Field Focus Glow */
+.message-input {
+  border: 2px solid rgba(38, 166, 154, 0.15);
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.message-input:focus {
+  border-color: transparent;
+  box-shadow: 
+    0 0 0 3px rgba(38, 166, 154, 0.1),
+    0 4px 16px rgba(38, 166, 154, 0.15);
+  outline: none;
+}
+
+/* Success Animation */
+@keyframes success-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-checkmark {
+  animation: success-pop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Accessibility Toolbar Enhancement */
+.accessibility-toolbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  padding: 16px;
 }
 
 /* Fade In Animation */

@@ -384,13 +384,11 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
                   className="
                     inline-flex items-center gap-1.5
                     rounded-full px-3 py-1.5
-                    bg-white border border-lc-primary-200
+                    bg-white border-2 border-lc-primary-200
                     text-sm font-medium text-lc-primary-700
-                    hover:bg-lc-primary-100 hover:border-lc-primary-300
-                    active:bg-lc-primary-200
                     transition-all duration-200
-                    btn-interactive
-                    min-h-[44px]
+                    btn-interactive quick-action
+                    min-h-[48px]
                   "
                   aria-label={`Schnellaktion: ${suggestion.label}`}
                   onClick={() => handleSendMessage(suggestion.label)}
@@ -411,10 +409,10 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
               className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} message-animate`}
             >
               <div
-                className={`max-w-[70ch] md:max-w-[62ch] rounded-2xl px-4 py-3 shadow-sm ${
+                className={`max-w-[70ch] md:max-w-[62ch] rounded-2xl px-5 py-4 ${
                   message.sender === 'user'
-                    ? 'bg-lc-neutral-900 text-white glass-dark'
-                    : 'bg-lc-primary-50 border border-lc-primary-200 text-lc-neutral-900 glass'
+                    ? 'chat-message-user'
+                    : 'chat-message-assistant'
                 }`}
               >
                 <p className="text-sm leading-relaxed whitespace-pre-wrap">
@@ -468,22 +466,20 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
               className={`
                 w-14 h-14 rounded-full
                 flex items-center justify-center
-                transition-all duration-200
-                ${isRecording ? 'bg-red-100 text-red-600 animate-pulse' : 'bg-lc-primary-50 hover:bg-lc-primary-100 text-lc-primary-700'}
+                text-white
+                bg-gradient-to-br from-lc-primary-500 to-lc-accent-500
+                ${isRecording ? 'mic-button recording' : 'mic-button'}
                 ${isProcessing ? 'opacity-50 cursor-not-allowed' : 'btn-interactive'}
               `}
               aria-label={isRecording ? "Aufnahme stoppen" : "Diktieren starten"}
               onClick={handleAudioToggle}
               disabled={isProcessing}
-              title={isRecording ? "Aufnahme läuft... (Klicken zum Stoppen)" : "Mikrofon aktivieren (44x44px für Accessibility)"}
+              title={isRecording ? "Aufnahme läuft... (Klicken zum Stoppen)" : "Mikrofon aktivieren (56x56px)"}
             >
               {isRecording ? (
-                <div className="relative flex items-center justify-center">
-                  <Mic className="size-7" />
-                  <span className="absolute inset-0 bg-red-500 rounded-full opacity-20 animate-ping" />
-                </div>
+                <Mic className="size-7 text-white" />
               ) : (
-                <Mic className="size-7" />
+                <Mic className="size-7 text-white" />
               )}
             </button>
 
@@ -499,7 +495,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
               onKeyPress={handleKeyPress}
               rows={1}
               placeholder="Fragen Sie z. B.: 'KFZ ummelden – welche Unterlagen?'"
-              className="flex-1 resize-none rounded-2xl border border-lc-neutral-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-lc-accent-600/60"
+              className="flex-1 resize-none rounded-2xl px-4 py-2 message-input"
               disabled={isProcessing}
             />
 
