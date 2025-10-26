@@ -608,13 +608,38 @@ class KAYACharacterHandler {
             // Kommunikationsmodus erkennen (Text/Audio)
             const communicationMode = this.detectCommunicationMode(query, updatedSessionContext);
             
-            // System-Prompt konforme Antwort generieren
-            const response = await this.generateSystemPromptResponse(
-                intentionAnalysis.type, 
-                personaAnalysis, 
-                query, 
-                updatedSessionContext
-            );
+            // OpenAI-Integration: Versuche mit LLM, sonst Fallback auf Templates
+            let response;
+            if (this.useLLM && this.getLLMService().isAvailable()) {
+                console.log('🤖 Versuche OpenAI-Integration...');
+                const llmResponse = await this.getLLMService().generateResponse(query, personaAnalysis);
+                
+                if (llmResponse.success) {
+                    console.log('✅ OpenAI-Integration erfolgreich');
+                    response = { 
+                        response: llmResponse.response,
+                        agent: 'kaya',
+                        source: 'openai',
+                        enhanced: true
+                    };
+                } else {
+                    console.log('⚠️ OpenAI-Integration fehlgeschlagen, Fallback auf Templates');
+                    response = await this.generateSystemPromptResponse(
+                        intentionAnalysis.type, 
+                        personaAnalysis, 
+                        query, 
+                        updatedSessionContext
+                    );
+                }
+            } else {
+                console.log('📝 Verwende Template-basierte Antworten');
+                response = await this.generateSystemPromptResponse(
+                    intentionAnalysis.type, 
+                    personaAnalysis, 
+                    query, 
+                    updatedSessionContext
+                );
+            }
             
             // Finale Sprache für Session-Memory bestimmen
             const finalLanguage = this.determineFinalLanguage(
