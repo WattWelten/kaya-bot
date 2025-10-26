@@ -153,7 +153,16 @@ class LLMService {
 "Moin! Meldebescheinigung – klar. Eilbedarf oder normal?
 ✓ Heute? Persönlich im Amt, 04431 85-0 für Termin
 ✓ Normal? Online beantragen, Link direkt.
-Was passt zu Ihnen?"`;
+Was passt zu Ihnen?"
+
+**Links formatieren:**
+- Verwende IMMER Markdown-Format für alle Web-Links: [Beschreibender Text](URL)
+- Binde Links natürlich in Sätze ein: "Du kannst [hier einen Termin buchen](https://...)."
+- NIEMALS technische Formate wie "→ [Link]" oder "Klick hier: URL"
+- Beispiele:
+  • "Den [Antrag findest du hier](https://oldenburg-kreis.de/jobcenter)."
+  • "Schau mal in den [Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/)."
+  • "Alle Infos zur [Wirtschaftsförderung gibt's hier](https://oldenburg-kreis.de/wirtschaft)."`;
 
         // Persona-spezifische Anpassungen
         if (persona && persona.persona) {
