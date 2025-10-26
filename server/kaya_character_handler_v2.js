@@ -481,17 +481,18 @@ class KAYACharacterHandler {
     
     calculateIntentionScore(query, keywords) {
         let score = 0;
-        let matches = 0;
+        let exactMatches = 0;
         
+        // Exakte Matches haben höchste Priorität
         keywords.forEach(keyword => {
             if (query.includes(keyword)) {
-                score += 1;
-                matches++;
+                score += 2; // Exakte Matches zählen doppelt
+                exactMatches++;
             }
         });
         
-        // Fuzzy Matching für ähnliche Wörter
-        if (matches === 0) {
+        // Fuzzy Matching nur wenn keine exakten Matches
+        if (exactMatches === 0) {
             keywords.forEach(keyword => {
                 if (this.fuzzyMatch(query, keyword)) {
                     score += 0.5;
