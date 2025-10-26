@@ -108,17 +108,37 @@ class LLMService {
      */
     buildMessages(query, context) {
         const systemPrompt = this.buildSystemPrompt(context);
-        
-        return [
+        const messages = [
             {
                 role: 'system',
                 content: systemPrompt
-            },
-            {
-                role: 'user',
-                content: query
             }
         ];
+        
+        // NEU: Conversation History hinzufügen (letzte 5 Nachrichten)
+        if (context.conversationHistory && context.conversationHistory.length > 0) {
+            const history = context.conversationHistory.slice(-5); // Max. 5 für Token-Effizienz
+            
+            history.forEach(msg => {
+                // Prüfe ob Nachricht noch nicht aktuell ist (doppelte Vermeidung)
+                if (msg.content && msg.content !== query) {
+                    messages.push({
+                        role: msg.role === 'user' ? 'user' : 'assistant',
+                        content: msg.content
+                    });
+                }
+            });
+            
+            console.log(`📝 ${history.length} Historie-Nachrichten an LLM übergeben`);
+        }
+        
+        // Aktuelle Query hinzufügen
+        messages.push({
+            role: 'user',
+            content: query
+        });
+        
+        return messages;
     }
     
     /**
@@ -128,7 +148,7 @@ class LLMService {
      * @returns {string} - System-Prompt
      */
     buildSystemPrompt(context) {
-        const { persona, emotionalState, urgency, language = 'german' } = context;
+        const { persona, emotionalState, urgency, language = 'german', userData } = context;
         
         let prompt = `Du bist KAYA vom Landkreis Oldenburg. Antworte kurz, konkret, lösungsorientiert.
 
@@ -146,9 +166,14 @@ LINKS (immer verwenden):
 - Bauanträge: https://www.oldenburg-kreis.de/bauen-und-wohnen/
 - Jobcenter: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/
 - KFZ: https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/
-- Kreistag: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/
+- Kreistag: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/`;
 
-JETZT ANTWORTEN:`;
+        // NEU: User-Kontext hinzufügen
+        if (userData && userData.name) {
+            prompt += `\n\n👤 INFO: Der Nutzer heißt ${userData.name}. Nutze den Namen wenn angebracht!`;
+        }
+        
+        prompt += `\n\nJETZT ANTWORTEN:`;
 
         // Persona-spezifische Anpassungen
         if (persona && persona.persona) {

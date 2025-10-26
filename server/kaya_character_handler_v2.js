@@ -669,14 +669,34 @@ class KAYACharacterHandler {
             // Prüfen ob erste Nachricht in Session
             const isFirstMessage = !session || session.messages.length <= 1;
             
+            // NEU: User-Daten extrahieren
+            this.contextMemory.extractUserData(query, sessionId);
+            
+            // User-Daten aus Session holen
+            const sessionData = this.contextMemory.getSession(sessionId);
+            const userData = sessionData.context.userData || {};
+            
             // OpenAI-Integration: Versuche mit LLM, sonst Fallback auf Templates
             let response;
             if (this.useLLM && this.getLLMService().isAvailable()) {
                 console.log('🤖 Versuche OpenAI-Integration...');
-                const llmResponse = await this.getLLMService().generateResponse(query, personaAnalysis, { isFirstMessage });
+                const llmContext = {
+                    persona: personaAnalysis.persona,
+                    emotionalState: personaAnalysis.emotionalState,
+                    urgency: personaAnalysis.urgency,
+                    language: detectedLanguage,
+                    conversationHistory: session.messages, // NEU: Gesamte Historie übergeben
+                    userData: userData, // NEU: User-Daten übergeben
+                    isFirstMessage: isFirstMessage
+                };
+                const llmResponse = await this.getLLMService().generateResponse(query, llmContext);
                 
                 if (llmResponse.success) {
                     let finalResponse = llmResponse.response;
+                    
+                    // Post-Processing: Greeting entfernen falls vorhanden
+                    finalResponse = finalResponse.replace(/^(Moin!?|Hallo!?|Hi!?)\s*/i, '');
+                    
                     
                     // Check if response has Markdown links
                     const hasLinks = /\[([^\]]+)\]\(([^)]+)\)/.test(finalResponse);

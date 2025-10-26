@@ -53,6 +53,9 @@ class ContextMemory {
             this.sessions.set(sessionId, {
                 id: sessionId,
                 messages: [],
+                context: {
+                    userData: {}
+                },
                 createdAt: new Date().toISOString(),
                 lastActivity: new Date().toISOString()
             });
@@ -61,6 +64,35 @@ class ContextMemory {
         const session = this.sessions.get(sessionId);
         session.lastActivity = new Date().toISOString();
         return session;
+    }
+    
+    /**
+     * Extrahiert User-Daten aus Nachricht (Name, etc.)
+     */
+    extractUserData(message, sessionId) {
+        const session = this.getSession(sessionId);
+        if (!session) return;
+        
+        const lowerMsg = message.toLowerCase();
+        
+        // Name-Extraction
+        const namePatterns = [
+            /(?:ich bin|ich heiße|mein name ist|ich heisse)\s+([a-zäöüß]+)/i,
+            /^([A-ZÄÖÜ][a-zäöüß]+)(?:\s|$)/ // Erster Großbuchstabe am Anfang
+        ];
+        
+        for (const pattern of namePatterns) {
+            const match = message.match(pattern);
+            if (match && match[1] && match[1].length > 2) { // Mind. 3 Buchstaben
+                const name = match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+                if (!session.context) session.context = {};
+                if (!session.context.userData) session.context.userData = {};
+                session.context.userData.name = name;
+                console.log(`👤 Name extrahiert: ${name} (Session: ${sessionId})`);
+                this.saveSession(sessionId);
+                break;
+            }
+        }
     }
     
     addMessage(sessionId, sender, content, metadata = {}) {
