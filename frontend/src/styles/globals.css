@@ -204,6 +204,67 @@
   animation: pulse-soft 2s ease-in-out infinite;
 }
 
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(31, 41, 55, 0.7);
+  backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient Buttons */
+.btn-gradient {
+  background: linear-gradient(135deg, var(--lc-primary-500), var(--lc-accent-500));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  color: white;
+  font-weight: 500;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(38, 166, 154, 0.3);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+/* Chat Message Animations */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.message-animate {
+  animation: messageSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button Interactive Effects */
+.btn-interactive {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-interactive:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(38, 166, 154, 0.25);
+}
+
+.btn-interactive:active {
+  transform: scale(0.98);
+}
+
 /* Fade In Animation */
 @keyframes fadeIn {
   from {

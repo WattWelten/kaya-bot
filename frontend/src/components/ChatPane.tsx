@@ -240,7 +240,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
         parts.push(content.substring(lastIndex, match.index));
       }
 
-      // Link als <a> Element
+      // Link als <a> Element mit verbessertem Styling
       const linkText = match[1];
       const linkUrl = match[2];
       parts.push(
@@ -249,9 +249,14 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           href={linkUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="underline decoration-1 hover:decoration-2 transition-all font-medium"
+          className="inline-flex items-center gap-1 text-lc-primary-600 hover:text-lc-primary-700 underline decoration-2 decoration-lc-primary-300 hover:decoration-lc-primary-500 transition-colors duration-200 font-medium"
         >
           {linkText}
+          <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
         </a>
       );
 
@@ -266,6 +271,58 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     // Falls keine Links gefunden: normaler Text
     return parts.length === 0 ? content : parts;
   };
+
+  // Smart Quick-Actions basierend auf letzter Nachricht
+  const getSmartSuggestions = () => {
+    if (messages.length < 2) {
+      // Initial suggestions
+      return [
+        { label: 'KFZ', icon: '🚗' },
+        { label: 'Bürgergeld', icon: '💰' },
+        { label: 'Kreistag', icon: '🏛️' },
+        { label: 'Termin', icon: '📅' }
+      ];
+    }
+
+    const lastMessage = messages[messages.length - 1];
+    const intention = lastMessage.metadata?.intention;
+
+    switch (intention) {
+      case 'jobcenter':
+        return [
+          { label: 'Antrag stellen', icon: '📄' },
+          { label: 'Termin buchen', icon: '📅' },
+          { label: 'Unterlagen?', icon: '📋' }
+        ];
+      case 'kfz_zulassung':
+        return [
+          { label: 'Termin KFZ', icon: '🚗' },
+          { label: 'Kosten?', icon: '💰' },
+          { label: 'Unterlagen?', icon: '📄' }
+        ];
+      case 'buergerdienste':
+        return [
+          { label: 'An-/Ummeldung', icon: '🏠' },
+          { label: 'Ausweis', icon: '🆔' },
+          { label: 'Termin', icon: '📅' }
+        ];
+      case 'politik':
+        return [
+          { label: 'Sitzungskalender', icon: '📅' },
+          { label: 'Fraktionen', icon: '👥' },
+          { label: 'Vorlagen', icon: '📄' }
+        ];
+      default:
+        return [
+          { label: 'KFZ', icon: '🚗' },
+          { label: 'Bürgergeld', icon: '💰' },
+          { label: 'Kreistag', icon: '🏛️' },
+          { label: 'Termin', icon: '📅' }
+        ];
+    }
+  };
+
+  const smartSuggestions = getSmartSuggestions();
 
   // Top-Intents
   const topIntents = [
@@ -307,7 +364,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           {topIntents.map(intent => (
             <button
               key={intent.id}
-              className="chip-link"
+              className="chip-link btn-interactive"
               aria-label={`Schnellstart ${intent.label}`}
               onClick={() => handleSendMessage(intent.label)}
             >
@@ -316,18 +373,48 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           ))}
         </div>
 
+        {/* Smart Suggestions - Kontextabhängig */}
+        {messages.length >= 2 && (
+          <div className="px-4 sm:px-6 py-2 border-b border-lc-primary-100 bg-lc-primary-50/50">
+            <p className="text-xs text-lc-neutral-600 mb-2">Schnell-Aktionen:</p>
+            <div className="flex flex-wrap gap-2">
+              {smartSuggestions.map((suggestion, index) => (
+                <button
+                  key={index}
+                  className="
+                    inline-flex items-center gap-1.5
+                    rounded-full px-3 py-1.5
+                    bg-white border border-lc-primary-200
+                    text-sm font-medium text-lc-primary-700
+                    hover:bg-lc-primary-100 hover:border-lc-primary-300
+                    active:bg-lc-primary-200
+                    transition-all duration-200
+                    btn-interactive
+                    min-h-[44px]
+                  "
+                  aria-label={`Schnellaktion: ${suggestion.label}`}
+                  onClick={() => handleSendMessage(suggestion.label)}
+                >
+                  <span>{suggestion.icon}</span>
+                  {suggestion.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Nachrichten-Liste */}
         <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 space-y-4">
           {messages.map(message => (
             <div
               key={message.id}
-              className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} message-animate`}
             >
               <div
                 className={`max-w-[70ch] md:max-w-[62ch] rounded-2xl px-4 py-3 shadow-sm ${
                   message.sender === 'user'
-                    ? 'bg-lc-neutral-900 text-white'
-                    : 'bg-lc-primary-50 border border-lc-primary-200 text-lc-neutral-900'
+                    ? 'bg-lc-neutral-900 text-white glass-dark'
+                    : 'bg-lc-primary-50 border border-lc-primary-200 text-lc-neutral-900 glass'
                 }`}
               >
                 <p className="text-sm leading-relaxed whitespace-pre-wrap">
