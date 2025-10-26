@@ -11,6 +11,9 @@ export interface Message {
     urgency?: 'low' | 'normal' | 'high' | 'critical';
     persona?: string;
     language?: string;
+    intention?: string;
+    emotionalState?: string;
+    confidence?: number;
   };
 }
 
