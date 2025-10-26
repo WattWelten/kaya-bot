@@ -692,14 +692,20 @@ class KAYACharacterHandler {
             let response;
             if (this.useLLM && this.getLLMService().isAvailable()) {
                 console.log('🤖 Versuche OpenAI-Integration...');
+                
+                // Style-Knobs bestimmen
+                const styleKnobs = this.determineStyleKnobs(personaAnalysis, intentionAnalysis);
+                
                 const llmContext = {
                     persona: personaAnalysis.persona,
                     emotionalState: personaAnalysis.emotionalState,
                     urgency: personaAnalysis.urgency,
                     language: detectedLanguage,
-                    conversationHistory: session.messages, // NEU: Gesamte Historie übergeben
-                    userData: userData, // NEU: User-Daten übergeben
-                    isFirstMessage: isFirstMessage
+                    conversationHistory: session.messages,
+                    userData: userData,
+                    isFirstMessage: isFirstMessage,
+                    // NEU: Style-Knobs hinzufügen
+                    ...styleKnobs
                 };
                 const llmResponse = await this.getLLMService().generateResponse(query, llmContext);
                 
@@ -2489,6 +2495,44 @@ Shall I set a notification?`
             questionType: null,
             answer: null
         };
+    }
+    
+    /**
+     * Bestimmt Style-Knobs basierend auf Persona und Intention
+     * 
+     * @param {object} personaAnalysis - Persona-Analyse
+     * @param {object} intentionAnalysis - Intention-Analyse
+     * @returns {object} - Style-Knobs
+     */
+    determineStyleKnobs(personaAnalysis, intentionAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        
+        // Default-Werte
+        let humor_level = 1;
+        let formality = 'neutral';
+        let pace = 'kurz';
+        let simple_language = false;
+        
+        // Humor deaktivieren bei sensiblen Themen
+        const sensitiveTopics = ['soziales', 'jobcenter', 'inklusion', 'gleichstellung'];
+        if (sensitiveTopics.includes(intentionAnalysis.type) || urgency.level === 'critical') {
+            humor_level = 0;
+            formality = 'sachlich';
+        }
+        
+        // Simple Language für bestimmte Personas
+        if (persona.persona === 'senior' || persona.persona === 'migrant' || persona.persona === 'child') {
+            simple_language = true;
+            pace = 'mittel';
+        }
+        
+        // Lockerer Ton für Touristen/Jugendliche
+        if (persona.persona === 'tourist' || persona.persona === 'student') {
+            formality = 'locker';
+            humor_level = 2;
+        }
+        
+        return { humor_level, formality, pace, simple_language };
     }
     
     // Performance Monitoring
