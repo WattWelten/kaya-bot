@@ -193,11 +193,12 @@ export class WebSocketService {
    * WebSocket-URL generieren
    */
   private getWebSocketUrl(): string {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    const host = window.location.hostname;
-    const port = process.env.NODE_ENV === 'development' ? '3001' : window.location.port;
-    
-    return `${protocol}//${host}:${port}/ws?sessionId=${this.sessionId}`;
+    // In Production: API-Server URL, in Development: localhost
+    if (process.env.NODE_ENV === 'production') {
+      return `wss://api.kaya.wattweiser.com/ws?sessionId=${this.sessionId}`;
+    } else {
+      return `ws://localhost:3001/ws?sessionId=${this.sessionId}`;
+    }
   }
 
   /**

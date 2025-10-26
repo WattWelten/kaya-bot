@@ -1,5 +1,7 @@
 require('dotenv').config();
 const express = require('express');
+const http = require('http');
+const WebSocket = require('ws');
 const cors = require('cors');
 const path = require('path');
 const KAYACharacterHandler = require('./kaya_character_handler_v2');
@@ -124,13 +126,71 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
+// HTTP Server erstellen
+const server = http.createServer(app);
+
+// WebSocket Server
+const wss = new WebSocket.Server({ server, path: '/ws' });
+
+wss.on('connection', (ws, req) => {
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const sessionId = url.searchParams.get('sessionId') || 'default';
+    
+    console.log(`🔌 WebSocket Client verbunden (Session: ${sessionId})`);
+    
+    ws.on('message', async (data) => {
+        try {
+            const message = JSON.parse(data.toString());
+            
+            if (message.type === 'message' && message.data.message) {
+                // KAYA-Antwort generieren
+                const response = await kayaHandler.generateResponse(
+                    message.data.message, 
+                    message.data.message,
+                    message.sessionId || sessionId
+                );
+                
+                // Response an Client senden
+                ws.send(JSON.stringify({
+                    type: 'response',
+                    data: response,
+                    timestamp: new Date().toISOString()
+                }));
+            }
+        } catch (error) {
+            console.error('❌ WebSocket Fehler:', error);
+            ws.send(JSON.stringify({
+                type: 'error',
+                data: { message: 'Fehler beim Verarbeiten der Nachricht' },
+                timestamp: new Date().toISOString()
+            }));
+        }
+    });
+    
+    ws.on('close', () => {
+        console.log(`🔌 WebSocket Client getrennt (Session: ${sessionId})`);
+    });
+    
+    ws.on('error', (error) => {
+        console.error('❌ WebSocket Error:', error);
+    });
+    
+    // Begrüßung senden
+    ws.send(JSON.stringify({
+        type: 'connected',
+        data: { sessionId, message: 'Moin! KAYA ist bereit.' },
+        timestamp: new Date().toISOString()
+    }));
+});
+
 // Server starten
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`🚀 KAYA-Bot läuft auf Port ${PORT}`);
     console.log(`📱 Frontend: http://localhost:${PORT}`);
     console.log(`🔧 API: http://localhost:${PORT}/health`);
     console.log(`💬 Chat: http://localhost:${PORT}/chat`);
     console.log(`🎯 Routing: http://localhost:${PORT}/route`);
+    console.log(`🔌 WebSocket: ws://localhost:${PORT}/ws`);
     console.log();
     console.log('Moin! KAYA ist bereit für Bürgeranliegen! 🤖');
 });
