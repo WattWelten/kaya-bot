@@ -671,6 +671,7 @@ class KAYACharacterHandler {
         
         // Response-Mapping
         const responseMap = {
+            buergerdienste: () => this.generateBuergerdiensteResponse(query, personaAnalysis),
             kfz_zulassung: () => this.generateKFZZulassungResponse(query, personaAnalysis),
             führerschein: () => this.generateFührerscheinResponse(query, personaAnalysis),
             bauantrag: () => this.generateBauantragResponse(query, personaAnalysis),
@@ -704,6 +705,32 @@ class KAYACharacterHandler {
     }
     
     // Specific Response Generators
+    generateBuergerdiensteResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        
+        // Dynamische Begrüßung basierend auf Persona
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        
+        response += `🎯 **Bürgerdienste im Landkreis Oldenburg:**\n\n`;
+        response += `📋 **1. Meldebescheinigung beantragen:**\n`;
+        response += `→ [Terminvereinbarung](https://www.oldenburg-kreis.de/buergerservice/meldewesen)\n\n`;
+        response += `🆔 **2. Personalausweis oder Reisepass:**\n`;
+        response += `→ [Ausweis-Beratung](https://www.oldenburg-kreis.de/buergerservice/dokumente)\n\n`;
+        response += `📞 **3. Sofort anrufen:**\n`;
+        response += `→ **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n`;
+        
+        if (urgency.level === 'critical') {
+            response += `🚨 **Dringend?** Ruf sofort an oder komm vorbei!\n\n`;
+        }
+        
+        response += `🎯 **Deine nächste Aktion:** Termin buchen oder direkt anrufen!\n\n`;
+        response += `Brauchst du spezielle Hilfe? Sag mir, was du brauchst!`;
+        
+        return { response };
+    }
+    
     generateKFZZulassungResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
         
