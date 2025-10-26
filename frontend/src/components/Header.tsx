@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Contrast, Globe, Info, Accessibility } from 'lucide-react';
 import { AccessibilitySettings } from '@/types';
+import { InfoDialog } from './InfoDialog';
 
 interface HeaderProps {
   accessibility: AccessibilitySettings;
@@ -13,6 +14,8 @@ export const Header: React.FC<HeaderProps> = ({
   onAccessibilityChange,
   onLanguageChange
 }) => {
+  const [showInfoDialog, setShowInfoDialog] = useState(false);
+
   const handleContrastToggle = () => {
     onAccessibilityChange({
       ...accessibility,
@@ -119,15 +122,15 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             className="btn-ghost"
             aria-label="Hilfe und Hinweise"
-            onClick={() => {
-              // TODO: Hilfe-Dialog öffnen
-              console.log('Hilfe-Dialog öffnen');
-            }}
+            onClick={() => setShowInfoDialog(true)}
           >
             <Info className="size-5" />
           </button>
         </nav>
       </div>
+
+      {/* Info-Dialog */}
+      <InfoDialog isOpen={showInfoDialog} onClose={() => setShowInfoDialog(false)} />
     </header>
   );
 };

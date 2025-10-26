@@ -29,6 +29,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Hooks
   const { isConnected, sendMessage, sendAudioMessage, lastMessage, error } = useWebSocket(sessionId);
@@ -223,6 +224,48 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage(inputValue);
+    }
+  };
+
+  // Datei-Upload verarbeiten
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    // Validierung
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg', 'application/pdf'];
+    
+    if (file.size > maxSize) {
+      alert('Datei zu groß. Maximal 5MB erlaubt.');
+      return;
+    }
+    
+    if (!allowedTypes.includes(file.type)) {
+      alert('Dateityp nicht erlaubt. Nur PNG, JPG, PDF erlaubt.');
+      return;
+    }
+
+    // Datei-Info an User anzeigen
+    const fileSize = (file.size / 1024).toFixed(2);
+    const fileMessage: Message = {
+      id: `file_${Date.now()}`,
+      content: `📎 ${file.name} (${fileSize} KB)`,
+      sender: 'user',
+      timestamp: new Date(),
+      type: 'file'
+    };
+
+    setMessages(prev => [...prev, fileMessage]);
+
+    // TODO: Backend-Upload (falls implementiert)
+    // const formData = new FormData();
+    // formData.append('file', file);
+    // fetch('/api/upload', { method: 'POST', body: formData });
+    
+    // Reset input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
   };
 
@@ -623,14 +666,19 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
 
             {/* Action-Buttons */}
             <div className="flex items-center gap-2">
+              {/* Hidden File Input */}
+              <input
+                ref={fileInputRef}
+                type="file"
+                className="hidden"
+                accept="image/png,image/jpeg,image/jpg,application/pdf"
+                onChange={handleFileUpload}
+              />
               <button
                 type="button"
                 className="btn-ghost"
                 aria-label="Datei anhängen"
-                onClick={() => {
-                  // TODO: Datei-Upload implementieren
-                  console.log('Datei-Upload');
-                }}
+                onClick={() => fileInputRef.current?.click()}
               >
                 <Paperclip className="size-5" />
               </button>
