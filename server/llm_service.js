@@ -1,4 +1,5 @@
 const axios = require('axios');
+const costTracker = require('./services/cost_tracker');
 
 /**
  * KAYA LLM Service - OpenAI Integration
@@ -73,11 +74,18 @@ class LLMService {
             this.circuitBreaker.failureCount = 0;
             
             const aiResponse = response.data.choices[0].message.content;
+            
+            // Kosten tracken
+            const inputTokens = response.data.usage.prompt_tokens;
+            const outputTokens = response.data.usage.completion_tokens;
+            costTracker.trackOpenAI(inputTokens, outputTokens);
+            
             console.log('✅ OpenAI Antwort erhalten:', aiResponse.substring(0, 100));
             
             return {
                 response: aiResponse,
-                success: true
+                success: true,
+                usage: response.data.usage
             };
             
         } catch (error) {

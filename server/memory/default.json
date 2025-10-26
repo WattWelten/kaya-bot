@@ -1924,8 +1924,33 @@
         "communicationMode": "audio",
         "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Make contact\n2. Prepare documents\n3. Wait for processing\n\nLet's go! What's your next step?"
       }
+    },
+    {
+      "id": "1761492771661",
+      "sender": "user",
+      "content": "Ich brauche eine Meldebescheinigung",
+      "timestamp": "2025-10-26T15:32:51.661Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1761492771668",
+      "sender": "assistant",
+      "content": "Hello! How can I help you?I'll solve this for you: 1. Find driving school\n2. Register and take exams\n3. Apply for driver's license\n\nLet's go! What's your next step?",
+      "timestamp": "2025-10-26T15:32:51.668Z",
+      "context": {
+        "intention": "führerschein",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "audio",
+        "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Find driving school\n2. Register and take exams\n3. Apply for driver's license\n\nLet's go! What's your next step?"
+      }
     }
   ],
   "createdAt": "2025-10-10T19:08:56.553Z",
-  "lastActivity": "2025-10-26T14:24:34.171Z"
+  "lastActivity": "2025-10-26T15:32:51.668Z"
 }

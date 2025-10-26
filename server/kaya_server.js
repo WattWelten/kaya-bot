@@ -7,6 +7,10 @@ const path = require('path');
 const KAYACharacterHandler = require('./kaya_character_handler_v2');
 const KAYAAgentHandler = require('./kaya_agent_manager_v2');
 const errorLogger = require('./utils/error_logger');
+const audioService = require('./services/audio_service');
+const rateLimiter = require('./services/rate_limiter');
+const costTracker = require('./services/cost_tracker');
+const multer = require('multer');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,6 +19,12 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Multer für Audio-Upload
+const upload = multer({ 
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 10 * 1024 * 1024 } // 10MB max
+});
 
 // KAYA-Handler initialisieren
 const kayaHandler = new KAYACharacterHandler();
@@ -132,6 +142,155 @@ app.get('/kaya/info', (req, res) => {
             'soziales'
         ]
     });
+});
+
+// Audio Endpoints
+// STT: Audio → Text
+app.post('/api/stt', rateLimiter.getSTTLimiter(), upload.single('audio'), async (req, res) => {
+    const startTime = Date.now();
+    
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'Audio file is required' });
+        }
+        
+        // Budget prüfen
+        const budgetStatus = costTracker.checkBudget();
+        if (budgetStatus.blocked) {
+            return res.status(429).json({ error: 'Budget exceeded', message: budgetStatus.message });
+        }
+        
+        console.log(`🎤 STT Request: ${req.file.size} bytes`);
+        
+        // Whisper STT aufrufen
+        const result = await audioService.speechToText(req.file.buffer);
+        
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/api/stt', responseTime, true);
+        
+        res.json({
+            success: true,
+            text: result.text,
+            language: result.language,
+            latency: result.latency
+        });
+        
+    } catch (error) {
+        const responseTime = Date.now() - startTime;
+        errorLogger.logError(error, { endpoint: '/api/stt' });
+        errorLogger.logPerformance('/api/stt', responseTime, false, error);
+        
+        console.error('STT Fehler:', error);
+        res.status(500).json({ error: 'STT failed', message: error.message });
+    }
+});
+
+// TTS: Text → Audio
+app.post('/api/tts', rateLimiter.getTTSLimiter(), async (req, res) => {
+    const startTime = Date.now();
+    
+    try {
+        const { text, voiceId } = req.body;
+        
+        if (!text) {
+            return res.status(400).json({ error: 'Text is required' });
+        }
+        
+        // Budget prüfen
+        const budgetStatus = costTracker.checkBudget();
+        if (budgetStatus.blocked) {
+            return res.status(429).json({ error: 'Budget exceeded', message: budgetStatus.message });
+        }
+        
+        console.log(`🔊 TTS Request: "${text.substring(0, 50)}..."`);
+        
+        // ElevenLabs TTS aufrufen
+        const result = await audioService.textToSpeech(text, voiceId);
+        
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/api/tts', responseTime, true);
+        
+        res.setHeader('Content-Type', 'audio/mpeg');
+        res.setHeader('Cache-Control', 'public, max-age=3600');
+        res.send(result.audio);
+        
+    } catch (error) {
+        const responseTime = Date.now() - startTime;
+        errorLogger.logError(error, { endpoint: '/api/tts', body: req.body });
+        errorLogger.logPerformance('/api/tts', responseTime, false, error);
+        
+        console.error('TTS Fehler:', error);
+        res.status(500).json({ error: 'TTS failed', message: error.message });
+    }
+});
+
+// Audio Chat: Kompletter Flow (Audio → KAYA → Audio)
+app.post('/api/audio-chat', rateLimiter.getChatLimiter(), upload.single('audio'), async (req, res) => {
+    const startTime = Date.now();
+    
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'Audio file is required' });
+        }
+        
+        // Budget prüfen
+        const budgetStatus = costTracker.checkBudget();
+        if (budgetStatus.blocked) {
+            return res.status(429).json({ error: 'Budget exceeded', message: budgetStatus.message });
+        }
+        
+        console.log(`🎙️ Audio Chat Request: ${req.file.size} bytes`);
+        
+        // 1. STT: Audio → Text
+        const { text } = await audioService.speechToText(req.file.buffer);
+        
+        // 2. KAYA Response generieren
+        const kayaResponse = await kayaHandler.generateResponse(text, text);
+        
+        // 3. TTS: Text → Audio
+        const { audio, audioUrl } = await audioService.textToSpeech(kayaResponse.response);
+        
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/api/audio-chat', responseTime, true);
+        
+        res.json({
+            success: true,
+            transcription: text,
+            response: kayaResponse.response,
+            audioUrl: audioUrl,
+            latency: {
+                total: Date.now() - startTime,
+                stt: Date.now() - startTime, // wird von audioService gesetzt
+                tts: Date.now() - startTime
+            }
+        });
+        
+    } catch (error) {
+        const responseTime = Date.now() - startTime;
+        errorLogger.logError(error, { endpoint: '/api/audio-chat' });
+        errorLogger.logPerformance('/api/audio-chat', responseTime, false, error);
+        
+        console.error('Audio Chat Fehler:', error);
+        res.status(500).json({ error: 'Audio chat failed', message: error.message });
+    }
+});
+
+// Admin Dashboard: Kosten & Stats
+app.get('/api/admin/stats', async (req, res) => {
+    try {
+        const stats = costTracker.getStats();
+        const audioMetrics = audioService.getMetrics();
+        
+        res.json({
+            costs: stats,
+            audio: audioMetrics,
+            timestamp: new Date().toISOString()
+        });
+        
+    } catch (error) {
+        console.error('Admin Stats Fehler:', error);
+        res.status(500).json({ error: 'Failed to retrieve stats' });
+    }
 });
 
 // Frontend bereitstellen
