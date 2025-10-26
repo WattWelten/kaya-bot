@@ -27,6 +27,15 @@ class ContextMemory {
                     const sessionId = path.basename(file, '.json');
                     const sessionPath = path.join(this.memoryDir, file);
                     const sessionData = fs.readJsonSync(sessionPath);
+                    
+                    // Migration: Stelle sicher, dass context.userData existiert
+                    if (!sessionData.context) {
+                        sessionData.context = { userData: {} };
+                    }
+                    if (!sessionData.context.userData) {
+                        sessionData.context.userData = {};
+                    }
+                    
                     this.sessions.set(sessionId, sessionData);
                 }
             });

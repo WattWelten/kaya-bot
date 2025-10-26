@@ -31,7 +31,24 @@ npm start
 ```bash
 NODE_ENV=production
 PORT=3001
+USE_LLM=true
+OPENAI_API_KEY=sk-...  # Required wenn USE_LLM=true
 ```
+
+### USE_LLM aktivieren (Railway Production)
+
+Um LLM-Responses mit OpenAI zu aktivieren:
+
+1. Railway Dashboard öffnen: https://railway.app
+2. Backend Service → Settings → Variables
+3. Neue Variable hinzufügen:
+   - **Key:** `USE_LLM`
+   - **Value:** `true`
+4. Backend Service automatisch neu deployen (4 Min Wartezeit)
+
+**Ohne USE_LLM=true** werden nur Template-Responses verwendet (ohne OpenAI).
+
+**Mit USE_LLM=true** werden intelligente, kontextbewusste LLM-Responses generiert (OpenAI GPT-4o-mini).
 
 ### Dependencies
 - `express` - Web-Framework
