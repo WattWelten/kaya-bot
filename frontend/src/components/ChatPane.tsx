@@ -547,18 +547,22 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
                 <button
                   key={index}
                   className="
-                    inline-flex items-center gap-1.5
-                    rounded-full px-3 py-1.5
-                    bg-white border-2 border-lc-primary-200
-                    text-sm font-medium text-lc-primary-700
-                    transition-all duration-200
-                    btn-interactive quick-action
+                    inline-flex items-center gap-2
+                    rounded-full px-4 py-2.5
+                    bg-white border-2 border-lc-primary-300
+                    text-sm font-semibold text-lc-primary-700
+                    transition-all duration-300
+                    hover:bg-gradient-to-r hover:from-lc-primary-500 hover:to-lc-gold-400
+                    hover:text-white hover:border-transparent
+                    hover:shadow-[0_0_20px_rgba(245,158,11,0.5)]
+                    hover:scale-105
+                    active:scale-95
                     min-h-[48px]
                   "
                   aria-label={`Schnellaktion: ${suggestion.label}`}
                   onClick={() => handleSendMessage(suggestion.label)}
                 >
-                  <span>{suggestion.icon}</span>
+                  <span className="text-lg">{suggestion.icon}</span>
                   {suggestion.label}
                 </button>
               ))}

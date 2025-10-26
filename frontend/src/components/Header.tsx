@@ -42,16 +42,16 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="h-16 w-full border-b border-lc-primary-100/30 bg-white/75 backdrop-blur-xl sticky top-0 z-40 shadow-strong">
+    <header className="h-16 w-full border-b border-lc-primary-100/30 bg-gradient-to-r from-lc-primary-600 via-lc-primary-500 to-lc-gold-400 backdrop-blur-xl sticky top-0 z-40 shadow-strong">
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between">
         {/* Logo und Titel */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-lc-primary-500 to-lc-primary-700 flex items-center justify-center shadow-md">
-            <span className="text-white font-bold text-lg">K</span>
+          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-lc-gold-400 via-lc-gold-500 to-lc-gold-600 flex items-center justify-center shadow-strong border-2 border-white/40 animate-pulse-soft">
+            <span className="text-white font-bold text-xl">K</span>
           </div>
           <div className="leading-tight">
-            <h1 className="text-xl font-bold text-lc-primary-700">
-              KAYA <span className="text-sm font-normal text-lc-neutral-600">· Landkreis Oldenburg</span>
+            <h1 className="text-xl font-bold text-white drop-shadow-md flex items-center gap-2">
+              KAYA <span className="text-sm font-normal text-white/90">· Landkreis Oldenburg</span>
             </h1>
           </div>
         </div>
@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({
         <nav className="flex items-center gap-2" role="toolbar" aria-label="Einstellungen">
           {/* Kontrast-Toggle */}
           <button
-            className="btn-ghost"
+            className="btn-ghost text-white hover:bg-white/20"
             aria-pressed={accessibility.highContrast}
             aria-label="Kontrast umschalten"
             onClick={handleContrastToggle}
@@ -71,21 +71,21 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Schriftgröße */}
           <div className="flex items-center gap-1" role="group" aria-label="Schriftgröße">
             <button
-              className={`btn-ghost text-xs ${accessibility.fontSize === 100 ? 'bg-lc-neutral-100' : ''}`}
+              className={`btn-ghost text-xs text-white hover:bg-white/20 ${accessibility.fontSize === 100 ? 'bg-white/30' : ''}`}
               aria-label="Schrift 100%"
               onClick={() => handleFontSizeChange(100)}
             >
               A
             </button>
             <button
-              className={`btn-ghost text-sm ${accessibility.fontSize === 115 ? 'bg-lc-neutral-100' : ''}`}
+              className={`btn-ghost text-sm text-white hover:bg-white/20 ${accessibility.fontSize === 115 ? 'bg-white/30' : ''}`}
               aria-label="Schrift 115%"
               onClick={() => handleFontSizeChange(115)}
             >
               A+
             </button>
             <button
-              className={`btn-ghost text-base ${accessibility.fontSize === 130 ? 'bg-lc-neutral-100' : ''}`}
+              className={`btn-ghost text-base text-white hover:bg-white/20 ${accessibility.fontSize === 130 ? 'bg-white/30' : ''}`}
               aria-label="Schrift 130%"
               onClick={() => handleFontSizeChange(130)}
             >
@@ -95,7 +95,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Einfache Sprache */}
           <button
-            className="btn-ghost"
+            className="btn-ghost text-white hover:bg-white/20"
             aria-pressed={accessibility.simpleLanguage}
             aria-label="Einfache Sprache umschalten"
             onClick={handleSimpleLanguageToggle}
@@ -105,22 +105,22 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Sprache */}
           <select
-            className="btn-ghost text-sm"
+            className="btn-ghost text-sm text-white bg-transparent border-none hover:bg-white/20"
             aria-label="Sprache wechseln"
             onChange={handleLanguageChange}
             defaultValue="de"
           >
-            <option value="de">Deutsch</option>
-            <option value="en">English</option>
-            <option value="tr">Türkçe</option>
-            <option value="ar">العربية</option>
-            <option value="pl">Polski</option>
-            <option value="ru">Русский</option>
+            <option value="de" className="bg-lc-primary-600">Deutsch</option>
+            <option value="en" className="bg-lc-primary-600">English</option>
+            <option value="tr" className="bg-lc-primary-600">Türkçe</option>
+            <option value="ar" className="bg-lc-primary-600">العربية</option>
+            <option value="pl" className="bg-lc-primary-600">Polski</option>
+            <option value="ru" className="bg-lc-primary-600">Русский</option>
           </select>
 
           {/* Hilfe */}
           <button
-            className="btn-ghost"
+            className="btn-ghost text-white hover:bg-white/20"
             aria-label="Hilfe und Hinweise"
             onClick={() => setShowInfoDialog(true)}
           >

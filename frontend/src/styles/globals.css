@@ -164,11 +164,25 @@
   }
 
   .btn-solid {
-    @apply inline-flex items-center justify-center rounded-xl h-9 px-3 bg-lc-primary-600 text-white hover:bg-lc-primary-700 active:bg-lc-primary-800 shadow-sm transition-colors duration-200 focus:ring-2 focus:ring-lc-accent-600 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center rounded-xl h-9 px-3 text-white shadow-sm transition-all duration-300 focus:ring-2 focus:ring-lc-gold-500 focus:ring-offset-2;
+    background: linear-gradient(135deg, #F59E0B, #D97706);
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-solid:hover {
+    background: linear-gradient(135deg, #FBBF24, #F59E0B);
+    box-shadow: 0 8px 32px rgba(245, 158, 11, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-solid:active {
+    transform: translateY(0);
   }
 
   .btn-solid:disabled {
-    @apply opacity-50 cursor-not-allowed hover:bg-lc-primary-600;
+    @apply opacity-50 cursor-not-allowed;
+    background: linear-gradient(135deg, #64748B, #475569);
+    box-shadow: none;
   }
 
   /* Chip/Link Styles */
@@ -634,15 +648,19 @@
   }
 }
 
-/* Moderne Glassmorphism Chat-Bubbles */
+/* Moderne Glassmorphism Chat-Bubbles mit Landkreis Oldenburg CI */
 .chat-message-assistant {
-  background: rgba(255, 255, 255, 0.85);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(235, 248, 247, 0.95) 40%,
+    rgba(191, 227, 223, 0.9) 100%
+  );
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(38, 166, 154, 0.3);
   box-shadow: 
-    0 8px 32px rgba(38, 166, 154, 0.12),
-    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 8px 32px rgba(38, 166, 154, 0.15),
+    0 0 60px rgba(245, 158, 11, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   border-radius: 24px;
   padding: 18px 24px;
@@ -656,10 +674,12 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.8) 50%, 
+    transparent,
+    rgba(245, 158, 11, 0.8) 25%,
+    rgba(38, 166, 154, 0.9) 50%,
+    rgba(245, 158, 11, 0.8) 75%,
     transparent
   );
   opacity: 0;
@@ -669,9 +689,11 @@
 .chat-message-assistant:hover {
   transform: translateY(-2px);
   box-shadow: 
-    0 12px 40px rgba(38, 166, 154, 0.18),
+    0 12px 40px rgba(38, 166, 154, 0.25),
+    0 0 60px rgba(245, 158, 11, 0.12),
     0 4px 12px rgba(0, 0, 0, 0.06),
     inset 0 1px 0 rgba(255, 255, 255, 1);
+  border-color: rgba(38, 166, 154, 0.5);
 }
 
 .chat-message-assistant:hover::before {
@@ -679,12 +701,17 @@
 }
 
 .chat-message-user {
-  background: linear-gradient(135deg, #26A69A 0%, #0F766E 100%);
+  background: linear-gradient(135deg, 
+    #26A69A 0%, 
+    #0F766E 50%,
+    #064E4B 100%
+  );
   box-shadow: 
-    0 8px 24px rgba(38, 166, 154, 0.35),
-    0 2px 8px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+    0 8px 24px rgba(38, 166, 154, 0.45),
+    0 0 32px rgba(245, 158, 11, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   color: white;
   border-radius: 24px;
   padding: 18px 24px;
@@ -694,9 +721,11 @@
 .chat-message-user:hover {
   transform: translateY(-2px);
   box-shadow: 
-    0 12px 32px rgba(38, 166, 154, 0.45),
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 12px 32px rgba(38, 166, 154, 0.55),
+    0 0 48px rgba(245, 158, 11, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Chat-Container mit Glassmorphism */
