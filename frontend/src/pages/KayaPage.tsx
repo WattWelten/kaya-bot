@@ -182,23 +182,27 @@ export default function KayaPage() {
 
       {/* Hauptbereich */}
       <main 
-        className="grid md:grid-cols-2 grid-cols-1 min-h-[calc(100svh-4rem)]"
+        className="flex flex-col md:flex-row min-h-[calc(100svh-4rem)]"
         role="main"
         aria-label="KAYA Chat-Interface"
       >
-        {/* Avatar-Bereich (links) */}
-        <AvatarPane
-          isSpeaking={isSpeaking}
-          captionText={captionText}
-          setIsSpeaking={setIsSpeaking}
-          onEmotionChange={handleEmotionChange}
-        />
+        {/* Chat-Bereich (rechts) - Mobile zuerst */}
+        <div className="w-full md:w-3/5 lg:w-3/5 order-1">
+          <ChatPane
+            setCaptionText={setCaptionText}
+            onMessageSend={handleMessageSend}
+          />
+        </div>
 
-        {/* Chat-Bereich (rechts) */}
-        <ChatPane
-          setCaptionText={setCaptionText}
-          onMessageSend={handleMessageSend}
-        />
+        {/* Avatar-Bereich (links) - Mobile unten */}
+        <div className="w-full md:w-2/5 lg:w-2/5 order-2 md:order-1">
+          <AvatarPane
+            isSpeaking={isSpeaking}
+            captionText={captionText}
+            setIsSpeaking={setIsSpeaking}
+            onEmotionChange={handleEmotionChange}
+          />
+        </div>
       </main>
 
       {/* Accessibility-Hinweise */}

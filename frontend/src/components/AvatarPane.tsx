@@ -102,9 +102,9 @@ export const AvatarPane: React.FC<AvatarPaneProps> = ({
 
           {/* Zentrale Illustration */}
           <div className="relative z-10 flex flex-col items-center gap-8 animate-fade-in">
-            {/* KAYA Icon - Abstrakte Windmühle/Natur-Symbol */}
+            {/* KAYA Icon - Abstrakte Windmühle/Natur-Symbol mit Gold-Akzent */}
             <div className="relative">
-              <div className="w-48 h-48 rounded-full bg-gradient-to-br from-lc-primary-400 to-lc-primary-600 flex items-center justify-center shadow-strong animate-pulse-soft">
+              <div className="w-48 h-48 rounded-full bg-gradient-to-br from-lc-primary-500 via-lc-primary-600 to-lc-gold-500 flex items-center justify-center shadow-[0_0_60px_rgba(245,158,11,0.4)] border-2 border-white/30 animate-pulse-soft">
                 <svg viewBox="0 0 200 200" className="w-32 h-32 text-white">
                   <g className="animate-spin" style={{ animationDuration: '20s' }}>
                     {/* Windmühlen-Flügel (stilisiert) */}
@@ -114,12 +114,11 @@ export const AvatarPane: React.FC<AvatarPaneProps> = ({
                     <ellipse cx="40" cy="100" rx="35" ry="15" fill="currentColor" opacity="0.9"/>
                   </g>
                   {/* Zentrum */}
-                  <circle cx="100" cy="100" r="18" fill="currentColor"/>
                 </svg>
               </div>
               
-              {/* Glow-Effekt */}
-              <div className="absolute inset-0 rounded-full bg-lc-primary-400 blur-3xl opacity-30 animate-pulse-soft" style={{ animationDelay: '1s' }}/>
+              {/* Glow-Effekt mit Gold */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-lc-primary-400 via-lc-gold-400 to-lc-primary-600 blur-3xl opacity-30 animate-pulse-soft" style={{ animationDelay: '1s' }}/>
             </div>
 
             {/* KAYA Branding */}

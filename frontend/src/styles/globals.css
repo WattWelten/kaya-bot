@@ -63,15 +63,15 @@
   --animation-duration: 300ms;
   --animation-iteration-count: 1;
   
-  /* Gradient-Stops für animierten Hintergrund */
+  /* Gradient-Stops für animierten Hintergrund - Landkreis Oldenburg CI */
   --gradient-from: #EBF8F7;
-  --gradient-via: #D1F2EB;
-  --gradient-to: #BFE3DF;
+  --gradient-via: #FEF3C7;
+  --gradient-to: #D1F2EB;
   
-  /* Organische Formen */
-  --blob-1: #26A69A;
-  --blob-2: #4ECDC4;
-  --blob-3: #7DD3C4;
+  /* Organische Formen - Landkreis Oldenburg Wappen-Farben */
+  --blob-1: #26A69A;  /* Türkis */
+  --blob-2: #F59E0B;  /* Gold */
+  --blob-3: #4ECDC4;  /* Helles Türkis */
   
   /* Timing-Funktionen */
   --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -526,7 +526,13 @@
   animation: scaleIn 0.3s ease-out;
 }
 
-/* Responsive Design */
+/* Responsive Design - Typography */
+:root {
+  /* Mobile-first Font-Sizes */
+  font-size: 16px;
+}
+
+/* Mobile (< 768px) */
 @media (max-width: 768px) {
   .mobile-hidden {
     display: none;
@@ -535,6 +541,34 @@
   .mobile-full {
     width: 100%;
   }
+
+  /* Typography Mobile */
+  h1 { font-size: 1.5rem; line-height: 1.4; }
+  h2 { font-size: 1.25rem; line-height: 1.4; }
+  h3 { font-size: 1.125rem; line-height: 1.5; }
+  p, span { font-size: 1rem; line-height: 1.6; }
+
+  /* Touch-Targets min. 44x44px */
+  button, .btn-ghost, .btn-solid {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Tablet (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  p, span { font-size: 0.95rem; }
+}
+
+/* Desktop (> 1024px) */
+@media (min-width: 1024px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  p, span { font-size: 1rem; }
 }
 
 /* High DPI Displays */
@@ -573,7 +607,7 @@
    KAYA UI/UX REDESIGN - PHASE 2 & 3
    ============================================ */
 
-/* Animierter Organischer Hintergrund */
+/* Animierter Organischer Hintergrund - Landkreis Oldenburg CI */
 .animated-background {
   position: fixed;
   top: 0;
@@ -582,7 +616,14 @@
   height: 100%;
   z-index: -1;
   background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-via) 50%, var(--gradient-to) 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
   overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .animated-background::before,
@@ -591,14 +632,14 @@
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.3;
+  opacity: 0.4;
   animation: float-blob 20s ease-in-out infinite;
 }
 
 .animated-background::before {
   width: 600px;
   height: 600px;
-  background: var(--blob-1);
+  background: radial-gradient(circle, var(--blob-1), var(--blob-2));
   top: -10%;
   left: -10%;
   animation-delay: 0s;
@@ -607,7 +648,7 @@
 .animated-background::after {
   width: 500px;
   height: 500px;
-  background: var(--blob-2);
+  background: radial-gradient(circle, var(--blob-2), var(--blob-3));
   bottom: -10%;
   right: -10%;
   animation-delay: 7s;
@@ -617,10 +658,10 @@
   position: absolute;
   width: 400px;
   height: 400px;
-  background: var(--blob-3);
+  background: radial-gradient(circle, var(--blob-3), var(--blob-1));
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.25;
+  opacity: 0.35;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
