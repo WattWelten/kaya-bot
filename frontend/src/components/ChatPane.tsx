@@ -104,11 +104,97 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     }
   };
 
-  // Audio-Aufnahme
+  // Audio-Aufnahme mit Backend-Verarbeitung
   const handleAudioToggle = async () => {
     if (isRecording) {
+      // Stop recording & Process
       stopRecording();
+      setIsProcessing(true);
+
+      try {
+        // Audio abrufen (from AudioService)
+        const audioService = require('@/services/AudioService').getAudioService();
+        const audioBlob = audioService.getRecordedAudio();
+        
+        if (!audioBlob) {
+          throw new Error('Kein Audio vorhanden');
+        }
+
+        console.log('🎙️ Starte Audio-Chat Processing...');
+
+        // Audio-Chat Request an Backend
+        const formData = new FormData();
+        formData.append('audio', audioBlob, 'recording.webm');
+
+        const apiUrl = process.env.NODE_ENV === 'production' 
+          ? 'https://api.kaya.wattweiser.com/api/audio-chat'
+          : 'http://localhost:3001/api/audio-chat';
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error(`Audio-Chat Fehler: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log('✅ Audio-Chat Response:', result);
+
+        // User-Message (Transkription)
+        const userMessage: Message = {
+          id: `msg_${Date.now()}`,
+          content: result.transcription,
+          sender: 'user',
+          timestamp: new Date(),
+          metadata: { type: 'audio' }
+        };
+
+        // KAYA-Response (Text)
+        const assistantMessage: Message = {
+          id: `msg_${Date.now() + 1}`,
+          content: result.response,
+          sender: 'assistant',
+          timestamp: new Date(),
+          metadata: { type: 'audio', audioUrl: result.audioUrl }
+        };
+
+        setMessages(prev => [...prev, userMessage, assistantMessage]);
+        
+        // Audio abspielen
+        if (result.audioUrl) {
+          await textToSpeech(result.response);
+        }
+        
+        // Audio von Service löschen
+        audioService.clearRecordedAudio();
+
+        setCaptionText(result.response);
+
+      } catch (err) {
+        console.error('❌ Audio-Chat fehlgeschlagen:', err);
+        
+        const errorMessage: Message = {
+          id: `error_${Date.now()}`,
+          content: `Entschuldigung, Audio-Verarbeitung fehlgeschlagen: ${err instanceof Error ? err.message : 'Unbekannter Fehler'}`,
+          sender: 'assistant',
+          timestamp: new Date(),
+          metadata: {
+            emotion: 'concerned',
+            urgency: 'high',
+            persona: 'system',
+            language: 'de'
+          }
+        };
+        
+        setMessages(prev => [...prev, errorMessage]);
+      } finally {
+        setIsProcessing(false);
+      }
+
     } else {
+      // Start recording
       try {
         await startRecording();
       } catch (err) {
@@ -240,11 +326,20 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
             {/* Audio-Button */}
             <button
               type="button"
-              className={`btn-ghost ${isRecording ? 'bg-red-100 text-red-600' : ''}`}
+              className={`btn-ghost ${isRecording ? 'bg-red-100 text-red-600 animate-pulse' : ''} ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''}`}
               aria-label={isRecording ? "Aufnahme stoppen" : "Diktieren starten"}
               onClick={handleAudioToggle}
+              disabled={isProcessing}
+              title={isRecording ? "Aufnahme läuft... (Klicken zum Stoppen)" : "Mikrofon aktivieren"}
             >
-              <Mic className="size-5" />
+              {isRecording ? (
+                <div className="relative">
+                  <Mic className="size-5" />
+                  <span className="absolute inset-0 bg-red-500 rounded-full opacity-20 animate-ping"></span>
+                </div>
+              ) : (
+                <Mic className="size-5" />
+              )}
             </button>
 
             {/* Textarea */}

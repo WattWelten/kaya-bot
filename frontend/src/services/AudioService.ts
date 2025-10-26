@@ -228,7 +228,12 @@ export class AudioService {
       formData.append('audio', audioBlob, 'recording.webm');
       formData.append('language', 'de-DE');
 
-      const response = await fetch('/api/stt', {
+      // API-URL basierend auf Environment
+      const apiUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://api.kaya.wattweiser.com/api/stt'
+        : 'http://localhost:3001/api/stt';
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         body: formData
       });
@@ -253,6 +258,51 @@ export class AudioService {
   }
 
   /**
+   * Audio-Chat: Kompletter Flow (Audio → Backend → Audio + Text)
+   */
+  async audioChat(audioBlob: Blob): Promise<{ transcription: string; response: string; audioUrl: string }> {
+    try {
+      const formData = new FormData();
+      formData.append('audio', audioBlob, 'recording.webm');
+
+      // API-URL basierend auf Environment
+      const apiUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://api.kaya.wattweiser.com/api/audio-chat'
+        : 'http://localhost:3001/api/audio-chat';
+
+      console.log('🎙️ Sende Audio-Chat Request...');
+      
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error(`Audio-Chat Server Fehler: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('✅ Audio-Chat Response erhalten:', result);
+      
+      return {
+        transcription: result.transcription,
+        response: result.response,
+        audioUrl: result.audioUrl
+      };
+
+    } catch (error) {
+      console.error('❌ Audio-Chat Fehler:', error);
+      this.notifyErrorListeners({
+        code: 'AUDIO_CHAT_ERROR',
+        message: 'Audio-Chat fehlgeschlagen',
+        details: error instanceof Error ? error.message : 'Unbekannter Fehler',
+        timestamp: new Date()
+      });
+      throw error;
+    }
+  }
+
+  /**
    * Audio-Datei in Base64 konvertieren
    */
   async audioToBase64(audioBlob: Blob): Promise<string> {
@@ -269,14 +319,31 @@ export class AudioService {
     });
   }
 
+  // Storage für aufgezeichnetes Audio
+  private recordedAudioBlob: Blob | null = null;
+
   /**
    * Aufnahme-Verarbeitung
    */
   private handleRecordingComplete(audioBlob: Blob): void {
     console.log('📹 Audio-Aufnahme abgeschlossen:', audioBlob.size, 'bytes');
     
-    // Hier könnte die Aufnahme an den Server gesendet werden
-    // oder lokal verarbeitet werden
+    // Audio-Blob für weitere Verarbeitung speichern
+    this.recordedAudioBlob = audioBlob;
+  }
+
+  /**
+   * Aufgezeichnetes Audio abrufen
+   */
+  getRecordedAudio(): Blob | null {
+    return this.recordedAudioBlob;
+  }
+
+  /**
+   * Aufgezeichnetes Audio löschen
+   */
+  clearRecordedAudio(): void {
+    this.recordedAudioBlob = null;
   }
 
   /**
