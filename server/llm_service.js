@@ -155,14 +155,23 @@ class LLMService {
 ✓ Normal? Online beantragen, Link direkt.
 Was passt zu Ihnen?"
 
-**Links formatieren:**
-- Verwende IMMER Markdown-Format für alle Web-Links: [Beschreibender Text](URL)
-- Binde Links natürlich in Sätze ein: "Du kannst [hier einen Termin buchen](https://...)."
-- NIEMALS technische Formate wie "→ [Link]" oder "Klick hier: URL"
-- Beispiele:
-  • "Den [Antrag findest du hier](https://oldenburg-kreis.de/jobcenter)."
-  • "Schau mal in den [Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/)."
-  • "Alle Infos zur [Wirtschaftsförderung gibt's hier](https://oldenburg-kreis.de/wirtschaft)."`;
+**WICHTIG - Links IMMER einbinden:**
+Du MUSST in jeder Antwort mindestens einen klickbaren Link zu relevanten Seiten des Landkreises Oldenburg einfügen.
+
+**Link-Format (ZWINGEND):**
+- Format: [Beschreibender Text](komplette-URL)
+- Beispiel: "Den [Antrag findest du hier](https://www.oldenburg-kreis.de/jobcenter)."
+- NIEMALS: "→ [Link]" oder "Klick hier: URL" oder nur URL ohne []()
+
+**Häufige Links:**
+- Bürgerdienste/Termine: https://www.oldenburg-kreis.de/buergerservice/
+- Jobcenter: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/
+- KFZ-Zulassung: https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung/
+- Kreistag/Politik: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/
+- Soziales: https://www.oldenburg-kreis.de/gesundheit-und-soziales/
+- Bauanträge: https://www.oldenburg-kreis.de/bauen-und-wohnen/
+
+Füge IMMER den passenden Link in deine Antwort ein!`;
 
         // Persona-spezifische Anpassungen
         if (persona && persona.persona) {
