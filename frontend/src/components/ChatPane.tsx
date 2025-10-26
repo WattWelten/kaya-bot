@@ -260,14 +260,23 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           href={linkUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 text-lc-primary-600 hover:text-lc-primary-700 underline decoration-2 decoration-lc-primary-300 hover:decoration-lc-primary-500 transition-colors duration-200 font-medium"
+          className="
+            inline-flex items-center gap-1.5
+            text-lc-primary-600 hover:text-lc-primary-700
+            underline decoration-2 decoration-lc-primary-300
+            hover:decoration-lc-primary-500
+            transition-all duration-300
+            font-medium
+            hover:gap-2
+            group
+          "
           onClick={(e) => {
             console.log('🔗 Link geklickt:', linkUrl);
             e.stopPropagation();
           }}
         >
           {linkText}
-          <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
             <polyline points="15 3 21 3 21 9" />
             <line x1="10" y1="14" x2="21" y2="3" />

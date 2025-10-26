@@ -39,18 +39,16 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="h-16 w-full border-b border-lc-neutral-200 bg-white/90 backdrop-blur sticky top-0 z-40">
+    <header className="h-16 w-full border-b border-lc-primary-100 bg-white/80 backdrop-blur-xl shadow-sm sticky top-0 z-40">
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between">
         {/* Logo und Titel */}
         <div className="flex items-center gap-3">
-          <div 
-            className="h-8 w-8 rounded-xl bg-lc-primary-600" 
-            aria-hidden="true"
-          />
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-lc-primary-500 to-lc-primary-700 flex items-center justify-center shadow-md">
+            <span className="text-white font-bold text-lg">K</span>
+          </div>
           <div className="leading-tight">
-            <p className="text-sm text-lc-neutral-500">Landkreis Oldenburg</p>
-            <h1 className="text-base font-semibold tracking-tight">
-              KAYA – Service-Assistentin
+            <h1 className="text-xl font-bold text-lc-primary-700">
+              KAYA <span className="text-sm font-normal text-lc-neutral-600">· Landkreis Oldenburg</span>
             </h1>
           </div>
         </div>

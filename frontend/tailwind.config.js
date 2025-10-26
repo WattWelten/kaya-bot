@@ -9,6 +9,7 @@ export default {
       colors: {
         // Landkreis Oldenburg CI-Farben
         'lc-primary': {
+          25: '#F0FDFB',
           50: '#EBF8F7',
           100: '#D1F2EB',
           200: '#BFE3DF',
@@ -19,6 +20,7 @@ export default {
           700: '#0A5A55',
           800: '#064E4B',
           900: '#043C39',
+          950: '#022B27',
         },
         'lc-accent': {
           50: '#EFF6FF',
@@ -43,6 +45,22 @@ export default {
           700: '#334155',
           800: '#1F2937',
           900: '#0F172A',
+        },
+        // Landkreis Oldenburg Wappen-Farben (Gold & Rot)
+        'lc-gold': {
+          50: '#FFFBEB',
+          100: '#FEF3C7',
+          200: '#FDE68A',
+          300: '#FCD34D',
+          400: '#FBBF24',
+          500: '#F59E0B',
+          600: '#D97706',
+        },
+        'lc-red': {
+          50: '#FEF2F2',
+          400: '#F87171',
+          500: '#EF4444',
+          600: '#DC2626',
         }
       },
       fontFamily: {

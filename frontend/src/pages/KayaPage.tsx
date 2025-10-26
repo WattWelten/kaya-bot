@@ -156,6 +156,11 @@ export default function KayaPage() {
 
   return (
     <div className={getAccessibilityClasses()}>
+      {/* Animierter Hintergrund */}
+      <div className="animated-background" aria-hidden="true">
+        <div className="blob-3" />
+      </div>
+
       {/* Skiplink für Accessibility */}
       <a 
         href="#chat-root" 
