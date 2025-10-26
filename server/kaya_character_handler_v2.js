@@ -690,7 +690,8 @@ class KAYACharacterHandler {
             bildung: () => this.generateBildungResponse(query, personaAnalysis),
             umwelt: () => this.generateUmweltResponse(query, personaAnalysis),
             notfall: () => this.generateNotfallResponse(query, personaAnalysis),
-            tourismus: () => this.generateTourismusResponse(query, personaAnalysis)
+            tourismus: () => this.generateTourismusResponse(query, personaAnalysis),
+            general: () => this.generateGeneralResponse(query, personaAnalysis)
         };
         
         const responseFunction = responseMap[intention] || responseMap.general;
@@ -733,6 +734,24 @@ class KAYACharacterHandler {
         
         response += `🎯 **Deine nächste Aktion:** Termin buchen oder direkt anrufen!\n\n`;
         response += `Brauchst du spezielle Hilfe? Sag mir, was du brauchst!`;
+        
+        return { response };
+    }
+    
+    generateGeneralResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        
+        response += `🎯 **Landkreis Oldenburg - Ihre Ansprechpartner:**\n\n`;
+        response += `📞 **Hotline:** **04431 85-0** (Mo-Fr 8-16 Uhr)\n\n`;
+        response += `📋 **Online-Services:**\n`;
+        response += `→ [Bürgerportal](https://www.oldenburg-kreis.de)\n`;
+        response += `→ [Terminvereinbarung](https://www.oldenburg-kreis.de/buergerservice/termine)\n\n`;
+        response += `🎯 **Wie kann ich Ihnen konkret helfen?**\n`;
+        response += `Sagen Sie mir, was Sie benötigen - ich unterstütze Sie gerne!`;
         
         return { response };
     }
