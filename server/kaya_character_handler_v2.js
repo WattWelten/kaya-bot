@@ -414,12 +414,12 @@ class KAYACharacterHandler {
             const intentions = {
                 // Bürgerdienste & Dokumente (NEU - PRIORITÄT!)
                 buergerdienste: ['meldebescheinigung', 'meldebestätigung', 'wohnsitz', 'wohnsitzbescheinigung', 
-                                'melderegister', 'wohnungsnachweis',
+                                'melderegister', 'wohnungsnachweis', 'wohnsitznachweis',
                                 'ausweis', 'personalausweis', 'reisepass', 'pass', 'identitätskarte',
-                                'dokumente', 'dokument', 'papier', 'anmeldung', 'anmelden'],
+                                'dokumente', 'dokument', 'papier', 'bürgerdienste', 'standesamt', 'behörde'],
                 // KFZ
                 kfz_zulassung: ['kfz', 'auto', 'fahrzeug', 'zulassung', 'kennzeichen', 'fahrzeugbrief', 'evb', 'versicherung'],
-                führerschein: ['führerschein', 'fuehrerschein', 'fã¼hrerschein', 'fahrerlaubnis', 'fahrprüfung', 'schein'],
+                führerschein: ['führerschein', 'fuehrerschein', 'fahrerlaubnis', 'fahren lernen', 'fahrschule'],
                 // Amtliche Angelegenheiten
                 bauantrag: ['bauantrag', 'bauen', 'haus', 'gebäude', 'baugenehmigung', 'planung'],
                 gewerbe: ['gewerbe', 'gewerbeanmeldung', 'selbständig', 'unternehmen', 'firma'],
