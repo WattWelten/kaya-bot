@@ -425,13 +425,16 @@ class KAYACharacterHandler {
                 kfz_zulassung: ['kfz', 'auto', 'fahrzeug', 'zulassung', 'kennzeichen', 'fahrzeugbrief', 'evb', 'versicherung'],
                 führerschein: ['führerschein', 'fuehrerschein', 'fahrerlaubnis', 'fahren lernen', 'fahrschule'],
                 // Amtliche Angelegenheiten
-                bauantrag: ['bauantrag', 'bauen', 'haus', 'gebäude', 'baugenehmigung', 'planung'],
+                bauantrag: ['bauantrag', 'bauen', 'haus', 'gebäude', 'baugenehmigung', 'planung',
+                            'baugrundstück', 'bauland', 'bebauungsplan', 'flächennutzungsplan', 'denkmalschutz', 
+                            'denkmal', 'sanierung altbau', 'baugenehmigung ändern'],
                 gewerbe: ['gewerbe', 'gewerbeanmeldung', 'selbständig', 'unternehmen', 'firma'],
                 landwirtschaft: ['landwirtschaft', 'landwirt', 'bauer', 'hof', 'tier', 'pflanze'],
                 handwerk: ['handwerk', 'handwerker', 'meister', 'ausbildung', 'lehre'],
                 studium: ['studium', 'universität', 'hochschule', 'student', 'bafög'],
                 // Soziale Dienste
-                soziales: ['sozialhilfe', 'grundsicherung', 'hilfe', 'unterstützung', 'sozial', 'bürgergeld', 'wohngeld'],
+                soziales: ['sozialhilfe', 'grundsicherung', 'hilfe', 'unterstützung', 'sozial', 'bürgergeld', 'wohngeld',
+                          'eingliederungshilfe', 'unterhaltsvorschuss', 'kinderzuschlag', 'wohnberechtigungsschein', 'mietzuschuss'],
                 // NEUE AGENTEN (Basierend auf Crawler-Analyse)
                 jugend: ['jugend', 'jugendamt', 'jugendhilfe', 'kind', 'kinder', 'kita', 'kindergarten', 
                          'erziehung', 'betreuung', 'jugendzentrum', 'schulsozialarbeit', 'jugendpsychologie',
@@ -441,7 +444,9 @@ class KAYACharacterHandler {
                           'volkskultur', 'musikschule', 'schulessen', 'schulbus', 'unterricht', 'lehrer'],
                 verkehr: ['verkehr', 'straße', 'radweg', 'verkehrssicherheit', 'parkplatz', 'gehweg',
                           'busverkehr', 'öffentlicher nahverkehr', 'buslinie', 'fahrplan', 'nordwestbahn',
-                          'haltestelle', 'busse', 'taxi', 'strassenverkehr', 'fahrbahn'],
+                          'haltestelle', 'busse', 'taxi', 'strassenverkehr', 'fahrbahn',
+                          'strafzettel', 'bußgeldbescheid', 'parkgebühr', 'verkehrsunfall', 'unfallbericht', 
+                          'verkehrsschild', 'tempo limit', 'geschwindigkeitsüberschreitung'],
                 umwelt: ['umwelt', 'umweltschutz', 'abfall', 'müll', 'bio', 'papiertonne', 'wertstoffhof',
                          'recycling', 'kompost', 'sperrmüll', 'altlasten', 'naturschutz', 'landschaftsschutz',
                          'wasser', 'kanalisation', 'grundwasser', 'wasserrecht', 'trinkwasser', 'schmutzwasser'],
@@ -453,6 +458,27 @@ class KAYACharacterHandler {
                              'ärzte', 'krankenhäuser', 'gesundheitsvorsorge'],
                 wahlen: ['wahl', 'wahlen', 'kreistag', 'kommunalwahl', 'bundestagswahl', 'europawahl',
                          'wahltermin', 'wahlbeteiligung', 'wahlvorstand', 'wahlbenachrichtigung', 'demokratie'],
+                politik: ['politik', 'kreistag', 'fraktion', 'fraktionen', 'partei', 'gremium', 'gremien', 
+                          'ausschuss', 'sitzung', 'tagesordnung', 'top', 'beschluss', 'beschlüsse', 'vorlage', 
+                          'vorlagen', 'drucksache', 'rats mitglied', 'landrat', 'kreisrat', 'gemeinderat', 
+                          'kommunalpolitik', 'demokratie', 'transparenz', 'bürgerbeteiligung'],
+                jobcenter: ['jobcenter', 'arbeitslosengeld', 'bürgergeld', 'hartz', 'arbeitssuche', 'bewerbung', 
+                            'arbeitsagentur', 'arbeitsvermittlung', 'bildungsgutschein', 'weiterbildung arbeit', 
+                            'leistungen bildung teilhabe', 'alg2', 'langzeitarbeitslos'],
+                wirtschaft: ['wirtschaft', 'wirtschaftsförderung', 'unternehmen förderung', 'existenzgründung', 
+                            'gründerberatung', 'investition', 'ansiedlung', 'fördermittel wirtschaft', 'schwarzarbeit', 
+                            'illegale beschäftigung', 'arbeitsschutz', 'geldwäsche'],
+                ordnungsamt: ['ordnungsamt', 'ordnungswidrigkeit', 'bußgeld', 'lärmbelästigung', 'ruhestörung', 
+                             'fundsachen', 'fundstelle', 'verloren gefunden', 'anzeige ordnungswidrigkeit', 
+                             'parkverstoss', 'falschparker'],
+                senioren: ['senior', 'senioren', 'alter', 'rente', 'ruhestand', 'pflege senior', 'seniorenberatung', 
+                           'altersversorgung', 'senioreneinrichtung', 'seniorenwohnen', 'betreutes wohnen'],
+                inklusion: ['inklusion', 'behinderung', 'schwerbehinderung', 'schwerbehindertenausweis', 'barrierefreiheit', 
+                           'barrierefrei', 'rollstuhl', 'behindertenbeauftragter', 'teilhabe', 'eingliederungshilfe', 'assistenz'],
+                digitalisierung: ['digitalisierung', 'digital', 'online service', 'e-government', 'bürgerportal', 
+                                 'online termin', 'digitaler antrag', 'breitband', 'internet', 'glasfaser', 'geoportal', 'gis', 'karte'],
+                gleichstellung: ['gleichstellung', 'gleichstellungsbeauftragte', 'frauen', 'frauenförderung', 'gewaltschutz', 
+                               'häusliche gewalt', 'hilfetelefon', 'ko mittel', 'orange bank', 'diskriminierung', 'chancengleichheit'],
                 notfall: ['notfall', 'notruf', 'hilfe', 'schnell', 'dringend'],
                 katastrophenschutz: ['katastrophenschutz', 'brand', 'feuerwehr', 'rettungsdienst', 'alarm',
                                       'evakuierung', 'warnung', 'sirene', 'notfallplan'],
@@ -750,6 +776,14 @@ class KAYACharacterHandler {
             umwelt: () => this.generateUmweltResponse(query, personaAnalysis),
             notfall: () => this.generateNotfallResponse(query, personaAnalysis),
             lieferanten: () => this.generateLieferantenResponse(query, personaAnalysis),
+            politik: () => this.generatePolitikResponse(query, personaAnalysis),
+            jobcenter: () => this.generateJobcenterResponse(query, personaAnalysis),
+            wirtschaft: () => this.generateWirtschaftResponse(query, personaAnalysis),
+            ordnungsamt: () => this.generateOrdnungsamtResponse(query, personaAnalysis),
+            senioren: () => this.generateSeniorenResponse(query, personaAnalysis),
+            inklusion: () => this.generateInklusionResponse(query, personaAnalysis),
+            digitalisierung: () => this.generateDigitalisierungResponse(query, personaAnalysis),
+            gleichstellung: () => this.generateGleichstellungResponse(query, personaAnalysis),
             tourismus: () => this.generateTourismusResponse(query, personaAnalysis),
             general: () => this.generateGeneralResponse(query, personaAnalysis)
         };
@@ -1142,6 +1176,142 @@ class KAYACharacterHandler {
         response += `→ **04431 85-1234** (Zahlungen)\n`;
         response += `→ E-Mail: buchhaltung@oldenburg-kreis.de\n\n`;
         response += `🎯 **Deine nächste Aktion:** Schick die Rechnung oder frag bei offenen Beträgen nach!`;
+        
+        return { response };
+    }
+    
+    generatePolitikResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        response += `🏛️ **Kreistag & Politik im Landkreis Oldenburg:**\n\n`;
+        response += `📋 **1. Aktuelle Sitzungen:**\n`;
+        response += `→ [Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/)\n\n`;
+        response += `📄 **2. Gremien & Ausschüsse:**\n`;
+        response += `→ [Gremienübersicht](https://oldenburg-kreis.ratsinfomanagement.net/gremien/)\n\n`;
+        response += `👥 **3. Fraktionen & Personen:**\n`;
+        response += `→ [Fraktionen](https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/)\n`;
+        response += `→ [Mandatsträger](https://oldenburg-kreis.ratsinfomanagement.net/personen/)\n\n`;
+        response += `📑 **4. Vorlagen & Beschlüsse:**\n`;
+        response += `→ [Vorlagensuche](https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/)\n\n`;
+        response += `📞 **Kreistag-Büro:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
+        response += `🎯 **Deine nächste Aktion:** Sitzung finden oder Vorlage recherchieren!`;
+        
+        return { response };
+    }
+    
+    generateJobcenterResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        response += `💼 **Jobcenter Landkreis Oldenburg:**\n\n`;
+        response += `📋 **1. Bürgergeld beantragen:**\n`;
+        response += `→ [Antrag stellen](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/)\n\n`;
+        response += `📄 **2. Arbeitsvermittlung:**\n`;
+        response += `→ [Arbeitgeberservice](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/arbeitgeberservice-des-jobcenter-landkreis-oldenburg/)\n\n`;
+        response += `💰 **3. Bildung & Teilhabe:**\n`;
+        response += `→ [Leistungen](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/leistungen-fuer-bildung-und-teilhabe/)\n\n`;
+        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
+        response += `🎯 **Deine nächste Aktion:** Termin vereinbaren oder online Antrag stellen!`;
+        
+        return { response };
+    }
+    
+    generateWirtschaftResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        response += `💼 **Wirtschaftsförderung Landkreis Oldenburg:**\n\n`;
+        response += `📋 **1. Wirtschaftsförderung & Beratung:**\n`;
+        response += `→ [Wirtschaftsförderung](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/wirtschaftsfoerderung/)\n\n`;
+        response += `📄 **2. Schwarzarbeitsbekämpfung:**\n`;
+        response += `→ [Meldestelle](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/)\n\n`;
+        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
+        response += `🎯 **Deine nächste Aktion:** Wirtschaftsförderung kontaktieren oder melden!`;
+        
+        return { response };
+    }
+    
+    generateOrdnungsamtResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        response += `🏛️ **Ordnungsamt Landkreis Oldenburg:**\n\n`;
+        response += `📋 **1. Ordnungswidrigkeiten:**\n`;
+        response += `→ [Bußgeldstelle](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/)\n\n`;
+        response += `📄 **2. Fundbüro:**\n`;
+        response += `→ Fundsachen abholen oder melden\n\n`;
+        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
+        response += `🎯 **Deine nächste Aktion:** Ordnungsamt kontaktieren oder Fundbüro besuchen!`;
+        
+        return { response };
+    }
+    
+    generateSeniorenResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        response += `👴 **Seniorenberatung Landkreis Oldenburg:**\n\n`;
+        response += `📋 **1. Beratung & Unterstützung:**\n`;
+        response += `→ [Seniorenberatung](https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren/)\n\n`;
+        response += `📄 **2. Pflege & Betreuung:**\n`;
+        response += `→ [Amt für Teilhabe](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/)\n\n`;
+        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
+        response += `🎯 **Deine nächste Aktion:** Seniorenberatung kontaktieren!`;
+        
+        return { response };
+    }
+    
+    generateInklusionResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        response += `♿ **Teilhabe & Inklusion Landkreis Oldenburg:**\n\n`;
+        response += `📋 **1. Schwerbehindertenausweis beantragen:**\n`;
+        response += `→ [Amt für Teilhabe](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/)\n\n`;
+        response += `📄 **2. Barrierefreiheit & Teilhabe:**\n`;
+        response += `→ [Teilhabeleistungen](https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/)\n\n`;
+        response += `📞 **Kontakt:** 04431 85-XXXX (Mo-Fr 8-16 Uhr)\n\n`;
+        response += `🎯 **Deine nächste Aktion:** Teilhabe-Amt kontaktieren!`;
+        
+        return { response };
+    }
+    
+    generateDigitalisierungResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        response += `💻 **Digitalisierung & E-Government Landkreis Oldenburg:**\n\n`;
+        response += `📋 **1. Bürgerportal:**\n`;
+        response += `→ [Online-Services](https://www.oldenburg-kreis.de/portal/)\n\n`;
+        response += `📄 **2. Breitbandausbau:**\n`;
+        response += `→ [Glasfaser & Internet](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/)\n\n`;
+        response += `🗺️ **3. Geoportal:**\n`;
+        response += `→ [Karten & GIS](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/)\n\n`;
+        response += `🎯 **Deine nächste Aktion:** Online-Service nutzen oder Infos anfordern!`;
+        
+        return { response };
+    }
+    
+    generateGleichstellungResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        response += `⚖️ **Gleichstellung & Gewaltschutz Landkreis Oldenburg:**\n\n`;
+        response += `📋 **1. Gleichstellungsbeauftragte:**\n`;
+        response += `→ [Beratung & Unterstützung](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/)\n\n`;
+        response += `🚨 **2. Hilfe bei Gewalt:**\n`;
+        response += `→ [Hilfetelefone](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/gewaltschutz-hilfetelefone-und-beratungsangebote/)\n\n`;
+        response += `📞 **Notfall-Telefon:** 08000 116 016 (24/7 erreichbar)\n\n`;
+        response += `🎯 **Deine nächste Aktion:** Beratung kontaktieren oder Hilfsangebote nutzen!`;
         
         return { response };
     }

@@ -24,7 +24,15 @@ class CrawlerEngine {
             'stellenportal',
             'kontakte',
             'jugend',
-            'soziales'
+            'soziales',
+            'politik',
+            'jobcenter',
+            'wirtschaft',
+            'ordnungsamt',
+            'senioren',
+            'inklusion',
+            'digitalisierung',
+            'gleichstellung'
         ];
         
         this.dataDir = path.join(__dirname, '../../data');
@@ -168,6 +176,74 @@ class CrawlerEngine {
                 webSources: [
                     'https://www.oldenburg-kreis.de/gesundheit-und-soziales/',
                     'https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            politik: {
+                webSources: [
+                    'https://oldenburg-kreis.ratsinfomanagement.net/',
+                    'https://oldenburg-kreis.ratsinfomanagement.net/gremien/',
+                    'https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/',
+                    'https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/',
+                    'https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/',
+                    'https://oldenburg-kreis.ratsinfomanagement.net/personen/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            jobcenter: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/jobcenter/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            wirtschaft: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/wirtschaftsfoerderung/',
+                    'https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            ordnungsamt: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            senioren: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            inklusion: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            digitalisierung: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            gleichstellung: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/gewaltschutz-hilfetelefone-und-beratungsangebote/'
                 ],
                 fileSources: [],
                 pdfSources: []
