@@ -724,7 +724,7 @@ class KAYACharacterHandler {
                         const intentionLinks = {
                             bauantrag: '\n\n[Formulare Bauen](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)',
                             jobcenter: '\n\n[Jobcenter Landkreis Oldenburg](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/)',
-                            kfz_zulassung: '\n\n[KFZ-Zulassungsstelle](https://www.oldenburg-kreis.de/fuehrerscheinstelle/)',
+                            kfz_zulassung: '\n\n[KFZ-Zulassung - Infos & Termine](https://www.oldenburg-kreis.de/)',
                             buergerdienste: '\n\n[Online-Kreishaus](https://www.oldenburg-kreis.de/)',
                             politik: '\n\n[Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/)',
                         };

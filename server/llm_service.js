@@ -226,11 +226,17 @@ LINKS (Format: [Text](URL)):
 Nur einbinden, wenn SOFORT relevant. Nicht präventiv.
 
 VERIFIZIERTE LINKS (NUR DIESE!):
-- KFZ/Führerschein: https://www.oldenburg-kreis.de/fuehrerscheinstelle/
+- KFZ-Zulassung: https://www.oldenburg-kreis.de/
+- Führerschein: https://www.oldenburg-kreis.de/fuehrerscheinstelle/
 - Jobcenter: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/
 - Bauanträge: https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/
 - Bürgerdienste: https://www.oldenburg-kreis.de/
 - Kreistag: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/
+
+WICHTIG - LINK-VALIDIERUNG:
+- KFZ-Zulassung ≠ Führerschein! Verwechsle diese NIEMALS!
+- KFZ-Zulassung = Autozulassung, Kennzeichen
+- Führerschein = Fahrerlaubnis, Führerscheinumtausch
 
 🚨 WICHTIG - KEINE HALLUZINATIONEN:
 - Wenn du die Antwort NICHT sicher weißt: SAG ES EHRLICH
