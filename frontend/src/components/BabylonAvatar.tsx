@@ -13,6 +13,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
   const engineRef = useRef<BABYLON.Engine | null>(null);
   const sceneRef = useRef<BABYLON.Scene | null>(null);
   const meshRef = useRef<BABYLON.AbstractMesh | null>(null);
+  const morphTargetManagerRef = useRef<BABYLON.MorphTargetManager | null>(null);
 
   // Mobile Detection
   const isMobile = typeof window !== 'undefined' && (
@@ -38,13 +39,13 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
     scene.clearColor = new BABYLON.Color4(0, 0, 0, 0); // Transparent
     sceneRef.current = scene;
 
-    // Camera
+    // Camera (wie erste Version + näher)
     const camera = new BABYLON.ArcRotateCamera(
       'camera',
-      Math.PI / 2,
-      Math.PI / 2.5,
-      3,
-      new BABYLON.Vector3(0, 0, 0),
+      Math.PI / 2,      // Horizontal
+      Math.PI / 2.5,    // Vertikal
+      3,                // Distance (zurück auf 3)
+      new BABYLON.Vector3(0, 0, 0), // Center point
       scene
     );
     camera.attachControl(canvasRef.current, false);
@@ -61,15 +62,29 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
       directionalLight.position = new BABYLON.Vector3(5, 5, 5);
     }
 
-    // Load GLB Model
-    BABYLON.SceneLoader.ImportMesh('', '/avatar/', 'kaya.glb', scene, (meshes) => {
-      if (meshes.length > 0) {
-        meshRef.current = meshes[0];
-        meshes[0].position.y = -1;
-        meshes[0].scaling = new BABYLON.Vector3(1.5, 1.5, 1.5);
-        console.log('📦 Babylon Avatar geladen:', meshes.length, 'Meshes');
+    // Load GLB Model mit SceneLoader.Append (korrekt für Morph Targets)
+    BABYLON.SceneLoader.Append('/avatar/', 'kaya.glb', scene, () => {
+      // Skinned Mesh mit MorphTargets finden
+      const skinned = scene.meshes.find(m => (m as any).morphTargetManager) as BABYLON.AbstractMesh;
+      
+      if (skinned) {
+        meshRef.current = skinned;
+        skinned.position.y = -1.67;
+        skinned.scaling = new BABYLON.Vector3(4.5, 4.5, 4.5); // 3x größer
+        
+        const mtm = (skinned as any).morphTargetManager as BABYLON.MorphTargetManager | undefined;
+        morphTargetManagerRef.current = mtm || null;
+        
+        if (mtm) {
+          console.log('📦 Babylon Avatar geladen:', scene.meshes.length, 'Meshes, Morph Targets:', mtm.numTargets);
+        }
       }
-    }, undefined, (scene, message) => {
+    }, (progressEvent) => {
+      if (progressEvent.loaded && progressEvent.total) {
+        const percent = (progressEvent.loaded / progressEvent.total) * 100;
+        console.log(`📦 Loading GLB: ${Math.round(percent)}%`);
+      }
+    }, (scene, message) => {
       console.error('❌ GLB Loading Fehler:', message);
     });
 
@@ -92,18 +107,28 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
 
   // Lipsync: Morph Targets Update
   useEffect(() => {
-    if (!meshRef.current || !visemes || visemes.length === 0) return;
+    if (!morphTargetManagerRef.current || !visemes || visemes.length === 0) return;
 
-    const mesh = meshRef.current as BABYLON.Mesh;
-    const morphTargetManager = mesh.morphTargetManager;
+    const mtm = morphTargetManagerRef.current;
 
-    if (morphTargetManager) {
-      visemes.forEach((value, index) => {
-        if (index < morphTargetManager.numTargets) {
-          morphTargetManager.getTarget(index).influence = value;
+    // Viseme-Namen (Beispiel-Mapping, anpassen nach deiner GLB)
+    const VISEME_NAMES = [
+      'mouthFunnel', // AA
+      'mouthO', // O
+      'mouthClose', // F
+      'tongueOut', // L
+      'mouthSmile_L', // SMILE
+      // ... weitere
+    ];
+
+    visemes.forEach((value, index) => {
+      if (index < VISEME_NAMES.length) {
+        const target = mtm.getTargetByName(VISEME_NAMES[index]);
+        if (target) {
+          target.influence = value;
         }
-      });
-    }
+      }
+    });
   }, [visemes]);
 
   // Idle Animation (Breathing)
@@ -114,7 +139,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
     const animate = () => {
       if (!meshRef.current || isSpeaking) return;
       const elapsed = (Date.now() - startTime) / 1000;
-      meshRef.current.position.y = -1 + Math.sin(elapsed * 0.5) * 0.02;
+      meshRef.current.position.y = -1.67 + Math.sin(elapsed * 0.5) * 0.02; // Anfang bei -1.67
       requestAnimationFrame(animate);
     };
     const animationId = requestAnimationFrame(animate);
