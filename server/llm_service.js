@@ -13,15 +13,15 @@ class LLMService {
         this.openaiApiKey = process.env.OPENAI_API_KEY;
         this.openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
         this.model = 'gpt-4o-mini'; // Kostenoptimiertes Modell
-        this.maxTokens = 80; // Für kurze, menschliche Antworten (30-50 Wörter)
-        this.temperature = 0.8; // Kreativer für persönlichere Antworten
+        this.maxTokens = 70; // Für kurze, menschliche Antworten (30-50 Wörter)
+        this.temperature = 0.85; // Etwas kreativer für mehr Persönlichkeit
         
         // Circuit Breaker für Fehlerbehandlung
         this.circuitBreaker = {
             isOpen: false,
             failureCount: 0,
             lastFailureTime: 0,
-            timeout: 60000 // 1 Minute
+            timeout: 30000 // 30 Sekunden (optimiert)
         };
         
         console.log('🤖 LLM Service initialisiert (OpenAI aktiviert)');
@@ -65,7 +65,7 @@ class LLMService {
                         'Authorization': `Bearer ${this.openaiApiKey}`,
                         'Content-Type': 'application/json'
                     },
-                    timeout: 10000 // 10 Sekunden Timeout
+                    timeout: 8000 // 8 Sekunden Timeout (optimiert)
                 }
             );
             
@@ -213,11 +213,14 @@ TONALITÄT:
 - Fließender Text wie im echten Gespräch
 - Listen nur für Struktur/Übersichtlichkeit
 
-NORDDEUTSCHER HUMOR (sparsam, authentisch):
-- "Dat kriegen wir hin!"
-- "Butter bei die Fische:"
-- "Kein Stress"
-- "Passt dat so?"
+NORDDEUTSCHER HUMOR (mach es herzlich & bodenständig):
+- Häufiger nutzen: "Dat kriegen wir hin!", "Moin!", "Kein Stress", "Passt dat so?"
+- Bei Problemen: "Keine Sorge, wir kriegen dat hin"
+- Bei Erfolg: "Moin, das freut mich!"
+- Bei Unsicherheit: "Butter bei die Fische: Was brauchst du genau?"
+- Bei Abschied: "Viel Erfolg und passe auf dich auf!"
+
+Nutze diese Ausdrücke NATÜRLICH in 3-5 von 10 Antworten!
 
 EMOJIS (max. 1, nur wenn natürlich):
 🚗 Auto, 🏡 Haus, 📄 Formular, ✅ Check, 💼 Arbeit

@@ -17,13 +17,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
       id: '1',
       content: 'Moin! Ich bin KAYA, die KI-basierte Assistenz des Landkreis Oldenburg. Wie kann ich dir helfen?',
       sender: 'assistant',
-      timestamp: new Date(),
-      metadata: {
-        emotion: 'friendly',
-        urgency: 'normal',
-        persona: 'general',
-        language: 'de'
-      }
+      timestamp: new Date()
     }
   ]);
   const [inputValue, setInputValue] = useState('');
@@ -56,13 +50,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
         id: `msg_${Date.now()}`,
         content: text,
         sender: 'assistant',
-        timestamp: new Date(),
-        metadata: {
-          emotion: 'friendly',
-          urgency: 'normal',
-          persona: 'general',
-          language: 'de'
-        }
+        timestamp: new Date()
       };
       setMessages(prev => [...prev, assistantMessage]);
       
@@ -116,13 +104,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
         id: `error_${Date.now()}`,
         content: `Entschuldigung, es ist ein Fehler aufgetreten: ${error.message}`,
         sender: 'assistant',
-        timestamp: new Date(),
-        metadata: {
-          emotion: 'concerned',
-          urgency: 'high',
-          persona: 'system',
-          language: 'de'
-        }
+        timestamp: new Date()
       };
       
       setMessages(prev => [...prev, errorMessage]);
@@ -205,13 +187,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           id: `msg_${Date.now() + 1}`,
           content: result.response,
           sender: 'assistant',
-          timestamp: new Date(),
-          metadata: {
-            emotion: 'friendly',
-            urgency: 'normal',
-            persona: 'general',
-            language: 'de'
-          }
+          timestamp: new Date()
         };
 
         setMessages(prev => [...prev, userMessage, assistantMessage]);
@@ -233,13 +209,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           id: `error_${Date.now()}`,
           content: `Entschuldigung, Audio-Verarbeitung fehlgeschlagen: ${err instanceof Error ? err.message : 'Unbekannter Fehler'}`,
           sender: 'assistant',
-          timestamp: new Date(),
-          metadata: {
-            emotion: 'concerned',
-            urgency: 'high',
-            persona: 'system',
-            language: 'de'
-          }
+          timestamp: new Date()
         };
         
         setMessages(prev => [...prev, errorMessage]);
