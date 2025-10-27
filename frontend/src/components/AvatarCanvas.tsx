@@ -1,4 +1,4 @@
-import React, { Suspense, memo } from 'react';
+import React, { Suspense, memo, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, PerspectiveCamera } from '@react-three/drei';
 import { Avatar3D } from './Avatar3D';
@@ -10,27 +10,47 @@ interface AvatarCanvasProps {
 }
 
 function AvatarCanvasComponent({ isSpeaking, emotion, visemes }: AvatarCanvasProps) {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  // Mobile Detection mit useMemo
+  const isMobile = useMemo(() => {
+    return typeof window !== 'undefined' && (
+      window.innerWidth < 768 ||
+      /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    );
+  }, []);
+  
+  // Performance-basiertes DPR
+  const dpr = useMemo(() => {
+    return isMobile ? [0.75, 1] : [1, 2];
+  }, [isMobile]);
   
   return (
     <div className="w-full h-full">
       <Canvas
         camera={{ position: [0, 0, 3], fov: 50 }}
         gl={{ 
-          antialias: true, 
+          antialias: !isMobile, // Kein Antialiasing auf Mobile
           alpha: true,
           powerPreference: 'high-performance'
         }}
-        dpr={[1, 2]}
+        dpr={dpr}
+        shadows={!isMobile} // Schatten nur auf Desktop
       >
         <Suspense fallback={null}>
           {/* Beleuchtung */}
           <ambientLight intensity={0.5} />
-          <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
+          
+          {/* Conditional Shadow-Casting für Performance */}
+          {!isMobile && (
+            <directionalLight position={[5, 5, 5]} intensity={1} castShadow />
+          )}
+          {isMobile && (
+            <directionalLight position={[5, 5, 5]} intensity={1} />
+          )}
+          
           <pointLight position={[-5, 5, -5]} intensity={0.5} />
 
-          {/* Environment Map für Reflektionen */}
-          <Environment preset="studio" />
+          {/* Environment Map nur auf Desktop */}
+          {!isMobile && <Environment preset="studio" />}
 
           {/* KAYA Avatar */}
           <Avatar3D 
