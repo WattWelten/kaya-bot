@@ -170,37 +170,53 @@ export default function KayaPage() {
         Zum Chat springen
       </a>
 
-      {/* Accessibility Toolbar */}
-      <AccessibilityToolbar />
+      {/* Header: Logo + Barrierefreiheit */}
+      <header className="h-[10svh] flex-shrink-0 bg-white border-b border-lc-neutral-200 px-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="text-2xl font-bold text-lc-primary-600">KAYA</div>
+          <span className="text-sm text-lc-neutral-600">Landkreis Oldenburg</span>
+        </div>
+        
+        {/* Barrierefreiheit-Optionen */}
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => handleAccessibilityChange({ ...accessibility, fontSize: accessibility.fontSize === 100 ? 130 : 100 })}
+            className="p-2 rounded-lg hover:bg-lc-neutral-100 transition-colors"
+            aria-label="Schriftgröße anpassen"
+          >
+            <span className="text-lg">A+</span>
+          </button>
+          <button
+            onClick={() => handleAccessibilityChange({ ...accessibility, highContrast: !accessibility.highContrast })}
+            className="p-2 rounded-lg hover:bg-lc-neutral-100 transition-colors"
+            aria-label="Hoher Kontrast"
+          >
+            <span className="text-lg">◐</span>
+          </button>
+        </div>
+      </header>
 
-      {/* Header */}
-      <Header
-        accessibility={accessibility}
-        onAccessibilityChange={handleAccessibilityChange}
-        onLanguageChange={handleLanguageChange}
-      />
-
-      {/* Hauptbereich */}
+      {/* Hauptbereich - Vertikal: Header > Avatar > Chat */}
       <main 
-        className="flex flex-col md:flex-row h-screen md:h-[calc(100vh-4rem)] overflow-hidden"
+        className="flex flex-col h-[90svh] overflow-hidden"
         role="main"
         aria-label="KAYA Chat-Interface"
       >
-        {/* Chat - Mobile OBEN, Desktop RECHTS (60%) */}
-        <div className="w-full md:w-3/5 flex-1 min-h-0 order-2 md:order-2">
-          <ChatPane
-            setCaptionText={setCaptionText}
-            onMessageSend={handleMessageSend}
-          />
-        </div>
-
-        {/* Avatar - Mobile OBEN (klein), Desktop LINKS (40%) */}
-        <div className="w-full md:w-2/5 h-[40vh] md:h-auto min-h-0 order-1 md:order-1">
+        {/* Avatar - 70% */}
+        <div className="flex-[0.7] relative">
           <AvatarPane
             isSpeaking={isSpeaking}
             captionText={captionText}
             setIsSpeaking={setIsSpeaking}
             onEmotionChange={handleEmotionChange}
+          />
+        </div>
+
+        {/* Chat Overlay - 20% (untere 20svh) */}
+        <div className="h-[20svh] flex-shrink-0 relative z-10">
+          <ChatPane
+            setCaptionText={setCaptionText}
+            onMessageSend={handleMessageSend}
           />
         </div>
       </main>

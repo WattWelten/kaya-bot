@@ -14,6 +14,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
   const sceneRef = useRef<BABYLON.Scene | null>(null);
   const meshRef = useRef<BABYLON.AbstractMesh | null>(null);
   const morphTargetManagerRef = useRef<BABYLON.MorphTargetManager | null>(null);
+  const glowLayerRef = useRef<BABYLON.GlowLayer | null>(null);
 
   // Mobile Detection
   const isMobile = typeof window !== 'undefined' && (
@@ -39,18 +40,18 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
     scene.clearColor = new BABYLON.Color4(0, 0, 0, 0); // Transparent
     sceneRef.current = scene;
 
-    // Camera (wie erste Version + näher)
+    // Camera (näher + leicht nach unten)
     const camera = new BABYLON.ArcRotateCamera(
       'camera',
       Math.PI / 2,      // Horizontal
       Math.PI / 2.5,    // Vertikal
-      3,                // Distance (zurück auf 3)
+      2,                // Distance (näher: 3 → 2)
       new BABYLON.Vector3(0, 0, 0), // Center point
       scene
     );
     camera.attachControl(canvasRef.current, false);
-    camera.lowerRadiusLimit = 2;
-    camera.upperRadiusLimit = 5;
+    camera.lowerRadiusLimit = 1.5;
+    camera.upperRadiusLimit = 4;
 
     // Lighting
     const ambientLight = new BABYLON.HemisphericLight('ambient', new BABYLON.Vector3(0, 1, 0), scene);
@@ -62,14 +63,22 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
       directionalLight.position = new BABYLON.Vector3(5, 5, 5);
     }
 
+    // Glow Layer für Sprech-Feedback (Primary Color: Türkis/Teal)
+    const glowLayer = new BABYLON.GlowLayer('glow', scene, {
+      mainTextureFixedSize: 512,
+      blurKernelSize: 64
+    });
+    glowLayer.intensity = 0;
+    glowLayerRef.current = glowLayer;
+
     // Load GLB Model mit SceneLoader.Append (korrekt für Morph Targets)
-    BABYLON.SceneLoader.Append('/avatar/', 'kaya.glb', scene, () => {
+    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew.glb', scene, () => {
       // Skinned Mesh mit MorphTargets finden
       const skinned = scene.meshes.find(m => (m as any).morphTargetManager) as BABYLON.AbstractMesh;
       
       if (skinned) {
         meshRef.current = skinned;
-        skinned.position.y = -1.67;
+        skinned.position.y = -2; // Leicht nach unten (-1.67 → -2)
         skinned.scaling = new BABYLON.Vector3(4.5, 4.5, 4.5); // 3x größer
         
         const mtm = (skinned as any).morphTargetManager as BABYLON.MorphTargetManager | undefined;
@@ -139,12 +148,24 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
     const animate = () => {
       if (!meshRef.current || isSpeaking) return;
       const elapsed = (Date.now() - startTime) / 1000;
-      meshRef.current.position.y = -1.67 + Math.sin(elapsed * 0.5) * 0.02; // Anfang bei -1.67
+      meshRef.current.position.y = -2 + Math.sin(elapsed * 0.5) * 0.02; // Anfang bei -2
       requestAnimationFrame(animate);
     };
     const animationId = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationId);
+  }, [isSpeaking]);
+
+  // Glow-Effekt: Wenn Avatar spricht
+  useEffect(() => {
+    if (!glowLayerRef.current || !meshRef.current) return;
+
+    if (isSpeaking) {
+      glowLayerRef.current.intensity = 0.8;
+      glowLayerRef.current.addIncludedOnlyMesh(meshRef.current as BABYLON.Mesh);
+    } else {
+      glowLayerRef.current.intensity = 0;
+    }
   }, [isSpeaking]);
 
   return (

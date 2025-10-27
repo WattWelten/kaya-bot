@@ -1,5 +1,4 @@
-import React, { useEffect, useState, memo, useCallback } from 'react';
-import { Volume2 } from 'lucide-react';
+import React, { useEffect, useState, memo } from 'react';
 import { useLipSync } from '@/hooks/useLipSync';
 import { AvatarPaneProps } from '@/types';
 import { ErrorBoundary } from './ErrorBoundary';
@@ -11,10 +10,9 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
   setIsSpeaking,
   onEmotionChange
 }) => {
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [emotion, setEmotion] = useState<'neutral' | 'happy' | 'concerned' | 'speaking'>('neutral');
   
-  const { visemes, isAnalyzing } = useLipSync(audioUrl, isSpeaking);
+  const { visemes } = useLipSync(null, isSpeaking);
 
   useEffect(() => {
     if (captionText.includes('Hilfe') || captionText.includes('Problem')) {
@@ -30,16 +28,12 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
     }
   }, [captionText, isSpeaking, onEmotionChange]);
 
-  const handleAudioToggle = useCallback(() => {
-    setIsSpeaking(!isSpeaking);
-  }, [isSpeaking, setIsSpeaking]);
-
   return (
     <section 
       aria-label="Avatar Bereich" 
-      className="relative bg-gradient-to-b from-lc-primary-50/40 to-lc-neutral-50/60 md:h-[calc(100svh-4rem)] h-[60svh] overflow-hidden"
+      className="relative w-full h-full bg-gradient-to-b from-lc-primary-50/40 to-lc-neutral-50/60 overflow-hidden"
     >
-      {/* Babylon.js Avatar */}
+      {/* Babylon.js Avatar - Vollbild */}
       <div className="absolute inset-0">
         <ErrorBoundary>
           <BabylonAvatar 
@@ -50,41 +44,15 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
         </ErrorBoundary>
       </div>
 
-      {/* Overlay: Begrüßungstext & Controls */}
-      <div className="absolute bottom-4 left-4 right-4 md:left-6 md:right-6 flex items-center justify-between">
-        <div className="px-3 py-2 rounded-2xl bg-white/75 backdrop-blur border border-white/60 shadow-soft max-w-[80%]">
-          <p className="text-sm text-lc-neutral-800">
-            Moin! Ich bin KAYA. Wobei kann ich Ihnen helfen?
-          </p>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <button
-            className="btn-solid"
-            aria-label={isSpeaking ? "Audio stoppen" : "Audio vorlesen"}
-            onClick={handleAudioToggle}
-          >
-            <Volume2 className="size-5" />
-          </button>
-        </div>
-      </div>
-
-      {/* Live Captions */}
-      {isSpeaking && (
+      {/* Live Captions - über Avatar */}
+      {isSpeaking && captionText && (
         <div 
           aria-live="polite" 
-          className="absolute left-4 right-4 bottom-20 md:bottom-24 text-sm text-lc-neutral-800 bg-white/90 backdrop-blur rounded-xl px-3 py-2 shadow-soft"
+          className="absolute left-4 right-4 top-[70%] text-sm text-lc-neutral-800 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg"
         >
-          {captionText || 'Ich lese Ihnen die nächsten Schritte vor ...'}
+          {captionText}
         </div>
       )}
-
-      {/* Status */}
-      <div className="absolute top-4 right-4">
-        <div className="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-          {isAnalyzing ? 'Analysiere...' : 'Online'}
-        </div>
-      </div>
     </section>
   );
 };

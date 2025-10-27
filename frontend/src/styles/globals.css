@@ -238,6 +238,28 @@
     background: theme('colors.lc-neutral-400');
   }
 
+  /* 9:16 Mobile-First Optimierungen */
+  @media (min-width: 768px) {
+    /* Desktop: Zentriert mit max-width */
+    main {
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Chat-Overlay: Text läuft hinter Avatar aus (Fade-Out) */
+  #chat-root .overflow-y-auto::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(to top, white, transparent);
+    pointer-events: none;
+  }
+
   /* Text Selection */
   ::selection {
     background: theme('colors.lc-primary-200');
