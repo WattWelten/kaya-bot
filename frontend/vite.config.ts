@@ -34,11 +34,35 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
+    minify: 'esbuild',
+    chunkSizeWarningLimit: 500,
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'ui-vendor': ['lucide-react', 'clsx']
+        manualChunks: (id) => {
+          // React Vendor
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react-vendor';
+          }
+          
+          // UI Vendor (Icons, Utilities)
+          if (id.includes('node_modules/lucide-react') || id.includes('node_modules/clsx')) {
+            return 'ui-vendor';
+          }
+          
+          // Audio Modules
+          if (id.includes('/hooks/useAudio') || id.includes('/services/AudioService')) {
+            return 'audio-vendor';
+          }
+          
+          // Chat Components
+          if (id.includes('/components/ChatPane') || id.includes('/components/VoiceButton')) {
+            return 'chat-vendor';
+          }
+          
+          // Pages
+          if (id.includes('/pages/')) {
+            return 'pages';
+          }
         }
       }
     }

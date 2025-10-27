@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo, memo } from 'react';
 import { Mic, Paperclip, Send, Volume2 } from 'lucide-react';
 import { useWebSocket } from '@/hooks/useWebSocket';
 import { useAudio } from '@/hooks/useAudio';
@@ -770,3 +770,86 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     </section>
   );
 };
+
+// Performance-Optimierung: Message-Komponente mit memo
+const MessageBubble = memo(({ message, expandedSources, onToggleSource }: {
+  message: Message;
+  expandedSources: Set<string>;
+  onToggleSource: (id: string) => void;
+}) => {
+  // useMemo für renderMessageContent
+  const renderedContent = useMemo(() => {
+    // Markdown-Links: [Text](URL) → <a href="URL">Text</a>
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    const parts: (string | JSX.Element)[] = [];
+    let lastIndex = 0;
+    let match;
+    let linkCount = 0;
+
+    const matches: RegExpExecArray[] = [];
+    while ((match = linkRegex.exec(message.content)) !== null) {
+      matches.push(match);
+    }
+
+    matches.forEach((match, index) => {
+      if (match.index > lastIndex) {
+        parts.push(message.content.substring(lastIndex, match.index));
+      }
+
+      const linkText = match[1];
+      const linkUrl = match[2];
+      linkCount++;
+      
+      parts.push(
+        <a 
+          key={`link-${match.index}-${linkCount}`}
+          href={linkUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            inline-flex items-center gap-1.5
+            text-lc-primary-600 hover:text-lc-primary-700
+            underline decoration-2 decoration-lc-primary-300
+            hover:decoration-lc-primary-500
+            transition-all duration-300
+            font-medium
+            hover:gap-2
+            group
+          "
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          {linkText}
+          <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
+        </a>
+      );
+
+      lastIndex = match.index + match[0].length;
+    });
+
+    if (lastIndex < message.content.length) {
+      parts.push(message.content.substring(lastIndex));
+    }
+
+    return parts.length > 0 ? parts : message.content;
+  }, [message.content]);
+
+  return (
+    <div className={`max-w-[85vw] sm:max-w-[60ch] md:max-w-[70ch] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 ${
+      message.sender === 'user'
+        ? 'chat-message-user'
+        : 'chat-message-assistant'
+    }`}>
+      <div className="text-sm leading-relaxed">
+        {renderedContent}
+      </div>
+    </div>
+  );
+});
+
+MessageBubble.displayName = 'MessageBubble';
