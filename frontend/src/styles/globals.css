@@ -956,3 +956,40 @@
   color: #475569;
   font-weight: 500;
 }
+
+/* Voice Button Animationen */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+  75% {
+    transform: translateX(5px) rotate(2deg);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Voice Status Bar */
+.voice-status-bar {
+  background: linear-gradient(to right, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0.1));
+}
+
+.pulse-dot {
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}

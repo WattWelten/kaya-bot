@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Mic, Paperclip, Send, Volume2 } from 'lucide-react';
 import { useWebSocket } from '@/hooks/useWebSocket';
 import { useAudio } from '@/hooks/useAudio';
+import { useVoiceDialog } from '@/hooks/useVoiceDialog';
+import { VoiceButton } from './VoiceButton';
+import { VoiceStatusBar } from './VoiceStatusBar';
 import { Message, ChatPaneProps } from '@/types';
 import { getAudioService } from '@/services/AudioService';
 
@@ -35,6 +38,16 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
   // Hooks
   const { isConnected, sendMessage, sendAudioMessage, lastMessage, error } = useWebSocket(sessionId);
   const { isRecording, startRecording, stopRecording, textToSpeech } = useAudio();
+  const { voiceState, startVoiceDialog, stopRecording: stopVoiceRecording, error: voiceError } = useVoiceDialog(
+    async (text: string) => {
+      // Placeholder - wird später implementiert
+      return text;
+    },
+    (audioUrl: string, text: string) => {
+      // Placeholder - wird später implementiert
+      console.log('Audio Response:', audioUrl, text);
+    }
+  );
 
   // Auto-Scroll zu neuesten Nachrichten
   useEffect(() => {
@@ -604,6 +617,11 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           ))}
         </div>
 
+        {/* Voice Status Bar - Während Aufnahme */}
+        {voiceState === 'recording' && (
+          <VoiceStatusBar onStop={stopVoiceRecording} />
+        )}
+
         {/* Smart Suggestions - Kontextabhängig */}
         {messages.length >= 2 && (
           <div className="px-4 sm:px-6 py-2 border-b border-lc-primary-100 bg-lc-primary-50/50">
@@ -686,28 +704,15 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
             className="flex items-end gap-2"
             aria-label="Nachricht verfassen"
           >
-            {/* Audio-Button - Größer für Accessibility */}
-            <button
-              type="button"
-              className={`
-                w-14 h-14 rounded-full
-                flex items-center justify-center
-                text-white
-                bg-gradient-to-br from-lc-primary-500 to-lc-accent-500
-                ${isRecording ? 'mic-button recording' : 'mic-button'}
-                ${isProcessing ? 'opacity-50 cursor-not-allowed' : 'btn-interactive'}
-              `}
-              aria-label={isRecording ? "Aufnahme stoppen" : "Diktieren starten"}
-              onClick={handleAudioToggle}
-              disabled={isProcessing}
-              title={isRecording ? "Aufnahme läuft... (Klicken zum Stoppen)" : "Mikrofon aktivieren (56x56px)"}
-            >
-              {isRecording ? (
-                <Mic className="size-7 text-white" />
-              ) : (
-                <Mic className="size-7 text-white" />
-              )}
-            </button>
+            {/* Voice-Button - One-Click Full-Dialog */}
+            <div className="flex flex-col items-center">
+              <VoiceButton
+                voiceState={voiceState}
+                error={voiceError}
+                onStart={startVoiceDialog}
+                onStop={stopVoiceRecording}
+              />
+            </div>
 
             {/* Textarea */}
             <label className="sr-only" htmlFor="message">
