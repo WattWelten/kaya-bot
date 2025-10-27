@@ -7,7 +7,11 @@ class KAYACharacterHandler {
         this.linkSelector = null; // Lazy loading für Link Selector
         this.useLLM = process.env.USE_LLM === 'true';
         this.contextMemory = new ContextMemory();
-        this.cache = new Map(); // In-Memory Cache
+        
+        // CACHE INTEGRATION: Hybrid-Caching (In-Memory + Redis)
+        this.cacheService = require('./services/cache_service');
+        this.redisCacheService = require('./services/redis_cache');
+        
         this.responseTimes = new Map(); // Performance Tracking
         this.errorCounts = new Map(); // Error Tracking
         
@@ -20,6 +24,7 @@ class KAYACharacterHandler {
         };
         
         console.log('🚀 KAYA Character Handler v2.0 initialisiert');
+        console.log('💾 Caching aktiviert: In-Memory + Redis Fallback');
     }
     
     // Lazy loading für Agent Handler
@@ -630,19 +635,30 @@ class KAYACharacterHandler {
         const startTime = this.startTimer();
         
         try {
-            // Cache-Check
-            // Cache prüfen (nur für identische Queries ohne Audio-Kontext)
-            const cachedResponse = this.getFromCache(query, sessionId);
-            if (cachedResponse) {
-                // Session-Kontext prüfen für Audio-Modus
-                const session = this.contextMemory.getSession(sessionId);
-                const hasAudioContext = session.messages.some(msg => 
-                    msg.context && msg.context.communicationMode === 'audio'
-                );
+            // HYBRID CACHE: Prüfe zuerst In-Memory, dann Redis
+            let cachedResponse = null;
+            const shouldCache = this.cacheService.shouldCache(query);
+            
+            if (shouldCache) {
+                // 1. In-Memory Cache prüfen
+                const cacheKey = this.cacheService.createKey(query, { sessionId });
+                cachedResponse = this.cacheService.get(cacheKey);
                 
-                if (!hasAudioContext) {
-                    console.log('📦 Cache-Hit für Query:', query.substring(0, 50));
-                    return cachedResponse;
+                // 2. Falls kein Hit: Redis prüfen
+                if (!cachedResponse && this.redisCacheService.isEnabled()) {
+                    const redisKey = this.redisCacheService.createKey(query, { sessionId });
+                    cachedResponse = await this.redisCacheService.get(redisKey);
+                }
+                
+                // 3. Falls Hit: Sofort zurückgeben
+                if (cachedResponse) {
+                    console.log('✅ Cache-Hit für Query:', query.substring(0, 50));
+                    this.metrics.cacheHitRate++;
+                    return {
+                        response: cachedResponse.response,
+                        metadata: cachedResponse.metadata || {},
+                        cached: true
+                    };
                 }
             }
             
@@ -795,8 +811,25 @@ class KAYACharacterHandler {
             // Dual-Response für Text und Audio generieren
             const dualResponse = this.generateDualResponse(response.response, communicationMode, finalLanguage);
             
-            // Cache speichern
-            this.setCache(query, sessionId, response);
+            // HYBRID CACHE: Speichere Response im Cache (In-Memory + Redis)
+            if (shouldCache && response.response) {
+                const cacheData = {
+                    response: response.response,
+                    metadata: response.metadata || {}
+                };
+                
+                // 1. In-Memory speichern
+                const cacheKey = this.cacheService.createKey(query, { sessionId });
+                this.cacheService.set(cacheKey, cacheData);
+                
+                // 2. Redis speichern (falls aktiv)
+                if (this.redisCacheService.isEnabled()) {
+                    const redisKey = this.redisCacheService.createKey(query, { sessionId });
+                    await this.redisCacheService.set(redisKey, cacheData);
+                }
+                
+                console.log('💾 Response in Cache gespeichert');
+            }
             
             // Context-Memory: KAYA-Antwort hinzufügen
             this.contextMemory.addMessage(sessionId, 'assistant', dualResponse.text, {
