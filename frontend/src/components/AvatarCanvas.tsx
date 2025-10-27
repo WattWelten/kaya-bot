@@ -18,8 +18,8 @@ function AvatarCanvasComponent({ isSpeaking, emotion, visemes }: AvatarCanvasPro
     );
   }, []);
   
-  // Performance-basiertes DPR
-  const dpr = useMemo(() => {
+  // Performance-basiertes DPR (Tuple Type für Canvas)
+  const dpr = useMemo<[number, number]>(() => {
     return isMobile ? [0.75, 1] : [1, 2];
   }, [isMobile]);
   
