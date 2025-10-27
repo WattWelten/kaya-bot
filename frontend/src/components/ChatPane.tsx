@@ -608,11 +608,11 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     <section 
       id="chat-root" 
       aria-label="Chat Bereich" 
-      className="relative bg-white h-[calc(100vh-4rem)] flex flex-col"
+      className="relative bg-white h-screen md:h-[calc(100vh-4rem)] flex flex-col overflow-hidden"
     >
-      <div className="h-full flex flex-col">
+      <div className="h-full flex flex-col min-h-0">
         {/* Chat-Header */}
-        <div className="px-4 sm:px-6 py-3 border-b border-lc-neutral-200 bg-white/75 backdrop-blur sticky top-0 z-10">
+        <div className="flex-shrink-0 px-4 sm:px-6 py-3 border-b border-lc-neutral-200 bg-white/75 backdrop-blur">
           <div className="flex items-baseline justify-between">
             <h2 className="text-sm font-semibold tracking-wide text-lc-neutral-700 uppercase">
               Chat
@@ -627,8 +627,8 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
         </div>
 
         {/* Top-Intents - Horizontal Scroll auf Mobile */}
-        <div className="px-3 sm:px-6 py-2 overflow-x-auto border-b border-lc-neutral-100 bg-white/60">
-          <div className="inline-flex gap-2">
+        <div className="flex-shrink-0 px-3 sm:px-6 py-2 overflow-x-auto border-b border-lc-neutral-100 bg-white/60">
+          <div className="inline-flex gap-2 min-w-max">
             {topIntents.map(intent => (
               <button
                 key={intent.id}
@@ -645,12 +645,14 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
 
         {/* Voice Status Bar - Während Aufnahme */}
         {voiceState === 'recording' && (
-          <VoiceStatusBar onStop={stopVoiceRecording} />
+          <div className="flex-shrink-0">
+            <VoiceStatusBar onStop={stopVoiceRecording} />
+          </div>
         )}
 
         {/* Smart Suggestions - Nur auf Tablet/Desktop */}
         {messages.length >= 2 && (
-          <div className="hidden sm:block px-4 sm:px-6 py-2 border-b border-lc-primary-100 bg-lc-primary-50/50">
+          <div className="flex-shrink-0 hidden sm:block px-4 sm:px-6 py-2 border-b border-lc-primary-100 bg-lc-primary-50/50">
             <p className="text-xs text-lc-neutral-600 mb-2">Schnell-Aktionen:</p>
             <div className="flex flex-wrap gap-2">
               {smartSuggestions.map((suggestion, index) => (
@@ -681,21 +683,21 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           </div>
         )}
 
-        {/* Nachrichten-Liste */}
-        <div className="flex-1 overflow-y-auto px-3 sm:px-6 py-4 space-y-6">
+        {/* Nachrichten-Liste - SCROLLBAR JETZT! */}
+        <div className="flex-1 overflow-y-auto px-3 sm:px-6 py-4 space-y-4 md:space-y-6">
           {messages.map(message => (
             <div
               key={message.id}
-              className={`flex ${message.sender === 'user' ? 'justify-end ml-24' : 'justify-start'} message-animate`}
+              className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} message-animate`}
             >
               <div
-                className={`max-w-[85vw] sm:max-w-[60ch] md:max-w-[70ch] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 ${
+                className={`max-w-[85%] sm:max-w-[75%] md:max-w-[70%] rounded-2xl px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-4 ${
                   message.sender === 'user'
                     ? 'chat-message-user'
                     : 'chat-message-assistant'
                 }`}
               >
-                <div className="text-sm leading-relaxed">
+                <div className="text-sm sm:text-base leading-relaxed">
                   {renderMessageContent(message.content)}
                 </div>
               </div>
@@ -704,8 +706,8 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           
           {typingMessage && (
             <div className="flex justify-start">
-              <div className="max-w-[85vw] sm:max-w-[60ch] md:max-w-[70ch] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 chat-message-assistant message-animate">
-                <div className="text-sm leading-relaxed">
+              <div className="max-w-[85%] sm:max-w-[75%] md:max-w-[70%] rounded-2xl px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-4 chat-message-assistant message-animate">
+                <div className="text-sm sm:text-base leading-relaxed">
                   {renderMessageContent(typingMessage.content)}
                   <span className="inline-block w-2 h-4 ml-1 bg-lc-primary-500 animate-pulse">▊</span>
                 </div>
@@ -715,7 +717,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
 
           {isProcessing && !typingMessage && (
             <div className="flex justify-start">
-              <div className="max-w-[70ch] md:max-w-[62ch] rounded-2xl px-4 py-3 bg-lc-primary-50 border border-lc-primary-200 message-animate">
+              <div className="max-w-[85%] sm:max-w-[75%] md:max-w-[70%] rounded-2xl px-3 sm:px-4 md:px-5 py-2.5 sm:py-3 md:py-4 bg-lc-primary-50 border border-lc-primary-200 message-animate">
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1">
                     <span className="w-2 h-2 bg-lc-primary-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
@@ -731,8 +733,8 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Nachrichten-Eingabe */}
-        <div className="px-3 sm:px-6 py-2 sm:py-4 border-t border-lc-neutral-200 bg-white/90 backdrop-blur sticky bottom-0">
+        {/* Nachrichten-Eingabe - FIX UNTEN */}
+        <div className="flex-shrink-0 px-3 sm:px-6 py-2 sm:py-4 border-t border-lc-neutral-200 bg-white/90 backdrop-blur">
           <form
             onSubmit={(e) => {
               e.preventDefault();
