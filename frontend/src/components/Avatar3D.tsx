@@ -56,3 +56,7 @@ export function Avatar3D({ modelPath, isSpeaking, emotion = 'neutral', visemes }
     </group>
   );
 }
+
+// Preload GLB außerhalb der Component (wird nur einmal beim Import ausgeführt)
+// Wird erst aufgerufen wenn Avatar3D geladen wird, NACH React-Initialisierung
+useGLTF.preload('/avatar/kaya.glb');
