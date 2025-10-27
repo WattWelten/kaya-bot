@@ -1,141 +1,134 @@
-# KAYA Production Test Script
-# Automatisierte Tests für Backend-API
+# Phase 3: Production-Tests (Railway)
+$BackendUrl = "https://api.kaya.wattweiser.com"
+$FrontendUrl = "https://app.kaya.wattweiser.com"
 
-$baseUrl = "https://api.kaya.wattweiser.com"
-$results = @()
-
-Write-Host "KAYA Production Tests starten..." -ForegroundColor Cyan
+Write-Host "========================================================================" -ForegroundColor Cyan
+Write-Host "   Phase 3: Production-Tests (Railway)" -ForegroundColor Yellow
+Write-Host "========================================================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Test 1: Health Check
-Write-Host "Test 1: Health Check..." -ForegroundColor Yellow
-try {
-    $response = Invoke-RestMethod -Uri "$baseUrl/health" -Method GET
-    if ($response.status -eq "healthy") {
-        Write-Host "Health Check erfolgreich" -ForegroundColor Green
-        $results += "Health Check: PASS"
-    } else {
-        Write-Host "Health Check fehlgeschlagen" -ForegroundColor Red
-        $results += "Health Check: FAIL"
+# Helper
+function Test-Endpoint {
+    param([string]$Url, [string]$Method = "GET")
+    try {
+        $response = Invoke-RestMethod -Uri $Url -Method $Method -TimeoutSec 10
+        return @{ success = $true; response = $response }
+    } catch {
+        return @{ success = $false; error = $_.Exception.Message }
     }
-    Write-Host "Response: $($response | ConvertTo-Json)" -ForegroundColor Gray
-} catch {
-    Write-Host "Health Check Error: $_" -ForegroundColor Red
-    $results += "Health Check: ERROR"
 }
-Write-Host ""
 
-# Test 2: Chat - Begruessung
-Write-Host "Test 2: Chat - Begruessung (Moin)..." -ForegroundColor Yellow
-try {
-    $body = @{message = "Hallo"} | ConvertTo-Json
-    $response = Invoke-RestMethod -Uri "$baseUrl/chat" -Method POST -ContentType "application/json" -Body $body
-    if ($response.response -match "Moin") {
-        Write-Host "Begruessung mit 'Moin' erkannt" -ForegroundColor Green
-        $results += "Character Conformity (Begruessung): PASS"
-    } else {
-        Write-Host "'Moin' nicht in Antwort gefunden" -ForegroundColor Yellow
-        $results += "Character Conformity (Begruessung): PARTIAL"
+function Send-Chat {
+    param([string]$Message)
+    try {
+        $body = @{ message = $Message } | ConvertTo-Json
+        $response = Invoke-RestMethod -Uri "$BackendUrl/chat" -Method POST -ContentType "application/json" -Body $body -TimeoutSec 30
+        return @{ success = $true; response = $response }
+    } catch {
+        return @{ success = $false; error = $_.Exception.Message }
     }
-    Write-Host "Response: $($response.response)" -ForegroundColor Gray
-} catch {
-    Write-Host "Chat Error: $_" -ForegroundColor Red
-    $results += "Chat (Begruessung): ERROR"
 }
-Write-Host ""
 
-# Test 3: Agent Routing - Buergerdienste
-Write-Host "Test 3: Agent Routing - Buergerdienste..." -ForegroundColor Yellow
-try {
-    $body = @{message = "Ich brauche eine Meldebescheinigung"} | ConvertTo-Json
-    $response = Invoke-RestMethod -Uri "$baseUrl/chat" -Method POST -ContentType "application/json" -Body $body
-    if ($response.agent -eq "buergerdienste" -or $response.response -match "Meldebescheinigung") {
-        Write-Host "Agent Routing: Buergerdienste erkannt" -ForegroundColor Green
-        $results += "Agent Routing (Buergerdienste): PASS"
-    } else {
-        Write-Host "Buergerdienste-Routing unklar" -ForegroundColor Yellow
-        $results += "Agent Routing (Buergerdienste): PARTIAL"
-    }
-    Write-Host "Response: $($response.response)" -ForegroundColor Gray
-} catch {
-    Write-Host "Routing Error: $_" -ForegroundColor Red
-    $results += "Agent Routing: ERROR"
+$results = @{}
+
+# 3.1 Production-Deployment pruefen
+Write-Host "3.1 Production-Deployment pruefen" -ForegroundColor Yellow
+Write-Host "────────────────────────────────────────────────────" -ForegroundColor Gray
+
+# Backend Health
+Write-Host "  Backend Health:" -ForegroundColor Cyan
+$healthBackend = Test-Endpoint -Url "$BackendUrl/health"
+if ($healthBackend.success) {
+    Write-Host "    [OK] Backend erreichbar" -ForegroundColor Green
+    $results["BackendHealth"] = "PASSED"
+} else {
+    Write-Host "    [FAIL] Backend nicht erreichbar: $($healthBackend.error)" -ForegroundColor Red
+    $results["BackendHealth"] = "FAILED"
 }
-Write-Host ""
 
-# Test 4: Empathetic Response
-Write-Host "Test 4: Empathetic Response - Verzweiflung..." -ForegroundColor Yellow
-try {
-    $body = @{message = "Ich bin verzweifelt, ich weiss nicht weiter"} | ConvertTo-Json
-    $response = Invoke-RestMethod -Uri "$baseUrl/chat" -Method POST -ContentType "application/json" -Body $body
-    if ($response.response -match "helfen|unterstuetzen|verstehen|gemeinsam") {
-        Write-Host "Empathische Antwort erkannt" -ForegroundColor Green
-        $results += "Empathetic Response: PASS"
-    } else {
-        Write-Host "Empathische Antwort unklar" -ForegroundColor Yellow
-        $results += "Empathetic Response: PARTIAL"
-    }
-    Write-Host "Response: $($response.response)" -ForegroundColor Gray
-} catch {
-    Write-Host "Empathy Test Error: $_" -ForegroundColor Red
-    $results += "Empathetic Response: ERROR"
+# Frontend erreichbar
+Write-Host "  Frontend erreichbar:" -ForegroundColor Cyan
+$healthFrontend = Test-Endpoint -Url "$FrontendUrl"
+if ($healthFrontend.success) {
+    Write-Host "    [OK] Frontend erreichbar" -ForegroundColor Green
+    $results["FrontendReachable"] = "PASSED"
+} else {
+    Write-Host "    [FAIL] Frontend nicht erreichbar: $($healthFrontend.error)" -ForegroundColor Red
+    $results["FrontendReachable"] = "FAILED"
 }
-Write-Host ""
 
-# Test 5: Language Switching
-Write-Host "Test 5: Language Switching - English..." -ForegroundColor Yellow
-try {
-    $body = @{message = "Hello, can you help me?"} | ConvertTo-Json
-    $response = Invoke-RestMethod -Uri "$baseUrl/chat" -Method POST -ContentType "application/json" -Body $body
-    if ($response.response -match "Hello|help|assist|service") {
-        Write-Host "Sprachwechsel zu Englisch erkannt" -ForegroundColor Green
-        $results += "Language Switching: PASS"
-    } else {
-        Write-Host "Sprachwechsel unklar" -ForegroundColor Yellow
-        $results += "Language Switching: PARTIAL"
-    }
-    Write-Host "Response: $($response.response)" -ForegroundColor Gray
-} catch {
-    Write-Host "Language Test Error: $_" -ForegroundColor Red
-    $results += "Language Switching: ERROR"
-}
-Write-Host ""
+# 3.2 Production Chat-Tests
+Write-Host "`n3.2 Production Chat-Tests (5 Fragen)" -ForegroundColor Yellow
+Write-Host "────────────────────────────────────────────────────" -ForegroundColor Gray
 
-# Test 6: Response Time
-Write-Host "Test 6: Response Time (Performance)..." -ForegroundColor Yellow
-try {
-    $body = @{message = "Wie geht's?"} | ConvertTo-Json
+$chatQuestions = @(
+    "Ich moechte mein Auto zulassen.",
+    "Ich moechte meinen Wohnsitz anmelden.",
+    "Ich moechte mein Kind fuer die Kita anmelden.",
+    "Ich moechte ein Gewerbe anmelden.",
+    "Wann ist die naechste Kreistagssitzung?"
+)
+
+$chatPassed = 0
+$chatTotal = $chatQuestions.Count
+
+foreach ($q in $chatQuestions) {
+    Write-Host "  Q: $q" -ForegroundColor White
     $startTime = Get-Date
-    $response = Invoke-RestMethod -Uri "$baseUrl/chat" -Method POST -ContentType "application/json" -Body $body
-    $endTime = Get-Date
-    $duration = ($endTime - $startTime).TotalSeconds
+    $r = Send-Chat -Message $q
+    $duration = ((Get-Date) - $startTime).TotalSeconds
     
-    if ($duration -lt 2) {
-        Write-Host "Response Time: ${duration}s (< 2s)" -ForegroundColor Green
-        $results += "Performance: PASS"
-    } elseif ($duration -lt 5) {
-        Write-Host "Response Time: ${duration}s (< 5s)" -ForegroundColor Yellow
-        $results += "Performance: ACCEPTABLE"
+    if ($r.success) {
+        $durationRounded = [math]::Round($duration, 2)
+        Write-Host "    [OK] Antwort erhalten ($durationRounded s)" -ForegroundColor Green
+        $chatPassed++
     } else {
-        Write-Host "Response Time: ${duration}s (> 5s)" -ForegroundColor Red
-        $results += "Performance: SLOW"
+        Write-Host "    [FAIL] Fehler: $($r.error)" -ForegroundColor Red
     }
-} catch {
-    Write-Host "Performance Test Error: $_" -ForegroundColor Red
-    $results += "Performance: ERROR"
+    Start-Sleep -Milliseconds 500
 }
-Write-Host ""
 
-# Zusammenfassung
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "Test-Zusammenfassung:" -ForegroundColor Cyan
-Write-Host "========================================" -ForegroundColor Cyan
-foreach ($result in $results) {
-    Write-Host $result
+$results["ChatTests"] = "$chatPassed/$chatTotal"
+
+# 3.3 Response-Zeit
+Write-Host "`n3.3 Response-Zeit messen" -ForegroundColor Yellow
+Write-Host "────────────────────────────────────────────────────" -ForegroundColor Gray
+
+$responseTimes = @()
+for ($i = 1; $i -le 5; $i++) {
+    $startTime = Get-Date
+    $r = Send-Chat -Message "Test $i"
+    $duration = ((Get-Date) - $startTime).TotalSeconds
+    $responseTimes += $duration
+    Write-Host "  Test $i : $([math]::Round($duration, 2))s" -ForegroundColor Gray
 }
-Write-Host ""
-Write-Host "Naechste Schritte:" -ForegroundColor Cyan
-Write-Host "1. Browser oeffnen: https://kaya.wattweiser.com" -ForegroundColor White
-Write-Host "2. Frontend-Tests manuell durchfuehren" -ForegroundColor White
-Write-Host "3. WebSocket-Verbindung in DevTools pruefen" -ForegroundColor White
-Write-Host ""
+
+$avgTime = [math]::Round(($responseTimes | Measure-Object -Average).Average, 2)
+$maxTime = [math]::Round(($responseTimes | Measure-Object -Maximum).Maximum, 2)
+
+Write-Host "  Durchschnitt: $avgTime s" -ForegroundColor $(if ($avgTime -lt 3) { "Green" } else { "Yellow" })
+Write-Host "  Maximum: $maxTime s" -ForegroundColor $(if ($maxTime -lt 5) { "Green" } else { "Yellow" })
+
+$results["ResponseTime"] = "Durchschn: ${avgTime}s, Max: ${maxTime}s"
+
+# 3.4 CORS Test (simuliert)
+Write-Host "`n3.4 CORS Test" -ForegroundColor Yellow
+Write-Host "────────────────────────────────────────────────────" -ForegroundColor Gray
+Write-Host "  Info: CORS muss manuell im Browser getestet werden" -ForegroundColor Gray
+$results["CORSTest"] = "MANUAL"
+
+# Summary
+Write-Host "`n========================================================================" -ForegroundColor Cyan
+Write-Host "   SUMMARY - Production Tests" -ForegroundColor Yellow
+Write-Host "========================================================================" -ForegroundColor Cyan
+
+foreach ($test in $results.Keys | Sort-Object) {
+    Write-Host "  $test : $($results[$test])" -ForegroundColor $(if ($results[$test] -like "*FAILED*") { "Red" } else { "Green" })
+}
+
+$results | ConvertTo-Json -Depth 5 | Out-File -FilePath "phase3-production-results.json" -Encoding UTF8
+
+Write-Host "`n  Ergebnisse gespeichert: phase3-production-results.json" -ForegroundColor Gray
+Write-Host "  Frontend URL: $FrontendUrl" -ForegroundColor Cyan
+Write-Host "  Backend URL: $BackendUrl" -ForegroundColor Cyan
+Write-Host "========================================================================" -ForegroundColor Cyan

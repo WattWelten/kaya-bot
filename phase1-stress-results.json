@@ -1,0 +1,7 @@
+﻿{
+    "LongMessage":  "PASSED",
+    "RapidFire":  "20/20",
+    "MemoryLeak":  "100/100",
+    "EdgeCases":  "5/5",
+    "ErrorSimulation":  "10/10"
+}

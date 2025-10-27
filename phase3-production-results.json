@@ -1,0 +1,7 @@
+﻿{
+    "BackendHealth":  "PASSED",
+    "ResponseTime":  "Durchschn: 1.94s, Max: 2.63s",
+    "FrontendReachable":  "PASSED",
+    "ChatTests":  "5/5",
+    "CORSTest":  "MANUAL"
+}
