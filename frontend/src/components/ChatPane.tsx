@@ -38,16 +38,50 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
   // Hooks
   const { isConnected, sendMessage, sendAudioMessage, lastMessage, error } = useWebSocket(sessionId);
   const { isRecording, startRecording, stopRecording, textToSpeech } = useAudio();
-  const { voiceState, startVoiceDialog, stopRecording: stopVoiceRecording, error: voiceError } = useVoiceDialog(
+  const { voiceState, startVoiceDialog, stopRecording: stopVoiceRecording, error: voiceError, transcription, response, audioUrl } = useVoiceDialog(
     async (text: string) => {
-      // Placeholder - wird später implementiert
+      // User-Nachricht hinzufügen
+      const userMessage: Message = {
+        id: `msg_${Date.now()}`,
+        content: text,
+        sender: 'user',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, userMessage]);
       return text;
     },
     (audioUrl: string, text: string) => {
-      // Placeholder - wird später implementiert
-      console.log('Audio Response:', audioUrl, text);
+      // KAYA-Antwort hinzufügen
+      const assistantMessage: Message = {
+        id: `msg_${Date.now()}`,
+        content: text,
+        sender: 'assistant',
+        timestamp: new Date(),
+        metadata: {
+          emotion: 'friendly',
+          urgency: 'normal',
+          persona: 'general',
+          language: 'de'
+        }
+      };
+      setMessages(prev => [...prev, assistantMessage]);
+      
+      // Caption-Text für Avatar
+      setCaptionText(text);
+      
+      // Parent benachrichtigen
+      if (onMessageSend) {
+        onMessageSend(text);
+      }
     }
   );
+  
+  // Effect: Wenn Transcription und Response vorhanden sind, anzeigen
+  useEffect(() => {
+    if (transcription && response && voiceState === 'idle') {
+      console.log('📝 Voice-Dialog Complete:', { transcription, response });
+    }
+  }, [transcription, response, voiceState]);
 
   // Auto-Scroll zu neuesten Nachrichten
   useEffect(() => {

@@ -8,6 +8,9 @@ export interface VoiceDialogReturn {
   startVoiceDialog: () => Promise<void>;
   stopRecording: () => Promise<void>;
   error: string | null;
+  transcription: string | null;
+  response: string | null;
+  audioUrl: string | null;
 }
 
 export const useVoiceDialog = (
@@ -16,6 +19,9 @@ export const useVoiceDialog = (
 ): VoiceDialogReturn => {
   const [voiceState, setVoiceState] = useState<VoiceState>('idle');
   const [error, setError] = useState<string | null>(null);
+  const [transcription, setTranscription] = useState<string | null>(null);
+  const [response, setResponse] = useState<string | null>(null);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
   
   const { startRecording, stopRecording: stopRecordingAudio, textToSpeech } = useAudio();
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -117,21 +123,39 @@ export const useVoiceDialog = (
       
       console.log('✅ Voice-Dialog Response:', result);
       
+      // Transkription und Antwort speichern
+      setTranscription(result.transcription || '');
+      setResponse(result.response || '');
+      
       // KAYA-Antwort mit Audio abspielen
       if (result.audioUrl) {
+        setAudioUrl(result.audioUrl);
         setVoiceState('playing');
         
         const audio = new Audio(result.audioUrl);
-        audio.play();
         
+        // Audio-Wiedergabe mit Error-Handling
         await new Promise<void>((resolve) => {
-          audio.onended = () => resolve();
-          audio.onerror = () => resolve();
+          audio.onended = () => {
+            console.log('✅ Audio fertig abgespielt');
+            resolve();
+          };
+          audio.onerror = (err) => {
+            console.error('❌ Audio-Error:', err);
+            // Trotzdem fortfahren, nicht blockieren
+            resolve();
+          };
         });
+        
+        // Audio an Parent zurückgeben
+        if (result.response) {
+          onAudioResponse(result.audioUrl, result.response);
+        }
       }
       
       // Status zurück zu Idle
       setVoiceState('idle');
+      setAudioUrl(null); // Cleanup
       
     } catch (err) {
       console.error('❌ Recording-Verarbeitung fehlgeschlagen:', err);
@@ -195,7 +219,10 @@ export const useVoiceDialog = (
     voiceState,
     startVoiceDialog,
     stopRecording,
-    error
+    error,
+    transcription,
+    response,
+    audioUrl
   };
 };
 

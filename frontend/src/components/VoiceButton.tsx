@@ -89,6 +89,13 @@ export const VoiceButton: React.FC<VoiceButtonProps> = ({
       <span className="text-xs text-lc-neutral-600 font-medium">
         {getStatusText()}
       </span>
+      
+      {/* Error Tooltip */}
+      {voiceState === 'error' && error && (
+        <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 px-3 py-2 bg-orange-500 text-white text-xs rounded-lg shadow-lg whitespace-nowrap z-50">
+          {error}
+        </div>
+      )}
 
       {/* Screen-Reader Announcements */}
       <div className="sr-only" role="status" aria-live="polite">
