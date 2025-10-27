@@ -170,29 +170,72 @@ export default function KayaPage() {
         Zum Chat springen
       </a>
 
-      {/* Header: Logo + Barrierefreiheit */}
-      <header className="h-[10svh] flex-shrink-0 bg-white border-b border-lc-neutral-200 px-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="text-2xl font-bold text-lc-primary-600">KAYA</div>
-          <span className="text-sm text-lc-neutral-600">Landkreis Oldenburg</span>
+      {/* Header: Zwei Zeilen - Logo + Optionen */}
+      <header className="h-[10svh] flex-shrink-0 bg-white border-b border-lc-neutral-200 shadow-sm">
+        {/* Zeile 1: Logo + Landkreis */}
+        <div className="h-[6svh] px-4 flex items-center justify-between border-b border-lc-neutral-100">
+          <div className="flex items-center gap-3">
+            <div className="text-2xl font-bold text-lc-primary-600">KAYA</div>
+            <span className="text-sm text-lc-neutral-600 font-medium">Landkreis Oldenburg</span>
+          </div>
         </div>
         
-        {/* Barrierefreiheit-Optionen */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => handleAccessibilityChange({ ...accessibility, fontSize: accessibility.fontSize === 100 ? 130 : 100 })}
-            className="p-2 rounded-lg hover:bg-lc-neutral-100 transition-colors"
-            aria-label="Schriftgröße anpassen"
-          >
-            <span className="text-lg">A+</span>
-          </button>
-          <button
-            onClick={() => handleAccessibilityChange({ ...accessibility, highContrast: !accessibility.highContrast })}
-            className="p-2 rounded-lg hover:bg-lc-neutral-100 transition-colors"
-            aria-label="Hoher Kontrast"
-          >
-            <span className="text-lg">◐</span>
-          </button>
+        {/* Zeile 2: Alle Barrierefreiheit-Optionen */}
+        <div className="h-[4svh] px-4 flex items-center justify-between">
+          {/* Links: Sprache */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => handleLanguageChange('de')}
+              className="px-2 py-1 text-xs rounded transition-colors bg-lc-primary-100 text-lc-primary-700 font-semibold"
+              aria-label="Deutsch"
+            >
+              DE
+            </button>
+            <button
+              onClick={() => handleLanguageChange('en')}
+              className="px-2 py-1 text-xs rounded text-lc-neutral-600 hover:bg-lc-neutral-100 transition-colors"
+              aria-label="English"
+            >
+              EN
+            </button>
+            <button
+              onClick={() => handleAccessibilityChange({ ...accessibility, simpleLanguage: !accessibility.simpleLanguage })}
+              className={`px-2 py-1 text-xs rounded transition-colors ${
+                accessibility.simpleLanguage ? 'bg-lc-primary-100 text-lc-primary-700 font-semibold' : 'text-lc-neutral-600 hover:bg-lc-neutral-100'
+              }`}
+              aria-label="Leichte Sprache"
+            >
+              LS
+            </button>
+          </div>
+          
+          {/* Rechts: Inklusions-Optionen */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => handleAccessibilityChange({ ...accessibility, fontSize: accessibility.fontSize === 100 ? 130 : 100 })}
+              className="p-1.5 rounded-lg hover:bg-lc-neutral-100 transition-colors"
+              aria-label="Schriftgröße anpassen"
+              title="Schriftgröße"
+            >
+              <span className="text-base">A+</span>
+            </button>
+            <button
+              onClick={() => handleAccessibilityChange({ ...accessibility, highContrast: !accessibility.highContrast })}
+              className="p-1.5 rounded-lg hover:bg-lc-neutral-100 transition-colors"
+              aria-label="Hoher Kontrast"
+              title="Kontrast"
+            >
+              <span className="text-base">◐</span>
+            </button>
+            <button
+              onClick={() => handleAccessibilityChange({ ...accessibility, reducedMotion: !accessibility.reducedMotion })}
+              className="p-1.5 rounded-lg hover:bg-lc-neutral-100 transition-colors"
+              aria-label="Bewegung reduzieren"
+              title="Weniger Bewegung"
+            >
+              <span className="text-base">⏸</span>
+            </button>
+          </div>
         </div>
       </header>
 

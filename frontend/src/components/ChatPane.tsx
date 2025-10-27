@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Mic } from 'lucide-react';
+import { Mic, Send } from 'lucide-react';
 import { useAudioManager } from '@/hooks/useAudioManager';
 import { Message, ChatPaneProps } from '@/types';
 
@@ -8,10 +8,12 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   onMessageSend
 }) => {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [inputValue, setInputValue] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [typingMessage, setTypingMessage] = useState<{id: string, content: string, sender: string} | null>(null);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Hooks
   const audioManager = useAudioManager();
@@ -110,6 +112,46 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
     }
   };
 
+  // Textarea-Größe anpassen
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInputValue(e.target.value);
+    const textarea = e.target;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${Math.min(textarea.scrollHeight, 80)}px`;
+  };
+
+  // Enter-Taste verarbeiten
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage(inputValue);
+    }
+  };
+
+  // Text-Nachricht senden
+  const handleSendMessage = async (text: string) => {
+    if (!text.trim() || isProcessing) return;
+    
+    const userMessage: Message = {
+      id: `user_${Date.now()}`,
+      content: text,
+      sender: 'user',
+      timestamp: new Date()
+    };
+    
+    setMessages(prev => [...prev, userMessage]);
+    setInputValue('');
+    setIsProcessing(true);
+    
+    try {
+      await onMessageSend?.(text);
+    } catch (err) {
+      console.error('❌ Nachricht fehlgeschlagen:', err);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
   // Markdown-Links in HTML umwandeln
   const renderMessageContent = (content: string) => {
     // Markdown-Links: [Text](URL) → <a href="URL">Text</a>
@@ -191,7 +233,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
     <section 
       id="chat-root" 
       aria-label="Chat Bereich" 
-      className="relative w-full h-full bg-white/95 backdrop-blur-lg flex flex-col border-t-2 border-lc-primary-200 shadow-[0_-10px_30px_rgba(0,0,0,0.1)]"
+      className="relative w-full h-full bg-white/98 backdrop-blur-xl flex flex-col border-t-2 border-lc-primary-300 shadow-[0_-15px_40px_rgba(15,118,110,0.15)]"
     >
       {/* Chat-Messages - Scrollbar, 70% der Chat-Höhe */}
       <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
@@ -239,8 +281,31 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Audio-Button - 30% der Chat-Höhe, Zentral */}
-      <div className="flex-shrink-0 flex items-center justify-center py-3 bg-gradient-to-t from-white to-transparent">
+      {/* Text-Input - Optional neben Audio */}
+      <div className="flex-shrink-0 px-4 pb-2 pt-2 flex items-center gap-2 border-t border-lc-neutral-200 bg-gradient-to-t from-white to-transparent">
+        <textarea
+          ref={textareaRef}
+          value={inputValue}
+          onChange={handleTextareaChange}
+          onKeyDown={handleKeyPress}
+          placeholder="Schreibe eine Nachricht..."
+          disabled={isProcessing}
+          rows={1}
+          className="flex-1 resize-none rounded-xl border-2 border-lc-neutral-200 px-4 py-2 text-sm focus:outline-none focus:border-lc-primary-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          style={{ maxHeight: '80px' }}
+        />
+        <button
+          onClick={() => handleSendMessage(inputValue)}
+          disabled={isProcessing || !inputValue.trim()}
+          className="p-3 rounded-xl bg-lc-primary-500 text-white hover:bg-lc-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md"
+          aria-label="Nachricht senden"
+        >
+          <Send className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Audio-Button - Zentral */}
+      <div className="flex-shrink-0 flex items-center justify-center py-2 bg-gradient-to-t from-white/50 to-transparent">
         <button
           onClick={handleAudioToggle}
           disabled={isProcessing}
@@ -248,9 +313,10 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
             w-16 h-16 rounded-full shadow-lg
             transition-all duration-300
             ${audioManager.isRecording 
-              ? 'bg-red-500 hover:bg-red-600 animate-pulse scale-110' 
-              : 'bg-lc-primary-500 hover:bg-lc-primary-600 hover:scale-105'
+              ? 'bg-red-500 hover:bg-red-600 animate-pulse scale-110 shadow-red-300/50' 
+              : 'bg-lc-primary-500 hover:bg-lc-primary-600 hover:scale-105 shadow-lc-primary-300/50'
             }
+            shadow-xl
             disabled:opacity-50 disabled:cursor-not-allowed
             flex items-center justify-center
           `}

@@ -260,6 +260,64 @@
     pointer-events: none;
   }
 
+  /* Award-würdige Micro-Interactions */
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(15, 118, 110, 0.3); }
+    50% { box-shadow: 0 0 35px rgba(15, 118, 110, 0.6); }
+  }
+
+  /* Avatar-Bereich: Subtiler Float-Effekt */
+  #avatar-section,
+  section[aria-label="Avatar Bereich"] {
+    animation: gentle-float 6s ease-in-out infinite;
+  }
+
+  /* Audio-Button: Premium Glow */
+  button[aria-label*="Aufnahme"] {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  button[aria-label*="Aufnahme"]:not(:disabled):hover {
+    transform: scale(1.08) translateY(-2px);
+    filter: brightness(1.1);
+  }
+
+  /* Chat-Messages: Slide-In Animation */
+  @keyframes slide-in-bottom {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #chat-root > div > div[class*="flex"] {
+    animation: slide-in-bottom 0.3s ease-out;
+  }
+
+  /* Header: Subtiler Shadow on Scroll */
+  header.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+  }
+
+  /* Desktop: Eleganter Box-Shadow */
+  @media (min-width: 768px) {
+    main {
+      box-shadow: 
+        0 0 60px rgba(15, 118, 110, 0.12),
+        0 20px 40px rgba(30, 77, 123, 0.08);
+    }
+  }
+
   /* Text Selection */
   ::selection {
     background: theme('colors.lc-primary-200');

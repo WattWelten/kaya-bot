@@ -1,8 +1,8 @@
 // KAYA Service Worker - Offline-Support & Caching
 
-const CACHE_NAME = 'kaya-v1.5.0';
-const STATIC_CACHE = 'kaya-static-v1.5.0';
-const DYNAMIC_CACHE = 'kaya-dynamic-v1.5.0';
+const CACHE_NAME = 'kaya-v2.0.0';
+const STATIC_CACHE = 'kaya-static-v2.0.0';
+const DYNAMIC_CACHE = 'kaya-dynamic-v2.0.0';
 
 // Assets die sofort gecacht werden sollen
 const STATIC_ASSETS = [

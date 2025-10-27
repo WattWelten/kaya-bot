@@ -31,7 +31,7 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
   return (
     <section 
       aria-label="Avatar Bereich" 
-      className="relative w-full h-full bg-gradient-to-b from-lc-primary-50/40 to-lc-neutral-50/60 overflow-hidden"
+      className="relative w-full h-full bg-gradient-to-br from-lc-primary-50 via-lc-warmgold-50/30 to-lc-accent-50/40 overflow-hidden"
     >
       {/* Babylon.js Avatar - Vollbild */}
       <div className="absolute inset-0">
