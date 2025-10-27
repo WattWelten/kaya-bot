@@ -6,7 +6,7 @@ declare const __BUILD_DATE__: string;
 const BUILD_INFO = {
   id: import.meta.env.VITE_BUILD_ID || 'local',
   date: typeof __BUILD_DATE__ !== 'undefined' ? __BUILD_DATE__ : new Date().toISOString(),
-  version: '2.0.1-threejs'
+  version: '2.0.2-babylonjs'
 };
 
 // Lazy-Loading für bessere Initial Performance

@@ -1,23 +1,9 @@
-import React, { useEffect, useState, Suspense, lazy, memo, useCallback } from 'react';
+import React, { useEffect, useState, memo, useCallback } from 'react';
 import { Volume2 } from 'lucide-react';
 import { useLipSync } from '@/hooks/useLipSync';
 import { AvatarPaneProps } from '@/types';
 import { ErrorBoundary } from './ErrorBoundary';
-
-// Lazy-Load Three.js Canvas
-const AvatarCanvas = lazy(() => import('./AvatarCanvas').then(m => ({ default: m.AvatarCanvas })));
-
-// LoadingSpinner Component für verzögertes Avatar-Loading
-function LoadingSpinner() {
-  return (
-    <div className="w-full h-full flex items-center justify-center bg-white/90">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-lc-primary-600 mx-auto mb-4"></div>
-        <p className="text-sm text-lc-neutral-600">KAYA Avatar lädt...</p>
-      </div>
-    </div>
-  );
-}
+import { BabylonAvatar } from './BabylonAvatar';
 
 const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
   isSpeaking,
@@ -28,19 +14,7 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
   const [emotion, setEmotion] = useState<'neutral' | 'happy' | 'concerned' | 'speaking'>('neutral');
   
-  // Verzögere Avatar-Loading um React-Initialisierung sicherzustellen
-  const [shouldLoadAvatar, setShouldLoadAvatar] = useState(false);
-  
   const { visemes, isAnalyzing } = useLipSync(audioUrl, isSpeaking);
-
-  // Delayed Avatar Loading: Nach 500ms Avatar laden (React ist dann initialisiert)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShouldLoadAvatar(true);
-    }, 500);
-    
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     if (captionText.includes('Hilfe') || captionText.includes('Problem')) {
@@ -65,20 +39,14 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
       aria-label="Avatar Bereich" 
       className="relative bg-gradient-to-b from-lc-primary-50/40 to-lc-neutral-50/60 md:h-[calc(100svh-4rem)] h-[60svh] overflow-hidden"
     >
-      {/* Three.js Canvas - Delayed Loading */}
+      {/* Babylon.js Avatar */}
       <div className="absolute inset-0">
         <ErrorBoundary>
-          {shouldLoadAvatar ? (
-            <Suspense fallback={<LoadingSpinner />}>
-              <AvatarCanvas 
-                isSpeaking={isSpeaking}
-                emotion={emotion}
-                visemes={visemes}
-              />
-            </Suspense>
-          ) : (
-            <LoadingSpinner />
-          )}
+          <BabylonAvatar 
+            isSpeaking={isSpeaking}
+            emotion={emotion}
+            visemes={visemes}
+          />
         </ErrorBoundary>
       </div>
 

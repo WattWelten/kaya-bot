@@ -12,13 +12,12 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.6",
-    "@react-three/fiber": "^9.4.0",
+    "@babylonjs/core": "^8.33.2",
+    "@babylonjs/loaders": "^8.33.2",
     "clsx": "^2.0.0",
     "lucide-react": "^0.263.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "three": "^0.180.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "^24.9.1",
@@ -42,7 +41,7 @@
     "avatar",
     "landkreis-oldenburg",
     "react",
-    "three.js",
+    "babylon.js",
     "accessibility"
   ],
   "author": "Landkreis Oldenburg",

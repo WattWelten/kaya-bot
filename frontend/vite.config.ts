@@ -39,22 +39,22 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     minify: 'esbuild',
-    chunkSizeWarningLimit: 500,
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       preserveEntrySignatures: 'allow-extension',
+      external: (id) => {
+        // Verhindere, dass @react-three/* in AvatarCanvas-Chunk gebundelt wird
+        // Sie müssen aus react-vendor importieren
+        return false; // Temporär - später angepasst
+      },
       output: {
         entryFileNames: `assets/[name]-[hash].js`,
         chunkFileNames: `assets/[name]-[hash].js`,
         assetFileNames: `assets/[name]-[hash].[ext]`,
         manualChunks: {
-          // 1. React (Basis für alle anderen Chunks)
           'react-vendor': ['react', 'react-dom', 'react/jsx-runtime'],
-          
-          // 2. Three.js (benötigt React als Peer-Dependency)
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
-          
-          // 3. UI Components (benötigen React)
-          'ui-vendor': ['lucide-react'],
+          'ui-vendor': ['lucide-react']
+          // Babylon.js wird automatisch in separatem Chunk gebundelt
         }
       }
     }

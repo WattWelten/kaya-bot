@@ -1,4 +1,3 @@
-// Build: 2025-10-27 Three.js Migration v2 - Cache Bust
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
