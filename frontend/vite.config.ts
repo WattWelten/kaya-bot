@@ -36,8 +36,15 @@ export default defineConfig({
     sourcemap: false,
     minify: 'esbuild',
     chunkSizeWarningLimit: 500,
+    define: {
+      __BUILD_ID__: JSON.stringify(process.env.VITE_BUILD_ID || 'dev'),
+      __BUILD_DATE__: JSON.stringify(new Date().toISOString())
+    },
     rollupOptions: {
       output: {
+        entryFileNames: `assets/[name]-[hash].js`,
+        chunkFileNames: `assets/[name]-[hash].js`,
+        assetFileNames: `assets/[name]-[hash].[ext]`,
         manualChunks: (id) => {
           // React Vendor
           if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
