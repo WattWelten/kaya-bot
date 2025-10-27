@@ -46,37 +46,15 @@ export default defineConfig({
         entryFileNames: `assets/[name]-[hash].js`,
         chunkFileNames: `assets/[name]-[hash].js`,
         assetFileNames: `assets/[name]-[hash].[ext]`,
-        manualChunks: (id) => {
-          // ⚠️ WICHTIG: React ZUERST - Höchste Priorität
-          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('react/jsx-runtime')) {
-            return 'react-vendor';
-          }
+        manualChunks: {
+          // 1. React (Basis für alle anderen Chunks)
+          'react-vendor': ['react', 'react-dom', 'react/jsx-runtime'],
           
-          // Three.js KOMPLETT SEPARAT (mit eigenen React-Hooks)
-          // Muss NACH React geladen werden!
-          if (id.includes('node_modules/three') || id.includes('node_modules/@react-three')) {
-            return 'three-vendor';
-          }
+          // 2. Three.js (benötigt React als Peer-Dependency)
+          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
           
-          // UI Vendor (Icons, Utilities) - Benötigen React
-          if (id.includes('node_modules/lucide-react') || id.includes('node_modules/clsx')) {
-            return 'ui-vendor';
-          }
-          
-          // Audio Modules
-          if (id.includes('/hooks/useAudio') || id.includes('/services/AudioService')) {
-            return 'audio-vendor';
-          }
-          
-          // Chat Components
-          if (id.includes('/components/ChatPane') || id.includes('/components/VoiceButton')) {
-            return 'chat-vendor';
-          }
-          
-          // Pages
-          if (id.includes('/pages/')) {
-            return 'pages';
-          }
+          // 3. UI Components (benötigen React)
+          'ui-vendor': ['lucide-react'],
         }
       }
     }
