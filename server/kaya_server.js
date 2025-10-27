@@ -75,6 +75,117 @@ app.post('/chat', async (req, res) => {
     }
 });
 
+// Streaming Chat-Endpoint (Server-Sent Events)
+app.get('/chat/stream', async (req, res) => {
+    const startTime = Date.now();
+    
+    // SSE-Headers setzen
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
+    res.setHeader('X-Accel-Buffering', 'no'); // Disable buffering
+    
+    try {
+        const query = req.query.q || '';
+        
+        if (!query) {
+            res.write('data: {"error": "Query parameter required"}\n\n');
+            return res.end();
+        }
+        
+        console.log(`🌊 SSE Request für Query: ${query.substring(0, 50)}`);
+        
+        // Kontext erstellen (vereinfacht für Streaming)
+        const context = {
+            conversationHistory: [],
+            persona: { persona: 'general' },
+            emotionalState: { state: 'neutral' },
+            urgency: { level: 'normal' },
+            language: 'german',
+            userData: {},
+            isFirstMessage: true
+        };
+        
+        // OpenAI Stream abrufen
+        const stream = await kayaHandler.getLLMService().generateResponseStream(query, context);
+        
+        let fullText = '';
+        let buffer = '';
+        
+        // Stream verarbeiten
+        stream.on('data', (chunk) => {
+            try {
+                buffer += chunk.toString();
+                const lines = buffer.split('\n');
+                buffer = lines.pop(); // Letzte unvollständige Zeile behalten
+                
+                for (const line of lines) {
+                    if (line.trim() === '' || line === 'data: [DONE]') {
+                        continue;
+                    }
+                    
+                    if (line.startsWith('data: ')) {
+                        try {
+                            const data = JSON.parse(line.substring(6));
+                            
+                            if (data.choices && data.choices[0].delta.content) {
+                                const content = data.choices[0].delta.content;
+                                fullText += content;
+                                
+                                // An Client senden
+                                res.write(`data: ${JSON.stringify({ text: content })}\n\n`);
+                            }
+                            
+                            if (data.choices && data.choices[0].finish_reason) {
+                                // Streaming beendet
+                                res.write(`data: ${JSON.stringify({ done: true, fullText })}\n\n`);
+                            }
+                        } catch (parseError) {
+                            // Ignoriere JSON-Parse-Fehler
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Stream-Verarbeitungsfehler:', error);
+            }
+        });
+        
+        stream.on('end', () => {
+            const responseTime = Date.now() - startTime;
+            console.log(`✅ Streaming abgeschlossen in ${responseTime}ms`);
+            errorLogger.logPerformance('/chat/stream', responseTime, true);
+            res.end();
+        });
+        
+        stream.on('error', (error) => {
+            console.error('❌ Stream-Fehler:', error);
+            errorLogger.logError(error, { endpoint: '/chat/stream' });
+            
+            const responseTime = Date.now() - startTime;
+            errorLogger.logPerformance('/chat/stream', responseTime, false, error);
+            
+            res.write(`data: ${JSON.stringify({ error: error.message })}\n\n`);
+            res.end();
+        });
+        
+        // Client-Verbindung getrennt → Stream schließen
+        req.on('close', () => {
+            stream.destroy();
+            res.end();
+        });
+        
+    } catch (error) {
+        console.error('❌ SSE-Endpoint Fehler:', error);
+        errorLogger.logError(error, { endpoint: '/chat/stream' });
+        
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/chat/stream', responseTime, false, error);
+        
+        res.write(`data: ${JSON.stringify({ error: 'Internal server error' })}\n\n`);
+        res.end();
+    }
+});
+
 // Agent-Routing-Endpoint
 app.post('/route', async (req, res) => {
     try {

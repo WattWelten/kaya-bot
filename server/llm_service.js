@@ -28,7 +28,62 @@ class LLMService {
     }
     
     /**
-     * Generiert intelligente Antwort mit OpenAI
+     * Generiert intelligente Antwort mit OpenAI (STREAMING)
+     * 
+     * @param {string} query - Die Benutzeranfrage
+     * @param {object} context - Kontext (Persona, Intention, etc.)
+     * @returns {Promise<Readable>} - Stream für SSE
+     */
+    async generateResponseStream(query, context = {}) {
+        try {
+            // Circuit Breaker prüfen
+            if (this.circuitBreaker.isOpen) {
+                if (Date.now() - this.circuitBreaker.lastFailureTime > this.circuitBreaker.timeout) {
+                    this.circuitBreaker.isOpen = false;
+                    this.circuitBreaker.failureCount = 0;
+                    console.log('🔧 Circuit Breaker: Geschlossen, versuche erneut');
+                } else {
+                    console.log('⚠️ Circuit Breaker: Offen, kein Streaming möglich');
+                    throw new Error('Circuit breaker is open');
+                }
+            }
+            
+            console.log('🌊 OpenAI Streaming aktiviert für Query:', query.substring(0, 50));
+            
+            // OpenAI API Call mit Streaming
+            const response = await axios.post(
+                this.openaiApiUrl,
+                {
+                    model: this.model,
+                    messages: this.buildMessages(query, context),
+                    max_tokens: this.maxTokens,
+                    temperature: this.temperature,
+                    stream: true // STREAMING aktiviert!
+                },
+                {
+                    headers: {
+                        'Authorization': `Bearer ${this.openaiApiKey}`,
+                        'Content-Type': 'application/json'
+                    },
+                    timeout: 8000,
+                    responseType: 'stream' // Wichtig für Streaming!
+                }
+            );
+            
+            // Circuit Breaker zurücksetzen
+            this.circuitBreaker.isOpen = false;
+            this.circuitBreaker.failureCount = 0;
+            
+            return response.data; // Gibt Readable Stream zurück
+            
+        } catch (error) {
+            this.handleError(error);
+            throw error;
+        }
+    }
+    
+    /**
+     * Generiert intelligente Antwort mit OpenAI (Standard)
      * 
      * @param {string} query - Die Benutzeranfrage
      * @param {object} context - Kontext (Persona, Intention, etc.)
