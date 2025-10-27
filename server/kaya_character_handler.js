@@ -75,6 +75,12 @@ class KAYACharacterHandler {
         // Bürger wollen direkte Lösungen, nicht lange Erklärungen!
         console.log('🎯 LLM-Enhancement deaktiviert - Bürgerzentrierte direkte Antworten');
 
+        // Emotion für Avatar-Mimik hinzufügen
+        response.emotion = personaAnalysis.emotionalState.state || 'neutral';
+        response.emotionConfidence = personaAnalysis.emotionalState.confidence || 50;
+        
+        console.log(`😊 Emotion: ${response.emotion} (${response.emotionConfidence}%)`);
+
         return response;
     }
     

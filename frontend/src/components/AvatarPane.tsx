@@ -3,6 +3,8 @@ import { useLipSync } from '@/hooks/useLipSync';
 import { AvatarPaneProps } from '@/types';
 import { ErrorBoundary } from './ErrorBoundary';
 import { BabylonAvatar } from './BabylonAvatar';
+import { EmotionType } from '@/services/EmotionMapper';
+import { VisemeSegment } from '@/services/LipsyncEngine';
 
 const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
   isSpeaking,
@@ -10,21 +12,29 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
   setIsSpeaking,
   onEmotionChange
 }) => {
-  const [emotion, setEmotion] = useState<'neutral' | 'happy' | 'concerned' | 'speaking'>('neutral');
+  const [emotion, setEmotion] = useState<EmotionType>('neutral');
+  const [emotionConfidence, setEmotionConfidence] = useState<number>(50);
+  const [visemeTimeline, setVisemeTimeline] = useState<VisemeSegment[]>([]);
   
   const { visemes } = useLipSync(null, isSpeaking);
 
   useEffect(() => {
+    // Einfache Emotion-Erkennung basierend auf Kontext
+    // TODO: Diese wird später vom Backend via WebSocket überschrieben
     if (captionText.includes('Hilfe') || captionText.includes('Problem')) {
-      setEmotion('concerned');
-      onEmotionChange?.('concerned', 0.7);
+      setEmotion('anxious');
+      setEmotionConfidence(70);
+      onEmotionChange?.('anxious', 0.7);
     } else if (captionText.includes('Danke') || captionText.includes('Perfekt')) {
-      setEmotion('happy');
-      onEmotionChange?.('happy', 0.8);
+      setEmotion('positive');
+      setEmotionConfidence(80);
+      onEmotionChange?.('positive', 0.8);
     } else if (isSpeaking) {
-      setEmotion('speaking');
+      setEmotion('neutral');
+      setEmotionConfidence(50);
     } else {
       setEmotion('neutral');
+      setEmotionConfidence(50);
     }
   }, [captionText, isSpeaking, onEmotionChange]);
 
@@ -39,7 +49,8 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
           <BabylonAvatar 
             isSpeaking={isSpeaking}
             emotion={emotion}
-            visemes={visemes}
+            emotionConfidence={emotionConfidence}
+            visemeTimeline={visemeTimeline}
           />
         </ErrorBoundary>
       </div>

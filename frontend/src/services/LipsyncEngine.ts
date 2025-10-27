@@ -27,6 +27,13 @@ export class LipsyncEngine {
   }
 
   /**
+   * Starte Lipsync mit Timeline
+   */
+  start(segments: VisemeSegment[]): void {
+    this.playTimeline(segments);
+  }
+
+  /**
    * Spiele Viseme-Timeline ab
    */
   playTimeline(segments: VisemeSegment[]): void {

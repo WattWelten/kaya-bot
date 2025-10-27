@@ -242,6 +242,33 @@ class KAYAWebSocketService extends EventEmitter {
         });
     }
     
+    // Emotion an Client senden (für Avatar-Mimik)
+    sendEmotion(clientId, emotion, confidence) {
+        this.sendToClient(clientId, {
+            type: 'emotion',
+            data: {
+                emotion,
+                confidence,
+                timestamp: new Date().toISOString()
+            }
+        });
+        
+        console.log(`😊 Emotion gesendet an ${clientId}: ${emotion} (${confidence}%)`);
+    }
+    
+    // Viseme-Timeline an Client senden (für Lippensync)
+    sendVisemeTimeline(clientId, visemeTimeline) {
+        this.sendToClient(clientId, {
+            type: 'visemeTimeline',
+            data: {
+                timeline: visemeTimeline,
+                timestamp: new Date().toISOString()
+            }
+        });
+        
+        console.log(`🎭 Viseme-Timeline gesendet an ${clientId}: ${visemeTimeline.length} Segmente`);
+    }
+    
     // Session-Nachricht behandeln
     handleSessionMessage(clientId, data) {
         const { action, sessionId, data: sessionData } = data;

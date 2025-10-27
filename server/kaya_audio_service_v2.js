@@ -50,6 +50,36 @@ class KAYAAudioService extends EventEmitter {
             }
         };
         
+        // Phonem → Viseme Mapping für Lippensync
+        this.phonemeToViseme = {
+            // Vokale
+            'a': 'mouthOpen',
+            'ä': 'mouthOpen',
+            'e': 'mouthSmile_L',
+            'i': 'mouthSmile_L',
+            'o': 'mouthO',
+            'ö': 'mouthO',
+            'u': 'mouthFunnel',
+            'ü': 'mouthFunnel',
+            // Konsonanten
+            'f': 'mouthClose',
+            'v': 'mouthClose',
+            'p': 'mouthClose',
+            'b': 'mouthClose',
+            'm': 'mouthClose',
+            's': 'mouthSmile_R',
+            'z': 'mouthSmile_R',
+            'sch': 'mouthFunnel',
+            'ch': 'mouthSmile_R',
+            'r': 'mouthOpen',
+            'l': 'tongueOut',
+            'n': 'mouthClose',
+            't': 'mouthClose',
+            'd': 'mouthClose',
+            'k': 'mouthOpen',
+            'g': 'mouthOpen'
+        };
+        
         // Language-Mapping
         this.languageMapping = {
             'de-DE': 'Deutsch',
@@ -133,6 +163,10 @@ class KAYAAudioService extends EventEmitter {
             
             // Audio speichern
             const audioFile = await this.saveAudioFile(audioData, config);
+            
+            // Viseme-Timeline generieren für Lipsync
+            const visemeTimeline = this.generateVisemeTimeline(text, audioData.duration);
+            audioFile.visemeTimeline = visemeTimeline;
             
             // Cache aktualisieren
             this.setCache(cacheKey, audioFile);
@@ -230,6 +264,64 @@ class KAYAAudioService extends EventEmitter {
             console.error('❌ Audio-Datei-Speicherung Fehler:', error);
             throw error;
         }
+    }
+    
+    // Viseme-Timeline aus Text generieren (Lippensync)
+    generateVisemeTimeline(text, duration) {
+        const timeline = [];
+        const words = text.toLowerCase().split(/\s+/);
+        const avgDuration = duration / Math.max(words.length, 1);
+        
+        let currentTime = 0;
+        
+        words.forEach((word, wordIndex) => {
+            // Durchlaufe jeden Buchstaben im Wort
+            const chars = word.split('');
+            const charDuration = avgDuration / Math.max(chars.length, 1);
+            
+            chars.forEach((char, charIndex) => {
+                // Mapping für mehrere Zeichen (z.B. "sch")
+                let phoneme = char;
+                let viseme = this.phonemeToViseme[char] || 'neutral';
+                
+                // Check für 2-3 Buchstaben-Kombinationen
+                if (charIndex < chars.length - 1) {
+                    const twoChar = char + chars[charIndex + 1];
+                    if (this.phonemeToViseme[twoChar]) {
+                        phoneme = twoChar;
+                        viseme = this.phonemeToViseme[twoChar];
+                    }
+                }
+                
+                if (charIndex < chars.length - 2) {
+                    const threeChar = char + chars[charIndex + 1] + chars[charIndex + 2];
+                    if (this.phonemeToViseme[threeChar]) {
+                        phoneme = threeChar;
+                        viseme = this.phonemeToViseme[threeChar];
+                    }
+                }
+                
+                // Nur relevante Phoneme hinzufügen (nicht neutral)
+                if (viseme !== 'neutral') {
+                    timeline.push({
+                        phoneme: phoneme,
+                        viseme: viseme,
+                        start: currentTime,
+                        end: currentTime + charDuration,
+                        weight: 0.8 // Standard-Gewicht
+                    });
+                }
+                
+                currentTime += charDuration;
+            });
+            
+            // Kleine Pause zwischen Wörtern
+            currentTime += charDuration * 0.3;
+        });
+        
+        console.log(`🎭 Viseme-Timeline generiert: ${timeline.length} Segmente für "${text.substring(0, 50)}..."`);
+        
+        return timeline;
     }
     
     // Audio-Session erstellen

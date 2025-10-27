@@ -1,20 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 import * as BABYLON from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
+import { LipsyncEngine, VisemeSegment } from '../services/LipsyncEngine';
+import { EmotionMapper, EmotionType } from '../services/EmotionMapper';
 
 interface BabylonAvatarProps {
   isSpeaking: boolean;
-  emotion?: 'neutral' | 'happy' | 'concerned' | 'speaking';
-  visemes?: number[];
+  emotion?: EmotionType;
+  emotionConfidence?: number;
+  visemeTimeline?: VisemeSegment[];
 }
 
-export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: BabylonAvatarProps) {
+export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfidence = 50, visemeTimeline }: BabylonAvatarProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<BABYLON.Engine | null>(null);
   const sceneRef = useRef<BABYLON.Scene | null>(null);
   const meshRef = useRef<BABYLON.AbstractMesh | null>(null);
   const morphTargetManagerRef = useRef<BABYLON.MorphTargetManager | null>(null);
   const glowLayerRef = useRef<BABYLON.GlowLayer | null>(null);
+  const lipsyncEngineRef = useRef<LipsyncEngine | null>(null);
+  const emotionMapperRef = useRef<EmotionMapper | null>(null);
 
   // Mobile Detection
   const isMobile = typeof window !== 'undefined' && (
@@ -84,8 +89,16 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
         const mtm = (skinned as any).morphTargetManager as BABYLON.MorphTargetManager | undefined;
         morphTargetManagerRef.current = mtm || null;
         
-        if (mtm) {
+        if (mtm && glowLayer) {
           console.log('📦 Babylon Avatar geladen:', scene.meshes.length, 'Meshes, Morph Targets:', mtm.numTargets);
+          
+          // Initialisiere Lipsync Engine
+          lipsyncEngineRef.current = new LipsyncEngine(mtm);
+          
+          // Initialisiere Emotion Mapper
+          emotionMapperRef.current = new EmotionMapper(mtm, glowLayer);
+          
+          console.log('🎭 Lipsync Engine & Emotion Mapper initialisiert');
         }
       }
     }, (progressEvent) => {
@@ -114,31 +127,19 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
     };
   }, [isMobile]);
 
-  // Lipsync: Morph Targets Update
+  // Lipsync: Viseme-Timeline abspielen
   useEffect(() => {
-    if (!morphTargetManagerRef.current || !visemes || visemes.length === 0) return;
+    if (!lipsyncEngineRef.current || !visemeTimeline || visemeTimeline.length === 0) return;
 
-    const mtm = morphTargetManagerRef.current;
+    console.log('🎭 Starte Lipsync mit', visemeTimeline.length, 'Segmenten');
+    lipsyncEngineRef.current.start(visemeTimeline);
 
-    // Viseme-Namen (Beispiel-Mapping, anpassen nach deiner GLB)
-    const VISEME_NAMES = [
-      'mouthFunnel', // AA
-      'mouthO', // O
-      'mouthClose', // F
-      'tongueOut', // L
-      'mouthSmile_L', // SMILE
-      // ... weitere
-    ];
-
-    visemes.forEach((value, index) => {
-      if (index < VISEME_NAMES.length) {
-        const target = mtm.getTargetByName(VISEME_NAMES[index]);
-        if (target) {
-          target.influence = value;
-        }
+    return () => {
+      if (lipsyncEngineRef.current) {
+        lipsyncEngineRef.current.stop();
       }
-    });
-  }, [visemes]);
+    };
+  }, [visemeTimeline]);
 
   // Idle Animation (Breathing)
   useEffect(() => {
@@ -156,15 +157,23 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
     return () => cancelAnimationFrame(animationId);
   }, [isSpeaking]);
 
-  // Glow-Effekt: Wenn Avatar spricht
+  // Emotion: Avatar-Mimik + Glow anpassen
+  useEffect(() => {
+    if (!emotionMapperRef.current) return;
+
+    console.log('😊 Emotion Update:', emotion, emotionConfidence);
+    emotionMapperRef.current.applyEmotion(emotion, emotionConfidence);
+  }, [emotion, emotionConfidence]);
+
+  // Glow-Effekt: Wenn Avatar spricht (zusätzlich zur Emotion)
   useEffect(() => {
     if (!glowLayerRef.current || !meshRef.current) return;
 
     if (isSpeaking) {
-      glowLayerRef.current.intensity = 0.8;
+      glowLayerRef.current.intensity = Math.min(glowLayerRef.current.intensity + 0.3, 1.0);
       glowLayerRef.current.addIncludedOnlyMesh(meshRef.current as BABYLON.Mesh);
     } else {
-      glowLayerRef.current.intensity = 0;
+      // Intensität auf Emotion-Level zurücksetzen (wird von EmotionMapper gesetzt)
     }
   }, [isSpeaking]);
 
