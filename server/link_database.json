@@ -1,0 +1,87 @@
+{
+  "kfz": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/strassenverkehrsamt/",
+      "title": "strassenverkehrsamt"
+    }
+  },
+  "fuehrerschein": {},
+  "bau": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/bauordnungsamt/",
+      "title": "bauordnungsamt"
+    }
+  },
+  "gewerbe": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/gewerbe/bewachungsgewerbe/",
+      "title": "bewachungsgewerbe"
+    }
+  },
+  "meldewesen": {},
+  "ausweis": {},
+  "jugend": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/ausbildungsfoerderung/",
+      "title": "ausbildungsfoerderung"
+    },
+    "beratung": {
+      "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/weitere-angebote-fuer-familien/cafe-kinderwagen-bobbycar/",
+      "title": "cafe-kinderwagen-bobbycar"
+    },
+    "kita": {
+      "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/weitere-angebote-fuer-familien/cafe-kinderwagen-bobbycar/",
+      "title": "cafe-kinderwagen-bobbycar"
+    }
+  },
+  "soziales": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsregion/hitzeschutz/",
+      "title": "hitzeschutz"
+    },
+    "jobcenter": {
+      "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/oertlicher-beirat-jobcenter-gem-18-d-sgb-ii/",
+      "title": "oertlicher-beirat-jobcenter-gem-18-d-sgb-ii"
+    },
+    "hilfe": {
+      "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/selbsthilfegruppen/",
+      "title": "selbsthilfegruppen"
+    }
+  },
+  "gesundheit": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/gesundheitsamt/",
+      "title": "gesundheitsamt"
+    }
+  },
+  "umwelt": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-bodenschutz-und-abfallwirtschaft/",
+      "title": "amt-fuer-bodenschutz-und-abfallwirtschaft"
+    }
+  },
+  "bildung": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/arbeitgeber-landkreis-oldenburg/ausbildung-und-studium/praktika/",
+      "title": "praktika"
+    }
+  },
+  "politik": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/",
+      "title": "kreistag"
+    }
+  },
+  "kontakt": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/portal/seiten/oeffnungszeiten-900000003-21700.html?titel=%C3%96ffnungszeiten",
+      "title": "oeffnungszeiten-900000003-21700.html"
+    }
+  },
+  "stellen": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/stellenausschreibungen/",
+      "title": "stellenausschreibungen"
+    }
+  }
+}

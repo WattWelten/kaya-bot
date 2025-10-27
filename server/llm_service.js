@@ -300,6 +300,15 @@ JETZT: Antworte kurz, empathisch, mit gezielter Nachfrage. Max. 50 Wörter!`;
         } else {
             prompt += `\n\n🎯 KEINE Begrüßung - direkt zur Sache.`;
         }
+        
+        // NEU: Dynamische Links einfügen
+        if (context.relevantLinks && context.relevantLinks.length > 0) {
+            prompt += `\n\n🔗 VERWENDE DIESE RELEVANTEN LINKS (max. 3-5):\n`;
+            context.relevantLinks.forEach(link => {
+                prompt += `- ${link.title}: ${link.url}\n`;
+            });
+            prompt += `\nNutze IMMER mindestens 1 Link in deiner Antwort!`;
+        }
 
         // Persona-spezifische Anpassungen
         if (persona && persona.persona) {

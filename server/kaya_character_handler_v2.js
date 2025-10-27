@@ -4,6 +4,7 @@ class KAYACharacterHandler {
     constructor() {
         this.agentHandler = null; // Lazy loading für Agent Handler
         this.llmService = null; // Lazy loading
+        this.linkSelector = null; // Lazy loading für Link Selector
         this.useLLM = process.env.USE_LLM === 'true';
         this.contextMemory = new ContextMemory();
         this.cache = new Map(); // In-Memory Cache
@@ -28,6 +29,15 @@ class KAYACharacterHandler {
             this.agentHandler = new KAYAAgentHandler();
         }
         return this.agentHandler;
+    }
+    
+    // Lazy loading für Link Selector
+    getLinkSelector() {
+        if (!this.linkSelector) {
+            const LinkSelector = require('./services/link_selector');
+            this.linkSelector = new LinkSelector();
+        }
+        return this.linkSelector;
     }
     
     // Agent-Routing nach System-Prompt
@@ -696,6 +706,9 @@ class KAYACharacterHandler {
                 // Style-Knobs bestimmen
                 const styleKnobs = this.determineStyleKnobs(personaAnalysis, intentionAnalysis);
                 
+                // Dynamische Links via Link-Selector
+                const relevantLinks = this.getLinkSelector().selectLinks(intentionAnalysis.type, query);
+                
                 const llmContext = {
                     persona: personaAnalysis.persona,
                     emotionalState: personaAnalysis.emotionalState,
@@ -705,7 +718,9 @@ class KAYACharacterHandler {
                     userData: userData,
                     isFirstMessage: isFirstMessage,
                     // NEU: Style-Knobs hinzufügen
-                    ...styleKnobs
+                    ...styleKnobs,
+                    // NEU: Relevante Links
+                    relevantLinks: relevantLinks
                 };
                 const llmResponse = await this.getLLMService().generateResponse(query, llmContext);
                 
