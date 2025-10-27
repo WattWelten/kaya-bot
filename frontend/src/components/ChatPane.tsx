@@ -476,66 +476,92 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     return parts;
   };
 
-  // Smart Quick-Actions basierend auf letzter Nachricht
+  // Smart Quick-Actions - 3 Ebenen System
   const getSmartSuggestions = () => {
+    // Ebene 1: Initial (keine Historie)
     if (messages.length < 2) {
-      // Initial suggestions
       return [
-        { label: 'KFZ', icon: '🚗' },
-        { label: 'Bürgergeld', icon: '💰' },
-        { label: 'Kreistag', icon: '🏛️' },
-        { label: 'Termin', icon: '📅' }
+        { label: 'KFZ zulassen', icon: '🚗', query: 'Ich möchte ein KFZ zulassen', category: 'kfz' },
+        { label: 'Wohnsitz anmelden', icon: '🏠', query: 'Ich möchte meinen Wohnsitz anmelden', category: 'buergerdienste' },
+        { label: 'Termin buchen', icon: '📅', query: 'Ich brauche einen Termin', category: 'termin' },
+        { label: 'Bürgergeld', icon: '💰', query: 'Ich brauche Informationen zu Bürgergeld', category: 'soziales' }
       ];
     }
 
+    // Ebene 2: Kontext-basiert
     const lastMessage = messages[messages.length - 1];
     const intention = lastMessage.metadata?.intention;
+    const lastContent = lastMessage.content.toLowerCase();
 
-    switch (intention) {
-      case 'jobcenter':
-        return [
-          { label: 'Antrag stellen', icon: '📄' },
-          { label: 'Termin buchen', icon: '📅' },
-          { label: 'Unterlagen?', icon: '📋' }
-        ];
-      case 'kfz_zulassung':
-        return [
-          { label: 'Termin KFZ', icon: '🚗' },
-          { label: 'Kosten?', icon: '💰' },
-          { label: 'Unterlagen?', icon: '📄' }
-        ];
-      case 'buergerdienste':
-        return [
-          { label: 'An-/Ummeldung', icon: '🏠' },
-          { label: 'Ausweis', icon: '🆔' },
-          { label: 'Termin', icon: '📅' }
-        ];
-      case 'politik':
-        return [
-          { label: 'Sitzungskalender', icon: '📅' },
-          { label: 'Fraktionen', icon: '👥' },
-          { label: 'Vorlagen', icon: '📄' }
-        ];
-      default:
-        return [
-          { label: 'KFZ', icon: '🚗' },
-          { label: 'Bürgergeld', icon: '💰' },
-          { label: 'Kreistag', icon: '🏛️' },
-          { label: 'Termin', icon: '📅' }
-        ];
+    // KFZ-Kontext
+    if (intention === 'kfz_zulassung' || lastContent.includes('kfz') || lastContent.includes('auto') || lastContent.includes('fahrzeug')) {
+      return [
+        { label: 'Termin KFZ', icon: '📅', query: 'Termin für KFZ-Zulassung', category: 'kfz' },
+        { label: 'Kosten?', icon: '💰', query: 'Was kostet die KFZ-Zulassung?', category: 'kfz' },
+        { label: 'Unterlagen?', icon: '📄', query: 'Welche Unterlagen brauche ich für die Zulassung?', category: 'kfz' },
+        { label: 'Online', icon: '💻', query: 'Kann ich online zulassen?', category: 'kfz' }
+      ];
     }
+
+    // Jobcenter-Kontext
+    if (intention === 'jobcenter' || lastContent.includes('bürgergeld') || lastContent.includes('jobcenter')) {
+      return [
+        { label: 'Antrag stellen', icon: '📝', query: 'Bürgergeld-Antrag stellen', category: 'soziales' },
+        { label: 'Termin', icon: '📅', query: 'Termin im Jobcenter buchen', category: 'termin' },
+        { label: 'Unterlagen', icon: '📄', query: 'Welche Unterlagen brauche ich für Bürgergeld?', category: 'soziales' },
+        { label: 'Kontakt', icon: '📞', query: 'Kontakt Jobcenter Landkreis Oldenburg', category: 'kontakt' }
+      ];
+    }
+
+    // Bürgerservice-Kontext
+    if (intention === 'buergerdienste' || lastContent.includes('wohnsitz') || lastContent.includes('ummelden') || lastContent.includes('anmelden')) {
+      return [
+        { label: 'An-/Ummeldung', icon: '🏠', query: 'Wohnsitz an- oder ummelden', category: 'buergerdienste' },
+        { label: 'Ausweis', icon: '🆔', query: 'Ausweis beantragen', category: 'ausweis' },
+        { label: 'Führungszeugnis', icon: '📜', query: 'Führungszeugnis beantragen', category: 'buergerdienste' },
+        { label: 'Termin', icon: '📅', query: 'Termin Bürgerbüro buchen', category: 'termin' }
+      ];
+    }
+
+    // Politik-Kontext
+    if (intention === 'politik' || lastContent.includes('kreistag') || lastContent.includes('politik')) {
+      return [
+        { label: 'Sitzungen', icon: '📅', query: 'Sitzungskalender Kreistag', category: 'politik' },
+        { label: 'Fraktionen', icon: '👥', query: 'Fraktionen im Kreistag', category: 'politik' },
+        { label: 'Vorlagen', icon: '📄', query: 'Sitzungsvorlagen Kreistag', category: 'politik' },
+        { label: 'Landrat', icon: '👤', query: 'Informationen zum Landrat', category: 'politik' }
+      ];
+    }
+
+    // Bau-Kontext
+    if (intention === 'bau' || lastContent.includes('bau') || lastContent.includes('bauantrag')) {
+      return [
+        { label: 'Bauantrag', icon: '📝', query: 'Bauantrag stellen', category: 'bau' },
+        { label: 'Formulare', icon: '📄', query: 'Bauantragsformulare', category: 'bau' },
+        { label: 'Kosten', icon: '💰', query: 'Kosten Baugenehmigung', category: 'bau' },
+        { label: 'Beratung', icon: '💬', query: 'Bauberatung Termin', category: 'bau' }
+      ];
+    }
+
+    // Standard-Fallback
+    return [
+      { label: 'KFZ', icon: '🚗', query: 'KFZ zulassen', category: 'kfz' },
+      { label: 'Termin', icon: '📅', query: 'Termin buchen', category: 'termin' },
+      { label: 'Bürgergeld', icon: '💰', query: 'Bürgergeld Informationen', category: 'soziales' },
+      { label: 'Kreistag', icon: '🏛️', query: 'Kreistag Informationen', category: 'politik' }
+    ];
   };
 
   const smartSuggestions = getSmartSuggestions();
 
-  // Top-Intents
+  // Top-Intents - professionell
   const topIntents = [
-    { id: 'kfz', label: 'KFZ', description: 'Fahrzeug-Zulassung' },
-    { id: 'meldebescheinigung', label: 'Meldebescheinigung', description: 'Wohnsitz-Nachweis' },
-    { id: 'wohngeld', label: 'Wohngeld', description: 'Wohnkosten-Zuschuss' },
-    { id: 'termin', label: 'Termin', description: 'Terminvereinbarung' },
-    { id: 'stellen', label: 'Stellen', description: 'Job-Angebote' },
-    { id: 'kreistag', label: 'Kreistag', description: 'Politik & Verwaltung' }
+    { id: 'kfz', label: 'KFZ zulassen', query: 'Ich möchte ein KFZ zulassen', category: 'kfz' },
+    { id: 'meldewesen', label: 'Wohnsitz', query: 'Wohnsitz anmelden', category: 'meldewesen' },
+    { id: 'ausweis', label: 'Ausweis', query: 'Ausweis beantragen', category: 'ausweis' },
+    { id: 'termin', label: 'Termin', query: 'Termin buchen', category: 'termin' },
+    { id: 'jobcenter', label: 'Jobcenter', query: 'Jobcenter Landkreis Oldenburg', category: 'soziales' },
+    { id: 'kreistag', label: 'Kreistag', query: 'Kreistag Informationen', category: 'politik' }
   ];
 
   return (
@@ -570,7 +596,8 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
               key={intent.id}
               className="chip-link btn-interactive"
               aria-label={`Schnellstart ${intent.label}`}
-              onClick={() => handleSendMessage(intent.label)}
+              data-category={intent.category}
+              onClick={() => handleSendMessage(intent.query)}
             >
               {intent.label}
             </button>
@@ -599,7 +626,8 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
                     min-h-[48px]
                   "
                   aria-label={`Schnellaktion: ${suggestion.label}`}
-                  onClick={() => handleSendMessage(suggestion.label)}
+                  data-category={suggestion.category}
+                  onClick={() => handleSendMessage(suggestion.query)}
                 >
                   <span className="text-lg">{suggestion.icon}</span>
                   {suggestion.label}

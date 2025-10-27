@@ -5,7 +5,12 @@
       "title": "strassenverkehrsamt"
     }
   },
-  "fuehrerschein": {},
+  "fuehrerschein": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/fuehrerscheinstelle/",
+      "title": "Führerscheinstelle"
+    }
+  },
   "bau": {
     "main": {
       "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/bauordnungsamt/",
@@ -18,8 +23,18 @@
       "title": "bewachungsgewerbe"
     }
   },
-  "meldewesen": {},
-  "ausweis": {},
+  "meldewesen": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/portal/seiten/meldebescheinigung-900000003-21700.html",
+      "title": "Meldebescheinigung"
+    }
+  },
+  "ausweis": {
+    "main": {
+      "url": "https://www.oldenburg-kreis.de/portal/seiten/personalausweis-reisepass-900000003-21700.html",
+      "title": "Personalausweis & Reisepass"
+    }
+  },
   "buergerdienste": {
     "main": {
       "url": "https://www.kommune365.de/landkreis-oldenburg",
@@ -36,8 +51,8 @@
       "title": "cafe-kinderwagen-bobbycar"
     },
     "kita": {
-      "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/weitere-angebote-fuer-familien/cafe-kinderwagen-bobbycar/",
-      "title": "cafe-kinderwagen-bobbycar"
+      "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/",
+      "title": "Kinderbetreuung"
     }
   },
   "soziales": {
@@ -46,8 +61,8 @@
       "title": "hitzeschutz"
     },
     "jobcenter": {
-      "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/oertlicher-beirat-jobcenter-gem-18-d-sgb-ii/",
-      "title": "oertlicher-beirat-jobcenter-gem-18-d-sgb-ii"
+      "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/",
+      "title": "Jobcenter Landkreis Oldenburg"
     },
     "hilfe": {
       "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/selbsthilfegruppen/",
@@ -88,6 +103,12 @@
     "main": {
       "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/stellenausschreibungen/",
       "title": "stellenausschreibungen"
+    }
+  },
+  "termin": {
+    "main": {
+      "url": "https://oldenburg-kreis.atsinfomanagement.net/termine",
+      "title": "Online-Terminbuchung"
     }
   }
 }
