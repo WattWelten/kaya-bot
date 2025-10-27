@@ -1,12 +1,11 @@
 import React, { useState, useRef, useEffect, useMemo, memo, useCallback } from 'react';
 import { Mic, Paperclip, Send, Volume2 } from 'lucide-react';
 import { useWebSocket } from '@/hooks/useWebSocket';
-import { useAudio } from '@/hooks/useAudio';
+import { useAudioManager } from '@/hooks/useAudioManager';
 import { useVoiceDialog } from '@/hooks/useVoiceDialog';
 import { VoiceButton } from './VoiceButton';
 import { VoiceStatusBar } from './VoiceStatusBar';
 import { Message, ChatPaneProps } from '@/types';
-import { getAudioService } from '@/services/AudioService';
 
 const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   setCaptionText,
@@ -25,7 +24,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
 
   // Hooks
   const { isConnected, sendMessage, sendAudioMessage, lastMessage, error } = useWebSocket(sessionId);
-  const { isRecording, startRecording, stopRecording, textToSpeech } = useAudio();
+  const audioManager = useAudioManager();
   const { voiceState, startVoiceDialog, stopRecording: stopVoiceRecording, error: voiceError, transcription, response, audioUrl } = useVoiceDialog(
     async (text: string) => {
       // User-Nachricht hinzufügen
@@ -161,15 +160,14 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
 
   // Audio-Aufnahme mit Backend-Verarbeitung
   const handleAudioToggle = async () => {
-    if (isRecording) {
+    if (audioManager.isRecording) {
       // Stop recording & Process
-      stopRecording();
+      audioManager.stopRecording();
       setIsProcessing(true);
 
       try {
-        // Audio abrufen (from AudioService)
-        const audioService = getAudioService();
-        const audioBlob = audioService.getRecordedAudio();
+        // Audio abrufen (from AudioManager)
+        const audioBlob = audioManager.getRecordedAudio();
         
         if (!audioBlob) {
           throw new Error('Kein Audio vorhanden');
@@ -215,13 +213,12 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
 
         setMessages(prev => [...prev, userMessage, assistantMessage]);
         
-        // Audio abspielen
+        // Audio abspielen (via AudioManager für koordiniertes Playback)
         if (result.audioUrl) {
-          await textToSpeech(result.response);
+          await audioManager.playAudio(result.audioUrl, 'chat');
         }
         
-        // Audio von Service löschen
-        audioService.clearRecordedAudio();
+        // Audio wurde vom AudioManager abgespielt
 
         setCaptionText(result.response);
 
@@ -243,7 +240,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
     } else {
       // Start recording
       try {
-        await startRecording();
+        await audioManager.startRecording();
       } catch (err) {
         console.error('❌ Audio-Aufnahme fehlgeschlagen:', err);
       }
