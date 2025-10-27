@@ -48,3 +48,4 @@ Write-Host "Response 5: $($responseTime5)ms"
 Write-Host "`n✅ Cache-Test abgeschlossen!"
 Write-Host "Erwartete Verbesserung: 50-70% schneller bei Cache-Hits"
 
+

@@ -31,3 +31,4 @@
 2. Browser-Kompatibilität (Phase 4)
 3. Performance-Tests (Phase 5)
 4. Finaler Polish (Phase 6)
+

@@ -292,3 +292,4 @@ $results | ConvertTo-Json -Depth 5 | Out-File -FilePath "phase1-agents-results.j
 
 Write-Host "`n  Ergebnisse gespeichert: phase1-agents-results.json" -ForegroundColor Gray
 Write-Host "========================================================================" -ForegroundColor Cyan
+

@@ -165,3 +165,4 @@ Das System ist jetzt:
 - ✅ Gesichert & gepusht (v1.1.0)
 
 **Nächster Schritt:** Phase 3 (Design verbessern) + Phase 4 (Browser-Kompatibilität)
+

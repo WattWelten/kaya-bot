@@ -124,3 +124,4 @@ self.addEventListener('push', (event) => {
 
 console.log('✅ KAYA Service Worker geladen');
 
+

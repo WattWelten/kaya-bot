@@ -160,3 +160,4 @@ npm run dev
 ---
 
 **Naechster Schritt:** Manuelle Frontend-Tests durchführen! 🎯
+

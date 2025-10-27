@@ -132,3 +132,4 @@ module.exports = {
 Alle Änderungen sind minimal (nur 1 Zeile geändert: space-y-4 → space-y-6)
 
 Das System ist bereits sehr gut optimiert!
+

@@ -109,3 +109,4 @@ git commit -m "fix: Metadaten entfernt, System-Prompt optimiert, Token-Limit red
 1. Production deployen
 2. Finaler Test auf Railway
 3. Tag erstellen: `v1.1.0`
+
