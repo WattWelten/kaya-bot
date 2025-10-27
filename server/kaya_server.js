@@ -247,6 +247,70 @@ app.get('/agent/:agentName', (req, res) => {
     }
 });
 
+// Audio-Chat-Endpoint
+app.post('/api/audio-chat', upload.single('audio'), async (req, res) => {
+    const startTime = Date.now();
+    
+    try {
+        if (!req.file || !req.file.buffer) {
+            return res.status(400).json({ error: 'Audio-Datei erforderlich' });
+        }
+        
+        const audioBuffer = req.file.buffer;
+        console.log(`🎤 Audio-Chat Request empfangen (${audioBuffer.length} Bytes)`);
+        
+        // 1. Speech-to-Text (Whisper)
+        const { text, success } = await audioService.speechToText(audioBuffer);
+        
+        if (!success) {
+            throw new Error('STT fehlgeschlagen');
+        }
+        
+        console.log(`✅ Transkription: "${text}"`);
+        
+        // 2. KAYA Response generieren
+        const response = await kayaHandler.generateResponse(text, text);
+        
+        console.log(`✅ KAYA Antwort: "${response.response.substring(0, 50)}..."`);
+        
+        // 3. Text-to-Speech (ElevenLabs)
+        let audioUrl = null;
+        try {
+            const ttsResult = await audioService.textToSpeech(response.response);
+            audioUrl = ttsResult.audioUrl;
+            console.log('✅ TTS erfolgreich');
+        } catch (ttsError) {
+            console.error('⚠️ TTS fehlgeschlagen (Fallback):', ttsError.message);
+            // Fallback: Kein Audio, nur Text
+        }
+        
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/api/audio-chat', responseTime, true);
+        
+        res.json({
+            transcription: text,
+            response: response.response,
+            audioUrl: audioUrl,
+            metadata: {
+                latency: responseTime,
+                hasAudio: !!audioUrl
+            }
+        });
+        
+    } catch (error) {
+        console.error('❌ Audio-Chat Fehler:', error);
+        errorLogger.logError(error, { endpoint: '/api/audio-chat' });
+        
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/api/audio-chat', responseTime, false, error);
+        
+        res.status(500).json({ 
+            error: 'Audio-Chat fehlgeschlagen',
+            details: error.message 
+        });
+    }
+});
+
 // KAYA-Info-Endpoint
 app.get('/kaya/info', (req, res) => {
     res.json({
