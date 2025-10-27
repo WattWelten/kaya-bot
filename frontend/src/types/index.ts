@@ -52,17 +52,6 @@ export interface KayaResponse {
   };
 }
 
-export interface UnityMessage {
-  type: 'emotion' | 'speaking' | 'gesture' | 'animation';
-  data: {
-    emotion?: string;
-    intensity?: number;
-    isSpeaking?: boolean;
-    gesture?: string;
-    animation?: string;
-  };
-}
-
 export interface AccessibilitySettings {
   highContrast: boolean;
   fontSize: 100 | 115 | 130;
@@ -116,23 +105,6 @@ export interface LoadingState {
   progress?: number;
 }
 
-// Unity WebGL Types
-export interface UnityConfig {
-  dataUrl: string;
-  frameworkUrl: string;
-  codeUrl: string;
-  streamingAssetsUrl: string;
-  companyName: string;
-  productName: string;
-  productVersion: string;
-}
-
-export interface UnityInstance {
-  SendMessage: (gameObject: string, methodName: string, parameter?: string) => void;
-  Quit: () => Promise<void>;
-  Module: any;
-}
-
 // Component Props Types
 export interface AvatarPaneProps {
   isSpeaking: boolean;
@@ -170,13 +142,6 @@ export interface UseWebSocketReturn {
   isConnected: boolean;
   sendMessage: (message: string) => void;
   lastMessage: WebSocketMessage | null;
-  error: ErrorState | null;
-}
-
-export interface UseUnityReturn {
-  unity: UnityInstance | null;
-  isLoaded: boolean;
-  sendUnityMessage: (message: UnityMessage) => void;
   error: ErrorState | null;
 }
 

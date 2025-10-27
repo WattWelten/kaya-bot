@@ -7,7 +7,7 @@ import { AccessibilitySettings, UserPreferences } from '@/types';
 
 /**
  * KAYA – Frontend 2025 (Landkreis Oldenburg)
- * - Avatar links (Unity WebGL via createUnityInstance)
+ * - Avatar links (Three.js via react-three/fiber)
  * - Chat rechts (Rauslauf 20% des Viewports)
  * - CI-Übernahme via :root CSS-Variablen (Fallbacks)
  * - A11y: Skiplink, Captions, Toggles (Kontrast/Schrift/Einfache Sprache)
@@ -143,9 +143,9 @@ export default function KayaPage() {
       // Alt + A: Avatar fokussieren
       if (event.altKey && event.key === 'a') {
         event.preventDefault();
-        const avatarCanvas = document.getElementById('unity-canvas');
+        const avatarCanvas = document.querySelector('[aria-label="Avatar Bereich"]');
         if (avatarCanvas) {
-          avatarCanvas.focus();
+          (avatarCanvas as HTMLElement).focus();
         }
       }
     };
