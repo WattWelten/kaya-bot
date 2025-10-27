@@ -41,6 +41,7 @@ export default defineConfig({
     minify: 'esbuild',
     chunkSizeWarningLimit: 500,
     rollupOptions: {
+      preserveEntrySignatures: 'allow-extension',
       output: {
         entryFileNames: `assets/[name]-[hash].js`,
         chunkFileNames: `assets/[name]-[hash].js`,
