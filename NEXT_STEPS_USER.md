@@ -102,3 +102,4 @@ Browser öffnen: https://app.kaya.wattweiser.com
 - [ ] Chat-Interaction funktioniert
 - [ ] Links klickbar
 
+

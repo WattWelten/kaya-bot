@@ -1974,8 +1974,47 @@
         "communicationMode": "audio",
         "audioResponse": "Hello! How can I help you?I'll solve this for you. 1. Find driving school\n2. Register and take exams\n3. Apply for driver's license\n\nLet's go! What's your next step?"
       }
+    },
+    {
+      "id": "1761519354607",
+      "sender": "user",
+      "content": "Ich brauche Hilfe bei der KFZ-Zulassung",
+      "timestamp": "2025-10-26T22:55:54.607Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1761519791868",
+      "sender": "user",
+      "content": "Ich bin Michael und brauche Hilfe bei der KFZ-Zulassung",
+      "timestamp": "2025-10-26T23:03:11.869Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1761519791891",
+      "sender": "assistant",
+      "content": "Moin Michael! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Termin online buchen\n2. Unterlagen vorbereiten\n3. Zur Zulassungsstelle gehen\n\nMichael, bei der KFZ-Zulassung geht es so: Los geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-26T23:03:11.891Z",
+      "context": {
+        "intention": "kfz_zulassung",
+        "persona": "disabled",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "audio",
+        "audioResponse": "Moin Michael! Wie kann ich Ihnen helfen?Ich löse das für Sie. 1. Termin online buchen\n2. Unterlagen vorbereiten\n3. Zur Zulassungsstelle gehen\n\nMichael, bei der KFZ-Zulassung geht es so: Los geht's! Was ist Ihr nächster Schritt?"
+      }
     }
   ],
   "createdAt": "2025-10-10T19:08:56.553Z",
-  "lastActivity": "2025-10-26T22:50:01.788Z"
+  "lastActivity": "2025-10-26T23:03:11.891Z",
+  "context": {
+    "userData": {
+      "name": "Michael"
+    }
+  }
 }

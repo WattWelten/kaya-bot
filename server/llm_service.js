@@ -13,7 +13,7 @@ class LLMService {
         this.openaiApiKey = process.env.OPENAI_API_KEY;
         this.openaiApiUrl = 'https://api.openai.com/v1/chat/completions';
         this.model = 'gpt-4o-mini'; // Kostenoptimiertes Modell
-        this.maxTokens = 120; // Balance: Voice-ready + Links möglich
+        this.maxTokens = 150; // Für empathische, längere Antworten (60-80 Wörter)
         this.temperature = 0.8; // Kreativer für persönlichere Antworten
         
         // Circuit Breaker für Fehlerbehandlung
@@ -155,45 +155,62 @@ class LLMService {
     buildSystemPrompt(context) {
         const { persona, emotionalState, urgency, language = 'german', userData, isFirstMessage } = context;
         
-        // PERFEKTER MENSCHLICHER DIALOG - BESTER KOMMUNAL-AVATAR
-        let prompt = `Du bist KAYA - die digitale Assistentin vom Landkreis Oldenburg.
+        // KAYA - HERZLICH, EMPATHISCH, NORDDEUTSCH
+        let prompt = `Du bist KAYA - die herzliche Empfangs-Mitarbeiterin vom Landkreis Oldenburg.
 
-🎯 DEIN AUFTRAG:
-Führe einen natürlichen Dialog wie eine echte Rezeptionistin.
+🎭 DEINE PERSÖNLICHKEIT:
+- Norddeutsch: Bodenständig, direkt, herzlich ("Moin", "parat", "Dat", "bestimmt")
+- Empathisch: REAGIERE IMMER auf Emotionen!
+  • "Ich habe ein Auto gekauft" → "Super, Glückwunsch zum neuen Auto! 🚗 Das freut mich!"
+  • "Ich habe ein Problem" → "Oh, das tut mir leid. Lass uns das lösen."
+  • "Ich bin unsicher" → "Keine Sorge, ich helfe dir gerne!"
+- Freundlich: Glückwünsche, Verständnis, Ermutigung
+- Humor: Subtil norddeutsch (max. 1x pro Dialog)
+  • "Butter bei die Fische:"
+  • "Dat kriegen wir hin!"
+  • "Kurz und knackig:"
 
-💬 DIALOG-PRINZIPIEN:
-1. Bei unklaren Fragen: NACHFRAGEN statt raten
-   - User: "Ich brauche ein Auto"
-   - Du: "Möchtest du ein Auto zulassen, abmelden oder erstmal Infos?"
+💬 DIALOG-STRUKTUR (WICHTIG - 4 STU UND:
 
-2. Bei klaren Fragen: DIREKTE LÖSUNG
-   - User: "Auto zulassen"
-   - Du: "Klar! Termin buchst du hier: [Link](URL)"
+1. EMPATHIE (1-2 Sätze) - REAGIERE AUF EMOTION:
+   - "gekauft/neu/geschafft" → "Super! Glückwunsch! 🚗"
+   - "problem/fehler/ärger" → "Oh, das tut mir leid. Lass uns das lösen."
+   - "wie/was/wo" → "Gute Frage! Das erkläre ich dir gerne."
 
-3. IMMER kontextbewusst:
-   - Beziehe dich auf vorherige Nachrichten
-   - Nutze Namen wenn bekannt
-   - Merke dir Themen
+2. KONTEXT (1 Satz):
+   - "Du willst es bestimmt jetzt zulassen, oder?"
 
-📝 ANTWORT-STRUKTUR:
-- Bestätigung (1 Satz)
-- Lösung ODER Nachfrage (2-3 Sätze)
-- Link (wenn relevant)
-- Abschlussfrage (1 Satz)
+3. LÖSUNG (2-3 Sätze mit Details):
+   - "Dazu brauchst du einen Termin bei der [KFZ-Zulassungsstelle](URL)"
+   - "Bring bitte Fahrzeugbrief, Versicherungsbestätigung und deinen Perso mit."
 
-🔗 LINKS (KORREKT - NUR DIESE!):
-- KFZ: https://www.oldenburg-kreis.de/fuehrerscheinstelle/
+4. NACHFRAGE (1 Satz):
+   - "Hast du die Unterlagen schon parat?"
+   - "Passt dat so?"
+   - "Brauchst du noch was?"
+
+LÄNGE: 60-80 Wörter (4-6 Sätze, nicht mehr 30-40!)
+
+🔗 LINKS (ZWINGEND - IMMER EINBAUEN!):
+Format: [Beschreibung](vollständige-URL)
+
+VERIFIZIERTE LINKS (NUR DIESE!):
+- KFZ/Führerschein: https://www.oldenburg-kreis.de/fuehrerscheinstelle/
 - Jobcenter: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/
 - Bauanträge: https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/
 - Bürgerdienste: https://www.oldenburg-kreis.de/
 - Kreistag: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/
 
-WICHTIG: IMMER einen dieser Links nutzen. KEINE erfundenen URLs!
+DU MUSST IMMER einen Link einbauen!
 
-💬 TON:
-- Umgangssprachlich: "klar", "gerne", "genau"
-- Kurz & präzise (max. 80 Wörter)
-- Persönlich & menschlich
+😊 EMOJIS (sparsam, max. 1 pro Antwort):
+- 🚗 Auto, KFZ
+- 🏡 Haus, Bauen
+- 📄 Formular, Antrag
+- ✅ Erledigt, Check
+- 💼 Arbeit, Jobcenter
+
+NUR wenn es WIRKLICH passt - nicht forcieren!
 
 🚨 SICHERHEIT:
 - Keine Rechtsberatung
@@ -202,6 +219,12 @@ WICHTIG: IMMER einen dieser Links nutzen. KEINE erfundenen URLs!
         // User-Kontext
         if (userData && userData.name) {
             prompt += `\n\n👤 Der Nutzer heißt ${userData.name}. Nutze den Namen NATÜRLICH und PERSONLICH.`;
+        }
+        
+        // Emotion-Detection für empathische Reaktion
+        const emotionPrefix = this.detectEmotionPrefix(query);
+        if (emotionPrefix) {
+            prompt += `\n\n🎭 EMOTIONALE REAKTION: Beginne deine Antwort mit: "${emotionPrefix}"`;
         }
         
         // Conversation History
@@ -216,7 +239,7 @@ WICHTIG: IMMER einen dieser Links nutzen. KEINE erfundenen URLs!
             prompt += `\n\n🎯 KEINE Begrüßung - direkt zur Antwort.`;
         }
         
-        prompt += `\n\nJETZT: Antworte auf die Anfrage. Bei Unklarheit: NACHFRAGEN.`;
+        prompt += `\n\nJETZT: Antworte empathisch, norddeutsch, 60-80 Wörter, immer 1 Link. Bei Unklarheit: NACHFRAGEN.`;
 
         // Persona-spezifische Anpassungen
         if (persona && persona.persona) {
@@ -268,6 +291,67 @@ WICHTIG: IMMER einen dieser Links nutzen. KEINE erfundenen URLs!
         prompt += `\n\nANTWORTE JETZT auf die Anfrage. Sei konkret, hilfreich und norddeutsch.`;
         
         return prompt;
+    }
+    
+    /**
+     * Erkennt Emotion in Query und gibt passenden Prefix zurück
+     * 
+     * @param {string} query - User-Query
+     * @returns {string|null} - Emotion-Prefix oder null
+     */
+    detectEmotionPrefix(query) {
+        const lowerQuery = query.toLowerCase();
+        
+        // Positive Emotionen
+        const positiveKeywords = [
+            'gekauft', 'neu', 'endlich', 'geschafft', 'freue', 
+            'glücklich', 'super', 'toll', 'prima', 'schön', 'gefallen'
+        ];
+        
+        // Negative Emotionen
+        const negativeKeywords = [
+            'problem', 'fehler', 'ärger', 'kaputt',
+            'schlecht', 'falsch', 'sorge', 'unsicher', 'nicht funktioniert'
+        ];
+        
+        // Frage-Wörter
+        const questionKeywords = [
+            'wie', 'was', 'wo', 'wann', 'warum', 'welche', 'womit'
+        ];
+        
+        if (positiveKeywords.some(kw => lowerQuery.includes(kw))) {
+            const prefixes = [
+                'Super! Das freut mich!',
+                'Toll! Glückwunsch!',
+                'Prima! Das ist ja schön!',
+                'Klasse! Herzlichen Glückwunsch!',
+                'Moin! Super, das freut mich!'
+            ];
+            return prefixes[Math.floor(Math.random() * prefixes.length)];
+        }
+        
+        if (negativeKeywords.some(kw => lowerQuery.includes(kw))) {
+            const prefixes = [
+                'Oh, das tut mir leid.',
+                'Das ist ärgerlich. Lass uns das lösen.',
+                'Verstehe. Das ist nicht schön.',
+                'Oh je. Keine Sorge, ich helfe dir.',
+                'Das ist nicht schön. Gemeinsam kriegen wir das hin!'
+            ];
+            return prefixes[Math.floor(Math.random() * prefixes.length)];
+        }
+        
+        if (questionKeywords.some(kw => lowerQuery.includes(kw))) {
+            const prefixes = [
+                'Gute Frage!',
+                'Klar, das erkläre ich dir gerne.',
+                'Moin! Dazu kann ich dir was sagen:',
+                'Gerne helfe ich dir damit.'
+            ];
+            return prefixes[Math.floor(Math.random() * prefixes.length)];
+        }
+        
+        return null;
     }
     
     /**
@@ -326,14 +410,14 @@ WICHTIG: IMMER einen dieser Links nutzen. KEINE erfundenen URLs!
      * @returns {object} - Metrics
      */
     trackTokenEconomy(outputTokens, query) {
-        const target = { min: 40, max: 120 }; // Angepasst an neue maxTokens
+        const target = { min: 60, max: 150 }; // Für empathische, längere Antworten (60-80 Wörter)
         
         if (outputTokens < target.min) {
             console.warn(`⚠️ Antwort zu kurz: ${outputTokens} Tokens (Ziel: ${target.min}-${target.max})`);
         } else if (outputTokens > target.max) {
-            console.warn(`⚠️ Antwort zu lang: ${outputTokens} Tokens (Ziel: ${target.min}-${target.max}) - Voice-unfriendly`);
+            console.warn(`⚠️ Antwort zu lang: ${outputTokens} Tokens (Ziel: ${target.min}-${target.max})`);
         } else {
-            console.log(`✅ Token-Ökonomie perfekt für Dialog: ${outputTokens} Tokens`);
+            console.log(`✅ Token-Ökonomie perfekt für empathischen Dialog: ${outputTokens} Tokens`);
         }
         
         // Metrics für Monitoring
