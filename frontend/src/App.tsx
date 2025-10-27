@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import '@/styles/globals.css';
 
 // Build Info - Forces new hash on deploy
+declare const __BUILD_DATE__: string;
 const BUILD_INFO = {
   id: import.meta.env.VITE_BUILD_ID || 'local',
   date: typeof __BUILD_DATE__ !== 'undefined' ? __BUILD_DATE__ : new Date().toISOString(),
