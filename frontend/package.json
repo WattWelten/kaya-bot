@@ -1,6 +1,6 @@
 {
   "name": "kaya-frontend",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "KAYA Frontend - Landkreis Oldenburg Avatar Interface",
   "type": "module",
   "scripts": {

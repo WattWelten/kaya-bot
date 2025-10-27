@@ -4,6 +4,8 @@ import { OrbitControls, Environment, PerspectiveCamera } from '@react-three/drei
 import { Avatar3D } from './Avatar3D';
 import * as THREE from 'three';
 
+// CDN Cache Bust: 2025-10-27-railway-fix - Force new Three.js vendor hash
+
 interface AvatarCanvasProps {
   isSpeaking: boolean;
   emotion?: 'neutral' | 'happy' | 'concerned' | 'speaking';
@@ -15,7 +17,7 @@ function AvatarLoadingFallback() {
   return (
     <mesh position={[0, 0, 0]}>
       <boxGeometry args={[1, 2, 0.5]} />
-      <meshStandardMaterial color="#0066cc" />
+      <meshStandardMaterial color="#0066cc" opacity={1.0} />
     </mesh>
   );
 }
