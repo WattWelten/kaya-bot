@@ -735,19 +735,20 @@ class KAYACharacterHandler {
                     const hasLinks = /\[([^\]]+)\]\(([^)]+)\)/.test(finalResponse);
                     
                     if (!hasLinks) {
-                        // Append template links based on intention
-                        const intentionLinks = {
-                            bauantrag: '\n\n[Formulare Bauen](https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/)',
-                            jobcenter: '\n\n[Jobcenter Landkreis Oldenburg](https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/)',
-                            kfz_zulassung: '\n\n[Straßenverkehrsamt](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/strassenverkehrsamt/)',
-                            buergerdienste: '\n\n[Online-Kreishaus](https://www.kommune365.de/landkreis-oldenburg)',
-                            politik: '\n\n[Sitzungskalender](https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/)',
-                        };
+                        // Dynamische Links via Link-Selector
+                        const relevantLinks = this.getLinkSelector().selectLinks(intentionAnalysis.type, query);
                         
-                        const link = intentionLinks[intentionAnalysis.type];
-                        if (link) {
-                            finalResponse += link;
-                            console.log('🔗 Template-Link angehängt für Intention:', intentionAnalysis.type);
+                        if (relevantLinks && relevantLinks.length > 0) {
+                            finalResponse += '\n\n';
+                            relevantLinks.forEach((link, index) => {
+                                if (link.title && link.url) {
+                                    finalResponse += `[${link.title}](${link.url})`;
+                                    if (index < relevantLinks.length - 1) {
+                                        finalResponse += ' • ';
+                                    }
+                                }
+                            });
+                            console.log('🔗 Dynamische Links angehängt:', relevantLinks.length);
                         }
                     } else {
                         console.log('✅ LLM hat bereits Markdown-Links generiert');
