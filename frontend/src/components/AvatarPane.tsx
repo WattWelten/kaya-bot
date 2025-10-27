@@ -171,22 +171,35 @@ export const AvatarPane: React.FC<AvatarPaneProps> = ({
         )}
         
         {error && (
-          <div className="absolute inset-0 flex items-center justify-center bg-lc-neutral-100">
-            <div className="text-center p-6">
-              <div className="text-lc-neutral-400 mb-4">
-                <svg className="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                </svg>
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-lc-primary-50 to-lc-neutral-50">
+            <div className="text-center p-8 animate-pulse-soft">
+              {/* Norddeutscher Humor Icon */}
+              <div className="text-7xl mb-6 animate-bounce">
+                ☕
               </div>
-              <h3 className="text-lg font-semibold text-lc-neutral-800 mb-2">
-                Avatar nicht verfügbar
+              
+              {/* Norddeutscher Humor Text */}
+              <h3 className="text-2xl font-bold text-lc-primary-700 mb-4">
+                Moin! Avatar macht grad Pause
               </h3>
-              <p className="text-sm text-lc-neutral-600 mb-4">
-                {error.message}
+              
+              <p className="text-base text-lc-neutral-700 mb-6 max-w-md mx-auto leading-relaxed">
+                Kein Stress – im Chat bin ich trotzdem für dich da! 👇<br/>
+                Schreib mir einfach unten.
               </p>
+              
+              <div className="mt-6 flex justify-center">
+                <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/90 backdrop-blur-sm rounded-full border-2 border-lc-primary-300 shadow-sm animate-pulse">
+                  <span className="text-2xl">💬</span>
+                  <p className="text-sm font-semibold text-lc-primary-700">
+                    Dat kriegen wir auch so hin!
+                  </p>
+                </div>
+              </div>
+              
               <button
                 onClick={() => initialize()}
-                className="btn-solid"
+                className="mt-6 px-4 py-2 text-sm text-lc-neutral-500 hover:text-lc-primary-600 transition-colors"
               >
                 Erneut versuchen
               </button>

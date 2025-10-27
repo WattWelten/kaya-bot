@@ -25,6 +25,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [expandedSources, setExpandedSources] = useState<Set<string>>(new Set());
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -346,14 +347,33 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
         const [fullMatch, source, timestamp] = footerMatch;
         const contentWithoutFooter = content.replace(fullMatch, '').trim();
         
-        return (
-          <>
-            <span className="whitespace-pre-wrap">{contentWithoutFooter}</span>
-            <div className="source-footer mt-3">
-              <strong>Quelle:</strong> {source} • <strong>Stand:</strong> {timestamp}
-            </div>
-          </>
-        );
+      return (
+        <>
+          <span className="whitespace-pre-wrap">{contentWithoutFooter}</span>
+          <div className="source-footer mt-3">
+            <button 
+              onClick={() => setExpandedSources(prev => {
+                const newSet = new Set(prev);
+                if (newSet.has(`msg-${fullMatch}`)) {
+                  newSet.delete(`msg-${fullMatch}`);
+                } else {
+                  newSet.add(`msg-${fullMatch}`);
+                }
+                return newSet;
+              })}
+              className="inline-flex items-center gap-1 text-xs text-lc-neutral-500 hover:text-lc-primary-600 transition-colors"
+            >
+              <span>{expandedSources.has(`msg-${fullMatch}`) ? '−' : '+'}</span>
+              <span>Quelle anzeigen</span>
+            </button>
+            {expandedSources.has(`msg-${fullMatch}`) && (
+              <p className="text-xs text-lc-neutral-600 mt-1">
+                <strong>Quelle:</strong> {source} • <strong>Stand:</strong> {timestamp}
+              </p>
+            )}
+          </div>
+        </>
+      );
       }
       return content;
     }
@@ -428,7 +448,26 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           <span className="whitespace-pre-wrap">{footerParts.length > 0 ? footerParts : contentWithoutFooter}</span>
           {/* Quellen-Fußzeile */}
           <div className="source-footer mt-3">
-            <strong>Quelle:</strong> {source} • <strong>Stand:</strong> {timestamp}
+            <button 
+              onClick={() => setExpandedSources(prev => {
+                const newSet = new Set(prev);
+                if (newSet.has(`msg-${fullMatch}`)) {
+                  newSet.delete(`msg-${fullMatch}`);
+                } else {
+                  newSet.add(`msg-${fullMatch}`);
+                }
+                return newSet;
+              })}
+              className="inline-flex items-center gap-1 text-xs text-lc-neutral-500 hover:text-lc-primary-600 transition-colors"
+            >
+              <span>{expandedSources.has(`msg-${fullMatch}`) ? '−' : '+'}</span>
+              <span>Quelle anzeigen</span>
+            </button>
+            {expandedSources.has(`msg-${fullMatch}`) && (
+              <p className="text-xs text-lc-neutral-600 mt-1">
+                <strong>Quelle:</strong> {source} • <strong>Stand:</strong> {timestamp}
+              </p>
+            )}
           </div>
         </>
       );
