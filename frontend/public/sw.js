@@ -98,6 +98,11 @@ self.addEventListener('fetch', (event) => {
         if (networkResponse.ok) {
           const responseClone = networkResponse.clone();
           caches.open(DYNAMIC_CACHE).then((cache) => {
+            // Filter chrome-extension URLs (nicht cachen)
+            if (request.url.startsWith('chrome-extension://') || 
+                request.url.startsWith('moz-extension://')) {
+              return;
+            }
             cache.put(request, responseClone);
           });
         }
