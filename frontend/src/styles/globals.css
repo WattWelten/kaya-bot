@@ -271,6 +271,17 @@
     50% { box-shadow: 0 0 35px rgba(15, 118, 110, 0.6); }
   }
 
+  @keyframes audio-pulse {
+    0%, 100% { 
+      transform: scale(1); 
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); 
+    }
+    50% { 
+      transform: scale(1.1); 
+      box-shadow: 0 0 40px rgba(239, 68, 68, 0.8); 
+    }
+  }
+
   /* Avatar-Bereich: Subtiler Float-Effekt */
   #avatar-section,
   section[aria-label="Avatar Bereich"] {

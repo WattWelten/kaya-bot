@@ -6,7 +6,10 @@
  * - Audio-Wiedergabe (Playback) - nur 1 gleichzeitig
  * - TTS-Queue für gestaffelte Sprachausgabe
  * - Priorisierung: Chat > Avatar
+ * - Voice Activity Detection (Auto-Stop bei Stille)
  */
+
+import { VoiceActivityDetector, VADConfig } from './VoiceActivityDetector';
 
 export type AudioSource = 'chat' | 'avatar';
 
@@ -15,6 +18,7 @@ export interface AudioState {
   isPlaying: boolean;
   currentSource: AudioSource | null;
   currentUrl: string | null;
+  audioLevel?: number; // 0-100% für Visualisierung
 }
 
 export type AudioStateCallback = (state: AudioState) => void;
@@ -33,6 +37,8 @@ class AudioManagerClass {
   private mediaRecorder: MediaRecorder | null = null;
   private audioChunks: Blob[] = [];
   private recordedAudioBlob: Blob | null = null;
+  private vadDetector: VoiceActivityDetector | null = null;
+  private currentAudioLevel = 0;
   
   // TTS Queue
   private ttsQueue: Array<{ text: string; source: AudioSource }> = [];
@@ -77,7 +83,8 @@ class AudioManagerClass {
       isRecording: this.isRecording,
       isPlaying: this.isPlaying,
       currentSource: this.currentSource,
-      currentUrl: this.currentUrl
+      currentUrl: this.currentUrl,
+      audioLevel: this.currentAudioLevel
     };
   }
   
@@ -106,6 +113,12 @@ class AudioManagerClass {
       return;
     }
     
+    // User-Interrupt: Wenn KAYA spricht, sofort stoppen
+    if (this.isPlaying) {
+      console.log('🛑 User unterbricht KAYA');
+      this.stopAudio();
+    }
+    
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: {
@@ -131,17 +144,48 @@ class AudioManagerClass {
         
         // Stream stoppen
         stream.getTracks().forEach(track => track.stop());
+        
+        // VAD stoppen
+        if (this.vadDetector) {
+          this.vadDetector.stop();
+          this.vadDetector = null;
+        }
       };
+      
+      // Voice Activity Detection starten
+      this.vadDetector = new VoiceActivityDetector({
+        silenceDuration: 2000, // 2 Sekunden Stille
+        threshold: -50,         // dB
+        onSilenceDetected: () => {
+          console.log('🔇 2 Sekunden Stille erkannt → Auto-Stop');
+          this.stopRecording();
+        },
+        onVoiceActivity: (level) => {
+          this.currentAudioLevel = level;
+          this.notifySubscribers();
+        }
+      });
+      
+      await this.vadDetector.start(stream);
       
       this.mediaRecorder.start(100);
       this.isRecording = true;
+      this.currentAudioLevel = 0;
       this.notifySubscribers();
       
-      console.log('🎤 Recording gestartet');
-    } catch (error) {
+      console.log('🎤 Recording gestartet mit VAD');
+    } catch (error: any) {
       console.error('❌ Recording-Fehler:', error);
       this.isRecording = false;
       this.notifySubscribers();
+      
+      // Spezifische Fehler-Handling
+      if (error.name === 'NotAllowedError') {
+        throw new Error('MICROPHONE_DENIED');
+      } else if (error.name === 'NotFoundError') {
+        throw new Error('NO_MICROPHONE');
+      }
+      
       throw error;
     }
   }
@@ -154,8 +198,15 @@ class AudioManagerClass {
       return null;
     }
     
+    // VAD stoppen
+    if (this.vadDetector) {
+      this.vadDetector.stop();
+      this.vadDetector = null;
+    }
+    
     this.mediaRecorder.stop();
     this.isRecording = false;
+    this.currentAudioLevel = 0;
     this.notifySubscribers();
     
     console.log('🛑 Recording gestoppt');

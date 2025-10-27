@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Mic, Send } from 'lucide-react';
 import { useAudioManager } from '@/hooks/useAudioManager';
 import { Message, ChatPaneProps } from '@/types';
+import { AudioWaveform } from './AudioWaveform';
 
 const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   setCaptionText,
@@ -11,6 +12,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   const [inputValue, setInputValue] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [typingMessage, setTypingMessage] = useState<{id: string, content: string, sender: string} | null>(null);
+  const [audioError, setAudioError] = useState<string | null>(null);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -29,7 +31,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
       // Stop recording & Process
       audioManager.stopRecording();
       setIsProcessing(true);
-
+      
       try {
         // Audio abrufen (from AudioManager)
         const audioBlob = audioManager.getRecordedAudio();
@@ -40,7 +42,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
 
         console.log('🎙️ Starte Audio-Chat Processing...');
 
-        // Audio-Chat Request an Backend
+        // Audio-Chat Request an Backend mit Timeout
         const formData = new FormData();
         formData.append('audio', audioBlob, 'recording.webm');
 
@@ -48,10 +50,17 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
           ? 'https://api.kaya.wattweiser.com/api/audio-chat'
           : 'http://localhost:3001/api/audio-chat';
 
+        // Timeout-Handling: 15 Sekunden
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+
         const response = await fetch(apiUrl, {
           method: 'POST',
-          body: formData
+          body: formData,
+          signal: controller.signal
         });
+
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
           throw new Error(`Audio-Chat Fehler: ${response.status}`);
@@ -103,11 +112,20 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
       }
 
     } else {
-      // Start recording
+      // Start recording mit Error-Handling
       try {
         await audioManager.startRecording();
-      } catch (err) {
-        console.error('❌ Audio-Aufnahme fehlgeschlagen:', err);
+        setAudioError(null);
+      } catch (err: any) {
+        console.error('❌ Recording-Fehler:', err);
+        
+        if (err.message === 'MICROPHONE_DENIED') {
+          setAudioError('Mikrofon-Zugriff verweigert. Bitte erlauben Sie den Zugriff.');
+        } else if (err.message === 'NO_MICROPHONE') {
+          setAudioError('Kein Mikrofon gefunden. Bitte Text-Eingabe verwenden.');
+        } else {
+          setAudioError('Audio-Fehler. Bitte Text-Eingabe verwenden.');
+        }
       }
     }
   };
@@ -235,6 +253,25 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
       aria-label="Chat Bereich" 
       className="relative w-full h-full bg-gradient-to-t from-white/95 via-white/80 to-transparent backdrop-blur-xl flex flex-col border-t-2 border-lc-primary-300/50 shadow-[0_-15px_40px_rgba(15,118,110,0.15)]"
     >
+      {/* Error-Banner */}
+      {audioError && (
+        <div className="bg-red-50 border-l-4 border-red-500 p-3 m-2 rounded">
+          <p className="text-sm text-red-700">{audioError}</p>
+          <button
+            onClick={() => setAudioError(null)}
+            className="mt-1 text-xs text-red-600 underline hover:text-red-800"
+          >
+            OK
+          </button>
+        </div>
+      )}
+
+      {/* AudioWaveform während Recording */}
+      <AudioWaveform 
+        audioLevel={audioManager.audioLevel || 0}
+        isRecording={audioManager.isRecording}
+      />
+
       {/* Chat-Messages - Scrollbar, 70% der Chat-Höhe */}
       <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
         {messages.slice(-3).map(message => (
