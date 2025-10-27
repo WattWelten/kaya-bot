@@ -12,17 +12,11 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
   setCaptionText,
   onMessageSend
 }) => {
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      content: 'Moin! Ich bin KAYA, die KI-basierte Assistenz des Landkreis Oldenburg. Wie kann ich dir helfen?',
-      sender: 'assistant',
-      timestamp: new Date()
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [expandedSources, setExpandedSources] = useState<Set<string>>(new Set());
+  const [typingMessage, setTypingMessage] = useState<{id: string, content: string, sender: string} | null>(null);
   const [sessionId] = useState(() => `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -76,24 +70,53 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // WebSocket-Nachrichten verarbeiten
+  // WebSocket-Nachrichten verarbeiten mit Typing-Animation
   useEffect(() => {
     if (lastMessage && lastMessage.type === 'response') {
-      const newMessage: Message = {
-        id: `msg_${Date.now()}`,
-        content: lastMessage.data.response || 'Antwort erhalten',
-        sender: 'assistant',
-        timestamp: new Date(),
-        metadata: lastMessage.data.metadata
-      };
+      const fullContent = lastMessage.data.response || 'Antwort erhalten';
+      const messageId = `msg_${Date.now()}`;
       
-      setMessages(prev => [...prev, newMessage]);
-      setIsProcessing(false);
+      // Typing-Animation starten
+      setTypingMessage({
+        id: messageId,
+        content: '',
+        sender: 'assistant'
+      });
       
-      // Caption-Text für Avatar setzen
-      if (lastMessage.data.audio) {
-        setCaptionText(newMessage.content);
-      }
+      // Wort-für-Wort-Typing
+      const words = fullContent.split(' ');
+      let currentIndex = 0;
+      
+      const typingInterval = setInterval(() => {
+        if (currentIndex < words.length) {
+          setTypingMessage(prev => ({
+            id: messageId,
+            content: prev ? prev.content + (prev.content ? ' ' : '') + words[currentIndex] : words[currentIndex],
+            sender: 'assistant'
+          }));
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+          
+          // Nachricht als vollständig markieren
+          const newMessage: Message = {
+            id: messageId,
+            content: fullContent,
+            sender: 'assistant',
+            timestamp: new Date(),
+            metadata: lastMessage.data.metadata
+          };
+          
+          setMessages(prev => [...prev, newMessage]);
+          setTypingMessage(null);
+          setIsProcessing(false);
+          
+          // Caption-Text für Avatar setzen
+          if (lastMessage.data.audio) {
+            setCaptionText(newMessage.content);
+          }
+        }
+      }, 50); // 50ms pro Wort für flüssige Animation
     }
   }, [lastMessage, setCaptionText]);
 
@@ -663,7 +686,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           {messages.map(message => (
             <div
               key={message.id}
-              className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} message-animate`}
+              className={`flex ${message.sender === 'user' ? 'justify-end ml-24' : 'justify-start'} message-animate`}
             >
               <div
                 className={`max-w-[85vw] sm:max-w-[60ch] md:max-w-[70ch] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 ${
@@ -679,7 +702,18 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
             </div>
           ))}
           
-          {isProcessing && (
+          {typingMessage && (
+            <div className="flex justify-start">
+              <div className="max-w-[85vw] sm:max-w-[60ch] md:max-w-[70ch] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 chat-message-assistant message-animate">
+                <div className="text-sm leading-relaxed">
+                  {renderMessageContent(typingMessage.content)}
+                  <span className="inline-block w-2 h-4 ml-1 bg-lc-primary-500 animate-pulse">▊</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {isProcessing && !typingMessage && (
             <div className="flex justify-start">
               <div className="max-w-[70ch] md:max-w-[62ch] rounded-2xl px-4 py-3 bg-lc-primary-50 border border-lc-primary-200 message-animate">
                 <div className="flex items-center gap-2">

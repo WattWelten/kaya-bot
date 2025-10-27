@@ -74,7 +74,14 @@ app.post('/chat', async (req, res) => {
         errorLogger.logPerformance('/chat', responseTime, true);
         errorLogger.logRequest(req, res, responseTime);
         
-        res.json(response);
+        // Metadata entfernen (wird nicht an Frontend gesendet)
+        const cleanResponse = {
+            response: response.response,
+            agent: response.agent,
+            cached: response.cached
+        };
+        
+        res.json(cleanResponse);
         
     } catch (error) {
         errorLogger.logError(error, { endpoint: '/chat', body: req.body });
