@@ -2,6 +2,7 @@ import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { Volume2 } from 'lucide-react';
 import { useLipSync } from '@/hooks/useLipSync';
 import { AvatarPaneProps } from '@/types';
+import { ErrorBoundary } from './ErrorBoundary';
 
 // Lazy-Load Three.js Canvas
 const AvatarCanvas = lazy(() => import('./AvatarCanvas').then(m => ({ default: m.AvatarCanvas })));
@@ -42,20 +43,22 @@ export const AvatarPane: React.FC<AvatarPaneProps> = ({
     >
       {/* Three.js Canvas */}
       <div className="absolute inset-0">
-        <Suspense fallback={
-          <div className="w-full h-full flex items-center justify-center bg-white/90">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-lc-primary-600 mx-auto mb-4"></div>
-              <p className="text-sm text-lc-neutral-600">KAYA Avatar lädt...</p>
+        <ErrorBoundary>
+          <Suspense fallback={
+            <div className="w-full h-full flex items-center justify-center bg-white/90">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-lc-primary-600 mx-auto mb-4"></div>
+                <p className="text-sm text-lc-neutral-600">KAYA Avatar lädt...</p>
+              </div>
             </div>
-          </div>
-        }>
-          <AvatarCanvas 
-            isSpeaking={isSpeaking}
-            emotion={emotion}
-            visemes={visemes}
-          />
-        </Suspense>
+          }>
+            <AvatarCanvas 
+              isSpeaking={isSpeaking}
+              emotion={emotion}
+              visemes={visemes}
+            />
+          </Suspense>
+        </ErrorBoundary>
       </div>
 
       {/* Overlay: Begrüßungstext & Controls */}

@@ -16,6 +16,12 @@ export function Avatar3D({ modelPath, isSpeaking, emotion = 'neutral', visemes }
   const { actions } = useAnimations(animations, group);
   
   const [currentAnimation, setCurrentAnimation] = useState('idle');
+  
+  // Safety check
+  if (!scene) {
+    console.error('❌ Scene not loaded');
+    return <mesh />;
+  }
 
   // Animation basierend auf Zustand
   useEffect(() => {
@@ -23,12 +29,12 @@ export function Avatar3D({ modelPath, isSpeaking, emotion = 'neutral', visemes }
       // Stop all animations first
       Object.values(actions).forEach(action => action?.stop());
       
-      if (isSpeaking) {
-        actions['speaking']?.play();
-        actions['speaking']?.setEffectiveTimeScale(1);
-      } else {
-        actions['idle']?.play();
-        actions['idle']?.setEffectiveTimeScale(1);
+      if (isSpeaking && actions['speaking']) {
+        actions['speaking'].play();
+        actions['speaking'].setEffectiveTimeScale(1);
+      } else if (actions['idle']) {
+        actions['idle'].play();
+        actions['idle'].setEffectiveTimeScale(1);
       }
     }
   }, [isSpeaking, actions]);
