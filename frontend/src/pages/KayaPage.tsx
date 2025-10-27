@@ -182,25 +182,25 @@ export default function KayaPage() {
 
       {/* Hauptbereich */}
       <main 
-        className="flex flex-col md:flex-row min-h-[calc(100svh-4rem)]"
+        className="flex flex-col-reverse md:flex-row min-h-[calc(100vh-4rem)]"
         role="main"
         aria-label="KAYA Chat-Interface"
       >
-        {/* Avatar-Bereich - Mobile OBEN */}
-        <div className="w-full md:w-2/5 lg:w-2/5 order-1 md:order-2">
+        {/* Chat - Mobile OBEN, Desktop RECHTS */}
+        <div className="w-full md:w-2/3 lg:w-3/5">
+          <ChatPane
+            setCaptionText={setCaptionText}
+            onMessageSend={handleMessageSend}
+          />
+        </div>
+
+        {/* Avatar - Mobile UNTEN (klein), Desktop LINKS */}
+        <div className="w-full md:w-1/3 lg:w-2/5 h-[20vh] md:h-auto">
           <AvatarPane
             isSpeaking={isSpeaking}
             captionText={captionText}
             setIsSpeaking={setIsSpeaking}
             onEmotionChange={handleEmotionChange}
-          />
-        </div>
-
-        {/* Chat-Bereich - Mobile UNTEN */}
-        <div className="w-full md:w-3/5 lg:w-3/5 order-2 md:order-1">
-          <ChatPane
-            setCaptionText={setCaptionText}
-            onMessageSend={handleMessageSend}
           />
         </div>
       </main>

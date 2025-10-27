@@ -15,7 +15,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: 'Moin! KAYA hier vom Landkreis Oldenburg. Womit kann ich dir direkt helfen?',
+      content: 'Moin! Ich bin KAYA, die KI-basierte Assistenz des Landkreis Oldenburg. Wie kann ich dir helfen?',
       sender: 'assistant',
       timestamp: new Date(),
       metadata: {
@@ -615,12 +615,9 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
     <section 
       id="chat-root" 
       aria-label="Chat Bereich" 
-      className="relative bg-white md:h-[calc(100svh-4rem)] h-[80svh] md:overflow-visible overflow-hidden"
+      className="relative bg-white h-[calc(100vh-4rem)] flex flex-col"
     >
-      {/* Rauslauf-Zone (letzte 20% des Viewports) */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-[20vw] max-w-[20%] bg-gradient-to-l from-white to-transparent" />
-      
-      <div className="h-full flex flex-col pr-[5vw] md:mr-[-20vw] mr-[-20%]">
+      <div className="h-full flex flex-col">
         {/* Chat-Header */}
         <div className="px-4 sm:px-6 py-3 border-b border-lc-neutral-200 bg-white/75 backdrop-blur sticky top-0 z-10">
           <div className="flex items-baseline justify-between">
@@ -636,19 +633,21 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           </div>
         </div>
 
-        {/* Top-Intents */}
-        <div className="px-4 sm:px-6 py-3 flex flex-wrap gap-2 border-b border-lc-neutral-100 bg-white/60">
-          {topIntents.map(intent => (
-            <button
-              key={intent.id}
-              className="chip-link btn-interactive"
-              aria-label={`Schnellstart ${intent.label}`}
-              data-category={intent.category}
-              onClick={() => handleSendMessage(intent.query)}
-            >
-              {intent.label}
-            </button>
-          ))}
+        {/* Top-Intents - Horizontal Scroll auf Mobile */}
+        <div className="px-3 sm:px-6 py-2 overflow-x-auto border-b border-lc-neutral-100 bg-white/60">
+          <div className="inline-flex gap-2">
+            {topIntents.map(intent => (
+              <button
+                key={intent.id}
+                className="chip-link btn-interactive text-xs sm:text-sm whitespace-nowrap"
+                aria-label={`Schnellstart ${intent.label}`}
+                data-category={intent.category}
+                onClick={() => handleSendMessage(intent.query)}
+              >
+                {intent.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Voice Status Bar - Während Aufnahme */}
@@ -656,9 +655,9 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
           <VoiceStatusBar onStop={stopVoiceRecording} />
         )}
 
-        {/* Smart Suggestions - Kontextabhängig */}
+        {/* Smart Suggestions - Nur auf Tablet/Desktop */}
         {messages.length >= 2 && (
-          <div className="px-4 sm:px-6 py-2 border-b border-lc-primary-100 bg-lc-primary-50/50">
+          <div className="hidden sm:block px-4 sm:px-6 py-2 border-b border-lc-primary-100 bg-lc-primary-50/50">
             <p className="text-xs text-lc-neutral-600 mb-2">Schnell-Aktionen:</p>
             <div className="flex flex-wrap gap-2">
               {smartSuggestions.map((suggestion, index) => (
@@ -690,14 +689,14 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
         )}
 
         {/* Nachrichten-Liste */}
-        <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 space-y-4">
+        <div className="flex-1 overflow-y-auto px-3 sm:px-6 py-4 space-y-4">
           {messages.map(message => (
             <div
               key={message.id}
               className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} message-animate`}
             >
               <div
-                className={`max-w-[70ch] md:max-w-[62ch] rounded-2xl px-5 py-4 ${
+                className={`max-w-[85vw] sm:max-w-[60ch] md:max-w-[70ch] rounded-2xl px-4 sm:px-5 py-3 sm:py-4 ${
                   message.sender === 'user'
                     ? 'chat-message-user'
                     : 'chat-message-assistant'
@@ -729,24 +728,22 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
         </div>
 
         {/* Nachrichten-Eingabe */}
-        <div className="px-4 sm:px-6 py-4 border-t border-lc-neutral-200 bg-white/90 backdrop-blur sticky bottom-0">
+        <div className="px-3 sm:px-6 py-2 sm:py-4 border-t border-lc-neutral-200 bg-white/90 backdrop-blur sticky bottom-0">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleSendMessage(inputValue);
             }}
-            className="flex items-end gap-2"
+            className="flex items-center gap-1 sm:gap-2"
             aria-label="Nachricht verfassen"
           >
-            {/* Voice-Button - One-Click Full-Dialog */}
-            <div className="flex flex-col items-center">
-              <VoiceButton
-                voiceState={voiceState}
-                error={voiceError}
-                onStart={startVoiceDialog}
-                onStop={stopVoiceRecording}
-              />
-            </div>
+            {/* Voice-Button - Compact auf Mobile */}
+            <VoiceButton
+              voiceState={voiceState}
+              error={voiceError}
+              onStart={startVoiceDialog}
+              onStop={stopVoiceRecording}
+            />
 
             {/* Textarea */}
             <label className="sr-only" htmlFor="message">
@@ -759,13 +756,13 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
               onChange={handleTextareaChange}
               onKeyPress={handleKeyPress}
               rows={1}
-              placeholder="Fragen Sie z. B.: 'KFZ ummelden – welche Unterlagen?'"
-              className="flex-1 resize-none rounded-2xl px-4 py-2 message-input"
+              placeholder="Deine Frage..."
+              className="flex-1 text-sm sm:text-base resize-none rounded-2xl px-4 py-2 message-input"
               disabled={isProcessing}
             />
 
             {/* Action-Buttons */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               {/* Hidden File Input */}
               <input
                 ref={fileInputRef}
@@ -776,25 +773,25 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
               />
               <button
                 type="button"
-                className="btn-ghost"
+                className="btn-ghost p-2"
                 aria-label="Datei anhängen"
                 onClick={() => fileInputRef.current?.click()}
               >
-                <Paperclip className="size-5" />
+                <Paperclip className="size-4 sm:size-5" />
               </button>
               <button
                 type="submit"
-                className="btn-solid"
+                className="btn-solid p-2"
                 aria-label="Senden"
                 disabled={!inputValue.trim() || isProcessing}
               >
-                <Send className="size-5" />
+                <Send className="size-4 sm:size-5" />
               </button>
             </div>
           </form>
 
-          {/* Hinweis-Text */}
-          <p className="mt-2 text-[11px] text-lc-neutral-600">
+          {/* Hinweis-Text - Nur Desktop */}
+          <p className="hidden md:block mt-2 text-xs text-lc-neutral-600">
             Hinweis: KAYA nutzt öffentliche Informationen des Landkreises Oldenburg. 
             Keine Rechtsberatung – Notfälle: 112 / 110.
           </p>
