@@ -233,7 +233,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
     <section 
       id="chat-root" 
       aria-label="Chat Bereich" 
-      className="relative w-full h-full bg-white/98 backdrop-blur-xl flex flex-col border-t-2 border-lc-primary-300 shadow-[0_-15px_40px_rgba(15,118,110,0.15)]"
+      className="relative w-full h-full bg-gradient-to-t from-white/95 via-white/80 to-transparent backdrop-blur-xl flex flex-col border-t-2 border-lc-primary-300/50 shadow-[0_-15px_40px_rgba(15,118,110,0.15)]"
     >
       {/* Chat-Messages - Scrollbar, 70% der Chat-Höhe */}
       <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">

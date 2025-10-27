@@ -245,22 +245,24 @@ export default function KayaPage() {
         role="main"
         aria-label="KAYA Chat-Interface"
       >
-        {/* Avatar - 70% */}
-        <div className="flex-[0.7] relative">
+        {/* Avatar - 90svh (Vollbild) */}
+        <div className="flex-1 relative">
           <AvatarPane
             isSpeaking={isSpeaking}
             captionText={captionText}
             setIsSpeaking={setIsSpeaking}
             onEmotionChange={handleEmotionChange}
           />
-        </div>
-
-        {/* Chat Overlay - 20% (untere 20svh) */}
-        <div className="h-[20svh] flex-shrink-0 relative z-10">
-          <ChatPane
-            setCaptionText={setCaptionText}
-            onMessageSend={handleMessageSend}
-          />
+          
+          {/* Chat Overlay - Transparent über untere 20% des Avatars, absolutes Positioning */}
+          <div className="absolute bottom-0 left-0 right-0 h-[20svh] z-10 pointer-events-none">
+            <div className="relative w-full h-full pointer-events-auto">
+              <ChatPane
+                setCaptionText={setCaptionText}
+                onMessageSend={handleMessageSend}
+              />
+            </div>
+          </div>
         </div>
       </main>
 

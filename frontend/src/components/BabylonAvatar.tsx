@@ -78,7 +78,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
       
       if (skinned) {
         meshRef.current = skinned;
-        skinned.position.y = -2.8; // Tiefer positioniert (Beine nicht sichtbar)
+        skinned.position.y = -3.5; // Noch tiefer (nur Oberkörper + Kopf)
         skinned.scaling = new BABYLON.Vector3(4.5, 4.5, 4.5); // 3x größer
         
         const mtm = (skinned as any).morphTargetManager as BABYLON.MorphTargetManager | undefined;
@@ -148,7 +148,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', visemes }: Baby
     const animate = () => {
       if (!meshRef.current || isSpeaking) return;
       const elapsed = (Date.now() - startTime) / 1000;
-      meshRef.current.position.y = -2.8 + Math.sin(elapsed * 0.5) * 0.02; // Idle-Animation bei -2.8
+      meshRef.current.position.y = -3.5 + Math.sin(elapsed * 0.5) * 0.02; // Idle-Animation bei -3.5
       requestAnimationFrame(animate);
     };
     const animationId = requestAnimationFrame(animate);
