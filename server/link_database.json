@@ -20,6 +20,12 @@
   },
   "meldewesen": {},
   "ausweis": {},
+  "buergerdienste": {
+    "main": {
+      "url": "https://www.kommune365.de/landkreis-oldenburg",
+      "title": "Online-Kreishaus"
+    }
+  },
   "jugend": {
     "main": {
       "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/ausbildungsfoerderung/",
