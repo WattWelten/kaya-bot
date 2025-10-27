@@ -587,16 +587,6 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
                 <div className="text-sm leading-relaxed">
                   {renderMessageContent(message.content)}
                 </div>
-                {message.metadata && (
-                  <div className="mt-2 text-xs opacity-70">
-                    {message.metadata.emotion && (
-                      <span className="mr-2">Emotion: {message.metadata.emotion}</span>
-                    )}
-                    {message.metadata.urgency && (
-                      <span>Dringlichkeit: {message.metadata.urgency}</span>
-                    )}
-                  </div>
-                )}
               </div>
             </div>
           ))}
