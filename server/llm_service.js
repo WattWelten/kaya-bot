@@ -1,4 +1,6 @@
 const axios = require('axios');
+const http = require('http');
+const https = require('https');
 const costTracker = require('./services/cost_tracker');
 
 /**
@@ -16,6 +18,21 @@ class LLMService {
         this.maxTokens = 70; // Für kurze, menschliche Antworten (30-50 Wörter)
         this.temperature = 0.85; // Etwas kreativer für mehr Persönlichkeit
         
+        // Connection Pooling für bessere Performance
+        this.httpAgent = new http.Agent({
+            keepAlive: true,
+            maxSockets: 50,
+            maxFreeSockets: 10,
+            timeout: 8000
+        });
+        
+        this.httpsAgent = new https.Agent({
+            keepAlive: true,
+            maxSockets: 50,
+            maxFreeSockets: 10,
+            timeout: 8000
+        });
+        
         // Circuit Breaker für Fehlerbehandlung
         this.circuitBreaker = {
             isOpen: false,
@@ -24,7 +41,7 @@ class LLMService {
             timeout: 30000 // 30 Sekunden (optimiert)
         };
         
-        console.log('🤖 LLM Service initialisiert (OpenAI aktiviert)');
+        console.log('🤖 LLM Service initialisiert (OpenAI aktiviert mit Connection Pooling)');
     }
     
     /**
@@ -66,7 +83,9 @@ class LLMService {
                         'Content-Type': 'application/json'
                     },
                     timeout: 8000,
-                    responseType: 'stream' // Wichtig für Streaming!
+                    responseType: 'stream', // Wichtig für Streaming!
+                    httpsAgent: this.httpsAgent, // Connection Pooling
+                    httpAgent: this.httpAgent
                 }
             );
             
@@ -120,7 +139,9 @@ class LLMService {
                         'Authorization': `Bearer ${this.openaiApiKey}`,
                         'Content-Type': 'application/json'
                     },
-                    timeout: 8000 // 8 Sekunden Timeout (optimiert)
+                    timeout: 8000, // 8 Sekunden Timeout (optimiert)
+                    httpsAgent: this.httpsAgent, // Connection Pooling
+                    httpAgent: this.httpAgent
                 }
             );
             

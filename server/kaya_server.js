@@ -3,6 +3,7 @@ const express = require('express');
 const http = require('http');
 const WebSocket = require('ws');
 const cors = require('cors');
+const compression = require('compression');
 const path = require('path');
 const KAYACharacterHandler = require('./kaya_character_handler_v2');
 const KAYAAgentHandler = require('./kaya_agent_manager_v2');
@@ -17,6 +18,17 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
+app.use(compression({
+  level: 6, // Kompressions-Level (1-9, 6 = gute Balance)
+  threshold: 1024, // Nur Dateien >1KB komprimieren
+  filter: (req, res) => {
+    // Komprimiere alle Responses außer SSE-Streams
+    if (req.headers.accept && req.headers.accept.includes('text/event-stream')) {
+      return false;
+    }
+    return compression.filter(req, res);
+  }
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../frontend')));
 
@@ -412,8 +424,16 @@ app.get('/', (req, res) => {
 // HTTP Server erstellen
 const server = http.createServer(app);
 
-// WebSocket Server
-const wss = new WebSocket.Server({ server, path: '/ws' });
+// WebSocket Server - OPTIMIERT
+const wss = new WebSocket.Server({ 
+    server, 
+    path: '/ws',
+    perMessageDeflate: true, // Kompression aktivieren
+    clientTracking: true, // Client-Tracking für Monitoring
+    maxPayload: 100 * 1024, // 100KB max
+    keepalive: true,
+    keepaliveInterval: 30000 // 30 Sekunden
+});
 
 wss.on('connection', (ws, req) => {
     const url = new URL(req.url, `http://${req.headers.host}`);
