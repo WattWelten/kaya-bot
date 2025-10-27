@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useGLTF, useAnimations } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface Avatar3DProps {
@@ -14,13 +14,10 @@ export function Avatar3D({ modelPath, isSpeaking, emotion = 'neutral', visemes }
   const group = useRef<THREE.Group>(null);
   const gltf = useGLTF(modelPath);
   
-  // Fallback für fehlende Animationen (verhindert undefined-Fehler)
-  const animations = gltf.animations || [];
   const scene = gltf.scene;
+  const animations = gltf.animations || [];
   
-  const { actions } = useAnimations(animations, group);
-  
-  const [currentAnimation, setCurrentAnimation] = useState('idle');
+  console.log(`📦 Avatar3D geladen: ${animations.length} Animationen gefunden`);
   
   // Safety check
   if (!scene) {
@@ -28,21 +25,8 @@ export function Avatar3D({ modelPath, isSpeaking, emotion = 'neutral', visemes }
     return <mesh />;
   }
 
-  // Animation basierend auf Zustand
-  useEffect(() => {
-    if (actions) {
-      // Stop all animations first
-      Object.values(actions).forEach(action => action?.stop());
-      
-      if (isSpeaking && actions['speaking']) {
-        actions['speaking'].play();
-        actions['speaking'].setEffectiveTimeScale(1);
-      } else if (actions['idle']) {
-        actions['idle'].play();
-        actions['idle'].setEffectiveTimeScale(1);
-      }
-    }
-  }, [isSpeaking, actions]);
+  // ⚠️ KEINE useAnimations() - GLB hat keine Animationen!
+  // Avatar verwendet stattdessen Morph Targets für Lipsync
 
   // Lippensynchronisation (Morph Targets)
   useEffect(() => {
@@ -72,7 +56,3 @@ export function Avatar3D({ modelPath, isSpeaking, emotion = 'neutral', visemes }
     </group>
   );
 }
-
-// Preload GLB für schnelleres Laden
-useGLTF.preload('/avatar/kaya.glb');
-

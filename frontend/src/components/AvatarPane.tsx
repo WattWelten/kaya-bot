@@ -3,6 +3,7 @@ import { Volume2 } from 'lucide-react';
 import { useLipSync } from '@/hooks/useLipSync';
 import { AvatarPaneProps } from '@/types';
 import { ErrorBoundary } from './ErrorBoundary';
+import { useGLTF } from '@react-three/drei';
 
 // Lazy-Load Three.js Canvas
 const AvatarCanvas = lazy(() => import('./AvatarCanvas').then(m => ({ default: m.AvatarCanvas })));
@@ -103,3 +104,6 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
 // Performance: AvatarPane mit memo + useCallback optimiert
 export const AvatarPane = React.memo(AvatarPaneComponent);
 AvatarPane.displayName = 'AvatarPane';
+
+// Preload GLB für schnelleres Laden (wird beim Import ausgeführt)
+useGLTF.preload('/avatar/kaya.glb');

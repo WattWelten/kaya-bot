@@ -2,11 +2,22 @@ import React, { Suspense, memo, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, PerspectiveCamera } from '@react-three/drei';
 import { Avatar3D } from './Avatar3D';
+import * as THREE from 'three';
 
 interface AvatarCanvasProps {
   isSpeaking: boolean;
   emotion?: 'neutral' | 'happy' | 'concerned' | 'speaking';
   visemes?: number[];
+}
+
+// Loading Fallback für GLB Loading
+function AvatarLoadingFallback() {
+  return (
+    <mesh position={[0, 0, 0]}>
+      <boxGeometry args={[1, 2, 0.5]} />
+      <meshStandardMaterial color="#0066cc" />
+    </mesh>
+  );
 }
 
 function AvatarCanvasComponent({ isSpeaking, emotion, visemes }: AvatarCanvasProps) {
@@ -35,7 +46,7 @@ function AvatarCanvasComponent({ isSpeaking, emotion, visemes }: AvatarCanvasPro
         dpr={dpr}
         shadows={!isMobile} // Schatten nur auf Desktop
       >
-        <Suspense fallback={null}>
+        <Suspense fallback={<AvatarLoadingFallback />}>
           {/* Beleuchtung */}
           <ambientLight intensity={0.5} />
           
