@@ -659,7 +659,7 @@ export const ChatPane: React.FC<ChatPaneProps> = ({
         )}
 
         {/* Nachrichten-Liste */}
-        <div className="flex-1 overflow-y-auto px-3 sm:px-6 py-4 space-y-4">
+        <div className="flex-1 overflow-y-auto px-3 sm:px-6 py-4 space-y-6">
           {messages.map(message => (
             <div
               key={message.id}
