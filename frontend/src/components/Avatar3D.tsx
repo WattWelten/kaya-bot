@@ -12,7 +12,12 @@ interface Avatar3DProps {
 
 export function Avatar3D({ modelPath, isSpeaking, emotion = 'neutral', visemes }: Avatar3DProps) {
   const group = useRef<THREE.Group>(null);
-  const { scene, animations } = useGLTF(modelPath);
+  const gltf = useGLTF(modelPath);
+  
+  // Fallback für fehlende Animationen (verhindert undefined-Fehler)
+  const animations = gltf.animations || [];
+  const scene = gltf.scene;
+  
   const { actions } = useAnimations(animations, group);
   
   const [currentAnimation, setCurrentAnimation] = useState('idle');
