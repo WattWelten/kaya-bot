@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, memo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, PerspectiveCamera } from '@react-three/drei';
 import { Avatar3D } from './Avatar3D';
@@ -9,7 +9,7 @@ interface AvatarCanvasProps {
   visemes?: number[];
 }
 
-export function AvatarCanvas({ isSpeaking, emotion, visemes }: AvatarCanvasProps) {
+function AvatarCanvasComponent({ isSpeaking, emotion, visemes }: AvatarCanvasProps) {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   
   return (
@@ -55,3 +55,6 @@ export function AvatarCanvas({ isSpeaking, emotion, visemes }: AvatarCanvasProps
   );
 }
 
+// Performance: AvatarCanvas mit memo (Three.js re-renders sind teuer)
+export const AvatarCanvas = memo(AvatarCanvasComponent);
+AvatarCanvas.displayName = 'AvatarCanvas';

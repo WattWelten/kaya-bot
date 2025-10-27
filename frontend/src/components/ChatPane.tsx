@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo, memo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, memo, useCallback } from 'react';
 import { Mic, Paperclip, Send, Volume2 } from 'lucide-react';
 import { useWebSocket } from '@/hooks/useWebSocket';
 import { useAudio } from '@/hooks/useAudio';
@@ -8,7 +8,7 @@ import { VoiceStatusBar } from './VoiceStatusBar';
 import { Message, ChatPaneProps } from '@/types';
 import { getAudioService } from '@/services/AudioService';
 
-export const ChatPane: React.FC<ChatPaneProps> = ({
+const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   setCaptionText,
   onMessageSend
 }) => {
@@ -889,3 +889,7 @@ const MessageBubble = memo(({ message, expandedSources, onToggleSource }: {
 });
 
 MessageBubble.displayName = 'MessageBubble';
+
+// Performance: ChatPane mit memo wrappen
+export const ChatPane = React.memo(ChatPaneComponent);
+ChatPane.displayName = 'ChatPane';
