@@ -1,3 +1,5 @@
+import { VisemeSegment } from './LipsyncEngine';
+
 type VisemeEvent = { t: number; id: string; w?: number };
 
 export async function ttsWithVisemes(text: string, voice = "kaya") {
@@ -21,17 +23,27 @@ export async function ttsWithVisemes(text: string, voice = "kaya") {
   };
 
   const audioData = Uint8Array.from(atob(audio_base64), c => c.charCodeAt(0)).buffer;
-  return { audioData, visemes: visemes ?? [] };
+  
+  // Konvertiere Backend-Format zu LipsyncEngine-Format
+  const segments: VisemeSegment[] = (visemes ?? []).map((v, i, arr) => ({
+    phoneme: v.id,
+    viseme: v.id,
+    start: v.t,
+    end: arr[i + 1]?.t ?? v.t + 0.1,
+    weight: v.w ?? 1.0
+  }));
+  
+  return { audioData, segments };
 }
 
 let audioCtx: AudioContext | null = null;
 let playingSource: AudioBufferSourceNode | null = null;
 
 export async function speak(text: string, lipsyncEngine: any) {
-  const { audioData, visemes } = await ttsWithVisemes(text, "kaya");
+  const { audioData, segments } = await ttsWithVisemes(text, "kaya");
 
   // Guard: nur sprechen, wenn Audio existiert
-  if (!audioData || (visemes && !visemes.length)) {
+  if (!audioData || !segments || segments.length === 0) {
     console.debug("[speak] timeline empty or audio missing – skip");
     return;
   }
@@ -46,11 +58,9 @@ export async function speak(text: string, lipsyncEngine: any) {
   playingSource.buffer = buf;
   playingSource.connect(audioCtx.destination);
 
-  // Visemes an Lipsync-Engine binden
-  if (visemes?.length) {
-    lipsyncEngine.setTimeline(visemes);
-    lipsyncEngine.bindClock(() => audioCtx!.currentTime);
-    lipsyncEngine.start();
+  // Lipsync starten (LipsyncEngine nutzt Date.now() intern)
+  if (segments.length > 0) {
+    lipsyncEngine.start(segments);
   }
 
   playingSource.onended = () => {

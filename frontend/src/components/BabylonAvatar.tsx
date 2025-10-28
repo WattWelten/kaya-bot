@@ -275,11 +275,8 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
         const { pivot } = normalizePivotAndForward(skinned);
         meshRef.current = skinned;
         
-        // 2) Zusätzliche reale Drehung ~45° nach rechts am Pivot
-        pivot.rotation.y += BABYLON.Tools.ToRadians(DIAL.yawDeg);
-
-        // 3) Portrait-Framing (yawDeg bereits am Pivot angewandt → im Frame 0 setzen)
-        framePortrait(scene, pivot, camera, { ...DIAL, yawDeg: 0 });
+        // 2) Portrait-Framing (yawDeg wird in framePortrait auf alpha addiert)
+        framePortrait(scene, pivot, camera, DIAL);
         
         // 4) Morph Targets + Engines initialisieren
         const mtm = (skinned as any).morphTargetManager as BABYLON.MorphTargetManager | undefined;
@@ -312,7 +309,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
         // 5) Resize-Handler mit Reframing
         const onResize = () => {
           engine.resize();
-          framePortrait(scene, pivot, camera, { ...DIAL, yawDeg: 0 });
+          framePortrait(scene, pivot, camera, DIAL);
         };
         window.addEventListener('resize', onResize);
         
