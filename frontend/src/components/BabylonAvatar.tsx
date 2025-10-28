@@ -17,6 +17,11 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingFailed, setLoadingFailed] = useState(false);
   const engineRef = useRef<BABYLON.Engine | null>(null);
+  
+  // DEBUG: Component Mount
+  console.log('🎨 BabylonAvatar Component mounted');
+  console.log('🎨 Initial isLoading:', isLoading);
+  console.log('🎨 isSpeaking:', isSpeaking);
   const sceneRef = useRef<BABYLON.Scene | null>(null);
   const meshRef = useRef<BABYLON.AbstractMesh | null>(null);
   const morphTargetManagerRef = useRef<BABYLON.MorphTargetManager | null>(null);
@@ -63,18 +68,31 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
 
   // Timeout für Loading (nur beim Mount, nicht bei jedem isLoading-Update)
   useEffect(() => {
+    console.log('🎨 Timeout useEffect läuft - Timeout in 10s');
     const timeout = setTimeout(() => {
-      console.warn('⚠️ Avatar Loading Timeout (10s)');
+      console.warn('⚠️ Avatar Loading Timeout (10s) - Zeige Fallback');
       setIsLoading(false);
       setLoadingProgress(0);
       setLoadingFailed(true);
     }, 10000); // 10 Sekunden
     
-    return () => clearTimeout(timeout);
+    return () => {
+      console.log('🎨 Timeout useEffect Cleanup');
+      clearTimeout(timeout);
+    };
   }, []); // ← Leere Dependency: Timeout wird nur beim Mount gesetzt
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    console.log('🎨 Babylon useEffect läuft');
+    console.log('🎨 Canvas Ref:', canvasRef.current);
+    console.log('🎨 isMobile:', isMobile);
+    
+    if (!canvasRef.current) {
+      console.warn('⚠️ Canvas Ref ist NULL! Babylon.js kann nicht starten');
+      return;
+    }
+    
+    console.log('✅ Canvas Ref vorhanden, starte Babylon.js Engine');
 
     // Engine Setup mit Mobile Optimization
     const engine = new BABYLON.Engine(canvasRef.current, true, {
@@ -123,7 +141,9 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     glowLayerRef.current = glowLayer;
 
     // Load GLB Model mit SceneLoader.Append (korrekt für Morph Targets)
+    console.log('📦 Starte GLB-Loading: /avatar/Kayanew-draco.glb');
     BABYLON.SceneLoader.Append('/avatar/', 'Kayanew-draco.glb', scene, () => {
+      console.log('✅ GLB erfolgreich geladen!');
       setIsLoading(false);
       // Skinned Mesh mit MorphTargets finden
       const skinned = scene.meshes.find(m => (m as any).morphTargetManager) as BABYLON.AbstractMesh;
