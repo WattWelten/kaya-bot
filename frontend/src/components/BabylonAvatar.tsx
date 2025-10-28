@@ -47,6 +47,19 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     );
   }
 
+  // Timeout für Loading
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        console.warn('⚠️ Avatar Loading Timeout (10s)');
+        setIsLoading(false);
+        setLoadingProgress(0);
+      }
+    }, 10000); // 10 Sekunden
+    
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
+
   useEffect(() => {
     if (!canvasRef.current) return;
 
@@ -128,8 +141,10 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
         setLoadingProgress(percent);
         console.log(`📦 Loading GLB: ${percent}%`);
       }
-    }, (scene, message) => {
-      console.error('❌ GLB Loading Fehler:', message);
+    }, (scene, message, exception) => {
+      console.error('❌ GLB Loading Fehler:', message, exception);
+      setIsLoading(false); // WICHTIG: Loading beenden bei Fehler
+      setLoadingProgress(0);
     });
 
     // Render Loop

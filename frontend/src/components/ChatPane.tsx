@@ -228,7 +228,8 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   // Markdown-Links in HTML umwandeln
   const renderMessageContent = (content: string) => {
     // Markdown-Links: [Text](URL) → <a href="URL">Text</a>
-    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    // Stoppt bei \n um über-Zeilenumbrüche zu verhindern
+    const linkRegex = /\[([^\]\n]+)\]\(([^)\n]+)\)/g;
     const parts: (string | JSX.Element)[] = [];
     let lastIndex = 0;
     let match;

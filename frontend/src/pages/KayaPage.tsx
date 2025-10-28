@@ -94,6 +94,10 @@ export default function KayaPage() {
         // Connection-Feedback: WebSocket ist bereit
         break;
 
+      case 'heartbeat':
+        // Heartbeat ignorieren (Keep-Alive vom Server)
+        break;
+
       case 'emotion':
         if (lastMessage.data.emotion && lastMessage.data.confidence !== undefined) {
           setCurrentEmotion(lastMessage.data.emotion);
