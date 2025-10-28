@@ -116,7 +116,7 @@ function limitInteraction(cam: BABYLON.ArcRotateCamera, dial = DIAL) {
   cam.upperAlphaLimit = BABYLON.Tools.ToRadians(25);
 }
 
-export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfidence = 50, visemeTimeline }: BabylonAvatarProps) {
+function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfidence = 50, visemeTimeline }: BabylonAvatarProps) {
   // ===== ALLE HOOKS ZUERST (React Rules of Hooks) =====
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -452,8 +452,14 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
       
       const t = performance.now() / 1000;
       const baseYaw = BABYLON.Tools.ToRadians(DIAL.yawDeg);
-      const microYaw = Math.sin(t * 0.33) * BABYLON.Tools.ToRadians(0.6);
-      const microPitch = Math.sin(t * 0.27) * BABYLON.Tools.ToRadians(0.4);
+      
+      // Intensivere Bewegung während isSpeaking
+      const intensity = isSpeaking ? 3.0 : 1.0;
+      const headNod = isSpeaking ? Math.sin(t * 2) * BABYLON.Tools.ToRadians(0.3) : 0;
+      
+      const microYaw = Math.sin(t * 0.33) * BABYLON.Tools.ToRadians(0.6 * intensity);
+      const microPitch = headNod + Math.sin(t * 0.27) * BABYLON.Tools.ToRadians(0.4 * intensity);
+      
       pivotNode.rotation.y = baseYaw + microYaw;
       pivotNode.rotation.x = microPitch;
     });
@@ -461,7 +467,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     return () => {
       scene.onBeforeRenderObservable.remove(obs);
     };
-  }, []);
+  }, [isSpeaking]);
 
   // Emotion: Avatar-Mimik + Glow anpassen
   useEffect(() => {
@@ -525,4 +531,18 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     </div>
   );
 }
+
+// Wrap with React.memo to prevent infinite re-renders
+export const BabylonAvatar = React.memo(
+  BabylonAvatarComponent,
+  (prev, next) => {
+    // Only re-render if critical props changed
+    return (
+      prev.isSpeaking === next.isSpeaking &&
+      prev.emotion === next.emotion &&
+      prev.emotionConfidence === next.emotionConfidence &&
+      prev.visemeTimeline === next.visemeTimeline
+    );
+  }
+);
 

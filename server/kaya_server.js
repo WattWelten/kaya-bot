@@ -329,6 +329,9 @@ app.post('/api/audio-chat', upload.single('audio'), async (req, res) => {
             transcription: text,
             response: response.response,
             audioUrl: audioUrl,
+            emotion: response.emotion,
+            emotionConfidence: response.emotionConfidence,
+            visemeTimeline: visemeTimeline,
             metadata: {
                 latency: responseTime,
                 hasAudio: !!audioUrl
