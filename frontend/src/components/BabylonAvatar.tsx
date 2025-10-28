@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as BABYLON from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 import { LipsyncEngine, VisemeSegment } from '../services/LipsyncEngine';
@@ -13,6 +13,8 @@ interface BabylonAvatarProps {
 
 export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfidence = 50, visemeTimeline }: BabylonAvatarProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const engineRef = useRef<BABYLON.Engine | null>(null);
   const sceneRef = useRef<BABYLON.Scene | null>(null);
   const meshRef = useRef<BABYLON.AbstractMesh | null>(null);
@@ -26,6 +28,24 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     window.innerWidth < 768 ||
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
   );
+
+  // Loading Placeholder
+  if (isLoading) {
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-lc-primary-50 to-lc-accent-50">
+        <div className="text-center">
+          <div className="relative w-20 h-20 mx-auto mb-4">
+            <div className="absolute inset-0 border-4 border-lc-primary-200 rounded-full" />
+            <div className="absolute inset-0 border-4 border-lc-primary-500 border-t-transparent rounded-full animate-spin" />
+          </div>
+          <p className="text-lg font-medium text-lc-neutral-700">KAYA lädt...</p>
+          {loadingProgress > 0 && loadingProgress < 100 && (
+            <p className="text-sm text-lc-neutral-500 mt-2">{loadingProgress}%</p>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -77,7 +97,8 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     glowLayerRef.current = glowLayer;
 
     // Load GLB Model mit SceneLoader.Append (korrekt für Morph Targets)
-    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew.glb', scene, () => {
+    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew-draco.glb', scene, () => {
+      setIsLoading(false);
       // Skinned Mesh mit MorphTargets finden
       const skinned = scene.meshes.find(m => (m as any).morphTargetManager) as BABYLON.AbstractMesh;
       
@@ -103,8 +124,9 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
       }
     }, (progressEvent) => {
       if (progressEvent.loaded && progressEvent.total) {
-        const percent = (progressEvent.loaded / progressEvent.total) * 100;
-        console.log(`📦 Loading GLB: ${Math.round(percent)}%`);
+        const percent = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+        setLoadingProgress(percent);
+        console.log(`📦 Loading GLB: ${percent}%`);
       }
     }, (scene, message) => {
       console.error('❌ GLB Loading Fehler:', message);
