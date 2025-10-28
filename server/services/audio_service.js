@@ -30,11 +30,13 @@ class AudioService extends EventEmitter {
         this.config = {
             elevenlabsApiUrl: 'https://api.elevenlabs.io/v1',
             openaiApiUrl: 'https://api.openai.com/v1/audio/transcriptions',
-            defaultVoice: 'Dana', // Persönliche Stimme für KAYA
+            defaultVoice: 'Dana', // Persönliche Stimme für KAYA (wird von ENV überschrieben)
             fallbackVoice: 'Bella', // Warm, empathisch
-            modelId: 'eleven_turbo_v2', // Niedrige Latenz (~300ms)
-            stability: 0.5,
-            similarityBoost: 0.75,
+            modelId: process.env.ELEVENLABS_MODEL_ID || 'eleven_multilingual_v2',
+            stability: parseFloat(process.env.ELEVENLABS_STABILITY || '0.40'),
+            similarityBoost: parseFloat(process.env.ELEVENLABS_SIMILARITY || '0.85'),
+            style: parseFloat(process.env.ELEVENLABS_STYLE || '0.15'),
+            speakerBoost: String(process.env.ELEVENLABS_SPEAKER_BOOST || 'true') === 'true',
             whisperModel: 'whisper-1'
         };
         
@@ -260,7 +262,9 @@ class AudioService extends EventEmitter {
                     model_id: this.config.modelId,
                     voice_settings: {
                         stability: options.stability || this.config.stability,
-                        similarity_boost: options.similarityBoost || this.config.similarityBoost
+                        similarity_boost: options.similarityBoost || this.config.similarityBoost,
+                        style: options.style || this.config.style,
+                        use_speaker_boost: typeof options.useSpeakerBoost === 'boolean' ? options.useSpeakerBoost : this.config.speakerBoost
                     }
                 },
                 {
@@ -340,6 +344,10 @@ class AudioService extends EventEmitter {
      * Helper: Default Voice ID
      */
     getDefaultVoiceId() {
+        // ENV hat Vorrang (z.B. Elena)
+        if (process.env.ELEVENLABS_VOICE_ID) {
+            return process.env.ELEVENLABS_VOICE_ID;
+        }
         // ElevenLabs Voice IDs
         const voices = {
             'Dana': 'otF9rqKzRHFgfwf6serQ', // Persönliche KAYA-Stimme
