@@ -345,6 +345,65 @@ app.post('/api/audio-chat', upload.single('audio'), async (req, res) => {
     }
 });
 
+// Text-Chat Endpoint
+app.post('/api/chat', async (req, res) => {
+    const startTime = Date.now();
+    
+    try {
+        const { message, sessionId } = req.body;
+        
+        if (!message || !message.trim()) {
+            return res.status(400).json({ error: 'Nachricht erforderlich' });
+        }
+        
+        console.log(`💬 Text-Chat Request: "${message}"`);
+        
+        // KAYA Response generieren
+        const response = await kayaHandler.generateResponse(message, message, sessionId || 'default');
+        
+        console.log(`✅ KAYA Antwort: "${response.response.substring(0, 50)}..."`);
+        
+        // WebSocket Events senden (Emotion)
+        try {
+            if (response.emotion && response.emotionConfidence) {
+                websocketService.sendToSession(sessionId, {
+                    type: 'emotion',
+                    data: {
+                        emotion: response.emotion,
+                        confidence: response.emotionConfidence,
+                        timestamp: new Date().toISOString()
+                    }
+                });
+                console.log(`😊 Emotion gesendet: ${response.emotion} (${response.emotionConfidence}%)`);
+            }
+        } catch (wsError) {
+            console.warn('⚠️ WebSocket Event fehlgeschlagen:', wsError.message);
+        }
+        
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/api/chat', responseTime, true);
+        
+        res.json({
+            response: response.response,
+            metadata: {
+                latency: responseTime
+            }
+        });
+        
+    } catch (error) {
+        console.error('❌ Text-Chat Fehler:', error);
+        errorLogger.logError(error, { endpoint: '/api/chat' });
+        
+        const responseTime = Date.now() - startTime;
+        errorLogger.logPerformance('/api/chat', responseTime, false, error);
+        
+        res.status(500).json({ 
+            error: 'Chat fehlgeschlagen',
+            details: error.message 
+        });
+    }
+});
+
 // KAYA-Info-Endpoint
 app.get('/kaya/info', (req, res) => {
     res.json({

@@ -29,12 +29,11 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   const handleAudioToggle = async () => {
     if (audioManager.isRecording) {
       // Stop recording & Process
-      audioManager.stopRecording();
       setIsProcessing(true);
       
       try {
-        // Audio abrufen (from AudioManager)
-        const audioBlob = audioManager.getRecordedAudio();
+        // Audio abrufen (await für korrektes Timing)
+        const audioBlob = await audioManager.stopRecording();
         
         if (!audioBlob) {
           throw new Error('Kein Audio vorhanden');
@@ -161,21 +160,66 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   const handleSendMessage = async (text: string) => {
     if (!text.trim() || isProcessing) return;
     
+    setIsProcessing(true);
+    setInputValue('');
+    
+    // User-Message
     const userMessage: Message = {
-      id: `user_${Date.now()}`,
+      id: `msg_${Date.now()}`,
       content: text,
       sender: 'user',
       timestamp: new Date()
     };
     
     setMessages(prev => [...prev, userMessage]);
-    setInputValue('');
-    setIsProcessing(true);
     
     try {
-      await onMessageSend?.(text);
+      // Backend-Request
+      const apiUrl = process.env.NODE_ENV === 'production' 
+        ? 'https://api.kaya.wattweiser.com/api/chat'
+        : 'http://localhost:3001/api/chat';
+
+      const sessionId = localStorage.getItem('kaya-session-id') || 
+                        'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('kaya-session-id', sessionId);
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, sessionId })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Chat Fehler: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('✅ Text-Chat Response:', result);
+
+      // Assistant-Response
+      const assistantMessage: Message = {
+        id: `msg_${Date.now() + 1}`,
+        content: result.response,
+        sender: 'assistant',
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, assistantMessage]);
+      setCaptionText(result.response);
+
+      onMessageSend?.(text);
+
     } catch (err) {
-      console.error('❌ Nachricht fehlgeschlagen:', err);
+      console.error('❌ Text-Chat fehlgeschlagen:', err);
+      
+      const errorMessage: Message = {
+        id: `error_${Date.now()}`,
+        content: `Entschuldigung, ich konnte nicht antworten: ${err instanceof Error ? err.message : 'Unbekannter Fehler'}`,
+        sender: 'assistant',
+        timestamp: new Date()
+      };
+      
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsProcessing(false);
     }
