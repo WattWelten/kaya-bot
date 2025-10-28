@@ -304,7 +304,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   };
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <>
       {/* Error-Banner */}
       {audioError && (
         <div className="bg-red-50 border-l-4 border-red-500 p-3 m-2 rounded">
@@ -414,7 +414,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
           )}
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
