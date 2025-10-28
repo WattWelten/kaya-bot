@@ -24,6 +24,10 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
   const glowLayerRef = useRef<BABYLON.GlowLayer | null>(null);
   const lipsyncEngineRef = useRef<LipsyncEngine | null>(null);
   const emotionMapperRef = useRef<EmotionMapper | null>(null);
+  
+  // Ready-Flag + Timeline-Puffer für robustes Lipsync
+  const avatarReadyRef = useRef(false);
+  const bufferedTimelineRef = useRef<VisemeSegment[]>([]);
 
   // Mobile Detection
   const isMobile = typeof window !== 'undefined' && (
@@ -160,7 +164,11 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
           // Initialisiere Emotion Mapper
           emotionMapperRef.current = new EmotionMapper(mtm, glowLayer);
           
+          // Avatar bereit: Ready-Flag setzen
+          avatarReadyRef.current = true;
+          
           console.log('🎭 Lipsync Engine & Emotion Mapper initialisiert');
+          console.log('✅ Avatar Ready-Flag gesetzt');
         }
       }
     }, (progressEvent) => {
@@ -207,32 +215,55 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     };
   }, [isMobile]);
 
-  // Lipsync: Viseme-Timeline abspielen
+  // Lipsync: Viseme-Timeline puffern (falls zu früh kommt)
   useEffect(() => {
-    console.log('🎭 Lipsync useEffect triggered');
+    console.log('🎭 Timeline useEffect triggered');
     console.log('🎭 visemeTimeline:', visemeTimeline);
-    console.log('🎭 lipsyncEngineRef:', !!lipsyncEngineRef.current);
+    console.log('🎭 avatarReady:', avatarReadyRef.current);
+
+    if (!visemeTimeline || visemeTimeline.length === 0) {
+      console.warn('⚠️ visemeTimeline leer oder undefined');
+      bufferedTimelineRef.current = [];
+      return;
+    }
+
+    // Timeline puffern
+    bufferedTimelineRef.current = visemeTimeline;
+    console.log('📦 Timeline gepuffert:', visemeTimeline.length, 'Segmente');
+  }, [visemeTimeline]);
+
+  // Lipsync: Start bei isSpeaking (wenn Avatar ready + Timeline vorhanden)
+  useEffect(() => {
+    console.log('🎭 isSpeaking useEffect triggered');
+    console.log('🎭 isSpeaking:', isSpeaking);
+    console.log('🎭 avatarReady:', avatarReadyRef.current);
+    console.log('🎭 bufferedTimeline length:', bufferedTimelineRef.current.length);
+
+    if (!avatarReadyRef.current) {
+      console.warn('⚠️ Avatar noch nicht bereit');
+      return;
+    }
 
     if (!lipsyncEngineRef.current) {
       console.warn('⚠️ LipsyncEngine nicht initialisiert');
       return;
     }
 
-    if (!visemeTimeline || visemeTimeline.length === 0) {
-      console.warn('⚠️ visemeTimeline leer oder undefined');
-      return;
+    if (isSpeaking && bufferedTimelineRef.current.length > 0) {
+      console.log('✅ Starte Lipsync mit', bufferedTimelineRef.current.length, 'Segmenten');
+      lipsyncEngineRef.current.start(bufferedTimelineRef.current);
+    } else if (!isSpeaking) {
+      console.log('🛑 Stoppe Lipsync (isSpeaking = false)');
+      lipsyncEngineRef.current.stop();
     }
 
-    console.log('✅ Starte Lipsync mit', visemeTimeline.length, 'Segmenten');
-    lipsyncEngineRef.current.start(visemeTimeline);
-
     return () => {
-      if (lipsyncEngineRef.current) {
-        console.log('🎭 Lipsync stopped (cleanup)');
+      if (lipsyncEngineRef.current && isSpeaking) {
+        console.log('🎭 Lipsync cleanup');
         lipsyncEngineRef.current.stop();
       }
     };
-  }, [visemeTimeline]);
+  }, [isSpeaking]);
 
   // Idle Animation (Breathing)
   useEffect(() => {
