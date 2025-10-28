@@ -145,6 +145,71 @@ class AudioService extends EventEmitter {
     }
     
     /**
+     * Viseme-Timeline aus Text generieren (Lippensync für Avatar)
+     */
+    generateVisemeTimeline(text, duration) {
+        // Phonem → Viseme Mapping für deutschen Text
+        const phonemeToViseme = {
+            'a': 'mouthOpen', 'ä': 'mouthOpen', 'e': 'mouthSmile_L', 'i': 'mouthSmile_L',
+            'o': 'mouthO', 'ö': 'mouthO', 'u': 'mouthFunnel', 'ü': 'mouthFunnel',
+            'f': 'mouthClose', 'v': 'mouthClose', 'p': 'mouthClose', 'b': 'mouthClose',
+            'm': 'mouthClose', 's': 'mouthSmile_R', 'z': 'mouthSmile_R', 'sch': 'mouthFunnel',
+            'ch': 'mouthSmile_R', 'r': 'mouthOpen', 'l': 'tongueOut', 'n': 'mouthClose',
+            't': 'mouthClose', 'd': 'mouthClose', 'k': 'mouthOpen', 'g': 'mouthOpen'
+        };
+        
+        const timeline = [];
+        const words = text.toLowerCase().split(/\s+/);
+        const avgDuration = duration / Math.max(words.length, 1);
+        let currentTime = 0;
+        
+        words.forEach((word) => {
+            const chars = word.split('');
+            const charDuration = avgDuration / Math.max(chars.length, 1);
+            
+            chars.forEach((char, charIndex) => {
+                let phoneme = char;
+                let viseme = phonemeToViseme[char] || 'neutral';
+                
+                // Check für 2-3 Buchstaben-Kombinationen
+                if (charIndex < chars.length - 1) {
+                    const twoChar = char + chars[charIndex + 1];
+                    if (phonemeToViseme[twoChar]) {
+                        phoneme = twoChar;
+                        viseme = phonemeToViseme[twoChar];
+                    }
+                }
+                
+                if (charIndex < chars.length - 2) {
+                    const threeChar = char + chars[charIndex + 1] + chars[charIndex + 2];
+                    if (phonemeToViseme[threeChar]) {
+                        phoneme = threeChar;
+                        viseme = phonemeToViseme[threeChar];
+                    }
+                }
+                
+                // Nur relevante Phoneme hinzufügen (nicht neutral)
+                if (viseme !== 'neutral') {
+                    timeline.push({
+                        phoneme: phoneme,
+                        viseme: viseme,
+                        start: currentTime,
+                        end: currentTime + charDuration,
+                        weight: 0.8
+                    });
+                }
+                
+                currentTime += charDuration;
+            });
+            
+            // Kleine Pause zwischen Wörtern
+            currentTime += charDuration * 0.3;
+        });
+        
+        return timeline;
+    }
+    
+    /**
      * Text-to-Speech: Text → Audio (ElevenLabs)
      */
     async textToSpeech(text, voiceId = null, options = {}) {
@@ -160,7 +225,10 @@ class AudioService extends EventEmitter {
             if (cached) {
                 this.metrics.cacheHits++;
                 console.log('📦 TTS Cache-Hit');
-                return { success: true, audio: cached, cached: true };
+                // Viseme-Timeline auch für Cache generieren
+                const estimatedDuration = text.split(/\s+/).length * 3000;
+                const visemeTimeline = this.generateVisemeTimeline(text, estimatedDuration);
+                return { success: true, audio: cached, cached: true, visemeTimeline };
             }
             
             // Circuit Breaker prüfen
@@ -223,10 +291,16 @@ class AudioService extends EventEmitter {
             
             console.log(`✅ TTS erfolgreich: "${text.substring(0, 50)}..." (${latency}ms)`);
             
+            // Viseme-Timeline generieren (geschätzte Audio-Dauer: ~3 Sekunden pro Wort)
+            const estimatedDuration = text.split(/\s+/).length * 3000; // 3s pro Wort
+            const visemeTimeline = this.generateVisemeTimeline(text, estimatedDuration);
+            console.log(`🎭 Viseme-Timeline generiert: ${visemeTimeline.length} Segmente`);
+            
             return {
                 success: true,
                 audio: audioBuffer,
                 audioUrl: `data:audio/mpeg;base64,${audioBuffer.toString('base64')}`,
+                visemeTimeline: visemeTimeline,
                 latency,
                 cached: false
             };

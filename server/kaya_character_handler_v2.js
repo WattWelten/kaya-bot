@@ -849,12 +849,20 @@ class KAYACharacterHandler {
             
             console.log(`✅ Response generiert in ${responseTime}ms`);
             
+            // Emotion für Avatar-Mimik hinzufügen
+            const emotion = personaAnalysis?.emotionalState?.state || 'neutral';
+            const emotionConfidence = personaAnalysis?.emotionalState?.confidence || 50;
+            
+            console.log(`😊 Emotion: ${emotion} (${emotionConfidence}%)`);
+            
             return {
                 response: dualResponse.text,
                 audio: dualResponse.audio,
                 mode: dualResponse.mode,
                 language: finalLanguage,
-                communicationMode: communicationMode.mode
+                communicationMode: communicationMode.mode,
+                emotion: emotion,
+                emotionConfidence: emotionConfidence
             };
             
         } catch (error) {

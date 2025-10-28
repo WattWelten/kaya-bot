@@ -12,9 +12,13 @@ const audioService = require('./services/audio_service');
 const rateLimiter = require('./services/rate_limiter');
 const costTracker = require('./services/cost_tracker');
 const multer = require('multer');
+const KAYAWebSocketService = require('./kaya_websocket_service_v2');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// WebSocketService wird später nach HTTP-Server-Erstellung initialisiert
+let websocketService = null;
 
 // Middleware
 app.use(cors());
@@ -511,57 +515,6 @@ app.post('/api/tts', rateLimiter.getTTSLimiter(), async (req, res) => {
     }
 });
 
-// Audio Chat: Kompletter Flow (Audio → KAYA → Audio)
-app.post('/api/audio-chat', rateLimiter.getChatLimiter(), upload.single('audio'), async (req, res) => {
-    const startTime = Date.now();
-    
-    try {
-        if (!req.file) {
-            return res.status(400).json({ error: 'Audio file is required' });
-        }
-        
-        // Budget prüfen
-        const budgetStatus = costTracker.checkBudget();
-        if (budgetStatus.blocked) {
-            return res.status(429).json({ error: 'Budget exceeded', message: budgetStatus.message });
-        }
-        
-        console.log(`🎙️ Audio Chat Request: ${req.file.size} bytes`);
-        
-        // 1. STT: Audio → Text
-        const { text } = await audioService.speechToText(req.file.buffer);
-        
-        // 2. KAYA Response generieren
-        const kayaResponse = await kayaHandler.generateResponse(text, text);
-        
-        // 3. TTS: Text → Audio
-        const { audio, audioUrl } = await audioService.textToSpeech(kayaResponse.response);
-        
-        const responseTime = Date.now() - startTime;
-        errorLogger.logPerformance('/api/audio-chat', responseTime, true);
-        
-        res.json({
-            success: true,
-            transcription: text,
-            response: kayaResponse.response,
-            audioUrl: audioUrl,
-            latency: {
-                total: Date.now() - startTime,
-                stt: Date.now() - startTime, // wird von audioService gesetzt
-                tts: Date.now() - startTime
-            }
-        });
-        
-    } catch (error) {
-        const responseTime = Date.now() - startTime;
-        errorLogger.logError(error, { endpoint: '/api/audio-chat' });
-        errorLogger.logPerformance('/api/audio-chat', responseTime, false, error);
-        
-        console.error('Audio Chat Fehler:', error);
-        res.status(500).json({ error: 'Audio chat failed', message: error.message });
-    }
-});
-
 // Admin Dashboard: Kosten & Stats
 app.get('/api/admin/stats', async (req, res) => {
     try {
@@ -588,75 +541,17 @@ app.get('/', (req, res) => {
 // HTTP Server erstellen
 const server = http.createServer(app);
 
-// WebSocket Server - OPTIMIERT
-const wss = new WebSocket.Server({ 
-    server, 
-    path: '/ws',
-    perMessageDeflate: true, // Kompression aktivieren
-    clientTracking: true, // Client-Tracking für Monitoring
-    maxPayload: 100 * 1024, // 100KB max
-    keepalive: true,
-    keepaliveInterval: 30000 // 30 Sekunden
-});
-
-wss.on('connection', (ws, req) => {
-    const url = new URL(req.url, `http://${req.headers.host}`);
-    const sessionId = url.searchParams.get('sessionId') || 'default';
-    
-    console.log(`🔌 WebSocket Client verbunden (Session: ${sessionId})`);
-    
-    ws.on('message', async (data) => {
-        try {
-            const message = JSON.parse(data.toString());
-            
-            if (message.type === 'message' && message.data.message) {
-                // KAYA-Antwort generieren
-                const response = await kayaHandler.generateResponse(
-                    message.data.message, 
-                    message.data.message,
-                    message.sessionId || sessionId
-                );
-                
-                // Response an Client senden
-                ws.send(JSON.stringify({
-                    type: 'response',
-                    data: response,
-                    timestamp: new Date().toISOString()
-                }));
-            }
-        } catch (error) {
-            console.error('❌ WebSocket Fehler:', error);
-            ws.send(JSON.stringify({
-                type: 'error',
-                data: { message: 'Fehler beim Verarbeiten der Nachricht' },
-                timestamp: new Date().toISOString()
-            }));
-        }
-    });
-    
-    ws.on('close', () => {
-        console.log(`🔌 WebSocket Client getrennt (Session: ${sessionId})`);
-    });
-    
-    ws.on('error', (error) => {
-        console.error('❌ WebSocket Error:', error);
-    });
-    
-    // Begrüßung senden
-    ws.send(JSON.stringify({
-        type: 'connected',
-        data: { sessionId, message: 'Moin! KAYA ist bereit.' },
-        timestamp: new Date().toISOString()
-    }));
-});
+// WebSocketService initialisieren (Ersetzt den alten WebSocket-Server)
+websocketService = new KAYAWebSocketService(server);
+console.log('✅ WebSocketService initialisiert');
 
 // Server starten
 server.listen(PORT, () => {
     console.log(`🚀 KAYA-Bot läuft auf Port ${PORT}`);
     console.log(`📱 Frontend: http://localhost:${PORT}`);
     console.log(`🔧 API: http://localhost:${PORT}/health`);
-    console.log(`💬 Chat: http://localhost:${PORT}/chat`);
-    console.log(`🎯 Routing: http://localhost:${PORT}/route`);
+    console.log(`💬 Chat: http://localhost:${PORT}/api/chat`);
+    console.log(`🎤 Audio-Chat: http://localhost:${PORT}/api/audio-chat`);
     console.log(`🔌 WebSocket: ws://localhost:${PORT}/ws`);
     console.log();
     console.log('Moin! KAYA ist bereit für Bürgeranliegen! 🤖');
