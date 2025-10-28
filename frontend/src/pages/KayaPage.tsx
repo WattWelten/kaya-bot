@@ -313,8 +313,56 @@ export default function KayaPage() {
         role="main"
         aria-label="KAYA Chat-Interface"
       >
-        {/* Portrait Container: 9:16, Grid 62%/38% */}
-        <div className="kaya-portrait">
+        {/* Frame Container mit Utility-Bar */}
+        <div className="kaya-frame">
+          {/* Utility-Bar (über Avatar-Kopf) */}
+          <div className="utility-bar" role="toolbar" aria-label="Barrierefreiheit">
+            <button
+              onClick={() => handleLanguageChange('de')}
+              className={preferences.language === 'de' ? 'active' : ''}
+              title="Deutsch"
+            >
+              DE
+            </button>
+            <button
+              onClick={() => handleLanguageChange('en')}
+              className={preferences.language === 'en' ? 'active' : ''}
+              title="English"
+            >
+              EN
+            </button>
+            <button
+              onClick={() => handleAccessibilityChange({ ...accessibility, simpleLanguage: !accessibility.simpleLanguage })}
+              className={accessibility.simpleLanguage ? 'active' : ''}
+              title="Leichte Sprache"
+            >
+              LS
+            </button>
+            <div className="spacer" />
+            <button
+              onClick={() => handleAccessibilityChange({ ...accessibility, fontSize: accessibility.fontSize === 100 ? 130 : 100 })}
+              title="Schrift größer"
+            >
+              A+
+            </button>
+            <button
+              onClick={() => handleAccessibilityChange({ ...accessibility, highContrast: !accessibility.highContrast })}
+              aria-pressed={accessibility.highContrast}
+              title="Kontrastmodus"
+            >
+              ◎
+            </button>
+            <button
+              onClick={() => setPreferences(prev => ({ ...prev, audio: { ...prev.audio, enabled: !prev.audio.enabled } }))}
+              aria-pressed={preferences.audio.enabled}
+              title="Audio an/aus"
+            >
+              🔊
+            </button>
+          </div>
+
+          {/* Portrait Container: 9:16, Grid 62%/38% */}
+          <div className="kaya-portrait">
           {/* Avatar Pane */}
           <section id="avatarPane">
             <AvatarPane
@@ -340,6 +388,7 @@ export default function KayaPage() {
               onMessageSend={handleMessageSend}
             />
           </section>
+        </div>
         </div>
       </main>
 

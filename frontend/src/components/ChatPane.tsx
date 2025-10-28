@@ -386,7 +386,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
         <button
           onClick={() => handleSendMessage(inputValue)}
           disabled={isProcessing || !inputValue.trim()}
-          className="p-3 rounded-xl bg-lc-primary-500 text-white hover:bg-lc-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md"
+          className="send disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Nachricht senden"
         >
           <Send className="w-5 h-5" />
@@ -394,23 +394,13 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
         <button
           onClick={handleAudioToggle}
           disabled={isProcessing}
-          className={`
-            w-12 h-12 rounded-full shadow-lg
-            transition-all duration-300
-            ${audioManager.isRecording 
-              ? 'bg-red-500 hover:bg-red-600 animate-pulse scale-110 shadow-red-300/50' 
-              : 'bg-lc-primary-500 hover:bg-lc-primary-600 hover:scale-105 shadow-lc-primary-300/50'
-            }
-            shadow-xl
-            disabled:opacity-50 disabled:cursor-not-allowed
-            flex items-center justify-center
-          `}
+          className={`mic ${audioManager.isRecording ? 'recording' : ''} disabled:opacity-50 disabled:cursor-not-allowed`}
           aria-label={audioManager.isRecording ? 'Aufnahme stoppen' : 'Aufnahme starten'}
         >
           {audioManager.isRecording ? (
             <div className="w-4 h-4 bg-white rounded-sm" />
           ) : (
-            <Mic className="w-5 h-5 text-white" />
+            <Mic className="w-5 h-5" />
           )}
         </button>
       </div>

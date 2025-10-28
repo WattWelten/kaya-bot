@@ -1214,6 +1214,116 @@
 }
 
 /* HiDPI Schärfe */
+/* Frame Container (umgibt kaya-portrait + Utility-Bar) */
+.kaya-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Utility-Bar (über Avatar-Kopf) */
+.utility-bar {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100vw, 560px);
+  padding: 6px 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.utility-bar button {
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--lc-border, #E2E8F0);
+  background: #fff;
+  color: var(--lc-ink-900, #0F172A);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.utility-bar button:hover {
+  background: var(--lc-neutral-50, #F7FAFB);
+  transform: scale(1.05);
+}
+
+.utility-bar button.active {
+  background: var(--lc-primary-100, #CCF3EF);
+  color: var(--lc-primary-700, #0B5C56);
+  font-weight: 700;
+}
+
+.utility-bar .spacer {
+  flex: 1;
+}
+
+/* Composer: Send + Mic Button-Klassen */
+.composer .send {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--lc-primary-600, #0F766E);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(15, 118, 110, 0.28);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.composer .send:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(15, 118, 110, 0.4);
+}
+
+.composer .mic {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--lc-border, #E2E8F0);
+  background: #fff;
+  color: var(--lc-primary-700, #0B5C56);
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.composer .mic:hover {
+  background: var(--lc-primary-50, #F0FDFA);
+  transform: scale(1.05);
+}
+
+.composer .mic.recording {
+  background: #ef4444;
+  color: #fff;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
 @media (min-resolution: 2dppx) {
   #babylon-canvas {
     image-rendering: -webkit-optimize-contrast;
