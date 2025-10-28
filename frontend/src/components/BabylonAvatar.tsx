@@ -36,8 +36,14 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
   console.log('🎨 Initial isLoading:', isLoading);
   console.log('🎨 isSpeaking:', isSpeaking);
 
-  // Timeout für Loading (nur beim Mount, nicht bei jedem isLoading-Update)
+  // Timeout für Loading: Wird automatisch gecancelt, sobald Avatar lädt
   useEffect(() => {
+    // Wenn Avatar bereits geladen (isLoading = false), Timeout nicht starten
+    if (!isLoading) {
+      console.log('🎨 Avatar bereits geladen, Timeout übersprungen');
+      return;
+    }
+
     console.log('🎨 Timeout useEffect läuft - Timeout in 10s');
     const timeout = setTimeout(() => {
       console.warn('⚠️ Avatar Loading Timeout (10s) - Zeige Fallback');
@@ -47,10 +53,10 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     }, 10000); // 10 Sekunden
     
     return () => {
-      console.log('🎨 Timeout useEffect Cleanup');
+      console.log('🎨 Timeout useEffect Cleanup (Timeout gecancelt)');
       clearTimeout(timeout);
     };
-  }, []); // ← Leere Dependency: Timeout wird nur beim Mount gesetzt
+  }, [isLoading]); // ← Dependency: isLoading (wird gecancelt, sobald Avatar lädt)
 
   useEffect(() => {
     console.log('🎨 Babylon useEffect läuft');
