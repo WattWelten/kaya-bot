@@ -97,14 +97,12 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
 
         setMessages(prev => [...prev, userMessage, assistantMessage]);
         
-        // Audio abspielen (via AudioManager für koordiniertes Playback)
-        if (result.audioUrl) {
-          await audioManager.playAudio(result.audioUrl, 'chat');
-        }
-        
-        // Audio wurde vom AudioManager abgespielt
-
         setCaptionText(result.response);
+
+        // TTS abspielen
+        if ((window as any).kayaSpeak) {
+          (window as any).kayaSpeak(result.response);
+        }
 
       } catch (err) {
         console.error('❌ Audio-Chat fehlgeschlagen:', err);
@@ -206,6 +204,11 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
 
       setMessages(prev => [...prev, assistantMessage]);
       setCaptionText(result.response);
+
+      // TTS abspielen
+      if ((window as any).kayaSpeak) {
+        (window as any).kayaSpeak(result.response);
+      }
 
       onMessageSend?.(text);
 
