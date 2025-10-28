@@ -48,13 +48,13 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
       return;
     }
 
-    console.log('🎨 Timeout useEffect läuft - Timeout in 10s');
+    console.log('🎨 Timeout useEffect läuft - Timeout in 15s');
     const timeout = setTimeout(() => {
-      console.warn('⚠️ Avatar Loading Timeout (10s) - Zeige Fallback');
+      console.warn('⚠️ Avatar Loading Timeout (15s) - Zeige Fallback');
       setIsLoading(false);
       setLoadingProgress(0);
       setLoadingFailed(true);
-    }, 10000); // 10 Sekunden
+    }, 15000); // 15 Sekunden
     
     return () => {
       console.log('🎨 Timeout useEffect Cleanup (Timeout gecancelt)');
@@ -89,22 +89,22 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     scene.clearColor = new BABYLON.Color4(0, 0, 0, 0); // Transparent
     sceneRef.current = scene;
 
-    // Camera (näher + leicht nach unten)
+    // Camera (Oberkörper-Fokus: frontal, leicht von oben, näher ran)
     const camera = new BABYLON.ArcRotateCamera(
       'camera',
-      Math.PI / 2,      // Horizontal
-      Math.PI / 2.5,    // Vertikal
-      2,                // Distance (näher: 3 → 2)
-      new BABYLON.Vector3(0, 0, 0), // Center point
+      Math.PI / 2,            // alpha: frontal
+      Math.PI / 2.2,          // beta: leicht von oben
+      1.2,                    // radius: näher ran
+      new BABYLON.Vector3(0, -3.0, 0), // target: Höhe Oberkörper (modell ist nach unten verschoben)
       scene
     );
     camera.attachControl(canvasRef.current, false);
-    camera.lowerRadiusLimit = 1.5;
-    camera.upperRadiusLimit = 4;
+    camera.lowerRadiusLimit = 0.8;
+    camera.upperRadiusLimit = 2.0;
 
     // Lighting
     const ambientLight = new BABYLON.HemisphericLight('ambient', new BABYLON.Vector3(0, 1, 0), scene);
-    ambientLight.intensity = 0.6;
+    ambientLight.intensity = 1.2;
 
     if (!isMobile) {
       const directionalLight = new BABYLON.DirectionalLight('dir', new BABYLON.Vector3(1, -1, 1), scene);
