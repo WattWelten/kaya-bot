@@ -7,6 +7,7 @@ import { AccessibilitySettings, UserPreferences } from '@/types';
 import { useWebSocket } from '@/hooks/useWebSocket';
 import { EmotionType } from '@/services/EmotionMapper';
 import { VisemeSegment } from '@/services/LipsyncEngine';
+import { useAudioManager } from '@/hooks/useAudioManager';
 
 /**
  * KAYA – Frontend 2025 (Landkreis Oldenburg)
@@ -39,8 +40,9 @@ export default function KayaPage() {
     }
   });
 
-  // Avatar-Status
-  const [isSpeaking, setIsSpeaking] = useState(false);
+  // Avatar-Status über AudioManager synchronisieren
+  const audioManager = useAudioManager();
+  const isSpeaking = audioManager.isPlaying; // Avatar spricht, wenn Audio spielt
   const [captionText, setCaptionText] = useState('');
 
   // WebSocket Integration
@@ -192,7 +194,8 @@ export default function KayaPage() {
     const handleKeyDown = (event: KeyboardEvent) => {
       // Escape-Taste: Sprechen stoppen
       if (event.key === 'Escape' && isSpeaking) {
-        setIsSpeaking(false);
+        // Sprechen sofort stoppen
+        audioManager.stopAudio();
       }
 
       // Alt + S: Skiplink zum Chat
@@ -315,7 +318,12 @@ export default function KayaPage() {
           <AvatarPane
             isSpeaking={isSpeaking}
             captionText={captionText}
-            setIsSpeaking={setIsSpeaking}
+            // setIsSpeaking wird aktuell nicht genutzt; wir übergeben Stop-Handler
+            setIsSpeaking={(speaking: boolean) => {
+              if (!speaking) {
+                audioManager.stopAudio();
+              }
+            }}
             onEmotionChange={handleEmotionChange}
             emotion={currentEmotion}
             emotionConfidence={emotionConfidence}

@@ -209,13 +209,26 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
 
   // Lipsync: Viseme-Timeline abspielen
   useEffect(() => {
-    if (!lipsyncEngineRef.current || !visemeTimeline || visemeTimeline.length === 0) return;
+    console.log('🎭 Lipsync useEffect triggered');
+    console.log('🎭 visemeTimeline:', visemeTimeline);
+    console.log('🎭 lipsyncEngineRef:', !!lipsyncEngineRef.current);
 
-    console.log('🎭 Starte Lipsync mit', visemeTimeline.length, 'Segmenten');
+    if (!lipsyncEngineRef.current) {
+      console.warn('⚠️ LipsyncEngine nicht initialisiert');
+      return;
+    }
+
+    if (!visemeTimeline || visemeTimeline.length === 0) {
+      console.warn('⚠️ visemeTimeline leer oder undefined');
+      return;
+    }
+
+    console.log('✅ Starte Lipsync mit', visemeTimeline.length, 'Segmenten');
     lipsyncEngineRef.current.start(visemeTimeline);
 
     return () => {
       if (lipsyncEngineRef.current) {
+        console.log('🎭 Lipsync stopped (cleanup)');
         lipsyncEngineRef.current.stop();
       }
     };
