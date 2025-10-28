@@ -98,6 +98,10 @@ export default function KayaPage() {
         // Heartbeat ignorieren (Keep-Alive vom Server)
         break;
 
+      case 'connection':
+        // Connection-Event ignorieren (wird nur für Status genutzt)
+        break;
+
       case 'emotion':
         if (lastMessage.data.emotion && lastMessage.data.confidence !== undefined) {
           setCurrentEmotion(lastMessage.data.emotion);
