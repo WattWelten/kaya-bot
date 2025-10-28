@@ -3,6 +3,7 @@ import * as BABYLON from '@babylonjs/core';
 import '@babylonjs/loaders/glTF';
 import { LipsyncEngine, VisemeSegment } from '../services/LipsyncEngine';
 import { EmotionMapper, EmotionType } from '../services/EmotionMapper';
+import { speak, stopSpeaking } from '../services/TTSService';
 
 interface BabylonAvatarProps {
   isSpeaking: boolean;
@@ -13,14 +14,17 @@ interface BabylonAvatarProps {
 
 // ---- Dials: HIER nur Zahlen anpassen, wenn nötig ----
 const DIAL = {
-  yawDeg: 30,         // 30° nach rechts (leichte seitliche Ansicht)
-  fovDeg: 32,         // etwas größer = mehr Körper
-  padding: 1.15,       // mehr Luft = Brust sichtbar
-  eyeLine: 0.70,      // Augen tiefer = Brust im Frame
-  betaMin: 60,        // Kamerakipp-Limits (in Grad)
+  yawDeg: -18,         // leicht nach rechts zur Mitte (negativ = rechts)
+  fovDeg: 30,
+  padding: 1.10,
+  eyeLine: 0.62,
+  betaMin: 60,
   betaMax: 88,
-  xShift: -0.055      // horizontale Komposition (Avatar minimal weiter links)
+  xShift: -0.055
 };
+
+// Merker für Basis-Ausrichtung
+let baseAlpha = 0;
 
 /** Pivot auf Brustbein setzen + Vorwärtsachse auf -Z normalisieren */
 function normalizePivotAndForward(root: BABYLON.AbstractMesh) {
@@ -50,53 +54,44 @@ function normalizePivotAndForward(root: BABYLON.AbstractMesh) {
 /** Portrait-Framing (9:16), Augenlinie ~62%, kein "von unten" */
 function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: BABYLON.ArcRotateCamera, dial = DIAL) {
   const { min, max } = (pivot as any).getHierarchyBoundingVectors(true);
-  const size = max.subtract(min);
-  const h = size.y;
-  const r = size.length() * 0.5;
-  
-  // xShift für horizontale Komposition
-  const target = pivot.position.add(new BABYLON.Vector3(size.x * dial.xShift, 0, 0));
+  const size = max.subtract(min), h = size.y;
+  const target = pivot.position.add(new BABYLON.Vector3(size.x * (dial.xShift ?? 0), 0, 0));
 
   const vFov = BABYLON.Tools.ToRadians(dial.fovDeg);
   const aspect = scene.getEngine().getRenderWidth() / scene.getEngine().getRenderHeight();
-  const hFov = 2 * Math.atan(Math.tan(vFov / 2) * aspect);
-  const dist = (r * dial.padding) / Math.sin(Math.min(vFov, hFov) / 2);
+  const hFov = 2 * Math.atan(Math.tan(vFov/2) * aspect);
+  const r = max.subtract(min).length() * 0.5;
+  const dist = (r * dial.padding) / Math.sin(Math.min(vFov, hFov)/2);
 
-  // Avatar schaut −Z → Kamera auf +Z
+  // Avatar blickt -Z → Kamera auf +Z
   const pos = target.add(new BABYLON.Vector3(0, 0, dist));
   const v = pos.subtract(target);
-  
-  // yawDeg wird über Pivot-Rotation angewendet → hier keine zusätzliche Alpha-Rotation
-  const alpha = Math.atan2(v.x, v.z);
-  const beta = Math.atan2(v.y, Math.sqrt(v.x * v.x + v.z * v.z));
+
+  baseAlpha = Math.atan2(v.x, v.z) + BABYLON.Tools.ToRadians(dial.yawDeg);  // KEIN Clamping!
+  const beta = Math.atan2(v.y, Math.sqrt(v.x*v.x + v.z*v.z));
 
   cam.setTarget(target);
-  cam.alpha = alpha;
+  cam.alpha = baseAlpha;
   cam.beta = BABYLON.Scalar.Clamp(beta, BABYLON.Tools.ToRadians(dial.betaMin), BABYLON.Tools.ToRadians(dial.betaMax));
   cam.radius = v.length();
   cam.fov = vFov;
 
-  // Augenlinie höher
-  const offsetY = h * (dial.eyeLine - 0.5);
-  cam.target = (cam as any)._target.add(new BABYLON.Vector3(0, offsetY, 0));
+  // Augenlinie
+  cam.target = (cam as any)._target.add(new BABYLON.Vector3(0, h * (dial.eyeLine - 0.5), 0));
 
-  // Interaktion eng begrenzen (kein Panning)
+  // Interaktionsfenster eng um baseAlpha
+  const band = BABYLON.Tools.ToRadians(20);
+  cam.lowerAlphaLimit = baseAlpha - band;
+  cam.upperAlphaLimit = baseAlpha + band;
   cam.panningSensibility = 0;
   cam.useAutoRotationBehavior = false;
-  cam.lowerBetaLimit = BABYLON.Tools.ToRadians(dial.betaMin);
-  cam.upperBetaLimit = BABYLON.Tools.ToRadians(dial.betaMax);
-  const alphaBand = BABYLON.Tools.ToRadians(20);
-  cam.lowerAlphaLimit = alpha - alphaBand;
-  cam.upperAlphaLimit = alpha + alphaBand;
-  cam.lowerRadiusLimit = dist * 0.55;
-  cam.upperRadiusLimit = dist * 1.6;
-  cam.wheelPrecision = 0; // Wheel komplett deaktivieren
-  cam.wheelDeltaPercentage = 0; // zusätzlich
-  cam.inertia = 0.2;
-
+  cam.lowerRadiusLimit = dist * 0.75;
+  cam.upperRadiusLimit = dist * 1.35;
+  cam.wheelPrecision = 0;
+  cam.wheelDeltaPercentage = 0;
+  cam.inertia = 0.15;
   cam.minZ = 0.05;
   cam.maxZ = dist * 10;
-  scene.getEngine().setHardwareScalingLevel(1 / Math.min(window.devicePixelRatio || 1, 2));
 }
 
 /** Kamera-Interaktionsgrenzen setzen */
@@ -299,6 +294,19 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
           
           console.log('🎭 Lipsync Engine & Emotion Mapper initialisiert');
           console.log('✅ Avatar Ready-Flag gesetzt');
+          
+          // Expose speak function für externe Nutzung
+          (window as any).kayaSpeak = (text: string) => {
+            if (lipsyncEngineRef.current) {
+              speak(text, lipsyncEngineRef.current);
+            }
+          };
+          
+          (window as any).kayaStop = () => {
+            if (lipsyncEngineRef.current) {
+              stopSpeaking(lipsyncEngineRef.current);
+            }
+          };
         }
         
         // 5) Resize-Handler mit Reframing
