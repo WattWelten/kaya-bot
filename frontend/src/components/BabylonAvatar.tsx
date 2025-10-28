@@ -13,10 +13,10 @@ interface BabylonAvatarProps {
 
 // ---- Dials: HIER nur Zahlen anpassen, wenn nötig ----
 const DIAL = {
-  yawDeg: 10,         // ~10° nach rechts (frontaler Blick nach vorne)
-  fovDeg: 30,         // 28-32 empfohlen; kleiner = näher
-  padding: 1.10,      // 1.06-1.18 Luft um Kopf/Schultern
-  eyeLine: 0.62,      // 0..1, Augenlinie im Bild
+  yawDeg: 30,         // 30° nach rechts (leichte seitliche Ansicht)
+  fovDeg: 32,         // etwas größer = mehr Körper
+  padding: 1.15,       // mehr Luft = Brust sichtbar
+  eyeLine: 0.70,      // Augen tiefer = Brust im Frame
   betaMin: 60,        // Kamerakipp-Limits (in Grad)
   betaMax: 88,
   xShift: -0.055      // horizontale Komposition (Avatar minimal weiter links)
@@ -90,7 +90,8 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   cam.upperAlphaLimit = alpha + alphaBand;
   cam.lowerRadiusLimit = dist * 0.55;
   cam.upperRadiusLimit = dist * 1.6;
-  cam.wheelPrecision = 80;
+  cam.wheelPrecision = 0; // Wheel komplett deaktivieren
+  cam.wheelDeltaPercentage = 0; // zusätzlich
   cam.inertia = 0.2;
 
   cam.minZ = 0.05;
@@ -104,7 +105,8 @@ function limitInteraction(cam: BABYLON.ArcRotateCamera, dial = DIAL) {
   cam.useAutoRotationBehavior = false;
   cam.lowerRadiusLimit = 0.55; // Zoom enger erlaubt, weil FOV klein
   cam.upperRadiusLimit = 2.2;
-  cam.wheelPrecision = 70;
+  cam.wheelPrecision = 0; // Wheel komplett deaktivieren
+  cam.wheelDeltaPercentage = 0;
   cam.inertia = 0.2;
 
   cam.lowerBetaLimit = BABYLON.Tools.ToRadians(dial.betaMin);
@@ -201,11 +203,19 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
       scene
     );
     camera.attachControl(canvasRef.current, true);
+    
+    // Wheel am Canvas komplett deaktivieren (verhindert Zoom)
+    canvasRef.current?.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    }, { passive: false });
+    
     camera.panningSensibility = 0; // kein Panning
     camera.useAutoRotationBehavior = false;
     camera.lowerRadiusLimit = 0.6;
     camera.upperRadiusLimit = 3.0;
-    camera.wheelPrecision = 70;
+    camera.wheelPrecision = 0; // Wheel komplett deaktivieren
+    camera.wheelDeltaPercentage = 0;
     camera.inertia = 0.2;
 
     // Interaktions-Limits (nur leichter Orbit)
