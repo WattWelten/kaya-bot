@@ -1188,7 +1188,7 @@
   top: calc(62% - 72px);
   width: 100%;
   height: 72px;
-  z-index: 2; /* über Avatar & Chat */
+  z-index: 3; /* sicher über Avatar & Chat (avatar-shadow ist z-index:2) */
   pointer-events: none;
   background: linear-gradient(
     to bottom,
@@ -1219,19 +1219,6 @@
 .messages {
   overflow: auto;
   padding: 12px 14px 0;
-}
-
-.chat-fade {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -1px;
-  height: 64px;
-  z-index: 2;
-  pointer-events: none;
-  background: linear-gradient(to top, rgba(255,255,255,1) 40%, rgba(255,255,255,0) 100%);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
 }
 
 /* Chat-Nachrichten Styling mit CI-Farben */

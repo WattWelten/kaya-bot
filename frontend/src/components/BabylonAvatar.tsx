@@ -85,8 +85,9 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   cam.useAutoRotationBehavior = false;
   cam.lowerBetaLimit = BABYLON.Tools.ToRadians(dial.betaMin);
   cam.upperBetaLimit = BABYLON.Tools.ToRadians(dial.betaMax);
-  cam.lowerAlphaLimit = alpha - BABYLON.Tools.ToRadians(18);
-  cam.upperAlphaLimit = alpha + BABYLON.Tools.ToRadians(18);
+  const alphaBand = BABYLON.Tools.ToRadians(20);
+  cam.lowerAlphaLimit = alpha - alphaBand;
+  cam.upperAlphaLimit = alpha + alphaBand;
   cam.lowerRadiusLimit = dist * 0.55;
   cam.upperRadiusLimit = dist * 1.6;
   cam.wheelPrecision = 80;
@@ -297,11 +298,15 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
         };
         window.addEventListener('resize', onResize);
         
-    // Event für Chat-Wheel (stoppt Zoom beim Scrollen im Chat)
+    // Event für Chat-Wheel (stoppt Zoom beim Scrollen im Chat) – präzise auf .messages und .composer
     const chat = document.getElementById("chatPane");
     if (chat) {
       chat.addEventListener("wheel", (e) => e.stopPropagation(), { passive: true });
     }
+    // Zusätzlich direkt auf .messages und .composer für maximale Präzision
+    document.querySelectorAll('.messages, .composer').forEach(el => {
+      el.addEventListener('wheel', (e) => e.stopPropagation(), { passive: true });
+    });
       }
     }, (progressEvent) => {
       if (progressEvent.loaded && progressEvent.total) {
