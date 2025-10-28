@@ -78,6 +78,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
 
         const result = await response.json();
         console.log('✅ Audio-Chat Response:', result);
+        console.log('🔊 visemeTimeline vom Backend:', result.visemeTimeline);
 
         // User-Message (Transkription)
         const userMessage: Message = {

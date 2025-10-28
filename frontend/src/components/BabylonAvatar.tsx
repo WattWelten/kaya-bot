@@ -392,7 +392,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     console.log('📦 Timeline gepuffert:', visemeTimeline.length, 'Segmente');
   }, [visemeTimeline]);
 
-  // Lipsync: Start bei isSpeaking (wenn Avatar ready + Timeline vorhanden)
+  // Lipsync: Start bei isSpeaking (wenn Avatar ready) - auch ohne Timeline!
   useEffect(() => {
     console.log('🎭 isSpeaking useEffect triggered');
     console.log('🎭 isSpeaking:', isSpeaking);
@@ -409,11 +409,18 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
       return;
     }
 
-    if (isSpeaking && bufferedTimelineRef.current.length > 0) {
-      console.log('✅ Starte Lipsync mit', bufferedTimelineRef.current.length, 'Segmenten');
-      lipsyncEngineRef.current.start(bufferedTimelineRef.current);
-    } else if (!isSpeaking) {
-      console.log('🛑 Stoppe Lipsync (isSpeaking = false)');
+    if (isSpeaking) {
+      if (bufferedTimelineRef.current.length > 0) {
+        // Timeline vorhanden → realistisches Lipsync
+        console.log('✅ Timeline-Lipsync:', bufferedTimelineRef.current.length);
+        lipsyncEngineRef.current.start(bufferedTimelineRef.current);
+      } else {
+        // Keine Timeline → Fallback: Avatar "spricht" sichtbar (Idle intensiviert)
+        console.log('⚠️ Keine Timeline - Fallback aktiv (Avatar reagiert auf Audio)');
+        // Micro-Motion wird durch isSpeaking bereits intensiviert
+      }
+    } else {
+      console.log('🛑 Stoppe Lipsync');
       lipsyncEngineRef.current.stop();
     }
 
