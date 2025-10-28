@@ -99,9 +99,10 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
         
         setCaptionText(result.response);
 
-        // TTS abspielen
-        if ((window as any).kayaSpeak) {
-          (window as any).kayaSpeak(result.response);
+        // Audio abspielen (Backend liefert audioUrl)
+        if (result.audioUrl) {
+          console.log('🔊 Spiele Audio von Backend ab');
+          await audioManager.playAudio(result.audioUrl, 'chat');
         }
 
       } catch (err) {
@@ -205,9 +206,10 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
       setMessages(prev => [...prev, assistantMessage]);
       setCaptionText(result.response);
 
-      // TTS abspielen
-      if ((window as any).kayaSpeak) {
-        (window as any).kayaSpeak(result.response);
+      // Audio abspielen (falls Backend audioUrl liefert)
+      if (result.audioUrl) {
+        console.log('🔊 Spiele Audio von Backend ab');
+        await audioManager.playAudio(result.audioUrl, 'chat');
       }
 
       onMessageSend?.(text);

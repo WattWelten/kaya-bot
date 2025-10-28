@@ -70,6 +70,9 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   baseAlpha = Math.atan2(v.x, v.z) + BABYLON.Tools.ToRadians(dial.yawDeg);  // KEIN Clamping!
   const beta = Math.atan2(v.y, Math.sqrt(v.x*v.x + v.z*v.z));
 
+  // Debug: Yaw-Wert
+  console.log('🎯 Avatar Yaw:', (baseAlpha * 180 / Math.PI).toFixed(2), '° (yawDeg:', dial.yawDeg, ')');
+
   cam.setTarget(target);
   cam.alpha = baseAlpha;
   cam.beta = BABYLON.Scalar.Clamp(beta, BABYLON.Tools.ToRadians(dial.betaMin), BABYLON.Tools.ToRadians(dial.betaMax));
@@ -83,6 +86,9 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   const band = BABYLON.Tools.ToRadians(20);
   cam.lowerAlphaLimit = baseAlpha - band;
   cam.upperAlphaLimit = baseAlpha + band;
+  
+  // Debug: Alpha-Limits
+  console.log('🎯 Alpha Limits:', (cam.lowerAlphaLimit * 180 / Math.PI).toFixed(2), 'bis', (cam.upperAlphaLimit * 180 / Math.PI).toFixed(2), '°');
   cam.panningSensibility = 0;
   cam.useAutoRotationBehavior = false;
   cam.lowerRadiusLimit = dist * 0.75;
