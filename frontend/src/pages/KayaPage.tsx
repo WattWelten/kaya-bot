@@ -331,10 +331,11 @@ export default function KayaPage() {
             <div className="avatar-shadow" aria-hidden="true" />
           </div>
 
-          {/* Chat Pane mit Fade */}
+          {/* Überlappungsnaht (Seam) zwischen Avatar & Chat */}
+          <div className="seam" aria-hidden />
+
+          {/* Chat Pane ohne Top-Mask (echte Überlappung) */}
           <div id="chatPane" className="relative">
-            <div className="chat-fade" aria-hidden="true" />
-            <div className="chat-surface" aria-hidden="true" />
             <ChatPane
               setCaptionText={setCaptionText}
               onMessageSend={handleMessageSend}

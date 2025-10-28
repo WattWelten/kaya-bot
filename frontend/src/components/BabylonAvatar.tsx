@@ -13,13 +13,13 @@ interface BabylonAvatarProps {
 
 // ---- Dials: HIER nur Zahlen anpassen, wenn nötig ----
 const DIAL = {
-  yawDeg: 18,         // positiver Yaw = Avatar dreht leicht nach RECHTS
+  yawDeg: 45,         // ~45° nach rechts (frontaler Blick zur Mitte)
   fovDeg: 30,         // 28-32 empfohlen; kleiner = näher
   padding: 1.10,      // 1.06-1.18 Luft um Kopf/Schultern
   eyeLine: 0.62,      // 0..1, Augenlinie im Bild
   betaMin: 60,        // Kamerakipp-Limits (in Grad)
   betaMax: 88,
-  xShift: -0.04       // horizontale Komposition
+  xShift: -0.055      // horizontale Komposition (Avatar minimal weiter links)
 };
 
 /** Pivot auf Brustbein setzen + Vorwärtsachse auf -Z normalisieren */
@@ -66,8 +66,8 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   const pos = target.add(new BABYLON.Vector3(0, 0, dist));
   const v = pos.subtract(target);
   
-  // ❗ BUGFIX: yawDeg IMMER addieren (auch bei negativen Werten)
-  const alpha = Math.atan2(v.x, v.z) + BABYLON.Tools.ToRadians(dial.yawDeg);
+  // yawDeg wird über Pivot-Rotation angewendet → hier keine zusätzliche Alpha-Rotation
+  const alpha = Math.atan2(v.x, v.z);
   const beta = Math.atan2(v.y, Math.sqrt(v.x * v.x + v.z * v.z));
 
   cam.setTarget(target);
@@ -269,8 +269,11 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
         const { pivot } = normalizePivotAndForward(skinned);
         meshRef.current = skinned;
         
-        // 2) Portrait-Framing (mit yawDeg und xShift)
-        framePortrait(scene, pivot, camera, DIAL);
+        // 2) Zusätzliche reale Drehung ~45° nach rechts am Pivot
+        pivot.rotation.y += BABYLON.Tools.ToRadians(DIAL.yawDeg);
+
+        // 3) Portrait-Framing (yawDeg bereits am Pivot angewandt → im Frame 0 setzen)
+        framePortrait(scene, pivot, camera, { ...DIAL, yawDeg: 0 });
         
         // 4) Morph Targets + Engines initialisieren
         const mtm = (skinned as any).morphTargetManager as BABYLON.MorphTargetManager | undefined;
@@ -290,15 +293,15 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
         // 5) Resize-Handler mit Reframing
         const onResize = () => {
           engine.resize();
-          framePortrait(scene, pivot, camera, DIAL);
+          framePortrait(scene, pivot, camera, { ...DIAL, yawDeg: 0 });
         };
         window.addEventListener('resize', onResize);
         
-        // Event für Chat-Wheel (stoppt Zoom beim Scrollen im Chat)
-        const chat = document.getElementById("chatPane");
-        if (chat) {
-          chat.addEventListener("wheel", (e) => e.stopPropagation(), { passive: true });
-        }
+    // Event für Chat-Wheel (stoppt Zoom beim Scrollen im Chat)
+    const chat = document.getElementById("chatPane");
+    if (chat) {
+      chat.addEventListener("wheel", (e) => e.stopPropagation(), { passive: true });
+    }
       }
     }, (progressEvent) => {
       if (progressEvent.loaded && progressEvent.total) {
@@ -339,6 +342,8 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      // Entferne eventuelles onBeforeRenderObservable für Micro-Motion
+      // (wird in eigenem Effect bereinigt)
       scene.dispose();
       engine.dispose();
     };
@@ -394,22 +399,36 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     };
   }, [isSpeaking]);
 
-  // Idle Animation (Breathing)
+  // Idle Micro-Motion (Kopf subtile Bewegung) – respektiert Reduced Motion
   useEffect(() => {
-    if (!meshRef.current || isSpeaking) return;
+    if (!sceneRef.current) return;
+    const scene = sceneRef.current;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.body.classList.contains('reduced-motion');
+    if (prefersReduced) return;
 
-    const startTime = Date.now();
-    const animate = () => {
-      if (!meshRef.current || isSpeaking) return;
-      const elapsed = (Date.now() - startTime) / 1000;
-      // Sanftes Atmen (sehr subtil)
-      meshRef.current.position.y = Math.sin(elapsed * 0.5) * 0.01;
-      requestAnimationFrame(animate);
+    let pivotNode: BABYLON.TransformNode | null = null;
+    // Versuche den Pivot über den Namen zu finden
+    const tryResolvePivot = () => {
+      const node = scene.getTransformNodeByName('kaya_pivot');
+      if (node && node instanceof BABYLON.TransformNode) pivotNode = node;
     };
-    const animationId = requestAnimationFrame(animate);
+    tryResolvePivot();
 
-    return () => cancelAnimationFrame(animationId);
-  }, [isSpeaking]);
+    const obs = scene.onBeforeRenderObservable.add(() => {
+      if (!pivotNode) tryResolvePivot();
+      if (!pivotNode) return;
+      const t = performance.now() / 1000;
+      const baseYaw = BABYLON.Tools.ToRadians(DIAL.yawDeg);
+      const microYaw = Math.sin(t * 0.33) * BABYLON.Tools.ToRadians(0.6);
+      const microPitch = Math.sin(t * 0.27) * BABYLON.Tools.ToRadians(0.4);
+      pivotNode.rotation.y = baseYaw + microYaw;
+      pivotNode.rotation.x = microPitch;
+    });
+
+    return () => {
+      scene.onBeforeRenderObservable.remove(obs);
+    };
+  }, []);
 
   // Emotion: Avatar-Mimik + Glow anpassen
   useEffect(() => {
