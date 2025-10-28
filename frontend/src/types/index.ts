@@ -1,4 +1,6 @@
 // KAYA Frontend Types
+import { EmotionType } from '@/services/EmotionMapper';
+import { VisemeSegment } from '@/services/LipsyncEngine';
 
 export interface Message {
   id: string;
@@ -31,10 +33,16 @@ export interface Session {
 }
 
 export interface WebSocketMessage {
-  type: 'message' | 'response' | 'error' | 'status';
-  sessionId: string;
-  data: any;
-  timestamp: Date;
+  type: 'message' | 'response' | 'error' | 'status' | 'emotion' | 'visemeTimeline' | 'chat' | 'connection';
+  sessionId?: string;
+  data: {
+    emotion?: EmotionType;
+    confidence?: number;
+    timeline?: VisemeSegment[];
+    message?: string;
+    [key: string]: any;
+  };
+  timestamp?: string | Date;
 }
 
 export interface KayaResponse {
@@ -111,6 +119,9 @@ export interface AvatarPaneProps {
   captionText: string;
   setIsSpeaking: (speaking: boolean) => void;
   onEmotionChange?: (emotion: string, intensity: number) => void;
+  emotion?: EmotionType;
+  emotionConfidence?: number;
+  visemeTimeline?: VisemeSegment[];
 }
 
 export interface ChatPaneProps {

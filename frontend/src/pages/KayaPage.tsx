@@ -4,6 +4,9 @@ import { AvatarPane } from '@/components/AvatarPane';
 import { ChatPane } from '@/components/ChatPane';
 import { AccessibilityToolbar } from '@/components/AccessibilityToolbar';
 import { AccessibilitySettings, UserPreferences } from '@/types';
+import { useWebSocket } from '@/hooks/useWebSocket';
+import { EmotionType } from '@/services/EmotionMapper';
+import { VisemeSegment } from '@/services/LipsyncEngine';
 
 /**
  * KAYA – Frontend 2025 (Landkreis Oldenburg)
@@ -40,6 +43,24 @@ export default function KayaPage() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [captionText, setCaptionText] = useState('');
 
+  // WebSocket Integration
+  const getSessionId = () => {
+    let sessionId = localStorage.getItem('kaya-session-id');
+    if (!sessionId) {
+      sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('kaya-session-id', sessionId);
+    }
+    return sessionId;
+  };
+
+  const sessionId = getSessionId();
+  const { isConnected, lastMessage } = useWebSocket(sessionId);
+
+  // Emotion State für Avatar
+  const [currentEmotion, setCurrentEmotion] = useState<EmotionType>('neutral');
+  const [emotionConfidence, setEmotionConfidence] = useState<number>(50);
+  const [visemeTimeline, setVisemeTimeline] = useState<VisemeSegment[]>([]);
+
   // Accessibility-Einstellungen aktualisieren
   const handleAccessibilityChange = (newSettings: AccessibilitySettings) => {
     setAccessibility(newSettings);
@@ -60,6 +81,37 @@ export default function KayaPage() {
       }
     }));
   };
+
+  // WebSocket Message Handler
+  useEffect(() => {
+    if (!lastMessage) return;
+
+    console.log('📨 WebSocket Message:', lastMessage.type);
+
+    switch (lastMessage.type) {
+      case 'emotion':
+        if (lastMessage.data.emotion && lastMessage.data.confidence !== undefined) {
+          setCurrentEmotion(lastMessage.data.emotion);
+          setEmotionConfidence(lastMessage.data.confidence);
+          console.log(`😊 Emotion Update: ${lastMessage.data.emotion} (${lastMessage.data.confidence}%)`);
+        }
+        break;
+
+      case 'visemeTimeline':
+        if (lastMessage.data.timeline && lastMessage.data.timeline.length > 0) {
+          setVisemeTimeline(lastMessage.data.timeline);
+          console.log(`🎭 VisemeTimeline Update: ${lastMessage.data.timeline.length} Segmente`);
+        }
+        break;
+
+      case 'chat':
+        // Bestehende Chat-Logik
+        break;
+
+      default:
+        console.log('📨 Unbekannter WebSocket Type:', lastMessage.type);
+    }
+  }, [lastMessage]);
 
   // Emotion-Änderung vom Avatar
   const handleEmotionChange = (emotion: string, intensity: number) => {
@@ -252,6 +304,9 @@ export default function KayaPage() {
             captionText={captionText}
             setIsSpeaking={setIsSpeaking}
             onEmotionChange={handleEmotionChange}
+            emotion={currentEmotion}
+            emotionConfidence={emotionConfidence}
+            visemeTimeline={visemeTimeline}
           />
           
           {/* Chat Overlay - Transparent über untere 20% des Avatars, absolutes Positioning */}

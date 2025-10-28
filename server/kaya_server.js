@@ -268,20 +268,54 @@ app.post('/api/audio-chat', upload.single('audio'), async (req, res) => {
         
         console.log(`✅ Transkription: "${text}"`);
         
-        // 2. KAYA Response generieren
-        const response = await kayaHandler.generateResponse(text, text);
+        // 2. Session-ID aus Request
+        const sessionId = req.body.sessionId || req.session?.id || 'default';
+        
+        // 3. KAYA Response generieren
+        const response = await kayaHandler.generateResponse(text, text, sessionId);
         
         console.log(`✅ KAYA Antwort: "${response.response.substring(0, 50)}..."`);
         
-        // 3. Text-to-Speech (ElevenLabs)
+        // 4. Text-to-Speech (ElevenLabs)
         let audioUrl = null;
+        let visemeTimeline = null;
         try {
             const ttsResult = await audioService.textToSpeech(response.response);
             audioUrl = ttsResult.audioUrl;
+            visemeTimeline = ttsResult.visemeTimeline;
             console.log('✅ TTS erfolgreich');
         } catch (ttsError) {
             console.error('⚠️ TTS fehlgeschlagen (Fallback):', ttsError.message);
             // Fallback: Kein Audio, nur Text
+        }
+        
+        // 5. WebSocket Events senden (Emotion + VisemeTimeline)
+        try {
+            if (response.emotion && response.emotionConfidence) {
+                websocketService.sendToSession(sessionId, {
+                    type: 'emotion',
+                    data: {
+                        emotion: response.emotion,
+                        confidence: response.emotionConfidence,
+                        timestamp: new Date().toISOString()
+                    }
+                });
+                console.log(`😊 Emotion gesendet: ${response.emotion} (${response.emotionConfidence}%)`);
+            }
+            
+            if (visemeTimeline && visemeTimeline.length > 0) {
+                websocketService.sendToSession(sessionId, {
+                    type: 'visemeTimeline',
+                    data: {
+                        timeline: visemeTimeline,
+                        timestamp: new Date().toISOString()
+                    }
+                });
+                console.log(`🎭 Viseme-Timeline gesendet: ${visemeTimeline.length} Segmente`);
+            }
+        } catch (wsError) {
+            console.warn('⚠️ WebSocket Event fehlgeschlagen:', wsError.message);
+            // Nicht kritisch - Fallback zu HTTP-only
         }
         
         const responseTime = Date.now() - startTime;

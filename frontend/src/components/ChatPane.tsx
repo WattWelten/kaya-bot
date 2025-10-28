@@ -42,9 +42,20 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
 
         console.log('🎙️ Starte Audio-Chat Processing...');
 
+        // SessionId aus localStorage oder generieren
+        const getSessionId = () => {
+          let sessionId = localStorage.getItem('kaya-session-id');
+          if (!sessionId) {
+            sessionId = 'session-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('kaya-session-id', sessionId);
+          }
+          return sessionId;
+        };
+
         // Audio-Chat Request an Backend mit Timeout
         const formData = new FormData();
         formData.append('audio', audioBlob, 'recording.webm');
+        formData.append('sessionId', getSessionId());
 
         const apiUrl = process.env.NODE_ENV === 'production' 
           ? 'https://api.kaya.wattweiser.com/api/audio-chat'

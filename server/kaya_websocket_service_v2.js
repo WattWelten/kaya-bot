@@ -9,6 +9,7 @@ class KAYAWebSocketService extends EventEmitter {
         this.clients = new Map();
         this.rooms = new Map();
         this.messageQueue = new Map();
+        this.sessionClientMap = new Map(); // NEU: Map für Session-ID → Client-ID
         this.heartbeatInterval = 30000; // 30 Sekunden
         this.maxClients = 1000;
         this.maxMessageSize = 1024 * 1024; // 1MB
@@ -273,6 +274,12 @@ class KAYAWebSocketService extends EventEmitter {
     handleSessionMessage(clientId, data) {
         const { action, sessionId, data: sessionData } = data;
         
+        // Session-ID → Client-ID Mapping (für sendToSession)
+        if (sessionId) {
+            this.sessionClientMap.set(sessionId, clientId);
+            console.log(`🔗 Session-Mapping: ${sessionId} → ${clientId}`);
+        }
+        
         // Event emittieren für Session-Management
         this.emit('sessionMessage', {
             clientId,
@@ -281,6 +288,17 @@ class KAYAWebSocketService extends EventEmitter {
             data: sessionData,
             timestamp: new Date().toISOString()
         });
+    }
+    
+    // Neue Methode: Nachricht an Session-ID senden (nicht Client-ID)
+    sendToSession(sessionId, message) {
+        const clientId = this.sessionClientMap.get(sessionId);
+        if (clientId) {
+            this.sendToClient(clientId, message);
+            console.log(`📤 Nachricht an Session ${sessionId} (Client: ${clientId}) gesendet`);
+        } else {
+            console.warn(`⚠️ Keine WebSocket-Verbindung für Session: ${sessionId}`);
+        }
     }
     
     // Avatar-Nachricht behandeln

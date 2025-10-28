@@ -10,33 +10,12 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
   isSpeaking,
   captionText,
   setIsSpeaking,
-  onEmotionChange
+  onEmotionChange,
+  emotion = 'neutral',
+  emotionConfidence = 50,
+  visemeTimeline = []
 }) => {
-  const [emotion, setEmotion] = useState<EmotionType>('neutral');
-  const [emotionConfidence, setEmotionConfidence] = useState<number>(50);
-  const [visemeTimeline, setVisemeTimeline] = useState<VisemeSegment[]>([]);
-  
   const { visemes } = useLipSync(null, isSpeaking);
-
-  useEffect(() => {
-    // Einfache Emotion-Erkennung basierend auf Kontext
-    // TODO: Diese wird später vom Backend via WebSocket überschrieben
-    if (captionText.includes('Hilfe') || captionText.includes('Problem')) {
-      setEmotion('anxious');
-      setEmotionConfidence(70);
-      onEmotionChange?.('anxious', 0.7);
-    } else if (captionText.includes('Danke') || captionText.includes('Perfekt')) {
-      setEmotion('positive');
-      setEmotionConfidence(80);
-      onEmotionChange?.('positive', 0.8);
-    } else if (isSpeaking) {
-      setEmotion('neutral');
-      setEmotionConfidence(50);
-    } else {
-      setEmotion('neutral');
-      setEmotionConfidence(50);
-    }
-  }, [captionText, isSpeaking, onEmotionChange]);
 
   return (
     <section 
