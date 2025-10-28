@@ -11,6 +11,90 @@ interface BabylonAvatarProps {
   visemeTimeline?: VisemeSegment[];
 }
 
+// ---- Dials: HIER nur Zahlen anpassen, wenn nötig ----
+const DIAL = {
+  yawDeg: -18,        // negative Werte = nach rechts zur Mitte drehen
+  fovDeg: 30,         // 28–34 = porträtig; kleiner = näher
+  padding: 1.10,      // 1.06..1.20 Luft um Kopf/Schultern (kleiner = näher)
+  eyeLine: 0.64,      // 0..1, Augenlinie im Bild (etwas höher = dialogischer)
+  betaMin: 60,        // Kamerakipp-Limits (in Grad)
+  betaMax: 88
+};
+
+/** Pivot auf Brustbein setzen + Vorwärtsachse auf -Z normalisieren */
+function normalizePivotAndForward(root: BABYLON.AbstractMesh) {
+  const { min, max } = root.getHierarchyBoundingVectors(true);
+  const size = max.subtract(min);
+  const h = size.y;
+  const center = min.add(size.scale(0.5));
+  const sternum = new BABYLON.Vector3(center.x, min.y + h * 0.58, center.z);
+
+  const pivot = new BABYLON.TransformNode("kaya_pivot", root.getScene());
+  pivot.position = sternum.clone();
+  root.setParent(pivot);
+
+  // Falls Modell nach +Z schaut → um Y 180° drehen, damit "nach vorne" = -Z
+  const looksPlusZ = size.z > size.x && max.z > Math.abs(min.z);
+  if (looksPlusZ) pivot.rotate(BABYLON.Axis.Y, BABYLON.Tools.ToRadians(180));
+
+  // Rotation vereinheitlichen
+  if (pivot.rotationQuaternion) {
+    pivot.rotation = pivot.rotationQuaternion.toEulerAngles();
+    pivot.rotationQuaternion = null;
+  }
+  pivot.scaling = BABYLON.Vector3.One();
+  return pivot;
+}
+
+/** Portrait-Framing (9:16), Augenlinie ~62%, kein "von unten" */
+function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: BABYLON.ArcRotateCamera, dial = DIAL) {
+  const { min, max } = (pivot as any).getHierarchyBoundingVectors(true);
+  const size = max.subtract(min);
+  const h = size.y;
+  const r = size.length() * 0.5;
+  const target = pivot.position.clone();
+
+  const vFov = BABYLON.Tools.ToRadians(dial.fovDeg);
+  const aspect = scene.getEngine().getRenderWidth() / scene.getEngine().getRenderHeight();
+  const hFov = 2 * Math.atan(Math.tan(vFov / 2) * aspect);
+  const dist = (r * dial.padding) / Math.sin(Math.min(vFov, hFov) / 2);
+
+  // Avatar schaut −Z → Kamera auf +Z
+  const pos = target.add(new BABYLON.Vector3(0, 0, dist));
+  const v = pos.subtract(target);
+  const alpha = Math.atan2(v.x, v.z) + BABYLON.Tools.ToRadians(dial.yawDeg < 0 ? 0 : dial.yawDeg);
+  const beta = Math.atan2(v.y, Math.sqrt(v.x * v.x + v.z * v.z));
+
+  cam.setTarget(target);
+  cam.alpha = alpha;
+  cam.beta = BABYLON.Scalar.Clamp(beta, BABYLON.Tools.ToRadians(dial.betaMin), BABYLON.Tools.ToRadians(dial.betaMax));
+  cam.radius = v.length();
+  cam.fov = vFov;
+
+  // Augenlinie höher
+  const offsetY = h * (dial.eyeLine - 0.5);
+  cam.target = (cam as any)._target.add(new BABYLON.Vector3(0, offsetY, 0));
+
+  cam.minZ = 0.05;
+  cam.maxZ = dist * 10;
+  scene.getEngine().setHardwareScalingLevel(1 / Math.min(window.devicePixelRatio || 1, 2));
+}
+
+/** Kamera-Interaktionsgrenzen setzen */
+function limitInteraction(cam: BABYLON.ArcRotateCamera, dial = DIAL) {
+  cam.panningSensibility = 0; // kein Panning
+  cam.useAutoRotationBehavior = false;
+  cam.lowerRadiusLimit = 0.55; // Zoom enger erlaubt, weil FOV klein
+  cam.upperRadiusLimit = 2.2;
+  cam.wheelPrecision = 70;
+  cam.inertia = 0.2;
+
+  cam.lowerBetaLimit = BABYLON.Tools.ToRadians(dial.betaMin);
+  cam.upperBetaLimit = BABYLON.Tools.ToRadians(dial.betaMax);
+  cam.lowerAlphaLimit = -BABYLON.Tools.ToRadians(25);
+  cam.upperAlphaLimit = BABYLON.Tools.ToRadians(25);
+}
+
 export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfidence = 50, visemeTimeline }: BabylonAvatarProps) {
   // ===== ALLE HOOKS ZUERST (React Rules of Hooks) =====
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -89,27 +173,42 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     scene.clearColor = new BABYLON.Color4(0, 0, 0, 0); // Transparent
     sceneRef.current = scene;
 
-    // Camera (Oberkörper-Fokus: frontal, leicht von oben, näher ran)
+    // Camera mit harten Limits (kein "von unten", minimaler Orbit)
     const camera = new BABYLON.ArcRotateCamera(
       'camera',
-      Math.PI / 2,            // alpha: frontal
-      Math.PI / 2.2,          // beta: leicht von oben
-      1.2,                    // radius: näher ran
-      new BABYLON.Vector3(0, -3.0, 0), // target: Höhe Oberkörper (modell ist nach unten verschoben)
+      0,
+      0,
+      2,
+      BABYLON.Vector3.Zero(),
       scene
     );
-    camera.attachControl(canvasRef.current, false);
-    camera.lowerRadiusLimit = 0.8;
-    camera.upperRadiusLimit = 2.0;
+    camera.attachControl(canvasRef.current, true);
+    camera.panningSensibility = 0; // kein Panning
+    camera.useAutoRotationBehavior = false;
+    camera.lowerRadiusLimit = 0.6;
+    camera.upperRadiusLimit = 3.0;
+    camera.wheelPrecision = 70;
+    camera.inertia = 0.2;
 
-    // Lighting
-    const ambientLight = new BABYLON.HemisphericLight('ambient', new BABYLON.Vector3(0, 1, 0), scene);
-    ambientLight.intensity = 1.2;
+    // Interaktions-Limits (nur leichter Orbit)
+    camera.lowerBetaLimit = BABYLON.Tools.ToRadians(60);
+    camera.upperBetaLimit = BABYLON.Tools.ToRadians(88);
+    camera.lowerAlphaLimit = -BABYLON.Tools.ToRadians(25);
+    camera.upperAlphaLimit = BABYLON.Tools.ToRadians(25);
+
+    // 3-Punkt-Licht Setup
+    const keyLight = new BABYLON.DirectionalLight('key', new BABYLON.Vector3(-1, -1.5, 1), scene);
+    keyLight.intensity = 1.2;
+    keyLight.position = new BABYLON.Vector3(5, 8, -5);
+
+    const fillLight = new BABYLON.HemisphericLight('fill', new BABYLON.Vector3(0, 1, 0), scene);
+    fillLight.intensity = 0.6;
+    fillLight.groundColor = new BABYLON.Color3(0.9, 0.95, 1.0);
 
     if (!isMobile) {
-      const directionalLight = new BABYLON.DirectionalLight('dir', new BABYLON.Vector3(1, -1, 1), scene);
-      directionalLight.intensity = 0.8;
-      directionalLight.position = new BABYLON.Vector3(5, 5, 5);
+      const rimLight = new BABYLON.DirectionalLight('rim', new BABYLON.Vector3(1, 0, -1), scene);
+      rimLight.intensity = 0.4;
+      rimLight.position = new BABYLON.Vector3(-3, 3, 3);
     }
 
     // Glow Layer für Sprech-Feedback (Primary Color: Türkis/Teal)
@@ -144,31 +243,48 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     BABYLON.SceneLoader.Append('/avatar/', 'Kayanew.glb', scene, () => {
       console.log('✅ GLB erfolgreich geladen!');
       setIsLoading(false);
+      
       // Skinned Mesh mit MorphTargets finden
       const skinned = scene.meshes.find(m => (m as any).morphTargetManager) as BABYLON.AbstractMesh;
       
       if (skinned) {
+        // 1) Normalisierung: Pivot + Vorwärtsachse
+        const pivot = normalizePivotAndForward(skinned);
         meshRef.current = skinned;
-        skinned.position.y = -2.8; // Oberkörper/Kopf zentriert (passt zu Camera target -3.0)
-        skinned.scaling = new BABYLON.Vector3(4.5, 4.5, 4.5); // 3x größer
         
+        // 2) Zuwendung zur Mitte (yawDeg aus DIAL)
+        pivot.rotation.y += BABYLON.Tools.ToRadians(DIAL.yawDeg);
+        
+        // 3) Portrait-Framing + Interaktionsgrenzen
+        framePortrait(scene, pivot, camera, DIAL);
+        limitInteraction(camera, DIAL);
+        
+        // 4) Morph Targets + Engines initialisieren
         const mtm = (skinned as any).morphTargetManager as BABYLON.MorphTargetManager | undefined;
         morphTargetManagerRef.current = mtm || null;
         
-        if (mtm && glowLayer) {
+        if (mtm && glowLayerRef.current) {
           console.log('📦 Babylon Avatar geladen:', scene.meshes.length, 'Meshes, Morph Targets:', mtm.numTargets);
           
-          // Initialisiere Lipsync Engine
           lipsyncEngineRef.current = new LipsyncEngine(mtm);
-          
-          // Initialisiere Emotion Mapper
-          emotionMapperRef.current = new EmotionMapper(mtm, glowLayer);
-          
-          // Avatar bereit: Ready-Flag setzen
+          emotionMapperRef.current = new EmotionMapper(mtm, glowLayerRef.current);
           avatarReadyRef.current = true;
           
           console.log('🎭 Lipsync Engine & Emotion Mapper initialisiert');
           console.log('✅ Avatar Ready-Flag gesetzt');
+        }
+        
+        // 5) Resize-Handler mit Reframing
+        const onResize = () => {
+          engine.resize();
+          framePortrait(scene, pivot, camera, DIAL);
+        };
+        window.addEventListener('resize', onResize);
+        
+        // Event für Chat-Wheel (stoppt Zoom beim Scrollen im Chat)
+        const chat = document.getElementById("chatPane");
+        if (chat) {
+          chat.addEventListener("wheel", (e) => e.stopPropagation(), { passive: true });
         }
       }
     }, (progressEvent) => {
@@ -273,7 +389,8 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     const animate = () => {
       if (!meshRef.current || isSpeaking) return;
       const elapsed = (Date.now() - startTime) / 1000;
-      meshRef.current.position.y = -2.8 + Math.sin(elapsed * 0.5) * 0.02; // Idle-Animation bei -2.8
+      // Sanftes Atmen (sehr subtil)
+      meshRef.current.position.y = Math.sin(elapsed * 0.5) * 0.01;
       requestAnimationFrame(animate);
     };
     const animationId = requestAnimationFrame(animate);
@@ -306,10 +423,13 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     <div className="relative w-full h-full">
       {/* Canvas IMMER rendern (damit Babylon.js initialisiert werden kann) */}
       <canvas 
-        ref={canvasRef} 
-        style={{ width: '100%', height: '100%', display: 'block', touchAction: 'none' }}
+        ref={canvasRef}
+        id="babylon-canvas"
         className={isLoading || loadingFailed ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}
       />
+      
+      {/* Weiche Kante zwischen Avatar und Chat */}
+      <div className="avatar-shadow" aria-hidden="true" />
 
       {/* Loading Overlay (darüber, während GLB lädt) */}
       {isLoading && !loadingFailed && (

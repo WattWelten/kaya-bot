@@ -1117,3 +1117,95 @@
 .scrollbar-track-transparent::-webkit-scrollbar-track {
   background: transparent;
 }
+
+/* 9:16 Portrait Layout */
+.kaya-portrait {
+  position: relative;
+  width: min(100vw, 540px);
+  aspect-ratio: 9/16;
+  height: min(100svh, 960px);
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 12px 40px rgba(0,0,0,.08);
+  display: grid;
+  grid-template-rows: 62% 38%;
+}
+
+/* AVATAR-BEREICH (oben) */
+#avatarPane {
+  position: relative;
+  background: radial-gradient(1200px 600px at 30% 35%, #eef5f7, #e8eef2 60%, #e6eaee);
+}
+
+#babylon-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
+
+.avatar-shadow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 40px;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,0));
+  z-index: 2;
+}
+
+/* CHAT-BEREICH (unten) */
+#chatPane {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background: #fff;
+  z-index: 1;
+}
+
+/* Weiches Ausblenden nach oben (wirkt "hinter Avatar") */
+.chat-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 64px;
+  z-index: 2;
+  pointer-events: none;
+  /* Mask für moderne Browser */
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+  /* Sichtbarer Verlauf als Fallback */
+  background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+}
+
+.chat-surface {
+  position: absolute;
+  inset: 0;
+  border-top: 1px solid rgba(0,0,0,.06);
+  background: rgba(255,255,255,.82);
+  backdrop-filter: saturate(1.1) blur(12px);
+  -webkit-backdrop-filter: saturate(1.1) blur(12px);
+  box-shadow: 0 -8px 24px rgba(0,0,0,.08) inset;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Mobile: Safe Area Support */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .kaya-portrait {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}
+
+/* HiDPI Schärfe */
+@media (min-resolution: 2dppx) {
+  #babylon-canvas {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}

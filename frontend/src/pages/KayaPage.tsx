@@ -307,37 +307,38 @@ export default function KayaPage() {
         </div>
       </header>
 
-      {/* Hauptbereich - Vertikal: Header > Avatar > Chat */}
+      {/* Hauptbereich - Portrait Layout 9:16 */}
       <main 
         className="flex flex-col h-[90svh] overflow-hidden"
         role="main"
         aria-label="KAYA Chat-Interface"
       >
-        {/* Avatar - 90svh (Vollbild) */}
-        <div className="flex-1 relative">
-          <AvatarPane
-            isSpeaking={isSpeaking}
-            captionText={captionText}
-            // setIsSpeaking wird aktuell nicht genutzt; wir übergeben Stop-Handler
-            setIsSpeaking={(speaking: boolean) => {
-              if (!speaking) {
-                audioManager.stopAudio();
-              }
-            }}
-            onEmotionChange={handleEmotionChange}
-            emotion={currentEmotion}
-            emotionConfidence={emotionConfidence}
-            visemeTimeline={visemeTimeline}
-          />
-          
-          {/* Chat Overlay - Transparent über untere 35% des Avatars, absolutes Positioning */}
-          <div className="absolute bottom-0 left-0 right-0 h-[35svh] md:h-[30svh] z-10 pointer-events-none">
-            <div className="relative w-full h-full pointer-events-auto">
-              <ChatPane
-                setCaptionText={setCaptionText}
-                onMessageSend={handleMessageSend}
-              />
-            </div>
+        {/* Portrait Container: 9:16, Grid 62%/38% */}
+        <div className="kaya-portrait">
+          {/* Avatar Pane */}
+          <div id="avatarPane" className="relative">
+            <AvatarPane
+              isSpeaking={isSpeaking}
+              captionText={captionText}
+              setIsSpeaking={(speaking: boolean) => {
+                if (!speaking) audioManager.stopAudio();
+              }}
+              onEmotionChange={handleEmotionChange}
+              emotion={currentEmotion}
+              emotionConfidence={emotionConfidence}
+              visemeTimeline={visemeTimeline}
+            />
+            <div className="avatar-shadow" aria-hidden="true" />
+          </div>
+
+          {/* Chat Pane mit Fade */}
+          <div id="chatPane" className="relative">
+            <div className="chat-fade" aria-hidden="true" />
+            <div className="chat-surface" aria-hidden="true" />
+            <ChatPane
+              setCaptionText={setCaptionText}
+              onMessageSend={handleMessageSend}
+            />
           </div>
         </div>
       </main>
