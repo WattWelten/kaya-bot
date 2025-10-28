@@ -407,16 +407,16 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     if (prefersReduced) return;
 
     let pivotNode: BABYLON.TransformNode | null = null;
-    // Versuche den Pivot über den Namen zu finden
-    const tryResolvePivot = () => {
-      const node = scene.getTransformNodeByName('kaya_pivot');
-      if (node && node instanceof BABYLON.TransformNode) pivotNode = node;
-    };
-    tryResolvePivot();
-
+    
     const obs = scene.onBeforeRenderObservable.add(() => {
-      if (!pivotNode) tryResolvePivot();
+      // Versuche den Pivot über den Namen zu finden
+      if (!pivotNode) {
+        const node = scene.getTransformNodeByName('kaya_pivot');
+        if (node && node instanceof BABYLON.TransformNode) pivotNode = node;
+      }
+      
       if (!pivotNode) return;
+      
       const t = performance.now() / 1000;
       const baseYaw = BABYLON.Tools.ToRadians(DIAL.yawDeg);
       const microYaw = Math.sin(t * 0.33) * BABYLON.Tools.ToRadians(0.6);
