@@ -15,6 +15,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingFailed, setLoadingFailed] = useState(false);
   const engineRef = useRef<BABYLON.Engine | null>(null);
   const sceneRef = useRef<BABYLON.Scene | null>(null);
   const meshRef = useRef<BABYLON.AbstractMesh | null>(null);
@@ -47,18 +48,30 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     );
   }
 
-  // Timeout für Loading
+  // Fallback UI (wenn Loading fehlschlägt)
+  if (loadingFailed) {
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-lc-primary-50 to-lc-accent-50">
+        <div className="text-center">
+          <div className="text-6xl mb-4 animate-pulse">👤</div>
+          <p className="text-lg font-medium text-lc-neutral-700">KAYA ist bereit</p>
+          <p className="text-sm text-lc-neutral-500 mt-2">Avatar wird nachgeladen...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Timeout für Loading (nur beim Mount, nicht bei jedem isLoading-Update)
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (isLoading) {
-        console.warn('⚠️ Avatar Loading Timeout (10s)');
-        setIsLoading(false);
-        setLoadingProgress(0);
-      }
+      console.warn('⚠️ Avatar Loading Timeout (10s)');
+      setIsLoading(false);
+      setLoadingProgress(0);
+      setLoadingFailed(true);
     }, 10000); // 10 Sekunden
     
     return () => clearTimeout(timeout);
-  }, [isLoading]);
+  }, []); // ← Leere Dependency: Timeout wird nur beim Mount gesetzt
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -145,6 +158,7 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
       console.error('❌ GLB Loading Fehler:', message, exception);
       setIsLoading(false); // WICHTIG: Loading beenden bei Fehler
       setLoadingProgress(0);
+      setLoadingFailed(true);
     });
 
     // Render Loop
