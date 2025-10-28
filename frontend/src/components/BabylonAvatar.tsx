@@ -110,9 +110,28 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
     glowLayer.intensity = 0;
     glowLayerRef.current = glowLayer;
 
-    // Load GLB Model mit SceneLoader.Append (korrekt für Morph Targets)
-    console.log('📦 Starte GLB-Loading: /avatar/Kayanew-draco.glb');
-    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew-draco.glb', scene, () => {
+    // Draco lokal konfigurieren (CSP-sicher, kein externes CDN)
+    try {
+      // Hinweis: Dateien müssen unter /babylon/draco/ bereitliegen
+      // draco_decoder_gltf.wasm, draco_decoder_gltf.js, draco_wasm_wrapper.js
+      // Falls nicht vorhanden, lädt die unkomprimierte GLB unten trotzdem.
+      // @ts-ignore - Typen können variieren je nach Babylon Version
+      BABYLON.DracoCompression.Configuration = {
+        decoder: {
+          wasmUrl: '/babylon/draco/draco_decoder_gltf.wasm',
+          wasmBinaryUrl: '/babylon/draco/draco_decoder_gltf.wasm',
+          jsUrl: '/babylon/draco/draco_decoder_gltf.js',
+          wasmWasmUrl: '/babylon/draco/draco_wasm_wrapper.js'
+        }
+      } as any;
+      console.log('🧩 Draco lokal konfiguriert (ohne CDN)');
+    } catch (e) {
+      console.warn('⚠️ Draco-Konfiguration übersprungen:', e);
+    }
+
+    // Load GLB Model: ZUERST unkomprimierte GLB (CSP-sicher, kein Draco nötig)
+    console.log('📦 Starte GLB-Loading (fallback, ohne Draco): /avatar/Kayanew.glb');
+    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew.glb', scene, () => {
       console.log('✅ GLB erfolgreich geladen!');
       setIsLoading(false);
       // Skinned Mesh mit MorphTargets finden
@@ -145,10 +164,24 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
         console.log(`📦 Loading GLB: ${percent}%`);
       }
     }, (scene, message, exception) => {
-      console.error('❌ GLB Loading Fehler:', message, exception);
-      setIsLoading(false); // WICHTIG: Loading beenden bei Fehler
-      setLoadingProgress(0);
-      setLoadingFailed(true);
+      console.error('❌ GLB Loading Fehler (Fallback ohne Draco):', message, exception);
+      // Zweiter Versuch: Draco-komprimierte Datei (falls lokale Draco-Dateien vorhanden sind)
+      console.log('🔁 Versuche Draco-Variante zu laden: /avatar/Kayanew-draco.glb');
+      BABYLON.SceneLoader.Append('/avatar/', 'Kayanew-draco.glb', scene, () => {
+        console.log('✅ GLB (Draco) erfolgreich geladen!');
+        setIsLoading(false);
+      }, (progressEvent2) => {
+        if (progressEvent2.loaded && progressEvent2.total) {
+          const percent2 = Math.round((progressEvent2.loaded / progressEvent2.total) * 100);
+          setLoadingProgress(percent2);
+          console.log(`📦 Loading GLB (Draco): ${percent2}%`);
+        }
+      }, (scene2, message2, exception2) => {
+        console.error('❌ GLB Loading Fehler (Draco):', message2, exception2);
+        setIsLoading(false);
+        setLoadingProgress(0);
+        setLoadingFailed(true);
+      });
     });
 
     // Render Loop
