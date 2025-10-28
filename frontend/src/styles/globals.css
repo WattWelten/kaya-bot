@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Landkreis Oldenburg CI-Farben (erweitert) */
+:root {
+  /* Landkreis Oldenburg CI-Farben */
+  --lc-primary-600: #0F766E;   /* Primär (Grün-Teal) */
+  --lc-primary-700: #0B5C56;
+  --lc-accent-600: #2563EB;    /* Akzent (Blau) */
+  --lc-bg-50: #F7FAFB;         /* Hintergrund */
+  --lc-ink-900: #0F172A;       /* Haupttext */
+  --lc-ink-700: #334155;       /* Sekundärtext */
+  --lc-border: #E2E8F0;        /* Linien */
+}
+
 /* CSS-Variablen für Landkreis Oldenburg CI */
 :root {
   /* Primary Colors (Teal/Grün) */
@@ -1208,4 +1220,111 @@
   #babylon-canvas {
     image-rendering: -webkit-optimize-contrast;
   }
+}
+
+/* Chat-Nachrichten mit Mask-Fade */
+.messages {
+  overflow: auto;
+  padding: 12px 14px 0;
+  /* Weicher Überlauf nach oben */
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+}
+
+.chat-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 64px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(255,255,255,1) 40%, rgba(255,255,255,0) 100%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* Chat-Nachrichten Styling mit CI-Farben */
+.bot {
+  max-width: 68ch;
+  background: #ECF9F7;
+  border: 1px solid #C8EEE7;
+  color: var(--lc-ink-900);
+  padding: 10px 12px;
+  border-radius: 16px;
+  margin-bottom: 8px;
+}
+
+.user {
+  max-width: 60ch;
+  margin-left: auto;
+  background: var(--lc-ink-900);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 16px;
+  margin-bottom: 8px;
+}
+
+/* Composer Styling mit CI-Farben */
+.composer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 14px 14px;
+  border-top: 1px solid var(--lc-border);
+}
+
+.composer input {
+  flex: 1;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--lc-border);
+  padding: 0 14px;
+  color: var(--lc-ink-900);
+}
+
+.composer button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--lc-primary-600);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.composer button:hover {
+  background: var(--lc-primary-700);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  body.reduced-motion *,
+  body.reduced-motion *::before,
+  body.reduced-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Support */
+body.high-contrast {
+  --lc-primary-600: #000;
+  --lc-bg-50: #fff;
+  --lc-ink-900: #000;
+  --lc-border: #000;
+}
+
+body.high-contrast .bot {
+  background: #fff;
+  border: 2px solid #000;
+  color: #000;
+}
+
+body.high-contrast .user {
+  background: #000;
+  border: 2px solid #000;
+  color: #fff;
 }

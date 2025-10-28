@@ -13,12 +13,13 @@ interface BabylonAvatarProps {
 
 // ---- Dials: HIER nur Zahlen anpassen, wenn nötig ----
 const DIAL = {
-  yawDeg: -18,        // negative Werte = nach rechts zur Mitte drehen
-  fovDeg: 30,         // 28–34 = porträtig; kleiner = näher
-  padding: 1.10,      // 1.06..1.20 Luft um Kopf/Schultern (kleiner = näher)
-  eyeLine: 0.64,      // 0..1, Augenlinie im Bild (etwas höher = dialogischer)
+  yawDeg: 18,         // positiver Yaw = Avatar dreht leicht nach RECHTS
+  fovDeg: 30,         // 28-32 empfohlen; kleiner = näher
+  padding: 1.10,      // 1.06-1.18 Luft um Kopf/Schultern
+  eyeLine: 0.62,      // 0..1, Augenlinie im Bild
   betaMin: 60,        // Kamerakipp-Limits (in Grad)
-  betaMax: 88
+  betaMax: 88,
+  xShift: -0.04       // horizontale Komposition
 };
 
 /** Pivot auf Brustbein setzen + Vorwärtsachse auf -Z normalisieren */
@@ -43,7 +44,7 @@ function normalizePivotAndForward(root: BABYLON.AbstractMesh) {
     pivot.rotationQuaternion = null;
   }
   pivot.scaling = BABYLON.Vector3.One();
-  return pivot;
+  return { pivot, height: h, size };
 }
 
 /** Portrait-Framing (9:16), Augenlinie ~62%, kein "von unten" */
@@ -52,7 +53,9 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   const size = max.subtract(min);
   const h = size.y;
   const r = size.length() * 0.5;
-  const target = pivot.position.clone();
+  
+  // xShift für horizontale Komposition
+  const target = pivot.position.add(new BABYLON.Vector3(size.x * dial.xShift, 0, 0));
 
   const vFov = BABYLON.Tools.ToRadians(dial.fovDeg);
   const aspect = scene.getEngine().getRenderWidth() / scene.getEngine().getRenderHeight();
@@ -62,7 +65,9 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   // Avatar schaut −Z → Kamera auf +Z
   const pos = target.add(new BABYLON.Vector3(0, 0, dist));
   const v = pos.subtract(target);
-  const alpha = Math.atan2(v.x, v.z) + BABYLON.Tools.ToRadians(dial.yawDeg < 0 ? 0 : dial.yawDeg);
+  
+  // ❗ BUGFIX: yawDeg IMMER addieren (auch bei negativen Werten)
+  const alpha = Math.atan2(v.x, v.z) + BABYLON.Tools.ToRadians(dial.yawDeg);
   const beta = Math.atan2(v.y, Math.sqrt(v.x * v.x + v.z * v.z));
 
   cam.setTarget(target);
@@ -74,6 +79,18 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   // Augenlinie höher
   const offsetY = h * (dial.eyeLine - 0.5);
   cam.target = (cam as any)._target.add(new BABYLON.Vector3(0, offsetY, 0));
+
+  // Interaktion eng begrenzen (kein Panning)
+  cam.panningSensibility = 0;
+  cam.useAutoRotationBehavior = false;
+  cam.lowerBetaLimit = BABYLON.Tools.ToRadians(dial.betaMin);
+  cam.upperBetaLimit = BABYLON.Tools.ToRadians(dial.betaMax);
+  cam.lowerAlphaLimit = alpha - BABYLON.Tools.ToRadians(18);
+  cam.upperAlphaLimit = alpha + BABYLON.Tools.ToRadians(18);
+  cam.lowerRadiusLimit = dist * 0.55;
+  cam.upperRadiusLimit = dist * 1.6;
+  cam.wheelPrecision = 80;
+  cam.inertia = 0.2;
 
   cam.minZ = 0.05;
   cam.maxZ = dist * 10;
@@ -249,15 +266,11 @@ export function BabylonAvatar({ isSpeaking, emotion = 'neutral', emotionConfiden
       
       if (skinned) {
         // 1) Normalisierung: Pivot + Vorwärtsachse
-        const pivot = normalizePivotAndForward(skinned);
+        const { pivot } = normalizePivotAndForward(skinned);
         meshRef.current = skinned;
         
-        // 2) Zuwendung zur Mitte (yawDeg aus DIAL)
-        pivot.rotation.y += BABYLON.Tools.ToRadians(DIAL.yawDeg);
-        
-        // 3) Portrait-Framing + Interaktionsgrenzen
+        // 2) Portrait-Framing (mit yawDeg und xShift)
         framePortrait(scene, pivot, camera, DIAL);
-        limitInteraction(camera, DIAL);
         
         // 4) Morph Targets + Engines initialisieren
         const mtm = (skinned as any).morphTargetManager as BABYLON.MorphTargetManager | undefined;
