@@ -89,6 +89,11 @@ export default function KayaPage() {
     console.log('📨 WebSocket Message:', lastMessage.type);
 
     switch (lastMessage.type) {
+      case 'connected':
+        console.log('🔗 WebSocket verbunden:', lastMessage.data.message);
+        // Connection-Feedback: WebSocket ist bereit
+        break;
+
       case 'emotion':
         if (lastMessage.data.emotion && lastMessage.data.confidence !== undefined) {
           setCurrentEmotion(lastMessage.data.emotion);

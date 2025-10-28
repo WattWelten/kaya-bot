@@ -33,7 +33,7 @@ export interface Session {
 }
 
 export interface WebSocketMessage {
-  type: 'message' | 'response' | 'error' | 'status' | 'emotion' | 'visemeTimeline' | 'chat' | 'connection';
+  type: 'message' | 'response' | 'error' | 'status' | 'emotion' | 'visemeTimeline' | 'chat' | 'connection' | 'connected';
   sessionId?: string;
   data: {
     emotion?: EmotionType;
