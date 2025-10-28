@@ -1146,6 +1146,18 @@
   min-height: 0; /* Grid-Scroll-Fix: Kinder dürfen schrumpfen */
 }
 
+/* Mobile: Volle Breite auf sehr schmalen Screens */
+@media (max-width: 540px) {
+  .kaya-portrait {
+    width: 100vw;
+    border-radius: 0;
+  }
+  
+  .utility-bar {
+    width: calc(100vw - 16px);
+  }
+}
+
 /* AVATAR-BEREICH (oben) */
 #avatarPane {
   position: relative;
@@ -1217,8 +1229,9 @@
 /* Frame Container (umgibt kaya-portrait + Utility-Bar) */
 .kaya-frame {
   position: relative;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100svh;
   overflow: hidden;

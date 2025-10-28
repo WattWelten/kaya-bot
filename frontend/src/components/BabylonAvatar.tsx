@@ -13,7 +13,7 @@ interface BabylonAvatarProps {
 
 // ---- Dials: HIER nur Zahlen anpassen, wenn nötig ----
 const DIAL = {
-  yawDeg: 45,         // ~45° nach rechts (frontaler Blick zur Mitte)
+  yawDeg: 10,         // ~10° nach rechts (frontaler Blick nach vorne)
   fovDeg: 30,         // 28-32 empfohlen; kleiner = näher
   padding: 1.10,      // 1.06-1.18 Luft um Kopf/Schultern
   eyeLine: 0.62,      // 0..1, Augenlinie im Bild
