@@ -262,7 +262,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
     <section 
       id="chat-root" 
       aria-label="Chat Bereich" 
-      className="relative w-full h-full bg-gradient-to-t from-white/95 via-white/80 to-transparent backdrop-blur-xl flex flex-col border-t-2 border-lc-primary-300/50 shadow-[0_-15px_40px_rgba(15,118,110,0.15)]"
+      className="relative w-full h-full bg-gradient-to-t from-white/98 via-white/92 to-white/85 backdrop-blur-xl flex flex-col border-t-2 border-lc-primary-300/50 shadow-[0_-15px_40px_rgba(15,118,110,0.15)]"
     >
       {/* Error-Banner */}
       {audioError && (
@@ -283,15 +283,15 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
         isRecording={audioManager.isRecording}
       />
 
-      {/* Chat-Messages - Scrollbar, 70% der Chat-Höhe */}
-      <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
-        {messages.slice(-3).map(message => (
+      {/* Chat-Messages - Scrollbar, alle Nachrichten */}
+      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 scrollbar-thin scrollbar-thumb-lc-primary-300 scrollbar-track-transparent">
+        {messages.map(message => (
           <div
             key={message.id}
             className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`max-w-[75%] rounded-xl px-3 py-2 text-sm ${
+              className={`max-w-[85%] rounded-xl px-4 py-2.5 text-base ${
                 message.sender === 'user'
                   ? 'bg-lc-primary-500 text-white'
                   : 'bg-lc-neutral-100 text-lc-neutral-800'

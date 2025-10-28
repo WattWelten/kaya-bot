@@ -309,8 +309,8 @@ export default function KayaPage() {
             visemeTimeline={visemeTimeline}
           />
           
-          {/* Chat Overlay - Transparent über untere 20% des Avatars, absolutes Positioning */}
-          <div className="absolute bottom-0 left-0 right-0 h-[20svh] z-10 pointer-events-none">
+          {/* Chat Overlay - Transparent über untere 35% des Avatars, absolutes Positioning */}
+          <div className="absolute bottom-0 left-0 right-0 h-[35svh] md:h-[30svh] z-10 pointer-events-none">
             <div className="relative w-full h-full pointer-events-auto">
               <ChatPane
                 setCaptionText={setCaptionText}
