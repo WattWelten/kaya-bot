@@ -304,11 +304,7 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   };
 
   return (
-    <section 
-      id="chat-root" 
-      aria-label="Chat Bereich" 
-      className="relative w-full h-full bg-gradient-to-t from-white/98 via-white/92 to-white/85 backdrop-blur-xl flex flex-col border-t-2 border-lc-primary-300/50 shadow-[0_-15px_40px_rgba(15,118,110,0.15)]"
-    >
+    <div className="w-full h-full flex flex-col">
       {/* Error-Banner */}
       {audioError && (
         <div className="bg-red-50 border-l-4 border-red-500 p-3 m-2 rounded">
@@ -328,8 +324,8 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
         isRecording={audioManager.isRecording}
       />
 
-      {/* Chat-Messages - Scrollbar, alle Nachrichten */}
-      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3 scrollbar-thin scrollbar-thumb-lc-primary-300 scrollbar-track-transparent">
+      {/* Chat-Messages mit .messages Klasse - Scrollbar, alle Nachrichten */}
+      <div className="messages">
         {messages.map(message => (
           <div
             key={message.id}
@@ -374,8 +370,8 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Text-Input - Optional neben Audio */}
-      <div className="flex-shrink-0 px-4 pb-2 pt-2 flex items-center gap-2 border-t border-lc-neutral-200 bg-gradient-to-t from-white to-transparent">
+      {/* Composer mit .composer Klasse - Text-Input + Audio-Button */}
+      <div className="composer">
         <textarea
           ref={textareaRef}
           value={inputValue}
@@ -395,15 +391,11 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
         >
           <Send className="w-5 h-5" />
         </button>
-      </div>
-
-      {/* Audio-Button - Zentral */}
-      <div className="flex-shrink-0 flex items-center justify-center py-2 bg-gradient-to-t from-white/50 to-transparent">
         <button
           onClick={handleAudioToggle}
           disabled={isProcessing}
           className={`
-            w-16 h-16 rounded-full shadow-lg
+            w-12 h-12 rounded-full shadow-lg
             transition-all duration-300
             ${audioManager.isRecording 
               ? 'bg-red-500 hover:bg-red-600 animate-pulse scale-110 shadow-red-300/50' 
@@ -416,13 +408,13 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
           aria-label={audioManager.isRecording ? 'Aufnahme stoppen' : 'Aufnahme starten'}
         >
           {audioManager.isRecording ? (
-            <div className="w-5 h-5 bg-white rounded-sm" />
+            <div className="w-4 h-4 bg-white rounded-sm" />
           ) : (
-            <Mic className="w-7 h-7 text-white" />
+            <Mic className="w-5 h-5 text-white" />
           )}
         </button>
       </div>
-    </section>
+    </div>
   );
 };
 

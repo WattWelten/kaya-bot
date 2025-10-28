@@ -316,7 +316,7 @@ export default function KayaPage() {
         {/* Portrait Container: 9:16, Grid 62%/38% */}
         <div className="kaya-portrait">
           {/* Avatar Pane */}
-          <div id="avatarPane" className="relative">
+          <section id="avatarPane">
             <AvatarPane
               isSpeaking={isSpeaking}
               captionText={captionText}
@@ -328,19 +328,18 @@ export default function KayaPage() {
               emotionConfidence={emotionConfidence}
               visemeTimeline={visemeTimeline}
             />
-            <div className="avatar-shadow" aria-hidden="true" />
-          </div>
+          </section>
 
           {/* Überlappungsnaht (Seam) zwischen Avatar & Chat */}
           <div className="seam" aria-hidden />
 
           {/* Chat Pane ohne Top-Mask (echte Überlappung) */}
-          <div id="chatPane" className="relative">
+          <section id="chatPane">
             <ChatPane
               setCaptionText={setCaptionText}
               onMessageSend={handleMessageSend}
             />
-          </div>
+          </section>
         </div>
       </main>
 

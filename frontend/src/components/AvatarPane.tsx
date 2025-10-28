@@ -18,32 +18,30 @@ const AvatarPaneComponent: React.FC<AvatarPaneProps> = ({
   const { visemes } = useLipSync(null, isSpeaking);
 
   return (
-    <section 
-      aria-label="Avatar Bereich" 
-      className="relative w-full h-full bg-gradient-to-br from-lc-primary-50 via-lc-warmgold-50/30 to-lc-accent-50/40 overflow-hidden"
-    >
+    <>
       {/* Babylon.js Avatar - Vollbild */}
-      <div className="absolute inset-0">
-        <ErrorBoundary>
-          <BabylonAvatar 
-            isSpeaking={isSpeaking}
-            emotion={emotion}
-            emotionConfidence={emotionConfidence}
-            visemeTimeline={visemeTimeline}
-          />
-        </ErrorBoundary>
-      </div>
+      <ErrorBoundary>
+        <BabylonAvatar 
+          isSpeaking={isSpeaking}
+          emotion={emotion}
+          emotionConfidence={emotionConfidence}
+          visemeTimeline={visemeTimeline}
+        />
+      </ErrorBoundary>
+
+      {/* Avatar Shadow */}
+      <div className="avatar-shadow" aria-hidden="true" />
 
       {/* Live Captions - über Avatar */}
       {isSpeaking && captionText && (
         <div 
           aria-live="polite" 
-          className="absolute left-4 right-4 top-[70%] text-sm text-lc-neutral-800 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg"
+          className="absolute left-4 right-4 top-[70%] text-sm text-lc-neutral-800 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg z-10"
         >
           {captionText}
         </div>
       )}
-    </section>
+    </>
   );
 };
 
