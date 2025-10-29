@@ -6,7 +6,7 @@ KAYA ist der digitale Assistent des Landkreises Oldenburg, der Bürgern bei Verw
 
 ### Features
 - **KI-gestützte Gespräche** mit natürlicher Sprache
-- **Unity-Avatar** mit Emotionen und Gesten
+- **Babylon.js-Avatar** mit Emotionen und Gesten
 - **Mehrsprachigkeit** (Deutsch, Englisch, Türkisch, Arabisch, etc.)
 - **Accessibility-First** (WCAG 2.1 AA/AAA)
 - **Real-time Chat** über WebSocket
@@ -24,7 +24,7 @@ KAYA ist der digitale Assistent des Landkreises Oldenburg, der Bürgern bei Verw
 
 ### Frontend (React + TypeScript)
 - **React-Komponenten** - Modulare UI
-- **Unity WebGL** - Avatar-Integration
+- **Babylon.js 3D** - Avatar-Integration
 - **WebSocket Client** - Backend-Kommunikation
 - **Audio System** - Mikrofon und Lautsprecher
 - **Accessibility** - Screen Reader, Keyboard Navigation
@@ -62,14 +62,14 @@ cd crawler-v2 && npm install && npm run crawl
 
 ### Phase 2 ✅ Frontend-Architektur
 - React + TypeScript Setup
-- Unity WebGL Integration
+- Babylon.js 3D Integration
 - WebSocket-Client
 - Audio-System
 - Accessibility-Features
 
 ### Phase 3 ✅ Integration & Deployment
 - Backend-Frontend-Verbindung
-- Unity-Avatar-Integration
+- Babylon.js-Avatar-Integration
 - Railway-Deployment
 - Testing & Optimierung
 
@@ -127,9 +127,10 @@ VITE_API_URL=https://api.example.com
 VITE_WS_URL=wss://api.example.com
 ```
 
-### Unity-Integration
-- WebGL-Build in `frontend/public/unity/kaya/Build/`
-- Erforderliche Dateien: `Build.loader.js`, `Build.framework.js`, `Build.data`, `Build.wasm`
+### Babylon.js-Integration
+- 3D-Avatar-Modelle in `frontend/public/avatar/`
+- Erforderliche Dateien: `*.glb` (GLTF Binary Format)
+- Babylon.js lädt Modelle automatisch via `@babylonjs/loaders`
 
 ## 📈 Performance
 

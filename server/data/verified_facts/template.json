@@ -1,0 +1,75 @@
+{
+  "version": "2.0",
+  "last_updated": "YYYY-MM-DD",
+  "source": "Offizielle Website - Gecrawlt & Verifiziert",
+  "hoheitlicher_auftrag": true,
+  "warnung": "ALLE Fakten sind für hoheitliche Aufgaben verifiziert. Falsche Informationen sind INAKZEPTABEL!",
+  
+  "facts": {
+    "kontakt_informationen": {
+      "haupttelefon": {
+        "wert": "TELEFONNUMMER",
+        "typ": "Zentrale Telefonnummer",
+        "oeffnungszeiten": "Mo-Fr 8-16 Uhr",
+        "verifiziert_am": "YYYY-MM-DD",
+        "quelle": "URL_ZUR_QUELLE",
+        "warnung": "NIEMALS andere Telefonnummern erfinden! Nur diese Nummer oder E-Mail."
+      },
+      "hauptemail": {
+        "wert": "info@kommune.de",
+        "typ": "Allgemeine E-Mail-Adresse",
+        "verifiziert_am": "YYYY-MM-DD",
+        "quelle": "URL_ZUR_QUELLE",
+        "warnung": "NIEMALS andere E-Mail-Adressen erfinden! Nur verifizierte Adressen nutzen."
+      },
+      "website": {
+        "wert": "https://www.kommune.de",
+        "typ": "Hauptwebsite",
+        "verifiziert_am": "YYYY-MM-DD",
+        "quelle": "Offizielle Website",
+        "warnung": "NIEMALS Links zu nicht existierenden Seiten erfinden!"
+      }
+    },
+
+    "personen_und_positionen": {
+      "landrat_oder_buergermeister": {
+        "name": "NAME",
+        "titel": "Landrat oder Bürgermeister",
+        "organisation": "NAME DER KOMMUNE",
+        "verifiziert_am": "YYYY-MM-DD",
+        "quelle": "URL_ZUR_QUELLE",
+        "warnung": "NIEMALS andere Namen erfinden! Nur verifizierte Namen verwenden!"
+      }
+    },
+
+    "rechnung_ebilling": {
+      "leitweg_id": {
+        "wert": "LEITWEG-ID",
+        "typ": "Leitweg-ID für E-Rechnung",
+        "organisation": "NAME DER KOMMUNE",
+        "standort": "Impressum der Website",
+        "verifiziert_am": "YYYY-MM-DD",
+        "quelle": "URL_ZUM_IMPRESSUM",
+        "warnung": "NIEMALS sagen 'kann ich nicht bereitstellen' - diese Info ist verifiziert!"
+      },
+      "vorgang": {
+        "schritt_1": "Rechnung im XRechnung-Format erstellen (XML, UBL 2.1/CIIl) oder ZUGFeRD 2.0",
+        "schritt_2": "Leitweg-ID LEITWEG-ID in der Rechnung verwenden",
+        "schritt_3": "Rechnung über das XRechnung-System senden",
+        "empfaenger": "NAME DER KOMMUNE",
+        "zustandig": "Finanzdezernat / Rechnungsprüfung",
+        "kontakt": "TELEFONNUMMER",
+        "verifiziert_am": "YYYY-MM-DD",
+        "quelle": "URL_ZUR_E-RECHNUNG_SEITE",
+        "warnung": "NIEMALS halluzinieren - alle Infos müssen verifiziert sein!"
+      }
+    }
+  },
+  "metadaten": {
+    "hoheitlicher_auftrag": true,
+    "keine_halluzinationen": true,
+    "verifizierung_pflicht": true,
+    "hinweis": "Alle Fakten sind für hoheitliche Aufgaben verifiziert. Falsche Informationen sind inakzeptabel!"
+  }
+}
+

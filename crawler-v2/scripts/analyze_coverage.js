@@ -5,7 +5,16 @@ const { URL } = require('url');
 
 class CoverageAnalyzer {
     constructor() {
-        this.baseUrl = 'https://www.oldenburg-kreis.de';
+        // Lade Base-URL aus Kommune-Config
+        try {
+            const KommuneConfigLoader = require('../src/core/KommuneConfigLoader');
+            const kommuneConfig = new KommuneConfigLoader();
+            const kommuneInfo = kommuneConfig.getKommuneInfo();
+            this.baseUrl = kommuneInfo.base_url;
+        } catch (error) {
+            console.warn('⚠️ KommuneConfigLoader nicht verfügbar, verwende Default');
+            this.baseUrl = 'https://www.oldenburg-kreis.de';
+        }
         this.crawledUrls = new Set();
         this.allUrls = new Set();
         this.sitemapUrls = new Set();
@@ -42,12 +51,8 @@ class CoverageAnalyzer {
         const CrawlerEngine = require('../src/core/CrawlerEngine');
         const engine = new CrawlerEngine();
         
-        const agents = [
-            'buergerdienste', 'ratsinfo', 'stellenportal', 'kontakte', 'jugend',
-            'soziales', 'politik', 'jobcenter', 'wirtschaft', 'ordnungsamt',
-            'senioren', 'inklusion', 'digitalisierung', 'gleichstellung',
-            'rechnung_ebilling', 'aktionen_veranstaltungen', 'politik_landkreis'
-        ];
+        // Verwende Agent-Liste aus Engine (aus Kommune-Config geladen)
+        const agents = engine.agents;
         
         for (const agentName of agents) {
             try {
@@ -105,7 +110,7 @@ class CoverageAnalyzer {
             
             while ((match = urlRegex.exec(text)) !== null) {
                 const url = match[1].trim();
-                if (url.includes('oldenburg-kreis.de')) {
+                if (url.includes(this.baseUrl.replace('https://', '').replace('http://', ''))) {
                     urls.push(this.normalizeUrl(url));
                 }
             }
@@ -135,7 +140,7 @@ class CoverageAnalyzer {
                     const href = a.getAttribute('href');
                     if (href && href.startsWith('/')) {
                         links.add(href);
-                    } else if (href && href.includes('oldenburg-kreis.de')) {
+                    } else if (href && href.includes(this.baseUrl.replace('https://', '').replace('http://', ''))) {
                         links.add(new URL(href).pathname);
                     }
                 });
@@ -202,7 +207,8 @@ class CoverageAnalyzer {
                         if (href) {
                             try {
                                 const url = new URL(href, baseUrl);
-                                if (url.hostname.includes('oldenburg-kreis.de') && url.pathname !== '/') {
+                                const domain = this.baseUrl.replace('https://', '').replace('http://', '').split('/')[0];
+                                if (url.hostname.includes(domain) && url.pathname !== '/') {
                                     found.add(url.pathname);
                                 }
                             } catch (e) {}
@@ -238,7 +244,7 @@ class CoverageAnalyzer {
         
         const total = this.allUrls.size;
         const crawled = Array.from(this.crawledUrls).filter(url => 
-            this.allUrls.has(url) || url.includes('oldenburg-kreis.de')
+            this.allUrls.has(url) || url.includes(this.baseUrl.replace('https://', '').replace('http://', '').split('/')[0])
         ).length;
         
         const coverage = total > 0 ? (crawled / total * 100).toFixed(1) : 0;
@@ -264,7 +270,8 @@ class CoverageAnalyzer {
             if (!this.crawledUrls.has(url)) {
                 missing.push(url);
                 // Versuche Kategorie zu extrahieren
-                const match = url.match(/oldenburg-kreis\.de\/([^\/]+)/);
+                const domain = this.baseUrl.replace('https://', '').replace('http://', '').split('/')[0];
+                const match = url.match(new RegExp(domain.replace('.', '\\.') + '/([^/]+)'));
                 if (match) {
                     categories.add(match[1]);
                 }

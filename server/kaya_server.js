@@ -420,7 +420,7 @@ app.get('/kaya/info', (req, res) => {
     res.json({
         name: 'KAYA',
         pronunciation: 'Kaja',
-        role: 'Kommunaler KI-Assistent für Landkreis Oldenburg',
+        role: `Kommunaler KI-Assistent für ${getKommuneConfig().getKommuneName()}`,
         greeting: 'Moin! Ich bin KAYA',
         features: [
             'Norddeutsch-freundlich',

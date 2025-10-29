@@ -8,7 +8,18 @@ class KAYAAgentManager {
         this.loadVerifiedFacts(); // Lade verifizierte Fakten beim Start
         
         // Agent-Daten-Pfad und weitere Initialisierung
-        this.agentDataPath = path.join(__dirname, '../crawler-v2/data/processed');
+        // Lade Pfad aus Kommune-Config oder verwende Standard
+        try {
+            const { getKommuneConfig } = require('./config/kommune_config_loader');
+            const kommuneConfig = getKommuneConfig();
+            // Pfad könnte kommunenspezifisch sein: crawler-v2/data/[kommune]/processed
+            // Für jetzt: Standard-Pfad (kann später erweitert werden)
+            this.agentDataPath = path.join(__dirname, '../crawler-v2/data/processed');
+        } catch (error) {
+            // Fallback zu Standard-Pfad
+            console.warn('⚠️ KommuneConfigLoader nicht verfügbar, verwende Standard-Pfad');
+            this.agentDataPath = path.join(__dirname, '../crawler-v2/data/processed');
+        }
         this.cache = new Map();
         this.lastUpdate = null;
         this.updateInterval = 300000; // 5 Minuten

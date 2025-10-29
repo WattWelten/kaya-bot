@@ -27,11 +27,24 @@ class KAYACharacterHandler {
         console.log('💾 Caching aktiviert: In-Memory + Redis Fallback');
     }
     
+    /**
+     * Gibt Kommune-Namen zurück (dynamisch aus Konfiguration)
+     */
+    getKommuneName() {
+        try {
+            const { getKommuneConfig } = require('./config/kommune_config_loader');
+            return getKommuneConfig().getKommuneName();
+        } catch (error) {
+            // Fallback
+            return 'Landkreis Oldenburg';
+        }
+    }
+    
     // Lazy loading für Agent Handler
     getAgentHandler() {
         if (!this.agentHandler) {
-            const KAYAAgentHandler = require('./kaya_agent_handler');
-            this.agentHandler = new KAYAAgentHandler();
+            const KAYAAgentManager = require('./kaya_agent_manager_v2');
+            this.agentHandler = new KAYAAgentManager();
         }
         return this.agentHandler;
     }
@@ -1156,7 +1169,7 @@ class KAYACharacterHandler {
                     // Nimm erste 3 relevante Einträge
                     const relevant = agentData.slice(0, 3);
                     let response = `${greeting}\n\n`;
-                    response += `**Aktuelles im Landkreis Oldenburg:**\n\n`;
+                    response += `**Aktuelles im ${this.getKommuneName()}:**\n\n`;
                     
                     relevant.forEach(item => {
                         if (item.title && item.title !== 'Unbekannt' && item.title !== 'Startseite') {
@@ -1232,7 +1245,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Führerschein im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Führerschein im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Fahrschule finden:**\n`;
         response += `→ [Fahrschulen-Verzeichnis](https://www.oldenburg-kreis.de/buergerservice/fuehrerschein/fahrschulen)\n\n`;
         response += `📄 **2. Antrag stellen:**\n`;
@@ -1255,7 +1268,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Bauantrag im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Bauantrag im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Bauantrag stellen:**\n`;
         response += `→ [Bauantrag-Formular](https://www.oldenburg-kreis.de/buergerservice/bauen/bauantrag)\n\n`;
         response += `📄 **2. Unterlagen bereithalten:**\n`;
@@ -1278,7 +1291,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Gewerbeanmeldung im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Gewerbeanmeldung im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Gewerbe anmelden:**\n`;
         response += `→ [Gewerbeanmeldung](https://www.oldenburg-kreis.de/buergerservice/gewerbe/anmeldung)\n\n`;
         response += `📄 **2. Formulare ausfüllen:**\n`;
@@ -1301,7 +1314,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Landwirtschaft im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Landwirtschaft im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Landwirtschaftliche Beratung:**\n`;
         response += `→ [Landwirtschaftsamt](https://www.oldenburg-kreis.de/buergerservice/landwirtschaft/beratung)\n\n`;
         response += `📄 **2. Anträge und Formulare:**\n`;
@@ -1324,7 +1337,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Handwerk im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Handwerk im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Handwerkskammer:**\n`;
         response += `→ [Handwerkskammer](https://www.oldenburg-kreis.de/buergerservice/handwerk/kammer)\n\n`;
         response += `📄 **2. Ausbildung und Meister:**\n`;
@@ -1347,7 +1360,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Studium im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Studium im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Hochschulen:**\n`;
         response += `→ [Hochschulen-Verzeichnis](https://www.oldenburg-kreis.de/buergerservice/bildung/hochschulen)\n\n`;
         response += `📄 **2. BAföG und Stipendien:**\n`;
@@ -1370,7 +1383,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Soziales im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Soziales im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Sozialhilfe und Grundsicherung:**\n`;
         response += `→ [Sozialhilfe](https://www.oldenburg-kreis.de/buergerservice/soziales/hilfe)\n\n`;
         response += `📄 **2. Anträge stellen:**\n`;
@@ -1393,7 +1406,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Gesundheit im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Gesundheit im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Gesundheitsamt:**\n`;
         response += `→ [Gesundheitsamt](https://www.oldenburg-kreis.de/buergerservice/gesundheit/amt)\n\n`;
         response += `📄 **2. Impfungen und Vorsorge:**\n`;
@@ -1416,7 +1429,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Bildung im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Bildung im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Schulen und Bildungseinrichtungen:**\n`;
         response += `→ [Bildungseinrichtungen](https://www.oldenburg-kreis.de/buergerservice/bildung/schulen)\n\n`;
         response += `📄 **2. Kurse und Weiterbildung:**\n`;
@@ -1439,7 +1452,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Umwelt im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Umwelt im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Umweltamt:**\n`;
         response += `→ [Umweltamt](https://www.oldenburg-kreis.de/buergerservice/umwelt/amt)\n\n`;
         response += `📄 **2. Müll und Recycling:**\n`;
@@ -1486,7 +1499,7 @@ class KAYACharacterHandler {
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
         let response = `${greeting}\n\n`;
-        response += `🎯 **Tourismus im Landkreis Oldenburg:**\n\n`;
+        response += `🎯 **Tourismus im ${this.getKommuneName()}:**\n\n`;
         response += `📋 **1. Tourismus-Information:**\n`;
         response += `→ [Tourismus-Info](https://www.oldenburg-kreis.de/tourismus/information)\n\n`;
         response += `📄 **2. Unterkünfte:**\n`;
@@ -1512,7 +1525,7 @@ class KAYACharacterHandler {
         response += `📦 **Lieferanten-Service des Landkreises Oldenburg:**\n\n`;
         response += `📋 **1. Rechnungsstellung:**\n`;
         response += `→ Zahlungsziel: 30 Tage\n`;
-        response += `→ Rechnungen an: Buchhaltung, Landkreis Oldenburg\n\n`;
+        response += `→ Rechnungen an: Buchhaltung, ${this.getKommuneName()}\n\n`;
         response += `📄 **2. Bestellungen & Aufträge:**\n`;
         response += `→ [Vergabeportal](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/vergabeportal-landkreis-oldenburg)\n\n`;
         response += `📞 **3. Kontakt Buchhaltung:**\n`;
@@ -1627,7 +1640,7 @@ class KAYACharacterHandler {
             response += `**Zuständig:** ${zustandig}\n`;
             response += `**Kontakt:** ${kontakt}`;
         } else if (queryLower.includes('xrechnung') || queryLower.includes('erechnung') || queryLower.includes('elektronisch')) {
-            response += `**XRechnung / E-Rechnung** – der Landkreis Oldenburg akzeptiert elektronische Rechnungen.\n\n`;
+            response += `**XRechnung / E-Rechnung** – ${this.getKommuneName()} akzeptiert elektronische Rechnungen.\n\n`;
             response += `**Wichtige Infos:**\n`;
             response += `• Format: XRechnung (XML, UBL 2.1/CIIl)\n`;
             response += `• Alternativ: ZUGFeRD 2.0 oder PDF mit eingebetteter XML\n`;
@@ -1649,7 +1662,7 @@ class KAYACharacterHandler {
             response += `• Allgemeine Info: 04431 85-0\n\n`;
             response += `Brauchst du Hilfe beim Format oder der Übertragung?`;
         } else {
-            response += `**E-Rechnung / XRechnung** für den Landkreis Oldenburg:\n\n`;
+            response += `**E-Rechnung / XRechnung** für ${this.getKommuneName()}:\n\n`;
             response += `• **Leitweg-ID:** 03458-0-051\n`;
             response += `• Format: XRechnung (XML), ZUGFeRD 2.0\n`;
             response += `• Zuständig: Finanzdezernat / Rechnungsprüfung\n\n`;
@@ -1669,7 +1682,7 @@ class KAYACharacterHandler {
         
         if (queryLower.includes('saubere landschaft') || queryLower.includes('müll') || queryLower.includes('sammeln')) {
             response += `**Aktion Saubere Landschaft** 🌿\n\n`;
-            response += `Das ist eine jahreszeitliche Müllsammel-Aktion im Landkreis Oldenburg.\n\n`;
+            response += `Das ist eine jahreszeitliche Müllsammel-Aktion im ${this.getKommuneName()}.\n\n`;
             response += `**Was ist das?**\n`;
             response += `Bürger-Engagement für Umweltschutz – gemeinsam Müll sammeln und die Landschaft sauber halten.\n\n`;
             response += `**Koordination:**\n`;
@@ -1678,21 +1691,21 @@ class KAYACharacterHandler {
             response += `[Aktion Saubere Landschaft](https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/)\n\n`;
             response += `Möchtest du teilnehmen oder mehr Infos?`;
         } else if (queryLower.includes('veranstaltung') || queryLower.includes('event') || queryLower.includes('termin')) {
-            response += `**Veranstaltungen im Landkreis Oldenburg:**\n\n`;
+            response += `**Veranstaltungen im ${this.getKommuneName()}:**\n\n`;
             response += `• [Aktuelles](https://www.oldenburg-kreis.de/aktuelles/)\n`;
             response += `• [Veranstaltungen](https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/)\n`;
             response += `• [Kultur](https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/)\n`;
             response += `• [Tourismus-Events](https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/)\n\n`;
             response += `Suchst du eine bestimmte Veranstaltung oder möchtest du den Kalender durchsuchen?`;
         } else if (queryLower.includes('aktion') || queryLower.includes('mitmachen')) {
-            response += `**Aktionen im Landkreis Oldenburg:**\n\n`;
+            response += `**Aktionen im ${this.getKommuneName()}:**\n\n`;
             response += `• **Aktion Saubere Landschaft** – Umweltschutz-Aktion\n`;
             response += `• Weitere Bürgerbeteiligungsformate\n`;
             response += `• Informationsveranstaltungen\n\n`;
             response += `Aktuelle Aktionen: [Übersicht](https://www.oldenburg-kreis.de/aktuelles/aktionen/)\n\n`;
             response += `Interessierst du dich für eine bestimmte Aktion?`;
         } else {
-            response += `**Aktionen & Veranstaltungen** im Landkreis Oldenburg:\n\n`;
+            response += `**Aktionen & Veranstaltungen** im ${this.getKommuneName()}:\n\n`;
             response += `• [Aktuelle Aktionen](https://www.oldenburg-kreis.de/aktuelles/aktionen/)\n`;
             response += `• [Veranstaltungen](https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/)\n`;
             response += `• [Aktion Saubere Landschaft](https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/)\n\n`;
@@ -2610,27 +2623,27 @@ class KAYACharacterHandler {
                     url: 'https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung'
                 },
                 führerschein: {
-                    source: 'Führerscheinstelle Landkreis Oldenburg',
+                    source: `Führerscheinstelle ${this.getKommuneName()}`,
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de/buergerservice/fuehrerschein'
                 },
                 bauantrag: {
-                    source: 'Bauamt Landkreis Oldenburg',
+                    source: `Bauamt ${this.getKommuneName()}`,
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de/buergerservice/bauen'
                 },
                 gewerbe: {
-                    source: 'Gewerbeamt Landkreis Oldenburg',
+                    source: `Gewerbeamt ${this.getKommuneName()}`,
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de/buergerservice/gewerbe'
                 },
                 notfall: {
-                    source: 'Notfallzentrale Landkreis Oldenburg',
+                    source: `Notfallzentrale ${this.getKommuneName()}`,
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de/buergerservice/notfall'
                 },
                 general: {
-                    source: 'Landkreis Oldenburg',
+                    source: this.getKommuneName(),
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de'
                 }
@@ -2642,27 +2655,27 @@ class KAYACharacterHandler {
                     url: 'https://www.oldenburg-kreis.de/buergerservice/kfz-zulassung'
                 },
                 führerschein: {
-                    source: 'Driver\'s License Office Landkreis Oldenburg',
+                    source: `Driver's License Office ${this.getKommuneName()}`,
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de/buergerservice/fuehrerschein'
                 },
                 bauantrag: {
-                    source: 'Building Authority Landkreis Oldenburg',
+                    source: `Building Authority ${this.getKommuneName()}`,
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de/buergerservice/bauen'
                 },
                 gewerbe: {
-                    source: 'Business Registration Office Landkreis Oldenburg',
+                    source: `Business Registration Office ${this.getKommuneName()}`,
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de/buergerservice/gewerbe'
                 },
                 notfall: {
-                    source: 'Emergency Center Landkreis Oldenburg',
+                    source: `Emergency Center ${this.getKommuneName()}`,
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de/buergerservice/notfall'
                 },
                 general: {
-                    source: 'Landkreis Oldenburg',
+                    source: this.getKommuneName(),
                     lastUpdated: '01/2025',
                     url: 'https://www.oldenburg-kreis.de'
                 }

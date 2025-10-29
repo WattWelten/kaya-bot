@@ -232,7 +232,17 @@ class LLMService {
         const { persona, emotionalState, urgency, language = 'german', userData, isFirstMessage } = context;
         
         // KAYA – Kompakt & Effizient (Token-optimiert)
-        let prompt = `Du bist KAYA – digitale Assistenz des Landkreises Oldenburg.
+        // Lade Kommune-Info dynamisch
+        const kommuneName = (() => {
+            try {
+                const { getKommuneConfig } = require('./config/kommune_config_loader');
+                return getKommuneConfig().getKommuneName();
+            } catch (error) {
+                return 'Landkreis Oldenburg'; // Fallback
+            }
+        })();
+        
+        let prompt = `Du bist KAYA – digitale Assistenz von ${kommuneName}.
 
 Zweck: Schnell, freundlich, zuverlässig – ohne Geschwafel. Führt zum Ziel in 1–3 Schritten.
 
