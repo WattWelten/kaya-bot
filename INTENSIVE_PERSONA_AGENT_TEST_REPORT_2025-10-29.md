@@ -1,6 +1,6 @@
 # Intensiver Persona- und Agent-Test - Report 2025-10-29
 
-**Datum:** 2025-10-29T12:06:58.901Z
+**Datum:** 2025-10-29T12:32:55.466Z
 **Status:** ✅ Test abgeschlossen
 
 ---
@@ -106,15 +106,15 @@
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
-| KFZ anmelden | general | buergerdienste | ✅ | 3ms |
-| KFZ anmelden | migrant | buergerdienste | ✅ | 1ms |
-| KFZ anmelden | commuter | buergerdienste | ✅ | 3ms |
-| Personalausweis beantragen | general | buergerdienste | ✅ | 2ms |
+| KFZ anmelden | general | buergerdienste | ✅ | 2ms |
+| KFZ anmelden | migrant | buergerdienste | ✅ | 2ms |
+| KFZ anmelden | commuter | buergerdienste | ✅ | 1ms |
+| Personalausweis beantragen | general | buergerdienste | ✅ | 3ms |
 | Personalausweis beantragen | migrant | buergerdienste | ✅ | 3ms |
 | Personalausweis beantragen | housing_seeker | buergerdienste | ✅ | 3ms |
-| Gewerbe anmelden | entrepreneur | buergerdienste | ✅ | 3ms |
-| Gewerbe anmelden | small_business | buergerdienste | ✅ | 2ms |
-| Ordnungsamt | general | buergerdienste | ✅ | 2ms |
+| Gewerbe anmelden | entrepreneur | buergerdienste | ✅ | 2ms |
+| Gewerbe anmelden | small_business | buergerdienste | ✅ | 1ms |
+| Ordnungsamt | general | buergerdienste | ✅ | 1ms |
 | Bauantrag stellen | general | buergerdienste | ✅ | 2ms |
 | ... | ... | ... | ... | ... |
 
@@ -122,13 +122,13 @@
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
-| Digitalisierung | general | digitalisierung | ✅ | 2ms |
+| Digitalisierung | general | digitalisierung | ✅ | 1ms |
 
 ### gleichstellung (1/1 erfolgreich, 100.0%)
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
-| Gleichstellung | general | gleichstellung | ✅ | 2ms |
+| Gleichstellung | general | gleichstellung | ✅ | 1ms |
 
 ### inklusion (2/2 erfolgreich, 100.0%)
 
@@ -141,40 +141,40 @@
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
-| Arbeitslosengeld | unemployed | jobcenter | ✅ | 3ms |
-| Arbeitslosengeld | unemployed_longterm | jobcenter | ✅ | 2ms |
+| Arbeitslosengeld | unemployed | jobcenter | ✅ | 2ms |
+| Arbeitslosengeld | unemployed_longterm | jobcenter | ✅ | 1ms |
 
 ### jugend (6/6 erfolgreich, 100.0%)
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
 | Jugendamt | youth | jugend | ✅ | 1ms |
-| Jugendamt | family | jugend | ✅ | 2ms |
-| Jugendamt | single_parent | jugend | ✅ | 2ms |
+| Jugendamt | family | jugend | ✅ | 1ms |
+| Jugendamt | single_parent | jugend | ✅ | 1ms |
 | Kindergeld | family | jugend | ✅ | 1ms |
 | Kindergeld | single_parent | jugend | ✅ | 1ms |
-| Jugendliche | youth | jugend | ✅ | 1ms |
+| Jugendliche | youth | jugend | ✅ | 2ms |
 
 ### kontakte (3/3 erfolgreich, 100.0%)
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
 | Kontakt Landkreis | general | kontakte | ✅ | 2ms |
-| Kontakt Landkreis | migrant | kontakte | ✅ | 2ms |
-| Telefonnummer | general | kontakte | ✅ | 2ms |
+| Kontakt Landkreis | migrant | kontakte | ✅ | 1ms |
+| Telefonnummer | general | kontakte | ✅ | 1ms |
 
 ### politik_landkreis (10/10 erfolgreich, 100.0%)
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
 | Wer ist der Landrat? | political_interested | politik_landkreis | ✅ | 13ms |
-| Wer ist der Landrat? | general | politik_landkreis | ✅ | 4ms |
+| Wer ist der Landrat? | general | politik_landkreis | ✅ | 3ms |
 | Wer ist der Landrat? | senior | politik_landkreis | ✅ | 3ms |
 | Dr. Christian Pundt | political_interested | politik_landkreis | ✅ | 3ms |
 | Dr. Christian Pundt | general | politik_landkreis | ✅ | 3ms |
-| Kreistagsmitglieder | political_interested | politik_landkreis | ✅ | 2ms |
-| Kreistagsmitglieder | general | politik_landkreis | ✅ | 2ms |
-| Kreisorgane | political_interested | politik_landkreis | ✅ | 1ms |
+| Kreistagsmitglieder | political_interested | politik_landkreis | ✅ | 4ms |
+| Kreistagsmitglieder | general | politik_landkreis | ✅ | 3ms |
+| Kreisorgane | political_interested | politik_landkreis | ✅ | 2ms |
 | Landrat Kontakt | general | politik_landkreis | ✅ | 2ms |
 | Politik im Landkreis | political_interested | politik_landkreis | ✅ | 2ms |
 
@@ -182,21 +182,21 @@
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
-| Kreistagssitzung | political_interested | ratsinfo | ✅ | 1ms |
-| Kreistagssitzung | general | ratsinfo | ✅ | 1ms |
-| Tagesordnung | political_interested | ratsinfo | ✅ | 1ms |
+| Kreistagssitzung | political_interested | ratsinfo | ✅ | 3ms |
+| Kreistagssitzung | general | ratsinfo | ✅ | 3ms |
+| Tagesordnung | political_interested | ratsinfo | ✅ | 2ms |
 
 ### rechnung_ebilling (9/9 erfolgreich, 100.0%)
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
-| XRechnung senden | entrepreneur | rechnung_ebilling | ✅ | 2ms |
+| XRechnung senden | entrepreneur | rechnung_ebilling | ✅ | 3ms |
 | XRechnung senden | small_business | rechnung_ebilling | ✅ | 2ms |
 | XRechnung senden | general | rechnung_ebilling | ✅ | 2ms |
 | E-Rechnung Landkreis Oldenburg | entrepreneur | rechnung_ebilling | ✅ | 3ms |
-| E-Rechnung Landkreis Oldenburg | small_business | rechnung_ebilling | ✅ | 3ms |
-| Leitweg-ID 03458-0-051 | small_business | rechnung_ebilling | ✅ | 2ms |
-| Leitweg-ID 03458-0-051 | general | rechnung_ebilling | ✅ | 3ms |
+| E-Rechnung Landkreis Oldenburg | small_business | rechnung_ebilling | ✅ | 2ms |
+| Leitweg-ID 03458-0-051 | small_business | rechnung_ebilling | ✅ | 3ms |
+| Leitweg-ID 03458-0-051 | general | rechnung_ebilling | ✅ | 1ms |
 | eBilling | entrepreneur | rechnung_ebilling | ✅ | 1ms |
 | XRechnung | general | rechnung_ebilling | ✅ | 1ms |
 
@@ -204,28 +204,28 @@
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
-| Seniorenbetreuung | senior | senioren | ✅ | 2ms |
-| Seniorenbetreuung | pensioner | senioren | ✅ | 2ms |
+| Seniorenbetreuung | senior | senioren | ✅ | 1ms |
+| Seniorenbetreuung | pensioner | senioren | ✅ | 1ms |
 
 ### soziales (5/5 erfolgreich, 100.0%)
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
 | Sozialhilfe | unemployed | soziales | ✅ | 1ms |
-| Sozialhilfe | low_income | soziales | ✅ | 2ms |
+| Sozialhilfe | low_income | soziales | ✅ | 1ms |
 | Sozialhilfe | senior | soziales | ✅ | 1ms |
-| Bürgergeld | unemployed | soziales | ✅ | 1ms |
-| Bürgergeld | low_income | soziales | ✅ | 2ms |
+| Bürgergeld | unemployed | soziales | ✅ | 2ms |
+| Bürgergeld | low_income | soziales | ✅ | 1ms |
 
 ### stellenportal (5/5 erfolgreich, 100.0%)
 
 | Query | Persona | Tatsächlich | Erfolg | Response-Zeit |
 |-------|---------|-------------|--------|----------------|
-| Stellenangebote | unemployed | stellenportal | ✅ | 2ms |
-| Stellenangebote | student | stellenportal | ✅ | 2ms |
-| Stellenangebote | general | stellenportal | ✅ | 2ms |
-| Bewerbung | unemployed | stellenportal | ✅ | 2ms |
-| Bewerbung | student | stellenportal | ✅ | 2ms |
+| Stellenangebote | unemployed | stellenportal | ✅ | 3ms |
+| Stellenangebote | student | stellenportal | ✅ | 1ms |
+| Stellenangebote | general | stellenportal | ✅ | 3ms |
+| Bewerbung | unemployed | stellenportal | ✅ | 1ms |
+| Bewerbung | student | stellenportal | ✅ | 1ms |
 
 ## Empfehlungen
 
@@ -233,4 +233,4 @@
 
 ---
 
-**Report erstellt:** 2025-10-29T12:06:58.902Z
+**Report erstellt:** 2025-10-29T12:32:55.466Z

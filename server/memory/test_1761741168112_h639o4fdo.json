@@ -1,0 +1,35 @@
+{
+  "id": "test_1761741168112_h639o4fdo",
+  "messages": [
+    {
+      "id": "1761741168114",
+      "sender": "user",
+      "content": "KFZ anmelden",
+      "timestamp": "2025-10-29T12:32:48.114Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761741168136",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Termin online buchen\n2. Unterlagen vorbereiten\n3. Zur Zulassungsstelle gehen\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:32:48.136Z",
+      "context": {
+        "intention": "kfz_zulassung",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:32:48.114Z",
+  "lastActivity": "2025-10-29T12:32:48.136Z"
+}

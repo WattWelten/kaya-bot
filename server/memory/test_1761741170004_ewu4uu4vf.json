@@ -1,0 +1,35 @@
+{
+  "id": "test_1761741170004_ewu4uu4vf",
+  "messages": [
+    {
+      "id": "1761741170006",
+      "sender": "user",
+      "content": "Kontakt Landkreis",
+      "timestamp": "2025-10-29T12:32:50.006Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761741170042",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:32:50.042Z",
+      "context": {
+        "intention": "lieferanten",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:32:50.006Z",
+  "lastActivity": "2025-10-29T12:32:50.042Z"
+}

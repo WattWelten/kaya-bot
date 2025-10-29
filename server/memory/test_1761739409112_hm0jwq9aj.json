@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739409112_hm0jwq9aj",
+  "messages": [
+    {
+      "id": "1761739409113",
+      "sender": "user",
+      "content": "Bewerbung",
+      "timestamp": "2025-10-29T12:03:29.113Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739409144",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:03:29.144Z",
+      "context": {
+        "intention": "jobcenter",
+        "persona": "unemployed",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:03:29.113Z",
+  "lastActivity": "2025-10-29T12:03:29.144Z"
+}

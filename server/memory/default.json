@@ -8483,10 +8483,35 @@
         "communicationMode": "audio",
         "audioResponse": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie. 1. Termin online buchen\n2. Unterlagen vorbereiten\n3. Zur Zulassungsstelle gehen\n\nLos geht's! Was ist Ihr nächster Schritt?"
       }
+    },
+    {
+      "id": "1761724777710",
+      "sender": "user",
+      "content": "Bitte nenne mir die Leitweg-ID fÃ¼r XRechnung.",
+      "timestamp": "2025-10-29T07:59:37.710Z",
+      "context": {
+        "communicationMode": "audio"
+      }
+    },
+    {
+      "id": "1761724777975",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T07:59:37.975Z",
+      "context": {
+        "intention": "lieferanten",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "audio",
+        "audioResponse": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie. 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?"
+      }
     }
   ],
   "createdAt": "2025-10-10T19:08:56.553Z",
-  "lastActivity": "2025-10-27T09:56:43.714Z",
+  "lastActivity": "2025-10-29T07:59:37.975Z",
   "context": {
     "userData": {
       "name": "Michael"

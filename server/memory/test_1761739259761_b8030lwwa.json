@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739259761_b8030lwwa",
+  "messages": [
+    {
+      "id": "1761739259765",
+      "sender": "user",
+      "content": "Personalausweis beantragen",
+      "timestamp": "2025-10-29T12:00:59.765Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739259793",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:00:59.793Z",
+      "context": {
+        "intention": "buergerdienste",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:00:59.764Z",
+  "lastActivity": "2025-10-29T12:00:59.793Z"
+}

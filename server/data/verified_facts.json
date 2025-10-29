@@ -1,0 +1,171 @@
+{
+  "version": "2.0",
+  "last_updated": "2025-10-29",
+  "source": "Offizielle Website des Landkreises Oldenburg - Gecrawlt & Verifiziert",
+  "hoheitlicher_auftrag": true,
+  "warnung": "ALLE Fakten sind für hoheitliche Aufgaben verifiziert. Falsche Informationen sind INAKZEPTABEL!",
+  
+  "facts": {
+    "kontakt_informationen": {
+      "haupttelefon": {
+        "wert": "04431 85-0",
+        "typ": "Zentrale Telefonnummer",
+        "oeffnungszeiten": "Mo-Fr 8-16 Uhr",
+        "verifiziert_am": "2025-10-29",
+        "quelle": "https://www.oldenburg-kreis.de/portal/seiten/oeffnungszeiten-900000003-21700.html",
+        "warnung": "NIEMALS andere Telefonnummern erfinden! Nur diese Nummer oder E-Mail."
+      },
+      "hauptemail": {
+        "wert": "info@oldenburg-kreis.de",
+        "typ": "Allgemeine E-Mail-Adresse",
+        "verifiziert_am": "2025-10-29",
+        "quelle": "https://www.oldenburg-kreis.de/portal/kontakt.html",
+        "warnung": "NIEMALS andere E-Mail-Adressen erfinden! Nur verifizierte Adressen nutzen."
+      },
+      "website": {
+        "wert": "https://www.oldenburg-kreis.de",
+        "typ": "Hauptwebsite",
+        "verifiziert_am": "2025-10-29",
+        "quelle": "Offizielle Website",
+        "warnung": "NIEMALS Links zu nicht existierenden Seiten erfinden!"
+      },
+      "kontaktformular": {
+        "url": "https://www.oldenburg-kreis.de/portal/kontakt.html",
+        "typ": "Online-Kontaktformular",
+        "verifiziert_am": "2025-10-29",
+        "quelle": "https://www.oldenburg-kreis.de/portal/kontakt.html"
+      }
+    },
+
+    "personen_und_positionen": {
+      "landrat": {
+        "name": "Dr. Christian Pundt",
+        "titel": "Landrat",
+        "organisation": "Landkreis Oldenburg",
+        "verifiziert_am": "2025-10-29",
+        "quelle": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
+        "warnung": "NIEMALS andere Namen wie 'Matthias Groote', 'Jens Pundt' oder ähnliche erfinden! Nur Dr. Christian Pundt!"
+      }
+    },
+
+    "rechnung_ebilling": {
+      "leitweg_id": {
+        "wert": "03458-0-051",
+        "typ": "Leitweg-ID für E-Rechnung",
+        "organisation": "Landkreis Oldenburg",
+        "standort": "Impressum der Website",
+        "verifiziert_am": "2025-10-29",
+        "quelle": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
+        "warnung": "NIEMALS sagen 'kann ich nicht bereitstellen' - diese Info ist verifiziert!"
+      },
+      "vorgang": {
+        "schritt_1": "Rechnung im XRechnung-Format erstellen (XML, UBL 2.1/CIIl) oder ZUGFeRD 2.0",
+        "schritt_2": "Leitweg-ID 03458-0-051 in der Rechnung verwenden",
+        "schritt_3": "Rechnung über das XRechnung-System senden",
+        "format_alternativen": [
+          "XRechnung (XML, UBL 2.1/CIIl)",
+          "ZUGFeRD 2.0",
+          "PDF mit eingebetteter XML"
+        ],
+        "empfaenger": "Landkreis Oldenburg",
+        "zustandig": "Finanzdezernat / Rechnungsprüfung",
+        "kontakt": "04431 85-0",
+        "verifiziert_am": "2025-10-29",
+        "quelle": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
+        "warnung": "NIEMALS halluzinieren - alle Infos müssen verifiziert sein!"
+      }
+    },
+
+    "buergerdienste": {
+      "wichtige_informationen": {
+        "kontakt": "04431 85-0",
+        "oeffnungszeiten": "Mo-Fr 8-16 Uhr",
+        "verifiziert_am": "2025-10-29",
+        "quelle": "https://www.oldenburg-kreis.de/portal/seiten/oeffnungszeiten-900000003-21700.html",
+        "warnung": "NIEMALS andere Öffnungszeiten oder Telefonnummern erfinden!"
+      },
+      "kritische_fakten": {
+        "keine_halluzinationen": [
+          "Gebühren/Kosten",
+          "Bearbeitungszeiten",
+          "Bearbeitungsfristen",
+          "Rechtliche Details",
+          "Vergleichbare Verfahrensabläufe"
+        ]
+      }
+    },
+
+    "ratsinfo": {
+      "wichtige_informationen": {
+        "ratsinfo_url": "https://oldenburg-kreis.ratsinfomanagement.net/",
+        "sitzungen_url": "https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/",
+        "vorlagen_url": "https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/",
+        "personen_url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
+        "fraktionen_url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
+        "verifiziert_am": "2025-10-29",
+        "warnung": "NIEMALS Sitzungstermine, Beschlüsse oder Personeninformationen erfinden! Nur verifizierte Quellen nutzen."
+      }
+    },
+
+    "stellenportal": {
+      "wichtige_informationen": {
+        "kontakt": "04431 85-0",
+        "verifiziert_am": "2025-10-29",
+        "warnung": "NIEMALS Stellenausschreibungen, Fristen oder Anforderungen erfinden! Nur echte, verifizierte Stellen nutzen."
+      }
+    },
+
+    "jugend": {
+      "wichtige_informationen": {
+        "kontakt": "04431 85-0",
+        "verifiziert_am": "2025-10-29",
+        "warnung": "NIEMALS Angebote, Kurse oder Programme erfinden! Nur verifizierte Informationen aus gecrawlten Daten nutzen."
+      }
+    },
+
+    "soziales": {
+      "wichtige_informationen": {
+        "kontakt": "04431 85-0",
+        "verifiziert_am": "2025-10-29",
+        "warnung": "NIEMALS Leistungen, Voraussetzungen oder Verfahren erfinden! Nur verifizierte Informationen nutzen."
+      }
+    },
+
+    "jobcenter": {
+      "wichtige_informationen": {
+        "kontakt": "04431 85-0",
+        "verifiziert_am": "2025-10-29",
+        "warnung": "NIEMALS Leistungsbeträge, Antragsfristen oder Voraussetzungen erfinden! Nur verifizierte Informationen nutzen."
+      }
+    },
+
+    "alle_agenten": {
+      "allgemeine_regeln": {
+        "keine_halluzinationen": [
+          "Öffnungszeiten (nur verifizierte)",
+          "Telefonnummern (nur verifizierte)",
+          "E-Mail-Adressen (nur verifizierte)",
+          "Gebühren/Kosten",
+          "Bearbeitungszeiten",
+          "Rechtliche Details",
+          "Personennamen (außer verifiziert)",
+          "Verfahrensdetails",
+          "Termine",
+          "Beschlüsse",
+          "Fristen"
+        ],
+        "unsicherheit_bei_unbekannten_infos": "Wenn Informationen nicht in gecrawlten Daten vorhanden sind, IMMER ehrlich sagen 'Dazu habe ich keine genauen Infos' und auf Bürgerservice verweisen (04431 85-0)",
+        "verifizierte_quellen_nutzen": "Nur Informationen aus gecrawlten Agent-Daten nutzen. NIEMALS Dinge erfinden die nicht dort stehen."
+      }
+    }
+  },
+
+  "metadaten": {
+    "hoheitlicher_auftrag": true,
+    "keine_halluzinationen": true,
+    "verifizierung_pflicht": true,
+    "hinweis": "Alle Fakten sind für hoheitliche Aufgaben verifiziert. Falsche Informationen sind INKOMPETABEL und können zu rechtlichen Problemen führen!",
+    "crawler_integration": "Diese Fakten werden aus gecrawlten Daten ergänzt. Agent-Daten haben Priorität vor diesen Fallback-Fakten.",
+    "update_mechanismus": "Bei jedem Crawl werden diese Fakten aktualisiert falls sich verifizierte Quellen ändern."
+  }
+}

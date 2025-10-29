@@ -3,12 +3,16 @@
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
+    "content": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/aktuelles/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/aktuelles/"
   },
   {
@@ -20,21 +24,35 @@
   {
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/aktuelles/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "source": "https://www.oldenburg-kreis.de/aktuelles/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/aktuelles/",
     "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "source": "https://www.oldenburg-kreis.de/aktuelles/"
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "source": "https://www.oldenburg-kreis.de/aktuelles/",
+    "sectionType": "fallback"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
+    "content": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/aktuelles/aktionen/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/aktuelles/aktionen/"
   },
   {
@@ -46,21 +64,35 @@
   {
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/aktuelles/aktionen/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "source": "https://www.oldenburg-kreis.de/aktuelles/aktionen/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/aktuelles/aktionen/",
     "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "source": "https://www.oldenburg-kreis.de/aktuelles/aktionen/"
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "source": "https://www.oldenburg-kreis.de/aktuelles/aktionen/",
+    "sectionType": "fallback"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
+    "content": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/"
   },
   {
@@ -72,21 +104,35 @@
   {
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "source": "https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/",
     "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "source": "https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/"
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "source": "https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/",
+    "sectionType": "fallback"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
+    "content": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/"
   },
   {
@@ -98,21 +144,35 @@
   {
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/",
     "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/"
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/",
+    "sectionType": "fallback"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000005&brotID=900000005&id=900000003&navi_id=900000005",
     "title": "Bildung und Kultur",
+    "content": "Sie sind hier: Bildung und Kultur/Kultur{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000005&amp;brotID=900000005&amp;id=900000003&amp;navi_id=900000005\",\"name\":\"Bildung und Kultur\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenbur",
+    "plain_text": "Sie sind hier: Bildung und Kultur/Kultur{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000005&amp;brotID=900000005&amp;id=900000003&amp;navi_id=900000005\",\"name\":\"Bildung und Kultur\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenbur",
     "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/seiten/kultur-900000634-21700.html?naviID=900000352&brotID=900000352&rubrik=900000006",
     "title": "Kultur",
+    "content": "Kultur",
+    "plain_text": "Kultur",
     "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/"
   },
   {
@@ -311,20 +371,44 @@
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/",
     "title": "Kulturelles Angebot im Landkreis Oldenburg",
-    "content": "Sie sind hier: Bildung und Kultur/Kultur{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000005&amp;brotID=900000005&amp;id=900000003&amp;navi_id=900000005\",\"name\":\"Bildung und Kultur\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/kultur-900000634-21700.html?naviID=900000352&amp;brotID=900000352&amp;rubrik=900000006\",\"name\":\"Kultur\"}}]} Inhalt vorlesen Seite merken Seite drucken Kulturelles Angebot im Landkreis Oldenburg Der Landkreis Oldenburg bietet ein vielfältiges Kulturangebot. Ganz in dem Gedanken Vielfalt als Reichtum zu begreifen sind wir stolz darauf, dass das Klassische neben dem Innovativen existiert. Die kleine Autorenlesung im Garten neben dem Konzert für ein großes Publikum. Eine kleine Auswahl an heimatgeschichtlichen Museen erzählt vom Leben in früheren Zeiten und Theater gibt es auch mal auf Plattdeutsch. Die zahlreichen Galerien im Landkreis zeigen zeitgenössische Kunst aus der Region, öffnen genauso aber auch ihre Tür für Künstler aus anderen Teilen Deutschlands und der Welt. Es gibt Orte der inneren Einkehr wie die Klosterruine Hude oder die Alexanderkirche in Wildeshausen. Genauso gibt es aber auch Zeiten für ausgelassenes Feiern. Wir laden auch weiterhin alle Interessierten zum Gestalten, Teilhaben und Fördern eines bunten und vielfältigen kulturellen Angebots ein! Zurück NOLISManager.LayoutTemplate.spaltenAngleichen();",
-    "plain_text": "Sie sind hier: Bildung und Kultur/Kultur{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000005&amp;brotID=900000005&amp;id=900000003&amp;navi_id=900000005\",\"name\":\"Bildung und Kultur\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/kultur-900000634-21700.html?naviID=900000352&amp;brotID=900000352&amp;rubrik=900000006\",\"name\":\"Kultur\"}}]} Inhalt vorlesen Seite merken Seite drucken Kulturelles Angebot im Landkreis Oldenburg Der Landkreis Oldenburg bietet ein vielfältiges Kulturangebot. Ganz in dem Gedanken Vielfalt als Reichtum zu begreifen sind wir stolz darauf, dass das Klassische neben dem Innovativen existiert. Die kleine Autorenlesung im Garten neben dem Konzert für ein großes Publikum. Eine kleine Auswahl an heimatgeschichtlichen Museen erzählt vom Leben in früheren Zeiten und Theater gibt es auch mal auf Plattdeutsch. Die zahlreichen Galerien im Landkreis zeigen zeitgenössische Kunst aus der Region, öffnen genauso aber auch ihre Tür für Künstler aus anderen Teilen Deutschlands und der Welt. Es gibt Orte der inneren Einkehr wie die Klosterruine Hude oder die Alexanderkirche in Wildeshausen. Genauso gibt es aber auch Zeiten für ausgelassenes Feiern. Wir laden auch weiterhin alle Interessierten zum Gestalten, Teilhaben und Fördern eines bunten und vielfältigen kulturellen Angebots ein! Zurück NOLISManager.LayoutTemplate.spaltenAngleichen();",
-    "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/"
+    "content": "Der Landkreis Oldenburg bietet ein vielfältiges Kulturangebot. Ganz in dem Gedanken Vielfalt als Reichtum zu begreifen sind wir stolz darauf, dass das Klassische neben dem Innovativen existiert. Die kleine Autorenlesung im Garten neben dem Konzert für ein großes Publikum. Eine kleine Auswahl an heimatgeschichtlichen Museen erzählt vom Leben in früheren Zeiten und Theater gibt es auch mal auf Plattdeutsch. Die zahlreichen Galerien im Landkreis zeigen zeitgenössische Kunst aus der Region, öffnen genauso aber auch ihre Tür für Künstler aus anderen Teilen Deutschlands und der Welt. Es gibt Orte der inneren Einkehr wie die Klosterruine Hude oder die Alexanderkirche in Wildeshausen. Genauso gibt es aber auch Zeiten für ausgelassenes Feiern.\n\nWir laden auch weiterhin alle Interessierten zum Gestalten, Teilhaben und Fördern eines bunten und vielfältigen kulturellen Angebots ein!",
+    "plain_text": "Der Landkreis Oldenburg bietet ein vielfältiges Kulturangebot. Ganz in dem Gedanken Vielfalt als Reichtum zu begreifen sind wir stolz darauf, dass das Klassische neben dem Innovativen existiert. Die kleine Autorenlesung im Garten neben dem Konzert für ein großes Publikum. Eine kleine Auswahl an heimatgeschichtlichen Museen erzählt vom Leben in früheren Zeiten und Theater gibt es auch mal auf Plattdeutsch. Die zahlreichen Galerien im Landkreis zeigen zeitgenössische Kunst aus der Region, öffnen genauso aber auch ihre Tür für Künstler aus anderen Teilen Deutschlands und der Welt. Es gibt Orte der inneren Einkehr wie die Klosterruine Hude oder die Alexanderkirche in Wildeshausen. Genauso gibt es aber auch Zeiten für ausgelassenes Feiern.\n\nWir laden auch weiterhin alle Interessierten zum Gestalten, Teilhaben und Fördern eines bunten und vielfältigen kulturellen Angebots ein!",
+    "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/",
+    "sectionType": "main",
+    "paragraphCount": 2
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/",
+    "title": "Inhaltsbereich",
+    "content": "Volltextsuche Suchen Sie sind hier: Bildung und Kultur/Kultur Inhalt vorlesen Seite merken Seite drucken Kulturelles Angebot im Landkreis Oldenburg Der Landkreis Oldenburg bietet ein vielfältiges Kulturangebot. Ganz in dem Gedanken Vielfalt als Reichtum zu begreifen sind wir stolz darauf, dass das Klassische neben dem Innovativen existiert. Die kleine Autorenlesung im Garten neben dem Konzert für ein großes Publikum. Eine kleine Auswahl an heimatgeschichtlichen Museen erzählt vom Leben in früheren Zeiten und Theater gibt es auch mal auf Plattdeutsch. Die zahlreichen Galerien im Landkreis zeigen zeitgenössische Kunst aus der Region, öffnen genauso aber auch ihre Tür für Künstler aus anderen Teilen Deutschlands und der Welt. Es gibt Orte der inneren Einkehr wie die Klosterruine Hude oder die Alexanderkirche in Wildeshausen. Genauso gibt es aber auch Zeiten für ausgelassenes Feiern. Wir laden auch weiterhin alle Interessierten zum Gestalten, Teilhaben und Fördern eines bunten und vielfältigen kulturellen Angebots ein! Zurück",
+    "plain_text": "Volltextsuche Suchen Sie sind hier: Bildung und Kultur/Kultur Inhalt vorlesen Seite merken Seite drucken Kulturelles Angebot im Landkreis Oldenburg Der Landkreis Oldenburg bietet ein vielfältiges Kulturangebot. Ganz in dem Gedanken Vielfalt als Reichtum zu begreifen sind wir stolz darauf, dass das Klassische neben dem Innovativen existiert. Die kleine Autorenlesung im Garten neben dem Konzert für ein großes Publikum. Eine kleine Auswahl an heimatgeschichtlichen Museen erzählt vom Leben in früheren Zeiten und Theater gibt es auch mal auf Plattdeutsch. Die zahlreichen Galerien im Landkreis zeigen zeitgenössische Kunst aus der Region, öffnen genauso aber auch ihre Tür für Künstler aus anderen Teilen Deutschlands und der Welt. Es gibt Orte der inneren Einkehr wie die Klosterruine Hude oder die Alexanderkirche in Wildeshausen. Genauso gibt es aber auch Zeiten für ausgelassenes Feiern. Wir laden auch weiterhin alle Interessierten zum Gestalten, Teilhaben und Fördern eines bunten und vielfältigen kulturellen Angebots ein! Zurück",
+    "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/",
+    "title": "Kulturelles Angebot im Landkreis Oldenburg",
+    "content": "Der Landkreis Oldenburg bietet ein vielfältiges Kulturangebot. Ganz in dem Gedanken Vielfalt als Reichtum zu begreifen sind wir stolz darauf, dass das Klassische neben dem Innovativen existiert. Die kleine Autorenlesung im Garten neben dem Konzert für ein großes Publikum. Eine kleine Auswahl an heimatgeschichtlichen Museen erzählt vom Leben in früheren Zeiten und Theater gibt es auch mal auf Plattdeutsch. Die zahlreichen Galerien im Landkreis zeigen zeitgenössische Kunst aus der Region, öffnen genauso aber auch ihre Tür für Künstler aus anderen Teilen Deutschlands und der Welt. Es gibt Orte der inneren Einkehr wie die Klosterruine Hude oder die Alexanderkirche in Wildeshausen. Genauso gibt es aber auch Zeiten für ausgelassenes Feiern. Wir laden auch weiterhin alle Interessierten zum Gestalten, Teilhaben und Fördern eines bunten und vielfältigen kulturellen Angebots ein! Zurück",
+    "plain_text": "Der Landkreis Oldenburg bietet ein vielfältiges Kulturangebot. Ganz in dem Gedanken Vielfalt als Reichtum zu begreifen sind wir stolz darauf, dass das Klassische neben dem Innovativen existiert. Die kleine Autorenlesung im Garten neben dem Konzert für ein großes Publikum. Eine kleine Auswahl an heimatgeschichtlichen Museen erzählt vom Leben in früheren Zeiten und Theater gibt es auch mal auf Plattdeutsch. Die zahlreichen Galerien im Landkreis zeigen zeitgenössische Kunst aus der Region, öffnen genauso aber auch ihre Tür für Künstler aus anderen Teilen Deutschlands und der Welt. Es gibt Orte der inneren Einkehr wie die Klosterruine Hude oder die Alexanderkirche in Wildeshausen. Genauso gibt es aber auch Zeiten für ausgelassenes Feiern. Wir laden auch weiterhin alle Interessierten zum Gestalten, Teilhaben und Fördern eines bunten und vielfältigen kulturellen Angebots ein! Zurück",
+    "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/",
+    "sectionType": "heading"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
+    "content": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/"
   },
   {
@@ -336,9 +420,19 @@
   {
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/",
     "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/"
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "source": "https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/",
+    "sectionType": "fallback"
   }
 ]

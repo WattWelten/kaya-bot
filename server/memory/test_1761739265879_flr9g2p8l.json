@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739265879_flr9g2p8l",
+  "messages": [
+    {
+      "id": "1761739265880",
+      "sender": "user",
+      "content": "Plattdeutsch",
+      "timestamp": "2025-10-29T12:01:05.880Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739265897",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:01:05.897Z",
+      "context": {
+        "intention": "bildung",
+        "persona": "plattdeutsch_speaker",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:01:05.880Z",
+  "lastActivity": "2025-10-29T12:01:05.897Z"
+}

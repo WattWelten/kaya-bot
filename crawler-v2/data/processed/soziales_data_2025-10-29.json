@@ -2,1008 +2,1058 @@
   {
     "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000004&brotID=900000004&id=900000003&navi_id=900000004",
     "title": "Gesundheit und Soziales",
-    "content": "",
-    "plain_text": "",
+    "content": "Sie sind hier: Gesundheit und Soziales{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000004&amp;brotID=900000004&amp;id=900000003&amp;navi_id=900000004\",\"name\":\"Gesundheit und Soziales\"}}]} Inhalt vorlesen Seite merken Seite drucken",
+    "plain_text": "Sie sind hier: Gesundheit und Soziales{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000004&amp;brotID=900000004&amp;id=900000003&amp;navi_id=900000004\",\"name\":\"Gesundheit und Soziales\"}}]} Inhalt vorlesen Seite merken Seite drucken",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Gesundheit und Soziales",
-        "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000004&brotID=900000004&id=900000003&navi_id=900000004"
+        "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000004&brotID=900000004&id=900000003&navi_id=900000004",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
     "title": "Aufgaben der sozialen Sicherung",
-    "content": "",
-    "plain_text": "",
+    "content": "Aufgaben der sozialen Sicherung",
+    "plain_text": "Aufgaben der sozialen Sicherung",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Aufgaben der sozialen Sicherung",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/aufwind/",
     "title": "Aufwind",
-    "content": "",
-    "plain_text": "",
+    "content": "Aufwind",
+    "plain_text": "Aufwind",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Aufwind",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/aufwind/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/aufwind/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/bestattungskosten-uebernahme/",
     "title": "Bestattungskosten: Übernahme",
-    "content": "",
-    "plain_text": "",
+    "content": "Bestattungskosten: Übernahme",
+    "plain_text": "Bestattungskosten: Übernahme",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Bestattungskosten: Übernahme",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/bestattungskosten-uebernahme/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/bestattungskosten-uebernahme/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/biss/",
     "title": "BISS",
-    "content": "",
-    "plain_text": "",
+    "content": "BISS",
+    "plain_text": "BISS",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "BISS",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/biss/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/biss/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/blindenhilfe/",
     "title": "Blindenhilfe",
-    "content": "",
-    "plain_text": "",
+    "content": "Blindenhilfe",
+    "plain_text": "Blindenhilfe",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Blindenhilfe",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/blindenhilfe/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/blindenhilfe/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/frauen-und-kinderschutzhaus/",
     "title": "Frauen- und Kinderschutzhaus",
-    "content": "",
-    "plain_text": "",
+    "content": "Frauen- und Kinderschutzhaus",
+    "plain_text": "Frauen- und Kinderschutzhaus",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Frauen- und Kinderschutzhaus",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/frauen-und-kinderschutzhaus/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/frauen-und-kinderschutzhaus/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/grundsicherung-im-alter-und-bei-erwerbsminderung/",
     "title": "Grundsicherung im Alter und bei Erwerbsminderung",
-    "content": "",
-    "plain_text": "",
+    "content": "Grundsicherung im Alter und bei Erwerbsminderung",
+    "plain_text": "Grundsicherung im Alter und bei Erwerbsminderung",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Grundsicherung im Alter und bei Erwerbsminderung",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/grundsicherung-im-alter-und-bei-erwerbsminderung/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/grundsicherung-im-alter-und-bei-erwerbsminderung/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/heimaufsicht/",
     "title": "Heimaufsicht",
-    "content": "",
-    "plain_text": "",
+    "content": "Heimaufsicht",
+    "plain_text": "Heimaufsicht",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Heimaufsicht",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/heimaufsicht/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/heimaufsicht/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/hilfe-zur-pflege/",
     "title": "Hilfe zur Pflege",
-    "content": "",
-    "plain_text": "",
+    "content": "Hilfe zur Pflege",
+    "plain_text": "Hilfe zur Pflege",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Hilfe zur Pflege",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/hilfe-zur-pflege/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/hilfe-zur-pflege/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/inklusion/",
     "title": "Inklusion",
-    "content": "",
-    "plain_text": "",
+    "content": "Inklusion",
+    "plain_text": "Inklusion",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Inklusion",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/inklusion/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/inklusion/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/landesblindengeld/",
     "title": "Landesblindengeld",
-    "content": "",
-    "plain_text": "",
+    "content": "Landesblindengeld",
+    "plain_text": "Landesblindengeld",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Landesblindengeld",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/landesblindengeld/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/landesblindengeld/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/leistungen-fuer-bildung-und-teilhabe/",
     "title": "Leistungen für Bildung und Teilhabe",
-    "content": "",
-    "plain_text": "",
+    "content": "Leistungen für Bildung und Teilhabe",
+    "plain_text": "Leistungen für Bildung und Teilhabe",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Leistungen für Bildung und Teilhabe",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/leistungen-fuer-bildung-und-teilhabe/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/leistungen-fuer-bildung-und-teilhabe/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/mietobergrenzen-fuer-angemessene-unterkunftskosten/",
     "title": "Mietobergrenzen für angemessene Unterkunftskosten",
-    "content": "",
-    "plain_text": "",
+    "content": "Mietobergrenzen für angemessene Unterkunftskosten",
+    "plain_text": "Mietobergrenzen für angemessene Unterkunftskosten",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Mietobergrenzen für angemessene Unterkunftskosten",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/mietobergrenzen-fuer-angemessene-unterkunftskosten/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/mietobergrenzen-fuer-angemessene-unterkunftskosten/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/selbsthilfegruppen/",
     "title": "Selbsthilfegruppen",
-    "content": "",
-    "plain_text": "",
+    "content": "Selbsthilfegruppen",
+    "plain_text": "Selbsthilfegruppen",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Selbsthilfegruppen",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/selbsthilfegruppen/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/selbsthilfegruppen/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/soziales-entschaedigungsrecht/",
     "title": "Soziales Entschädigungsrecht",
-    "content": "",
-    "plain_text": "",
+    "content": "Soziales Entschädigungsrecht",
+    "plain_text": "Soziales Entschädigungsrecht",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Soziales Entschädigungsrecht",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/soziales-entschaedigungsrecht/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/soziales-entschaedigungsrecht/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/koordinatorin-seniorenarbeit/",
     "title": "Koordinatorin Seniorenarbeit",
-    "content": "",
-    "plain_text": "",
+    "content": "Koordinatorin Seniorenarbeit",
+    "plain_text": "Koordinatorin Seniorenarbeit",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Koordinatorin Seniorenarbeit",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/koordinatorin-seniorenarbeit/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/koordinatorin-seniorenarbeit/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/behindertenbeauftragte/",
     "title": "Behindertenbeauftragte",
-    "content": "",
-    "plain_text": "",
+    "content": "Behindertenbeauftragte",
+    "plain_text": "Behindertenbeauftragte",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Behindertenbeauftragte",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/behindertenbeauftragte/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/behindertenbeauftragte/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/behindertenbeauftragte/inklusionspreis-2025/",
     "title": "Inklusionspreis 2025",
-    "content": "",
-    "plain_text": "",
+    "content": "Inklusionspreis 2025",
+    "plain_text": "Inklusionspreis 2025",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Inklusionspreis 2025",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/behindertenbeauftragte/inklusionspreis-2025/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/behindertenbeauftragte/inklusionspreis-2025/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/",
     "title": "Stützpunkt gegen häusliche Gewalt",
-    "content": "",
-    "plain_text": "",
+    "content": "Stützpunkt gegen häusliche Gewalt",
+    "plain_text": "Stützpunkt gegen häusliche Gewalt",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Stützpunkt gegen häusliche Gewalt",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/frauen-und-kinderschutzhaus/",
     "title": "Frauen- und Kinderschutzhaus",
-    "content": "",
-    "plain_text": "",
+    "content": "Frauen- und Kinderschutzhaus",
+    "plain_text": "Frauen- und Kinderschutzhaus",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Frauen- und Kinderschutzhaus",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/frauen-und-kinderschutzhaus/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/frauen-und-kinderschutzhaus/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/beratungs-und-interventionsstelle-biss/",
     "title": "Beratungs- und Interventionsstelle BISS",
-    "content": "",
-    "plain_text": "",
+    "content": "Beratungs- und Interventionsstelle BISS",
+    "plain_text": "Beratungs- und Interventionsstelle BISS",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Beratungs- und Interventionsstelle BISS",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/beratungs-und-interventionsstelle-biss/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/beratungs-und-interventionsstelle-biss/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/aufwind/",
     "title": "Aufwind",
-    "content": "",
-    "plain_text": "",
+    "content": "Aufwind",
+    "plain_text": "Aufwind",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Aufwind",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/aufwind/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/stuetzpunkt-gegen-haeusliche-gewalt/aufwind/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/",
     "title": "Integration",
-    "content": "",
-    "plain_text": "",
+    "content": "IntegrationInformationen für NeuzugewanderteSprachmittlungBildungskoordination NeuzugewanderteIntegrationsprojekte",
+    "plain_text": "IntegrationInformationen für NeuzugewanderteSprachmittlungBildungskoordination NeuzugewanderteIntegrationsprojekte",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Integration",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/informationen-fuer-neuzugewanderte/",
     "title": "Informationen für Neuzugewanderte",
-    "content": "",
-    "plain_text": "",
+    "content": "Informationen für Neuzugewanderte",
+    "plain_text": "Informationen für Neuzugewanderte",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Informationen für Neuzugewanderte",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/informationen-fuer-neuzugewanderte/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/informationen-fuer-neuzugewanderte/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/sprachmittlung/",
     "title": "Sprachmittlung",
-    "content": "",
-    "plain_text": "",
+    "content": "Sprachmittlung",
+    "plain_text": "Sprachmittlung",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Sprachmittlung",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/sprachmittlung/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/sprachmittlung/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/bildungskoordination-neuzugewanderte/",
     "title": "Bildungskoordination Neuzugewanderte",
-    "content": "",
-    "plain_text": "",
+    "content": "Bildungskoordination Neuzugewanderte",
+    "plain_text": "Bildungskoordination Neuzugewanderte",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Bildungskoordination Neuzugewanderte",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/bildungskoordination-neuzugewanderte/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/bildungskoordination-neuzugewanderte/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/integrationsprojekte/",
     "title": "Integrationsprojekte",
-    "content": "",
-    "plain_text": "",
+    "content": "Integrationsprojekte",
+    "plain_text": "Integrationsprojekte",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Integrationsprojekte",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/integrationsprojekte/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/integration/integrationsprojekte/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/",
     "title": "Senioren- und Pflegestützpunkt Niedersachsen",
-    "content": "",
-    "plain_text": "",
+    "content": "Senioren- und Pflegestützpunkt Niedersachsen",
+    "plain_text": "Senioren- und Pflegestützpunkt Niedersachsen",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Senioren- und Pflegestützpunkt Niedersachsen",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/seniorenstuetzpunkt/",
     "title": "Seniorenstützpunkt",
-    "content": "",
-    "plain_text": "",
+    "content": "Seniorenstützpunkt",
+    "plain_text": "Seniorenstützpunkt",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Seniorenstützpunkt",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/seniorenstuetzpunkt/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/seniorenstuetzpunkt/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/pflegestuetzpunkt/",
     "title": "Pflegestützpunkt",
-    "content": "",
-    "plain_text": "",
+    "content": "Pflegestützpunkt",
+    "plain_text": "Pflegestützpunkt",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Pflegestützpunkt",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/pflegestuetzpunkt/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/pflegestuetzpunkt/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/ehrenamtliche-wohnberatung/",
     "title": "Ehrenamtliche Wohnberatung",
-    "content": "",
-    "plain_text": "",
+    "content": "Ehrenamtliche Wohnberatung",
+    "plain_text": "Ehrenamtliche Wohnberatung",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Ehrenamtliche Wohnberatung",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/ehrenamtliche-wohnberatung/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/ehrenamtliche-wohnberatung/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/pflegeportal-weser-ems/",
     "title": "Pflegeportal Weser-Ems",
-    "content": "",
-    "plain_text": "",
+    "content": "Pflegeportal Weser-Ems",
+    "plain_text": "Pflegeportal Weser-Ems",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Pflegeportal Weser-Ems",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/pflegeportal-weser-ems/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren-und-pflegestuetzpunkt-niedersachsen/pflegeportal-weser-ems/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/",
     "title": "Gesundheitsamt",
-    "content": "",
-    "plain_text": "",
+    "content": "GesundheitsamtAmtsärztlicher DienstBelehrungen / GesundheitszeugnisseBetreuungsbehördeDienst für Infektionsschutz, Hygiene und PräventionJugendärztlicher DienstJugendzahnärztlicher DienstSozialpsychiatrischer DienstVeranstaltungen GesundheitsamtVerwaltungProjekt \"Kontaktzeit\"",
+    "plain_text": "GesundheitsamtAmtsärztlicher DienstBelehrungen / GesundheitszeugnisseBetreuungsbehördeDienst für Infektionsschutz, Hygiene und PräventionJugendärztlicher DienstJugendzahnärztlicher DienstSozialpsychiatrischer DienstVeranstaltungen GesundheitsamtVerwaltungProjekt \"Kontaktzeit\"",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Gesundheitsamt",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/amtsaerztlicher-dienst/",
     "title": "Amtsärztlicher Dienst",
-    "content": "",
-    "plain_text": "",
+    "content": "Amtsärztlicher Dienst",
+    "plain_text": "Amtsärztlicher Dienst",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Amtsärztlicher Dienst",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/amtsaerztlicher-dienst/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/amtsaerztlicher-dienst/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/belehrungen-gesundheitszeugnisse/",
     "title": "Belehrungen / Gesundheitszeugnisse",
-    "content": "",
-    "plain_text": "",
+    "content": "Belehrungen / Gesundheitszeugnisse",
+    "plain_text": "Belehrungen / Gesundheitszeugnisse",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Belehrungen / Gesundheitszeugnisse",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/belehrungen-gesundheitszeugnisse/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/belehrungen-gesundheitszeugnisse/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/betreuungsbehoerde/",
     "title": "Betreuungsbehörde",
-    "content": "",
-    "plain_text": "",
+    "content": "Betreuungsbehörde",
+    "plain_text": "Betreuungsbehörde",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Betreuungsbehörde",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/betreuungsbehoerde/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/betreuungsbehoerde/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/dienst-fuer-infektionsschutz-hygiene-und-praevention/",
     "title": "Dienst für Infektionsschutz, Hygiene und Prävention",
-    "content": "",
-    "plain_text": "",
+    "content": "Dienst für Infektionsschutz, Hygiene und Prävention",
+    "plain_text": "Dienst für Infektionsschutz, Hygiene und Prävention",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Dienst für Infektionsschutz, Hygiene und Prävention",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/dienst-fuer-infektionsschutz-hygiene-und-praevention/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/dienst-fuer-infektionsschutz-hygiene-und-praevention/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/jugendaerztlicher-dienst/",
     "title": "Jugendärztlicher Dienst",
-    "content": "",
-    "plain_text": "",
+    "content": "Jugendärztlicher Dienst",
+    "plain_text": "Jugendärztlicher Dienst",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Jugendärztlicher Dienst",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/jugendaerztlicher-dienst/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/jugendaerztlicher-dienst/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/jugendzahnaerztlicher-dienst/",
     "title": "Jugendzahnärztlicher Dienst",
-    "content": "",
-    "plain_text": "",
+    "content": "Jugendzahnärztlicher Dienst",
+    "plain_text": "Jugendzahnärztlicher Dienst",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Jugendzahnärztlicher Dienst",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/jugendzahnaerztlicher-dienst/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/jugendzahnaerztlicher-dienst/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/sozialpsychiatrischer-dienst/",
     "title": "Sozialpsychiatrischer Dienst",
-    "content": "",
-    "plain_text": "",
+    "content": "Sozialpsychiatrischer Dienst",
+    "plain_text": "Sozialpsychiatrischer Dienst",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Sozialpsychiatrischer Dienst",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/sozialpsychiatrischer-dienst/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/sozialpsychiatrischer-dienst/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/veranstaltungen-gesundheitsamt/",
     "title": "Veranstaltungen Gesundheitsamt",
-    "content": "",
-    "plain_text": "",
+    "content": "Veranstaltungen Gesundheitsamt",
+    "plain_text": "Veranstaltungen Gesundheitsamt",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Veranstaltungen Gesundheitsamt",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/veranstaltungen-gesundheitsamt/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/veranstaltungen-gesundheitsamt/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/verwaltung/",
     "title": "Verwaltung",
-    "content": "",
-    "plain_text": "",
+    "content": "Verwaltung",
+    "plain_text": "Verwaltung",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Verwaltung",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/verwaltung/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/verwaltung/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/projekt-kontaktzeit-/",
     "title": "Projekt \"Kontaktzeit\"",
-    "content": "",
-    "plain_text": "",
+    "content": "Projekt \"Kontaktzeit\"",
+    "plain_text": "Projekt \"Kontaktzeit\"",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Projekt \"Kontaktzeit\"",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/projekt-kontaktzeit-/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsamt/projekt-kontaktzeit-/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsregion/",
     "title": "Gesundheitsregion",
-    "content": "",
-    "plain_text": "",
+    "content": "Gesundheitsregion",
+    "plain_text": "Gesundheitsregion",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Gesundheitsregion",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsregion/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsregion/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsregion/hitzeschutz/",
     "title": "Hitzeschutz",
-    "content": "",
-    "plain_text": "",
+    "content": "Hitzeschutz",
+    "plain_text": "Hitzeschutz",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Hitzeschutz",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsregion/hitzeschutz/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/gesundheitsregion/hitzeschutz/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/eingliederung-sgb-ix/",
     "title": "Eingliederung SGB IX",
-    "content": "",
-    "plain_text": "",
+    "content": "Eingliederung SGB IX",
+    "plain_text": "Eingliederung SGB IX",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Eingliederung SGB IX",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/eingliederung-sgb-ix/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/eingliederung-sgb-ix/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/fachstelle-inklusion/",
     "title": "Fachstelle Inklusion",
-    "content": "",
-    "plain_text": "",
+    "content": "Fachstelle Inklusion",
+    "plain_text": "Fachstelle Inklusion",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Fachstelle Inklusion",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/fachstelle-inklusion/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/fachstelle-inklusion/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/veranstaltungen-gesundheitsamt/",
     "title": "Veranstaltungen Gesundheitsamt",
-    "content": "",
-    "plain_text": "",
+    "content": "Veranstaltungen GesundheitsamtProjekt \"Kontaktzeit\"",
+    "plain_text": "Veranstaltungen GesundheitsamtProjekt \"Kontaktzeit\"",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Veranstaltungen Gesundheitsamt",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/veranstaltungen-gesundheitsamt/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/veranstaltungen-gesundheitsamt/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/veranstaltungen-gesundheitsamt/projekt-kontaktzeit-/",
     "title": "Projekt \"Kontaktzeit\"",
-    "content": "",
-    "plain_text": "",
+    "content": "Projekt \"Kontaktzeit\"",
+    "plain_text": "Projekt \"Kontaktzeit\"",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Projekt \"Kontaktzeit\"",
-        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/veranstaltungen-gesundheitsamt/projekt-kontaktzeit-/"
+        "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/veranstaltungen-gesundheitsamt/projekt-kontaktzeit-/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -1016,14 +1066,14 @@
       "agent": "soziales",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
     "title": "Gesundheit und Soziales",
-    "content": "Sie sind hier: Gesundheit und Soziales{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000004&amp;brotID=900000004&amp;id=900000003&amp;navi_id=900000004\",\"name\":\"Gesundheit und Soziales\"}}]} Inhalt vorlesen Seite merken Seite drucken Gesundheit und SozialesAufgaben der sozialen SicherungAufwindBestattungskosten: ÜbernahmeBISSBlindenhilfeFrauen- und KinderschutzhausGrundsicherung im Alter und bei ErwerbsminderungHeimaufsichtHilfe zur PflegeInklusionLandesblindengeldLeistungen für Bildung und TeilhabeMietobergrenzen für angemessene UnterkunftskostenSelbsthilfegruppenSoziales EntschädigungsrechtKoordinatorin SeniorenarbeitBehindertenbeauftragteInklusionspreis 2025Stützpunkt gegen häusliche GewaltFrauen- und KinderschutzhausBeratungs- und Interventionsstelle BISSAufwindIntegrationInformationen für NeuzugewanderteSprachmittlungBildungskoordination NeuzugewanderteIntegrationsprojekteSenioren- und Pflegestützpunkt NiedersachsenSeniorenstützpunktPflegestützpunktEhrenamtliche WohnberatungPflegeportal Weser-EmsGesundheitsamtAmtsärztlicher DienstBelehrungen / GesundheitszeugnisseBetreuungsbehördeDienst für Infektionsschutz, Hygiene und PräventionJugendärztlicher DienstJugendzahnärztlicher DienstSozialpsychiatrischer DienstVeranstaltungen GesundheitsamtVerwaltungProjekt \"Kontaktzeit\"GesundheitsregionHitzeschutzEingliederung SGB IXFachstelle InklusionVeranstaltungen GesundheitsamtProjekt \"Kontaktzeit\"Zurück",
-    "plain_text": "Sie sind hier: Gesundheit und Soziales{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000004&amp;brotID=900000004&amp;id=900000003&amp;navi_id=900000004\",\"name\":\"Gesundheit und Soziales\"}}]} Inhalt vorlesen Seite merken Seite drucken Gesundheit und SozialesAufgaben der sozialen SicherungAufwindBestattungskosten: ÜbernahmeBISSBlindenhilfeFrauen- und KinderschutzhausGrundsicherung im Alter und bei ErwerbsminderungHeimaufsichtHilfe zur PflegeInklusionLandesblindengeldLeistungen für Bildung und TeilhabeMietobergrenzen für angemessene UnterkunftskostenSelbsthilfegruppenSoziales EntschädigungsrechtKoordinatorin SeniorenarbeitBehindertenbeauftragteInklusionspreis 2025Stützpunkt gegen häusliche GewaltFrauen- und KinderschutzhausBeratungs- und Interventionsstelle BISSAufwindIntegrationInformationen für NeuzugewanderteSprachmittlungBildungskoordination NeuzugewanderteIntegrationsprojekteSenioren- und Pflegestützpunkt NiedersachsenSeniorenstützpunktPflegestützpunktEhrenamtliche WohnberatungPflegeportal Weser-EmsGesundheitsamtAmtsärztlicher DienstBelehrungen / GesundheitszeugnisseBetreuungsbehördeDienst für Infektionsschutz, Hygiene und PräventionJugendärztlicher DienstJugendzahnärztlicher DienstSozialpsychiatrischer DienstVeranstaltungen GesundheitsamtVerwaltungProjekt \"Kontaktzeit\"GesundheitsregionHitzeschutzEingliederung SGB IXFachstelle InklusionVeranstaltungen GesundheitsamtProjekt \"Kontaktzeit\"Zurück",
+    "content": "Aufgaben der sozialen Sicherung Grundsicherung im Alter und bei Erwerbsminderung Leistungen für Bildung und Teilhabe Mietobergrenzen für angemessene Unterkunftskosten Stützpunkt gegen häusliche Gewalt Beratungs- und Interventionsstelle BISS Informationen für Neuzugewanderte Bildungskoordination Neuzugewanderte Senioren- und Pflegestützpunkt Niedersachsen Belehrungen / Gesundheitszeugnisse Dienst für Infektionsschutz, Hygiene und Prävention • Aufgaben der sozialen SicherungAufwindBestattungskosten: ÜbernahmeBISSBlindenhilfeFrauen- und KinderschutzhausGrundsicherung im Alter und bei ErwerbsminderungHeimaufsichtHilfe zur PflegeInklusionLandesblindengeldLeistungen für Bildung und TeilhabeMietobergrenzen für angemessene UnterkunftskostenSelbsthilfegruppenSoziales Entschädigungsrecht • Grundsicherung im Alter und bei Erwerbsminderung • Leistungen für Bildung und Teilhabe • Mietobergrenzen für angemessene Unterkunftskosten • BehindertenbeauftragteInklusionspreis 2025 • Stützpunkt gegen häusliche GewaltFrauen- und KinderschutzhausBeratungs- und Interventionsstelle BISSAufwind • Beratungs- und Interventionsstelle BISS • IntegrationInformationen für NeuzugewanderteSprachmittlungBildungskoordination NeuzugewanderteIntegrationsprojekte • Informationen für Neuzugewanderte • Bildungskoordination Neuzugewanderte • Senioren- und Pflegestützpunkt NiedersachsenSeniorenstützpunktPflegestützpunktEhrenamtliche WohnberatungPflegeportal Weser-Ems • GesundheitsamtAmtsärztlicher DienstBelehrungen / GesundheitszeugnisseBetreuungsbehördeDienst für Infektionsschutz, Hygiene und PräventionJugendärztlicher DienstJugendzahnärztlicher DienstSozialpsychiatrischer DienstVeranstaltungen GesundheitsamtVerwaltungProjekt \"Kontaktzeit\" • Belehrungen / Gesundheitszeugnisse • Dienst für Infektionsschutz, Hygiene und Prävention • Veranstaltungen GesundheitsamtProjekt \"Kontaktzeit\"",
+    "plain_text": "Aufgaben der sozialen Sicherung Grundsicherung im Alter und bei Erwerbsminderung Leistungen für Bildung und Teilhabe Mietobergrenzen für angemessene Unterkunftskosten Stützpunkt gegen häusliche Gewalt Beratungs- und Interventionsstelle BISS Informationen für Neuzugewanderte Bildungskoordination Neuzugewanderte Senioren- und Pflegestützpunkt Niedersachsen Belehrungen / Gesundheitszeugnisse Dienst für Infektionsschutz, Hygiene und Prävention • Aufgaben der sozialen SicherungAufwindBestattungskosten: ÜbernahmeBISSBlindenhilfeFrauen- und KinderschutzhausGrundsicherung im Alter und bei ErwerbsminderungHeimaufsichtHilfe zur PflegeInklusionLandesblindengeldLeistungen für Bildung und TeilhabeMietobergrenzen für angemessene UnterkunftskostenSelbsthilfegruppenSoziales Entschädigungsrecht • Grundsicherung im Alter und bei Erwerbsminderung • Leistungen für Bildung und Teilhabe • Mietobergrenzen für angemessene Unterkunftskosten • BehindertenbeauftragteInklusionspreis 2025 • Stützpunkt gegen häusliche GewaltFrauen- und KinderschutzhausBeratungs- und Interventionsstelle BISSAufwind • Beratungs- und Interventionsstelle BISS • IntegrationInformationen für NeuzugewanderteSprachmittlungBildungskoordination NeuzugewanderteIntegrationsprojekte • Informationen für Neuzugewanderte • Bildungskoordination Neuzugewanderte • Senioren- und Pflegestützpunkt NiedersachsenSeniorenstützpunktPflegestützpunktEhrenamtliche WohnberatungPflegeportal Weser-Ems • GesundheitsamtAmtsärztlicher DienstBelehrungen / GesundheitszeugnisseBetreuungsbehördeDienst für Infektionsschutz, Hygiene und PräventionJugendärztlicher DienstJugendzahnärztlicher DienstSozialpsychiatrischer DienstVeranstaltungen GesundheitsamtVerwaltungProjekt \"Kontaktzeit\" • Belehrungen / Gesundheitszeugnisse • Dienst für Infektionsschutz, Hygiene und Prävention • Veranstaltungen GesundheitsamtProjekt \"Kontaktzeit\"",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -1031,94 +1081,115 @@
       "agent": "soziales",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z",
+      "sectionType": "main"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
+    "title": "Inhaltsbereich",
+    "content": "Volltextsuche Suchen Sie sind hier: Gesundheit und Soziales Inhalt vorlesen Seite merken Seite drucken Gesundheit und SozialesAufgaben der sozialen SicherungAufwindBestattungskosten: ÜbernahmeBISSBlindenhilfeFrauen- und KinderschutzhausGrundsicherung im Alter und bei ErwerbsminderungHeimaufsichtHilfe zur PflegeInklusionLandesblindengeldLeistungen für Bildung und TeilhabeMietobergrenzen für angemessene UnterkunftskostenSelbsthilfegruppenSoziales EntschädigungsrechtKoordinatorin SeniorenarbeitBehindertenbeauftragteInklusionspreis 2025Stützpunkt gegen häusliche GewaltFrauen- und KinderschutzhausBeratungs- und Interventionsstelle BISSAufwindIntegrationInformationen für NeuzugewanderteSprachmittlungBildungskoordination NeuzugewanderteIntegrationsprojekteSenioren- und Pflegestützpunkt NiedersachsenSeniorenstützpunktPflegestützpunktEhrenamtliche WohnberatungPflegeportal Weser-EmsGesundheitsamtAmtsärztlicher DienstBelehrungen / GesundheitszeugnisseBetreuungsbehördeDienst für Infektionsschutz, Hygiene und PräventionJugendärztlicher DienstJugendzahnärztlicher DienstSozialpsychiatrischer DienstVeranstaltungen GesundheitsamtVerwaltungProjekt \"Kontaktzeit\"GesundheitsregionHitzeschutzEingliederung SGB IXFachstelle InklusionVeranstaltungen GesundheitsamtProjekt \"Kontaktzeit\"Zurück",
+    "plain_text": "Volltextsuche Suchen Sie sind hier: Gesundheit und Soziales Inhalt vorlesen Seite merken Seite drucken Gesundheit und SozialesAufgaben der sozialen SicherungAufwindBestattungskosten: ÜbernahmeBISSBlindenhilfeFrauen- und KinderschutzhausGrundsicherung im Alter und bei ErwerbsminderungHeimaufsichtHilfe zur PflegeInklusionLandesblindengeldLeistungen für Bildung und TeilhabeMietobergrenzen für angemessene UnterkunftskostenSelbsthilfegruppenSoziales EntschädigungsrechtKoordinatorin SeniorenarbeitBehindertenbeauftragteInklusionspreis 2025Stützpunkt gegen häusliche GewaltFrauen- und KinderschutzhausBeratungs- und Interventionsstelle BISSAufwindIntegrationInformationen für NeuzugewanderteSprachmittlungBildungskoordination NeuzugewanderteIntegrationsprojekteSenioren- und Pflegestützpunkt NiedersachsenSeniorenstützpunktPflegestützpunktEhrenamtliche WohnberatungPflegeportal Weser-EmsGesundheitsamtAmtsärztlicher DienstBelehrungen / GesundheitszeugnisseBetreuungsbehördeDienst für Infektionsschutz, Hygiene und PräventionJugendärztlicher DienstJugendzahnärztlicher DienstSozialpsychiatrischer DienstVeranstaltungen GesundheitsamtVerwaltungProjekt \"Kontaktzeit\"GesundheitsregionHitzeschutzEingliederung SGB IXFachstelle InklusionVeranstaltungen GesundheitsamtProjekt \"Kontaktzeit\"Zurück",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "soziales",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
+      "timestamp": "2025-10-29T11:07:42.011Z",
+      "sectionType": "heading"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/portal/seiten/aufgaben-der-sozialen-sicherung-900000201-21700.html?naviID=900000116&brotID=900000116&rubrik=900000005",
     "title": "Aufgaben der sozialen Sicherung",
-    "content": "",
-    "plain_text": "",
+    "content": "Aufgaben der sozialen Sicherung",
+    "plain_text": "Aufgaben der sozialen Sicherung",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Aufgaben der sozialen Sicherung",
-        "url": "https://www.oldenburg-kreis.de/portal/seiten/aufgaben-der-sozialen-sicherung-900000201-21700.html?naviID=900000116&brotID=900000116&rubrik=900000005"
+        "url": "https://www.oldenburg-kreis.de/portal/seiten/aufgaben-der-sozialen-sicherung-900000201-21700.html?naviID=900000116&brotID=900000116&rubrik=900000005",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "http://www.oldenburg-kreis.de/frauenhaus",
     "title": "Frauen- und Kinderschutzhaus des Landkreises Oldenburg",
-    "content": "",
-    "plain_text": "",
+    "content": "Frauen- und Kinderschutzhaus des Landkreises Oldenburg",
+    "plain_text": "Frauen- und Kinderschutzhaus des Landkreises Oldenburg",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Frauen- und Kinderschutzhaus des Landkreises Oldenburg",
-        "url": "http://www.oldenburg-kreis.de/frauenhaus"
+        "url": "http://www.oldenburg-kreis.de/frauenhaus",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/aufwind/",
     "title": "Frauen- und Mädchenberatung „Aufwind“",
-    "content": "",
-    "plain_text": "",
+    "content": "Frauen- und Mädchenberatung „Aufwind“",
+    "plain_text": "Frauen- und Mädchenberatung „Aufwind“",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Frauen- und Mädchenberatung „Aufwind“",
-        "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/aufwind/"
+        "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/aufwind/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/biss/",
     "title": "Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
-    "content": "",
-    "plain_text": "",
+    "content": "Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
+    "plain_text": "Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
-        "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/biss/"
+        "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/biss/",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "soziales",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -1131,14 +1202,14 @@
       "agent": "soziales",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z"
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
     "title": "Amt für Teilhabe und Soziale Sicherung",
-    "content": "Sie sind hier: Gesundheit und Soziales/Aufgaben der sozialen Sicherung{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000004&amp;brotID=900000004&amp;id=900000003&amp;navi_id=900000004\",\"name\":\"Gesundheit und Soziales\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/aufgaben-der-sozialen-sicherung-900000201-21700.html?naviID=900000116&amp;brotID=900000116&amp;rubrik=900000005\",\"name\":\"Aufgaben der sozialen Sicherung\"}}]} Inhalt vorlesen Seite merken Seite drucken Amt für Teilhabe und Soziale Sicherung Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: Frauen- und Kinderschutzhaus des Landkreises Oldenburg Frauen- und Mädchenberatung „Aufwind“ Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS) Zurück NOLISManager.LayoutTemplate.spaltenAngleichen();",
-    "plain_text": "Sie sind hier: Gesundheit und Soziales/Aufgaben der sozialen Sicherung{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000004&amp;brotID=900000004&amp;id=900000003&amp;navi_id=900000004\",\"name\":\"Gesundheit und Soziales\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/aufgaben-der-sozialen-sicherung-900000201-21700.html?naviID=900000116&amp;brotID=900000116&amp;rubrik=900000005\",\"name\":\"Aufgaben der sozialen Sicherung\"}}]} Inhalt vorlesen Seite merken Seite drucken Amt für Teilhabe und Soziale Sicherung Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: Frauen- und Kinderschutzhaus des Landkreises Oldenburg Frauen- und Mädchenberatung „Aufwind“ Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS) Zurück NOLISManager.LayoutTemplate.spaltenAngleichen();",
+    "content": "Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: • Frauen- und Kinderschutzhaus des Landkreises Oldenburg • Frauen- und Mädchenberatung „Aufwind“ • Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
+    "plain_text": "Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: • Frauen- und Kinderschutzhaus des Landkreises Oldenburg • Frauen- und Mädchenberatung „Aufwind“ • Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -1146,7 +1217,24 @@
       "agent": "soziales",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
-      "timestamp": "2025-10-29T07:49:51.271Z"
+      "timestamp": "2025-10-29T11:07:42.011Z",
+      "sectionType": "main"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
+    "title": "Inhaltsbereich",
+    "content": "Volltextsuche Suchen Sie sind hier: Gesundheit und Soziales/Aufgaben der sozialen Sicherung Inhalt vorlesen Seite merken Seite drucken Amt für Teilhabe und Soziale Sicherung Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: Frauen- und Kinderschutzhaus des Landkreises Oldenburg Frauen- und Mädchenberatung „Aufwind“ Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS) Zurück",
+    "plain_text": "Volltextsuche Suchen Sie sind hier: Gesundheit und Soziales/Aufgaben der sozialen Sicherung Inhalt vorlesen Seite merken Seite drucken Amt für Teilhabe und Soziale Sicherung Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: Frauen- und Kinderschutzhaus des Landkreises Oldenburg Frauen- und Mädchenberatung „Aufwind“ Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS) Zurück",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "soziales",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.011Z",
+      "sectionType": "heading"
     }
   }
 ]

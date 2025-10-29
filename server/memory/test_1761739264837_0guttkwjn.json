@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739264837_0guttkwjn",
+  "messages": [
+    {
+      "id": "1761739264840",
+      "sender": "user",
+      "content": "Aktion Saubere Landschaft",
+      "timestamp": "2025-10-29T12:01:04.840Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739264878",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:01:04.878Z",
+      "context": {
+        "intention": "politik",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:01:04.840Z",
+  "lastActivity": "2025-10-29T12:01:04.878Z"
+}

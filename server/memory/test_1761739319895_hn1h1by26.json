@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739319895_hn1h1by26",
+  "messages": [
+    {
+      "id": "1761739319897",
+      "sender": "user",
+      "content": "Leitweg-ID 03458-0-051",
+      "timestamp": "2025-10-29T12:01:59.897Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739319946",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:01:59.946Z",
+      "context": {
+        "intention": "general",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:01:59.897Z",
+  "lastActivity": "2025-10-29T12:01:59.946Z"
+}

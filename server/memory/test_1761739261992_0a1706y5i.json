@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739261992_0a1706y5i",
+  "messages": [
+    {
+      "id": "1761739261994",
+      "sender": "user",
+      "content": "Kindergeld",
+      "timestamp": "2025-10-29T12:01:01.994Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739262065",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:01:02.065Z",
+      "context": {
+        "intention": "jugend",
+        "persona": "family",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:01:01.994Z",
+  "lastActivity": "2025-10-29T12:01:02.065Z"
+}

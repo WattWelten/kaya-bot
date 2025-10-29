@@ -1,9 +1,180 @@
 const fs = require('fs-extra');
 const path = require('path');
 
+const fs = require('fs-extra');
+const path = require('path');
+
 class KAYAAgentManager {
     constructor() {
         this.agents = new Map();
+        this.verifiedFacts = null; // Wird beim ersten Zugriff geladen
+        this.loadVerifiedFacts(); // Lade verifizierte Fakten beim Start
+    }
+    
+    /**
+     * Lädt verifizierte Fakten aus verified_facts.json
+     * Diese Fakten sind kritisch für hoheitliche Aufgaben - keine Halluzinationen!
+     */
+    loadVerifiedFacts() {
+        try {
+            const factsPath = path.join(__dirname, 'data', 'verified_facts.json');
+            if (fs.existsSync(factsPath)) {
+                this.verifiedFacts = fs.readJsonSync(factsPath);
+                console.log('✅ Verifizierte Fakten geladen (Personen, Leitweg-ID, Kontakte)');
+            } else {
+                console.warn('⚠️ verified_facts.json nicht gefunden - verwende Fallback');
+                this.verifiedFacts = this.getFallbackFacts();
+            }
+        } catch (error) {
+            console.error('❌ Fehler beim Laden der verifizierten Fakten:', error.message);
+            this.verifiedFacts = this.getFallbackFacts();
+        }
+    }
+    
+    /**
+     * Fallback-Fakten falls Datei nicht existiert (für Sicherheit)
+     */
+    getFallbackFacts() {
+        return {
+            version: "1.0",
+            facts: {
+                personen_und_positionen: {
+                    landrat: {
+                        name: "Dr. Christian Pundt",
+                        titel: "Landrat",
+                        warnung: "NIEMALS andere Namen verwenden!"
+                    }
+                },
+                rechnung_ebilling: {
+                    leitweg_id: {
+                        wert: "03458-0-051",
+                        warnung: "NIEMALS sagen 'kann ich nicht bereitstellen'!"
+                    },
+                    vorgang: {
+                        schritt_1: "Rechnung im XRechnung-Format erstellen (XML, UBL 2.1/CIIl) oder ZUGFeRD 2.0",
+                        schritt_2: "Leitweg-ID 03458-0-051 in der Rechnung verwenden",
+                        schritt_3: "Rechnung über das XRechnung-System senden",
+                        zustandig: "Finanzdezernat / Rechnungsprüfung",
+                        kontakt: "04431 85-0"
+                    }
+                }
+            }
+        };
+    }
+    
+    /**
+     * Gibt verifizierte Fakten für einen bestimmten Kontext zurück
+     * @param {string} context - 'landrat', 'leitweg_id', 'vorgang', 'agent_name', etc.
+     * @param {string} agentName - Optional: Agent-Name für agent-spezifische Fakten
+     * @returns {object} Verifizierte Fakten
+     */
+    getVerifiedFacts(context = null, agentName = null) {
+        if (!this.verifiedFacts) {
+            this.loadVerifiedFacts();
+        }
+        
+        if (!context && !agentName) {
+            return this.verifiedFacts;
+        }
+        
+        // Agent-spezifische Fakten (hat Priorität)
+        if (agentName && this.verifiedFacts.facts[agentName]) {
+            const agentFacts = this.verifiedFacts.facts[agentName];
+            // Kombiniere mit allgemeinen Fakten
+            return {
+                ...agentFacts,
+                kontakt: this.verifiedFacts.facts.kontakt_informationen,
+                allgemeine_regeln: this.verifiedFacts.facts.alle_agenten?.allgemeine_regeln
+            };
+        }
+        
+        // Context-spezifische Fakten extrahieren
+        const contextMap = {
+            'landrat': this.verifiedFacts.facts?.personen_und_positionen?.landrat,
+            'leitweg_id': this.verifiedFacts.facts?.rechnung_ebilling?.leitweg_id,
+            'vorgang': this.verifiedFacts.facts?.rechnung_ebilling?.vorgang,
+            'rechnung_ebilling': this.verifiedFacts.facts?.rechnung_ebilling,
+            'kontakt': this.verifiedFacts.facts?.kontakt_informationen,
+            'buergerdienste': this.verifiedFacts.facts?.buergerdienste,
+            'ratsinfo': this.verifiedFacts.facts?.ratsinfo,
+            'stellenportal': this.verifiedFacts.facts?.stellenportal,
+            'jugend': this.verifiedFacts.facts?.jugend,
+            'soziales': this.verifiedFacts.facts?.soziales,
+            'jobcenter': this.verifiedFacts.facts?.jobcenter
+        };
+        
+        return contextMap[context] || this.verifiedFacts;
+    }
+    
+    /**
+     * Prüft ob ein Wert zu einer verifizierten Faktum passt (für Post-Processing)
+     * @param {string} agentName - Agent-Name
+     * @param {string} factType - Typ des Fakts ('kontakt', 'person', 'vorgang', etc.)
+     * @param {string} value - Zu prüfender Wert
+     * @returns {object} {valid: boolean, corrected: string|null, warning: string|null}
+     */
+    validateFact(agentName, factType, value) {
+        if (!this.verifiedFacts) {
+            this.loadVerifiedFacts();
+        }
+        
+        const agentFacts = this.getVerifiedFacts(null, agentName);
+        const kontaktFacts = this.verifiedFacts.facts?.kontakt_informationen;
+        
+        // Prüfe Telefonnummern
+        if (factType === 'telefon' || factType === 'kontakt_telefon') {
+            const validTelefon = kontaktFacts?.haupttelefon?.wert || '04431 85-0';
+            if (value && !value.includes('04431') && !value.includes('04431 85-0')) {
+                return {
+                    valid: false,
+                    corrected: validTelefon,
+                    warning: `Unverifizierte Telefonnummer erkannt. Korrigiert zu verifizierter Nummer: ${validTelefon}`
+                };
+            }
+        }
+        
+        // Prüfe E-Mail-Adressen
+        if (factType === 'email' || factType === 'kontakt_email') {
+            const validEmail = kontaktFacts?.hauptemail?.wert || 'info@oldenburg-kreis.de';
+            if (value && !value.includes('@oldenburg-kreis.de')) {
+                return {
+                    valid: false,
+                    corrected: validEmail,
+                    warning: `Unverifizierte E-Mail erkannt. Korrigiert zu verifizierter E-Mail: ${validEmail}`
+                };
+            }
+        }
+        
+        // Prüfe Landrat-Name
+        if (factType === 'landrat_name' || factType === 'person_landrat') {
+            const validName = this.verifiedFacts.facts?.personen_und_positionen?.landrat?.name || 'Dr. Christian Pundt';
+            const invalidNames = ['Matthias Groote', 'Jens Pundt', 'Jens', 'Groote'];
+            const valueLower = value?.toLowerCase() || '';
+            
+            for (const invalidName of invalidNames) {
+                if (valueLower.includes(invalidName.toLowerCase())) {
+                    return {
+                        valid: false,
+                        corrected: validName,
+                        warning: `Ungültiger Landrat-Name erkannt ("${invalidName}"). Korrigiert zu: ${validName}`
+                    };
+                }
+            }
+        }
+        
+        // Prüfe Leitweg-ID
+        if (factType === 'leitweg_id') {
+            const validLeitwegId = this.verifiedFacts.facts?.rechnung_ebilling?.leitweg_id?.wert || '03458-0-051';
+            if (value && value !== validLeitwegId && !value.includes('03458-0-051')) {
+                return {
+                    valid: false,
+                    corrected: validLeitwegId,
+                    warning: `Ungültige Leitweg-ID erkannt. Korrigiert zu verifizierter ID: ${validLeitwegId}`
+                };
+            }
+        }
+        
+        return { valid: true, corrected: null, warning: null };
         this.agentDataPath = path.join(__dirname, '../crawler-v2/data/processed');
         this.cache = new Map();
         this.lastUpdate = null;

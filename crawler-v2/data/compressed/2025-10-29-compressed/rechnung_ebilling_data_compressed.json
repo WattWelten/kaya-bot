@@ -2,21 +2,22 @@
   {
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
-    "content": "",
-    "plain_text": "",
+    "content": "Wechseln Sie bitte zur oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Startseite",
-        "url": "https://www.oldenburg-kreis.de/portal/startseite.html"
+        "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "rechnung_ebilling",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -24,21 +25,22 @@
   {
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
-    "content": "",
-    "plain_text": "",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Suche",
-        "url": "https://www.oldenburg-kreis.de/portal/suche.html"
+        "url": "https://www.oldenburg-kreis.de/portal/suche.html",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "rechnung_ebilling",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -46,8 +48,8 @@
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -60,16 +62,16 @@
       "agent": "rechnung_ebilling",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
       "compressed": true,
       "compression_ratio": 1
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
-    "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -77,7 +79,26 @@
       "agent": "rechnung_ebilling",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
+      "sectionType": "heading",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "rechnung_ebilling",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
+      "timestamp": "2025-10-29T11:07:42.054Z",
+      "sectionType": "fallback",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -85,8 +106,8 @@
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -99,16 +120,16 @@
       "agent": "rechnung_ebilling",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
       "compressed": true,
       "compression_ratio": 1
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
-    "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -116,7 +137,26 @@
       "agent": "rechnung_ebilling",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
+      "sectionType": "heading",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "rechnung_ebilling",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
+      "timestamp": "2025-10-29T11:07:42.054Z",
+      "sectionType": "fallback",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -124,8 +164,8 @@
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -138,16 +178,16 @@
       "agent": "rechnung_ebilling",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
       "compressed": true,
       "compression_ratio": 1
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
-    "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -155,7 +195,26 @@
       "agent": "rechnung_ebilling",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
+      "sectionType": "heading",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "rechnung_ebilling",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
+      "timestamp": "2025-10-29T11:07:42.054Z",
+      "sectionType": "fallback",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -163,8 +222,8 @@
   {
     "url": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -177,16 +236,16 @@
       "agent": "rechnung_ebilling",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
       "compressed": true,
       "compression_ratio": 1
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
-    "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -194,7 +253,26 @@
       "agent": "rechnung_ebilling",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.054Z",
+      "sectionType": "heading",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "rechnung_ebilling",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
+      "timestamp": "2025-10-29T11:07:42.054Z",
+      "sectionType": "fallback",
       "compressed": true,
       "compression_ratio": 1
     }

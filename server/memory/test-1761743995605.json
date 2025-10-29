@@ -1,0 +1,35 @@
+{
+  "id": "test-1761743995605",
+  "messages": [
+    {
+      "id": "1761743995605",
+      "sender": "user",
+      "content": "Unterlagen für Bauantrag",
+      "timestamp": "2025-10-29T13:19:55.605Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761743995670",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Bauplan erstellen\n2. Antrag stellen\n3. Genehmigung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T13:19:55.670Z",
+      "context": {
+        "intention": "bauantrag",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T13:19:55.605Z",
+  "lastActivity": "2025-10-29T13:19:55.670Z"
+}

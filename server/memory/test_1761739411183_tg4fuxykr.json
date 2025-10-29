@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739411183_tg4fuxykr",
+  "messages": [
+    {
+      "id": "1761739411185",
+      "sender": "user",
+      "content": "Politik im Landkreis",
+      "timestamp": "2025-10-29T12:03:31.185Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739411232",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:03:31.232Z",
+      "context": {
+        "intention": "politik",
+        "persona": "political_interested",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:03:31.185Z",
+  "lastActivity": "2025-10-29T12:03:31.232Z"
+}

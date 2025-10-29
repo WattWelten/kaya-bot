@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739411631_qnmksrm0q",
+  "messages": [
+    {
+      "id": "1761739411633",
+      "sender": "user",
+      "content": "Gewerbe anmelden",
+      "timestamp": "2025-10-29T12:03:31.633Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739411651",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Gewerbeanmeldung ausfüllen\n2. Unterlagen einreichen\n3. Gewerbeschein erhalten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:03:31.651Z",
+      "context": {
+        "intention": "gewerbe",
+        "persona": "small_business",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:03:31.633Z",
+  "lastActivity": "2025-10-29T12:03:31.651Z"
+}

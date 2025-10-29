@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739531794_ar27z5nf6",
+  "messages": [
+    {
+      "id": "1761739531797",
+      "sender": "user",
+      "content": "Bildung lernen",
+      "timestamp": "2025-10-29T12:05:31.797Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739531817",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:05:31.817Z",
+      "context": {
+        "intention": "jobcenter",
+        "persona": "low_education",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:05:31.797Z",
+  "lastActivity": "2025-10-29T12:05:31.817Z"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739323481_4znoavy6u",
+  "messages": [
+    {
+      "id": "1761739323482",
+      "sender": "user",
+      "content": "Sozialhilfe",
+      "timestamp": "2025-10-29T12:02:03.482Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739323510",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:02:03.510Z",
+      "context": {
+        "intention": "soziales",
+        "persona": "low_income",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:02:03.482Z",
+  "lastActivity": "2025-10-29T12:02:03.510Z"
+}

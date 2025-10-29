@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739318769_5hym8la98",
+  "messages": [
+    {
+      "id": "1761739318773",
+      "sender": "user",
+      "content": "Kreistagsmitglieder",
+      "timestamp": "2025-10-29T12:01:58.773Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739318791",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:01:58.791Z",
+      "context": {
+        "intention": "politik",
+        "persona": "political_interested",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:01:58.773Z",
+  "lastActivity": "2025-10-29T12:01:58.791Z"
+}

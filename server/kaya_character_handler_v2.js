@@ -750,16 +750,35 @@ class KAYACharacterHandler {
                 // Dynamische Links via Link-Selector
                 const relevantLinks = this.getLinkSelector().selectLinks(intentionAnalysis.type, query);
                 
-                // KRITISCH: Bei rechnung_ebilling/Leitweg-ID: Verifizierte Fakten in Context
+                // KRITISCH: Bei rechnung_ebilling/Leitweg-ID: Verifizierte Fakten aus AgentManager laden
                 let verifiedFacts = null;
-                if (intentionAnalysis.type === 'rechnung_ebilling' || queryLower.includes('leitweg') || queryLower.includes('03458')) {
-                    verifiedFacts = {
-                        leitwegId: '03458-0-051',
-                        process: 'XRechnung im XML-Format (UBL 2.1/CIIl) oder ZUGFeRD 2.0',
-                        location: 'Impressum der Website',
-                        contact: '04431 85-0',
-                        responsible: 'Finanzdezernat / Rechnungsprüfung'
-                    };
+                if (intentionAnalysis.type === 'rechnung_ebilling' || queryLower.includes('leitweg') || queryLower.includes('03458') || queryLower.includes('vorgang')) {
+                    const ebillingFacts = this.agentHandler.getVerifiedFacts('rechnung_ebilling');
+                    if (ebillingFacts) {
+                        verifiedFacts = {
+                            leitwegId: ebillingFacts.leitweg_id?.wert || '03458-0-051',
+                            process: ebillingFacts.vorgang?.schritt_1 || 'XRechnung im XML-Format (UBL 2.1/CIIl) oder ZUGFeRD 2.0',
+                            location: ebillingFacts.leitweg_id?.standort || 'Impressum der Website',
+                            contact: ebillingFacts.vorgang?.kontakt || '04431 85-0',
+                            responsible: ebillingFacts.vorgang?.zustandig || 'Finanzdezernat / Rechnungsprüfung',
+                            vorgang: ebillingFacts.vorgang
+                        };
+                    }
+                }
+                
+                // Bei Landrat-Fragen: Verifizierte Personendaten laden
+                if (queryLower.includes('landrat') || queryLower.includes('dr. christian pundt') || queryLower.includes('christian pundt')) {
+                    const landratFacts = this.agentHandler.getVerifiedFacts('landrat');
+                    if (landratFacts) {
+                        verifiedFacts = {
+                            ...verifiedFacts,
+                            landrat: {
+                                name: landratFacts.name || 'Dr. Christian Pundt',
+                                titel: landratFacts.titel || 'Landrat',
+                                warnung: landratFacts.warnung || 'NIEMALS andere Namen verwenden!'
+                            }
+                        };
+                    }
                 }
                 
                 const llmContext = {
@@ -785,21 +804,83 @@ class KAYACharacterHandler {
                     // Post-Processing: Greeting entfernen falls vorhanden
                     finalResponse = finalResponse.replace(/^(Moin!?|Hallo!?|Hi!?)\s*/i, '');
                     
-                    // KRITISCH: Namen-Korrektur - verhindere Halluzinationen von Personennamen
-                    // Landrat muss IMMER "Dr. Christian Pundt" sein
-                    const nameCorrections = [
-                        { pattern: /\bMatthias Groote\b/gi, correction: 'Dr. Christian Pundt' },
-                        { pattern: /\bJens\b(?!\s*Pundt)(?=.*Landrat)/gi, correction: 'Dr. Christian Pundt' },
-                        { pattern: /Landrat.*?ist.*?derzeit\s+Matthias\s+Groote/gi, replacement: 'Landrat des Landkreises Oldenburg ist Dr. Christian Pundt' }
-                    ];
-                    
-                    for (const correction of nameCorrections) {
-                        if (correction.replacement) {
-                            finalResponse = finalResponse.replace(correction.pattern, correction.replacement);
-                        } else {
-                            finalResponse = finalResponse.replace(correction.pattern, correction.correction);
-                        }
-                    }
+        // KRITISCH: Post-Processing - verhindere Halluzinationen für ALLE Agenten!
+        
+        // 1. Namen-Korrektur (Landrat)
+        const landratFacts = this.agentHandler.getVerifiedFacts('landrat');
+        const correctLandratName = landratFacts?.name || 'Dr. Christian Pundt';
+        const invalidNames = ['Matthias Groote', 'Jens Pundt', 'Jens', 'Groote'];
+        
+        for (const invalidName of invalidNames) {
+            const regex = new RegExp(invalidName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+            if (regex.test(finalResponse)) {
+                finalResponse = finalResponse.replace(regex, correctLandratName);
+                console.warn(`⚠️ Halluzination korrigiert: "${invalidName}" → "${correctLandratName}"`);
+            }
+        }
+        
+        // 2. Telefonnummer-Validierung (nur verifizierte Nummern)
+        const kontaktFacts = this.agentHandler.getVerifiedFacts('kontakt');
+        const validTelefon = kontaktFacts?.haupttelefon?.wert || '04431 85-0';
+        // Erkenne unverifizierte Telefonnummern (Pattern: 04431-xxxx oder ähnlich, aber nicht 85-0)
+        const telefonPattern = /(\+?49\s?)?0?44\s?31\s?[\d\s-]{3,}/g;
+        const matches = finalResponse.match(telefonPattern);
+        if (matches) {
+            matches.forEach(match => {
+                if (!match.includes('85-0') && !match.includes('04431 85-0')) {
+                    finalResponse = finalResponse.replace(match, validTelefon);
+                    console.warn(`⚠️ Unverifizierte Telefonnummer korrigiert: "${match}" → "${validTelefon}"`);
+                }
+            });
+        }
+        
+        // 3. E-Mail-Validierung (nur verifizierte Adressen)
+        const validEmail = kontaktFacts?.hauptemail?.wert || 'info@oldenburg-kreis.de';
+        const emailPattern = /[\w.-]+@[\w.-]+\.\w+/g;
+        const emailMatches = finalResponse.match(emailPattern);
+        if (emailMatches) {
+            emailMatches.forEach(email => {
+                if (!email.includes('@oldenburg-kreis.de')) {
+                    finalResponse = finalResponse.replace(email, validEmail);
+                    console.warn(`⚠️ Unverifizierte E-Mail korrigiert: "${email}" → "${validEmail}"`);
+                }
+            });
+        }
+        
+        // 4. Leitweg-ID-Validierung
+        const ebillingFacts = this.agentHandler.getVerifiedFacts('rechnung_ebilling');
+        const validLeitwegId = ebillingFacts?.leitweg_id?.wert || '03458-0-051';
+        // Erkenne falsche Leitweg-IDs
+        const leitwegPattern = /(?:Leitweg-ID|leitweg[-\s]?id)[\s:]*[\d\-]+/gi;
+        const leitwegMatches = finalResponse.match(leitwegPattern);
+        if (leitwegMatches) {
+            leitwegMatches.forEach(match => {
+                if (!match.includes('03458-0-051')) {
+                    finalResponse = finalResponse.replace(/\d{5}-\d-\d{3}/g, validLeitwegId);
+                    console.warn(`⚠️ Unverifizierte Leitweg-ID korrigiert`);
+                }
+            });
+        }
+        
+        // 5. Warnung bei "kann ich nicht" bei verifizierten Fakten
+        const cannotProvidePattern = /(?:kann ich nicht|kann ich.*?nicht.*?bereitstellen|habe.*?keine.*?information)/gi;
+        if (cannotProvidePattern.test(finalResponse)) {
+            // Prüfe ob es um verifizierte Fakten geht
+            const isAboutVerifiedFact = 
+                queryLower.includes('leitweg') || 
+                queryLower.includes('03458') || 
+                queryLower.includes('landrat') ||
+                queryLower.includes('dr. christian');
+            
+            if (isAboutVerifiedFact) {
+                console.warn(`⚠️ LLM sagte "kann ich nicht" bei verifiziertem Faktum - sollte korrigiert werden`);
+                // Ersetze durch konstruktive Antwort
+                finalResponse = finalResponse.replace(
+                    cannotProvidePattern,
+                    'hier sind die verifizierten Informationen'
+                );
+            }
+        }
                     
                     // Output-Guard: Floskeln entfernen, kürzen, Quellen deduplizieren
                     // WICHTIG: isFirstMessage übergeben, damit kein Closer bei erster Nachricht
@@ -1528,17 +1609,23 @@ class KAYACharacterHandler {
         let response = `${greeting}\n\n`;
         
         if (queryLower.includes('leitweg') || queryLower.includes('03458-0-051') || queryLower.includes('leitweg-id') || queryLower.includes('leitweg id') || queryLower.includes('vorgang')) {
-            // KRITISCH: Verifizierte Fakten - keine Halluzinationen!
-            // Leitweg-ID: 03458-0-051 (verifiziert, steht im Impressum)
-            response += `**Leitweg-ID:** 03458-0-051\n\n`;
+            // KRITISCH: Verifizierte Fakten aus AgentManager laden (KEINE HALLUZINATIONEN!)
+            const ebillingFacts = this.agentHandler.getVerifiedFacts('rechnung_ebilling');
+            const leitwegId = ebillingFacts?.leitweg_id?.wert || '03458-0-051';
+            const vorgang = ebillingFacts?.vorgang || {};
+            const zustandig = vorgang.zustandig || 'Finanzdezernat / Rechnungsprüfung';
+            const kontakt = vorgang.kontakt || '04431 85-0';
+            const standort = ebillingFacts?.leitweg_id?.standort || 'Impressum der Website';
+            
+            response += `**Leitweg-ID:** ${leitwegId}\n\n`;
             response += `**Vorgang für E-Rechnung:**\n`;
-            response += `1. Rechnung im XRechnung-Format erstellen (XML, UBL 2.1/CIIl oder ZUGFeRD 2.0)\n`;
-            response += `2. Leitweg-ID 03458-0-051 in der Rechnung verwenden\n`;
-            response += `3. Rechnung über das XRechnung-System senden\n\n`;
+            response += `1. ${vorgang.schritt_1 || 'Rechnung im XRechnung-Format erstellen (XML, UBL 2.1/CIIl oder ZUGFeRD 2.0)'}\n`;
+            response += `2. Leitweg-ID ${leitwegId} in der Rechnung verwenden\n`;
+            response += `3. ${vorgang.schritt_3 || 'Rechnung über das XRechnung-System senden'}\n\n`;
             response += `**Wo findest du die Leitweg-ID?**\n`;
             response += `Im [Impressum](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/) der Website.\n\n`;
-            response += `**Zuständig:** Finanzdezernat / Rechnungsprüfung\n`;
-            response += `**Kontakt:** 04431 85-0`;
+            response += `**Zuständig:** ${zustandig}\n`;
+            response += `**Kontakt:** ${kontakt}`;
         } else if (queryLower.includes('xrechnung') || queryLower.includes('erechnung') || queryLower.includes('elektronisch')) {
             response += `**XRechnung / E-Rechnung** – der Landkreis Oldenburg akzeptiert elektronische Rechnungen.\n\n`;
             response += `**Wichtige Infos:**\n`;

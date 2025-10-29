@@ -1,0 +1,330 @@
+{
+  "globalStats": {
+    "total": 776,
+    "withContent": 776,
+    "withText": 776,
+    "withLinks": 624,
+    "empty": 0,
+    "sections": 1,
+    "articles": 0,
+    "headings": 46
+  },
+  "agentStats": {
+    "buergerdienste": {
+      "total": 69,
+      "withContent": 69,
+      "withText": 69,
+      "withLinks": 60,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 3,
+      "contentLength": {
+        "total": 33007,
+        "count": 69,
+        "min": 9,
+        "max": 10907
+      }
+    },
+    "ratsinfo": {
+      "total": 53,
+      "withContent": 53,
+      "withText": 53,
+      "withLinks": 47,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 9657,
+        "count": 53,
+        "min": 8,
+        "max": 1306
+      }
+    },
+    "stellenportal": {
+      "total": 17,
+      "withContent": 17,
+      "withText": 17,
+      "withLinks": 14,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 1,
+      "contentLength": {
+        "total": 2631,
+        "count": 17,
+        "min": 9,
+        "max": 1175
+      }
+    },
+    "kontakte": {
+      "total": 7,
+      "withContent": 7,
+      "withText": 7,
+      "withLinks": 3,
+      "empty": 0,
+      "sections": 1,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 1281,
+        "count": 7,
+        "min": 9,
+        "max": 544
+      }
+    },
+    "jugend": {
+      "total": 60,
+      "withContent": 60,
+      "withText": 60,
+      "withLinks": 55,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 6679,
+        "count": 60,
+        "min": 4,
+        "max": 1728
+      }
+    },
+    "soziales": {
+      "total": 60,
+      "withContent": 60,
+      "withText": 60,
+      "withLinks": 54,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 8408,
+        "count": 60,
+        "min": 4,
+        "max": 1871
+      }
+    },
+    "politik": {
+      "total": 200,
+      "withContent": 200,
+      "withText": 200,
+      "withLinks": 171,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 6,
+      "contentLength": {
+        "total": 42975,
+        "count": 200,
+        "min": 1,
+        "max": 8687
+      }
+    },
+    "jobcenter": {
+      "total": 45,
+      "withContent": 45,
+      "withText": 45,
+      "withLinks": 39,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 79418,
+        "count": 45,
+        "min": 9,
+        "max": 21744
+      }
+    },
+    "wirtschaft": {
+      "total": 16,
+      "withContent": 16,
+      "withText": 16,
+      "withLinks": 10,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 15369,
+        "count": 16,
+        "min": 9,
+        "max": 4658
+      }
+    },
+    "ordnungsamt": {
+      "total": 13,
+      "withContent": 13,
+      "withText": 13,
+      "withLinks": 10,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 1,
+      "contentLength": {
+        "total": 4745,
+        "count": 13,
+        "min": 9,
+        "max": 1794
+      }
+    },
+    "senioren": {
+      "total": 15,
+      "withContent": 15,
+      "withText": 15,
+      "withLinks": 9,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 4365,
+        "count": 15,
+        "min": 9,
+        "max": 1703
+      }
+    },
+    "inklusion": {
+      "total": 15,
+      "withContent": 15,
+      "withText": 15,
+      "withLinks": 9,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 4365,
+        "count": 15,
+        "min": 9,
+        "max": 1703
+      }
+    },
+    "digitalisierung": {
+      "total": 13,
+      "withContent": 13,
+      "withText": 13,
+      "withLinks": 7,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 20851,
+        "count": 13,
+        "min": 9,
+        "max": 5395
+      }
+    },
+    "gleichstellung": {
+      "total": 82,
+      "withContent": 82,
+      "withText": 82,
+      "withLinks": 76,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 2,
+      "contentLength": {
+        "total": 52531,
+        "count": 82,
+        "min": 9,
+        "max": 14224
+      }
+    },
+    "rechnung_ebilling": {
+      "total": 14,
+      "withContent": 14,
+      "withText": 14,
+      "withLinks": 2,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 4,
+      "contentLength": {
+        "total": 2674,
+        "count": 14,
+        "min": 9,
+        "max": 310
+      }
+    },
+    "aktionen_veranstaltungen": {
+      "total": 22,
+      "withContent": 22,
+      "withText": 22,
+      "withLinks": 4,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 6,
+      "contentLength": {
+        "total": 5633,
+        "count": 22,
+        "min": 6,
+        "max": 1037
+      }
+    },
+    "politik_landkreis": {
+      "total": 75,
+      "withContent": 75,
+      "withText": 75,
+      "withLinks": 54,
+      "empty": 0,
+      "sections": 0,
+      "articles": 0,
+      "headings": 5,
+      "contentLength": {
+        "total": 17832,
+        "count": 75,
+        "min": 1,
+        "max": 774
+      }
+    }
+  },
+  "contentQuality": 100,
+  "targetQuality": 80,
+  "examples": [
+    {
+      "agent": "jobcenter",
+      "title": "Das Jobcenter",
+      "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/",
+      "length": 21744,
+      "sectionType": "main",
+      "preview": "Der Landkreis Oldenburg ist seit 2005 mit Inkrafttreten des Sozialgesetzbuchs Zweiter Teil (SGB II) für die Aufgabe der Gewährung von Bürgergeld-Leist..."
+    },
+    {
+      "agent": "jobcenter",
+      "title": "Das Jobcenter",
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/jobcenter/",
+      "length": 21744,
+      "sectionType": "main",
+      "preview": "Der Landkreis Oldenburg ist seit 2005 mit Inkrafttreten des Sozialgesetzbuchs Zweiter Teil (SGB II) für die Aufgabe der Gewährung von Bürgergeld-Leist..."
+    },
+    {
+      "agent": "jobcenter",
+      "title": "Inhaltsbereich",
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/jobcenter/",
+      "length": 15135,
+      "sectionType": "heading",
+      "preview": "Volltextsuche Suchen Sie sind hier: Landkreis und Verwaltung/Kreisverwaltung/Kurzvorstellung der Ämter/Jobcenter Inhalt vorlesen Seite merken Seite dr..."
+    },
+    {
+      "agent": "jobcenter",
+      "title": "Inhaltsbereich",
+      "url": "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/",
+      "length": 15110,
+      "sectionType": "heading",
+      "preview": "Volltextsuche Suchen Sie sind hier: Wirtschaft und Arbeit/Jobcenter Landkreis Oldenburg Inhalt vorlesen Seite merken Seite drucken Das Jobcenter Der L..."
+    },
+    {
+      "agent": "gleichstellung",
+      "title": "Inhaltsbereich",
+      "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/gewaltschutz-hilfetelefone-und-beratungsangebote/",
+      "length": 14224,
+      "sectionType": "heading",
+      "preview": "Volltextsuche Suchen Sie sind hier: Landkreis und Verwaltung/Gleichstellungsbeauftragte/Gewaltschutz, Hilfetelefone und Beratungsangebote Inhalt vorle..."
+    }
+  ]
+}

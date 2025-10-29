@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739258429_ii1ymyx6e",
+  "messages": [
+    {
+      "id": "1761739258432",
+      "sender": "user",
+      "content": "E-Rechnung Landkreis Oldenburg",
+      "timestamp": "2025-10-29T12:00:58.432Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739258462",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:00:58.462Z",
+      "context": {
+        "intention": "lieferanten",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:00:58.432Z",
+  "lastActivity": "2025-10-29T12:00:58.462Z"
+}

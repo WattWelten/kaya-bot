@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739266315_1qkpsif2z",
+  "messages": [
+    {
+      "id": "1761739266315",
+      "sender": "user",
+      "content": "Pendler",
+      "timestamp": "2025-10-29T12:01:06.315Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739266340",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:01:06.340Z",
+      "context": {
+        "intention": "general",
+        "persona": "commuter",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:01:06.315Z",
+  "lastActivity": "2025-10-29T12:01:06.340Z"
+}

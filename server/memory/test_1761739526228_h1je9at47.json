@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739526228_h1je9at47",
+  "messages": [
+    {
+      "id": "1761739526229",
+      "sender": "user",
+      "content": "Tagesordnung",
+      "timestamp": "2025-10-29T12:05:26.229Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739526261",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:05:26.261Z",
+      "context": {
+        "intention": "politik",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:05:26.229Z",
+  "lastActivity": "2025-10-29T12:05:26.261Z"
+}

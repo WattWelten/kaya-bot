@@ -1,0 +1,35 @@
+{
+  "id": "test-landrat",
+  "messages": [
+    {
+      "id": "1761744163916",
+      "sender": "user",
+      "content": "Wer ist der Landrat?",
+      "timestamp": "2025-10-29T13:22:43.916Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761744163981",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T13:22:43.981Z",
+      "context": {
+        "intention": "politik",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T13:22:43.914Z",
+  "lastActivity": "2025-10-29T13:22:43.981Z"
+}

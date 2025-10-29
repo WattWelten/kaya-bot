@@ -1,0 +1,35 @@
+{
+  "id": "test_1761741166263_worqep3c9",
+  "messages": [
+    {
+      "id": "1761741166266",
+      "sender": "user",
+      "content": "Dr. Christian Pundt",
+      "timestamp": "2025-10-29T12:32:46.266Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761741166274",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:32:46.274Z",
+      "context": {
+        "intention": "tierhaltung",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:32:46.266Z",
+  "lastActivity": "2025-10-29T12:32:46.274Z"
+}

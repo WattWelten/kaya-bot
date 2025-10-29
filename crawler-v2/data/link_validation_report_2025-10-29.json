@@ -1,0 +1,267 @@
+{
+  "date": "2025-10-29T11:41:38.309Z",
+  "file": "all_agents_data_2025-10-29.json",
+  "stats": {
+    "total": 630,
+    "validated": 0,
+    "valid": 606,
+    "invalid": 24,
+    "byAgent": {
+      "buergerdienste": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 60,
+          "valid": 58,
+          "invalid": 2
+        }
+      },
+      "ratsinfo": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 47,
+          "valid": 46,
+          "invalid": 1
+        }
+      },
+      "stellenportal": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 14,
+          "valid": 11,
+          "invalid": 3
+        }
+      },
+      "kontakte": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 3,
+          "valid": 3,
+          "invalid": 0
+        }
+      },
+      "jugend": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 55,
+          "valid": 53,
+          "invalid": 2
+        }
+      },
+      "soziales": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 54,
+          "valid": 53,
+          "invalid": 1
+        }
+      },
+      "politik": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 3,
+          "valid": 3,
+          "invalid": 0
+        },
+        "links": {
+          "total": 171,
+          "valid": 169,
+          "invalid": 2
+        }
+      },
+      "jobcenter": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 39,
+          "valid": 31,
+          "invalid": 8
+        }
+      },
+      "wirtschaft": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 10,
+          "valid": 10,
+          "invalid": 0
+        }
+      },
+      "ordnungsamt": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 10,
+          "valid": 10,
+          "invalid": 0
+        }
+      },
+      "senioren": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 9,
+          "valid": 9,
+          "invalid": 0
+        }
+      },
+      "inklusion": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 9,
+          "valid": 8,
+          "invalid": 1
+        }
+      },
+      "digitalisierung": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 7,
+          "valid": 7,
+          "invalid": 0
+        }
+      },
+      "gleichstellung": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 76,
+          "valid": 72,
+          "invalid": 4
+        }
+      },
+      "rechnung_ebilling": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 2,
+          "valid": 2,
+          "invalid": 0
+        }
+      },
+      "aktionen_veranstaltungen": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 0,
+          "valid": 0,
+          "invalid": 0
+        },
+        "links": {
+          "total": 4,
+          "valid": 4,
+          "invalid": 0
+        }
+      },
+      "politik_landkreis": {
+        "total": 0,
+        "valid": 0,
+        "invalid": 0,
+        "forms": {
+          "total": 3,
+          "valid": 3,
+          "invalid": 0
+        },
+        "links": {
+          "total": 54,
+          "valid": 54,
+          "invalid": 0
+        }
+      }
+    }
+  }
+}

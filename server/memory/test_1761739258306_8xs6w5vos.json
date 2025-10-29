@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739258306_8xs6w5vos",
+  "messages": [
+    {
+      "id": "1761739258308",
+      "sender": "user",
+      "content": "XRechnung senden",
+      "timestamp": "2025-10-29T12:00:58.308Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739258320",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:00:58.320Z",
+      "context": {
+        "intention": "lieferanten",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:00:58.308Z",
+  "lastActivity": "2025-10-29T12:00:58.320Z"
+}

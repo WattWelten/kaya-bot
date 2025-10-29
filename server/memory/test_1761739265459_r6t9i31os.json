@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739265459_r6t9i31os",
+  "messages": [
+    {
+      "id": "1761739265460",
+      "sender": "user",
+      "content": "Bauantrag stellen",
+      "timestamp": "2025-10-29T12:01:05.460Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739265488",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Bauplan erstellen\n2. Antrag stellen\n3. Genehmigung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:01:05.488Z",
+      "context": {
+        "intention": "bauantrag",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:01:05.460Z",
+  "lastActivity": "2025-10-29T12:01:05.488Z"
+}

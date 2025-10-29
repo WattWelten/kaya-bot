@@ -3,12 +3,16 @@
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
+    "content": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/"
   },
   {
@@ -20,21 +24,35 @@
   {
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
     "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/"
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/",
+    "sectionType": "fallback"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
+    "content": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/"
   },
   {
@@ -46,21 +64,35 @@
   {
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
     "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/"
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/",
+    "sectionType": "fallback"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
+    "content": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/"
   },
   {
@@ -72,21 +104,35 @@
   {
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
     "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/"
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
+    "sectionType": "fallback"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
+    "content": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur  oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/unternehmen/e-government/"
   },
   {
     "type": "link",
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "source": "https://www.oldenburg-kreis.de/unternehmen/e-government/"
   },
   {
@@ -98,9 +144,19 @@
   {
     "type": "content",
     "url": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "source": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
+    "sectionType": "heading"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
     "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "source": "https://www.oldenburg-kreis.de/unternehmen/e-government/"
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben:\n\nWechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.\n\n• Sie verwenden ein altes Lesezeichen / alte Adresse.\n• Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "source": "https://www.oldenburg-kreis.de/unternehmen/e-government/",
+    "sectionType": "fallback"
   }
 ]

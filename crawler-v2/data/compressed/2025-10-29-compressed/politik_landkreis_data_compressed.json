@@ -2,21 +2,22 @@
   {
     "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
     "title": "Startseite",
-    "content": "",
-    "plain_text": "",
+    "content": "Wechseln Sie bitte zur oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Startseite",
-        "url": "https://www.oldenburg-kreis.de/portal/startseite.html"
+        "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -24,21 +25,22 @@
   {
     "url": "https://www.oldenburg-kreis.de/portal/suche.html",
     "title": "Suche",
-    "content": "",
-    "plain_text": "",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Suche",
-        "url": "https://www.oldenburg-kreis.de/portal/suche.html"
+        "url": "https://www.oldenburg-kreis.de/portal/suche.html",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -46,8 +48,8 @@
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -60,16 +62,16 @@
       "agent": "politik_landkreis",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
-    "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -77,7 +79,26 @@
       "agent": "politik_landkreis",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
+      "sectionType": "heading",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "politik_landkreis",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
+      "timestamp": "2025-10-29T11:07:42.055Z",
+      "sectionType": "fallback",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -85,8 +106,8 @@
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -99,16 +120,16 @@
       "agent": "politik_landkreis",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/",
-    "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -116,7 +137,26 @@
       "agent": "politik_landkreis",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
+      "sectionType": "heading",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "politik_landkreis",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/",
+      "timestamp": "2025-10-29T11:07:42.055Z",
+      "sectionType": "fallback",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -124,8 +164,8 @@
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -138,16 +178,16 @@
       "agent": "politik_landkreis",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/",
-    "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -155,7 +195,26 @@
       "agent": "politik_landkreis",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
+      "sectionType": "heading",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "politik_landkreis",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/",
+      "timestamp": "2025-10-29T11:07:42.055Z",
+      "sectionType": "fallback",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -163,8 +222,8 @@
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -177,16 +236,16 @@
       "agent": "politik_landkreis",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/",
-    "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -194,7 +253,26 @@
       "agent": "politik_landkreis",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
+      "sectionType": "heading",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "politik_landkreis",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/",
+      "timestamp": "2025-10-29T11:07:42.055Z",
+      "sectionType": "fallback",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -202,21 +280,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/news",
     "title": "News",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "News",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/news"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/news",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -224,21 +303,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/aemter",
     "title": "Ämter/Dezernate",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Ämter/Dezernate",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/aemter"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/aemter",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -246,21 +326,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien",
     "title": "Gremien",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Gremien",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -268,21 +349,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen",
     "title": "Fraktionen",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Fraktionen",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -290,21 +372,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen",
     "title": "Personen",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Personen",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -312,21 +395,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/vorlagen",
     "title": "Vorlagen",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Vorlagen",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/vorlagen"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/vorlagen",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -334,21 +418,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/termine",
     "title": "Sitzungen",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Sitzungen",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/termine"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/termine",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -356,21 +441,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/recherche",
     "title": "Recherche",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Recherche",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/recherche"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/recherche",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -378,21 +464,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/diverses/downloads/1",
     "title": "Dokumente",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Dokumente",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/diverses/downloads/1"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/diverses/downloads/1",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -400,21 +487,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/kennwort?__=UGhVM0hpd2NXNFdFcExjZQ4rVHVtuI-BnC7-z0MspoU",
     "title": "Kennwort vergessen?",
-    "content": "",
-    "plain_text": "",
+    "content": "Kennwort vergessen?",
+    "plain_text": "Kennwort vergessen?",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Kennwort vergessen?",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/kennwort?__=UGhVM0hpd2NXNFdFcExjZQ4rVHVtuI-BnC7-z0MspoU"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/kennwort?__=UGhVM0hpd2NXNFdFcExjZQ4rVHVtuI-BnC7-z0MspoU",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -422,21 +510,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZU9kwEGKSP7LxsmmwmqoaRs",
     "title": "Alle",
-    "content": "",
-    "plain_text": "",
+    "content": "Alle",
+    "plain_text": "Alle",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Alle",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZU9kwEGKSP7LxsmmwmqoaRs"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZU9kwEGKSP7LxsmmwmqoaRs",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -444,21 +533,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSAjO6YXJqGa9qpYQ097DUI",
     "title": "A",
-    "content": "",
-    "plain_text": "",
+    "content": "A",
+    "plain_text": "A",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "A",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSAjO6YXJqGa9qpYQ097DUI"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSAjO6YXJqGa9qpYQ097DUI",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -466,21 +556,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZTz1RHfWajsBBL5eM1kRXZ0",
     "title": "B",
-    "content": "",
-    "plain_text": "",
+    "content": "B",
+    "plain_text": "B",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "B",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZTz1RHfWajsBBL5eM1kRXZ0"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZTz1RHfWajsBBL5eM1kRXZ0",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -488,21 +579,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZQbLQwRhELQKMCVsW5gnurA",
     "title": "D",
-    "content": "",
-    "plain_text": "",
+    "content": "D",
+    "plain_text": "D",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "D",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZQbLQwRhELQKMCVsW5gnurA"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZQbLQwRhELQKMCVsW5gnurA",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -510,21 +602,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZWf6X8pAT7vakpGfsWN8xXI",
     "title": "F",
-    "content": "",
-    "plain_text": "",
+    "content": "F",
+    "plain_text": "F",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "F",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZWf6X8pAT7vakpGfsWN8xXI"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZWf6X8pAT7vakpGfsWN8xXI",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -532,21 +625,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZfjmHHTssDYD-PfaqiW5iBA",
     "title": "G",
-    "content": "",
-    "plain_text": "",
+    "content": "G",
+    "plain_text": "G",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "G",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZfjmHHTssDYD-PfaqiW5iBA"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZfjmHHTssDYD-PfaqiW5iBA",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -554,21 +648,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZThyj2miJxszm63RAZQS3gQ",
     "title": "H",
-    "content": "",
-    "plain_text": "",
+    "content": "H",
+    "plain_text": "H",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "H",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZThyj2miJxszm63RAZQS3gQ"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZThyj2miJxszm63RAZQS3gQ",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -576,21 +671,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZUdKpTpXYcRxhxER2XtRktY",
     "title": "J",
-    "content": "",
-    "plain_text": "",
+    "content": "J",
+    "plain_text": "J",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "J",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZUdKpTpXYcRxhxER2XtRktY"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZUdKpTpXYcRxhxER2XtRktY",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -598,21 +694,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSAoEGfg-EL_aMGEnQcwhIU",
     "title": "K",
-    "content": "",
-    "plain_text": "",
+    "content": "K",
+    "plain_text": "K",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "K",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSAoEGfg-EL_aMGEnQcwhIU"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSAoEGfg-EL_aMGEnQcwhIU",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -620,21 +717,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZXHimD_GrTkUpE2lSB4_sic",
     "title": "L",
-    "content": "",
-    "plain_text": "",
+    "content": "L",
+    "plain_text": "L",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "L",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZXHimD_GrTkUpE2lSB4_sic"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZXHimD_GrTkUpE2lSB4_sic",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -642,21 +740,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSrrTUK45ejziOKdM1WGZqw",
     "title": "M",
-    "content": "",
-    "plain_text": "",
+    "content": "M",
+    "plain_text": "M",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "M",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSrrTUK45ejziOKdM1WGZqw"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSrrTUK45ejziOKdM1WGZqw",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -664,21 +763,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZabEjTOA555vsHbfJoJP4uA",
     "title": "N",
-    "content": "",
-    "plain_text": "",
+    "content": "N",
+    "plain_text": "N",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "N",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZabEjTOA555vsHbfJoJP4uA"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZabEjTOA555vsHbfJoJP4uA",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -686,21 +786,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZXMucDq0EP3j3WKdmJbTgoQ",
     "title": "O",
-    "content": "",
-    "plain_text": "",
+    "content": "O",
+    "plain_text": "O",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "O",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZXMucDq0EP3j3WKdmJbTgoQ"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZXMucDq0EP3j3WKdmJbTgoQ",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -708,21 +809,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSLO1K8QjtQu-2gP8chn82o",
     "title": "P",
-    "content": "",
-    "plain_text": "",
+    "content": "P",
+    "plain_text": "P",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "P",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSLO1K8QjtQu-2gP8chn82o"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZSLO1K8QjtQu-2gP8chn82o",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -730,21 +832,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZVN-A90IBnHKdaJWwcnwPhA",
     "title": "R",
-    "content": "",
-    "plain_text": "",
+    "content": "R",
+    "plain_text": "R",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "R",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZVN-A90IBnHKdaJWwcnwPhA"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZVN-A90IBnHKdaJWwcnwPhA",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -752,21 +855,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZQhZgd7Y2Elv0tbE9NeyeF4",
     "title": "S",
-    "content": "",
-    "plain_text": "",
+    "content": "S",
+    "plain_text": "S",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "S",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZQhZgd7Y2Elv0tbE9NeyeF4"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZQhZgd7Y2Elv0tbE9NeyeF4",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -774,21 +878,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZWsEv_mO9rTZjABv_L8te-c",
     "title": "T",
-    "content": "",
-    "plain_text": "",
+    "content": "T",
+    "plain_text": "T",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "T",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZWsEv_mO9rTZjABv_L8te-c"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZWsEv_mO9rTZjABv_L8te-c",
+        "valid": false
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -796,21 +901,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZcYSHXON42NJxYJVryjV7uk",
     "title": "V",
-    "content": "",
-    "plain_text": "",
+    "content": "V",
+    "plain_text": "V",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "V",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZcYSHXON42NJxYJVryjV7uk"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZcYSHXON42NJxYJVryjV7uk",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -818,21 +924,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZXFspm8uHbjR6M1eB1se-us",
     "title": "W",
-    "content": "",
-    "plain_text": "",
+    "content": "W",
+    "plain_text": "W",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "W",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZXFspm8uHbjR6M1eB1se-us"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZXFspm8uHbjR6M1eB1se-us",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -840,21 +947,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZX1yUbI5-9w5_iLbVjodXss",
     "title": "Z",
-    "content": "",
-    "plain_text": "",
+    "content": "Z",
+    "plain_text": "Z",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Z",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZX1yUbI5-9w5_iLbVjodXss"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/?__=UGhVM0hpd2NXNFdFcExjZX1yUbI5-9w5_iLbVjodXss",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -862,14 +970,15 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/recherche",
     "title": "recherche",
-    "content": "",
-    "plain_text": "",
+    "content": "recherche",
+    "plain_text": "recherche",
     "contacts": [],
     "forms": [
       {
         "type": "form",
         "title": "Formular",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/recherche"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/recherche",
+        "valid": true
       }
     ],
     "links": [],
@@ -877,7 +986,7 @@
       "agent": "politik_landkreis",
       "type": "form",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -885,14 +994,15 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [],
     "forms": [
       {
         "type": "form",
         "title": "Formular",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/",
+        "valid": true
       }
     ],
     "links": [],
@@ -900,7 +1010,7 @@
       "agent": "politik_landkreis",
       "type": "form",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -908,14 +1018,15 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [],
     "forms": [
       {
         "type": "form",
         "title": "Formular",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
+        "valid": true
       }
     ],
     "links": [],
@@ -923,7 +1034,7 @@
       "agent": "politik_landkreis",
       "type": "form",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -931,8 +1042,8 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
     "title": "Personen",
-    "content": "Kreistagsinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » Personen Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Personen An dieser Stelle können Sie sich alle aktiven Mandatsträger anzeigen lassen. Nutzen Sie das Auswahlformular, um Ihre Suche einzugrenzen. Der Buchstabenindex erleichtert die Navigation. Sie können zwischen den einzelnen Indizes hin- und herwechseln. Mit \"Alle\" gelangen Sie zurück zur Ausgangsübersicht. Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Personenauswahl Personenkreis - Alle - Mitglied Sonstiges Landrat Verwaltung Fraktion - Alle - CDU SPD BÜNDNIS 90/DIE GRÜNEN-DIE LINKE FDP/FREIE WÄHLER/UWG AfD Niedersachsen Fraktionslos Fraktionsfunktion - Alle - Fraktionsvorsitz Gruppensprecher/in Stellv. Gruppensprecher/in Stellv. Fraktionsvorsitzende/r ohne Fraktionsmitglied Gruppenmitglied Gremium - Alle - Kreistag Kreisausschuss Bau-, Straßen- und Brandschutzausschuss Finanz- und Wirtschaftsausschuss Integrations- und Gleichstellungsausschuss Jugendhilfeausschuss Schul- und Kulturausschuss Sozial- und Gesundheitsausschuss Struktur- und Klimaschutzausschuss Umwelt- und Abfallwirtschaftsausschuss Gremienfunktion - Alle - Ausschussvorsitzende/rKreistagsvorsitzende/rLandrat (Vorsitz KA)Stellv. Ausschussvorsitzende/rStellv. Kreistagsvorsitzende/rAusschussmitgliedKreistagsabgeordnete/rStimmberechtigtes MitgliedBeratendes MitgliedBeratendes MitgliedBeratendes MitgliedGrundmandatLandratLandrat (Ausschuss)ProtokollführungStellv. AusschussmitgliedStellv. Beratendes MitgliedStellv. Stimmberechtigtes Mitglied2. Stellv. Stimmberechtigtes Mitglied $SST( document ).ready( function() { $SST( 'span.hidden-hint' ).hide(); }); function hideHiddenFields( event ) { $SST( 'span.hiddenfields' ).hide(); $SST( 'input.submit-button' ).hide(); $SST( '#submit-show' ).prepend( '<input type=\"button\" value=\"Optionen einblenden\" class=\"button extendform\" />' ); $SST( 'input.extendform' ).click( { show: true }, showHiddenFields ); } function showHiddenFields( event ) { var element = event.currentTarget; if ( event.data.show ) { $SST( 'span.hiddenfields' ).show(); $SST( 'input.submit-button' ).show(); $SST( 'input.extendform' ).attr( 'value', 'Optionen ausblenden' ); $SST( element ).click( { show: false }, showHiddenFields ); $SST( element ).addClass( 'button-active' ); $SST('#idpersonenkreis').focus(); } else { $SST( 'span.hiddenfields' ).hide(); $SST( 'span.hidden-hint' ).show(); $SST( 'input.submit-button' ).hide(); $SST( 'input.extendform' ).attr( 'value', 'Optionen einblenden' ); $SST( element ).click( { show: true }, showHiddenFields ); $SST( element ).removeClass( 'button-active' ); } return false; } Alle ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    "plain_text": "Kreistagsinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » Personen Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Personen An dieser Stelle können Sie sich alle aktiven Mandatsträger anzeigen lassen. Nutzen Sie das Auswahlformular, um Ihre Suche einzugrenzen. Der Buchstabenindex erleichtert die Navigation. Sie können zwischen den einzelnen Indizes hin- und herwechseln. Mit \"Alle\" gelangen Sie zurück zur Ausgangsübersicht. Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Personenauswahl Personenkreis - Alle - Mitglied Sonstiges Landrat Verwaltung Fraktion - Alle - CDU SPD BÜNDNIS 90/DIE GRÜNEN-DIE LINKE FDP/FREIE WÄHLER/UWG AfD Niedersachsen Fraktionslos Fraktionsfunktion - Alle - Fraktionsvorsitz Gruppensprecher/in Stellv. Gruppensprecher/in Stellv. Fraktionsvorsitzende/r ohne Fraktionsmitglied Gruppenmitglied Gremium - Alle - Kreistag Kreisausschuss Bau-, Straßen- und Brandschutzausschuss Finanz- und Wirtschaftsausschuss Integrations- und Gleichstellungsausschuss Jugendhilfeausschuss Schul- und Kulturausschuss Sozial- und Gesundheitsausschuss Struktur- und Klimaschutzausschuss Umwelt- und Abfallwirtschaftsausschuss Gremienfunktion - Alle - Ausschussvorsitzende/rKreistagsvorsitzende/rLandrat (Vorsitz KA)Stellv. Ausschussvorsitzende/rStellv. Kreistagsvorsitzende/rAusschussmitgliedKreistagsabgeordnete/rStimmberechtigtes MitgliedBeratendes MitgliedBeratendes MitgliedBeratendes MitgliedGrundmandatLandratLandrat (Ausschuss)ProtokollführungStellv. AusschussmitgliedStellv. Beratendes MitgliedStellv. Stimmberechtigtes Mitglied2. Stellv. Stimmberechtigtes Mitglied $SST( document ).ready( function() { $SST( 'span.hidden-hint' ).hide(); }); function hideHiddenFields( event ) { $SST( 'span.hiddenfields' ).hide(); $SST( 'input.submit-button' ).hide(); $SST( '#submit-show' ).prepend( '<input type=\"button\" value=\"Optionen einblenden\" class=\"button extendform\" />' ); $SST( 'input.extendform' ).click( { show: true }, showHiddenFields ); } function showHiddenFields( event ) { var element = event.currentTarget; if ( event.data.show ) { $SST( 'span.hiddenfields' ).show(); $SST( 'input.submit-button' ).show(); $SST( 'input.extendform' ).attr( 'value', 'Optionen ausblenden' ); $SST( element ).click( { show: false }, showHiddenFields ); $SST( element ).addClass( 'button-active' ); $SST('#idpersonenkreis').focus(); } else { $SST( 'span.hiddenfields' ).hide(); $SST( 'span.hidden-hint' ).show(); $SST( 'input.submit-button' ).hide(); $SST( 'input.extendform' ).attr( 'value', 'Optionen einblenden' ); $SST( element ).click( { show: true }, showHiddenFields ); $SST( element ).removeClass( 'button-active' ); } return false; } Alle ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "content": "Recherche für Bürger, Politik und Verwaltung. An dieser Stelle können Sie sich alle aktiven Mandatsträger anzeigen lassen. Nutzen Sie das Auswahlformular, um Ihre Suche einzugrenzen. Der Buchstabenindex erleichtert die Navigation. Sie können zwischen den einzelnen Indizes hin- und herwechseln. Mit \"Alle\" gelangen Sie zurück zur Ausgangsübersicht. Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren.",
+    "plain_text": "Recherche für Bürger, Politik und Verwaltung. An dieser Stelle können Sie sich alle aktiven Mandatsträger anzeigen lassen. Nutzen Sie das Auswahlformular, um Ihre Suche einzugrenzen. Der Buchstabenindex erleichtert die Navigation. Sie können zwischen den einzelnen Indizes hin- und herwechseln. Mit \"Alle\" gelangen Sie zurück zur Ausgangsübersicht. Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -940,7 +1051,8 @@
       "agent": "politik_landkreis",
       "type": "content",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
+      "sectionType": "main",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -948,21 +1060,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTVWMqS0evzRn7tjeBk7fiOg",
     "title": "Fraktion",
-    "content": "",
-    "plain_text": "",
+    "content": "Kreistagsinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » en Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder",
+    "plain_text": "Kreistagsinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » en Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Fraktion",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTVWMqS0evzRn7tjeBk7fiOg"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTVWMqS0evzRn7tjeBk7fiOg",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -970,21 +1083,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTeEvK82s24izHk52Aawoy_b9e2qUIB9WR61S6z4Lnmxs",
     "title": "Mitglieder",
-    "content": "",
-    "plain_text": "",
+    "content": "» Fraktionen Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktion CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
+    "plain_text": "» Fraktionen Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktion CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Mitglieder",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTeEvK82s24izHk52Aawoy_b9e2qUIB9WR61S6z4Lnmxs"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTeEvK82s24izHk52Aawoy_b9e2qUIB9WR61S6z4Lnmxs",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -992,21 +1106,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZX1VNHrjM-ReOJZoBTeKyOg",
     "title": "CDU",
-    "content": "",
-    "plain_text": "",
+    "content": "en Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
+    "plain_text": "en Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "CDU",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZX1VNHrjM-ReOJZoBTeKyOg"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZX1VNHrjM-ReOJZoBTeKyOg",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.055Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1014,21 +1129,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZS-xWbrC-TrkUlnlpCCP-4o",
     "title": "SPD",
-    "content": "",
-    "plain_text": "",
+    "content": "tseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
+    "plain_text": "tseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "SPD",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZS-xWbrC-TrkUlnlpCCP-4o"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZS-xWbrC-TrkUlnlpCCP-4o",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1036,21 +1152,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZeIDrjzweYG3el5PYeJ_W3o",
     "title": "BÜNDNIS 90/DIE GRÜNEN-DIE LINKE",
-    "content": "",
-    "plain_text": "",
+    "content": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
+    "plain_text": "News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "BÜNDNIS 90/DIE GRÜNEN-DIE LINKE",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZeIDrjzweYG3el5PYeJ_W3o"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZeIDrjzweYG3el5PYeJ_W3o",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1058,21 +1175,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZe6IHMvFgzBq3M9-N0ewmWY",
     "title": "FDP/FREIE WÄHLER/UWG",
-    "content": "",
-    "plain_text": "",
+    "content": "ionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 9 AfD Niedersachsen 2 Fraktionslos 0",
+    "plain_text": "ionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 9 AfD Niedersachsen 2 Fraktionslos 0",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "FDP/FREIE WÄHLER/UWG",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZe6IHMvFgzBq3M9-N0ewmWY"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZe6IHMvFgzBq3M9-N0ewmWY",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1080,21 +1198,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZYyPsokafGPml_iridg7U3Q",
     "title": "AfD Niedersachsen",
-    "content": "",
-    "plain_text": "",
+    "content": "Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 2 Fraktionslos 0",
+    "plain_text": "Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 2 Fraktionslos 0",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "AfD Niedersachsen",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZYyPsokafGPml_iridg7U3Q"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZYyPsokafGPml_iridg7U3Q",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1102,21 +1221,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZRVQ3WhHxaD5QN2FcQxScIM",
     "title": "Fraktionslos",
-    "content": "",
-    "plain_text": "",
+    "content": "Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 0",
+    "plain_text": "Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 0",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Fraktionslos",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZRVQ3WhHxaD5QN2FcQxScIM"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/?__=UGhVM0hpd2NXNFdFcExjZRVQ3WhHxaD5QN2FcQxScIM",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1124,8 +1244,8 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
     "title": "Fraktionen",
-    "content": "Kreistagsinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » Fraktionen Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
-    "plain_text": "Kreistagsinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » Fraktionen Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Fraktionen Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistagsfraktionen und -gruppenFraktionMitglieder CDU 15 SPD 14 BÜNDNIS 90/DIE GRÜNEN-DIE LINKE 9 FDP/FREIE WÄHLER/UWG 9 AfD Niedersachsen 2 Fraktionslos 0",
+    "content": "Recherche für Bürger, Politik und Verwaltung. Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg. Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Tabellen: Fraktion | Mitglieder | BÜNDNIS 90/DIE GRÜNEN-DIE LINKE | FDP/FREIE WÄHLER/UWG | AfD Niedersachsen | Fraktionslos",
+    "plain_text": "Recherche für Bürger, Politik und Verwaltung. Diese Übersicht enthält alle Fraktionen des Landkreises Oldenburg. Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Tabellen: Fraktion | Mitglieder | BÜNDNIS 90/DIE GRÜNEN-DIE LINKE | FDP/FREIE WÄHLER/UWG | AfD Niedersachsen | Fraktionslos",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -1133,7 +1253,8 @@
       "agent": "politik_landkreis",
       "type": "content",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
-      "timestamp": "2025-10-29T07:49:51.290Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
+      "sectionType": "main",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1141,21 +1262,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTVWMqS0evzRn7tjeBk7fiOg",
     "title": "Gremium",
-    "content": "",
-    "plain_text": "",
+    "content": "burg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und Kreisausschuss Mitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "burg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und Kreisausschuss Mitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Gremium",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTVWMqS0evzRn7tjeBk7fiOg"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTVWMqS0evzRn7tjeBk7fiOg",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1163,21 +1285,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTkt0QfHHSamWRLbUAWIcgaVK3BESZB1ws0zjgEFVeUlU",
     "title": "Mitglieder",
-    "content": "",
-    "plain_text": "",
+    "content": "eistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremium Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "eistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremium Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Mitglieder",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTkt0QfHHSamWRLbUAWIcgaVK3BESZB1ws0zjgEFVeUlU"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5XM0luS9xNzP_aveQgS0VTkt0QfHHSamWRLbUAWIcgaVK3BESZB1ws0zjgEFVeUlU",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1185,21 +1308,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZTOy3PjZMIcIOxgVfZLy8zg",
     "title": "Kreistag",
-    "content": "",
-    "plain_text": "",
+    "content": "sinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort verg",
+    "plain_text": "sinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort verg",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Kreistag",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZTOy3PjZMIcIOxgVfZLy8zg"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZTOy3PjZMIcIOxgVfZLy8zg",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1207,21 +1331,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZcZdnK3CU-fX6OQ9MeKaIZ0",
     "title": "Kreisausschuss",
-    "content": "",
-    "plain_text": "",
+    "content": "andkreis Oldenburg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und GremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "andkreis Oldenburg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und GremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Kreisausschuss",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZcZdnK3CU-fX6OQ9MeKaIZ0"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZcZdnK3CU-fX6OQ9MeKaIZ0",
+        "valid": false
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1229,21 +1354,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5OHdgKRkb8xFh7Atlj3JUf2EdI-3qVt6SxyvIwcfuexA",
     "title": "Gremium",
-    "content": "",
-    "plain_text": "",
+    "content": "burg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und Kreisausschuss Mitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "burg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und Kreisausschuss Mitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Gremium",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5OHdgKRkb8xFh7Atlj3JUf2EdI-3qVt6SxyvIwcfuexA"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5OHdgKRkb8xFh7Atlj3JUf2EdI-3qVt6SxyvIwcfuexA",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1251,21 +1377,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5OHdgKRkb8xFh7Atlj3JUfYOJmvl6uw96wLzfygVAGBN6odEayrk-OoCz14UKEn2E",
     "title": "Mitglieder",
-    "content": "",
-    "plain_text": "",
+    "content": "eistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremium Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "eistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremium Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Mitglieder",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5OHdgKRkb8xFh7Atlj3JUfYOJmvl6uw96wLzfygVAGBN6odEayrk-OoCz14UKEn2E"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZd8eH7-8qJQyybSesrBhQF5OHdgKRkb8xFh7Atlj3JUfYOJmvl6uw96wLzfygVAGBN6odEayrk-OoCz14UKEn2E",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1273,21 +1400,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZRCIQV3mJ92bNZHee2rcwv0",
     "title": "Bau-, Straßen- und Brandschutzausschuss",
-    "content": "",
-    "plain_text": "",
+    "content": "en Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "en Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Bau-, Straßen- und Brandschutzausschuss",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZRCIQV3mJ92bNZHee2rcwv0"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZRCIQV3mJ92bNZHee2rcwv0",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1295,21 +1423,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZfteBffo6ilyS0V--d3P6nc",
     "title": "Finanz- und Wirtschaftsausschuss",
-    "content": "",
-    "plain_text": "",
+    "content": "echerche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "echerche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Finanz- und Wirtschaftsausschuss",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZfteBffo6ilyS0V--d3P6nc"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZfteBffo6ilyS0V--d3P6nc",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1317,21 +1446,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZaLSK14H4gx2z5itqDxDJgc",
     "title": "Integrations- und Gleichstellungsausschuss",
-    "content": "",
-    "plain_text": "",
+    "content": "rname Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "rname Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Integrations- und Gleichstellungsausschuss",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZaLSK14H4gx2z5itqDxDJgc"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZaLSK14H4gx2z5itqDxDJgc",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1339,21 +1469,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZTPlM6T6ZP1jtSvvm6_EVPc",
     "title": "Jugendhilfeausschuss",
-    "content": "",
-    "plain_text": "",
+    "content": "se Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "se Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Jugendhilfeausschuss",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZTPlM6T6ZP1jtSvvm6_EVPc"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZTPlM6T6ZP1jtSvvm6_EVPc",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1361,21 +1492,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZVgyR5cRX7YQt_4kmzbHoiA",
     "title": "Schul- und Kulturausschuss",
-    "content": "",
-    "plain_text": "",
+    "content": "e zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "e zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Schul- und Kulturausschuss",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZVgyR5cRX7YQt_4kmzbHoiA"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZVgyR5cRX7YQt_4kmzbHoiA",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1383,21 +1515,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZcRguwzgcCkpmAwz5O5G0C0",
     "title": "Sozial- und Gesundheitsausschuss",
-    "content": "",
-    "plain_text": "",
+    "content": "die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Sozial- und Gesundheitsausschuss",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZcRguwzgcCkpmAwz5O5G0C0"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZcRguwzgcCkpmAwz5O5G0C0",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1405,21 +1538,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZT_Nt3DbUuQa6CUWKl7PBYM",
     "title": "Struktur- und Klimaschutzausschuss",
-    "content": "",
-    "plain_text": "",
+    "content": "t können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "plain_text": "t können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 15 Umwelt- und Abfallwirtschaftsausschuss 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Struktur- und Klimaschutzausschuss",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZT_Nt3DbUuQa6CUWKl7PBYM"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZT_Nt3DbUuQa6CUWKl7PBYM",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1427,21 +1561,22 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZe_kr0vAGgx-RDGvrMig7Gg",
     "title": "Umwelt- und Abfallwirtschaftsausschuss",
-    "content": "",
-    "plain_text": "",
+    "content": "sspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 19",
+    "plain_text": "sspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 19",
     "contacts": [],
     "forms": [],
     "links": [
       {
         "title": "Umwelt- und Abfallwirtschaftsausschuss",
-        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZe_kr0vAGgx-RDGvrMig7Gg"
+        "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/?__=UGhVM0hpd2NXNFdFcExjZe_kr0vAGgx-RDGvrMig7Gg",
+        "valid": true
       }
     ],
     "metadata": {
       "agent": "politik_landkreis",
       "type": "link",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1449,8 +1584,8 @@
   {
     "url": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
     "title": "Gremien",
-    "content": "Kreistagsinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
-    "plain_text": "Kreistagsinformationssystem Recherche für Bürger, Politik und Verwaltung. Bildmotiv in dieser Region: Bilck aus der Vogelperspektive auf das von Bäumen umgebene Kreishaus des Landkreises Oldenburg. Bild: © Landkreis Oldenburg Kreistagsinformationssystem » Gremien Startseite News Ämter/Dezernate Gremien Fraktionen Personen Vorlagen Sitzungen Recherche Dokumente Anmeldung Benutzername Kennwort Kennwort vergessen? Gremien Diese Übersicht enthält alle zurzeit aktiven Gremien.Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Kreistag und KreisausschussGremiumMitglieder Kreistag 51 Kreisausschuss 11 FachausschüsseGremiumMitglieder Bau-, Straßen- und Brandschutzausschuss 20 Finanz- und Wirtschaftsausschuss 15 Integrations- und Gleichstellungsausschuss 17 Jugendhilfeausschuss 21 Schul- und Kulturausschuss 23 Sozial- und Gesundheitsausschuss 18 Struktur- und Klimaschutzausschuss 15 Umwelt- und Abfallwirtschaftsausschuss 19",
+    "content": "Recherche für Bürger, Politik und Verwaltung. Diese Übersicht enthält alle zurzeit aktiven Gremien. Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Tabellen: Gremium | Mitglieder | Bau-, Straßen- und Brandschutzausschuss | Finanz- und Wirtschaftsausschuss | Integrations- und Gleichstellungsausschuss | Jugendhilfeausschuss | Schul- und Kulturausschuss | Sozial- und Gesundheitsausschuss | Struktur- und Klimaschutzausschuss | Umwelt- und Abfallwirtschaftsausschuss",
+    "plain_text": "Recherche für Bürger, Politik und Verwaltung. Diese Übersicht enthält alle zurzeit aktiven Gremien. Über die markierten Titel der Überschrift können Sie die einzelnen Informationsspalten auf- und absteigend sortieren. Tabellen: Gremium | Mitglieder | Bau-, Straßen- und Brandschutzausschuss | Finanz- und Wirtschaftsausschuss | Integrations- und Gleichstellungsausschuss | Jugendhilfeausschuss | Schul- und Kulturausschuss | Sozial- und Gesundheitsausschuss | Struktur- und Klimaschutzausschuss | Umwelt- und Abfallwirtschaftsausschuss",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -1458,7 +1593,8 @@
       "agent": "politik_landkreis",
       "type": "content",
       "source": "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
+      "sectionType": "main",
       "compressed": true,
       "compression_ratio": 1
     }
@@ -1466,8 +1602,8 @@
   {
     "url": "https://www.oldenburg-kreis.de/impressum/",
     "title": "Unbekannt",
-    "content": "",
-    "plain_text": "",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
     "contacts": [
       {
         "type": "phone",
@@ -1480,16 +1616,16 @@
       "agent": "politik_landkreis",
       "type": "contact",
       "source": "https://www.oldenburg-kreis.de/impressum/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
       "compressed": true,
       "compression_ratio": 1
     }
   },
   {
     "url": "https://www.oldenburg-kreis.de/impressum/",
-    "title": "Landkreis Oldenburg",
-    "content": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
-    "plain_text": "Landkreis Oldenburg Die Datei wurde nicht gefunden. Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. window.setTimeout(function() { window.location.href='https://www.oldenburg-kreis.de/portal/startseite.html'; },15000);",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
     "contacts": [],
     "forms": [],
     "links": [],
@@ -1497,7 +1633,26 @@
       "agent": "politik_landkreis",
       "type": "content",
       "source": "https://www.oldenburg-kreis.de/impressum/",
-      "timestamp": "2025-10-29T07:49:51.291Z",
+      "timestamp": "2025-10-29T11:07:42.056Z",
+      "sectionType": "heading",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/impressum/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "politik_landkreis",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/impressum/",
+      "timestamp": "2025-10-29T11:07:42.056Z",
+      "sectionType": "fallback",
       "compressed": true,
       "compression_ratio": 1
     }

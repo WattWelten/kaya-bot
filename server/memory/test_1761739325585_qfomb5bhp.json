@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739325585_qfomb5bhp",
+  "messages": [
+    {
+      "id": "1761739325587",
+      "sender": "user",
+      "content": "Digitalisierung",
+      "timestamp": "2025-10-29T12:02:05.587Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739325624",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:02:05.624Z",
+      "context": {
+        "intention": "digitalisierung",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:02:05.587Z",
+  "lastActivity": "2025-10-29T12:02:05.624Z"
+}

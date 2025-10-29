@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739531513_jikqcurdq",
+  "messages": [
+    {
+      "id": "1761739531515",
+      "sender": "user",
+      "content": "Jugendliche",
+      "timestamp": "2025-10-29T12:05:31.515Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739531543",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:05:31.543Z",
+      "context": {
+        "intention": "jugend",
+        "persona": "youth",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:05:31.515Z",
+  "lastActivity": "2025-10-29T12:05:31.543Z"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "test_1761741175033_p857z2ocx",
+  "messages": [
+    {
+      "id": "1761741175035",
+      "sender": "user",
+      "content": "Wohnung suchen",
+      "timestamp": "2025-10-29T12:32:55.035Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761741175071",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:32:55.071Z",
+      "context": {
+        "intention": "katastrophenschutz",
+        "persona": "housing_seeker",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:32:55.035Z",
+  "lastActivity": "2025-10-29T12:32:55.071Z"
+}

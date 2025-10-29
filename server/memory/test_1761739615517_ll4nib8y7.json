@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739615517_ll4nib8y7",
+  "messages": [
+    {
+      "id": "1761739615519",
+      "sender": "user",
+      "content": "Arbeitslosengeld",
+      "timestamp": "2025-10-29T12:06:55.519Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739615567",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:06:55.567Z",
+      "context": {
+        "intention": "jobcenter",
+        "persona": "low_income",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:06:55.519Z",
+  "lastActivity": "2025-10-29T12:06:55.567Z"
+}

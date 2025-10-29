@@ -371,12 +371,24 @@ Merke: Keine Floskeln. Quellen nur wenn nötig.`;
         if (context.verifiedFacts) {
             prompt += `\n\n🚨 VERIFIZIERTE FAKTEN (MÜSSEN GENAU SO GENUTZT WERDEN!):\n`;
             if (context.verifiedFacts.leitwegId) {
+                prompt += `**LEITWEG-ID & VORGANG:**\n`;
                 prompt += `Leitweg-ID: ${context.verifiedFacts.leitwegId}\n`;
                 prompt += `Vorgang: ${context.verifiedFacts.process}\n`;
+                if (context.verifiedFacts.vorgang) {
+                    const v = context.verifiedFacts.vorgang;
+                    if (v.schritt_1) prompt += `Schritt 1: ${v.schritt_1}\n`;
+                    if (v.schritt_2) prompt += `Schritt 2: ${v.schritt_2}\n`;
+                    if (v.schritt_3) prompt += `Schritt 3: ${v.schritt_3}\n`;
+                }
                 prompt += `Wo: ${context.verifiedFacts.location}\n`;
                 prompt += `Kontakt: ${context.verifiedFacts.contact}\n`;
                 prompt += `Zuständig: ${context.verifiedFacts.responsible}\n`;
-                prompt += `\nWICHTIG: Nutze diese Fakten IMMER wenn danach gefragt wird! NIEMALS "kann ich nicht" sagen!`;
+                prompt += `\n⚠️ WICHTIG: Nutze diese Fakten IMMER wenn danach gefragt wird! NIEMALS "kann ich nicht bereitstellen" sagen!`;
+            }
+            if (context.verifiedFacts.landrat) {
+                prompt += `\n**PERSONEN & POSITIONEN:**\n`;
+                prompt += `Landrat: ${context.verifiedFacts.landrat.name} (${context.verifiedFacts.landrat.titel})\n`;
+                prompt += `⚠️ WICHTIG: ${context.verifiedFacts.landrat.warnung}\n`;
             }
         }
 

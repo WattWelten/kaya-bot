@@ -1,0 +1,35 @@
+{
+  "id": "test-1761743995394",
+  "messages": [
+    {
+      "id": "1761743995395",
+      "sender": "user",
+      "content": "Gibt es spezielle Förderungen für Senioren?",
+      "timestamp": "2025-10-29T13:19:55.395Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761743995525",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T13:19:55.525Z",
+      "context": {
+        "intention": "senioren",
+        "persona": "pensioner",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "english",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T13:19:55.394Z",
+  "lastActivity": "2025-10-29T13:19:55.525Z"
+}

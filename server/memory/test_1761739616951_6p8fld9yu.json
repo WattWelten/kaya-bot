@@ -1,0 +1,35 @@
+{
+  "id": "test_1761739616951_6p8fld9yu",
+  "messages": [
+    {
+      "id": "1761739616953",
+      "sender": "user",
+      "content": "Gleichstellung",
+      "timestamp": "2025-10-29T12:06:56.953Z",
+      "context": {
+        "communicationMode": "text"
+      }
+    },
+    {
+      "id": "1761739617021",
+      "sender": "assistant",
+      "content": "Moin! Wie kann ich Ihnen helfen?Ich löse das für Sie: 1. Kontakt aufnehmen\n2. Unterlagen bereitstellen\n3. Bearbeitung abwarten\n\nLos geht's! Was ist Ihr nächster Schritt?",
+      "timestamp": "2025-10-29T12:06:57.021Z",
+      "context": {
+        "intention": "gleichstellung",
+        "persona": "event_tourist",
+        "emotionalState": "neutral",
+        "urgency": "normal",
+        "agent": "kaya",
+        "language": "german",
+        "communicationMode": "text",
+        "audioResponse": null
+      }
+    }
+  ],
+  "context": {
+    "userData": {}
+  },
+  "createdAt": "2025-10-29T12:06:56.953Z",
+  "lastActivity": "2025-10-29T12:06:57.021Z"
+}
