@@ -5,10 +5,14 @@ class ContextMemory {
     constructor() {
         this.sessions = new Map();
         this.memoryDir = path.join(__dirname, 'memory');
+        this.cleanupInterval = null; // Für automatischen Cleanup
         this.ensureMemoryDir();
         this.loadPersistentSessions();
         
-        console.log('🧠 Context Memory initialisiert');
+        // Starte automatischen Cleanup (DSGVO-konform)
+        this.startAutoCleanup();
+        
+        console.log('🧠 Context Memory initialisiert (DSGVO-konform: Auto-Cleanup nach 30 Tagen)');
     }
     
     ensureMemoryDir() {
@@ -136,30 +140,77 @@ class ContextMemory {
         return session.messages.slice(-limit);
     }
     
+    /**
+     * Löscht eine Session komplett (inkl. Datei)
+     * DSGVO-konform: Alle User-Daten werden entfernt
+     * @param {string} sessionId - Session-ID
+     * @returns {boolean} - Erfolg
+     */
     clearSession(sessionId) {
-        this.sessions.delete(sessionId);
+        let deleted = false;
+        
+        // Aus Memory entfernen
+        if (this.sessions.has(sessionId)) {
+            this.sessions.delete(sessionId);
+            deleted = true;
+        }
         
         // Datei löschen
         try {
             const sessionPath = path.join(this.memoryDir, `${sessionId}.json`);
             if (fs.existsSync(sessionPath)) {
                 fs.removeSync(sessionPath);
+                deleted = true;
             }
         } catch (error) {
             console.error(`Fehler beim Löschen der Session-Datei ${sessionId}:`, error);
+            return false;
         }
+        
+        if (deleted) {
+            console.log(`🗑️ Session gelöscht: ${sessionId} (DSGVO-konform)`);
+        }
+        
+        return deleted;
+    }
+    
+    /**
+     * Löscht Session nach expliziter Anfrage (DSGVO: Recht auf Löschung)
+     * @param {string} sessionId - Session-ID
+     * @returns {object} - Ergebnis mit Status
+     */
+    deleteSession(sessionId) {
+        if (!sessionId || typeof sessionId !== 'string') {
+            return { success: false, error: 'Ungültige Session-ID' };
+        }
+        
+        const existed = this.sessions.has(sessionId);
+        const deleted = this.clearSession(sessionId);
+        
+        return {
+            success: deleted,
+            existed: existed,
+            message: deleted 
+                ? 'Session erfolgreich gelöscht (DSGVO-konform)' 
+                : 'Session nicht gefunden'
+        };
     }
     
     getAllSessions() {
         return Array.from(this.sessions.values());
     }
     
-    cleanupOldSessions(maxAge = 24 * 60 * 60 * 1000) { // 24 Stunden
+    /**
+     * Bereinigt alte Sessions automatisch
+     * DSGVO-konform: Sessions werden nach 30 Tagen automatisch gelöscht
+     * @param {number} maxAge - Maximale Alter in Millisekunden (Standard: 30 Tage)
+     */
+    cleanupOldSessions(maxAge = 30 * 24 * 60 * 60 * 1000) { // 30 Tage (DSGVO-konform)
         const now = new Date();
         const sessionsToDelete = [];
         
         this.sessions.forEach((session, sessionId) => {
-            const lastActivity = new Date(session.lastActivity);
+            const lastActivity = new Date(session.lastActivity || session.createdAt);
             const age = now - lastActivity;
             
             if (age > maxAge) {
@@ -172,7 +223,52 @@ class ContextMemory {
         });
         
         if (sessionsToDelete.length > 0) {
-            console.log(`🧹 ${sessionsToDelete.length} alte Sessions bereinigt`);
+            console.log(`🧹 DSGVO-Cleanup: ${sessionsToDelete.length} alte Sessions (>30 Tage) gelöscht`);
+        }
+        
+        return sessionsToDelete.length;
+    }
+    
+    /**
+     * Startet automatischen Cleanup-Intervall
+     * Läuft täglich um 3:00 Uhr
+     */
+    startAutoCleanup() {
+        // Prüfe ob bereits ein Intervall läuft
+        if (this.cleanupInterval) {
+            return;
+        }
+        
+        // Berechne Zeit bis zur nächsten 3:00 Uhr
+        const now = new Date();
+        const nextCleanup = new Date(now);
+        nextCleanup.setHours(3, 0, 0, 0);
+        if (nextCleanup <= now) {
+            nextCleanup.setDate(nextCleanup.getDate() + 1);
+        }
+        
+        const msUntilCleanup = nextCleanup - now;
+        
+        // Führe ersten Cleanup nach berechneter Zeit aus
+        setTimeout(() => {
+            this.cleanupOldSessions();
+            
+            // Dann täglich wiederholen
+            this.cleanupInterval = setInterval(() => {
+                this.cleanupOldSessions();
+            }, 24 * 60 * 60 * 1000); // 24 Stunden
+        }, msUntilCleanup);
+        
+        console.log(`🧹 Auto-Cleanup geplant: täglich um 3:00 Uhr (nächster Cleanup: ${nextCleanup.toISOString()})`);
+    }
+    
+    /**
+     * Stoppt automatischen Cleanup
+     */
+    stopAutoCleanup() {
+        if (this.cleanupInterval) {
+            clearInterval(this.cleanupInterval);
+            this.cleanupInterval = null;
         }
     }
     

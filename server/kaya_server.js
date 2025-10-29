@@ -442,6 +442,101 @@ app.get('/kaya/info', (req, res) => {
     });
 });
 
+// DSGVO: Session-Löschung (Recht auf Löschung)
+app.delete('/api/session/:sessionId', async (req, res) => {
+    try {
+        const { sessionId } = req.params;
+        
+        if (!sessionId) {
+            return res.status(400).json({ 
+                error: 'Session-ID erforderlich',
+                message: 'Bitte geben Sie eine gültige Session-ID an'
+            });
+        }
+        
+        // Verwende ContextMemory für Session-Löschung
+        const ContextMemory = require('./context_memory');
+        const contextMemory = kayaHandler.contextMemory; // Zugriff über Handler
+        
+        const result = contextMemory.deleteSession(sessionId);
+        
+        if (result.success) {
+            console.log(`✅ DSGVO-Löschung erfolgreich: Session ${sessionId}`);
+            res.json({
+                success: true,
+                message: 'Ihre Daten wurden vollständig gelöscht (DSGVO-konform)',
+                sessionId: sessionId,
+                deleted: true
+            });
+        } else {
+            res.status(404).json({
+                success: false,
+                message: result.message || 'Session nicht gefunden',
+                sessionId: sessionId
+            });
+        }
+        
+    } catch (error) {
+        console.error('❌ Fehler bei Session-Löschung:', error);
+        errorLogger.logError(error, { endpoint: '/api/session/:sessionId' });
+        
+        res.status(500).json({ 
+            error: 'Fehler beim Löschen der Session',
+            details: error.message 
+        });
+    }
+});
+
+// DSGVO: Session-Status abfragen
+app.get('/api/session/:sessionId', async (req, res) => {
+    try {
+        const { sessionId } = req.params;
+        
+        if (!sessionId) {
+            return res.status(400).json({ error: 'Session-ID erforderlich' });
+        }
+        
+        const ContextMemory = require('./context_memory');
+        const contextMemory = kayaHandler.contextMemory;
+        
+        const session = contextMemory.getSession(sessionId);
+        
+        if (session && session.id) {
+            // Berechne Alter der Session
+            const createdAt = new Date(session.createdAt);
+            const now = new Date();
+            const ageDays = Math.floor((now - createdAt) / (24 * 60 * 60 * 1000));
+            const maxAgeDays = 30; // DSGVO: 30 Tage
+            const remainingDays = maxAgeDays - ageDays;
+            
+            res.json({
+                sessionId: session.id,
+                createdAt: session.createdAt,
+                lastActivity: session.lastActivity,
+                ageDays: ageDays,
+                remainingDays: remainingDays > 0 ? remainingDays : 0,
+                willBeDeleted: remainingDays <= 0,
+                messageCount: session.messages ? session.messages.length : 0,
+                hasUserData: !!(session.context && session.context.userData && Object.keys(session.context.userData).length > 0)
+            });
+        } else {
+            res.status(404).json({
+                error: 'Session nicht gefunden',
+                sessionId: sessionId
+            });
+        }
+        
+    } catch (error) {
+        console.error('❌ Fehler bei Session-Status:', error);
+        errorLogger.logError(error, { endpoint: '/api/session/:sessionId (GET)' });
+        
+        res.status(500).json({ 
+            error: 'Fehler beim Abrufen der Session-Informationen',
+            details: error.message 
+        });
+    }
+});
+
 // Audio Endpoints
 // STT: Audio → Text
 app.post('/api/stt', rateLimiter.getSTTLimiter(), upload.single('audio'), async (req, res) => {

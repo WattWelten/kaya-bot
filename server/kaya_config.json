@@ -381,13 +381,6 @@
       }
     }
   },
-  "api_config": {
-    "base_url": "https://chatbot.omniratio.de",
-    "credentials": {
-      "email": "henning@wattweiser.com",
-      "password": "MyPassWord1#"
-    }
-  },
   "agents": {
     "kaya": {
       "role": "Hauptassistent und Orchestrator",
