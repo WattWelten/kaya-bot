@@ -1021,14 +1021,47 @@ class KAYACharacterHandler {
         return { response };
     }
     
-    generateGeneralResponse(query, personaAnalysis) {
+    async generateGeneralResponse(query, personaAnalysis) {
         const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
         const greeting = this.getDynamicGreeting(persona, emotionalState);
         
+        // Prüfe ob es eine generische Frage zu aktuellen Themen ist
+        if (queryLower.includes('was geht') || queryLower.includes('aktuell') || queryLower.includes('neuigkeiten') || 
+            queryLower.includes('themen') || queryLower.includes('veranstaltungen') || queryLower.includes('projekte')) {
+            
+            // Versuche Agent-Daten aus aktionen_veranstaltungen zu nutzen
+            try {
+                const agentData = await this.agentHandler.getAgentData('aktionen_veranstaltungen');
+                
+                if (agentData && agentData.length > 0) {
+                    // Nimm erste 3 relevante Einträge
+                    const relevant = agentData.slice(0, 3);
+                    let response = `${greeting}\n\n`;
+                    response += `**Aktuelles im Landkreis Oldenburg:**\n\n`;
+                    
+                    relevant.forEach(item => {
+                        if (item.title && item.title !== 'Unbekannt' && item.title !== 'Startseite') {
+                            response += `• ${item.title}`;
+                            if (item.url) {
+                                response += ` - [Mehr erfahren](${item.url})`;
+                            }
+                            response += `\n`;
+                        }
+                    });
+                    
+                    response += `\nWeitere Infos: [Startseite](https://www.oldenburg-kreis.de/)\n`;
+                    return { response };
+                }
+            } catch (error) {
+                console.log('⚠️ Fehler beim Laden von Agent-Daten, verwende Fallback');
+            }
+        }
+        
+        // Fallback: Generische aber hilfreiche Antwort
         let response = `${greeting}\n\n`;
-        response += `Okay – sag mir gerne genauer, was du brauchst, dann kann ich dir direkt weiterhelfen.\n\n`;
-        response += `Falls du nicht weißt, wo du anfangen sollst: Ruf einfach an (**04431 85-0**, Mo-Fr 8-16 Uhr) – die leiten dich zur richtigen Stelle.\n\n`;
-        response += `Oder schau mal im [Bürgerportal](https://www.oldenburg-kreis.de), da findest du alle Services.\n\n`;
+        response += `Sag mir gerne genauer, was du brauchst – dann kann ich dir direkt weiterhelfen.\n\n`;
+        response += `Falls du nicht weißt, wo du anfangen sollst: Ruf an (**04431 85-0**, Mo-Fr 8-16 Uhr) oder schau im [Bürgerportal](https://www.oldenburg-kreis.de).\n\n`;
         response += `Was beschäftigt dich?`;
         
         return { response };
