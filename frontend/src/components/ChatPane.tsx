@@ -247,6 +247,10 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
     } catch (err) {
       console.error('❌ Text-Chat fehlgeschlagen:', err);
       
+      // Fehler-Response: Setze Emotion auf 'neutral' auch bei Fehlern
+      setEmotion?.('neutral');
+      setEmotionConfidence?.(50);
+      
       const errorMessage: Message = {
         id: `error_${Date.now()}`,
         content: `Entschuldigung, ich konnte nicht antworten: ${err instanceof Error ? err.message : 'Unbekannter Fehler'}`,

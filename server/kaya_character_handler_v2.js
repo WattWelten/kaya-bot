@@ -748,6 +748,7 @@ class KAYACharacterHandler {
             
             // Sprache erkennen (DE oder EN - Standard ist DE)
             const lowerQuery = query.toLowerCase();
+            const queryLower = lowerQuery; // WICHTIG: Für spätere Verwendung (verifizierte Fakten)
             const englishWords = ['hello', 'help', 'please', 'thank you', 'sorry', 'need'];
             const isEnglish = englishWords.some(word => lowerQuery.includes(word));
             const detectedLanguage = isEnglish ? 'english' : 'german';
@@ -766,7 +767,7 @@ class KAYACharacterHandler {
                 // KRITISCH: Bei rechnung_ebilling/Leitweg-ID: Verifizierte Fakten aus AgentManager laden
                 let verifiedFacts = null;
                 if (intentionAnalysis.type === 'rechnung_ebilling' || queryLower.includes('leitweg') || queryLower.includes('03458') || queryLower.includes('vorgang')) {
-                    const ebillingFacts = this.agentHandler.getVerifiedFacts('rechnung_ebilling');
+                    const ebillingFacts = this.getAgentHandler().getVerifiedFacts('rechnung_ebilling');
                     if (ebillingFacts) {
                         verifiedFacts = {
                             leitwegId: ebillingFacts.leitweg_id?.wert || '03458-0-051',
@@ -781,7 +782,7 @@ class KAYACharacterHandler {
                 
                 // Bei Landrat-Fragen: Verifizierte Personendaten laden
                 if (queryLower.includes('landrat') || queryLower.includes('dr. christian pundt') || queryLower.includes('christian pundt')) {
-                    const landratFacts = this.agentHandler.getVerifiedFacts('landrat');
+                    const landratFacts = this.getAgentHandler().getVerifiedFacts('landrat');
                     if (landratFacts) {
                         verifiedFacts = {
                             ...verifiedFacts,
@@ -833,7 +834,7 @@ class KAYACharacterHandler {
         }
         
         // 2. Telefonnummer-Validierung (nur verifizierte Nummern)
-        const kontaktFacts = this.agentHandler.getVerifiedFacts('kontakt');
+        const kontaktFacts = this.getAgentHandler().getVerifiedFacts('kontakt');
         const validTelefon = kontaktFacts?.haupttelefon?.wert || '04431 85-0';
         // Erkenne unverifizierte Telefonnummern (Pattern: 04431-xxxx oder ähnlich, aber nicht 85-0)
         const telefonPattern = /(\+?49\s?)?0?44\s?31\s?[\d\s-]{3,}/g;
@@ -861,7 +862,7 @@ class KAYACharacterHandler {
         }
         
         // 4. Leitweg-ID-Validierung
-        const ebillingFacts = this.agentHandler.getVerifiedFacts('rechnung_ebilling');
+        const ebillingFacts = this.getAgentHandler().getVerifiedFacts('rechnung_ebilling');
         const validLeitwegId = ebillingFacts?.leitweg_id?.wert || '03458-0-051';
         // Erkenne falsche Leitweg-IDs
         const leitwegPattern = /(?:Leitweg-ID|leitweg[-\s]?id)[\s:]*[\d\-]+/gi;
@@ -1031,20 +1032,39 @@ class KAYACharacterHandler {
             };
             
         } catch (error) {
-            console.error('❌ Response-Generierung Fehler:', error);
+            // VERBESSERTES ERROR-LOGGING: Vollständiger Stack-Trace und Kontext
+            console.error('❌ Response-Generierung Fehler:', {
+                error: {
+                    message: error.message,
+                    stack: error.stack,
+                    name: error.name,
+                    code: error.code
+                },
+                context: {
+                    query: query?.substring(0, 100),
+                    sessionId: sessionId,
+                    timestamp: new Date().toISOString()
+                },
+                responseTime: this.endTimer(startTime)
+            });
             
             const responseTime = this.endTimer(startTime);
             this.updateMetrics(responseTime, false);
             
+            // ERROR-FALLBACK mit Emotion (für Avatar-Synchronisation)
             return {
                 response: 'Entschuldigung, es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
                 agent: 'kaya',
                 error: error.message,
+                emotion: 'neutral', // WICHTIG: Für Avatar-Synchronisation
+                emotionConfidence: 50, // WICHTIG: Für Avatar-Synchronisation
                 metadata: {
                     intention: 'general',
                     persona: 'general',
                     emotionalState: 'neutral',
-                    urgency: 'normal'
+                    urgency: 'normal',
+                    errorType: error.name || 'UnknownError',
+                    errorDetails: error.message
                 }
             };
         }
