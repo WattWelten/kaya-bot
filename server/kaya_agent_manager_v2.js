@@ -8,6 +8,8 @@ class KAYAAgentManager {
         this.cache = new Map();
         this.lastUpdate = null;
         this.updateInterval = 300000; // 5 Minuten
+        this.fileWatcher = null;
+        this.reloadLock = false;
         
         // Performance Metrics
         this.metrics = {
@@ -15,11 +17,16 @@ class KAYAAgentManager {
             successfulRequests: 0,
             cacheHits: 0,
             dataLoads: 0,
-            averageLoadTime: 0
+            averageLoadTime: 0,
+            autoReloads: 0,
+            fileWatchEvents: 0
         };
         
         console.log('🚀 KAYA Agent Manager v2.0 initialisiert');
         this.initializeAgents();
+        
+        // Starte File-Watcher für automatische Aktualisierung
+        this.startFileWatcher();
     }
     
     // Agent-Initialisierung
@@ -517,10 +524,21 @@ class KAYAAgentManager {
     
     // Daten-Update
     async updateAgentData() {
-        console.log('🔄 Agent-Daten werden aktualisiert...');
-        await this.loadAgentData();
-        this.clearCache();
-        console.log('✅ Agent-Daten aktualisiert');
+        if (this.reloadLock) {
+            console.log('⚠️ Reload bereits im Gange');
+            return;
+        }
+
+        this.reloadLock = true;
+        try {
+            console.log('🔄 Agent-Daten werden aktualisiert...');
+            await this.loadAgentData();
+            this.clearCache();
+            this.metrics.autoReloads++;
+            console.log('✅ Agent-Daten aktualisiert');
+        } finally {
+            this.reloadLock = false;
+        }
     }
     
     // Health Check
@@ -548,8 +566,117 @@ class KAYAAgentManager {
             agents: Array.from(this.agents.keys()),
             cache: Array.from(this.cache.keys()),
             lastUpdate: this.lastUpdate,
-            metrics: this.getMetrics()
+            metrics: this.getMetrics(),
+            fileWatcherActive: this.fileWatcher !== null
         };
+    }
+    
+    /**
+     * Startet File-Watcher für automatische Agent-Datenaktualisierung
+     */
+    startFileWatcher() {
+        try {
+            // Prüfe ob Verzeichnis existiert
+            if (!fs.existsSync(this.agentDataPath)) {
+                console.log('⚠️ Agent-Daten-Verzeichnis nicht gefunden, File-Watcher nicht gestartet');
+                return;
+            }
+
+            // Nutze fs.watch (Node.js built-in)
+            this.fileWatcher = fs.watch(this.agentDataPath, { recursive: false }, async (eventType, filename) => {
+                // Ignoriere nicht-JSON Dateien und all_agents_data
+                if (!filename || !filename.endsWith('.json') || filename.startsWith('all_agents_data_')) {
+                    return;
+                }
+
+                // Prüfe ob es eine neue Agent-Daten-Datei ist (Pattern: *_data_YYYY-MM-DD.json)
+                if (!filename.match(/_data_\d{4}-\d{2}-\d{2}\.json$/)) {
+                    return;
+                }
+
+                this.metrics.fileWatchEvents++;
+
+                // Debounce: Warte 2 Sekunden vor Reload (wenn mehrere Dateien gleichzeitig geschrieben werden)
+                if (this.reloadDebounceTimer) {
+                    clearTimeout(this.reloadDebounceTimer);
+                }
+
+                this.reloadDebounceTimer = setTimeout(async () => {
+                    if (this.reloadLock) {
+                        console.log('⚠️ Reload bereits im Gange, überspringe');
+                        return;
+                    }
+
+                    console.log(`📁 Neue Agent-Daten erkannt: ${filename}, lade neu...`);
+                    try {
+                        await this.updateAgentData();
+                        console.log('✅ Agent-Daten automatisch aktualisiert');
+                    } catch (error) {
+                        console.error('❌ Fehler beim automatischen Reload:', error);
+                    }
+                }, 2000); // 2 Sekunden Debounce
+
+            });
+
+            console.log('👁️ File-Watcher gestartet für automatische Agent-Aktualisierung');
+            
+        } catch (error) {
+            console.error('❌ Fehler beim Starten des File-Watchers:', error);
+            // Fallback: Polling alle 15 Minuten
+            this.startPolling();
+        }
+    }
+
+    /**
+     * Startet Polling als Fallback (falls File-Watcher nicht funktioniert)
+     */
+    startPolling() {
+        console.log('🔄 Starte Polling-Fallback (alle 15 Minuten)');
+        setInterval(async () => {
+            try {
+                const files = await fs.readdir(this.agentDataPath);
+                const jsonFiles = files.filter(f => 
+                    f.endsWith('.json') && 
+                    f.match(/_data_\d{4}-\d{2}-\d{2}\.json$/) &&
+                    !f.startsWith('all_agents_data_')
+                );
+
+                // Prüfe ob neue Dateien vorhanden sind
+                let hasNewFiles = false;
+                for (const file of jsonFiles) {
+                    const filePath = path.join(this.agentDataPath, file);
+                    const stats = await fs.stat(filePath);
+                    const fileTime = stats.mtime.getTime();
+                    
+                    if (!this.lastUpdate || fileTime > new Date(this.lastUpdate).getTime()) {
+                        hasNewFiles = true;
+                        break;
+                    }
+                }
+
+                if (hasNewFiles) {
+                    console.log('📁 Neue Dateien via Polling erkannt, lade Agent-Daten neu...');
+                    await this.updateAgentData();
+                }
+            } catch (error) {
+                console.error('❌ Fehler beim Polling:', error);
+            }
+        }, 15 * 60 * 1000); // 15 Minuten
+    }
+
+    /**
+     * Stoppt File-Watcher
+     */
+    stopFileWatcher() {
+        if (this.fileWatcher) {
+            this.fileWatcher.close();
+            this.fileWatcher = null;
+            console.log('🛑 File-Watcher gestoppt');
+        }
+        
+        if (this.reloadDebounceTimer) {
+            clearTimeout(this.reloadDebounceTimer);
+        }
     }
 }
 
