@@ -768,6 +768,14 @@ class KAYACharacterHandler {
                     // Post-Processing: Greeting entfernen falls vorhanden
                     finalResponse = finalResponse.replace(/^(Moin!?|Hallo!?|Hi!?)\s*/i, '');
                     
+                    // Output-Guard: Floskeln entfernen, kürzen, Quellen deduplizieren, Closers rotieren
+                    const OutputGuard = require('./utils/OutputGuard');
+                    const sessionData = this.contextMemory.getSession(sessionId);
+                    if (!sessionData.context.outputGuardState) {
+                        sessionData.context.outputGuardState = { lastFooters: [], lastClosers: [] };
+                    }
+                    finalResponse = OutputGuard.applyOutputGuard(finalResponse, sessionData.context.outputGuardState);
+                    this.contextMemory.saveSession(sessionId); // State persistieren
                     
                     // Check if response has Markdown links
                     const hasLinks = /\[([^\]]+)\]\(([^)]+)\)/.test(finalResponse);
