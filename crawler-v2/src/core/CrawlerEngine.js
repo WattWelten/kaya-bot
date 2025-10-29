@@ -304,9 +304,18 @@ class CrawlerEngine {
     }
 
     async saveProcessedData(data, timestamp) {
+        // Speichere alle Agenten in einer Datei (für Backups)
         const filePath = path.join(this.dataDir, 'processed', `all_agents_data_${timestamp}.json`);
         await fs.writeJson(filePath, data, { spaces: 2 });
         this.logger.info(`💾 Verarbeitete Daten gespeichert: ${filePath}`);
+        
+        // Speichere zusätzlich einzelne Dateien pro Agent (für AgentManager)
+        const processedDir = path.join(this.dataDir, 'processed');
+        for (const [agentName, agentData] of Object.entries(data)) {
+            const agentFilePath = path.join(processedDir, `${agentName}_data_${timestamp}.json`);
+            await fs.writeJson(agentFilePath, agentData, { spaces: 2 });
+        }
+        this.logger.info(`💾 Einzelne Agent-Dateien gespeichert (für AgentManager)`);
     }
 
     async getLatestData() {

@@ -62,15 +62,15 @@ class WebCrawler {
         if (mainContent.length === 0) {
             // Fallback: Verwende body
             const body = $('body');
-            this.extractFromElement(body, baseUrl, data);
+            this.extractFromElement(body, $, baseUrl, data);
         } else {
-            this.extractFromElement(mainContent, baseUrl, data);
+            this.extractFromElement(mainContent, $, baseUrl, data);
         }
         
         return data;
     }
 
-    extractFromElement($element, baseUrl, data) {
+    extractFromElement($element, $, baseUrl, data) {
         // Extrahiere Links
         $element.find('a[href]').each((i, el) => {
             const $el = $(el);
