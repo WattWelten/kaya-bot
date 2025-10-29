@@ -382,8 +382,8 @@ class KAYAAgentManager {
                 };
             }
             
-            // Relevante Daten filtern
-            const relevantData = this.filterRelevantData(agentData, query, intention);
+            // Relevante Daten filtern (optimiert: Top-3, gekürzt für Token-Einsparung)
+            const relevantData = this.filterRelevantDataOptimized(agentData, query, intention, 3, 300);
             
             // Response generieren
             const response = this.generateAgentResponse(relevantData, query, intention, persona);
@@ -443,6 +443,39 @@ class KAYAAgentManager {
             
             return false;
         }).slice(0, 5); // Maximal 5 relevante Einträge
+    }
+    
+    /**
+     * Optimierte Filterung: Top-3 relevanteste Einträge, Content gekürzt
+     * Für Token-Optimierung: Nur die wichtigsten Daten im Prompt
+     */
+    filterRelevantDataOptimized(agentData, query, intention, maxResults = 3, maxContentLength = 300) {
+        const relevant = this.filterRelevantData(agentData, query, intention);
+        
+        // Nimm nur Top-N und kürze Content
+        return relevant.slice(0, maxResults).map(item => {
+            const optimized = { ...item };
+            
+            // Kürze Content auf maxContentLength Zeichen (behält Anfang)
+            if (optimized.content && optimized.content.length > maxContentLength) {
+                optimized.content = optimized.content.substring(0, maxContentLength) + '...';
+            }
+            
+            if (optimized.plain_text && optimized.plain_text.length > maxContentLength) {
+                optimized.plain_text = optimized.plain_text.substring(0, maxContentLength) + '...';
+            }
+            
+            // Reduziere Metadata auf das Wesentliche
+            if (optimized.metadata) {
+                optimized.metadata = {
+                    agent: optimized.metadata.agent,
+                    type: optimized.metadata.type,
+                    source: optimized.metadata.source
+                };
+            }
+            
+            return optimized;
+        });
     }
     
     // Agent-Response generieren

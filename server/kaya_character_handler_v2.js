@@ -660,6 +660,7 @@ class KAYACharacterHandler {
             // HYBRID CACHE: Prüfe zuerst In-Memory, dann Redis
             let cachedResponse = null;
             const shouldCache = this.cacheService.shouldCache(query);
+            const shouldCacheLong = this.cacheService.shouldCacheLong(query);
             
             if (shouldCache) {
                 // 1. In-Memory Cache prüfen
@@ -851,17 +852,21 @@ class KAYACharacterHandler {
                     metadata: response.metadata || {}
                 };
                 
+                // Bestimme TTL: Lang-TTL für häufige administrative Fragen
+                const cacheTtl = shouldCacheLong ? this.cacheService.longTtl : this.cacheService.ttl;
+                
                 // 1. In-Memory speichern
                 const cacheKey = this.cacheService.createKey(query, { sessionId });
-                this.cacheService.set(cacheKey, cacheData);
+                this.cacheService.set(cacheKey, cacheData, cacheTtl);
                 
                 // 2. Redis speichern (falls aktiv)
                 if (this.redisCacheService.isEnabled()) {
                     const redisKey = this.redisCacheService.createKey(query, { sessionId });
-                    await this.redisCacheService.set(redisKey, cacheData);
+                    await this.redisCacheService.set(redisKey, cacheData, cacheTtl);
                 }
                 
-                console.log('💾 Response in Cache gespeichert');
+                const ttlHours = (cacheTtl / (60 * 60 * 1000)).toFixed(1);
+                console.log(`💾 Response in Cache gespeichert (TTL: ${ttlHours}h)`);
             }
             
             // Context-Memory: KAYA-Antwort hinzufügen

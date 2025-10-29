@@ -10,7 +10,8 @@
 class CacheService {
   constructor() {
     this.cache = new Map();
-    this.ttl = 5 * 60 * 1000; // 5 Minuten
+    this.ttl = 5 * 60 * 1000; // 5 Minuten Standard
+    this.longTtl = 24 * 60 * 60 * 1000; // 24 Stunden für häufige Queries
     this.hitRate = { hits: 0, misses: 0 };
     
     // Top 20 häufigste Fragen (erweiterbar)
@@ -62,8 +63,9 @@ class CacheService {
       return null;
     }
     
-    // Prüfe TTL
-    if (Date.now() - entry.timestamp > this.ttl) {
+    // Prüfe TTL (dynamisch: Standard oder Lang-TTL)
+    const entryTtl = entry.customTtl || this.ttl;
+    if (Date.now() - entry.timestamp > entryTtl) {
       this.cache.delete(key);
       this.hitRate.misses++;
       return null;
@@ -81,11 +83,12 @@ class CacheService {
     const entry = {
       value,
       timestamp: Date.now(),
-      ttl: customTtl || this.ttl
+      customTtl: customTtl || this.ttl
     };
     
     this.cache.set(key, entry);
-    console.log(`💾 Cache SET: ${key.substring(0, 50)}...`);
+    const ttlHours = (entry.customTtl / (60 * 60 * 1000)).toFixed(1);
+    console.log(`💾 Cache SET: ${key.substring(0, 50)}... (TTL: ${ttlHours}h)`);
   }
   
   /**
@@ -114,6 +117,30 @@ class CacheService {
     }
     
     return false;
+  }
+
+  /**
+   * Prüft ob Query für Lang-TTL (24h) gecacht werden sollte
+   */
+  shouldCacheLong(query) {
+    if (!this.shouldCache(query)) {
+      return false;
+    }
+    
+    const queryLower = query.toLowerCase().trim();
+    
+    // Häufige administrative Fragen: Lang-TTL
+    const longCacheKeywords = [
+      'kfz', 'zulassung', 'führerschein', 'ausweis', 'reisepass',
+      'wohnsitz', 'anmeldung', 'abmeldung',
+      'bauantrag', 'gewerbe', 'anmeldung',
+      'kita', 'schule', 'anmeldung',
+      'bürgergeld', 'grundsicherung',
+      'termin', 'öffnungszeiten', 'telefon', 'kontakt',
+      'kreistag', 'sitzung', 'ratsinfo'
+    ];
+    
+    return longCacheKeywords.some(keyword => queryLower.includes(keyword));
   }
   
   /**
