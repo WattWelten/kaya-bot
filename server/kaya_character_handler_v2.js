@@ -771,6 +771,9 @@ class KAYACharacterHandler {
                     // Output-Guard: Floskeln entfernen, kürzen, Quellen deduplizieren, Closers rotieren
                     const OutputGuard = require('./utils/OutputGuard');
                     const sessionData = this.contextMemory.getSession(sessionId);
+                    if (!sessionData.context) {
+                        sessionData.context = {};
+                    }
                     if (!sessionData.context.outputGuardState) {
                         sessionData.context.outputGuardState = { lastFooters: [], lastClosers: [] };
                     }
