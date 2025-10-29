@@ -286,3 +286,233 @@
 {"level":"info","message":"✅ rechnung_ebilling: 0 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:08:30.021Z"}
 {"level":"info","message":"✅ aktionen_veranstaltungen: 0 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:08:30.021Z"}
 {"level":"info","message":"✅ politik_landkreis: 0 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:08:30.021Z"}
+{"level":"info","message":"🚀 Starte KAYA Crawler v2...","module":"CrawlerScript","timestamp":"2025-10-29T07:48:08.232Z"}
+{"level":"info","message":"🚀 Starte vollständigen Crawl aller Agent-Daten...","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:08.242Z"}
+{"level":"info","message":"📡 Crawle Agent: buergerdienste","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:08.243Z"}
+{"level":"info","message":"🔍 Crawle Agent: buergerdienste","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:08.243Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/","module":"WebCrawler","timestamp":"2025-10-29T07:48:08.673Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 89 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:12.729Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/ordnung-und-verkehr/kfz-zulassungsstelle/","module":"WebCrawler","timestamp":"2025-10-29T07:48:12.732Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 90 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:15.313Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/","module":"WebCrawler","timestamp":"2025-10-29T07:48:15.316Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 72 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:17.354Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\buergerdienste_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:17.367Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/","module":"WebCrawler","timestamp":"2025-10-29T07:48:17.367Z"}
+{"level":"info","message":"📡 Crawle Agent: ratsinfo","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:17.367Z"}
+{"level":"info","message":"🔍 Crawle Agent: ratsinfo","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:17.367Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 155 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:18.803Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/","module":"WebCrawler","timestamp":"2025-10-29T07:48:18.806Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 79 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:20.114Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\ratsinfo_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:20.130Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/arbeitgeber-landkreis-oldenburg/stellenausschreibungen/","module":"WebCrawler","timestamp":"2025-10-29T07:48:20.131Z"}
+{"level":"info","message":"📡 Crawle Agent: stellenportal","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:20.131Z"}
+{"level":"info","message":"🔍 Crawle Agent: stellenportal","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:20.131Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 55 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:21.445Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\stellenportal_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:21.482Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/","module":"WebCrawler","timestamp":"2025-10-29T07:48:21.482Z"}
+{"level":"info","message":"📡 Crawle Agent: kontakte","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:21.482Z"}
+{"level":"info","message":"🔍 Crawle Agent: kontakte","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:21.482Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 45 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:22.851Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\kontakte_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:22.862Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/jugend-und-familie/","module":"WebCrawler","timestamp":"2025-10-29T07:48:22.862Z"}
+{"level":"info","message":"📡 Crawle Agent: jugend","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:22.862Z"}
+{"level":"info","message":"🔍 Crawle Agent: jugend","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:22.862Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 69 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:24.204Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/","module":"WebCrawler","timestamp":"2025-10-29T07:48:24.213Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 37 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:25.599Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\jugend_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:25.603Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/gesundheit-und-soziales/","module":"WebCrawler","timestamp":"2025-10-29T07:48:25.603Z"}
+{"level":"info","message":"📡 Crawle Agent: soziales","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:25.603Z"}
+{"level":"info","message":"🔍 Crawle Agent: soziales","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:25.603Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 67 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:27.021Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/","module":"WebCrawler","timestamp":"2025-10-29T07:48:27.031Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 38 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:28.457Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\soziales_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:28.464Z"}
+{"level":"info","message":"🌐 Crawle URL: https://oldenburg-kreis.ratsinfomanagement.net/","module":"WebCrawler","timestamp":"2025-10-29T07:48:28.465Z"}
+{"level":"info","message":"📡 Crawle Agent: politik","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:28.464Z"}
+{"level":"info","message":"🔍 Crawle Agent: politik","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:28.464Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 235 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:37.579Z"}
+{"level":"info","message":"🌐 Crawle URL: https://oldenburg-kreis.ratsinfomanagement.net/gremien/","module":"WebCrawler","timestamp":"2025-10-29T07:48:37.581Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 27 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:39.053Z"}
+{"level":"info","message":"🌐 Crawle URL: https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/","module":"WebCrawler","timestamp":"2025-10-29T07:48:39.055Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 21 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:40.419Z"}
+{"level":"info","message":"🌐 Crawle URL: https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/","module":"WebCrawler","timestamp":"2025-10-29T07:48:40.420Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 13 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:41.892Z"}
+{"level":"info","message":"🌐 Crawle URL: https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/","module":"WebCrawler","timestamp":"2025-10-29T07:48:41.894Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 625 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:43.231Z"}
+{"level":"info","message":"🌐 Crawle URL: https://oldenburg-kreis.ratsinfomanagement.net/personen/","module":"WebCrawler","timestamp":"2025-10-29T07:48:43.233Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 34 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:44.699Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/","module":"WebCrawler","timestamp":"2025-10-29T07:48:44.701Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 155 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:45.996Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/","module":"WebCrawler","timestamp":"2025-10-29T07:48:46.000Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:48.133Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/","module":"WebCrawler","timestamp":"2025-10-29T07:48:48.134Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:50.250Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/","module":"WebCrawler","timestamp":"2025-10-29T07:48:50.252Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:52.368Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/","module":"WebCrawler","timestamp":"2025-10-29T07:48:52.369Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:54.483Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/impressum/","module":"WebCrawler","timestamp":"2025-10-29T07:48:54.485Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:56.615Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\politik_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:56.622Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/","module":"WebCrawler","timestamp":"2025-10-29T07:48:56.622Z"}
+{"level":"info","message":"📡 Crawle Agent: jobcenter","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:56.622Z"}
+{"level":"info","message":"🔍 Crawle Agent: jobcenter","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:56.622Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 621 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:57.946Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/jobcenter/","module":"WebCrawler","timestamp":"2025-10-29T07:48:57.948Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 655 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:48:59.289Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\jobcenter_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:59.334Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/wirtschaftsfoerderung/","module":"WebCrawler","timestamp":"2025-10-29T07:48:59.334Z"}
+{"level":"info","message":"📡 Crawle Agent: wirtschaft","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:59.334Z"}
+{"level":"info","message":"🔍 Crawle Agent: wirtschaft","module":"CrawlerEngine","timestamp":"2025-10-29T07:48:59.334Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 41 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:00.673Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/","module":"WebCrawler","timestamp":"2025-10-29T07:49:00.680Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 36 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:01.994Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\wirtschaft_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:02.004Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/","module":"WebCrawler","timestamp":"2025-10-29T07:49:02.005Z"}
+{"level":"info","message":"📡 Crawle Agent: ordnungsamt","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:02.005Z"}
+{"level":"info","message":"🔍 Crawle Agent: ordnungsamt","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:02.005Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 75 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:03.374Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\ordnungsamt_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:03.410Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren/","module":"WebCrawler","timestamp":"2025-10-29T07:49:03.411Z"}
+{"level":"info","message":"📡 Crawle Agent: senioren","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:03.410Z"}
+{"level":"info","message":"🔍 Crawle Agent: senioren","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:03.410Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:05.546Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/","module":"WebCrawler","timestamp":"2025-10-29T07:49:05.547Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 72 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:06.892Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\senioren_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:06.896Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/","module":"WebCrawler","timestamp":"2025-10-29T07:49:06.896Z"}
+{"level":"info","message":"📡 Crawle Agent: inklusion","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:06.896Z"}
+{"level":"info","message":"🔍 Crawle Agent: inklusion","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:06.896Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:09.029Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/","module":"WebCrawler","timestamp":"2025-10-29T07:49:09.030Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 72 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:10.312Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\inklusion_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:10.324Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/","module":"WebCrawler","timestamp":"2025-10-29T07:49:10.324Z"}
+{"level":"info","message":"📡 Crawle Agent: digitalisierung","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:10.324Z"}
+{"level":"info","message":"🔍 Crawle Agent: digitalisierung","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:10.324Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 38 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:11.614Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/","module":"WebCrawler","timestamp":"2025-10-29T07:49:11.616Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 246 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:12.860Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\digitalisierung_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:12.869Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/","module":"WebCrawler","timestamp":"2025-10-29T07:49:12.869Z"}
+{"level":"info","message":"📡 Crawle Agent: gleichstellung","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:12.869Z"}
+{"level":"info","message":"🔍 Crawle Agent: gleichstellung","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:12.869Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 407 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:14.165Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/gewaltschutz-hilfetelefone-und-beratungsangebote/","module":"WebCrawler","timestamp":"2025-10-29T07:49:14.167Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 1124 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:15.659Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\gleichstellung_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:15.690Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/","module":"WebCrawler","timestamp":"2025-10-29T07:49:15.690Z"}
+{"level":"info","message":"📡 Crawle Agent: rechnung_ebilling","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:15.690Z"}
+{"level":"info","message":"🔍 Crawle Agent: rechnung_ebilling","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:15.690Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:17.804Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/","module":"WebCrawler","timestamp":"2025-10-29T07:49:17.807Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:19.947Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/","module":"WebCrawler","timestamp":"2025-10-29T07:49:19.948Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:22.177Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/unternehmen/e-government/","module":"WebCrawler","timestamp":"2025-10-29T07:49:22.178Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:24.368Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\rechnung_ebilling_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:24.372Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/aktuelles/","module":"WebCrawler","timestamp":"2025-10-29T07:49:24.373Z"}
+{"level":"info","message":"📡 Crawle Agent: aktionen_veranstaltungen","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:24.373Z"}
+{"level":"info","message":"🔍 Crawle Agent: aktionen_veranstaltungen","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:24.373Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:26.482Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/aktuelles/aktionen/","module":"WebCrawler","timestamp":"2025-10-29T07:49:26.484Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:28.598Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/","module":"WebCrawler","timestamp":"2025-10-29T07:49:28.600Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:30.730Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/","module":"WebCrawler","timestamp":"2025-10-29T07:49:30.732Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:32.846Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/","module":"WebCrawler","timestamp":"2025-10-29T07:49:32.847Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 35 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:34.261Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/","module":"WebCrawler","timestamp":"2025-10-29T07:49:34.264Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:36.414Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\aktionen_veranstaltungen_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:36.417Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/","module":"WebCrawler","timestamp":"2025-10-29T07:49:36.418Z"}
+{"level":"info","message":"📡 Crawle Agent: politik_landkreis","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:36.417Z"}
+{"level":"info","message":"🔍 Crawle Agent: politik_landkreis","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:36.417Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:38.562Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/","module":"WebCrawler","timestamp":"2025-10-29T07:49:38.563Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:40.681Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/","module":"WebCrawler","timestamp":"2025-10-29T07:49:40.682Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:42.813Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/","module":"WebCrawler","timestamp":"2025-10-29T07:49:42.815Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:44.963Z"}
+{"level":"info","message":"🌐 Crawle URL: https://oldenburg-kreis.ratsinfomanagement.net/personen/","module":"WebCrawler","timestamp":"2025-10-29T07:49:44.965Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 34 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:46.326Z"}
+{"level":"info","message":"🌐 Crawle URL: https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/","module":"WebCrawler","timestamp":"2025-10-29T07:49:46.327Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 21 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:47.664Z"}
+{"level":"info","message":"🌐 Crawle URL: https://oldenburg-kreis.ratsinfomanagement.net/gremien/","module":"WebCrawler","timestamp":"2025-10-29T07:49:47.666Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 27 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:49.048Z"}
+{"level":"info","message":"🌐 Crawle URL: https://www.oldenburg-kreis.de/impressum/","module":"WebCrawler","timestamp":"2025-10-29T07:49:49.049Z"}
+{"level":"info","message":"✅ Erfolgreich gecrawlt: 4 Einträge","module":"WebCrawler","timestamp":"2025-10-29T07:49:51.263Z"}
+{"level":"info","message":"💾 Rohe Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\raw\\politik_landkreis_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:51.267Z"}
+{"level":"info","message":"🔄 Verarbeite alle Agent-Daten...","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.267Z"}
+{"level":"info","message":"🔄 Verarbeite alle Agent-Daten...","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:51.267Z"}
+{"level":"info","message":"✅ buergerdienste verarbeitet: 66 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.269Z"}
+{"level":"info","message":"✅ ratsinfo verarbeitet: 51 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.270Z"}
+{"level":"info","message":"✅ stellenportal verarbeitet: 16 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.270Z"}
+{"level":"info","message":"✅ kontakte verarbeitet: 5 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.270Z"}
+{"level":"info","message":"✅ jugend verarbeitet: 58 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.271Z"}
+{"level":"info","message":"✅ soziales verarbeitet: 58 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.271Z"}
+{"level":"info","message":"✅ politik verarbeitet: 194 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.275Z"}
+{"level":"info","message":"✅ jobcenter verarbeitet: 43 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.281Z"}
+{"level":"info","message":"✅ wirtschaft verarbeitet: 14 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.281Z"}
+{"level":"info","message":"✅ ordnungsamt verarbeitet: 12 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.282Z"}
+{"level":"info","message":"✅ senioren verarbeitet: 13 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.282Z"}
+{"level":"info","message":"✅ inklusion verarbeitet: 13 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.282Z"}
+{"level":"info","message":"✅ digitalisierung verarbeitet: 11 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.284Z"}
+{"level":"info","message":"✅ gleichstellung verarbeitet: 80 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.290Z"}
+{"level":"info","message":"✅ rechnung_ebilling verarbeitet: 10 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.290Z"}
+{"level":"info","message":"✅ aktionen_veranstaltungen verarbeitet: 16 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.290Z"}
+{"level":"info","message":"✅ politik_landkreis verarbeitet: 70 Einträge","module":"DataProcessor","timestamp":"2025-10-29T07:49:51.291Z"}
+{"level":"info","message":"💾 Verarbeitete Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\processed\\all_agents_data_2025-10-29.json","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:51.324Z"}
+{"level":"info","message":"💾 Einzelne Agent-Dateien gespeichert (für AgentManager)","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:51.375Z"}
+{"level":"info","message":"📦 Komprimiere alle Agent-Daten...","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.375Z"}
+{"level":"info","message":"📦 Komprimiere Daten...","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:51.375Z"}
+{"level":"info","message":"✅ buergerdienste komprimiert: 66 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.376Z"}
+{"level":"info","message":"✅ ratsinfo komprimiert: 51 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.377Z"}
+{"level":"info","message":"✅ stellenportal komprimiert: 16 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.377Z"}
+{"level":"info","message":"✅ kontakte komprimiert: 5 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.377Z"}
+{"level":"info","message":"✅ jugend komprimiert: 58 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.377Z"}
+{"level":"info","message":"✅ soziales komprimiert: 58 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.377Z"}
+{"level":"info","message":"✅ politik komprimiert: 194 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.378Z"}
+{"level":"info","message":"✅ jobcenter komprimiert: 43 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.378Z"}
+{"level":"info","message":"✅ wirtschaft komprimiert: 14 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.379Z"}
+{"level":"info","message":"✅ ordnungsamt komprimiert: 12 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.379Z"}
+{"level":"info","message":"✅ senioren komprimiert: 13 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.379Z"}
+{"level":"info","message":"✅ inklusion komprimiert: 13 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.379Z"}
+{"level":"info","message":"✅ digitalisierung komprimiert: 11 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.379Z"}
+{"level":"info","message":"✅ gleichstellung komprimiert: 80 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.380Z"}
+{"level":"info","message":"✅ rechnung_ebilling komprimiert: 10 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.380Z"}
+{"level":"info","message":"✅ aktionen_veranstaltungen komprimiert: 16 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.381Z"}
+{"level":"info","message":"✅ politik_landkreis komprimiert: 70 Einträge","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.381Z"}
+{"level":"info","message":"📦 ZIP-Archiv erstellt: D:\\Landkreis\\crawler-v2\\data\\compressed\\2025-10-29-compressed.zip (86105 bytes)","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.466Z"}
+{"level":"info","message":"💾 Erstelle Backup...","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:51.467Z"}
+{"level":"info","message":"💾 Erstelle Backup...","module":"BackupManager","timestamp":"2025-10-29T07:49:51.467Z"}
+{"level":"info","message":"💾 Komprimierte Daten gespeichert: D:\\Landkreis\\crawler-v2\\data\\compressed\\2025-10-29-compressed","module":"DataCompressor","timestamp":"2025-10-29T07:49:51.466Z"}
+{"level":"info","message":"📁 Raw-Daten gesichert: 17 Dateien","module":"BackupManager","timestamp":"2025-10-29T07:49:51.552Z"}
+{"level":"info","message":"📁 Processed-Daten gesichert: 19 Dateien","module":"BackupManager","timestamp":"2025-10-29T07:49:51.596Z"}
+{"level":"info","message":"📁 Compressed-Daten gesichert: 2 Dateien","module":"BackupManager","timestamp":"2025-10-29T07:49:51.599Z"}
+{"level":"info","message":"📦 Vollständiges Backup erstellt: D:\\Landkreis\\crawler-v2\\data\\backup\\full_backup_2025-10-29.zip (434612 bytes)","module":"BackupManager","timestamp":"2025-10-29T07:49:51.712Z"}
+{"level":"info","message":"✅ Backup erfolgreich erstellt","module":"BackupManager","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ Crawl abgeschlossen!","module":"CrawlerEngine","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ Crawl erfolgreich abgeschlossen!","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"📊 Ergebnisse: 17 Agenten verarbeitet","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ buergerdienste: 251 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ ratsinfo: 234 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ stellenportal: 55 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ kontakte: 45 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ jugend: 106 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ soziales: 105 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ politik: 1130 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ jobcenter: 1276 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ wirtschaft: 77 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ ordnungsamt: 75 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ senioren: 76 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ inklusion: 76 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ digitalisierung: 284 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ gleichstellung: 1531 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ rechnung_ebilling: 16 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ aktionen_veranstaltungen: 55 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.713Z"}
+{"level":"info","message":"✅ politik_landkreis: 102 Einträge","module":"CrawlerScript","timestamp":"2025-10-29T07:49:51.714Z"}

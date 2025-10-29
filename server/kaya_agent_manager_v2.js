@@ -47,14 +47,35 @@ class KAYAAgentManager {
             
             // Lade alle Agent-Dateien
             const agentFiles = await fs.readdir(this.agentDataPath);
-            const jsonFiles = agentFiles.filter(file => file.endsWith('.json'));
+            // Ignoriere all_agents_data_*.json und Dateien in Unterordnern
+            const jsonFiles = agentFiles.filter(file => 
+                file.endsWith('.json') && 
+                !file.startsWith('all_agents_data_') &&
+                !file.includes('/') &&
+                !file.includes('\\')
+            );
             
             console.log(`📁 Gefundene Agent-Dateien: ${jsonFiles.length}`);
             
+            // Gruppiere Dateien nach Agent-Name (entferne Timestamp)
+            const agentFileMap = new Map();
+            
             for (const file of jsonFiles) {
-                const agentName = path.basename(file, '.json');
-                const filePath = path.join(this.agentDataPath, file);
+                // Parse Agent-Name: entferne "_data_YYYY-MM-DD" Pattern
+                let agentName = path.basename(file, '.json');
+                agentName = agentName.replace(/_data_\d{4}-\d{2}-\d{2}$/, '');
                 
+                const filePath = path.join(this.agentDataPath, file);
+                const stats = await fs.stat(filePath);
+                
+                // Speichere neueste Datei pro Agent
+                if (!agentFileMap.has(agentName) || stats.mtime > agentFileMap.get(agentName).mtime) {
+                    agentFileMap.set(agentName, { filePath, mtime: stats.mtime });
+                }
+            }
+            
+            // Lade Daten für jeden Agent
+            for (const [agentName, { filePath }] of agentFileMap) {
                 try {
                     const agentData = await fs.readJson(filePath);
                     this.agents.set(agentName, {

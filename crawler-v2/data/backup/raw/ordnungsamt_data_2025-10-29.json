@@ -1,1 +1,454 @@
-[]
+[
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000001&brotID=900000001&id=900000003&navi_id=900000001",
+    "title": "Landkreis und Verwaltung",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/kreisverwaltung-900000137-21700.html?naviID=900000040&brotID=900000040&rubrik=900000002",
+    "title": "Kreisverwaltung",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000143&brotID=900000143&id=900000004&navi_id=900000143",
+    "title": "Kurzvorstellung der Ämter",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/ordnungsamt-900000160-21700.html?naviID=900000151&brotID=900000151&rubrik=900000007",
+    "title": "Ordnungsamt",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/auslaenderangelegenheiten-aufenthaltsgenehmigung-900000161-21700.html?rubrik=900000007",
+    "title": "Ausländerrechts",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/jagd-und-waffen-900000171-21700.html?rubrik=900000007",
+    "title": "Jagd- und, Waffenangelegenheiten",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/gewerbe-900000166-21700.html?rubrik=900000003",
+    "title": "Gewerbeaufsicht",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/bezirksschornsteinfegermeister-im-landkreis-oldenburg-900000167-21700.html?rubrik=900000007",
+    "title": "Schornsteinfegerwesen",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/oeffentlich-rechtliche-namensaenderung-900000172-21700.html?rubrik=900000007",
+    "title": "Namensänderungen",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "link",
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/versammlungen-demonstrationen-900000178-21700.html?rubrik=900000007",
+    "title": "Versammlungsangelegenheiten",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000003",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000137-21700",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000040",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000040",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000002",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000004",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000160-21700",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000151",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000151",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000007",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000003",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000137-21700",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000040",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000040",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000002",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000004",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000160-21700",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000151",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000151",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000007",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000003",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000137-21700",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000040",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000040",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000002",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000004",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000160-21700",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000151",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000151",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000007",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000003",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000001",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000137-21700",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000040",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000040",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000002",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000004",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000143",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000160-21700",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000151",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000151",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "contact",
+    "contactType": "phone",
+    "value": "900000007",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  },
+  {
+    "type": "content",
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/",
+    "title": "Das Ordnungsamt",
+    "content": "Sie sind hier: Landkreis und Verwaltung/Kreisverwaltung/Kurzvorstellung der Ämter/Ordnungsamt{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000001&amp;brotID=900000001&amp;id=900000003&amp;navi_id=900000001\",\"name\":\"Landkreis und Verwaltung\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/kreisverwaltung-900000137-21700.html?naviID=900000040&amp;brotID=900000040&amp;rubrik=900000002\",\"name\":\"Kreisverwaltung\"}},{\"@type\":\"ListItem\",\"position\":3,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000143&amp;brotID=900000143&amp;id=900000004&amp;navi_id=900000143\",\"name\":\"Kurzvorstellung der \\u00c4mter\"}},{\"@type\":\"ListItem\",\"position\":4,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/ordnungsamt-900000160-21700.html?naviID=900000151&amp;brotID=900000151&amp;rubrik=900000007\",\"name\":\"Ordnungsamt\"}}]} Inhalt vorlesen Seite merken Seite drucken Das Ordnungsamt Im Aufgabengebiet des Landkreises Oldenburg nimmt der ordnungsrechtliche Bereich einen festen Platz ein. Es ist leider unvermeidlich, in vielen Bereichen ordnend einzugreifen, um die Einwohnerinnen und Einwohner im Landkreis Oldenburg vor Schäden und Gefahren vielfältigster Art und Weise zu bewahren. Ein möglichst reibungsloser Umgang unter den Mitbürgern steht dabei im Vordergrund. Von daher ist es in erster Linie nicht die Aufgabe des Ordnungsamtes, bestrafend tätig zu werden, man könnte es vielmehr erziehend nennen, so denn ein Verfahren zu einer Verwarnung oder einem Bußgeld führt. Dies sind die vielfältigen, verschiedenen Aufgabengebiete, welche Sie in der Ordnungsverwaltung des Landkreises Oldenburg finden: Im Rahmen des Ausländerrechts erledigt das Ordnungsamt allgemeine Ausländer- und Asylangelegenheiten. Es werden diverse Aufenthaltstitel erteilt und illegale Aufenthalte beendet. Ferner werden Staatsangehörigkeitsfeststellungen und Einbürgerungen von Ausländern vorgenommen. Jagd- und, Waffenangelegenheiten beinhalten beispielsweise die Ausstellung von Jagdscheinen und Waffenbesitzkarten sowie die Überprüfung und Festsetzung der Abschusspläne für Jagdreviere. Ferner werden die Schießstätten auf ihre Sicherheit hin überprüft. Die Gewerbeaufsicht (nicht zu verwechseln mit dem Staatlichen Gewerbeaufsichtsamt) erteilt Erlaubnisse für Bewachungsunternehmen, Reisegewerbe und Spielhallen nach der Gewerbeordnung. Sie überwacht auch das Schornsteinfegerwesen . Ferner nimmt das Ordnungsamt diverse ordnungsrechtliche Aufgaben, wie z.B. Namensänderungen und Versammlungsangelegenheiten wahr. Zurück NOLISManager.LayoutTemplate.spaltenAngleichen();",
+    "plain_text": "Sie sind hier: Landkreis und Verwaltung/Kreisverwaltung/Kurzvorstellung der Ämter/Ordnungsamt{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000001&amp;brotID=900000001&amp;id=900000003&amp;navi_id=900000001\",\"name\":\"Landkreis und Verwaltung\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/kreisverwaltung-900000137-21700.html?naviID=900000040&amp;brotID=900000040&amp;rubrik=900000002\",\"name\":\"Kreisverwaltung\"}},{\"@type\":\"ListItem\",\"position\":3,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000143&amp;brotID=900000143&amp;id=900000004&amp;navi_id=900000143\",\"name\":\"Kurzvorstellung der \\u00c4mter\"}},{\"@type\":\"ListItem\",\"position\":4,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/ordnungsamt-900000160-21700.html?naviID=900000151&amp;brotID=900000151&amp;rubrik=900000007\",\"name\":\"Ordnungsamt\"}}]} Inhalt vorlesen Seite merken Seite drucken Das Ordnungsamt Im Aufgabengebiet des Landkreises Oldenburg nimmt der ordnungsrechtliche Bereich einen festen Platz ein. Es ist leider unvermeidlich, in vielen Bereichen ordnend einzugreifen, um die Einwohnerinnen und Einwohner im Landkreis Oldenburg vor Schäden und Gefahren vielfältigster Art und Weise zu bewahren. Ein möglichst reibungsloser Umgang unter den Mitbürgern steht dabei im Vordergrund. Von daher ist es in erster Linie nicht die Aufgabe des Ordnungsamtes, bestrafend tätig zu werden, man könnte es vielmehr erziehend nennen, so denn ein Verfahren zu einer Verwarnung oder einem Bußgeld führt. Dies sind die vielfältigen, verschiedenen Aufgabengebiete, welche Sie in der Ordnungsverwaltung des Landkreises Oldenburg finden: Im Rahmen des Ausländerrechts erledigt das Ordnungsamt allgemeine Ausländer- und Asylangelegenheiten. Es werden diverse Aufenthaltstitel erteilt und illegale Aufenthalte beendet. Ferner werden Staatsangehörigkeitsfeststellungen und Einbürgerungen von Ausländern vorgenommen. Jagd- und, Waffenangelegenheiten beinhalten beispielsweise die Ausstellung von Jagdscheinen und Waffenbesitzkarten sowie die Überprüfung und Festsetzung der Abschusspläne für Jagdreviere. Ferner werden die Schießstätten auf ihre Sicherheit hin überprüft. Die Gewerbeaufsicht (nicht zu verwechseln mit dem Staatlichen Gewerbeaufsichtsamt) erteilt Erlaubnisse für Bewachungsunternehmen, Reisegewerbe und Spielhallen nach der Gewerbeordnung. Sie überwacht auch das Schornsteinfegerwesen . Ferner nimmt das Ordnungsamt diverse ordnungsrechtliche Aufgaben, wie z.B. Namensänderungen und Versammlungsangelegenheiten wahr. Zurück NOLISManager.LayoutTemplate.spaltenAngleichen();",
+    "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+  }
+]

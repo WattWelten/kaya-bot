@@ -1,1 +1,107 @@
-[]
+[
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000001&brotID=900000001&id=900000003&navi_id=900000001",
+    "title": "Landkreis und Verwaltung",
+    "content": "",
+    "plain_text": "",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Landkreis und Verwaltung",
+        "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000001&brotID=900000001&id=900000003&navi_id=900000001"
+      }
+    ],
+    "metadata": {
+      "agent": "kontakte",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/",
+      "timestamp": "2025-10-29T07:49:51.270Z",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/kreisverwaltung-900000137-21700.html?naviID=900000040&brotID=900000040&rubrik=900000002",
+    "title": "Kreisverwaltung",
+    "content": "",
+    "plain_text": "",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Kreisverwaltung",
+        "url": "https://www.oldenburg-kreis.de/portal/seiten/kreisverwaltung-900000137-21700.html?naviID=900000040&brotID=900000040&rubrik=900000002"
+      }
+    ],
+    "metadata": {
+      "agent": "kontakte",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/",
+      "timestamp": "2025-10-29T07:49:51.270Z",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/buergerservice/mitarbeiter/suche.html?naviID=900000105&brotID=900000105&mitarbeiter=1",
+    "title": "Ansprechpartner in der Kreisverwaltung",
+    "content": "",
+    "plain_text": "",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Ansprechpartner in der Kreisverwaltung",
+        "url": "https://www.oldenburg-kreis.de/buergerservice/mitarbeiter/suche.html?naviID=900000105&brotID=900000105&mitarbeiter=1"
+      }
+    ],
+    "metadata": {
+      "agent": "kontakte",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/",
+      "timestamp": "2025-10-29T07:49:51.270Z",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/",
+    "title": "Unbekannt",
+    "content": "",
+    "plain_text": "",
+    "contacts": [
+      {
+        "type": "phone",
+        "value": "900000001"
+      }
+    ],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "kontakte",
+      "type": "contact",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/",
+      "timestamp": "2025-10-29T07:49:51.270Z",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/",
+    "title": "Ansprechpartner in der Kreisverwaltung",
+    "content": "Sie sind hier: Landkreis und Verwaltung/Kreisverwaltung/Ansprechpartner in der Kreisverwaltung{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000001&amp;brotID=900000001&amp;id=900000003&amp;navi_id=900000001\",\"name\":\"Landkreis und Verwaltung\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/kreisverwaltung-900000137-21700.html?naviID=900000040&amp;brotID=900000040&amp;rubrik=900000002\",\"name\":\"Kreisverwaltung\"}},{\"@type\":\"ListItem\",\"position\":3,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/buergerservice\\/mitarbeiter\\/suche.html?naviID=900000105&amp;brotID=900000105&amp;mitarbeiter=1\",\"name\":\"Ansprechpartner in der Kreisverwaltung\"}}]} Inhalt vorlesen Seite merken Seite drucken Ansprechpartner in der Kreisverwaltung Personensuche Hier können Sie nach Personen suchen.Über das Feld \"Suchwort\" können Sie alle Informationen durchsuchen, die zu einer Person gepflegt sind.Über das Feld \"Ergebnisse filtern\" durchsuchen Sie alle Daten, die in der untenstehenden Liste angezeigt werden. Bitte Anfangsbuchstaben wählenABCDEFGHIJKLMNOPQRSTUVWXYZ A bis Z Suchwort Suchen",
+    "plain_text": "Sie sind hier: Landkreis und Verwaltung/Kreisverwaltung/Ansprechpartner in der Kreisverwaltung{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000001&amp;brotID=900000001&amp;id=900000003&amp;navi_id=900000001\",\"name\":\"Landkreis und Verwaltung\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/seiten\\/kreisverwaltung-900000137-21700.html?naviID=900000040&amp;brotID=900000040&amp;rubrik=900000002\",\"name\":\"Kreisverwaltung\"}},{\"@type\":\"ListItem\",\"position\":3,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/buergerservice\\/mitarbeiter\\/suche.html?naviID=900000105&amp;brotID=900000105&amp;mitarbeiter=1\",\"name\":\"Ansprechpartner in der Kreisverwaltung\"}}]} Inhalt vorlesen Seite merken Seite drucken Ansprechpartner in der Kreisverwaltung Personensuche Hier können Sie nach Personen suchen.Über das Feld \"Suchwort\" können Sie alle Informationen durchsuchen, die zu einer Person gepflegt sind.Über das Feld \"Ergebnisse filtern\" durchsuchen Sie alle Daten, die in der untenstehenden Liste angezeigt werden. Bitte Anfangsbuchstaben wählenABCDEFGHIJKLMNOPQRSTUVWXYZ A bis Z Suchwort Suchen",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "kontakte",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/",
+      "timestamp": "2025-10-29T07:49:51.270Z",
+      "compressed": true,
+      "compression_ratio": 1
+    }
+  }
+]
