@@ -1,14 +1,36 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const fs = require('fs-extra');
-const path = require('path');
-
 class KAYAAgentManager {
     constructor() {
         this.agents = new Map();
         this.verifiedFacts = null; // Wird beim ersten Zugriff geladen
         this.loadVerifiedFacts(); // Lade verifizierte Fakten beim Start
+        
+        // Agent-Daten-Pfad und weitere Initialisierung
+        this.agentDataPath = path.join(__dirname, '../crawler-v2/data/processed');
+        this.cache = new Map();
+        this.lastUpdate = null;
+        this.updateInterval = 300000; // 5 Minuten
+        this.fileWatcher = null;
+        this.reloadLock = false;
+        
+        // Performance Metrics
+        this.metrics = {
+            totalRequests: 0,
+            successfulRequests: 0,
+            cacheHits: 0,
+            dataLoads: 0,
+            averageLoadTime: 0,
+            autoReloads: 0,
+            fileWatchEvents: 0
+        };
+        
+        console.log('🚀 KAYA Agent Manager v2.0 initialisiert');
+        this.initializeAgents();
+        
+        // Starte File-Watcher für automatische Aktualisierung
+        this.startFileWatcher();
     }
     
     /**
@@ -175,29 +197,6 @@ class KAYAAgentManager {
         }
         
         return { valid: true, corrected: null, warning: null };
-        this.agentDataPath = path.join(__dirname, '../crawler-v2/data/processed');
-        this.cache = new Map();
-        this.lastUpdate = null;
-        this.updateInterval = 300000; // 5 Minuten
-        this.fileWatcher = null;
-        this.reloadLock = false;
-        
-        // Performance Metrics
-        this.metrics = {
-            totalRequests: 0,
-            successfulRequests: 0,
-            cacheHits: 0,
-            dataLoads: 0,
-            averageLoadTime: 0,
-            autoReloads: 0,
-            fileWatchEvents: 0
-        };
-        
-        console.log('🚀 KAYA Agent Manager v2.0 initialisiert');
-        this.initializeAgents();
-        
-        // Starte File-Watcher für automatische Aktualisierung
-        this.startFileWatcher();
     }
     
     // Agent-Initialisierung
