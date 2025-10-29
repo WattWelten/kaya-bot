@@ -91,4 +91,4 @@ docker run -p 3000:3000 kaya-frontend
 
 ---
 
-**KAYA Frontend v2.0.0** - Landkreis Oldenburg 2025
+**KAYA Frontend v2.0.0** - 2025
