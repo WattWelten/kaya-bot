@@ -127,6 +127,9 @@ export interface AvatarPaneProps {
 export interface ChatPaneProps {
   setCaptionText: (text: string) => void;
   onMessageSend?: (message: string) => void;
+  setVisemeTimeline?: (timeline: VisemeSegment[]) => void;
+  setEmotion?: (emotion: EmotionType) => void;
+  setEmotionConfidence?: (confidence: number) => void;
 }
 
 export interface MessageListProps {

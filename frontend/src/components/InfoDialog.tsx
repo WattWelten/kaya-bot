@@ -1,5 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
+import { getKommuneName } from '@/utils/kommuneConfig';
 
 interface InfoDialogProps {
   isOpen: boolean;
@@ -21,7 +22,7 @@ export const InfoDialog: React.FC<InfoDialogProps> = ({ isOpen, onClose }) => {
         
         <div className="space-y-4 text-lc-neutral-700">
           <p className="leading-relaxed">
-            KAYA ist Ihre digitale Assistentin für alle Anliegen rund um den Landkreis Oldenburg.
+            KAYA ist Ihre digitale Assistentin für alle Anliegen rund um {getKommuneName()}.
           </p>
           
           <div>
@@ -47,7 +48,7 @@ export const InfoDialog: React.FC<InfoDialogProps> = ({ isOpen, onClose }) => {
           
           <div className="pt-4 border-t border-lc-primary-100">
             <p className="text-xs text-lc-neutral-600 italic">
-              <strong>Hinweis:</strong> KAYA nutzt öffentliche Informationen des Landkreises Oldenburg. 
+              <strong>Hinweis:</strong> KAYA nutzt öffentliche Informationen von {getKommuneName()}. 
               Keine Rechtsberatung. Bei Notfällen wählen Sie bitte 112 oder 110.
             </p>
           </div>

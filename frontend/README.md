@@ -1,4 +1,4 @@
-# KAYA Frontend - Landkreis Oldenburg
+# KAYA Frontend
 
 ## 🚀 Schnellstart
 

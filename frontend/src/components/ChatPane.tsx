@@ -6,7 +6,10 @@ import { AudioWaveform } from './AudioWaveform';
 
 const ChatPaneComponent: React.FC<ChatPaneProps> = ({
   setCaptionText,
-  onMessageSend
+  onMessageSend,
+  setVisemeTimeline,
+  setEmotion,
+  setEmotionConfidence
 }) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -99,6 +102,19 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
         setMessages(prev => [...prev, userMessage, assistantMessage]);
         
         setCaptionText(result.response);
+
+        // VisemeTimeline aus HTTP-Response setzen (falls vorhanden)
+        if (result.visemeTimeline && Array.isArray(result.visemeTimeline) && result.visemeTimeline.length > 0) {
+          console.log('🎭 VisemeTimeline aus HTTP-Response:', result.visemeTimeline.length, 'Segmente');
+          setVisemeTimeline?.(result.visemeTimeline);
+        }
+
+        // Emotion aus HTTP-Response setzen (falls vorhanden)
+        if (result.emotion && result.emotionConfidence !== undefined) {
+          console.log('😊 Emotion aus HTTP-Response:', result.emotion, result.emotionConfidence);
+          setEmotion?.(result.emotion);
+          setEmotionConfidence?.(result.emotionConfidence);
+        }
 
         // Audio abspielen (Backend liefert audioUrl)
         if (result.audioUrl) {
@@ -206,6 +222,19 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
 
       setMessages(prev => [...prev, assistantMessage]);
       setCaptionText(result.response);
+
+      // VisemeTimeline aus HTTP-Response setzen (falls vorhanden)
+      if (result.visemeTimeline && Array.isArray(result.visemeTimeline) && result.visemeTimeline.length > 0) {
+        console.log('🎭 VisemeTimeline aus HTTP-Response (Text-Chat):', result.visemeTimeline.length, 'Segmente');
+        setVisemeTimeline?.(result.visemeTimeline);
+      }
+
+      // Emotion aus HTTP-Response setzen (falls vorhanden)
+      if (result.emotion && result.emotionConfidence !== undefined) {
+        console.log('😊 Emotion aus HTTP-Response (Text-Chat):', result.emotion, result.emotionConfidence);
+        setEmotion?.(result.emotion);
+        setEmotionConfidence?.(result.emotionConfidence);
+      }
 
       // Audio abspielen (falls Backend audioUrl liefert)
       if (result.audioUrl) {

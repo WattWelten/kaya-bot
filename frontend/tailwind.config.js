@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Landkreis Oldenburg CI-Farben
+        // CI-Farben
         'lc-primary': {
           25: '#F0FDFB',
           50: '#EBF8F7',
@@ -58,7 +58,7 @@ export default {
           800: '#1F2937',
           900: '#0F172A',
         },
-        // Landkreis Oldenburg Wappen-Farben (Gold & Rot)
+        // Wappen-Farben (Gold & Rot)
         'lc-gold': {
           50: '#FFFBEB',
           100: '#FEF3C7',

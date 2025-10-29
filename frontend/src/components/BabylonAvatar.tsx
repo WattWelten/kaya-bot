@@ -412,21 +412,21 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     if (isSpeaking) {
       if (bufferedTimelineRef.current.length > 0) {
         // Timeline vorhanden → realistisches Lipsync
-        console.log('✅ Timeline-Lipsync:', bufferedTimelineRef.current.length);
+        console.log('✅ Timeline-Lipsync gestartet:', bufferedTimelineRef.current.length, 'Segmente');
         lipsyncEngineRef.current.start(bufferedTimelineRef.current);
       } else {
         // Keine Timeline → Fallback: Avatar "spricht" sichtbar (Idle intensiviert)
-        console.log('⚠️ Keine Timeline - Fallback aktiv (Avatar reagiert auf Audio)');
-        // Micro-Motion wird durch isSpeaking bereits intensiviert
+        console.log('⚠️ Keine Timeline - Fallback aktiv (Avatar reagiert auf Audio mit Micro-Motion)');
+        // Micro-Motion wird durch isSpeaking bereits intensiviert (siehe useEffect für Micro-Motion)
       }
     } else {
-      console.log('🛑 Stoppe Lipsync');
+      console.log('🛑 Stoppe Lipsync (Audio beendet)');
       lipsyncEngineRef.current.stop();
     }
 
     return () => {
-      if (lipsyncEngineRef.current && isSpeaking) {
-        console.log('🎭 Lipsync cleanup');
+      if (lipsyncEngineRef.current && !isSpeaking) {
+        console.log('🎭 Lipsync cleanup (isSpeaking=false)');
         lipsyncEngineRef.current.stop();
       }
     };
@@ -471,10 +471,15 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
 
   // Emotion: Avatar-Mimik + Glow anpassen
   useEffect(() => {
-    if (!emotionMapperRef.current) return;
+    if (!emotionMapperRef.current) {
+      console.warn('⚠️ EmotionMapper nicht initialisiert');
+      return;
+    }
 
-    console.log('😊 Emotion Update:', emotion, emotionConfidence);
-    emotionMapperRef.current.applyEmotion(emotion, emotionConfidence);
+    console.log('😊 Emotion Update für Avatar:', emotion, emotionConfidence, '%');
+    emotionMapperRef.current.applyEmotion(emotion, emotionConfidence).catch(err => {
+      console.error('❌ Emotion-Anwendung fehlgeschlagen:', err);
+    });
   }, [emotion, emotionConfidence]);
 
   // Glow-Effekt: Wenn Avatar spricht (zusätzlich zur Emotion)
@@ -482,10 +487,14 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     if (!glowLayerRef.current || !meshRef.current) return;
 
     if (isSpeaking) {
-      glowLayerRef.current.intensity = Math.min(glowLayerRef.current.intensity + 0.3, 1.0);
+      // Glow während des Sprechens intensivieren
+      const currentIntensity = glowLayerRef.current.intensity;
+      glowLayerRef.current.intensity = Math.min(currentIntensity + 0.2, 1.0);
       glowLayerRef.current.addIncludedOnlyMesh(meshRef.current as BABYLON.Mesh);
+      console.log('✨ Glow-Effekt aktiviert (Sprechen)');
     } else {
-      // Intensität auf Emotion-Level zurücksetzen (wird von EmotionMapper gesetzt)
+      // Glow bleibt auf Emotion-Level (wird von EmotionMapper gesetzt)
+      console.log('✨ Glow-Effekt auf Emotion-Level zurückgesetzt');
     }
   }, [isSpeaking]);
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Contrast, Globe, Info, Accessibility } from 'lucide-react';
 import { AccessibilitySettings } from '@/types';
 import { InfoDialog } from './InfoDialog';
+import { getKommuneName } from '@/utils/kommuneConfig';
 
 interface HeaderProps {
   accessibility: AccessibilitySettings;
@@ -51,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <div className="leading-tight">
             <h1 className="text-xl font-bold text-white drop-shadow-md flex items-center gap-2">
-              KAYA <span className="text-sm font-normal text-white/90">· Landkreis Oldenburg</span>
+              KAYA <span className="text-sm font-normal text-white/90">· {getKommuneName()}</span>
             </h1>
           </div>
         </div>

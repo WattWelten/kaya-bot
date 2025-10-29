@@ -1,7 +1,7 @@
 {
   "name": "kaya-frontend",
   "version": "2.1.0",
-  "description": "KAYA Frontend - Landkreis Oldenburg Avatar Interface",
+  "description": "KAYA Frontend - Avatar Interface",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -44,6 +44,6 @@
     "babylon.js",
     "accessibility"
   ],
-  "author": "Landkreis Oldenburg",
+  "author": "KAYA",
   "license": "MIT"
 }

@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Landkreis Oldenburg CI-Farben (erweitert) */
+/* CI-Farben (erweitert) */
 :root {
-  /* Landkreis Oldenburg CI-Farben */
+  /* CI-Farben */
   --lc-primary-600: #0F766E;   /* Primär (Grün-Teal) */
   --lc-primary-700: #0B5C56;
   --lc-accent-600: #2563EB;    /* Akzent (Blau) */
@@ -14,7 +14,7 @@
   --lc-border: #E2E8F0;        /* Linien */
 }
 
-/* CSS-Variablen für Landkreis Oldenburg CI */
+/* CSS-Variablen für CI */
 :root {
   /* Primary Colors (Teal/Grün) */
   --lc-primary-50: #EBF8F7;
@@ -75,12 +75,12 @@
   --animation-duration: 300ms;
   --animation-iteration-count: 1;
   
-  /* Gradient-Stops für animierten Hintergrund - Landkreis Oldenburg CI */
+  /* Gradient-Stops für animierten Hintergrund - CI */
   --gradient-from: #EBF8F7;
   --gradient-via: #FEF3C7;
   --gradient-to: #D1F2EB;
   
-  /* Organische Formen - Landkreis Oldenburg Wappen-Farben */
+  /* Organische Formen - Wappen-Farben */
   --blob-1: #26A69A;  /* Türkis */
   --blob-2: #F59E0B;  /* Gold */
   --blob-3: #4ECDC4;  /* Helles Türkis */
@@ -711,7 +711,7 @@
    KAYA UI/UX REDESIGN - PHASE 2 & 3
    ============================================ */
 
-/* Animierter Organischer Hintergrund - Landkreis Oldenburg CI */
+/* Animierter Organischer Hintergrund - CI */
 .animated-background {
   position: fixed;
   top: 0;
@@ -793,7 +793,7 @@
   }
 }
 
-/* Moderne Glassmorphism Chat-Bubbles mit Landkreis Oldenburg CI */
+/* Moderne Glassmorphism Chat-Bubbles mit CI */
 .chat-message-assistant {
   background: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.95) 0%, 

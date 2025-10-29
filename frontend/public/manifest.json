@@ -1,7 +1,7 @@
 {
-  "name": "KAYA - Landkreis Oldenburg",
+  "name": "KAYA",
   "short_name": "KAYA",
-  "description": "KI-basierte Assistenz des Landkreises Oldenburg",
+  "description": "KI-basierte Assistenz",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

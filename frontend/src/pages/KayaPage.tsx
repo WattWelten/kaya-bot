@@ -10,7 +10,7 @@ import { VisemeSegment } from '@/services/LipsyncEngine';
 import { useAudioManager } from '@/hooks/useAudioManager';
 
 /**
- * KAYA – Frontend 2025 (Landkreis Oldenburg)
+ * KAYA – Frontend 2025
  * - Avatar links (Three.js via react-three/fiber)
  * - Chat rechts (Rauslauf 20% des Viewports)
  * - CI-Übernahme via :root CSS-Variablen (Fallbacks)
@@ -317,6 +317,9 @@ export default function KayaPage() {
             <ChatPane
               setCaptionText={setCaptionText}
               onMessageSend={handleMessageSend}
+              setVisemeTimeline={setVisemeTimeline}
+              setEmotion={setCurrentEmotion}
+              setEmotionConfidence={setEmotionConfidence}
             />
           </section>
         </div>
