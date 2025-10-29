@@ -19,6 +19,7 @@ export interface AudioState {
   currentSource: AudioSource | null;
   currentUrl: string | null;
   audioLevel?: number; // 0-100% für Visualisierung
+  audioAmplitude?: number; // 0-1 für Avatar-Lipsync (real-time)
 }
 
 export type AudioStateCallback = (state: AudioState) => void;
@@ -28,10 +29,15 @@ class AudioManagerClass {
   
   // Audio State
   private audioPlayer: HTMLAudioElement | null = null;
+  private audioContext: AudioContext | null = null;
+  private analyserNode: AnalyserNode | null = null;
+  private sourceNode: MediaElementAudioSourceNode | null = null;
+  private amplitudeAnimationFrame: number | null = null;
   private isRecording = false;
   private isPlaying = false;
   private currentSource: AudioSource | null = null;
   private currentUrl: string | null = null;
+  private currentAmplitude = 0;
   
   // Recording
   private mediaRecorder: MediaRecorder | null = null;
@@ -84,7 +90,8 @@ class AudioManagerClass {
       isPlaying: this.isPlaying,
       currentSource: this.currentSource,
       currentUrl: this.currentUrl,
-      audioLevel: this.currentAudioLevel
+      audioLevel: this.currentAudioLevel,
+      audioAmplitude: this.currentAmplitude
     };
   }
   
@@ -247,21 +254,44 @@ class AudioManagerClass {
     try {
       this.audioPlayer = new Audio(url);
       
+      // WebAudio Analyser Setup für Amplitude-Tracking
+      this.setupAudioAnalyser(this.audioPlayer);
+      
+      // Startzeit für Lipsync-Synchronisation
+      const audioStartTime = Date.now();
+      
       this.audioPlayer.onplay = () => {
         this.isPlaying = true;
         this.currentSource = source;
         this.currentUrl = url;
+        this.startAmplitudeTracking();
         this.notifySubscribers();
-        console.log(`🔊 Playing ${source} audio`);
+        console.log(`🔊 Playing ${source} audio (Start: ${audioStartTime})`);
+        
+        // Event für Lipsync-Synchronisation (optional, für externe Komponenten)
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('audioPlayStart', {
+            detail: { startTime: audioStartTime, source, url }
+          }));
+        }
       };
       
       this.audioPlayer.onended = () => {
         this.isPlaying = false;
         this.currentSource = null;
         this.currentUrl = null;
+        this.stopAmplitudeTracking();
+        this.cleanupAudioAnalyser();
         this.audioPlayer = null;
         this.notifySubscribers();
         console.log(`✅ ${source} audio ended`);
+        
+        // Event für Lipsync-Synchronisation
+        if (typeof window !== 'undefined') {
+          window.dispatchEvent(new CustomEvent('audioPlayEnd', {
+            detail: { source }
+          }));
+        }
         
         // Nächstes TTS aus Queue verarbeiten
         this.processTTSQueue();
@@ -272,6 +302,8 @@ class AudioManagerClass {
         this.isPlaying = false;
         this.currentSource = null;
         this.currentUrl = null;
+        this.stopAmplitudeTracking();
+        this.cleanupAudioAnalyser();
         this.audioPlayer = null;
         this.notifySubscribers();
       };
@@ -282,9 +314,129 @@ class AudioManagerClass {
       this.isPlaying = false;
       this.currentSource = null;
       this.currentUrl = null;
+      this.cleanupAudioAnalyser();
       this.notifySubscribers();
       throw error;
     }
+  }
+
+  /**
+   * WebAudio Analyser Setup (für Amplitude-Tracking)
+   */
+  private setupAudioAnalyser(audioElement: HTMLAudioElement): void {
+    try {
+      // AudioContext erstellen (falls nicht vorhanden)
+      if (!this.audioContext) {
+        const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+        this.audioContext = new AudioContextClass();
+      }
+
+      // Falls suspendiert: resume
+      if (this.audioContext.state === 'suspended') {
+        this.audioContext.resume();
+      }
+
+      // MediaElementSourceNode erstellen (nur einmal pro Audio-Element)
+      if (!this.sourceNode) {
+        this.sourceNode = this.audioContext.createMediaElementSource(audioElement);
+        
+        // AnalyserNode erstellen
+        this.analyserNode = this.audioContext.createAnalyser();
+        this.analyserNode.fftSize = 256; // Für schnelle Updates
+        this.analyserNode.smoothingTimeConstant = 0.8; // Smoothing
+        
+        // Verbinden: Source → Analyser → Destination
+        this.sourceNode.connect(this.analyserNode);
+        this.analyserNode.connect(this.audioContext.destination);
+      }
+    } catch (error) {
+      console.warn('⚠️ WebAudio Analyser Setup fehlgeschlagen (Fallback auf einfaches Tracking):', error);
+      // Fallback: Amplitude-Tracking wird übersprungen, aber Audio funktioniert
+    }
+  }
+
+  /**
+   * Starte Amplitude-Tracking (requestAnimationFrame)
+   */
+  private startAmplitudeTracking(): void {
+    if (this.amplitudeAnimationFrame !== null) {
+      return; // Bereits aktiv
+    }
+
+    const trackAmplitude = () => {
+      if (!this.analyserNode || !this.isPlaying) {
+        this.amplitudeAnimationFrame = null;
+        return;
+      }
+
+      try {
+        // TimeDomainData für Amplitude
+        const bufferLength = this.analyserNode.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        this.analyserNode.getByteTimeDomainData(dataArray);
+
+        // RMS (Root Mean Square) für Amplitude berechnen
+        let sum = 0;
+        for (let i = 0; i < bufferLength; i++) {
+          const normalized = (dataArray[i] - 128) / 128; // -1 bis 1
+          sum += normalized * normalized;
+        }
+        const rms = Math.sqrt(sum / bufferLength);
+        
+        // Normalisiert auf 0-1 (mit Threshold für Stille)
+        this.currentAmplitude = Math.max(0, Math.min(1, rms * 3)); // Multiplikator für bessere Sichtbarkeit
+        
+        // State aktualisieren (nur wenn sichtbarer Unterschied)
+        if (Math.abs(this.currentAmplitude - (this.getState().audioAmplitude || 0)) > 0.05) {
+          this.notifySubscribers();
+        }
+      } catch (error) {
+        // Silent fail - Analyser nicht verfügbar
+      }
+
+      this.amplitudeAnimationFrame = requestAnimationFrame(trackAmplitude);
+    };
+
+    this.amplitudeAnimationFrame = requestAnimationFrame(trackAmplitude);
+  }
+
+  /**
+   * Stoppe Amplitude-Tracking
+   */
+  private stopAmplitudeTracking(): void {
+    if (this.amplitudeAnimationFrame !== null) {
+      cancelAnimationFrame(this.amplitudeAnimationFrame);
+      this.amplitudeAnimationFrame = null;
+    }
+    this.currentAmplitude = 0;
+    this.notifySubscribers();
+  }
+
+  /**
+   * Cleanup WebAudio Analyser
+   */
+  private cleanupAudioAnalyser(): void {
+    this.stopAmplitudeTracking();
+
+    if (this.sourceNode) {
+      try {
+        this.sourceNode.disconnect();
+      } catch (e) {
+        // Ignore
+      }
+      this.sourceNode = null;
+    }
+
+    if (this.analyserNode) {
+      try {
+        this.analyserNode.disconnect();
+      } catch (e) {
+        // Ignore
+      }
+      this.analyserNode = null;
+    }
+
+    // AudioContext bleibt aktiv (für nächsten Playback)
   }
   
   /**
@@ -296,6 +448,9 @@ class AudioManagerClass {
       this.audioPlayer.currentTime = 0;
       this.audioPlayer = null;
     }
+    
+    this.stopAmplitudeTracking();
+    this.cleanupAudioAnalyser();
     
     this.isPlaying = false;
     this.currentSource = null;

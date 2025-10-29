@@ -4,6 +4,7 @@ import '@babylonjs/loaders/glTF';
 import { LipsyncEngine, VisemeSegment } from '../services/LipsyncEngine';
 import { EmotionMapper, EmotionType } from '../services/EmotionMapper';
 import { speak, stopSpeaking } from '../services/TTSService';
+import { useAudioManager } from '../hooks/useAudioManager';
 
 interface BabylonAvatarProps {
   isSpeaking: boolean;
@@ -122,6 +123,14 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [loadingFailed, setLoadingFailed] = useState(false);
+  const [showDebugOverlay, setShowDebugOverlay] = useState(false);
+  const [debugInfo, setDebugInfo] = useState({
+    currentViseme: 'none',
+    mappedMorph: 'none',
+    influence: 0,
+    amplitude: 0,
+    timelineLength: 0
+  });
   const engineRef = useRef<BABYLON.Engine | null>(null);
   const sceneRef = useRef<BABYLON.Scene | null>(null);
   const meshRef = useRef<BABYLON.AbstractMesh | null>(null);
@@ -133,6 +142,11 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
   // Ready-Flag + Timeline-Puffer für robustes Lipsync
   const avatarReadyRef = useRef(false);
   const bufferedTimelineRef = useRef<VisemeSegment[]>([]);
+  
+  // Audio-Amplitude für Fallback-Lipsync
+  const audioManager = useAudioManager();
+  const amplitudeFallbackTargetRef = useRef<any>(null); // MorphTarget für Jaw/MouthOpen
+  const amplitudeFallbackAnimationFrameRef = useRef<number | null>(null);
 
   // Mobile Detection
   const isMobile = typeof window !== 'undefined' && (
@@ -293,10 +307,33 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
           
           lipsyncEngineRef.current = new LipsyncEngine(mtm);
           emotionMapperRef.current = new EmotionMapper(mtm, glowLayerRef.current);
+          
+          // Amplitude-Fallback: Finde Jaw/MouthOpen MorphTarget (auto-detect)
+          const fallbackTargets = ['mouthOpen', 'jawOpen', 'jaw', 'mouth', 'aa'];
+          for (const name of fallbackTargets) {
+            try {
+              const target = mtm.getTargetByName(name);
+              if (target) {
+                amplitudeFallbackTargetRef.current = target;
+                console.log(`✅ Amplitude-Fallback Target gefunden: ${name}`);
+                break;
+              }
+            } catch (e) {
+              // Ignore
+            }
+          }
+          
           avatarReadyRef.current = true;
           
           console.log('🎭 Lipsync Engine & Emotion Mapper initialisiert');
           console.log('✅ Avatar Ready-Flag gesetzt');
+          
+          // Mapping-Report ausgeben (für Debug)
+          if (lipsyncEngineRef.current) {
+            const report = lipsyncEngineRef.current.getMappingReport();
+            const mapped = Object.entries(report).filter(([_, name]) => name !== null).length;
+            console.log(`📊 Viseme-Mapping: ${mapped}/${Object.keys(report).length} gemappt`);
+          }
           
           // Expose speak function für externe Nutzung
           (window as any).kayaSpeak = (text: string) => {
@@ -392,6 +429,39 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     console.log('📦 Timeline gepuffert:', visemeTimeline.length, 'Segmente');
   }, [visemeTimeline]);
 
+  // Exakte Audio-Synchronisation: Event-Listener für audioPlayStart/audioPlayEnd
+  useEffect(() => {
+    const handleAudioStart = (event: CustomEvent) => {
+      console.log('🎵 Audio-Start Event empfangen:', event.detail);
+      if (!avatarReadyRef.current || !lipsyncEngineRef.current) return;
+
+      // Timeline vorhanden → starte Lipsync mit exakter Startzeit
+      if (bufferedTimelineRef.current.length > 0) {
+        console.log('✅ Timeline-Lipsync gestartet (exakte Sync):', bufferedTimelineRef.current.length, 'Segmente');
+        lipsyncEngineRef.current.start(bufferedTimelineRef.current);
+      } else {
+        // Keine Timeline → starte Amplitude-Fallback
+        console.log('⚠️ Keine Timeline - Amplitude-Fallback aktiviert');
+      }
+    };
+
+    const handleAudioEnd = (event: CustomEvent) => {
+      console.log('🎵 Audio-End Event empfangen:', event.detail);
+      if (lipsyncEngineRef.current) {
+        lipsyncEngineRef.current.stop();
+      }
+      // Amplitude-Fallback stoppen wird in eigenem useEffect behandelt
+    };
+
+    window.addEventListener('audioPlayStart', handleAudioStart as EventListener);
+    window.addEventListener('audioPlayEnd', handleAudioEnd as EventListener);
+
+    return () => {
+      window.removeEventListener('audioPlayStart', handleAudioStart as EventListener);
+      window.removeEventListener('audioPlayEnd', handleAudioEnd as EventListener);
+    };
+  }, []);
+
   // Lipsync: Start bei isSpeaking (wenn Avatar ready) - auch ohne Timeline!
   useEffect(() => {
     console.log('🎭 isSpeaking useEffect triggered');
@@ -409,6 +479,7 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
       return;
     }
 
+    // Falls Audio-Events nicht gefeuert wurden (Fallback)
     if (isSpeaking) {
       if (bufferedTimelineRef.current.length > 0) {
         // Timeline vorhanden → realistisches Lipsync
@@ -431,6 +502,107 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
       }
     };
   }, [isSpeaking]);
+
+  // Amplitude-Fallback: Animiert Jaw/MouthOpen basierend auf Audio-Amplitude
+  useEffect(() => {
+    if (!isSpeaking || !amplitudeFallbackTargetRef.current) {
+      // Stoppe Fallback-Animation
+      if (amplitudeFallbackAnimationFrameRef.current !== null) {
+        cancelAnimationFrame(amplitudeFallbackAnimationFrameRef.current);
+        amplitudeFallbackAnimationFrameRef.current = null;
+      }
+      // Reset MorphTarget
+      if (amplitudeFallbackTargetRef.current) {
+        amplitudeFallbackTargetRef.current.influence = 0;
+      }
+      return;
+    }
+
+    // Nur aktivieren, wenn keine Timeline vorhanden ist
+    if (bufferedTimelineRef.current.length > 0) {
+      return; // Timeline hat Priorität
+    }
+
+    // Amplitude-basierte Animation starten
+    const animateAmplitude = () => {
+      if (!isSpeaking || !amplitudeFallbackTargetRef.current) {
+        amplitudeFallbackAnimationFrameRef.current = null;
+        return;
+      }
+
+      const amplitude = audioManager.audioAmplitude || 0;
+      
+      // Sanftes Easing (exponentielles Glätten) für natürlichere Bewegung
+      const currentInfluence = amplitudeFallbackTargetRef.current.influence || 0;
+      const targetInfluence = Math.max(0, Math.min(1, amplitude * 1.5)); // Multiplikator für Sichtbarkeit
+      const smoothed = currentInfluence * 0.7 + targetInfluence * 0.3; // Easing-Faktor
+
+      amplitudeFallbackTargetRef.current.influence = smoothed;
+
+      // Debug-Info aktualisieren
+      if (showDebugOverlay) {
+        setDebugInfo(prev => ({
+          ...prev,
+          amplitude: amplitude,
+          mappedMorph: amplitudeFallbackTargetRef.current?.name || 'fallback',
+          influence: smoothed
+        }));
+      }
+
+      // Warnung bei dauerhaft 0 Influence (nur einmal loggen)
+      if (smoothed < 0.01 && isSpeaking) {
+        const lastWarning = (window as any).__kayaAmplitudeWarning;
+        if (!lastWarning || Date.now() - lastWarning > 5000) {
+          console.warn('⚠️ Amplitude-Fallback: Influence bleibt bei 0 (Audio möglicherweise stumm)');
+          (window as any).__kayaAmplitudeWarning = Date.now();
+        }
+      }
+
+      amplitudeFallbackAnimationFrameRef.current = requestAnimationFrame(animateAmplitude);
+    };
+
+    amplitudeFallbackAnimationFrameRef.current = requestAnimationFrame(animateAmplitude);
+
+    return () => {
+      if (amplitudeFallbackAnimationFrameRef.current !== null) {
+        cancelAnimationFrame(amplitudeFallbackAnimationFrameRef.current);
+        amplitudeFallbackAnimationFrameRef.current = null;
+      }
+    };
+  }, [isSpeaking, audioManager.audioAmplitude, showDebugOverlay]);
+
+  // Debug-Info aktualisieren (für Overlay)
+  useEffect(() => {
+    if (!showDebugOverlay) return;
+
+    const updateDebugInfo = () => {
+      setDebugInfo({
+        currentViseme: 'N/A', // Wird von LipsyncEngine gesetzt (später erweitern)
+        mappedMorph: amplitudeFallbackTargetRef.current?.name || 'none',
+        influence: amplitudeFallbackTargetRef.current?.influence || 0,
+        amplitude: audioManager.audioAmplitude || 0,
+        timelineLength: bufferedTimelineRef.current.length
+      });
+    };
+
+    const interval = setInterval(updateDebugInfo, 100); // 10fps für Debug
+    return () => clearInterval(interval);
+  }, [showDebugOverlay, audioManager.audioAmplitude]);
+
+  // Toggle Debug-Overlay mit Tastenkombination (Strg+D in Entwicklung)
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'development') return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 'd') {
+        e.preventDefault();
+        setShowDebugOverlay(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Idle Micro-Motion (Kopf subtile Bewegung) – respektiert Reduced Motion
   useEffect(() => {
@@ -534,6 +706,52 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
             <div className="text-6xl mb-4 animate-pulse">👤</div>
             <p className="text-lg font-medium text-lc-neutral-700">KAYA ist bereit</p>
             <p className="text-sm text-lc-neutral-500 mt-2">Avatar wird nachgeladen...</p>
+          </div>
+        </div>
+      )}
+
+      {/* Debug-Overlay (nur in Development, Strg+D zum Toggle) */}
+      {process.env.NODE_ENV === 'development' && showDebugOverlay && (
+        <div className="absolute top-4 right-4 bg-black/90 text-white text-xs p-3 rounded-lg font-mono z-50 max-w-xs">
+          <div className="font-bold mb-2 text-yellow-400">🐛 Debug Info</div>
+          <div className="space-y-1">
+            <div>
+              <span className="text-gray-400">Viseme:</span>{' '}
+              <span className="text-white">{debugInfo.currentViseme}</span>
+            </div>
+            <div>
+              <span className="text-gray-400">Morph:</span>{' '}
+              <span className="text-white">{debugInfo.mappedMorph}</span>
+            </div>
+            <div>
+              <span className="text-gray-400">Influence:</span>{' '}
+              <span className="text-green-400">{(debugInfo.influence * 100).toFixed(1)}%</span>
+            </div>
+            <div>
+              <span className="text-gray-400">Amplitude:</span>{' '}
+              <span className="text-blue-400">{(debugInfo.amplitude * 100).toFixed(1)}%</span>
+            </div>
+            <div>
+              <span className="text-gray-400">Timeline:</span>{' '}
+              <span className="text-purple-400">{debugInfo.timelineLength} Segmente</span>
+            </div>
+            <div>
+              <span className="text-gray-400">isSpeaking:</span>{' '}
+              <span className={isSpeaking ? 'text-green-400' : 'text-red-400'}>
+                {isSpeaking ? 'Ja' : 'Nein'}
+              </span>
+            </div>
+            {lipsyncEngineRef.current && (
+              <div>
+                <span className="text-gray-400">Lipsync:</span>{' '}
+                <span className={lipsyncEngineRef.current.isRunning ? 'text-green-400' : 'text-gray-500'}>
+                  {lipsyncEngineRef.current.isRunning ? 'Aktiv' : 'Inaktiv'}
+                </span>
+              </div>
+            )}
+          </div>
+          <div className="mt-2 text-xs text-gray-500 border-t border-gray-700 pt-2">
+            Strg+D zum Ausblenden
           </div>
         </div>
       )}
