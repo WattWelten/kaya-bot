@@ -125,6 +125,10 @@ const ChatPaneComponent: React.FC<ChatPaneProps> = ({
       } catch (err) {
         console.error('❌ Audio-Chat fehlgeschlagen:', err);
         
+        // Fehler-Response: Setze Emotion auf 'neutral' auch bei Fehlern
+        setEmotion?.('neutral');
+        setEmotionConfidence?.(50);
+        
         const errorMessage: Message = {
           id: `error_${Date.now()}`,
           content: `Entschuldigung, Audio-Verarbeitung fehlgeschlagen: ${err instanceof Error ? err.message : 'Unbekannter Fehler'}`,
