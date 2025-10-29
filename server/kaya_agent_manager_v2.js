@@ -233,7 +233,15 @@ class KAYAAgentManager {
             if (persona.type === 'youth' || persona.type === 'student') {
                 targetAgent = 'jugend';
             } else if (persona.type === 'unemployed' || persona.type === 'low_income') {
-                targetAgent = 'soziales';
+                targetAgent = 'jobcenter'; // Jobcenter für Arbeitslose
+            } else if (persona.type === 'migrant') {
+                targetAgent = 'buergerdienste'; // Allgemeine Beratung für Migranten
+            } else if (persona.type === 'commuter' || persona.type === 'mobility_needs') {
+                targetAgent = 'buergerdienste'; // Verkehrsangelegenheiten
+            } else if (persona.type === 'housing_seeker') {
+                targetAgent = 'buergerdienste'; // Wohnungsangelegenheiten
+            } else if (persona.type === 'plattdeutsch_speaker' || persona.type === 'low_education') {
+                targetAgent = 'buergerdienste'; // Allgemeine Beratung mit einfacher Sprache
             }
             
             // Agent-Daten abrufen
