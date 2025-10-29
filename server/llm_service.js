@@ -278,6 +278,11 @@ VERIFIZIERTE LINKS (NUR DIESE!):
 - Telefon: 04431 85-0 (Mo-Fr 8-16 Uhr)
 - E-Mail: info@oldenburg-kreis.de
 
+WICHTIG - PERSONEN & POSITIONEN (NUR DIESE VERIFIZIERTEN NAMEN!):
+🚨 ERFINDE NIEMALS NAMEN VON PERSONEN!
+- Landrat: Dr. Christian Pundt (NICHT Matthias Groote oder andere Namen!)
+- Bei Fragen zu Personen: NUR diesen Namen verwenden oder ehrlich sagen "Dazu habe ich keine genauen Infos"
+
 WICHTIG - LINK-VALIDIERUNG:
 - ERFINDE KEINE LINKS! Nutze nur diese verifizierten URLs!
 - Wenn keine passende URL: Verweise auf Startseite + Telefon

@@ -771,6 +771,22 @@ class KAYACharacterHandler {
                     // Post-Processing: Greeting entfernen falls vorhanden
                     finalResponse = finalResponse.replace(/^(Moin!?|Hallo!?|Hi!?)\s*/i, '');
                     
+                    // KRITISCH: Namen-Korrektur - verhindere Halluzinationen von Personennamen
+                    // Landrat muss IMMER "Dr. Christian Pundt" sein
+                    const nameCorrections = [
+                        { pattern: /\bMatthias Groote\b/gi, correction: 'Dr. Christian Pundt' },
+                        { pattern: /\bJens\b(?!\s*Pundt)(?=.*Landrat)/gi, correction: 'Dr. Christian Pundt' },
+                        { pattern: /Landrat.*?ist.*?derzeit\s+Matthias\s+Groote/gi, replacement: 'Landrat des Landkreises Oldenburg ist Dr. Christian Pundt' }
+                    ];
+                    
+                    for (const correction of nameCorrections) {
+                        if (correction.replacement) {
+                            finalResponse = finalResponse.replace(correction.pattern, correction.replacement);
+                        } else {
+                            finalResponse = finalResponse.replace(correction.pattern, correction.correction);
+                        }
+                    }
+                    
                     // Output-Guard: Floskeln entfernen, kürzen, Quellen deduplizieren
                     // WICHTIG: isFirstMessage übergeben, damit kein Closer bei erster Nachricht
                     const OutputGuard = require('./utils/OutputGuard');
@@ -947,7 +963,14 @@ class KAYACharacterHandler {
             umwelt: () => this.generateUmweltResponse(query, personaAnalysis),
             notfall: () => this.generateNotfallResponse(query, personaAnalysis),
             lieferanten: () => this.generateLieferantenResponse(query, personaAnalysis),
-            politik: () => this.generatePolitikResponse(query, personaAnalysis),
+            politik: () => {
+                // Prüfe ob es eine Landrat-Frage ist → dann politik_landkreis
+                const queryLower = query.toLowerCase();
+                if (queryLower.includes('landrat') || queryLower.includes('dr christian pundt') || queryLower.includes('christian pundt')) {
+                    return this.generatePolitikLandkreisResponse(query, personaAnalysis);
+                }
+                return this.generatePolitikResponse(query, personaAnalysis);
+            },
             politik_landkreis: () => this.generatePolitikLandkreisResponse(query, personaAnalysis),
             rechnung_ebilling: () => this.generateRechnungEbillingResponse(query, personaAnalysis),
             aktionen_veranstaltungen: () => this.generateAktionenVeranstaltungenResponse(query, personaAnalysis),
@@ -1442,8 +1465,9 @@ class KAYACharacterHandler {
         
         let response = `${greeting}\n\n`;
         
-        if (queryLower.includes('landrat') || queryLower.includes('dr christian pundt') || queryLower.includes('christian pundt')) {
-            // Korrekte Landrat-Info: Dr. Christian Pundt
+        if (queryLower.includes('landrat') || queryLower.includes('dr christian pundt') || queryLower.includes('christian pundt') || queryLower.includes('wer ist der landrat')) {
+            // KRITISCH: Nur dieser verifizierte Name - keine Halluzinationen!
+            // Landrat: Dr. Christian Pundt (KEIN Matthias Groote oder andere Namen!)
             response += `**Dr. Christian Pundt** ist der Landrat des Landkreises Oldenburg.\n\n`;
             response += `**Aufgaben:**\n`;
             response += `• Leitung der Kreisverwaltung\n`;
