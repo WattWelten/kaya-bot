@@ -750,6 +750,18 @@ class KAYACharacterHandler {
                 // Dynamische Links via Link-Selector
                 const relevantLinks = this.getLinkSelector().selectLinks(intentionAnalysis.type, query);
                 
+                // KRITISCH: Bei rechnung_ebilling/Leitweg-ID: Verifizierte Fakten in Context
+                let verifiedFacts = null;
+                if (intentionAnalysis.type === 'rechnung_ebilling' || queryLower.includes('leitweg') || queryLower.includes('03458')) {
+                    verifiedFacts = {
+                        leitwegId: '03458-0-051',
+                        process: 'XRechnung im XML-Format (UBL 2.1/CIIl) oder ZUGFeRD 2.0',
+                        location: 'Impressum der Website',
+                        contact: '04431 85-0',
+                        responsible: 'Finanzdezernat / Rechnungsprüfung'
+                    };
+                }
+                
                 const llmContext = {
                     persona: personaAnalysis.persona,
                     emotionalState: personaAnalysis.emotionalState,
@@ -761,7 +773,9 @@ class KAYACharacterHandler {
                     // NEU: Style-Knobs hinzufügen
                     ...styleKnobs,
                     // NEU: Relevante Links
-                    relevantLinks: relevantLinks
+                    relevantLinks: relevantLinks,
+                    // KRITISCH: Verifizierte Fakten bei hoheitlichen Themen
+                    verifiedFacts: verifiedFacts
                 };
                 const llmResponse = await this.getLLMService().generateResponse(query, llmContext);
                 
@@ -1513,14 +1527,18 @@ class KAYACharacterHandler {
         
         let response = `${greeting}\n\n`;
         
-        if (queryLower.includes('leitweg') || queryLower.includes('03458-0-051') || queryLower.includes('leitweg-id') || queryLower.includes('leitweg id')) {
+        if (queryLower.includes('leitweg') || queryLower.includes('03458-0-051') || queryLower.includes('leitweg-id') || queryLower.includes('leitweg id') || queryLower.includes('vorgang')) {
+            // KRITISCH: Verifizierte Fakten - keine Halluzinationen!
+            // Leitweg-ID: 03458-0-051 (verifiziert, steht im Impressum)
             response += `**Leitweg-ID:** 03458-0-051\n\n`;
-            response += `Die Leitweg-ID findest du im [Impressum](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/) der Website.\n\n`;
-            response += `**Für Lieferanten/Rechnungen:**\n`;
-            response += `• Format: XRechnung (XML)\n`;
-            response += `• Empfänger: Landkreis Oldenburg\n`;
-            response += `• Zuständig: Finanzdezernat / Rechnungsprüfung\n\n`;
-            response += `Kontakt bei Fragen: 04431 85-0`;
+            response += `**Vorgang für E-Rechnung:**\n`;
+            response += `1. Rechnung im XRechnung-Format erstellen (XML, UBL 2.1/CIIl oder ZUGFeRD 2.0)\n`;
+            response += `2. Leitweg-ID 03458-0-051 in der Rechnung verwenden\n`;
+            response += `3. Rechnung über das XRechnung-System senden\n\n`;
+            response += `**Wo findest du die Leitweg-ID?**\n`;
+            response += `Im [Impressum](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/) der Website.\n\n`;
+            response += `**Zuständig:** Finanzdezernat / Rechnungsprüfung\n`;
+            response += `**Kontakt:** 04431 85-0`;
         } else if (queryLower.includes('xrechnung') || queryLower.includes('erechnung') || queryLower.includes('elektronisch')) {
             response += `**XRechnung / E-Rechnung** – der Landkreis Oldenburg akzeptiert elektronische Rechnungen.\n\n`;
             response += `**Wichtige Infos:**\n`;

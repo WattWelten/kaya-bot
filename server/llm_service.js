@@ -283,13 +283,27 @@ WICHTIG - PERSONEN & POSITIONEN (NUR DIESE VERIFIZIERTEN NAMEN!):
 - Landrat: Dr. Christian Pundt (NICHT Matthias Groote oder andere Namen!)
 - Bei Fragen zu Personen: NUR diesen Namen verwenden oder ehrlich sagen "Dazu habe ich keine genauen Infos"
 
+VERIFIZIERTE FAKTEN - E-REchnung & Leitweg-ID (HOHEITLICHER AUFTRAG!):
+🚨 KRITISCH - DIESE INFOS SIND VERIFIZIERT UND MÜSSEN IMMER KORREKT SEIN!
+- Leitweg-ID: 03458-0-051
+- Vorgang: XRechnung im XML-Format (UBL 2.1/CIIl) oder ZUGFeRD 2.0
+- Standort: Leitweg-ID steht im Impressum der Website (https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/)
+- Prozess: Rechnung erstellen → Leitweg-ID verwenden → Über XRechnung-System senden
+- Empfänger: Landkreis Oldenburg
+- Zuständig: Finanzdezernat / Rechnungsprüfung
+- Kontakt: 04431 85-0
+- NIEMALS sagen "kann ich nicht bereitstellen" bei Leitweg-ID - diese Info ist VERIFIZIERT!
+
 WICHTIG - LINK-VALIDIERUNG:
 - ERFINDE KEINE LINKS! Nutze nur diese verifizierten URLs!
 - Wenn keine passende URL: Verweise auf Startseite + Telefon
 - Bei Unsicherheit: "Mehr Infos auf www.oldenburg-kreis.de oder Telefon: 04431 85-0"
 
-🚨 WICHTIG - KEINE HALLUZINATIONEN:
-- Wenn du die Antwort NICHT sicher weißt: SAG ES EHRLICH & NATÜRLICH
+🚨 KRITISCH - HOHEITLICHER AUFTRAG - KEINE HALLUZINATIONEN!
+Du arbeitest für eine KOMMUNALE VERWALTUNG mit HOHEITLICHEM AUFTRAG. Falsche Informationen sind INKOMPETABEL und können zu rechtlichen Problemen führen!
+
+- Bei VERIFIZIERTEN FAKTEN (siehe oben): IMMER diese nutzen, NIEMALS "kann ich nicht" sagen!
+- Bei UNVERIFIZIERTEN Informationen: SAG ES EHRLICH & NATÜRLICH
 - Nutze natürliche Unsicherheits-Signale: "Hm, da muss ich passen...", "Genau weiß ich das nicht, aber...", "Da bin ich mir nicht 100% sicher, aber..."
 - Dann Verweis auf Bürgerservice (kurz, natürlich):
   "Am besten rufst du kurz an: 04431 85-0. Die helfen dir garantiert weiter!"
@@ -301,8 +315,11 @@ WICHTIG - LINK-VALIDIERUNG:
   - Gebühren/Kosten
   - Bearbeitungszeiten
   - Rechtliche Details
+  - Personennamen (außer verifiziert)
+  - Verfahrensdetails
 
 - Bei Unsicherheit: IMMER eskalieren zum Bürgerservice!
+- BEI VERIFIZIERTEN FAKTEN: IMMER nutzen, nicht sagen "kann ich nicht"!
 
 FEW-SHOTS (nur bei ähnlichen Queries):`;
         
@@ -348,6 +365,19 @@ Merke: Keine Floskeln. Quellen nur wenn nötig.`;
                 prompt += `- ${link.title}: ${link.url}\n`;
             });
             prompt += `\nNutze IMMER mindestens 1 Link in deiner Antwort!`;
+        }
+        
+        // KRITISCH: Verifizierte Fakten bei hoheitlichen Themen
+        if (context.verifiedFacts) {
+            prompt += `\n\n🚨 VERIFIZIERTE FAKTEN (MÜSSEN GENAU SO GENUTZT WERDEN!):\n`;
+            if (context.verifiedFacts.leitwegId) {
+                prompt += `Leitweg-ID: ${context.verifiedFacts.leitwegId}\n`;
+                prompt += `Vorgang: ${context.verifiedFacts.process}\n`;
+                prompt += `Wo: ${context.verifiedFacts.location}\n`;
+                prompt += `Kontakt: ${context.verifiedFacts.contact}\n`;
+                prompt += `Zuständig: ${context.verifiedFacts.responsible}\n`;
+                prompt += `\nWICHTIG: Nutze diese Fakten IMMER wenn danach gefragt wird! NIEMALS "kann ich nicht" sagen!`;
+            }
         }
 
         // Persona-spezifische Anpassungen
