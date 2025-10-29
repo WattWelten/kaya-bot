@@ -15,11 +15,9 @@ const guardCfg = {
         "Hoffe, das hilft",
         "Bei Fragen stehe ich zur Verfügung"
     ],
-    rotatingClosers: [
-        "Passt das so? Sonst feilen wir kurz nach.",
-        "Soll ich das direkt verlinken oder per E-Mail schicken?",
-        "Weiter mit: Unterlagen · Kosten · Termin."
-    ]
+    // Closers komplett entfernt - waren unpassend/generisch
+    // Closers werden nicht mehr automatisch hinzugefügt
+    rotatingClosers: []
 };
 
 /**
@@ -27,9 +25,10 @@ const guardCfg = {
  * 
  * @param {string} raw - Rohe LLM-Antwort
  * @param {object} state - State-Objekt mit lastFooters und lastClosers (Ring-Buffer)
+ * @param {boolean} isFirstMessage - Ist dies die erste Nachricht? (dann KEIN Closer)
  * @returns {string} - Bereinigte Antwort
  */
-function applyOutputGuard(raw, state) {
+function applyOutputGuard(raw, state, isFirstMessage = false) {
     if (!raw || typeof raw !== 'string') {
         return raw || '';
     }
@@ -75,18 +74,8 @@ function applyOutputGuard(raw, state) {
         return "\n" + match;
     });
 
-    // 5) Closers rotieren (max. alle 3–4 Turns)
-    // Nur wenn noch kein Closer im Text vorhanden ist
-    if (!/(Unterlagen|Weiter mit|Termin|Passt das|Soll ich)/i.test(text)) {
-        const seenClosers = state.lastClosers || [];
-        const candidates = guardCfg.rotatingClosers.filter(c => !seenClosers.includes(c));
-        const closer = candidates[0] || guardCfg.rotatingClosers[0] || "";
-        if (closer) {
-            text += (text.endsWith('\n') ? '' : '\n') + closer;
-            // Ring-Buffer: Maximal die letzten 2 behalten
-            state.lastClosers = [...seenClosers.slice(-2), closer];
-        }
-    }
+    // 5) Closers entfernt - waren unpassend/generisch
+    // Keine automatischen Closers mehr
 
     return text.trim();
 }

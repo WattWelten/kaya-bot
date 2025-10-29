@@ -119,8 +119,9 @@ class KAYACharacterHandler {
             targetAgent = 'ratsinfo';
         } else if (queryLower.includes('xrechnung') || queryLower.includes('erechnung') || queryLower.includes('leitweg') || queryLower.includes('03458-0-051')) {
             targetAgent = 'rechnung_ebilling';
-        } else if (queryLower.includes('aktion saubere landschaft') || queryLower.includes('veranstaltung') || queryLower.includes('aktionen')) {
-            targetAgent = 'aktionen_veranstaltungen';
+        } else if (queryLower.includes('aktion saubere landschaft') || queryLower.includes('veranstaltung') || queryLower.includes('aktionen') ||
+                   queryLower.includes('was geht') || queryLower.includes('aktuell') || queryLower.includes('neuigkeiten') || queryLower.includes('themen')) {
+            targetAgent = 'aktionen_veranstaltungen'; // Für "was geht im landkreis" etc.
         } else if (queryLower.includes('stelle') || queryLower.includes('bewerbung') || queryLower.includes('job')) {
             targetAgent = 'stellenportal';
         } else if (queryLower.includes('kontakt') || queryLower.includes('telefon') || queryLower.includes('sprechzeit')) {
@@ -687,6 +688,10 @@ class KAYACharacterHandler {
             
             // Session-Kontext abrufen (vor User-Nachricht hinzufügen)
             const session = this.contextMemory.getSession(sessionId);
+            
+            // WICHTIG: isFirstMessage VOR dem Hinzufügen der User-Nachricht berechnen
+            const isFirstMessage = !session || session.messages.length <= 1;
+            
             const sessionContext = {
                 previousIntention: session.messages.length > 1 ? 
                     session.messages[session.messages.length - 2].context?.intention : null,
@@ -720,9 +725,6 @@ class KAYACharacterHandler {
             
             // Kommunikationsmodus erkennen (Text/Audio)
             const communicationMode = this.detectCommunicationMode(query, updatedSessionContext);
-            
-            // Prüfen ob erste Nachricht in Session
-            const isFirstMessage = !session || session.messages.length <= 1;
             
             // NEU: User-Daten extrahieren
             this.contextMemory.extractUserData(query, sessionId);
@@ -769,7 +771,8 @@ class KAYACharacterHandler {
                     // Post-Processing: Greeting entfernen falls vorhanden
                     finalResponse = finalResponse.replace(/^(Moin!?|Hallo!?|Hi!?)\s*/i, '');
                     
-                    // Output-Guard: Floskeln entfernen, kürzen, Quellen deduplizieren, Closers rotieren
+                    // Output-Guard: Floskeln entfernen, kürzen, Quellen deduplizieren
+                    // WICHTIG: isFirstMessage übergeben, damit kein Closer bei erster Nachricht
                     const OutputGuard = require('./utils/OutputGuard');
                     const sessionData = this.contextMemory.getSession(sessionId);
                     if (!sessionData.context) {
@@ -778,7 +781,7 @@ class KAYACharacterHandler {
                     if (!sessionData.context.outputGuardState) {
                         sessionData.context.outputGuardState = { lastFooters: [], lastClosers: [] };
                     }
-                    finalResponse = OutputGuard.applyOutputGuard(finalResponse, sessionData.context.outputGuardState);
+                    finalResponse = OutputGuard.applyOutputGuard(finalResponse, sessionData.context.outputGuardState, isFirstMessage);
                     this.contextMemory.saveSession(sessionId); // State persistieren
                     
                     // Check if response has Markdown links
@@ -1407,13 +1410,14 @@ class KAYACharacterHandler {
         let response = `${greeting}\n\n`;
         
         if (queryLower.includes('landrat') || queryLower.includes('dr christian pundt') || queryLower.includes('christian pundt')) {
-            response += `**Landrat Dr. Christian Pundt** leitet die Kreisverwaltung des Landkreises Oldenburg.\n\n`;
-            response += `Seine Aufgaben umfassen:\n`;
+            // Korrekte Landrat-Info: Dr. Christian Pundt
+            response += `**Dr. Christian Pundt** ist der Landrat des Landkreises Oldenburg.\n\n`;
+            response += `**Aufgaben:**\n`;
             response += `• Leitung der Kreisverwaltung\n`;
             response += `• Repräsentation des Landkreises\n`;
             response += `• Vorsitz im Kreistag\n\n`;
-            response += `Weitere Informationen findest du hier: [Landrat](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/)\n\n`;
-            response += `Hast du eine konkrete Frage zum Landrat oder zu seinen Aufgaben?`;
+            response += `Weitere Infos: [Kreisverwaltung](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/)\n\n`;
+            response += `Hast du eine konkrete Frage?`;
         } else if (queryLower.includes('kreistagsmitglieder') || queryLower.includes('kreistag')) {
             response += `Der **Kreistag** ist das Hauptorgan des Landkreises.\n\n`;
             response += `Du findest alle Mitglieder und Informationen hier:\n`;
@@ -1452,14 +1456,14 @@ class KAYACharacterHandler {
         
         let response = `${greeting}\n\n`;
         
-        if (queryLower.includes('leitweg') || queryLower.includes('03458-0-051')) {
-            response += `**Rechnungsleitweg für den Landkreis Oldenburg:**\n\n`;
-            response += `• **Leitweg-ID:** 03458-0-051\n`;
-            response += `• **Recipient ID:** DE-NI-0192 (Bundesland-Schema)\n`;
-            response += `• **Empfänger:** Landkreis Oldenburg\n`;
-            response += `• **Zuständige Stelle:** Finanzdezernat / Rechnungsprüfung\n\n`;
-            response += `Die Leitweg-ID findest du auch im [Impressum](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/).\n\n`;
-            response += `Brauchst du weitere Infos zum E-Rechnungsprozess?`;
+        if (queryLower.includes('leitweg') || queryLower.includes('03458-0-051') || queryLower.includes('leitweg-id') || queryLower.includes('leitweg id')) {
+            response += `**Leitweg-ID:** 03458-0-051\n\n`;
+            response += `Die Leitweg-ID findest du im [Impressum](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/) der Website.\n\n`;
+            response += `**Für Lieferanten/Rechnungen:**\n`;
+            response += `• Format: XRechnung (XML)\n`;
+            response += `• Empfänger: Landkreis Oldenburg\n`;
+            response += `• Zuständig: Finanzdezernat / Rechnungsprüfung\n\n`;
+            response += `Kontakt bei Fragen: 04431 85-0`;
         } else if (queryLower.includes('xrechnung') || queryLower.includes('erechnung') || queryLower.includes('elektronisch')) {
             response += `**XRechnung / E-Rechnung** – der Landkreis Oldenburg akzeptiert elektronische Rechnungen.\n\n`;
             response += `**Wichtige Infos:**\n`;
@@ -2744,38 +2748,55 @@ Shall I set a notification?`
      */
     addSourceFooter(response, intentionAnalysis) {
         // Prüfe ob schon Quelle vorhanden
-        if (response.includes('Quelle:') || response.includes('Stand:')) {
+        if (response.includes('Quelle:') || response.includes('Source:')) {
             return response;
         }
         
-        // Quelle bestimmen basierend auf Intention
+        // Quelle nur hinzufügen wenn wirklich relevant (nicht bei generischen Fragen)
+        // Und nur wenn Antwort aus spezifischen Agent-Daten stammt
+        if (!intentionAnalysis || !intentionAnalysis.type || intentionAnalysis.type === 'general') {
+            return response; // Keine Quelle bei generischen Fragen
+        }
+        
+        // Spezifische Quellen basierend auf Intention/Agent
         const sourceMap = {
-            bauantrag: 'Bauen & Wohnen',
+            bauantrag: 'Bauamt',
             buergerdienste: 'Bürgerdienste',
             jobcenter: 'Jobcenter',
             kfz_zulassung: 'KFZ-Zulassung',
+            führerschein: 'Führerscheinstelle',
             politik: 'Kreistag',
+            politik_landkreis: 'Kreistag',
+            ratsinfo: 'Ratsinfo',
+            rechnung_ebilling: 'Finanzdezernat',
             soziales: 'Soziales',
-            jugend: 'Jugend',
-            schule: 'Bildung',
-            verkehr: 'Verkehr',
-            wirtschaft: 'Wirtschaft',
-            ordnungsamt: 'Ordnung & Sicherheit',
-            senioren: 'Senioren',
+            jugend: 'Jugendamt',
+            stellenportal: 'Personalabteilung',
+            kontakte: 'Bürgerservice',
+            aktionen_veranstaltungen: 'Öffentlichkeitsarbeit',
+            schule: 'Schulamt',
+            verkehr: 'Straßenverkehrsamt',
+            wirtschaft: 'Wirtschaftsförderung',
+            ordnungsamt: 'Ordnungsamt',
+            senioren: 'Seniorenberatung',
             inklusion: 'Inklusion',
             digitalisierung: 'Digitalisierung',
             gleichstellung: 'Gleichstellung',
-            lieferanten: 'Vergabe',
+            lieferanten: 'Vergabestelle',
             tourismus: 'Tourismus'
         };
         
-        const source = sourceMap[intentionAnalysis.type] || 'Landkreis Oldenburg';
-        const timestamp = new Date().toLocaleDateString('de-DE', { month: '2-digit', year: 'numeric' });
+        const source = sourceMap[intentionAnalysis.type];
         
-        // Fußzeile im Markdown-Format (wird im Frontend gerendert)
-        const footer = `\n\n---\n*Quelle: ${source} • Stand: ${timestamp}*`;
+        // Nur wenn spezifische Quelle vorhanden, sonst keine generische Quelle
+        if (!source) {
+            return response;
+        }
         
-        console.log(`📝 Quellen-Fußzeile hinzugefügt: ${source} (${timestamp})`);
+        // Formatierung: Integriert, weniger markant (nur als kleine Info, keine große Fußzeile)
+        const footer = `\n\n*Quelle: ${source}*`;
+        
+        console.log(`📝 Spezifische Quelle hinzugefügt: ${source}`);
         
         return response + footer;
     }
