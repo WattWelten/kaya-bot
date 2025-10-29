@@ -281,14 +281,45 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
       console.warn('⚠️ Draco-Konfiguration übersprungen:', e);
     }
 
-    // Load GLB Model: ZUERST unkomprimierte GLB (CSP-sicher, kein Draco nötig)
-    console.log('📦 Starte GLB-Loading (fallback, ohne Draco): /avatar/Kayanew.glb');
-    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew.glb', scene, () => {
+    // Load GLB Model: ZUERST neue GLB mit Shape Keys (kayanew_mouth.glb), Fallback auf alte
+    console.log('📦 Starte GLB-Loading (mit Shape Keys): /avatar/Kayanew_mouth.glb');
+    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew_mouth.glb', scene, () => {
       console.log('✅ GLB erfolgreich geladen!');
       setIsLoading(false);
       
       // Skinned Mesh mit MorphTargets finden
-      const skinned = scene.meshes.find(m => (m as any).morphTargetManager) as BABYLON.AbstractMesh;
+      // PRIORITÄT: Head_Mesh (meiste Morph Targets), dann andere
+      const meshesWithMorphs = scene.meshes.filter(m => {
+        const mtm = (m as any).morphTargetManager;
+        return mtm && mtm.numTargets > 0;
+      }) as BABYLON.AbstractMesh[];
+      
+      if (meshesWithMorphs.length === 0) {
+        console.error('❌ Kein Mesh mit Morph Targets gefunden!');
+        setIsLoading(false);
+        return;
+      }
+      
+      // Sortiere nach Anzahl Morph Targets (meiste zuerst) und präferiere "Head" im Namen
+      meshesWithMorphs.sort((a, b) => {
+        const aMtm = (a as any).morphTargetManager;
+        const bMtm = (b as any).morphTargetManager;
+        const aCount = aMtm?.numTargets || 0;
+        const bCount = bMtm?.numTargets || 0;
+        const aIsHead = a.name?.toLowerCase().includes('head') ? 1 : 0;
+        const bIsHead = b.name?.toLowerCase().includes('head') ? 1 : 0;
+        return (bIsHead - aIsHead) || (bCount - aCount);
+      });
+      
+      const skinned = meshesWithMorphs[0];
+      console.log(`🎯 Gewähltes Mesh: '${skinned.name}' mit ${(skinned as any).morphTargetManager?.numTargets || 0} Morph Targets`);
+      if (meshesWithMorphs.length > 1) {
+        console.log(`📋 Alle Meshes mit Morph Targets:`);
+        meshesWithMorphs.forEach(m => {
+          const mtm = (m as any).morphTargetManager;
+          console.log(`   - ${m.name}: ${mtm?.numTargets || 0} Morph Targets`);
+        });
+      }
       
       if (skinned) {
         // 1) Normalisierung: Pivot + Vorwärtsachse
@@ -373,23 +404,37 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
         console.log(`📦 Loading GLB: ${percent}%`);
       }
     }, (scene, message, exception) => {
-      console.error('❌ GLB Loading Fehler (Fallback ohne Draco):', message, exception);
-      // Zweiter Versuch: Draco-komprimierte Datei (falls lokale Draco-Dateien vorhanden sind)
-      console.log('🔁 Versuche Draco-Variante zu laden: /avatar/Kayanew-draco.glb');
-      BABYLON.SceneLoader.Append('/avatar/', 'Kayanew-draco.glb', scene, () => {
-        console.log('✅ GLB (Draco) erfolgreich geladen!');
+      console.error('❌ GLB Loading Fehler (mit Shape Keys):', message, exception);
+      // Fallback 1: Alte Version ohne Shape Keys
+      console.log('🔁 Versuche alte GLB: /avatar/Kayanew.glb');
+      BABYLON.SceneLoader.Append('/avatar/', 'Kayanew.glb', scene, () => {
+        console.log('✅ GLB (alte Version) erfolgreich geladen!');
         setIsLoading(false);
       }, (progressEvent2) => {
         if (progressEvent2.loaded && progressEvent2.total) {
           const percent2 = Math.round((progressEvent2.loaded / progressEvent2.total) * 100);
           setLoadingProgress(percent2);
-          console.log(`📦 Loading GLB (Draco): ${percent2}%`);
+          console.log(`📦 Loading GLB (alte): ${percent2}%`);
         }
       }, (scene2, message2, exception2) => {
-        console.error('❌ GLB Loading Fehler (Draco):', message2, exception2);
-        setIsLoading(false);
-        setLoadingProgress(0);
-        setLoadingFailed(true);
+        console.error('❌ GLB Loading Fehler (alte Version):', message2, exception2);
+        // Fallback 2: Draco-komprimierte Datei
+        console.log('🔁 Versuche Draco-Variante: /avatar/Kayanew-draco.glb');
+        BABYLON.SceneLoader.Append('/avatar/', 'Kayanew-draco.glb', scene2, () => {
+          console.log('✅ GLB (Draco) erfolgreich geladen!');
+          setIsLoading(false);
+        }, (progressEvent3) => {
+          if (progressEvent3.loaded && progressEvent3.total) {
+            const percent3 = Math.round((progressEvent3.loaded / progressEvent3.total) * 100);
+            setLoadingProgress(percent3);
+            console.log(`📦 Loading GLB (Draco): ${percent3}%`);
+          }
+        }, (scene3, message3, exception3) => {
+          console.error('❌ GLB Loading Fehler (alle Varianten):', message3, exception3);
+          setIsLoading(false);
+          setLoadingProgress(0);
+          setLoadingFailed(true);
+        });
       });
     });
 

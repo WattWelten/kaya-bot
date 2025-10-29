@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Inspect GLB (Bones & MorphTargets)</title>
+  <style>html,body,#render{width:100%;height:100%;margin:0;overflow:hidden}</style>
+  <!-- CDN Mirror 1: unpkg (nutze dies, wenn cdn.babylonjs.com blockiert ist) -->
+  <script src="https://unpkg.com/babylonjs@6.37.1/babylon.js"></script>
+  <script src="https://unpkg.com/babylonjs-loaders@6.37.1/babylonjs.loaders.min.js"></script>
+  <!-- Alternative Mirrors (bei Bedarf aktivieren): -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/babylonjs@6.37.1/babylon.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/babylonjs-loaders@6.37.1/babylonjs.loaders.min.js"></script> -->
+</head>
+<body>
+  <canvas id="render"></canvas>
+  <script>
+    const canvas = document.getElementById('render');
+    const engine = new BABYLON.Engine(canvas, true);
+    const scene = new BABYLON.Scene(engine);
+    const camera = new BABYLON.ArcRotateCamera('cam', 0, 1.2, 2.2, BABYLON.Vector3.Zero(), scene);
+    camera.attachControl(canvas, true);
+    new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0, 1, 0), scene);
+
+    // Pfad/Dateiname bei Bedarf anpassen
+    const folder = '/avatar/';
+    const file = 'Kayanew.glb';
+
+    BABYLON.SceneLoader.Append(folder, file, scene, () => {
+      console.log('✅ GLB geladen:', file);
+      console.log('Meshes:', scene.meshes.length);
+      console.log('Skeletons:', scene.skeletons.length);
+
+      // Bones listen und Mund/Kiefer/Lippe markieren
+      scene.skeletons.forEach((sk, si) => {
+        console.log(`Skeleton[${si}] ${sk.name} → Bones: ${sk.bones.length}`);
+        sk.bones.forEach(b => {
+          const n = (b.name || '').toLowerCase();
+          if (n.includes('jaw') || n.includes('mouth') || n.includes('lip')) {
+            console.log('  🔎 Bone:', b.name);
+          }
+        });
+      });
+
+      // TransformNodes prüfen
+      if (scene.transformNodes) {
+        scene.transformNodes.forEach(tn => {
+          const n = (tn.name || '').toLowerCase();
+          if (n.includes('jaw') || n.includes('mouth') || n.includes('lip')) {
+            console.log('  🧩 TransformNode:', tn.name);
+          }
+        });
+      }
+
+      // MorphTargets prüfen
+      const withMT = scene.meshes.filter(m => m.morphTargetManager);
+      if (withMT.length > 0) {
+        const mtm = withMT[0].morphTargetManager;
+        const names = [];
+        for (let i = 0; i < mtm.numTargets; i++) {
+          const t = mtm.getTarget(i);
+          names.push(t?.name || `morph_${i}`);
+        }
+        console.log('MorphTargets:', names);
+      } else {
+        console.log('Keine MorphTargets gefunden.');
+      }
+
+      engine.runRenderLoop(() => scene.render());
+    }, null, (scene, msg, ex) => {
+      console.error('❌ Load-Fehler:', msg, ex);
+    });
+
+    window.addEventListener('resize', () => engine.resize());
+  </script>
+</body>
+</html>
+
+
