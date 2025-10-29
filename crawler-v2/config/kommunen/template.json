@@ -1,0 +1,54 @@
+{
+  "_note": "Template für neue Kommunen - Kopieren und anpassen",
+  "kommune": {
+    "name": "Name der Kommune",
+    "domain": "example.de",
+    "base_url": "https://www.example.de",
+    "ratsinfo_domain": "example.ratsinfomanagement.net",
+    "_note_ratsinfo": "Optional: Nur falls Ratsinfo-System vorhanden",
+    "version": "1.0",
+    "last_updated": "YYYY-MM-DD"
+  },
+  "agents": {
+    "buergerdienste": {
+      "name": "Bürgerdienste",
+      "description": "Dienstleistungen, Formulare, Anträge",
+      "webSources": [
+        "https://www.example.de/buergerdienste/",
+        "_note": "Füge alle relevanten URLs hinzu"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "ratsinfo": {
+      "name": "Ratsinfo",
+      "description": "Kreistag und Gremien",
+      "webSources": [
+        "https://www.example.de/kreistag/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "stellenportal": {
+      "name": "Stellenportal",
+      "description": "Arbeitsplätze und Karriere",
+      "webSources": [
+        "https://www.example.de/stellenausschreibungen/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "_note_agents": "Füge weitere Agenten nach Bedarf hinzu. Standard-Agenten: buergerdienste, ratsinfo, stellenportal, kontakte, jugend, soziales, politik, jobcenter"
+  },
+  "crawler_settings": {
+    "timeout": 30000,
+    "waitUntil": "networkidle2",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "retryAttempts": 3,
+    "retryDelay": 2000,
+    "maxConcurrent": 5,
+    "delayBetweenRequests": 500,
+    "_note": "Anpassen nach Bedarf - höhere Werte = langsamer aber robuster"
+  }
+}
+

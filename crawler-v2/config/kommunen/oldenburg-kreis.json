@@ -1,0 +1,198 @@
+{
+  "kommune": {
+    "name": "Landkreis Oldenburg",
+    "domain": "oldenburg-kreis.de",
+    "base_url": "https://www.oldenburg-kreis.de",
+    "ratsinfo_domain": "oldenburg-kreis.ratsinfomanagement.net",
+    "version": "1.0",
+    "last_updated": "2025-10-29"
+  },
+  "agents": {
+    "buergerdienste": {
+      "name": "Bürgerdienste",
+      "description": "Dienstleistungen, Formulare, Anträge",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/planen-und-bauen/bauen-im-landkreis-oldenburg/antraege-und-formulare/",
+        "https://www.oldenburg-kreis.de/ordnung-und-verkehr/kfz-zulassungsstelle/",
+        "https://www.oldenburg-kreis.de/ordnung-und-verkehr/fuehrerscheinstelle/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "ratsinfo": {
+      "name": "Ratsinfo",
+      "description": "Kreistag und Gremien",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "stellenportal": {
+      "name": "Stellenportal",
+      "description": "Arbeitsplätze und Karriere",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/arbeitgeber-landkreis-oldenburg/stellenausschreibungen/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "kontakte": {
+      "name": "Kontakte",
+      "description": "Ansprechpartner und Öffnungszeiten",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/ansprechpartner-in-der-kreisverwaltung/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "jugend": {
+      "name": "Jugend",
+      "description": "Jugend und Familie",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/jugend-und-familie/",
+        "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "soziales": {
+      "name": "Soziales",
+      "description": "Soziale Dienste und Leistungen",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/gesundheit-und-soziales/",
+        "https://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "politik": {
+      "name": "Politik",
+      "description": "Kreistag, Sitzungen, Beschlüsse",
+      "webSources": [
+        "https://oldenburg-kreis.ratsinfomanagement.net/",
+        "https://oldenburg-kreis.ratsinfomanagement.net/gremien/",
+        "https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/",
+        "https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/",
+        "https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/",
+        "https://oldenburg-kreis.ratsinfomanagement.net/personen/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/",
+        "https://www.oldenburg-kreis.de/impressum/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "jobcenter": {
+      "name": "Jobcenter",
+      "description": "Jobcenter und Bürgergeld",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/jobcenter-landkreis-oldenburg/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/jobcenter/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "wirtschaft": {
+      "name": "Wirtschaft",
+      "description": "Wirtschaftsförderung",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/wirtschaftsfoerderung/",
+        "https://www.oldenburg-kreis.de/wirtschaft-und-arbeit/schwarzarbeitsbekaempfung/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "ordnungsamt": {
+      "name": "Ordnungsamt",
+      "description": "Ordnungswidrigkeiten",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/ordnungsamt/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "senioren": {
+      "name": "Senioren",
+      "description": "Seniorenberatung",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/gesundheit-und-soziales/senioren/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "inklusion": {
+      "name": "Inklusion",
+      "description": "Teilhabe und Inklusion",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "digitalisierung": {
+      "name": "Digitalisierung",
+      "description": "E-Government und Digitalisierung",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "gleichstellung": {
+      "name": "Gleichstellung",
+      "description": "Gleichstellung und Gewaltschutz",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/gleichstellungsstelle/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "rechnung_ebilling": {
+      "name": "Rechnung E-Billing",
+      "description": "E-Rechnung und Leitweg-ID",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "aktionen_veranstaltungen": {
+      "name": "Aktionen und Veranstaltungen",
+      "description": "Aktuelle Themen und Veranstaltungen",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/aktuelles/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    },
+    "politik_landkreis": {
+      "name": "Politik Landkreis",
+      "description": "Landkreis-spezifische Politik",
+      "webSources": [
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/",
+        "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/"
+      ],
+      "fileSources": [],
+      "pdfSources": []
+    }
+  },
+  "crawler_settings": {
+    "timeout": 30000,
+    "waitUntil": "networkidle2",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "retryAttempts": 3,
+    "retryDelay": 2000,
+    "maxConcurrent": 5,
+    "delayBetweenRequests": 500
+  }
+}
+

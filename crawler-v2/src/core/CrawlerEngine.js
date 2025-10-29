@@ -7,6 +7,7 @@ const PDFCrawler = require('../sources/PDFCrawler');
 const DataProcessor = require('../processors/DataProcessor');
 const DataCompressor = require('../processors/DataCompressor');
 const BackupManager = require('../processors/BackupManager');
+const KommuneConfigLoader = require('./KommuneConfigLoader');
 
 class CrawlerEngine {
     constructor() {
@@ -18,25 +19,14 @@ class CrawlerEngine {
         this.dataCompressor = new DataCompressor();
         this.backupManager = new BackupManager();
         
-        this.agents = [
-            'buergerdienste',
-            'ratsinfo', 
-            'stellenportal',
-            'kontakte',
-            'jugend',
-            'soziales',
-            'politik',
-            'jobcenter',
-            'wirtschaft',
-            'ordnungsamt',
-            'senioren',
-            'inklusion',
-            'digitalisierung',
-            'gleichstellung',
-            'rechnung_ebilling',
-            'aktionen_veranstaltungen',
-            'politik_landkreis'
-        ];
+        // Lade kommunenspezifische Konfiguration
+        this.kommuneConfig = new KommuneConfigLoader();
+        const kommuneInfo = this.kommuneConfig.getKommuneInfo();
+        this.logger.info(`🌍 Kommune: ${kommuneInfo.name} (${kommuneInfo.domain})`);
+        
+        // Agent-Namen aus Konfiguration laden (statt hardcoded)
+        this.agents = this.kommuneConfig.getAgentNames();
+        this.logger.info(`📋 ${this.agents.length} Agenten konfiguriert: ${this.agents.join(', ')}`);
         
         this.dataDir = path.join(__dirname, '../../data');
         this.ensureDataDirectories();
@@ -149,6 +139,31 @@ class CrawlerEngine {
     }
 
     getAgentConfig(agentName) {
+        // Lade Konfiguration aus kommunenspezifischer Datei
+        const agentConfig = this.kommuneConfig.getAgentConfig(agentName);
+        
+        if (!agentConfig) {
+            this.logger.warn(`⚠️ Keine Konfiguration für Agent ${agentName} gefunden`);
+            return {
+                webSources: [],
+                fileSources: [],
+                pdfSources: []
+            };
+        }
+        
+        return {
+            webSources: agentConfig.webSources || [],
+            fileSources: agentConfig.fileSources || [],
+            pdfSources: agentConfig.pdfSources || []
+        };
+    }
+    
+    /**
+     * DEPRECATED: getAgentConfigOld - Legacy-Methode (wird nicht mehr verwendet)
+     * Diese Methode wird durch kommunenspezifische Konfiguration ersetzt
+     */
+    getAgentConfigOld(agentName) {
+        // Legacy: Hardcoded Configs für alte Kompatibilität (falls nötig)
         const configs = {
             buergerdienste: {
                 webSources: [
