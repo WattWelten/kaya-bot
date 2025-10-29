@@ -818,10 +818,10 @@ class KAYACharacterHandler {
                     // Post-Processing: Greeting entfernen falls vorhanden
                     finalResponse = finalResponse.replace(/^(Moin!?|Hallo!?|Hi!?)\s*/i, '');
                     
-        // KRITISCH: Post-Processing - verhindere Halluzinationen für ALLE Agenten!
+                    // KRITISCH: Post-Processing - verhindere Halluzinationen für ALLE Agenten!
         
         // 1. Namen-Korrektur (Landrat)
-        const landratFacts = this.agentHandler.getVerifiedFacts('landrat');
+        const landratFacts = this.getAgentHandler().getVerifiedFacts('landrat');
         const correctLandratName = landratFacts?.name || 'Dr. Christian Pundt';
         const invalidNames = ['Matthias Groote', 'Jens Pundt', 'Jens', 'Groote'];
         
