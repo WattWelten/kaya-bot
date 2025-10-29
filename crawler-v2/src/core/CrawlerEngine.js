@@ -74,6 +74,20 @@ class CrawlerEngine {
         this.logger.info('🔄 Verarbeite alle Agent-Daten...');
         const processedResults = await this.dataProcessor.processAll(results);
         
+        // Validiere Links (kritisch für Production-Qualität)
+        this.logger.info('🔍 Validiere Links...');
+        try {
+            for (const [agentName, agentData] of Object.entries(processedResults)) {
+                if (Array.isArray(agentData) && agentData.length > 0) {
+                    const validatedData = await this.dataProcessor.validateLinks(agentData);
+                    processedResults[agentName] = validatedData;
+                    this.logger.info(`✅ ${agentName}: Links validiert`);
+                }
+            }
+        } catch (error) {
+            this.logger.error('⚠️ Link-Validierung Fehler (fortfahren ohne Validierung):', error.message);
+        }
+        
         // Speichere verarbeitete Daten
         await this.saveProcessedData(processedResults, timestamp);
         

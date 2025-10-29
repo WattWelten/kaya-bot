@@ -209,33 +209,153 @@ class KAYAAgentManager {
         try {
             const { intention, confidence } = intentionAnalysis;
             const { persona } = personaAnalysis;
+            const queryLower = query.toLowerCase();
             
-            // Intention-basiertes Routing
-            const agentMapping = {
-                kfz_zulassung: 'buergerdienste',
-                führerschein: 'buergerdienste',
-                bauantrag: 'buergerdienste',
-                gewerbe: 'buergerdienste',
-                landwirtschaft: 'buergerdienste',
-                handwerk: 'buergerdienste',
-                studium: 'buergerdienste',
-                soziales: 'soziales',
-                gesundheit: 'soziales',
-                bildung: 'jugend',
-                umwelt: 'buergerdienste',
-                notfall: 'kontakte',
-                tourismus: 'buergerdienste'
-            };
+            // WICHTIG: Keyword-basiertes Routing VOR Intention-basiertem Routing
+            // (höchste Priorität für spezifische Keywords)
+            let targetAgent = null;
             
-            let targetAgent = agentMapping[intention] || 'buergerdienste';
+            // Landrat / politik_landkreis Keywords
+            if (queryLower.includes('landrat') || 
+                queryLower.includes('christian pundt') || 
+                queryLower.includes('dr. christian pundt') ||
+                queryLower.includes('dr christian pundt') ||
+                queryLower.includes('kreistagsmitglieder') || 
+                queryLower.includes('kreisorgane')) {
+                targetAgent = 'politik_landkreis';
+            }
+            // XRechnung / rechnung_ebilling Keywords
+            else if (queryLower.includes('xrechnung') || 
+                     queryLower.includes('e-rechnung') || 
+                     queryLower.includes('erechnung') || 
+                     queryLower.includes('leitweg') || 
+                     queryLower.includes('03458-0-051') ||
+                     queryLower.includes('ebilling')) {
+                targetAgent = 'rechnung_ebilling';
+            }
+            // Ratsinfo Keywords
+            else if (queryLower.includes('sitzung') || 
+                     queryLower.includes('kreistagssitzung') || 
+                     queryLower.includes('beschluss') ||
+                     queryLower.includes('tagesordnung')) {
+                targetAgent = 'ratsinfo';
+            }
+            // Aktionen/Veranstaltungen Keywords
+            else if (queryLower.includes('aktion saubere landschaft') || 
+                     queryLower.includes('veranstaltung') && !queryLower.includes('sitzung') ||
+                     queryLower.includes('aktionen')) {
+                targetAgent = 'aktionen_veranstaltungen';
+            }
+            // Stellenportal Keywords (nur wenn nicht "Bewerbung" in Kontext mit Persona-Routing)
+            else if ((queryLower.includes('stelle') && !queryLower.includes('melde') && !queryLower.includes('bauantrag')) || 
+                     (queryLower.includes('bewerbung') && persona.type !== 'unemployed' && persona.type !== 'low_income') ||
+                     (queryLower.includes('job') && !queryLower.includes('center') && !queryLower.includes('jobcenter'))) {
+                targetAgent = 'stellenportal';
+            }
+            // Bauantrag hat Priorität über "stelle"
+            else if (queryLower.includes('bauantrag') || queryLower.includes('bau beantragen')) {
+                targetAgent = 'buergerdienste';
+            }
+            // Kontakte Keywords (nur wenn nicht Migrant-spezifisch)
+            else if ((queryLower.includes('kontakt') && !queryLower.includes('landrat') && !queryLower.includes('migrant')) || 
+                     (queryLower.includes('telefon') && !queryLower.includes('migrant')) ||
+                     (queryLower.includes('sprechzeit') && !queryLower.includes('migrant'))) {
+                targetAgent = 'kontakte';
+            }
+            // Migrant Hilfe → buergerdienste (höchste Priorität)
+            else if (queryLower.includes('migrant hilfe') || queryLower.includes('migrant beratung')) {
+                targetAgent = 'buergerdienste';
+            }
             
-            // Persona-basiertes Routing
-            if (persona.type === 'youth' || persona.type === 'student') {
-                targetAgent = 'jugend';
-            } else if (persona.type === 'unemployed' || persona.type === 'low_income') {
-                targetAgent = 'jobcenter'; // Jobcenter für Arbeitslose
+            // Falls kein Keyword-Match, Intention-basiertes Routing verwenden
+            if (!targetAgent) {
+                const agentMapping = {
+                    kfz_zulassung: 'buergerdienste',
+                    führerschein: 'buergerdienste',
+                    bauantrag: 'buergerdienste',
+                    gewerbe: 'buergerdienste',
+                    landwirtschaft: 'buergerdienste',
+                    handwerk: 'buergerdienste',
+                    studium: 'buergerdienste',
+                    soziales: 'soziales',
+                    gesundheit: 'soziales',
+                    bildung: 'jugend',
+                    umwelt: 'buergerdienste',
+                    notfall: 'kontakte',
+                    tourismus: 'buergerdienste',
+                    politik: 'politik_landkreis',  // NEU: politik → politik_landkreis
+                    ratsinfo: 'ratsinfo',
+                    sitzung: 'ratsinfo',
+                    tagesordnung: 'ratsinfo',
+                    beschluss: 'ratsinfo',
+                    landrat: 'politik_landkreis',  // NEU
+                    kreistag: 'politik_landkreis',  // NEU
+                    xrechnung: 'rechnung_ebilling',  // NEU
+                    erechnung: 'rechnung_ebilling',  // NEU
+                    leitweg: 'rechnung_ebilling',  // NEU
+                    ebilling: 'rechnung_ebilling',  // NEU
+                    stellen: 'stellenportal',  // NEU
+                    bewerbung: 'stellenportal',  // NEU
+                    ausbildung: 'stellenportal',
+                    praktikum: 'stellenportal',
+                    job: 'stellenportal',
+                    kontakt: 'kontakte',
+                    telefon: 'kontakte',
+                    email: 'kontakte',
+                    sprechzeit: 'kontakte',
+                    standort: 'kontakte',
+                    öffnungszeiten: 'kontakte',
+                    aktionen: 'aktionen_veranstaltungen',  // NEU
+                    veranstaltungen: 'aktionen_veranstaltungen',  // NEU
+                    saubere: 'aktionen_veranstaltungen',  // NEU
+                    events: 'aktionen_veranstaltungen',
+                    ordnungsamt: 'buergerdienste',
+                    senioren: 'senioren',
+                    inklusion: 'inklusion',
+                    digitalisierung: 'digitalisierung',
+                    gleichstellung: 'gleichstellung'
+                };
+                
+                targetAgent = agentMapping[intention] || 'buergerdienste';
+            }
+            
+            // Keyword-basierte Spezial-Routings (höchste Priorität)
+            if (queryLower.includes('kindergeld')) {
+                targetAgent = 'jugend'; // Kindergeld → jugend
+            } else if (queryLower.includes('bürgergeld') || queryLower.includes('buergergeld')) {
+                targetAgent = 'soziales'; // Bürgergeld → soziales (nicht jobcenter)
+            }
+            
+            // Persona-basiertes Routing (nur wenn noch kein Keyword-Agent gesetzt)
+            // UND nur für bestimmte Queries, nicht für alle
+            if (!targetAgent || targetAgent === 'buergerdienste') {
+                if (persona.type === 'youth' || persona.type === 'student') {
+                    // Nur wenn Query jugendbezogen ist
+                    if (queryLower.includes('jugend') || queryLower.includes('kind') || queryLower.includes('kindergeld') || queryLower.includes('schule')) {
+                        targetAgent = 'jugend';
+                    }
+                }
+            }
+            
+            // Jobcenter-Routing nur wenn Query arbeitslos-bezogen ist
+            if (persona.type === 'unemployed' || persona.type === 'low_income') {
+                if (queryLower.includes('arbeitslos') || queryLower.includes('arbeitslosengeld')) {
+                    targetAgent = 'jobcenter';
+                } else if (queryLower.includes('bewerbung') || queryLower.includes('stelle')) {
+                    // Bewerbung → stellenportal hat Vorrang
+                    targetAgent = 'stellenportal';
+                } else if (queryLower.includes('sozialhilfe') || queryLower.includes('sozial')) {
+                    // Sozialhilfe → soziales Agent
+                    targetAgent = 'soziales';
+                }
+                // Bürgergeld → soziales (nicht jobcenter) - bereits oben abgefangen
             } else if (persona.type === 'migrant') {
-                targetAgent = 'buergerdienste'; // Allgemeine Beratung für Migranten
+                // Migrant + "Hilfe" → immer buergerdienste (nicht kontakte)
+                if (queryLower.includes('hilfe') && queryLower.includes('migrant')) {
+                    targetAgent = 'buergerdienste'; // Migrant-spezifische Hilfe → buergerdienste
+                } else if (!queryLower.includes('hilfe') || queryLower.includes('beratung') || queryLower.includes('migrant')) {
+                    targetAgent = 'buergerdienste'; // Allgemeine Beratung für Migranten
+                }
             } else if (persona.type === 'commuter' || persona.type === 'mobility_needs') {
                 targetAgent = 'buergerdienste'; // Verkehrsangelegenheiten
             } else if (persona.type === 'housing_seeker') {

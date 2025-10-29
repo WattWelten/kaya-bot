@@ -218,8 +218,10 @@ app.post('/route', async (req, res) => {
             return res.status(400).json({ error: 'Message is required' });
         }
         
-        // Bestimme zuständigen Agent
-        const agent = kayaHandler.agentHandler.routeToAgent(message);
+        // Bestimme zuständigen Agent (v2, lazy init)
+        // Verwende CharacterHandler v2 Keyword-Routing (robust, ohne zusätzliche Analysen)
+        const routing = kayaHandler.routeToSystemPromptAgent('general', message, {});
+        const agent = routing.agent;
         
         res.json({
             agent: agent,
@@ -234,15 +236,17 @@ app.post('/route', async (req, res) => {
 });
 
 // Agent-Daten-Endpoint
-app.get('/agent/:agentName', (req, res) => {
+app.get('/agent/:agentName', async (req, res) => {
     try {
         const { agentName } = req.params;
-        const data = kayaHandler.agentHandler.getAgentData(agentName);
+        const agentHandler = kayaHandler.getAgentHandler();
+        const data = await agentHandler.getAgentData(agentName);
+        const items = Array.isArray(data) ? data : [];
         
         res.json({
             agent: agentName,
-            data: data,
-            count: data.length
+            data: items,
+            count: items.length
         });
         
     } catch (error) {

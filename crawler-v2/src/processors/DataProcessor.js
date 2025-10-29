@@ -47,11 +47,15 @@ class DataProcessor {
     }
 
     async processItem(item, agentName) {
+        const title = item.title || this.generateTitle(item);
+        // Fallback: Wenn kein Content, verwende mindestens Titel oder URL als Content
+        const fallbackContent = item.content || item.plain_text || title || item.url || '';
+        
         const processedItem = {
             url: item.url || item.source,
-            title: item.title || this.generateTitle(item),
-            content: item.content || '',
-            plain_text: item.plain_text || item.content || '',
+            title: title,
+            content: fallbackContent, // IMMER mindestens Titel/URL als Content
+            plain_text: item.plain_text || item.content || fallbackContent,
             contacts: [],
             forms: [],
             links: [],
@@ -68,32 +72,57 @@ class DataProcessor {
             case 'content':
                 processedItem.content = this.cleanContent(item.content);
                 processedItem.plain_text = this.cleanContent(item.plain_text);
+                // Speichere sectionType für Content-Einträge
+                if (item.sectionType) {
+                    processedItem.metadata.sectionType = item.sectionType;
+                }
                 break;
                 
             case 'contact':
+                // Kontakte bekommen den Wert als Content
+                const contactValue = item.value || '';
+                processedItem.content = processedItem.content || contactValue;
+                processedItem.plain_text = processedItem.plain_text || contactValue;
                 processedItem.contacts.push({
                     type: item.contactType,
-                    value: item.value
+                    value: contactValue
                 });
                 break;
                 
             case 'form':
+                // Formulare bekommen mindestens Titel als Content
+                const formTitle = item.title || 'Formular';
+                processedItem.content = processedItem.content || formTitle;
+                processedItem.plain_text = processedItem.plain_text || formTitle;
                 processedItem.forms.push({
                     type: 'form',
-                    title: item.title || 'Formular',
+                    title: formTitle,
                     url: item.url
                 });
                 break;
                 
             case 'pdf':
+                // PDFs bekommen mindestens Titel als Content
+                const pdfTitle = item.title || 'PDF-Dokument';
+                processedItem.content = processedItem.content || pdfTitle;
+                processedItem.plain_text = processedItem.plain_text || pdfTitle;
                 processedItem.forms.push({
                     type: 'pdf',
-                    title: item.title || 'PDF-Dokument',
+                    title: pdfTitle,
                     url: item.url
                 });
                 break;
                 
             case 'link':
+                // Links können jetzt auch Content haben (Context) - auch wenn nur 30 Zeichen
+                if (item.content || item.plain_text) {
+                    const linkContent = item.content || item.plain_text || '';
+                    // Auch kurzer Content wird gespeichert (ab 30 Zeichen)
+                    if (linkContent.trim().length >= 30) {
+                        processedItem.content = this.cleanContent(linkContent);
+                        processedItem.plain_text = this.cleanContent(item.plain_text || item.content);
+                    }
+                }
                 processedItem.links.push({
                     title: item.title,
                     url: item.url
