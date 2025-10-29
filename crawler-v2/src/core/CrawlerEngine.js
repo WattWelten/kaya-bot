@@ -32,7 +32,10 @@ class CrawlerEngine {
             'senioren',
             'inklusion',
             'digitalisierung',
-            'gleichstellung'
+            'gleichstellung',
+            'rechnung_ebilling',
+            'aktionen_veranstaltungen',
+            'politik_landkreis'
         ];
         
         this.dataDir = path.join(__dirname, '../../data');
@@ -188,7 +191,12 @@ class CrawlerEngine {
                     'https://oldenburg-kreis.ratsinfomanagement.net/sitzungen/',
                     'https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/',
                     'https://oldenburg-kreis.ratsinfomanagement.net/personen/',
-                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/'
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/',
+                    'https://www.oldenburg-kreis.de/impressum/'
                 ],
                 fileSources: [],
                 pdfSources: []
@@ -244,6 +252,42 @@ class CrawlerEngine {
                 webSources: [
                     'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/',
                     'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/gleichstellungsbeauftragte/gewaltschutz-hilfetelefone-und-beratungsangebote/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            rechnung_ebilling: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/',
+                    'https://www.oldenburg-kreis.de/unternehmen/e-government/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            aktionen_veranstaltungen: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/aktuelles/',
+                    'https://www.oldenburg-kreis.de/aktuelles/aktionen/',
+                    'https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/',
+                    'https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/',
+                    'https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/',
+                    'https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/'
+                ],
+                fileSources: [],
+                pdfSources: []
+            },
+            politik_landkreis: {
+                webSources: [
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/',
+                    'https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kreisorgane/',
+                    'https://oldenburg-kreis.ratsinfomanagement.net/personen/',
+                    'https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/',
+                    'https://oldenburg-kreis.ratsinfomanagement.net/gremien/',
+                    'https://www.oldenburg-kreis.de/impressum/'
                 ],
                 fileSources: [],
                 pdfSources: []

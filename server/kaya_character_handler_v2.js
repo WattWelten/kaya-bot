@@ -68,7 +68,11 @@ class KAYACharacterHandler {
             sitzung: 'ratsinfo',
             tagesordnung: 'ratsinfo',
             beschluss: 'ratsinfo',
-            kreistag: 'ratsinfo',
+            
+            // Landrat/Kreistag/Politik-Struktur → politik_landkreis
+            landrat: 'politik_landkreis',
+            kreistag: 'politik_landkreis',
+            politik: 'politik_landkreis',
             
             // Stelle/Bewerbung/Ausbildung/Praktikum → stellenportal
             stellen: 'stellenportal',
@@ -85,6 +89,18 @@ class KAYACharacterHandler {
             standort: 'kontakte',
             öffnungszeiten: 'kontakte',
             
+            // E-Rechnung/XRechnung → rechnung_ebilling
+            xrechnung: 'rechnung_ebilling',
+            erechnung: 'rechnung_ebilling',
+            leitweg: 'rechnung_ebilling',
+            ebilling: 'rechnung_ebilling',
+            
+            // Aktionen/Veranstaltungen → aktionen_veranstaltungen
+            aktionen: 'aktionen_veranstaltungen',
+            veranstaltungen: 'aktionen_veranstaltungen',
+            saubere: 'aktionen_veranstaltungen',
+            events: 'aktionen_veranstaltungen',
+            
             // Spezielle Bereiche
             notfall: 'kaya', // Sofortige KAYA-Antwort
             tourismus: 'kaya', // KAYA-spezifische Antwort
@@ -97,8 +113,14 @@ class KAYACharacterHandler {
         let targetAgent = agentRouting[intention] || 'kaya';
         
         // Zusätzliche Keyword-basierte Routing-Logik
-        if (queryLower.includes('sitzung') || queryLower.includes('kreistag') || queryLower.includes('beschluss')) {
+        if (queryLower.includes('landrat') || queryLower.includes('dr christian pundt') || queryLower.includes('kreistagsmitglieder') || queryLower.includes('kreisorgane')) {
+            targetAgent = 'politik_landkreis';
+        } else if (queryLower.includes('sitzung') || queryLower.includes('kreistag') || queryLower.includes('beschluss')) {
             targetAgent = 'ratsinfo';
+        } else if (queryLower.includes('xrechnung') || queryLower.includes('erechnung') || queryLower.includes('leitweg') || queryLower.includes('03458-0-051')) {
+            targetAgent = 'rechnung_ebilling';
+        } else if (queryLower.includes('aktion saubere landschaft') || queryLower.includes('veranstaltung') || queryLower.includes('aktionen')) {
+            targetAgent = 'aktionen_veranstaltungen';
         } else if (queryLower.includes('stelle') || queryLower.includes('bewerbung') || queryLower.includes('job')) {
             targetAgent = 'stellenportal';
         } else if (queryLower.includes('kontakt') || queryLower.includes('telefon') || queryLower.includes('sprechzeit')) {
@@ -907,6 +929,9 @@ class KAYACharacterHandler {
             notfall: () => this.generateNotfallResponse(query, personaAnalysis),
             lieferanten: () => this.generateLieferantenResponse(query, personaAnalysis),
             politik: () => this.generatePolitikResponse(query, personaAnalysis),
+            politik_landkreis: () => this.generatePolitikLandkreisResponse(query, personaAnalysis),
+            rechnung_ebilling: () => this.generateRechnungEbillingResponse(query, personaAnalysis),
+            aktionen_veranstaltungen: () => this.generateAktionenVeranstaltungenResponse(query, personaAnalysis),
             jobcenter: () => this.generateJobcenterResponse(query, personaAnalysis),
             wirtschaft: () => this.generateWirtschaftResponse(query, personaAnalysis),
             ordnungsamt: () => this.generateOrdnungsamtResponse(query, personaAnalysis),
@@ -1353,6 +1378,143 @@ class KAYACharacterHandler {
             response += `Falls du wissen willst, welche Fraktionen es gibt: [Fraktionen-Übersicht](https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/)\n\n`;
             response += `Oder suchst du eher nach Beschlüssen? Dann schau hier: [Vorlagensuche](https://oldenburg-kreis.ratsinfomanagement.net/vorlagen/)\n\n`;
             response += `Was davon passt am ehesten?`;
+        }
+        
+        return { response };
+    }
+    
+    generatePolitikLandkreisResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        
+        if (queryLower.includes('landrat') || queryLower.includes('dr christian pundt') || queryLower.includes('christian pundt')) {
+            response += `**Landrat Dr. Christian Pundt** leitet die Kreisverwaltung des Landkreises Oldenburg.\n\n`;
+            response += `Seine Aufgaben umfassen:\n`;
+            response += `• Leitung der Kreisverwaltung\n`;
+            response += `• Repräsentation des Landkreises\n`;
+            response += `• Vorsitz im Kreistag\n\n`;
+            response += `Weitere Informationen findest du hier: [Landrat](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/landrat/)\n\n`;
+            response += `Hast du eine konkrete Frage zum Landrat oder zu seinen Aufgaben?`;
+        } else if (queryLower.includes('kreistagsmitglieder') || queryLower.includes('kreistag')) {
+            response += `Der **Kreistag** ist das Hauptorgan des Landkreises.\n\n`;
+            response += `Du findest alle Mitglieder und Informationen hier:\n`;
+            response += `• [Kreistagsmitglieder](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/kreistagsmitglieder/)\n`;
+            response += `• [Fraktionen](https://oldenburg-kreis.ratsinfomanagement.net/fraktionen/)\n`;
+            response += `• [Gremien](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreistag/gremien/)\n\n`;
+            response += `Suchst du eine bestimmte Person oder Fraktion?`;
+        } else if (queryLower.includes('aufgabe') || queryLower.includes('aufgaben')) {
+            response += `Die **Aufgaben des Landkreises** umfassen:\n\n`;
+            response += `• Kreispolitik und -verwaltung\n`;
+            response += `• Daseinsvorsorge (Verkehr, Schulen, Krankenhäuser)\n`;
+            response += `• Planung und Regionalentwicklung\n`;
+            response += `• Sozialleistungen und Jobcenter\n`;
+            response += `• Ordnungsamt und Sicherheit\n`;
+            response += `• Umwelt- und Naturschutz\n`;
+            response += `• Wirtschaftsförderung\n\n`;
+            response += `Mehr Details: [Kreisverwaltung](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/)\n\n`;
+            response += `Welcher Bereich interessiert dich besonders?`;
+        } else {
+            response += `Ich helfe dir gerne bei Fragen zur politischen Struktur des Landkreises Oldenburg.\n\n`;
+            response += `Mögliche Themen:\n`;
+            response += `• **Landrat Dr. Christian Pundt** und seine Aufgaben\n`;
+            response += `• **Kreistagsmitglieder** und Fraktionen\n`;
+            response += `• **Aufgaben des Landkreises**\n`;
+            response += `• **Politische Gremien** und Struktur\n\n`;
+            response += `Worüber möchtest du mehr erfahren?`;
+        }
+        
+        return { response };
+    }
+    
+    generateRechnungEbillingResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        
+        if (queryLower.includes('leitweg') || queryLower.includes('03458-0-051')) {
+            response += `**Rechnungsleitweg für den Landkreis Oldenburg:**\n\n`;
+            response += `• **Leitweg-ID:** 03458-0-051\n`;
+            response += `• **Recipient ID:** DE-NI-0192 (Bundesland-Schema)\n`;
+            response += `• **Empfänger:** Landkreis Oldenburg\n`;
+            response += `• **Zuständige Stelle:** Finanzdezernat / Rechnungsprüfung\n\n`;
+            response += `Die Leitweg-ID findest du auch im [Impressum](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/impressum/).\n\n`;
+            response += `Brauchst du weitere Infos zum E-Rechnungsprozess?`;
+        } else if (queryLower.includes('xrechnung') || queryLower.includes('erechnung') || queryLower.includes('elektronisch')) {
+            response += `**XRechnung / E-Rechnung** – der Landkreis Oldenburg akzeptiert elektronische Rechnungen.\n\n`;
+            response += `**Wichtige Infos:**\n`;
+            response += `• Format: XRechnung (XML, UBL 2.1/CIIl)\n`;
+            response += `• Alternativ: ZUGFeRD 2.0 oder PDF mit eingebetteter XML\n`;
+            response += `• Submission: Über das XRechnung-System des Landkreises\n`;
+            response += `• Zahlung: In der Regel innerhalb von 30 Tagen\n\n`;
+            response += `**Leitweg-ID:** 03458-0-051\n\n`;
+            response += `Mehr Details: [E-Rechnung](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/)\n\n`;
+            response += `Hast du konkrete Fragen zum Format oder Prozess?`;
+        } else if (queryLower.includes('lieferant') || queryLower.includes('rechnung senden')) {
+            response += `**Für Lieferanten:**\n\n`;
+            response += `1. Erstelle deine Rechnung im XRechnung-Format (XML)\n`;
+            response += `2. Verwende die **Leitweg-ID: 03458-0-051**\n`;
+            response += `3. Sende die Rechnung über das XRechnung-System\n\n`;
+            response += `**WICHTIG:**\n`;
+            response += `• Keine Papierrechnungen (nur in Ausnahmefällen)\n`;
+            response += `• Keine Scans von Papierrechnungen\n\n`;
+            response += `Kontakt bei Fragen:\n`;
+            response += `• Rechnungsprüfung: [Kreisverwaltung](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/rechnungspruefung/)\n`;
+            response += `• Allgemeine Info: 04431 85-0\n\n`;
+            response += `Brauchst du Hilfe beim Format oder der Übertragung?`;
+        } else {
+            response += `**E-Rechnung / XRechnung** für den Landkreis Oldenburg:\n\n`;
+            response += `• **Leitweg-ID:** 03458-0-051\n`;
+            response += `• Format: XRechnung (XML), ZUGFeRD 2.0\n`;
+            response += `• Zuständig: Finanzdezernat / Rechnungsprüfung\n\n`;
+            response += `Weitere Infos: [E-Rechnung](https://www.oldenburg-kreis.de/landkreis-und-verwaltung/digitalisierung/e-rechnung/)\n\n`;
+            response += `Was genau brauchst du: Leitweg-ID, Format oder Prozess?`;
+        }
+        
+        return { response };
+    }
+    
+    generateAktionenVeranstaltungenResponse(query, personaAnalysis) {
+        const { persona, emotionalState, urgency } = personaAnalysis;
+        const queryLower = query.toLowerCase();
+        const greeting = this.getDynamicGreeting(persona, emotionalState);
+        
+        let response = `${greeting}\n\n`;
+        
+        if (queryLower.includes('saubere landschaft') || queryLower.includes('müll') || queryLower.includes('sammeln')) {
+            response += `**Aktion Saubere Landschaft** 🌿\n\n`;
+            response += `Das ist eine jahreszeitliche Müllsammel-Aktion im Landkreis Oldenburg.\n\n`;
+            response += `**Was ist das?**\n`;
+            response += `Bürger-Engagement für Umweltschutz – gemeinsam Müll sammeln und die Landschaft sauber halten.\n\n`;
+            response += `**Koordination:**\n`;
+            response += `Umweltamt des Landkreises Oldenburg\n\n`;
+            response += `**Infos & Anmeldung:**\n`;
+            response += `[Aktion Saubere Landschaft](https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/)\n\n`;
+            response += `Möchtest du teilnehmen oder mehr Infos?`;
+        } else if (queryLower.includes('veranstaltung') || queryLower.includes('event') || queryLower.includes('termin')) {
+            response += `**Veranstaltungen im Landkreis Oldenburg:**\n\n`;
+            response += `• [Aktuelles](https://www.oldenburg-kreis.de/aktuelles/)\n`;
+            response += `• [Veranstaltungen](https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/)\n`;
+            response += `• [Kultur](https://www.oldenburg-kreis.de/bildung-und-kultur/kultur/)\n`;
+            response += `• [Tourismus-Events](https://www.oldenburg-kreis.de/bildung-und-kultur/tourismus/veranstaltungen/)\n\n`;
+            response += `Suchst du eine bestimmte Veranstaltung oder möchtest du den Kalender durchsuchen?`;
+        } else if (queryLower.includes('aktion') || queryLower.includes('mitmachen')) {
+            response += `**Aktionen im Landkreis Oldenburg:**\n\n`;
+            response += `• **Aktion Saubere Landschaft** – Umweltschutz-Aktion\n`;
+            response += `• Weitere Bürgerbeteiligungsformate\n`;
+            response += `• Informationsveranstaltungen\n\n`;
+            response += `Aktuelle Aktionen: [Übersicht](https://www.oldenburg-kreis.de/aktuelles/aktionen/)\n\n`;
+            response += `Interessierst du dich für eine bestimmte Aktion?`;
+        } else {
+            response += `**Aktionen & Veranstaltungen** im Landkreis Oldenburg:\n\n`;
+            response += `• [Aktuelle Aktionen](https://www.oldenburg-kreis.de/aktuelles/aktionen/)\n`;
+            response += `• [Veranstaltungen](https://www.oldenburg-kreis.de/aktuelles/veranstaltungen/)\n`;
+            response += `• [Aktion Saubere Landschaft](https://www.oldenburg-kreis.de/gesundheit-und-soziales/umweltschutz/aktion-saubere-landschaft/)\n\n`;
+            response += `Was interessiert dich: Veranstaltungen, Aktionen oder eine bestimmte Event-Art?`;
         }
         
         return { response };
