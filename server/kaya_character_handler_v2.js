@@ -959,11 +959,11 @@ class KAYACharacterHandler {
             digitalisierung: () => this.generateDigitalisierungResponse(query, personaAnalysis),
             gleichstellung: () => this.generateGleichstellungResponse(query, personaAnalysis),
             tourismus: () => this.generateTourismusResponse(query, personaAnalysis),
-            general: () => this.generateGeneralResponse(query, personaAnalysis)
+            general: async () => await this.generateGeneralResponse(query, personaAnalysis)
         };
         
         const responseFunction = responseMap[intention] || responseMap.general;
-        const response = await responseFunction();
+        const response = responseFunction instanceof Function ? await responseFunction() : await responseMap.general();
         
         return {
             response: response.response || response,
