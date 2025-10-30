@@ -5,7 +5,7 @@ import { LipsyncEngine, VisemeSegment } from '../services/LipsyncEngine';
 import { EmotionMapper, EmotionType } from '../services/EmotionMapper';
 import { speak, stopSpeaking } from '../services/TTSService';
 import { useAudioManager } from '../hooks/useAudioManager';
-import { initKayaVisualPreset, upgradeKayaMaterials, framePortrait as presetFramePortrait } from '../services/KayaVisualPreset';
+import { initKayaVisualPreset, upgradeKayaMaterials, framePortrait as presetFramePortrait } from '@/services/KayaVisualPreset';
 
 interface BabylonAvatarProps {
   isSpeaking: boolean;

@@ -36,3 +36,4 @@ print("\n" + "="*60)
 print("✅ TEST abgeschlossen - wenn du das siehst, funktioniert Output!")
 print("="*60)
 
+

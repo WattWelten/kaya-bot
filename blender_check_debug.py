@@ -59,3 +59,4 @@ print("\n" + "="*60)
 print("✅ Debug-Prüfung abgeschlossen")
 print("="*60)
 
+

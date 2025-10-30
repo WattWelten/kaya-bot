@@ -58,3 +58,4 @@ Nach GLB-Loading sollte erscheinen:
 - Prüfe ob `mouthOpen`, `mouthO`, `lipsClosed` erkannt wurden
 - Falls nicht: Shape Keys in Blender nochmal exportieren (mit "Shape Keys" aktiviert!)
 
+

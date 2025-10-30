@@ -8,7 +8,8 @@
     "start": "cd server && node kaya_server.js",
     "dev": "cd server && nodemon kaya_server.js",
     "build": "echo 'No build step required'",
-    "deploy": "echo 'Deploying KAYA to Railway'"
+    "deploy": "echo 'Deploying KAYA to Railway'",
+    "glb:draco": "node scripts/compress_glb.mjs"
   },
   "dependencies": {
     "axios": "^1.6.0",
@@ -37,6 +38,7 @@
   "homepage": "https://kaya.wattweiser.com",
   "devDependencies": {
     "@gltf-transform/core": "^4.2.1",
-    "@gltf-transform/extensions": "^4.2.1"
+    "@gltf-transform/extensions": "^4.2.1",
+    "@gltf-transform/functions": "^4.2.1"
   }
 }

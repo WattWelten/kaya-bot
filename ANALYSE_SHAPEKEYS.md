@@ -106,3 +106,4 @@ Das reicht für professionelles Lipsync komplett aus! 🎉
 
 **Fokus:** Export funktioniert + Frontend nutzt die vorhandenen Keys richtig.
 
+
