@@ -5,6 +5,7 @@ import { LipsyncEngine, VisemeSegment } from '../services/LipsyncEngine';
 import { EmotionMapper, EmotionType } from '../services/EmotionMapper';
 import { speak, stopSpeaking } from '../services/TTSService';
 import { useAudioManager } from '../hooks/useAudioManager';
+import { initKayaVisualPreset, upgradeKayaMaterials, framePortrait as presetFramePortrait } from '../services/KayaVisualPreset';
 
 interface BabylonAvatarProps {
   isSpeaking: boolean;
@@ -131,6 +132,7 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     amplitude: 0,
     timelineLength: 0
   });
+  const presetRef = useRef<{ engine: BABYLON.Engine; scene: BABYLON.Scene; camera: BABYLON.ArcRotateCamera; pipeline: any; dispose: () => void } | null>(null);
   const engineRef = useRef<BABYLON.Engine | null>(null);
   const sceneRef = useRef<BABYLON.Scene | null>(null);
   const meshRef = useRef<BABYLON.AbstractMesh | null>(null);
@@ -186,6 +188,10 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     console.log('🎨 Canvas Ref:', canvasRef.current);
     console.log('🎨 isMobile:', isMobile);
     
+    // Reset von Fehlerstatus beim (Neu-)Start eines Ladevorgangs
+    setLoadingFailed(false);
+    setIsLoading(true);
+
     if (!canvasRef.current) {
       console.warn('⚠️ Canvas Ref ist NULL! Babylon.js kann nicht starten');
       return;
@@ -193,68 +199,33 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     
     console.log('✅ Canvas Ref vorhanden, starte Babylon.js Engine');
 
-    // Engine Setup mit Mobile Optimization
-    const engine = new BABYLON.Engine(canvasRef.current, true, {
-      preserveDrawingBuffer: true,
-      stencil: true,
-      disableWebGL2Support: false,
-      powerPreference: isMobile ? 'low-power' : 'high-performance'
+    // HD Preset initialisieren (ersetzt manuelles Setup)
+    const preset = initKayaVisualPreset(canvasRef.current, {
+      quality: isMobile ? 'mobile' : 'hd',
+      dof: true,
+      bloom: !isMobile,
+      ssao: !isMobile,
+      msaaSamples: isMobile ? 2 : 4
     });
     
-    engineRef.current = engine;
-
-    // Scene Setup
-    const scene = new BABYLON.Scene(engine);
-    scene.clearColor = new BABYLON.Color4(0, 0, 0, 0); // Transparent
-    sceneRef.current = scene;
-
-    // Camera mit harten Limits (kein "von unten", minimaler Orbit)
-    const camera = new BABYLON.ArcRotateCamera(
-      'camera',
-      0,
-      0,
-      2,
-      BABYLON.Vector3.Zero(),
-      scene
-    );
-    camera.attachControl(canvasRef.current, true);
+    presetRef.current = preset;
+    engineRef.current = preset.engine;
+    sceneRef.current = preset.scene;
+    const scene = preset.scene;
+    const camera = preset.camera;
+    const engine = preset.engine;
+    
+    // Scene transparent machen (für Overlay)
+    scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
     
     // Wheel am Canvas komplett deaktivieren (verhindert Zoom)
     canvasRef.current?.addEventListener('wheel', (e) => {
       e.preventDefault();
       e.stopPropagation();
     }, { passive: false });
-    
-    camera.panningSensibility = 0; // kein Panning
-    camera.useAutoRotationBehavior = false;
-    camera.lowerRadiusLimit = 0.6;
-    camera.upperRadiusLimit = 3.0;
-    camera.wheelPrecision = 0; // Wheel komplett deaktivieren
-    camera.wheelDeltaPercentage = 0;
-    camera.inertia = 0.2;
-
-    // Interaktions-Limits (nur leichter Orbit)
-    camera.lowerBetaLimit = BABYLON.Tools.ToRadians(60);
-    camera.upperBetaLimit = BABYLON.Tools.ToRadians(88);
-    camera.lowerAlphaLimit = -BABYLON.Tools.ToRadians(25);
-    camera.upperAlphaLimit = BABYLON.Tools.ToRadians(25);
-
-    // 3-Punkt-Licht Setup
-    const keyLight = new BABYLON.DirectionalLight('key', new BABYLON.Vector3(-1, -1.5, 1), scene);
-    keyLight.intensity = 1.2;
-    keyLight.position = new BABYLON.Vector3(5, 8, -5);
-
-    const fillLight = new BABYLON.HemisphericLight('fill', new BABYLON.Vector3(0, 1, 0), scene);
-    fillLight.intensity = 0.6;
-    fillLight.groundColor = new BABYLON.Color3(0.9, 0.95, 1.0);
-
-    if (!isMobile) {
-      const rimLight = new BABYLON.DirectionalLight('rim', new BABYLON.Vector3(1, 0, -1), scene);
-      rimLight.intensity = 0.4;
-      rimLight.position = new BABYLON.Vector3(-3, 3, 3);
-    }
 
     // Glow Layer für Sprech-Feedback (Primary Color: Türkis/Teal)
+    // NOTE: HD Preset hat bereits Shadows/Lighting, aber wir brauchen GlowLayer separat für Emotion
     const glowLayer = new BABYLON.GlowLayer('glow', scene, {
       mainTextureFixedSize: 512,
       blurKernelSize: 64
@@ -262,30 +233,91 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     glowLayer.intensity = 0;
     glowLayerRef.current = glowLayer;
 
-    // Draco lokal konfigurieren (CSP-sicher, kein externes CDN)
+    // Draco-Decoder-Konfiguration: Standard lassen, außer explizit überschrieben
+    // Setze window.__KAYA_LOCAL_DRACO = true und stelle Dateien unter /babylon/draco bereit,
+    // um lokale Decoder zu erzwingen.
     try {
-      // Hinweis: Dateien müssen unter /babylon/draco/ bereitliegen
-      // draco_decoder_gltf.wasm, draco_decoder_gltf.js, draco_wasm_wrapper.js
-      // Falls nicht vorhanden, lädt die unkomprimierte GLB unten trotzdem.
-      // @ts-ignore - Typen können variieren je nach Babylon Version
-      BABYLON.DracoCompression.Configuration = {
-        decoder: {
-          wasmUrl: '/babylon/draco/draco_decoder_gltf.wasm',
-          wasmBinaryUrl: '/babylon/draco/draco_decoder_gltf.wasm',
-          jsUrl: '/babylon/draco/draco_decoder_gltf.js',
-          wasmWasmUrl: '/babylon/draco/draco_wasm_wrapper.js'
-        }
-      } as any;
-      console.log('🧩 Draco lokal konfiguriert (ohne CDN)');
+      if ((window as any).__KAYA_LOCAL_DRACO) {
+        // @ts-ignore - Typen können variieren je nach Babylon Version
+        BABYLON.DracoCompression.Configuration = {
+          decoder: {
+            wasmUrl: '/babylon/draco/draco_decoder_gltf.wasm',
+            wasmBinaryUrl: '/babylon/draco/draco_decoder_gltf.wasm',
+            jsUrl: '/babylon/draco/draco_decoder_gltf.js',
+            wasmWasmUrl: '/babylon/draco/draco_wasm_wrapper.js'
+          }
+        } as any;
+        console.log('🧩 Draco lokal konfiguriert (ohne CDN)');
+      }
     } catch (e) {
       console.warn('⚠️ Draco-Konfiguration übersprungen:', e);
     }
 
-    // Load GLB Model: ZUERST neue GLB mit Shape Keys (kayanew_mouth.glb), Fallback auf alte
-    console.log('📦 Starte GLB-Loading (mit Shape Keys): /avatar/Kayanew_mouth.glb');
-    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew_mouth.glb', scene, () => {
+    // Load GLB Model: ZUERST Draco-komprimierte HD-Version, dann Fallbacks
+    // Cache-Busting: Optional über globale Version steuerbar
+    const assetSuffix = (window as any).__KAYA_ASSET_VERSION ? `?v=${(window as any).__KAYA_ASSET_VERSION}` : '';
+    console.log('📦 Starte GLB-Loading (Draco-HD): /avatar/Kayanew_mouth-draco.glb' + assetSuffix);
+    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew_mouth-draco.glb' + assetSuffix, scene, (rootMeshes) => {
+      // Finde Root Mesh (meist das erste)
+      const rootMesh = rootMeshes[0] as BABYLON.AbstractMesh;
+      
+      // Upgrade Materials für HD/Photoreal Rendering
+      if (rootMesh) {
+        upgradeKayaMaterials(rootMesh);
+        console.log('✅ Materialien für HD-Rendering optimiert');
+      }
+      
+      // Weiter mit normaler Initialisierung
+      setupAvatar(scene, camera, engine);
+    }, (progressEvent) => {
+      if (progressEvent.loaded && progressEvent.total) {
+        const percent = Math.round((progressEvent.loaded / progressEvent.total) * 100);
+        setLoadingProgress(percent);
+        console.log(`📦 Loading GLB (Draco-HD): ${percent}%`);
+      }
+    }, (scene, message, exception) => {
+      console.error('❌ GLB Loading Fehler (Draco-HD):', message, exception);
+      // Fallback 1: Unkomprimierte GLB mit Shape Keys
+      console.log('🔁 Versuche unkomprimierte GLB: /avatar/Kayanew_mouth.glb' + assetSuffix);
+      BABYLON.SceneLoader.Append('/avatar/', 'Kayanew_mouth.glb' + assetSuffix, scene, (rootMeshes) => {
+        const rootMesh = rootMeshes[0] as BABYLON.AbstractMesh;
+        if (rootMesh) {
+          upgradeKayaMaterials(rootMesh);
+        }
+        setupAvatar(scene, camera, engine);
+      }, (progressEvent2) => {
+        if (progressEvent2.loaded && progressEvent2.total) {
+          const percent2 = Math.round((progressEvent2.loaded / progressEvent2.total) * 100);
+          setLoadingProgress(percent2);
+          console.log(`📦 Loading GLB (unkomprimiert): ${percent2}%`);
+        }
+      }, (scene2, message2, exception2) => {
+        console.error('❌ GLB Loading Fehler (unkomprimiert):', message2, exception2);
+        // Fallback 2: Alte Version ohne Shape Keys
+        console.log('🔁 Versuche alte GLB: /avatar/Kayanew.glb' + assetSuffix);
+        BABYLON.SceneLoader.Append('/avatar/', 'Kayanew.glb' + assetSuffix, scene2, () => {
+          setupAvatar(scene2, camera, engine);
+        }, (progressEvent3) => {
+          if (progressEvent3.loaded && progressEvent3.total) {
+            const percent3 = Math.round((progressEvent3.loaded / progressEvent3.total) * 100);
+            setLoadingProgress(percent3);
+            console.log(`📦 Loading GLB (alte): ${percent3}%`);
+          }
+        }, (scene3, message3, exception3) => {
+          console.error('❌ GLB Loading Fehler (alle Varianten):', message3, exception3);
+          setIsLoading(false);
+          setLoadingProgress(0);
+          setLoadingFailed(true);
+        });
+      });
+    });
+    
+    // Helper-Funktion für Avatar-Setup (wiederverwendbar für alle Fallbacks)
+    function setupAvatar(scene: BABYLON.Scene, camera: BABYLON.ArcRotateCamera, engine: BABYLON.Engine) {
       console.log('✅ GLB erfolgreich geladen!');
       setIsLoading(false);
+      // WICHTIG: Falls zuvor ein Timeout/Fallback gesetzt wurde, Fehlerstatus zurücksetzen
+      setLoadingFailed(false);
       
       // Skinned Mesh mit MorphTargets finden
       // PRIORITÄT: Head_Mesh (meiste Morph Targets), dann andere
@@ -327,6 +359,10 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
         meshRef.current = skinned;
         
         // 2) Portrait-Framing (yawDeg wird in framePortrait auf alpha addiert)
+        // Preset-Version nutzt direkt das Root-Mesh, nicht den Pivot
+        // Für Kompatibilität: nach Pivot-Erstellung framing anwenden
+        // NOTE: presetFramePortrait erwartet Root-Mesh, aber wir haben Pivot erstellt
+        // Nutze lokale framePortrait für Pivot-basiertes Framing
         framePortrait(scene, pivot, camera, DIAL);
         
         // 4) Morph Targets + Engines initialisieren
@@ -383,10 +419,14 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
         // 5) Resize-Handler mit Reframing
         const onResize = () => {
           engine.resize();
-          framePortrait(scene, pivot, camera, DIAL);
+          if (pivot) {
+            framePortrait(scene, pivot, camera, DIAL);
+          }
         };
         window.addEventListener('resize', onResize);
-        
+      }
+    }
+    
     // Event für Chat-Wheel (stoppt Zoom beim Scrollen im Chat) – präzise auf .messages und .composer
     const chat = document.getElementById("chatPane");
     if (chat) {
@@ -396,64 +436,14 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     document.querySelectorAll('.messages, .composer').forEach(el => {
       el.addEventListener('wheel', (e) => e.stopPropagation(), { passive: true });
     });
-      }
-    }, (progressEvent) => {
-      if (progressEvent.loaded && progressEvent.total) {
-        const percent = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-        setLoadingProgress(percent);
-        console.log(`📦 Loading GLB: ${percent}%`);
-      }
-    }, (scene, message, exception) => {
-      console.error('❌ GLB Loading Fehler (mit Shape Keys):', message, exception);
-      // Fallback 1: Alte Version ohne Shape Keys
-      console.log('🔁 Versuche alte GLB: /avatar/Kayanew.glb');
-      BABYLON.SceneLoader.Append('/avatar/', 'Kayanew.glb', scene, () => {
-        console.log('✅ GLB (alte Version) erfolgreich geladen!');
-        setIsLoading(false);
-      }, (progressEvent2) => {
-        if (progressEvent2.loaded && progressEvent2.total) {
-          const percent2 = Math.round((progressEvent2.loaded / progressEvent2.total) * 100);
-          setLoadingProgress(percent2);
-          console.log(`📦 Loading GLB (alte): ${percent2}%`);
-        }
-      }, (scene2, message2, exception2) => {
-        console.error('❌ GLB Loading Fehler (alte Version):', message2, exception2);
-        // Fallback 2: Draco-komprimierte Datei
-        console.log('🔁 Versuche Draco-Variante: /avatar/Kayanew-draco.glb');
-        BABYLON.SceneLoader.Append('/avatar/', 'Kayanew-draco.glb', scene2, () => {
-          console.log('✅ GLB (Draco) erfolgreich geladen!');
-          setIsLoading(false);
-        }, (progressEvent3) => {
-          if (progressEvent3.loaded && progressEvent3.total) {
-            const percent3 = Math.round((progressEvent3.loaded / progressEvent3.total) * 100);
-            setLoadingProgress(percent3);
-            console.log(`📦 Loading GLB (Draco): ${percent3}%`);
-          }
-        }, (scene3, message3, exception3) => {
-          console.error('❌ GLB Loading Fehler (alle Varianten):', message3, exception3);
-          setIsLoading(false);
-          setLoadingProgress(0);
-          setLoadingFailed(true);
-        });
-      });
-    });
-
-    // Render Loop
-    engine.runRenderLoop(() => {
-      scene.render();
-    });
-
-    // Resize Handler
-    const handleResize = () => engine.resize();
-    window.addEventListener('resize', handleResize);
-
+    
     // Cleanup
     return () => {
-      window.removeEventListener('resize', handleResize);
-      // Entferne eventuelles onBeforeRenderObservable für Micro-Motion
-      // (wird in eigenem Effect bereinigt)
-      scene.dispose();
-      engine.dispose();
+      // Preset hat eigenen Render Loop - cleanup über preset.dispose()
+      if (presetRef.current) {
+        presetRef.current.dispose();
+        presetRef.current = null;
+      }
     };
   }, [isMobile]);
 
