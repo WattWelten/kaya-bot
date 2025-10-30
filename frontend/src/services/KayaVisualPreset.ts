@@ -188,7 +188,7 @@ export function upgradeKayaMaterials(root: B.AbstractMesh) {
       p.roughness = 0.33;
       p.useAlphaFromAlbedoTexture = true;
       p.alphaMode = B.Engine.ALPHA_COMBINE;
-      p.needsDepthPrePass = true;
+      p.needDepthPrePass = true;
     }
 
     if (/(eye|iris|cornea)/i.test(p.name ?? m.name)) {
