@@ -191,7 +191,7 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     // Reset von Fehlerstatus beim (Neu-)Start eines Ladevorgangs
     setLoadingFailed(false);
     setIsLoading(true);
-
+    
     if (!canvasRef.current) {
       console.warn('⚠️ Canvas Ref ist NULL! Babylon.js kann nicht starten');
       return;
@@ -257,16 +257,13 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     // Cache-Busting: Optional über globale Version steuerbar
     const assetSuffix = (window as any).__KAYA_ASSET_VERSION ? `?v=${(window as any).__KAYA_ASSET_VERSION}` : '';
     console.log('📦 Starte GLB-Loading (Draco-HD): /avatar/Kayanew_mouth-draco.glb' + assetSuffix);
-    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew_mouth-draco.glb' + assetSuffix, scene, (rootMeshes) => {
-      // Finde Root Mesh (meist das erste)
-      const rootMesh = rootMeshes[0] as BABYLON.AbstractMesh;
-      
-      // Upgrade Materials für HD/Photoreal Rendering
-      if (rootMesh) {
-        upgradeKayaMaterials(rootMesh);
+    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew_mouth-draco.glb' + assetSuffix, scene, (loadedScene) => {
+      // Upgrade Materials (wähle ein geeignetes Mesh aus der geladenen Szene)
+      const candidate = (loadedScene.meshes?.find(m => !!(m as any).material) as BABYLON.AbstractMesh) || (loadedScene.meshes?.[0] as BABYLON.AbstractMesh);
+      if (candidate) {
+        upgradeKayaMaterials(candidate);
         console.log('✅ Materialien für HD-Rendering optimiert');
       }
-      
       // Weiter mit normaler Initialisierung
       setupAvatar(scene, camera, engine);
     }, (progressEvent) => {
@@ -279,10 +276,10 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
       console.error('❌ GLB Loading Fehler (Draco-HD):', message, exception);
       // Fallback 1: Unkomprimierte GLB mit Shape Keys
       console.log('🔁 Versuche unkomprimierte GLB: /avatar/Kayanew_mouth.glb' + assetSuffix);
-      BABYLON.SceneLoader.Append('/avatar/', 'Kayanew_mouth.glb' + assetSuffix, scene, (rootMeshes) => {
-        const rootMesh = rootMeshes[0] as BABYLON.AbstractMesh;
-        if (rootMesh) {
-          upgradeKayaMaterials(rootMesh);
+      BABYLON.SceneLoader.Append('/avatar/', 'Kayanew_mouth.glb' + assetSuffix, scene, (loadedScene2) => {
+        const candidate2 = (loadedScene2.meshes?.find(m => !!(m as any).material) as BABYLON.AbstractMesh) || (loadedScene2.meshes?.[0] as BABYLON.AbstractMesh);
+        if (candidate2) {
+          upgradeKayaMaterials(candidate2);
         }
         setupAvatar(scene, camera, engine);
       }, (progressEvent2) => {
