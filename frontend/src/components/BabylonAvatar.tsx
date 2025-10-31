@@ -16,13 +16,13 @@ interface BabylonAvatarProps {
 
 // ---- Dials: HIER nur Zahlen anpassen, wenn nötig ----
 const DIAL = {
-  yawDeg: -18,         // leicht nach rechts zur Mitte (negativ = rechts)
-  fovDeg: 30,
-  padding: 1.10,
-  eyeLine: 0.62,
-  betaMin: 60,
-  betaMax: 88,
-  xShift: -0.055
+  yawDeg: 0,           // frontal
+  fovDeg: 26,          // engeres Portrait-FOV
+  padding: 1.05,       // näher heran
+  eyeLine: 0.62,       // bewährt
+  betaMin: 65,         // weniger Neigung nach oben/unten
+  betaMax: 82,
+  xShift: 0            // mittig
 };
 
 // Merker für Basis-Ausrichtung
@@ -40,9 +40,15 @@ function normalizePivotAndForward(root: BABYLON.AbstractMesh) {
   pivot.position = sternum.clone();
   root.setParent(pivot);
 
-  // Falls Modell nach +Z schaut → um Y 180° drehen, damit "nach vorne" = -Z
-  const looksPlusZ = size.z > size.x && max.z > Math.abs(min.z);
-  if (looksPlusZ) pivot.rotate(BABYLON.Axis.Y, BABYLON.Tools.ToRadians(180));
+  // Detektivische, robuste Fronterkennung:
+  // glTF-Default: Avatar soll nach -Z blicken. Falls die Weltvorwärtsrichtung ≈ +Z ist, drehe 180° um Y.
+  try {
+    root.computeWorldMatrix(true);
+    const worldForward = root.getDirection(BABYLON.Axis.Z);
+    if (worldForward.z > 0) {
+      pivot.rotate(BABYLON.Axis.Y, Math.PI);
+    }
+  } catch {}
 
   // Rotation vereinheitlichen
   if (pivot.rotationQuaternion) {
@@ -65,27 +71,30 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   const r = max.subtract(min).length() * 0.5;
   const dist = (r * dial.padding) / Math.sin(Math.min(vFov, hFov)/2);
 
-  // Avatar blickt -Z → Kamera auf +Z
-  const pos = target.add(new BABYLON.Vector3(0, 0, dist));
-  const v = pos.subtract(target);
+  // Avatar blickt -Z → Kamera auf +Z (exakt frontal)
+  // Target = Pivot-Position + Augenlinie-Offset (kein xShift mehr, da frontal)
+  const eyeLineOffset = h * (dial.eyeLine - 0.5);
+  const finalTarget = pivot.position.add(new BABYLON.Vector3(0, eyeLineOffset, 0));
+  
+  // Kamera-Position: exakt vor dem Avatar (auf +Z-Achse)
+  const cameraPos = finalTarget.add(new BABYLON.Vector3(0, 0, dist));
+  const v = cameraPos.subtract(finalTarget);
 
-  baseAlpha = Math.atan2(v.x, v.z) + BABYLON.Tools.ToRadians(dial.yawDeg);  // KEIN Clamping!
+  // Alpha = 0 (exakt frontal) + yawDeg-Korrektur
+  baseAlpha = BABYLON.Tools.ToRadians(dial.yawDeg);
   const beta = Math.atan2(v.y, Math.sqrt(v.x*v.x + v.z*v.z));
 
   // Debug: Yaw-Wert
   console.log('🎯 Avatar Yaw:', (baseAlpha * 180 / Math.PI).toFixed(2), '° (yawDeg:', dial.yawDeg, ')');
 
-  cam.setTarget(target);
+  cam.setTarget(finalTarget);
   cam.alpha = baseAlpha;
   cam.beta = BABYLON.Scalar.Clamp(beta, BABYLON.Tools.ToRadians(dial.betaMin), BABYLON.Tools.ToRadians(dial.betaMax));
-  cam.radius = v.length();
+  cam.radius = dist;
   cam.fov = vFov;
 
-  // Augenlinie
-  cam.target = (cam as any)._target.add(new BABYLON.Vector3(0, h * (dial.eyeLine - 0.5), 0));
-
   // Interaktionsfenster eng um baseAlpha
-  const band = BABYLON.Tools.ToRadians(20);
+  const band = BABYLON.Tools.ToRadians(12);
   cam.lowerAlphaLimit = baseAlpha - band;
   cam.upperAlphaLimit = baseAlpha + band;
   
@@ -256,8 +265,8 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
     // Load GLB Model: ZUERST Draco-komprimierte HD-Version, dann Fallbacks
     // Cache-Busting: Optional über globale Version steuerbar
     const assetSuffix = (window as any).__KAYA_ASSET_VERSION ? `?v=${(window as any).__KAYA_ASSET_VERSION}` : '';
-    console.log('📦 Starte GLB-Loading (Draco-HD): /avatar/Kayanew_mouth-draco.glb' + assetSuffix);
-    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew_mouth-draco.glb' + assetSuffix, scene, (loadedScene) => {
+    console.log('📦 Starte GLB-Loading (Draco-HD): /avatar/Kayanew-draco.glb' + assetSuffix);
+    BABYLON.SceneLoader.Append('/avatar/', 'Kayanew-draco.glb' + assetSuffix, scene, (loadedScene) => {
       // Upgrade Materials (wähle ein geeignetes Mesh aus der geladenen Szene)
       const candidate = (loadedScene.meshes?.find(m => !!(m as any).material) as BABYLON.AbstractMesh) || (loadedScene.meshes?.[0] as BABYLON.AbstractMesh);
       if (candidate) {
