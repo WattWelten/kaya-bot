@@ -40,15 +40,50 @@ function normalizePivotAndForward(root: BABYLON.AbstractMesh) {
   pivot.position = sternum.clone();
   root.setParent(pivot);
 
-  // Detektivische, robuste Fronterkennung:
-  // glTF-Default: Avatar soll nach -Z blicken. Falls die Weltvorwärtsrichtung ≈ +Z ist, drehe 180° um Y.
+  // Robuste Fronterkennung: Verwende BoundingBox statt getDirection()
+  // Avatar soll nach -Z blicken (Standard glTF)
+  // Prüfe Tiefe (Z-Dimension) der BoundingBox
   try {
     root.computeWorldMatrix(true);
-    const worldForward = root.getDirection(BABYLON.Axis.Z);
-    if (worldForward.z > 0) {
+    
+    // Fallback: Wenn Z-Dimension größer als X-Dimension, Avatar ist falsch orientiert
+    // Oder: Nutze vorhandene Rotation des Root-Mesh
+    const rootRotation = root.rotation;
+    const rootRotationQuaternion = root.rotationQuaternion;
+    
+    // Berechne Forward-Vector aus Rotation
+    let needsRotation = false;
+    
+    if (rootRotationQuaternion) {
+      // Nutze Quaternion für präzise Berechnung
+      const forward = new BABYLON.Vector3(0, 0, -1);
+      const rotatedForward = BABYLON.Vector3.TransformNormal(forward, BABYLON.Matrix.RotationQuaternion(rootRotationQuaternion));
+      
+      // Wenn Forward nach +Z zeigt, drehe 180°
+      if (rotatedForward.z > 0.5) {
+        needsRotation = true;
+      }
+    } else if (rootRotation) {
+      // Fallback: Nutze Euler-Winkel
+      // Wenn Y-Rotation ≈ 0 und Z-Dimension größer, muss gedreht werden
+      const depthZ = Math.abs(max.z - min.z);
+      const widthX = Math.abs(max.x - min.x);
+      
+      // Wenn Z größer als X, könnte Avatar seitlich sein
+      // Aber: Prüfe auch Rotation
+      if (Math.abs(rootRotation.y) < 0.1 && depthZ > widthX) {
+        // Möglicherweise falsch orientiert
+        needsRotation = true;
+      }
+    }
+    
+    if (needsRotation) {
       pivot.rotate(BABYLON.Axis.Y, Math.PI);
     }
-  } catch {}
+  } catch (error) {
+    console.warn('⚠️ Fronterkennung fehlgeschlagen, verwende Standard:', error);
+    // Standard: Avatar nach -Z (keine Rotation)
+  }
 
   // Rotation vereinheitlichen
   if (pivot.rotationQuaternion) {
@@ -56,14 +91,24 @@ function normalizePivotAndForward(root: BABYLON.AbstractMesh) {
     pivot.rotationQuaternion = null;
   }
   pivot.scaling = BABYLON.Vector3.One();
+  
+  // Sicherstellen, dass World-Matrix aktualisiert ist
+  pivot.computeWorldMatrix(true);
+  
   return { pivot, height: h, size };
 }
 
 /** Portrait-Framing (9:16), Augenlinie ~62%, kein "von unten" */
 function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: BABYLON.ArcRotateCamera, dial = DIAL) {
+  // Sicherstellen, dass World-Matrix aktualisiert ist
+  pivot.computeWorldMatrix(true);
+  
   const { min, max } = (pivot as any).getHierarchyBoundingVectors(true);
   const size = max.subtract(min), h = size.y;
-  const target = pivot.position.add(new BABYLON.Vector3(size.x * (dial.xShift ?? 0), 0, 0));
+  
+  // World-Position des Pivots verwenden (nicht lokale Position)
+  const pivotWorldMatrix = pivot.getWorldMatrix();
+  const pivotWorldPosition = BABYLON.Vector3.TransformCoordinates(BABYLON.Vector3.Zero(), pivotWorldMatrix);
 
   const vFov = BABYLON.Tools.ToRadians(dial.fovDeg);
   const aspect = scene.getEngine().getRenderWidth() / scene.getEngine().getRenderHeight();
@@ -72,20 +117,37 @@ function framePortrait(scene: BABYLON.Scene, pivot: BABYLON.TransformNode, cam: 
   const dist = (r * dial.padding) / Math.sin(Math.min(vFov, hFov)/2);
 
   // Avatar blickt -Z → Kamera auf +Z (exakt frontal)
-  // Target = Pivot-Position + Augenlinie-Offset (kein xShift mehr, da frontal)
+  // Target = Pivot-World-Position + Augenlinie-Offset
   const eyeLineOffset = h * (dial.eyeLine - 0.5);
-  const finalTarget = pivot.position.add(new BABYLON.Vector3(0, eyeLineOffset, 0));
+  const finalTarget = pivotWorldPosition.add(new BABYLON.Vector3(0, eyeLineOffset, 0));
   
-  // Kamera-Position: exakt vor dem Avatar (auf +Z-Achse)
-  const cameraPos = finalTarget.add(new BABYLON.Vector3(0, 0, dist));
+  // Kamera-Position: exakt vor dem Avatar (auf +Z-Achse relativ zu Pivot)
+  // Berücksichtige Pivot-Rotation für korrekte Ausrichtung
+  const pivotForward = new BABYLON.Vector3(0, 0, 1); // Lokaler Forward (Pivot zeigt nach +Z = Kamera-Richtung)
+  const pivotRight = new BABYLON.Vector3(1, 0, 0);
+  const pivotUp = new BABYLON.Vector3(0, 1, 0);
+  
+  // Transformiere lokale Vektoren in World-Space
+  const pivotRotation = pivot.rotation;
+  const pivotRotationMatrix = BABYLON.Matrix.RotationYawPitchRoll(pivotRotation.y, pivotRotation.x, pivotRotation.z);
+  
+  const worldForward = BABYLON.Vector3.TransformNormal(pivotForward, pivotRotationMatrix);
+  const worldUp = BABYLON.Vector3.TransformNormal(pivotUp, pivotRotationMatrix);
+  
+  // Kamera-Position: Vor dem Avatar entlang der World-Forward-Richtung
+  const cameraPos = finalTarget.add(worldForward.scale(dist));
   const v = cameraPos.subtract(finalTarget);
 
   // Alpha = 0 (exakt frontal) + yawDeg-Korrektur
-  baseAlpha = BABYLON.Tools.ToRadians(dial.yawDeg);
+  // Berechne Alpha basierend auf Kamera-Position relativ zu Target
+  const alpha = Math.atan2(v.x, v.z) + BABYLON.Tools.ToRadians(dial.yawDeg);
+  baseAlpha = alpha;
   const beta = Math.atan2(v.y, Math.sqrt(v.x*v.x + v.z*v.z));
 
-  // Debug: Yaw-Wert
+  // Debug: Yaw-Wert und Position
   console.log('🎯 Avatar Yaw:', (baseAlpha * 180 / Math.PI).toFixed(2), '° (yawDeg:', dial.yawDeg, ')');
+  console.log('🎯 Pivot Position:', pivotWorldPosition.x.toFixed(2), pivotWorldPosition.y.toFixed(2), pivotWorldPosition.z.toFixed(2));
+  console.log('🎯 Camera Position:', cameraPos.x.toFixed(2), cameraPos.y.toFixed(2), cameraPos.z.toFixed(2));
 
   cam.setTarget(finalTarget);
   cam.alpha = baseAlpha;
@@ -369,7 +431,10 @@ function BabylonAvatarComponent({ isSpeaking, emotion = 'neutral', emotionConfid
         // Für Kompatibilität: nach Pivot-Erstellung framing anwenden
         // NOTE: presetFramePortrait erwartet Root-Mesh, aber wir haben Pivot erstellt
         // Nutze lokale framePortrait für Pivot-basiertes Framing
-        framePortrait(scene, pivot, camera, DIAL);
+        // Timing: Framing mit requestAnimationFrame verzögern, um World-Matrix zu aktualisieren
+        requestAnimationFrame(() => {
+          framePortrait(scene, pivot, camera, DIAL);
+        });
         
         // 4) Morph Targets + Engines initialisieren
         const mtm = (skinned as any).morphTargetManager as BABYLON.MorphTargetManager | undefined;

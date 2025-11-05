@@ -51,18 +51,113 @@
         });
       }
 
-      // MorphTargets prüfen
+      // MorphTargets prüfen - Detaillierter Report
       const withMT = scene.meshes.filter(m => m.morphTargetManager);
       if (withMT.length > 0) {
-        const mtm = withMT[0].morphTargetManager;
-        const names = [];
-        for (let i = 0; i < mtm.numTargets; i++) {
-          const t = mtm.getTarget(i);
-          names.push(t?.name || `morph_${i}`);
+        console.log('='.repeat(60));
+        console.log('📊 DETAILLIERTER MORPH TARGET REPORT');
+        console.log('='.repeat(60));
+        
+        // Alle Meshes mit Morph Targets
+        withMT.forEach((mesh, idx) => {
+          const mtm = mesh.morphTargetManager;
+          console.log(`\n📦 Mesh[${idx}]: "${mesh.name}"`);
+          console.log(`   Morph Targets: ${mtm.numTargets}`);
+          
+          const allTargets = [];
+          for (let i = 0; i < mtm.numTargets; i++) {
+            const t = mtm.getTarget(i);
+            if (t) {
+              const name = t.name || `morph_${i}`;
+              allTargets.push({ name, index: i });
+            }
+          }
+          
+          // Kategorisieren
+          const visemes = allTargets.filter(t => /viseme/i.test(t.name));
+          const emotions = allTargets.filter(t => /(smile|frown|brow|mouth)/i.test(t.name));
+          const other = allTargets.filter(t => !visemes.includes(t) && !emotions.includes(t));
+          
+          console.log(`\n   🎭 Visemes (${visemes.length}):`);
+          visemes.forEach(t => console.log(`      - ${t.name} (Index: ${t.index})`));
+          
+          console.log(`\n   😊 Emotion-Targets (${emotions.length}):`);
+          emotions.forEach(t => console.log(`      - ${t.name} (Index: ${t.index})`));
+          
+          console.log(`\n   📋 Andere Targets (${other.length}):`);
+          other.forEach(t => console.log(`      - ${t.name} (Index: ${t.index})`));
+        });
+        
+        // Mapping-Vorschläge
+        const mainMTM = withMT[0].morphTargetManager;
+        const allTargetNames = [];
+        for (let i = 0; i < mainMTM.numTargets; i++) {
+          const t = mainMTM.getTarget(i);
+          if (t) {
+            allTargetNames.push(t.name || `morph_${i}`);
+          }
         }
-        console.log('MorphTargets:', names);
+        
+        console.log('\n' + '='.repeat(60));
+        console.log('💡 MAPPING-VORSCHLÄGE');
+        console.log('='.repeat(60));
+        
+        // Viseme-Mapping
+        const visemeMapping = {
+          'viseme_sil': ['sil'],
+          'viseme_pp': ['M', 'B', 'P'],
+          'viseme_ff': ['F', 'V'],
+          'viseme_th': ['TH'],
+          'viseme_dd': ['D', 'T'],
+          'viseme_kk': ['K', 'G'],
+          'viseme_ch': ['CH', 'J'],
+          'viseme_ss': ['S', 'Z'],
+          'viseme_nn': ['N'],
+          'viseme_rr': ['R'],
+          'viseme_aa': ['aa'],
+          'viseme_e': ['E', 'ee'],
+          'viseme_i': ['I', 'ih'],
+          'viseme_o': ['O', 'oh'],
+          'viseme_u': ['U', 'ou']
+        };
+        
+        console.log('\n🎭 Viseme-Mappings:');
+        Object.keys(visemeMapping).forEach(visemeName => {
+          const found = allTargetNames.find(n => n.toLowerCase() === visemeName.toLowerCase());
+          if (found) {
+            const mappedTo = visemeMapping[visemeName].join(', ');
+            console.log(`   ✅ ${visemeName} → ${mappedTo}`);
+          } else {
+            console.log(`   ⚠️  ${visemeName} → NICHT GEFUNDEN`);
+          }
+        });
+        
+        // Emotion-Mapping
+        const emotionTargets = ['mouthSmile_L', 'mouthSmile_R', 'mouthFrown_L', 'mouthFrown_R', 
+                                'browInnerUp', 'browDown_L', 'browDown_R', 'mouthOpen', 'mouthFunnel'];
+        
+        console.log('\n😊 Emotion-Target-Mappings:');
+        emotionTargets.forEach(emotionName => {
+          const found = allTargetNames.find(n => {
+            const nLower = n.toLowerCase();
+            const eLower = emotionName.toLowerCase();
+            return nLower === eLower || 
+                   nLower.includes(eLower.replace('_l', 'left').replace('_r', 'right')) ||
+                   nLower.includes(eLower.replace('left', '_l').replace('right', '_r'));
+          });
+          if (found) {
+            console.log(`   ✅ ${emotionName} → ${found}`);
+          } else {
+            console.log(`   ⚠️  ${emotionName} → NICHT GEFUNDEN`);
+          }
+        });
+        
+        console.log('\n' + '='.repeat(60));
+        console.log(`📋 ALLE MORPH TARGET NAMEN (${allTargetNames.length}):`);
+        console.log(allTargetNames.join(', '));
+        console.log('='.repeat(60));
       } else {
-        console.log('Keine MorphTargets gefunden.');
+        console.log('⚠️ Keine MorphTargets gefunden.');
       }
 
       engine.runRenderLoop(() => scene.render());

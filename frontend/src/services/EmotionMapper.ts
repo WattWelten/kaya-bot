@@ -14,6 +14,19 @@ export interface EmotionConfig {
   glowIntensity: number; // 0-1
 }
 
+// Emotion-Target Mapping: Unterstützung für verschiedene Namensvarianten
+const EMOTION_TARGET_PATTERNS: { [key: string]: RegExp[] } = {
+  'mouthSmile_L': [/mouthsmile.*left/i, /mouth.*smile.*l/i, /smile.*left/i],
+  'mouthSmile_R': [/mouthsmile.*right/i, /mouth.*smile.*r/i, /smile.*right/i],
+  'mouthFrown_L': [/mouthfrown.*left/i, /mouth.*frown.*l/i, /frown.*left/i],
+  'mouthFrown_R': [/mouthfrown.*right/i, /mouth.*frown.*r/i, /frown.*right/i],
+  'browInnerUp': [/brow.*inner.*up/i, /brow.*up/i, /eyebrow.*up/i],
+  'browDown_L': [/brow.*down.*left/i, /brow.*down.*l/i, /eyebrow.*down.*left/i],
+  'browDown_R': [/brow.*down.*right/i, /brow.*down.*r/i, /eyebrow.*down.*right/i],
+  'mouthOpen': [/mouth.*open/i, /jaw.*open/i, /open.*mouth/i],
+  'mouthFunnel': [/mouth.*funnel/i, /funnel/i, /pucker/i]
+};
+
 export class EmotionMapper {
   private morphTargetManager: any;
   private glowLayer: any;
@@ -21,10 +34,127 @@ export class EmotionMapper {
   private transitionDuration = 500; // ms
   private startTime = 0;
   private animationFrameId: number | null = null;
+  private emotionTargetMapping: { [key: string]: any } = {}; // Auto-detected mapping
 
   constructor(morphTargetManager: any, glowLayer: any) {
     this.morphTargetManager = morphTargetManager;
     this.glowLayer = glowLayer;
+    this.autoDetectEmotionTargets();
+  }
+
+  /**
+   * Auto-Detection: Finde MorphTargets für Emotion-Targets
+   */
+  private autoDetectEmotionTargets(): void {
+    if (!this.morphTargetManager) {
+      console.warn('⚠️ MorphTargetManager nicht vorhanden - kein Auto-Mapping für Emotionen möglich');
+      return;
+    }
+
+    // Alle verfügbaren MorphTargets auflisten
+    const allTargets: Array<{ name: string; target: any }> = [];
+    try {
+      const numTargets = this.morphTargetManager.numTargets || 0;
+      for (let i = 0; i < numTargets; i++) {
+        const target = this.morphTargetManager.getTarget(i);
+        if (target) {
+          const name = target.name || `morph_${i}`;
+          allTargets.push({ name, target });
+        }
+      }
+    } catch (error) {
+      console.error('❌ Fehler beim Auflisten der MorphTargets für Emotionen:', error);
+      return;
+    }
+
+    // Für jedes Emotion-Target: Bestes Matching finden
+    const emotionTargetKeys = Object.keys(EMOTION_TARGET_PATTERNS);
+    
+    for (const emotionKey of emotionTargetKeys) {
+      const nameLower = emotionKey.toLowerCase();
+      let bestMatch: { name: string; target: any } | null = null;
+
+      for (const targetInfo of allTargets) {
+        const targetNameLower = targetInfo.name.toLowerCase();
+        
+        // Exakte Übereinstimmung (höchste Priorität)
+        if (targetNameLower === nameLower) {
+          bestMatch = { name: targetInfo.name, target: targetInfo.target };
+          break;
+        }
+
+        // Fallback: Unterstützung für _L/_R vs Left/Right
+        const leftRightVariants = [
+          targetNameLower.replace(/left/i, 'l'),
+          targetNameLower.replace(/right/i, 'r'),
+          targetNameLower.replace(/_l$/, 'left'),
+          targetNameLower.replace(/_r$/, 'right')
+        ];
+        
+        if (leftRightVariants.some(v => v === nameLower)) {
+          bestMatch = { name: targetInfo.name, target: targetInfo.target };
+          continue;
+        }
+
+        // Pattern-Matching
+        const patterns = EMOTION_TARGET_PATTERNS[emotionKey] || [];
+        for (const pattern of patterns) {
+          if (pattern.test(targetInfo.name)) {
+            if (!bestMatch) {
+              bestMatch = { name: targetInfo.name, target: targetInfo.target };
+            }
+            break;
+          }
+        }
+      }
+
+      if (bestMatch) {
+        this.emotionTargetMapping[emotionKey] = bestMatch.target;
+        console.log(`😊 Emotion-Target gemappt: ${emotionKey} → ${bestMatch.name}`);
+      } else {
+        console.warn(`⚠️ Emotion-Target nicht gefunden: ${emotionKey}`);
+      }
+    }
+  }
+
+  /**
+   * Finde Morph Target für Emotion-Target-Name (mit Auto-Detection)
+   */
+  private findEmotionTarget(targetName: string): any | null {
+    // Versuche direktes Mapping
+    if (this.emotionTargetMapping[targetName]) {
+      return this.emotionTargetMapping[targetName];
+    }
+
+    // Fallback: Direkte Suche nach Name
+    if (this.morphTargetManager) {
+      try {
+        const target = this.morphTargetManager.getTargetByName(targetName);
+        if (target) return target;
+      } catch (error) {
+        // Ignore
+      }
+
+      // Fallback: Unterstützung für Namensvarianten
+      const nameLower = targetName.toLowerCase();
+      const variants = [
+        nameLower.replace(/_l$/, 'left'),
+        nameLower.replace(/_r$/, 'right'),
+        nameLower.replace(/left/i, '_l'),
+        nameLower.replace(/right/i, '_r')
+      ];
+
+      for (const variant of variants) {
+        try {
+          const target = this.morphTargetManager.getTargetByName(variant);
+          if (target) return target;
+        } catch (error) {
+          // Ignore
+        }
+      }
+    }
+
+    return null;
   }
 
   /**
@@ -157,14 +287,14 @@ export class EmotionMapper {
       const endValue = end[key] || 0;
       const currentValue = startValue + (endValue - startValue) * t;
 
-      // Auf Morph Target anwenden
-      try {
-        const target = this.morphTargetManager.getTargetByName(key);
-        if (target) {
+      // Auf Morph Target anwenden (mit Auto-Detection)
+      const target = this.findEmotionTarget(key);
+      if (target) {
+        try {
           target.influence = currentValue;
+        } catch (error) {
+          // Silently ignore
         }
-      } catch (error) {
-        // Silently ignore
       }
     });
   }
@@ -188,7 +318,7 @@ export class EmotionMapper {
   private resetToNeutral(): void {
     if (!this.morphTargetManager) return;
 
-    // Alle Targets auf 0
+    // Alle Targets auf 0 (mit Auto-Detection)
     const targets = [
       'mouthSmile_L', 'mouthSmile_R', 'browInnerUp', 'mouthOpen',
       'mouthFunnel', 'mouthFrown_L', 'mouthFrown_R',
@@ -196,11 +326,13 @@ export class EmotionMapper {
     ];
 
     targets.forEach(name => {
-      try {
-        const target = this.morphTargetManager.getTargetByName(name);
-        if (target) target.influence = 0;
-      } catch (error) {
-        // Ignore
+      const target = this.findEmotionTarget(name);
+      if (target) {
+        try {
+          target.influence = 0;
+        } catch (error) {
+          // Ignore
+        }
       }
     });
 

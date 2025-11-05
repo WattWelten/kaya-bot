@@ -22,32 +22,51 @@ const VISEME_NAMES = [
   'S', 'Z', 'SH', 'ZH', 'CH', 'J', 'K', 'G', 'L', 'N', 'R', 'W', 'Y'
 ];
 
+// Viseme-Mapping: viseme_* Namen zu Standard-Visemes
+const VISEME_MAPPING: { [visemeName: string]: string[] } = {
+  'viseme_sil': ['sil'],
+  'viseme_pp': ['M', 'B', 'P'],
+  'viseme_ff': ['F', 'V'],
+  'viseme_th': ['TH'],
+  'viseme_dd': ['D', 'T'],
+  'viseme_kk': ['K', 'G'],
+  'viseme_ch': ['CH', 'J'],
+  'viseme_ss': ['S', 'Z'],
+  'viseme_nn': ['N'],
+  'viseme_rr': ['R'],
+  'viseme_aa': ['aa'],
+  'viseme_e': ['E', 'ee'],
+  'viseme_i': ['I', 'ih'],
+  'viseme_o': ['O', 'oh'],
+  'viseme_u': ['U', 'ou']
+};
+
 // MorphTarget-Heuristik-Patterns (für Auto-Detection)
 const MORPH_PATTERNS: { [viseme: string]: RegExp[] } = {
-  'aa': [/aa/i, /open/i, /jaw/i, /mouth.*open/i, /oh.*wide/i],
-  'ih': [/ih/i, /ee/i, /smile/i, /mouth.*smile/i],
-  'ou': [/ou/i, /round/i, /funnel/i, /pucker/i],
-  'ee': [/ee/i, /smile.*wide/i, /cheek.*up/i],
-  'oh': [/oh/i, /round/i, /funnel/i],
-  'F': [/f/i, /bite.*lip/i, /lip.*bite/i, /teeth.*lower/i],
-  'V': [/v/i, /bite.*lip/i, /lip.*bite/i],
-  'TH': [/th/i, /tongue.*out/i, /tongue.*between/i],
-  'M': [/m/i, /close/i, /mouth.*closed/i, /pursed/i],
-  'B': [/b/i, /close/i, /pursed/i],
-  'P': [/p/i, /close/i, /pursed/i],
-  'D': [/d/i, /tongue.*up/i, /tip.*roof/i],
-  'T': [/t/i, /tongue.*up/i, /tip.*roof/i],
-  'S': [/s/i, /narrow/i, /tight/i],
-  'Z': [/z/i, /narrow/i],
+  'aa': [/aa/i, /open/i, /jaw/i, /mouth.*open/i, /oh.*wide/i, /viseme_aa/i],
+  'ih': [/ih/i, /ee/i, /smile/i, /mouth.*smile/i, /viseme_i/i],
+  'ou': [/ou/i, /round/i, /funnel/i, /pucker/i, /viseme_u/i],
+  'ee': [/ee/i, /smile.*wide/i, /cheek.*up/i, /viseme_e/i],
+  'oh': [/oh/i, /round/i, /funnel/i, /viseme_o/i],
+  'F': [/f/i, /bite.*lip/i, /lip.*bite/i, /teeth.*lower/i, /viseme_ff/i],
+  'V': [/v/i, /bite.*lip/i, /lip.*bite/i, /viseme_ff/i],
+  'TH': [/th/i, /tongue.*out/i, /tongue.*between/i, /viseme_th/i],
+  'M': [/m/i, /close/i, /mouth.*closed/i, /pursed/i, /viseme_pp/i],
+  'B': [/b/i, /close/i, /pursed/i, /viseme_pp/i],
+  'P': [/p/i, /close/i, /pursed/i, /viseme_pp/i],
+  'D': [/d/i, /tongue.*up/i, /tip.*roof/i, /viseme_dd/i],
+  'T': [/t/i, /tongue.*up/i, /tip.*roof/i, /viseme_dd/i],
+  'S': [/s/i, /narrow/i, /tight/i, /viseme_ss/i],
+  'Z': [/z/i, /narrow/i, /viseme_ss/i],
   'SH': [/sh/i, /round/i, /protruded/i],
   'ZH': [/zh/i, /round/i],
-  'CH': [/ch/i, /round/i, /protruded/i],
-  'J': [/j/i, /wide/i],
-  'K': [/k/i, /back/i],
-  'G': [/g/i, /back/i],
+  'CH': [/ch/i, /round/i, /protruded/i, /viseme_ch/i],
+  'J': [/j/i, /wide/i, /viseme_ch/i],
+  'K': [/k/i, /back/i, /viseme_kk/i],
+  'G': [/g/i, /back/i, /viseme_kk/i],
   'L': [/l/i, /tongue.*up/i],
-  'N': [/n/i, /tongue.*up/i],
-  'R': [/r/i, /round/i],
+  'N': [/n/i, /tongue.*up/i, /viseme_nn/i],
+  'R': [/r/i, /round/i, /viseme_rr/i],
   'W': [/w/i, /round/i, /pucker/i],
   'Y': [/y/i, /wide/i]
 };
@@ -131,6 +150,13 @@ export class LipsyncEngine {
         if (nameLower === viseme.toLowerCase()) {
           bestMatch = { name: targetInfo.name, target: targetInfo.target, score: 100 };
           break;
+        }
+
+        // Viseme-Mapping: Prüfe ob target ein viseme_* Name ist, der zu diesem Viseme gehört
+        const visemeMapping = VISEME_MAPPING[nameLower];
+        if (visemeMapping && visemeMapping.includes(viseme)) {
+          bestMatch = { name: targetInfo.name, target: targetInfo.target, score: 95 };
+          // Weitere Suche, aber mit hoher Priorität
         }
 
         // Pattern-Matching
