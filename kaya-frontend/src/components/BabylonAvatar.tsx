@@ -57,7 +57,10 @@ function normalizePivotAndForward(root: BABYLON.AbstractMesh) {
     if (rootRotationQuaternion) {
       // Nutze Quaternion für präzise Berechnung
       const forward = new BABYLON.Vector3(0, 0, -1);
-      const rotatedForward = BABYLON.Vector3.TransformNormal(forward, BABYLON.Matrix.RotationQuaternion(rootRotationQuaternion));
+      // Erstelle Matrix aus Quaternion
+      const rotationMatrix = BABYLON.Matrix.Identity();
+      rootRotationQuaternion.toRotationMatrix(rotationMatrix);
+      const rotatedForward = BABYLON.Vector3.TransformNormal(forward, rotationMatrix);
       
       // Wenn Forward nach +Z zeigt, drehe 180°
       if (rotatedForward.z > 0.5) {
