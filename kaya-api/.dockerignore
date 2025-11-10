@@ -1,10 +1,12 @@
 # Dependencies
 node_modules
 npm-debug.log
+npm-debug.log*
 
 # Git
 .git
 .gitignore
+.gitattributes
 
 # Environment
 .env
@@ -12,8 +14,9 @@ npm-debug.log
 .env.*.local
 
 # Logs
-logs
+logs/
 *.log
+*.log.*
 
 # Memory files
 memory/
@@ -24,12 +27,30 @@ scripts/
 PHASE_1_COMPLETED.md
 README.md
 llm_service_new_character.md
+*.md
 
 # IDE
 .vscode
 .idea
+*.swp
+*.swo
+*~
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Railway
+.railwayignore
+railway.toml
+
+# Test files
+*.test.js
+*.spec.js
+test/
+tests/
+
+# Documentation
+docs/
 

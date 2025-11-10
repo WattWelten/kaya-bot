@@ -1,14 +1,54 @@
+# Dependencies
 node_modules
 npm-debug.log
+npm-debug.log*
+
+# Git
 .git
 .gitignore
+.gitattributes
+
+# Environment
 .env
 .env.local
+.env.*.local
+
+# Build outputs (werden im Dockerfile neu gebaut)
+dist/
+build/
+*.log
+
+# Railway
 .railwayignore
 railway.toml
-dist
-build
-*.log
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+test/
+tests/
+
+# Documentation
+docs/
+README.md
+*.md
+
+# Source maps (nicht für Production benötigt)
+*.map
 
 
 
