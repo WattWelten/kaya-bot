@@ -1,0 +1,5 @@
+# Ignore Railpack detection
+railpack-plan.json
+.railpack/
+nixpacks.toml
+
