@@ -1,0 +1,35 @@
+# Dependencies
+node_modules
+npm-debug.log
+
+# Git
+.git
+.gitignore
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+
+# Memory files
+memory/
+
+# Development files
+cloudflared.exe
+scripts/
+PHASE_1_COMPLETED.md
+README.md
+llm_service_new_character.md
+
+# IDE
+.vscode
+.idea
+
+# OS
+.DS_Store
+Thumbs.db
+
