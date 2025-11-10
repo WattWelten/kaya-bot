@@ -36,6 +36,6 @@ jobs:
           export PATH="$HOME/.railway/bin:$PATH"
           export RAILWAY_TOKEN="${{ secrets.RAILWAY_TOKEN }}"
           railway --version
-          railway link -p $RAILWAY_PROJECT_ID -s kaya-api --non-interactive
+          railway link -p $RAILWAY_PROJECT_ID -s kaya-api
           railway up --detach
 
