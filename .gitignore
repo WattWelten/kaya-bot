@@ -71,6 +71,10 @@ crawler/temp/
 **/dist/
 **/build/
 
+# Railway specific
+.railway/
+railway.toml.bak
+
 
 
 

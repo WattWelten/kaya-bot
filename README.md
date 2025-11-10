@@ -42,13 +42,13 @@ git clone https://github.com/WattWelten/kaya-bot.git
 cd kaya-bot
 
 # Backend starten
-cd server && npm install && npm start
+cd kaya-api && npm install && npm start
 
 # Frontend starten (neues Terminal)
-cd frontend && npm install && npm run dev
+cd kaya-frontend && npm install && npm run dev
 
 # Crawler ausführen (optional)
-cd crawler-v2 && npm install && npm run crawl
+cd kaya-crawler && npm install && npm run crawl
 ```
 
 ## 📊 Status
@@ -106,13 +106,15 @@ cd crawler-v2 && npm install && npm run crawl
 ## 🌐 Deployment
 
 ### Railway (Empfohlen)
-- **Backend**: `railway new --name kaya-backend`
-- **Frontend**: `railway new --name kaya-frontend`
-- **Root Directory**: `server/` bzw. `frontend/`
+- **Projekt**: "Landkreis Oldenburg" (ID: `266dd89d-9821-4f28-8ae5-66761eed2058`)
+- **Backend Service**: `kaya-api` (Dockerfile: `kaya-api/Dockerfile`)
+- **Frontend Service**: `kaya-frontend` (Dockerfile: `kaya-frontend/Dockerfile`)
+- **GitHub Actions**: Automatisches Deployment bei Push auf `main`
+- **Secrets**: `RAILWAY_TOKEN` und `RAILWAY_PROJECT_ID` in GitHub konfiguriert
 
 ### Docker
-- **Backend**: `docker build -t kaya-backend ./server`
-- **Frontend**: `docker build -t kaya-frontend ./frontend`
+- **Backend**: `docker build -t kaya-api ./kaya-api`
+- **Frontend**: `docker build -t kaya-frontend ./kaya-frontend`
 
 ## 🔧 Konfiguration
 
@@ -128,9 +130,10 @@ VITE_WS_URL=wss://api.example.com
 ```
 
 ### Babylon.js-Integration
-- 3D-Avatar-Modelle in `frontend/public/avatar/`
+- 3D-Avatar-Modelle in `kaya-frontend/public/avatar/`
 - Erforderliche Dateien: `*.glb` (GLTF Binary Format)
 - Babylon.js lädt Modelle automatisch via `@babylonjs/loaders`
+- GLB-Modelle von avaturn.me (Kayanew.glb, Kayanew-draco.glb, Kayanew_mouth.glb)
 
 ## 📈 Performance
 
@@ -169,15 +172,15 @@ VITE_WS_URL=wss://api.example.com
 
 ### Backend
 ```bash
-cd server
+cd kaya-api
 node -e "const kaya = require('./kaya_character_handler_v2'); kaya.generateResponse('Test', 'user', 'session').then(r => console.log(r));"
 ```
 
 ### Frontend
 ```bash
-cd frontend
+cd kaya-frontend
 npm run dev
-# Browser: http://localhost:3000
+# Browser: http://localhost:5173
 ```
 
 ## 📞 Support
@@ -185,6 +188,29 @@ npm run dev
 - **Email**: kaya@landkreis-oldenburg.de
 - **Telefon**: 04431 85-0
 - **Website**: https://www.oldenburg-kreis.de
+
+## 📁 Projektstruktur
+
+```
+kaya-bot/
+├── kaya-api/              # Backend Service (Node.js + Express)
+│   ├── Dockerfile
+│   ├── kaya_server.js
+│   └── package.json
+├── kaya-frontend/         # Frontend Service (React + TypeScript)
+│   ├── Dockerfile
+│   ├── src/
+│   └── package.json
+├── kaya-crawler/          # Crawler Service (Node.js + Puppeteer)
+│   ├── src/
+│   └── package.json
+├── docs/                  # Dokumentation
+├── .github/workflows/     # GitHub Actions
+│   ├── deploy-kaya-api.yml
+│   └── deploy-kaya-frontend.yml
+├── railway.toml           # Railway-Konfiguration
+└── README.md
+```
 
 ## 📄 Lizenz
 
