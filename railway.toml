@@ -1,4 +1,7 @@
 # Railway Project Configuration
 # Services werden über ihre eigenen railway.toml Dateien konfiguriert
 
+# Explizit Railpack/Nixpacks deaktivieren
+[build]
+builder = "DOCKERFILE"
 
