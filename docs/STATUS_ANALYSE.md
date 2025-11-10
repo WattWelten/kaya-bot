@@ -19,19 +19,38 @@
 ---
 
 ### Problem 2: Railway Dockerfile wird nicht gefunden
-**Status:** ⚠️ Unbekannt (muss im Dashboard geprüft werden)
+**Status:** ❌ **IDENTIFIZIERT - Root Directory falsch konfiguriert**
 **Fehler:** `dockerfile invalid: failed to parse dockerfile: file with no instructions`
 
+**Analyse der Screenshots:**
+
+#### kaya-api Service:
+- ✅ **Builder**: `Dockerfile` (automatisch erkannt) - **KORREKT**
+- ✅ **Dockerfile Path**: `Dockerfile` - **KORREKT**
+- ✅ **Source Repo**: `WattWelten/kaya-bot` - **KORREKT**
+- ❌ **Root Directory**: `/` (Projekt-Root) - **FALSCH!**
+
+#### kaya-frontend Service:
+- ✅ **Builder**: `Dockerfile` (automatisch erkannt) - **KORREKT**
+- ✅ **Dockerfile Path**: `Dockerfile` - **KORREKT**
+- ✅ **Source Repo**: `WattWelten/kaya-bot` - **KORREKT**
+- ❌ **Root Directory**: `/` (Projekt-Root) - **FALSCH!**
+
 **Ursache:**
-- Root Directory im Railway Dashboard nicht gesetzt
-- Railway sucht Dockerfile im falschen Verzeichnis
+- Root Directory ist auf `/` (Projekt-Root) gesetzt
+- Railway sucht Dockerfile im Projekt-Root: `Dockerfile`
+- Tatsächlicher Pfad: `kaya-api/Dockerfile` bzw. `kaya-frontend/Dockerfile`
+- Railway findet kein Dockerfile im Root → Fehler
 
 **Lösung:**
 1. Railway Dashboard öffnen
-2. Für beide Services:
-   - **Root Directory**: `kaya-api` bzw. `kaya-frontend`
-   - **Builder**: `Dockerfile`
-   - **Dockerfile Path**: `Dockerfile`
+2. Für **kaya-api**:
+   - Settings → Source → Root Directory
+   - Ändere von `/` auf `kaya-api`
+3. Für **kaya-frontend**:
+   - Settings → Source → Root Directory
+   - Ändere von `/` auf `kaya-frontend`
+4. Nach Änderung: Railway wird automatisch neu deployen
 
 ---
 
@@ -51,19 +70,24 @@
 
 **Für kaya-api:**
 1. https://railway.app → Projekt "Landkreis Oldenburg" → Service `kaya-api`
-2. Settings → Build & Deploy
-3. Setze:
-   - Root Directory: `kaya-api`
-   - Builder: `Dockerfile`
-   - Dockerfile Path: `Dockerfile`
+2. Settings → **Source** (nicht Build & Deploy!)
+3. Unter "Root Directory":
+   - Aktuell: `/` (Projekt-Root) ❌
+   - Ändern zu: `kaya-api` ✅
+4. Builder und Dockerfile Path bleiben unverändert (sind bereits korrekt)
 
 **Für kaya-frontend:**
 1. Service `kaya-frontend`
-2. Settings → Build & Deploy
-3. Setze:
-   - Root Directory: `kaya-frontend`
-   - Builder: `Dockerfile`
-   - Dockerfile Path: `Dockerfile`
+2. Settings → **Source** (nicht Build & Deploy!)
+3. Unter "Root Directory":
+   - Aktuell: `/` (Projekt-Root) ❌
+   - Ändern zu: `kaya-frontend` ✅
+4. Builder und Dockerfile Path bleiben unverändert (sind bereits korrekt)
+
+**Wichtig:**
+- Root Directory ist unter **Source**, nicht unter Build & Deploy
+- Nach Änderung wird Railway automatisch einen neuen Build starten
+- Builder und Dockerfile Path sind bereits korrekt und müssen nicht geändert werden
 
 ### Schritt 2: GitHub Actions Workflows testen
 
