@@ -1,20 +1,8 @@
-# Build Stage (für Dependencies)
-FROM node:18-alpine AS deps
-
-WORKDIR /app
-
-# Kopiere package.json und package-lock.json
-COPY package*.json ./
-
-# Installiere alle Dependencies (inkl. devDependencies für Build)
-RUN npm ci --no-audit --no-fund
-
-# Production Stage
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Kopiere nur package.json und package-lock.json
+# Kopiere package.json und package-lock.json
 COPY package*.json ./
 
 # Installiere nur Production Dependencies
