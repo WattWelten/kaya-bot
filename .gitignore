@@ -81,6 +81,21 @@ logs/
 *.tmp
 *.temp
 
+# Large binary files
+*.exe
+cloudflared.exe
+*.dll
+*.bin
+*.glb
+*.gltf
+*.zip
+*.tar.gz
+*.rar
+
+# Large data files
+*.json.bak
+*_backup.json
+
 
 
 
