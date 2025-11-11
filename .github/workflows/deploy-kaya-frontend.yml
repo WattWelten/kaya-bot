@@ -30,17 +30,13 @@ jobs:
         run: |
           export PATH="$HOME/.railway/bin:$PATH"
           
-          # Railway CLI mit expliziter Token-Konfiguration
+          # Railway CLI Token als Environment Variable setzen
           export RAILWAY_TOKEN="$RAILWAY_TOKEN"
-          mkdir -p ~/.railway
-          
-          # Config-Datei mit korrektem Format erstellen
-          echo "{\"token\":\"$RAILWAY_TOKEN\"}" > ~/.railway/config.json
           
           # Prüfe Railway CLI
           railway --version
           
-          # Link zum Projekt und Service (ohne --non-interactive)
+          # Link zum Projekt und Service
           railway link -p $RAILWAY_PROJECT_ID -s kaya-frontend
           
           # Deployment auslösen
