@@ -1,4 +1,68 @@
-# Ignore Railpack detection
-railpack-plan.json
-.railpack/
-nixpacks.toml
+# Railway Root Ignore - Reduziert Snapshot-Größe für alle Services
+# Diese Datei wird verwendet, wenn Railway den Snapshot vom Root erstellt
+
+# Alle node_modules (werden im Dockerfile installiert)
+**/node_modules/
+node_modules/
+
+# Memory und Logs (werden zur Laufzeit erstellt)
+**/memory/
+**/logs/
+memory/
+logs/
+
+# Build outputs
+**/dist/
+**/build/
+dist/
+build/
+
+# Crawler-Daten (nur für kaya-crawler benötigt, nicht für API/Frontend)
+kaya-crawler/data/raw/
+kaya-crawler/data/backup/
+kaya-crawler/logs/
+
+# Dokumentation
+docs/
+*.md
+README.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Git
+.git/
+.gitignore
+
+# Test files
+**/test/
+**/tests/
+**/*.test.*
+**/*.spec.*
+
+# Coverage
+**/coverage/
+.nyc_output/
+
+# Temporary
+*.tmp
+*.temp
+.cache/
+
+# Scripts (nur für lokale Entwicklung)
+scripts/
+kaya-api/scripts/
+kaya-crawler/scripts/
+
+# Large files
+*.zip
+*.tar.gz
+*.log
