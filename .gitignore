@@ -75,6 +75,12 @@ crawler/temp/
 .railway/
 railway.toml.bak
 
+# Logs
+*.log
+logs/
+*.tmp
+*.temp
+
 
 
 
