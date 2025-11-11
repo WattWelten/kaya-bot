@@ -19,7 +19,12 @@ jobs:
       
       - name: Install Railway CLI
         run: |
-          curl -fsSL https://railway.app/install.sh | sh
+          curl -fsSL https://railway.app/install.sh | sh || {
+            echo "⚠️ Railway Install-Script fehlgeschlagen, versuche direkten Download"
+            mkdir -p ~/.railway/bin
+            curl -L https://github.com/railwayapp/cli/releases/latest/download/railway-linux-amd64 -o ~/.railway/bin/railway
+            chmod +x ~/.railway/bin/railway
+          }
           echo "$HOME/.railway/bin" >> $GITHUB_PATH
       
       - name: Deploy to Railway
@@ -34,8 +39,8 @@ jobs:
           mkdir -p ~/.railway
           echo "{\"token\":\"$RAILWAY_TOKEN\"}" > ~/.railway/config.json
           
-          # Projekt verlinken
-          railway link -p $RAILWAY_PROJECT_ID -s kaya-frontend --non-interactive
+          # Projekt verlinken (ohne --non-interactive, da nicht unterstützt)
+          railway link --project $RAILWAY_PROJECT_ID --service kaya-frontend
           
           # Deployment auslösen
           railway up --detach
