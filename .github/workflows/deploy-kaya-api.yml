@@ -1,13 +1,15 @@
 name: Deploy KAYA API to Railway
 
+# DEAKTIVIERT: Railway GitHub Integration wird verwendet für automatische Deployments
+# Diese Workflow wird nur ausgeführt, wenn Railway GitHub Integration nicht aktiv ist
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'kaya-api/**'
-      - '.github/workflows/deploy-kaya-api.yml'
   workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'kaya-api/**'
+  #     - '.github/workflows/deploy-kaya-api.yml'
 
 jobs:
   deploy:

@@ -1,13 +1,15 @@
 name: Deploy KAYA Frontend to Railway
 
+# DEAKTIVIERT: Railway GitHub Integration wird verwendet für automatische Deployments
+# Diese Workflow wird nur ausgeführt, wenn Railway GitHub Integration nicht aktiv ist
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'kaya-frontend/**'
-      - '.github/workflows/deploy-kaya-frontend.yml'
   workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'kaya-frontend/**'
+  #     - '.github/workflows/deploy-kaya-frontend.yml'
 
 jobs:
   deploy:
