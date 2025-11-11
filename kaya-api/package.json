@@ -4,22 +4,25 @@
   "main": "kaya_server.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node kaya_server.js"
+    "start": "node kaya_server.js",
+    "audit": "npm audit",
+    "audit:fix": "npm audit fix"
   },
   "dependencies": {
-    "axios": "^1.6.0",
+    "axios": "^1.7.0",
     "compression": "^1.8.1",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "express-rate-limit": "^7.1.5",
-    "form-data": "^4.0.4",
+    "dotenv": "^16.4.0",
+    "express": "^4.21.0",
+    "express-rate-limit": "^7.4.0",
+    "form-data": "^4.0.1",
     "franc-min": "^6.2.0",
     "fs-extra": "^11.3.2",
     "multer": "^1.4.5-lts.1",
-    "openai": "^4.20.0",
+    "openai": "^4.70.0",
+    "rate-limit-redis": "^4.0.1",
     "redis": "^4.7.1",
-    "uuid": "^9.0.0",
-    "ws": "^8.0.0"
+    "uuid": "^11.0.0",
+    "ws": "^8.18.0"
   }
 }

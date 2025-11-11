@@ -6,15 +6,14 @@ class KAYAWebSocketService extends EventEmitter {
         super();
         this.server = server;
         this.wss = null;
-        this.clients = new Map();
-        this.rooms = new Map();
-        this.messageQueue = new Map();
-        this.sessionClientMap = new Map(); // NEU: Map für Session-ID → Client-ID
+        this.clients = new Map(); // Lokale WebSocket-Verbindungen (können nicht in Redis gespeichert werden)
+        this.redisCacheService = null; // Redis für Shared State
+        this.redisEnabled = false;
         this.heartbeatInterval = 30000; // 30 Sekunden
         this.maxClients = 1000;
         this.maxMessageSize = 1024 * 1024; // 1MB
         
-        // Performance Metrics
+        // Performance Metrics (lokale Metriken, können später in Redis aggregiert werden)
         this.metrics = {
             totalConnections: 0,
             activeConnections: 0,
@@ -24,13 +23,36 @@ class KAYAWebSocketService extends EventEmitter {
             errorCount: 0
         };
         
-        // Rate Limiting
-        this.rateLimits = new Map();
         this.rateLimitWindow = 60000; // 1 Minute
         this.rateLimitMax = 100; // 100 Nachrichten pro Minute
         
-        console.log('🚀 KAYA WebSocket Service v2.0 initialisiert');
+        // Lokale Rate-Limits für Fallback (wenn Redis nicht verfügbar)
+        this.localRateLimits = new Map();
+        
+        // Redis initialisieren
+        this.initializeRedis();
+        
+        console.log('🚀 KAYA WebSocket Service v2.0 initialisiert (Redis-backed)');
         this.initializeWebSocket();
+    }
+    
+    /**
+     * Redis für Shared State initialisieren
+     */
+    async initializeRedis() {
+        try {
+            this.redisCacheService = require('./services/redis_cache');
+            this.redisEnabled = this.redisCacheService.isEnabled();
+            
+            if (this.redisEnabled) {
+                console.log('✅ Redis für WebSocket Shared State aktiviert');
+            } else {
+                console.log('⚠️ Redis nicht verfügbar, verwende lokale Maps (nicht skalierbar)');
+            }
+        } catch (error) {
+            console.error('❌ Redis-Initialisierung fehlgeschlagen:', error.message);
+            this.redisEnabled = false;
+        }
     }
     
     // WebSocket-Server initialisieren
@@ -83,12 +105,12 @@ class KAYAWebSocketService extends EventEmitter {
         console.log(`🔌 Client verbunden: ${clientId} (${clientInfo.ip})`);
         
         // Client-Events
-        ws.on('message', (data) => {
-            this.handleMessage(clientId, data);
+        ws.on('message', async (data) => {
+            await this.handleMessage(clientId, data);
         });
         
-        ws.on('close', (code, reason) => {
-            this.handleDisconnection(clientId, code, reason);
+        ws.on('close', async (code, reason) => {
+            await this.handleDisconnection(clientId, code, reason);
         });
         
         ws.on('error', (error) => {
@@ -109,13 +131,13 @@ class KAYAWebSocketService extends EventEmitter {
         this.emit('clientConnected', clientInfo);
     }
     
-    // Nachricht behandeln
-    handleMessage(clientId, data) {
+    // Nachricht behandeln (async wegen Redis)
+    async handleMessage(clientId, data) {
         const startTime = Date.now();
         
         try {
-            // Rate Limiting prüfen
-            if (!this.checkRateLimit(clientId)) {
+            // Rate Limiting prüfen (async)
+            if (!(await this.checkRateLimit(clientId))) {
                 this.sendToClient(clientId, {
                     type: 'error',
                     data: {
@@ -142,8 +164,8 @@ class KAYAWebSocketService extends EventEmitter {
             this.metrics.totalMessages++;
             this.updateMessagesPerSecond();
             
-            // Nachricht verarbeiten
-            this.processMessage(clientId, message);
+            // Nachricht verarbeiten (async)
+            await this.processMessage(clientId, message);
             
             // Latenz berechnen
             const latency = Date.now() - startTime;
@@ -165,8 +187,8 @@ class KAYAWebSocketService extends EventEmitter {
         }
     }
     
-    // Nachricht verarbeiten
-    processMessage(clientId, message) {
+    // Nachricht verarbeiten (async)
+    async processMessage(clientId, message) {
         const { type, data } = message;
         
         switch (type) {
@@ -175,11 +197,11 @@ class KAYAWebSocketService extends EventEmitter {
                 break;
                 
             case 'chat':
-                this.handleChatMessage(clientId, data);
+                await this.handleChatMessage(clientId, data);
                 break;
                 
             case 'session':
-                this.handleSessionMessage(clientId, data);
+                await this.handleSessionMessage(clientId, data);
                 break;
                 
             case 'avatar':
@@ -225,13 +247,21 @@ class KAYAWebSocketService extends EventEmitter {
     }
     
     // Chat-Nachricht behandeln
-    handleChatMessage(clientId, data) {
+    async handleChatMessage(clientId, data) {
         const { message, sessionId } = data;
         
-        // Session-ID speichern
+        // Session-ID speichern (lokal + Redis)
         const client = this.clients.get(clientId);
-        if (client) {
+        if (client && sessionId) {
             client.sessionId = sessionId;
+            
+            // Redis: Session-Mapping speichern
+            if (this.redisEnabled && this.redisCacheService) {
+                const mappingKey = `ws:session:${sessionId}`;
+                const clientKey = `ws:client:${clientId}:session`;
+                await this.redisCacheService.set(mappingKey, clientId, 3600000);
+                await this.redisCacheService.set(clientKey, sessionId, 3600000);
+            }
         }
         
         // Event emittieren für weitere Verarbeitung
@@ -271,13 +301,27 @@ class KAYAWebSocketService extends EventEmitter {
     }
     
     // Session-Nachricht behandeln
-    handleSessionMessage(clientId, data) {
+    async handleSessionMessage(clientId, data) {
         const { action, sessionId, data: sessionData } = data;
         
-        // Session-ID → Client-ID Mapping (für sendToSession)
+        // Session-ID → Client-ID Mapping (für sendToSession) - jetzt Redis-backed
         if (sessionId) {
-            this.sessionClientMap.set(sessionId, clientId);
-            console.log(`🔗 Session-Mapping: ${sessionId} → ${clientId}`);
+            const mappingKey = `ws:session:${sessionId}`;
+            const clientKey = `ws:client:${clientId}:session`;
+            
+            if (this.redisEnabled && this.redisCacheService) {
+                // Redis: Session → Client Mapping (TTL: 1 Stunde)
+                await this.redisCacheService.set(mappingKey, clientId, 3600000);
+                await this.redisCacheService.set(clientKey, sessionId, 3600000);
+            }
+            
+            // Lokales Mapping aktualisieren (für schnellen Zugriff)
+            const client = this.clients.get(clientId);
+            if (client) {
+                client.sessionId = sessionId;
+            }
+            
+            console.log(`🔗 Session-Mapping: ${sessionId} → ${clientId} (${this.redisEnabled ? 'Redis' : 'lokale Map'})`);
         }
         
         // Event emittieren für Session-Management
@@ -290,14 +334,39 @@ class KAYAWebSocketService extends EventEmitter {
         });
     }
     
-    // Neue Methode: Nachricht an Session-ID senden (nicht Client-ID)
-    sendToSession(sessionId, message) {
-        const clientId = this.sessionClientMap.get(sessionId);
+    // Neue Methode: Nachricht an Session-ID senden (nicht Client-ID) - Redis-backed
+    async sendToSession(sessionId, message) {
+        let clientId = null;
+        
+        // 1. Versuche lokale Client-Verbindung
+        for (const [cid, client] of this.clients) {
+            if (client.sessionId === sessionId) {
+                clientId = cid;
+                break;
+            }
+        }
+        
+        // 2. Falls nicht lokal gefunden, versuche Redis (für andere Instanzen)
+        if (!clientId && this.redisEnabled && this.redisCacheService) {
+            const mappingKey = `ws:session:${sessionId}`;
+            clientId = await this.redisCacheService.get(mappingKey);
+            
+            if (clientId && this.clients.has(clientId)) {
+                // Client ist lokal verbunden, sende Nachricht
+                this.sendToClient(clientId, message);
+                console.log(`📤 Nachricht an Session ${sessionId} (Client: ${clientId}) gesendet via Redis`);
+                return true;
+            }
+        }
+        
+        // 3. Lokale Client-Verbindung verwenden
         if (clientId) {
             this.sendToClient(clientId, message);
             console.log(`📤 Nachricht an Session ${sessionId} (Client: ${clientId}) gesendet`);
+            return true;
         } else {
             console.warn(`⚠️ Keine WebSocket-Verbindung für Session: ${sessionId}`);
+            return false;
         }
     }
     
@@ -409,14 +478,27 @@ class KAYAWebSocketService extends EventEmitter {
         }
     }
     
-    // Verbindung trennen
-    handleDisconnection(clientId, code, reason) {
+    // Verbindung trennen - Redis cleanup
+    async handleDisconnection(clientId, code, reason) {
         const client = this.clients.get(clientId);
         
         if (client) {
+            // Redis-Cleanup: Session-Mappings entfernen
+            if (this.redisEnabled && this.redisCacheService && client.sessionId) {
+                const mappingKey = `ws:session:${client.sessionId}`;
+                const clientKey = `ws:client:${clientId}:session`;
+                
+                await this.redisCacheService.delete(mappingKey);
+                await this.redisCacheService.delete(clientKey);
+                
+                // Rate-Limit-Key entfernen
+                const rateLimitKey = `ws:ratelimit:${clientId}`;
+                await this.redisCacheService.delete(rateLimitKey);
+            }
+            
             // Aus allen Räumen entfernen
             for (const roomId of client.rooms) {
-                this.handleLeaveRoom(clientId, { roomId });
+                await this.handleLeaveRoom(clientId, { roomId });
             }
             
             this.clients.delete(clientId);
@@ -446,10 +528,61 @@ class KAYAWebSocketService extends EventEmitter {
         });
     }
     
-    // Rate Limiting prüfen
-    checkRateLimit(clientId) {
+    // Rate Limiting prüfen - Redis-backed für horizontale Skalierung
+    async checkRateLimit(clientId) {
         const now = Date.now();
-        const clientLimits = this.rateLimits.get(clientId) || { count: 0, windowStart: now };
+        const rateLimitKey = `ws:ratelimit:${clientId}`;
+        
+        if (this.redisEnabled && this.redisCacheService) {
+            // Redis-basierte Rate-Limiting (skalierbar)
+            try {
+                const cached = await this.redisCacheService.get(rateLimitKey);
+                
+                if (cached) {
+                    const { count, windowStart } = cached;
+                    
+                    // Fenster zurücksetzen falls abgelaufen
+                    if (now - windowStart > this.rateLimitWindow) {
+                        await this.redisCacheService.set(rateLimitKey, {
+                            count: 1,
+                            windowStart: now
+                        }, this.rateLimitWindow);
+                        return true;
+                    }
+                    
+                    // Limit prüfen
+                    if (count >= this.rateLimitMax) {
+                        return false;
+                    }
+                    
+                    // Zähler erhöhen
+                    await this.redisCacheService.set(rateLimitKey, {
+                        count: count + 1,
+                        windowStart: windowStart
+                    }, this.rateLimitWindow);
+                    return true;
+                } else {
+                    // Erste Nachricht in diesem Fenster
+                    await this.redisCacheService.set(rateLimitKey, {
+                        count: 1,
+                        windowStart: now
+                    }, this.rateLimitWindow);
+                    return true;
+                }
+            } catch (error) {
+                console.error('❌ Redis Rate-Limit Fehler:', error.message);
+                // Fallback: Lokales Rate-Limiting
+                return true; // Im Fehlerfall durchlassen
+            }
+        }
+        
+        // Fallback: Lokales Rate-Limiting (nicht skalierbar, aber funktioniert ohne Redis)
+        // Lokale Map für Fallback
+        if (!this.localRateLimits) {
+            this.localRateLimits = new Map();
+        }
+        
+        const clientLimits = this.localRateLimits.get(clientId) || { count: 0, windowStart: now };
         
         // Fenster zurücksetzen
         if (now - clientLimits.windowStart > this.rateLimitWindow) {
@@ -464,7 +597,7 @@ class KAYAWebSocketService extends EventEmitter {
         
         // Zähler erhöhen
         clientLimits.count++;
-        this.rateLimits.set(clientId, clientLimits);
+        this.localRateLimits.set(clientId, clientLimits);
         
         return true;
     }
@@ -522,21 +655,8 @@ class KAYAWebSocketService extends EventEmitter {
         return sentCount;
     }
     
-    // Nachricht an Session senden
-    sendToSession(sessionId, message) {
-        let sentCount = 0;
-        
-        for (const [clientId, client] of this.clients) {
-            if (client.sessionId === sessionId) {
-                if (this.sendToClient(clientId, message)) {
-                    sentCount++;
-                }
-            }
-        }
-        
-        console.log(`📢 Nachricht an Session ${sessionId} (${sentCount} Clients) gesendet`);
-        return sentCount;
-    }
+    // Nachricht an Session senden - bereits oben implementiert
+    // Diese Methode wird durch die oben definierte sendToSession ersetzt
     
     // Heartbeat starten
     startHeartbeat() {

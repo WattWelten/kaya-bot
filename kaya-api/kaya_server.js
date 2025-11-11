@@ -636,6 +636,63 @@ app.get('/api/admin/stats', async (req, res) => {
     }
 });
 
+// Prometheus Metrics Endpoint (für Monitoring)
+app.get('/metrics', (req, res) => {
+    try {
+        // Einfache Metrics im Prometheus-Format
+        const metrics = [];
+        
+        // Request Count (vereinfacht - sollte aus Monitoring Service kommen)
+        metrics.push(`# HELP http_requests_total Total number of HTTP requests`);
+        metrics.push(`# TYPE http_requests_total counter`);
+        metrics.push(`http_requests_total 0`);
+        
+        // Error Count
+        metrics.push(`# HELP http_errors_total Total number of HTTP errors`);
+        metrics.push(`# TYPE http_errors_total counter`);
+        metrics.push(`http_errors_total 0`);
+        
+        // Active Connections
+        if (websocketService) {
+            const wsMetrics = websocketService.getMetrics();
+            metrics.push(`# HELP websocket_connections_active Active WebSocket connections`);
+            metrics.push(`# TYPE websocket_connections_active gauge`);
+            metrics.push(`websocket_connections_active ${wsMetrics.activeConnections || 0}`);
+            
+            metrics.push(`# HELP websocket_messages_total Total WebSocket messages`);
+            metrics.push(`# TYPE websocket_messages_total counter`);
+            metrics.push(`websocket_messages_total ${wsMetrics.totalMessages || 0}`);
+        }
+        
+        // Memory Usage
+        const memUsage = process.memoryUsage();
+        metrics.push(`# HELP process_memory_heap_used_bytes Heap memory used in bytes`);
+        metrics.push(`# TYPE process_memory_heap_used_bytes gauge`);
+        metrics.push(`process_memory_heap_used_bytes ${memUsage.heapUsed}`);
+        
+        metrics.push(`# HELP process_memory_heap_total_bytes Total heap memory in bytes`);
+        metrics.push(`# TYPE process_memory_heap_total_bytes gauge`);
+        metrics.push(`process_memory_heap_total_bytes ${memUsage.heapTotal}`);
+        
+        metrics.push(`# HELP process_memory_rss_bytes Resident set size in bytes`);
+        metrics.push(`# TYPE process_memory_rss_bytes gauge`);
+        metrics.push(`process_memory_rss_bytes ${memUsage.rss}`);
+        
+        // CPU Usage (vereinfacht)
+        const cpuUsage = process.cpuUsage();
+        metrics.push(`# HELP process_cpu_user_seconds_total Total user CPU time in seconds`);
+        metrics.push(`# TYPE process_cpu_user_seconds_total counter`);
+        metrics.push(`process_cpu_user_seconds_total ${(cpuUsage.user / 1000000).toFixed(6)}`);
+        
+        res.setHeader('Content-Type', 'text/plain');
+        res.send(metrics.join('\n') + '\n');
+        
+    } catch (error) {
+        console.error('Metrics Endpoint Fehler:', error);
+        res.status(500).json({ error: 'Failed to retrieve metrics' });
+    }
+});
+
 // Frontend bereitstellen
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
