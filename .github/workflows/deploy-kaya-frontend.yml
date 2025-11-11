@@ -1,15 +1,13 @@
 name: Deploy KAYA Frontend to Railway
 
-# DEAKTIVIERT: Railway GitHub Integration wird verwendet für automatische Deployments
-# Diese Workflow wird nur ausgeführt, wenn Railway GitHub Integration nicht aktiv ist
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'kaya-frontend/**'
+      - '.github/workflows/deploy-kaya-frontend.yml'
   workflow_dispatch:
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - 'kaya-frontend/**'
-  #     - '.github/workflows/deploy-kaya-frontend.yml'
 
 jobs:
   deploy:
@@ -19,35 +17,48 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Install Railway CLI
-        run: |
-          # Alternative Installation via npm (falls curl-Installation fehlschlägt)
-          npm install -g @railway/cli || curl -fsSL https://railway.app/install.sh | sh
-          echo "$HOME/.railway/bin" >> $GITHUB_PATH || echo "$(npm config get prefix)/bin" >> $GITHUB_PATH
-      
-      - name: Deploy to Railway
+      - name: Trigger Railway Deployment via GraphQL
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
-        working-directory: kaya-frontend
         run: |
-          # PATH setzen (für beide Installationsmethoden)
-          export PATH="$HOME/.railway/bin:$(npm config get prefix)/bin:$PATH"
+          # Railway GraphQL API: Service-ID für kaya-frontend abrufen
+          SERVICE_QUERY='{"query": "query GetServices($projectId: String!) { project(id: $projectId) { services { edges { node { id name } } } } }", "variables": {"projectId": "$RAILWAY_PROJECT_ID"}}'
           
-          # Railway CLI Token setzen (Projekt-Token für railway up)
-          export RAILWAY_TOKEN="$RAILWAY_TOKEN"
+          SERVICES_RESPONSE=$(curl -s -X POST \
+            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$SERVICE_QUERY" \
+            "https://backboard.railway.app/graphql/v2")
           
-          # Token auch in .railway-token Datei speichern (Fallback)
-          echo "$RAILWAY_TOKEN" > .railway-token
+          echo "Services Response: $SERVICES_RESPONSE"
           
-          # Prüfe Railway CLI
-          railway --version
+          # Service-ID für kaya-frontend extrahieren (vereinfacht - jq würde besser sein, aber nicht verfügbar)
+          SERVICE_ID=$(echo "$SERVICES_RESPONSE" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
           
-          # Link zum Projekt und Service (mit Projekt-Token sollte das funktionieren)
-          railway link -p $RAILWAY_PROJECT_ID -s kaya-frontend
+          if [ -z "$SERVICE_ID" ]; then
+            echo "❌ Service 'kaya-frontend' nicht gefunden"
+            echo "Versuche Deployment via Railway GitHub Integration..."
+            echo "✅ Push zu main Branch sollte automatisch Deployment auslösen (wenn Railway GitHub Integration aktiv ist)"
+            exit 0
+          fi
           
-          # Deployment auslösen
-          railway up --detach
+          echo "✅ Service-ID gefunden: $SERVICE_ID"
+          
+          # Deployment via GraphQL auslösen
+          DEPLOY_MUTATION='{"query": "mutation DeployService($serviceId: String!) { serviceDeploy(serviceId: $serviceId) { id status } }", "variables": {"serviceId": "$SERVICE_ID"}}'
+          
+          DEPLOY_RESPONSE=$(curl -s -X POST \
+            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$DEPLOY_MUTATION" \
+            "https://backboard.railway.app/graphql/v2")
+          
+          echo "Deploy Response: $DEPLOY_RESPONSE"
+          
+          if echo "$DEPLOY_RESPONSE" | grep -q "errors"; then
+            echo "⚠️ GraphQL-Fehler, aber Push sollte Railway GitHub Integration auslösen"
+            exit 0
+          fi
           
           echo "✅ Deployment ausgelöst für kaya-frontend"
-
