@@ -61,5 +61,14 @@ coverage/
 *.temp
 .cache/
 
+# Exclude other services and large data directories
+ki_backend/
+kaya-api/
+kaya-crawler/
+*.json.bak
+*_backup.json
+*_data.json
+*_compressed.json
+
 
 
