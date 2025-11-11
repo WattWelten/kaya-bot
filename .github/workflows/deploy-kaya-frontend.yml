@@ -29,19 +29,23 @@ jobs:
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
         working-directory: kaya-frontend
         run: |
-          export PATH="$HOME/.railway/bin:$PATH"
+          # PATH setzen (für beide Installationsmethoden)
+          export PATH="$HOME/.railway/bin:$(npm config get prefix)/bin:$PATH"
           
           # Railway CLI Token als Environment Variable setzen
           export RAILWAY_TOKEN="$RAILWAY_TOKEN"
           
           # Prüfe Railway CLI
-          railway --version
+          railway --version || railway --version
+          
+          # Authentifizierung prüfen
+          railway whoami || echo "⚠️ whoami fehlgeschlagen, versuche trotzdem Deployment"
           
           # Link zum Projekt und Service
-          railway link -p $RAILWAY_PROJECT_ID -s kaya-frontend
+          railway link -p $RAILWAY_PROJECT_ID -s kaya-frontend || echo "⚠️ link fehlgeschlagen"
           
           # Deployment auslösen
-          railway up --detach
+          railway up --detach || (echo "❌ railway up fehlgeschlagen" && exit 1)
           
           echo "✅ Deployment ausgelöst für kaya-frontend"
 
