@@ -116,3 +116,4 @@ Falls das Problem weiterhin besteht:
 
 **Fazit:** Dashboard-Settings sind korrekt. Das Problem liegt wahrscheinlich im Build-Prozess selbst (Build-Kontext, Dockerfile-Parsing, oder Railway Builder-Problem).
 
+

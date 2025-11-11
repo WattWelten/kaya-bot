@@ -1,10 +1,10 @@
 # Automatisierter Deployment-Workflow
-# Prüft Git-Status, bereinigt unnötige Dateien, committet und deployed
+# Prueft Git-Status, bereinigt unnoetige Dateien, committet und deployed
 
 Write-Host "🚀 Starte Deployment-Workflow..." -ForegroundColor Green
 
-# 1. Git Status prüfen
-Write-Host "`n📋 Schritt 1: Git Status prüfen..." -ForegroundColor Cyan
+# 1. Git Status pruefen
+Write-Host "`n📋 Schritt 1: Git Status pruefen..." -ForegroundColor Cyan
 $gitStatus = git status --short
 if ($gitStatus) {
     Write-Host "⚠️ Uncommitted Changes gefunden:" -ForegroundColor Yellow
@@ -13,10 +13,10 @@ if ($gitStatus) {
     Write-Host "✅ Keine uncommitted Changes" -ForegroundColor Green
 }
 
-# 2. Unnötige Dateien identifizieren
-Write-Host "`n🧹 Schritt 2: Unnötige Dateien identifizieren..." -ForegroundColor Cyan
+# 2. Unnoetige Dateien identifizieren
+Write-Host "`n🧹 Schritt 2: Unnoetige Dateien identifizieren..." -ForegroundColor Cyan
 
-# Patterns für unnötige Dateien
+# Patterns fuer unnoetige Dateien
 $unnecessaryPatterns = @(
     "*.tmp",
     "*.temp",
@@ -41,19 +41,19 @@ foreach ($pattern in $unnecessaryPatterns) {
 }
 
 if ($unnecessaryFiles.Count -gt 0) {
-    Write-Host "⚠️ Unnötige Dateien gefunden:" -ForegroundColor Yellow
+    Write-Host "⚠️ Unnoetige Dateien gefunden:" -ForegroundColor Yellow
     $unnecessaryFiles | ForEach-Object { Write-Host "  $($_.FullName)" }
     
-    # Frage ob gelöscht werden soll (in automatisiertem Modus: automatisch löschen)
-    Write-Host "🗑️ Lösche unnötige Dateien..." -ForegroundColor Yellow
+    # Frage ob geloescht werden soll (in automatisiertem Modus: automatisch loeschen)
+    Write-Host "🗑️ Loesche unnoetige Dateien..." -ForegroundColor Yellow
     $unnecessaryFiles | Remove-Item -Force -ErrorAction SilentlyContinue
-    Write-Host "✅ Unnötige Dateien gelöscht" -ForegroundColor Green
+    Write-Host "✅ Unnoetige Dateien geloescht" -ForegroundColor Green
 } else {
-    Write-Host "✅ Keine unnötigen Dateien gefunden" -ForegroundColor Green
+    Write-Host "✅ Keine unnoetigen Dateien gefunden" -ForegroundColor Green
 }
 
-# 3. Prüfe ob wichtige Dateien fehlen
-Write-Host "`n✅ Schritt 3: Prüfe wichtige Dateien..." -ForegroundColor Cyan
+# 3. Pruefe ob wichtige Dateien fehlen
+Write-Host "`n✅ Schritt 3: Pruefe wichtige Dateien..." -ForegroundColor Cyan
 $importantFiles = @(
     "kaya-api/Dockerfile",
     "kaya-api/railway.toml",
@@ -80,8 +80,8 @@ if ($missingFiles.Count -gt 0) {
     Write-Host "✅ Alle wichtigen Dateien vorhanden" -ForegroundColor Green
 }
 
-# 4. Prüfe ob Dateien in .gitignore sind, die committed sein sollten
-Write-Host "`n📝 Schritt 4: Prüfe .gitignore..." -ForegroundColor Cyan
+# 4. Pruefe ob Dateien in .gitignore sind, die committed sein sollten
+Write-Host "`n📝 Schritt 4: Pruefe .gitignore..." -ForegroundColor Cyan
 $gitignoreContent = Get-Content .gitignore -ErrorAction SilentlyContinue
 if ($gitignoreContent) {
     Write-Host "✅ .gitignore vorhanden" -ForegroundColor Green
@@ -89,8 +89,8 @@ if ($gitignoreContent) {
     Write-Host "⚠️ .gitignore fehlt" -ForegroundColor Yellow
 }
 
-# 5. Prüfe ob große Dateien committed sind
-Write-Host "`n📦 Schritt 5: Prüfe große Dateien..." -ForegroundColor Cyan
+# 5. Pruefe ob grosse Dateien committed sind
+Write-Host "`n📦 Schritt 5: Pruefe grosse Dateien..." -ForegroundColor Cyan
 $largeFiles = Get-ChildItem -Path . -Recurse -File -ErrorAction SilentlyContinue | 
     Where-Object { 
         $_.Length -gt 10MB -and 
@@ -99,31 +99,64 @@ $largeFiles = Get-ChildItem -Path . -Recurse -File -ErrorAction SilentlyContinue
     Select-Object FullName, @{Name="SizeMB";Expression={[math]::Round($_.Length/1MB,2)}}
 
 if ($largeFiles) {
-    Write-Host "⚠️ Große Dateien gefunden (>10MB):" -ForegroundColor Yellow
+    Write-Host "⚠️ Grosse Dateien gefunden (>10MB):" -ForegroundColor Yellow
     $largeFiles | ForEach-Object { Write-Host "  $($_.FullName) - $($_.SizeMB) MB" }
 } else {
-    Write-Host "✅ Keine ungewöhnlich großen Dateien" -ForegroundColor Green
+    Write-Host "✅ Keine ungewoehnlich grossen Dateien" -ForegroundColor Green
 }
 
-# 6. Prüfe ob Änderungen committed werden müssen
-Write-Host "`n💾 Schritt 6: Prüfe ob Commit nötig..." -ForegroundColor Cyan
+# 6. Pruefe ob Aenderungen committed werden muessen
+Write-Host "`n💾 Schritt 6: Pruefe ob Commit noetig..." -ForegroundColor Cyan
 $gitStatus = git status --short
 if ($gitStatus) {
-    Write-Host "📝 Änderungen gefunden - bereite Commit vor..." -ForegroundColor Yellow
+    Write-Host "📝 Aenderungen gefunden - bereite Commit vor..." -ForegroundColor Yellow
     
-    # Prüfe ob es Deployment-relevante Änderungen sind
+    # Pruefe ob es Deployment-relevante Aenderungen sind
     $deploymentRelevant = $gitStatus | Where-Object { 
         $_ -match "kaya-api|kaya-frontend|\.github|Dockerfile|railway\.toml|\.dockerignore|\.railwayignore" 
     }
     
     if ($deploymentRelevant) {
-        Write-Host "✅ Deployment-relevante Änderungen gefunden" -ForegroundColor Green
+        Write-Host "✅ Deployment-relevante Aenderungen gefunden" -ForegroundColor Green
         Write-Host "💡 Hinweis: Diese sollten committed werden" -ForegroundColor Cyan
     } else {
-        Write-Host "ℹ️ Keine deployment-relevanten Änderungen" -ForegroundColor Gray
+        Write-Host "ℹ️ Keine deployment-relevanten Aenderungen" -ForegroundColor Gray
     }
 } else {
-    Write-Host "✅ Keine Änderungen zum Committen" -ForegroundColor Green
+    Write-Host "✅ Keine Aenderungen zum Committen" -ForegroundColor Green
+}
+
+# 7. Pruefe geloeschte Dateien (D) - sollten committed werden
+Write-Host "`n🗑️ Schritt 7: Pruefe geloeschte Dateien..." -ForegroundColor Cyan
+$deletedFiles = git status --short | Where-Object { $_ -match "^D " }
+if ($deletedFiles) {
+    Write-Host "⚠️ Gelöschte Dateien gefunden (bereits aus Git entfernt):" -ForegroundColor Yellow
+    $deletedFiles | ForEach-Object { Write-Host "  $_" }
+    Write-Host "💡 Diese sollten committed werden" -ForegroundColor Cyan
+} else {
+    Write-Host "✅ Keine gelöschten Dateien" -ForegroundColor Green
+}
+
+# 8. Pruefe neue Dateien (??) - sollten geprueft werden
+Write-Host "`n📄 Schritt 8: Pruefe neue Dateien..." -ForegroundColor Cyan
+$newFiles = git status --short | Where-Object { $_ -match "^\?\? " }
+if ($newFiles) {
+    Write-Host "⚠️ Neue Dateien gefunden:" -ForegroundColor Yellow
+    $newFiles | ForEach-Object { Write-Host "  $_" }
+    
+    # Pruefe ob neue Dateien deployment-relevant sind
+    $relevantNewFiles = $newFiles | Where-Object { 
+        $_ -match "kaya-api|kaya-frontend|\.github|Dockerfile|railway\.toml|\.dockerignore|\.railwayignore|scripts/" 
+    }
+    
+    if ($relevantNewFiles) {
+        Write-Host "✅ Deployment-relevante neue Dateien gefunden" -ForegroundColor Green
+        Write-Host "💡 Diese sollten committed werden" -ForegroundColor Cyan
+    } else {
+        Write-Host "ℹ️ Neue Dateien sind nicht deployment-relevant" -ForegroundColor Gray
+    }
+} else {
+    Write-Host "✅ Keine neuen Dateien" -ForegroundColor Green
 }
 
 Write-Host "`n✅ Deployment-Workflow-Vorbereitung abgeschlossen!" -ForegroundColor Green

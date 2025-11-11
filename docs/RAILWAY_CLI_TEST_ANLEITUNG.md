@@ -118,3 +118,4 @@ railway logs --build --lines 500 > kaya-frontend-build-logs.txt
 
 Die Build-Logs zeigen die genauen Fehlermeldungen, die ich dann analysieren und beheben kann.
 
+

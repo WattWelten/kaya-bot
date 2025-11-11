@@ -195,3 +195,4 @@ Die Railway Logs zeigen nur Snapshot-Aktivitäten, aber keine Docker-Build-Logs.
 
 **Empfehlung:** Railway Dashboard → kaya-api → Deployments → Neuestes Deployment → Build-Logs prüfen
 
+

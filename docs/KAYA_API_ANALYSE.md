@@ -150,3 +150,4 @@ Das Root Directory ist korrekt auf `/kaya-api` gesetzt. Railway findet das Docke
 
 Der nächste Schritt ist, den Build-Erfolg zu prüfen und sicherzustellen, dass der Service erfolgreich deployed wird.
 
+

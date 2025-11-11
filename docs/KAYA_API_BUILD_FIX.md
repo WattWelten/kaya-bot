@@ -121,3 +121,4 @@ Nach den Fixes sollte:
 → Prüfe Railway Dashboard Build-Logs (nicht CLI-Logs!)
 → Dort sollte der genaue Fehler stehen
 
+

@@ -172,3 +172,4 @@ Generiert einen Pairing-Code für Umgebungen ohne Browser (z.B. SSH).
 - [Railway CLI Dokumentation](https://docs.railway.com/guides/cli)
 - [Railway CLI API Reference](https://docs.railway.com/reference/cli)
 
+

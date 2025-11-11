@@ -34,7 +34,8 @@ app.use(compression({
   }
 }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend')));
+// Static files are now served by kaya-frontend service
+// app.use(express.static(path.join(__dirname, '../kaya-frontend')));
 
 // Multer für Audio-Upload
 const upload = multer({ 

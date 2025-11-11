@@ -111,3 +111,4 @@ Sobald ich die Build-Logs aus dem Railway Dashboard habe, kann ich:
 
 **Die CLI-Logs zeigen nur Snapshot-Aktivitäten, aber die Build-Logs im Dashboard zeigen den tatsächlichen Fehler!**
 
+
