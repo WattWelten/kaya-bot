@@ -35,6 +35,11 @@ jobs:
         run: |
           export PATH="$HOME/.railway/bin:$PATH"
           export RAILWAY_TOKEN="${{ secrets.RAILWAY_TOKEN }}"
+          
+          # Railway CLI Token-Authentifizierung: Token explizit in Config setzen
+          mkdir -p ~/.railway
+          echo "{\"token\":\"$RAILWAY_TOKEN\"}" > ~/.railway/config.json
+          
           railway --version
           railway link -p $RAILWAY_PROJECT_ID -s kaya-api
           railway up --detach
