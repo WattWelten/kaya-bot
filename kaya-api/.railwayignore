@@ -10,4 +10,13 @@ scripts/
 docs/
 node_modules/
 
+# Exclude other services and large data directories
+ki_backend/
+kaya-crawler/
+kaya-frontend/
+*_data.json
+*_compressed.json
+*.json.bak
+*_backup.json
+
 

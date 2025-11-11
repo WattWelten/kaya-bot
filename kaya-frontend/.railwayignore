@@ -9,3 +9,12 @@ build/
 node_modules/
 docs/
 coverage/
+
+# Exclude other services and large data directories
+ki_backend/
+kaya-api/
+kaya-crawler/
+*_data.json
+*_compressed.json
+*.json.bak
+*_backup.json
