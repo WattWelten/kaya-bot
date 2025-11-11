@@ -17,15 +17,61 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Trigger Railway Deployment
+      - name: Setup jq (für JSON-Parsing)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+      
+      - name: Deploy to Railway via REST API
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
         run: |
-          echo "🚀 Triggering Railway Deployment für kaya-frontend"
-          echo "📝 Hinweis: Railway GitHub Integration sollte automatisch deployen"
-          echo "✅ Push zu main Branch löst automatisch Deployment aus (wenn Railway GitHub Integration aktiv ist)"
+          # Railway REST API: Service-ID für kaya-frontend abrufen
+          API_RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X GET \
+            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://api.railway.app/v1/projects/$RAILWAY_PROJECT_ID/services")
           
-          # Railway GitHub Integration sollte automatisch deployen
-          # Falls nicht aktiv, kann manuell im Dashboard deployen
-          echo "✅ Workflow erfolgreich - Railway sollte automatisch deployen"
+          HTTP_CODE=$(echo "$API_RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+          JSON_RESPONSE=$(echo "$API_RESPONSE" | sed '/HTTP_CODE:/d')
+          
+          echo "HTTP Status Code: $HTTP_CODE"
+          echo "API Response: $JSON_RESPONSE"
+          
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "❌ API-Fehler: HTTP $HTTP_CODE"
+            echo "Response: $JSON_RESPONSE"
+            exit 1
+          fi
+          
+          SERVICE_ID=$(echo "$JSON_RESPONSE" | jq -r '.services[]? | select(.name == "kaya-frontend") | .id')
+          
+          if [ -z "$SERVICE_ID" ] || [ "$SERVICE_ID" == "null" ]; then
+            echo "❌ Service 'kaya-frontend' nicht gefunden"
+            echo "Verfügbare Services:"
+            echo "$JSON_RESPONSE" | jq -r '.services[]? | "  - \(.name) (ID: \(.id))"'
+            exit 1
+          fi
+          
+          echo "✅ Service-ID gefunden: $SERVICE_ID"
+          
+          # Deployment via REST API auslösen
+          DEPLOY_RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST \
+            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://api.railway.app/v1/services/$SERVICE_ID/deployments" \
+            -d '{"source": "github"}')
+          
+          DEPLOY_HTTP_CODE=$(echo "$DEPLOY_RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+          DEPLOY_JSON=$(echo "$DEPLOY_RESPONSE" | sed '/HTTP_CODE:/d')
+          
+          echo "Deployment HTTP Status: $DEPLOY_HTTP_CODE"
+          echo "Deployment Response: $DEPLOY_JSON"
+          
+          if [ "$DEPLOY_HTTP_CODE" != "200" ] && [ "$DEPLOY_HTTP_CODE" != "201" ]; then
+            echo "❌ Deployment-Fehler: HTTP $DEPLOY_HTTP_CODE"
+            exit 1
+          fi
+          
+          echo "✅ Deployment ausgelöst für kaya-frontend"
