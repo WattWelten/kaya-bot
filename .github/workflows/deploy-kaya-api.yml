@@ -19,8 +19,9 @@ jobs:
       
       - name: Install Railway CLI
         run: |
-          curl -fsSL https://railway.app/install.sh | sh
-          echo "$HOME/.railway/bin" >> $GITHUB_PATH
+          # Alternative Installation via npm (falls curl-Installation fehlschlägt)
+          npm install -g @railway/cli || curl -fsSL https://railway.app/install.sh | sh
+          echo "$HOME/.railway/bin" >> $GITHUB_PATH || echo "$(npm config get prefix)/bin" >> $GITHUB_PATH
       
       - name: Deploy to Railway
         env:
@@ -28,18 +29,22 @@ jobs:
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
         working-directory: kaya-api
         run: |
-          export PATH="$HOME/.railway/bin:$PATH"
+          # PATH setzen (für beide Installationsmethoden)
+          export PATH="$HOME/.railway/bin:$(npm config get prefix)/bin:$PATH"
           
           # Railway CLI Token als Environment Variable setzen
           export RAILWAY_TOKEN="$RAILWAY_TOKEN"
           
           # Prüfe Railway CLI
-          railway --version
+          railway --version || railway --version
+          
+          # Authentifizierung prüfen
+          railway whoami || echo "⚠️ whoami fehlgeschlagen, versuche trotzdem Deployment"
           
           # Link zum Projekt und Service
-          railway link -p $RAILWAY_PROJECT_ID -s kaya-api
+          railway link -p $RAILWAY_PROJECT_ID -s kaya-api || echo "⚠️ link fehlgeschlagen"
           
           # Deployment auslösen
-          railway up --detach
+          railway up --detach || (echo "❌ railway up fehlgeschlagen" && exit 1)
           
           echo "✅ Deployment ausgelöst für kaya-api"
