@@ -34,15 +34,30 @@ jobs:
         working-directory: kaya-frontend
         run: |
           export PATH="$HOME/.railway/bin:$PATH"
+          export RAILWAY_TOKEN="$RAILWAY_TOKEN"
           
-          # Railway CLI authentifizieren
+          # Railway CLI authentifizieren - Config-Datei im korrekten Format erstellen
           mkdir -p ~/.railway
-          echo "{\"token\":\"$RAILWAY_TOKEN\"}" > ~/.railway/config.json
+          cat > ~/.railway/config.json << EOF
+          {
+            "token": "$RAILWAY_TOKEN"
+          }
+          EOF
           
-          # Projekt verlinken (ohne --non-interactive, da nicht unterstützt)
-          railway link --project $RAILWAY_PROJECT_ID --service kaya-frontend
+          # Prüfe ob Railway CLI funktioniert
+          railway --version || echo "⚠️ Railway CLI nicht gefunden"
+          
+          # Projekt verlinken
+          railway link --project $RAILWAY_PROJECT_ID --service kaya-frontend || {
+            echo "⚠️ Link fehlgeschlagen, versuche ohne Service"
+            railway link --project $RAILWAY_PROJECT_ID
+            railway service kaya-frontend
+          }
           
           # Deployment auslösen
-          railway up --detach
+          railway up --detach || {
+            echo "⚠️ railway up fehlgeschlagen, versuche ohne --detach"
+            railway up
+          }
           
           echo "✅ Deployment ausgelöst für kaya-frontend"
