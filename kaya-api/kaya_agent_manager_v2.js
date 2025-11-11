@@ -8,17 +8,22 @@ class KAYAAgentManager {
         this.loadVerifiedFacts(); // Lade verifizierte Fakten beim Start
         
         // Agent-Daten-Pfad und weitere Initialisierung
-        // Lade Pfad aus Kommune-Config oder verwende Standard
-        try {
-            const { getKommuneConfig } = require('./config/kommune_config_loader');
-            const kommuneConfig = getKommuneConfig();
-            // Pfad könnte kommunenspezifisch sein: crawler-v2/data/[kommune]/processed
-            // Für jetzt: Standard-Pfad (kann später erweitert werden)
-            this.agentDataPath = path.join(__dirname, '../crawler-v2/data/processed');
-        } catch (error) {
-            // Fallback zu Standard-Pfad
-            console.warn('⚠️ KommuneConfigLoader nicht verfügbar, verwende Standard-Pfad');
-            this.agentDataPath = path.join(__dirname, '../crawler-v2/data/processed');
+        // Agent-Daten sind jetzt lokal in kaya-api/data/agents/ verfügbar
+        // (kopiert von kaya-crawler/data/processed/)
+        this.agentDataPath = path.join(__dirname, './data/agents');
+        
+        // Prüfe ob lokaler Pfad existiert, sonst Fallback zu altem Pfad
+        if (!fs.existsSync(this.agentDataPath)) {
+            console.warn('⚠️ Lokaler Agent-Daten-Pfad nicht gefunden, versuche Fallback');
+            try {
+                const { getKommuneConfig } = require('./config/kommune_config_loader');
+                const kommuneConfig = getKommuneConfig();
+                // Fallback: Alte Crawler-Pfad (für lokale Entwicklung)
+                this.agentDataPath = path.join(__dirname, '../kaya-crawler/data/processed');
+            } catch (error) {
+                console.warn('⚠️ KommuneConfigLoader nicht verfügbar, verwende lokalen Pfad');
+                // Bleibt bei lokalem Pfad
+            }
         }
         this.cache = new Map();
         this.lastUpdate = null;

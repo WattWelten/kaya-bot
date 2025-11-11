@@ -6,10 +6,10 @@ WORKDIR /app
 # Kopiere package.json und package-lock.json
 COPY package*.json ./
 
-# Installiere Dependencies
-RUN npm ci --no-audit --no-fund
+# Installiere Dependencies (mit Cache-Optimierung)
+RUN npm ci --no-audit --no-fund --prefer-offline
 
-# Kopiere den Rest des Codes
+# Kopiere Source Code (ohne node_modules, dist/, etc. - durch .dockerignore ausgeschlossen)
 COPY . .
 
 # Baue die Anwendung
@@ -26,8 +26,15 @@ RUN npm install -g serve --no-audit --no-fund
 # Kopiere das Build-Ergebnis vom Builder
 COPY --from=builder /app/dist ./dist
 
+# Kopiere public/ Verzeichnis (für Avatar-Dateien)
+COPY --from=builder /app/public ./public
+
 # Exponiere Port
 EXPOSE ${PORT:-3000}
+
+# Health Check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:${PORT:-3000}/ || exit 1
 
 # Starte den Server
 CMD sh -c "serve -s dist -l ${PORT:-3000}"

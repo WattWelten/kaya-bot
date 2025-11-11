@@ -1,0 +1,253 @@
+[
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000001&brotID=900000001&id=900000003&navi_id=900000001",
+    "title": "Landkreis und Verwaltung",
+    "content": "Landkreis und Verwaltung/Geoportal",
+    "plain_text": "Landkreis und Verwaltung/Geoportal",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Landkreis und Verwaltung",
+        "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000001&brotID=900000001&id=900000003&navi_id=900000001",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/geoportal-900003445-21700.html?naviID=900000924&brotID=900000924&rubrik=900000002",
+    "title": "Geoportal",
+    "content": "Geoportal",
+    "plain_text": "Geoportal",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Geoportal",
+        "url": "https://www.oldenburg-kreis.de/portal/seiten/geoportal-900003445-21700.html?naviID=900000924&brotID=900000924&rubrik=900000002",
+        "valid": false
+      }
+    ],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://oldenburg-kreis.maps.arcgis.com/home/index.html",
+    "title": "Zum Geoportal",
+    "content": "Zum Geoportal",
+    "plain_text": "Zum Geoportal",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Zum Geoportal",
+        "url": "https://oldenburg-kreis.maps.arcgis.com/home/index.html",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/aktuelles-zur-gefluegelpest-2025-2026-900001451-21700.html?rubrik=900000009",
+    "title": "Aktuelles zur Geflügelpest 2025",
+    "content": "Die interaktive Karte ist nur bei einem gegenwärtigen Fall aufrufbar. Sie zeigt je nach vorliegender Situation die Schutz- und Überwachungszone für den Landkreis Oldenburg. Aktuelle Informationen zum Thema Geflügelpest entnehmen Sie bitte der Seite .",
+    "plain_text": "Die interaktive Karte ist nur bei einem gegenwärtigen Fall aufrufbar. Sie zeigt je nach vorliegender Situation die Schutz- und Überwachungszone für den Landkreis Oldenburg. Aktuelle Informationen zum Thema Geflügelpest entnehmen Sie bitte der Seite .",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Aktuelles zur Geflügelpest 2025",
+        "url": "https://www.oldenburg-kreis.de/portal/seiten/aktuelles-zur-gefluegelpest-2025-2026-900001451-21700.html?rubrik=900000009",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/buergerservice/dienstleistungen/leader-foerderung-900001213-0.html?myMedium=1&auswahl=0",
+    "title": "Internetseiten LEADER",
+    "content": "Auf der Karte sind die bislang über LEADER geförderten Projekte im Landkreis Oldenburg dargestellt. Des Weiteren sind noch Informationen zur Förderperiode, Fertigstellung und einer Kurzbeschreibung der jeweiligen Projekte zu entnehmen. Was man unter einer LEADER-Region versteht, können Sie auf den nachlesen.",
+    "plain_text": "Auf der Karte sind die bislang über LEADER geförderten Projekte im Landkreis Oldenburg dargestellt. Des Weiteren sind noch Informationen zur Förderperiode, Fertigstellung und einer Kurzbeschreibung der jeweiligen Projekte zu entnehmen. Was man unter einer LEADER-Region versteht, können Sie auf den nachlesen.",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Internetseiten LEADER",
+        "url": "https://www.oldenburg-kreis.de/buergerservice/dienstleistungen/leader-foerderung-900001213-0.html?myMedium=1&auswahl=0",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+    "title": "Unbekannt",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
+    "contacts": [
+      {
+        "type": "phone",
+        "value": "900000001"
+      }
+    ],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "contact",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+    "title": "Geoportal",
+    "content": "Ein Geoportal ist eine webbasierte Plattform, die den Zugang zu geographischen Informationen und Diensten ermöglicht. Unser Geoportal bietet eine zentrale Anlaufstelle, um geographische Daten, Karten und weitere geospezifische Informationen zu suchen und anzusehen. Sie können die Karten interaktiv erkunden, indem Sie verschiedene Datensätze ein- und ausblenden, herein- und herauszoomen und auf die Datensätze klicken, um nähere Informationen abzurufen. Zurzeit sind folgende Themen im Geoportal abrufbar: Die Entsorgungsanlagen, Altkleidersammelstellen und Glascontainer im Landkreis Oldenburg werden auf einen Blick dargestellt. Es werden Auskünfte zum geförderten Breitbandausbau im Landkreis Oldenburg zur Verfügung gestellt. Aufrufbar sind Informationen zu den Ausbaugebieten der Projektphasen 1, 2 und 3. Die interaktive Karte stellt die gemeldeten und bestätigten Eichenprozessionsspinner-Vorkommen im Landkreis Oldenburg im aktuellen Kalenderjahr dar. Zudem sind auch die Vorkommen aus 2022 bis 2024 einsehbar. Die interaktive Karte ist nur bei einem gegenwärtigen Fall aufrufbar. Sie zeigt je nach vorliegender Situation die Schutz- und Überwachungszone für den Landkreis Oldenburg. Aktuelle Informationen zum Thema Geflügelpest entnehmen Sie bitte der Seite Aktuelles zur Geflügelpest 2025. In der interaktiven Karte sind die Grundwassermessstellen im Landkreis Oldenburg mit dem jeweiligen Nitratwertbereich einzusehen. Es werden zudem noch Informationen zum Borprofil, Grundwassergleichen und Fotos als PDF-Datei bereitgehalten. Es wird eine Übersicht über die Schornsteinfegerbezirke im Landkreis Oldenburg gezeigt. Mit einem Klick in den jeweiligen Bezirk erscheint ein Infofenster mit Namen und den Kontaktdaten des zuständigen Schornsteinfegers. Auf der Karte sind die bislang über LEADER geförderten Projekte im Landkreis Oldenburg dargestellt. Des Weiteren sind noch Informationen zur Förderperiode, Fertigstellung und einer Kurzbeschreibung der jeweiligen Projekte zu entnehmen. Was man unter einer LEADER-Region versteht, können Sie auf den Internetseiten LEADER nachlesen. Der Karte können die naturschutzrelevanten Themen im Landkreis Oldenburg entnommen werden. Dazu zählen FFH-Gebiete, Vogelschutzgebiete, Naturschutzgebiete, Landschaftsschutzgebiete, Naturdenkmale, geschützte Landschaftsbestandteile, besonderes geschützte Biotope und Wallhecken. In der Karte sind die Standorte aller Schulen und Schulbezirke im Landkreis Oldenburg einsehbar. In der Kartenanwendung können Sie sich informieren, inwiefern Ihr Gebäude für die Photovoltaik, Solarthermie und Dachbegrünung geeignet ist. Es können der interaktiven Karte Überschwemmungsgebiete, Trinkwasserschutzgebiete sowie Trinkwassergewinnungsgebiete für den Landkreis Oldenburg entnommen werden. Durch Drücken und Halten der linken Maustaste können Sie den Kartenausschnitt verschieben. Über das Mausrädchen können Sie heran- und herauszoomen. Über das Plus und Minus Zeichen kann ebenfalls heran- und herausgezoomt werden. Mithilfe des Home-Buttons ändert sich der Kartenausschnitt automatisch auf das gesamte Kreisgebiet. Durch das Klicken auf das Kreis-Symbol sehen sie Ihre aktuelle Position auf der Karte. In der Suchleiste können Sie Adressen eintippen und erhalten hilfreiche Suchvorschläge. In der Menüleiste gibt es die Möglichkeit zwischen der Legenden-, Inhalts-, Info- und Druckansicht (von links nach rechts) zu wechseln. Klickt man auf einen Button, werden die jeweiligen Informationen im Anzeigefenster sichtbar. Welche Informationen im Anzeigefenster gezeigt werden, ist abhängig von Ihrer Auswahl in der Menüleiste. Falls das Fenster stören sollte, können Sie es über das ‚X‘ schließen oder über die zwei nach oben gerichteten Pfeile einklappen. Das Pop-up-Fenster öffnet sich nur, wenn sie in der Karte auf einen Punkt, Linie oder Fläche klicken, die nicht zur Hintergrundkarte gehören. Nach dem Öffnen sind nähere Informationen zu dem jeweiligen Datensatz einsehbar Die bereitgestellten Informationen sind nach bestem Wissen und Gewissen erarbeitet und geprüft worden. Wegen der Vielzahl der Geodaten kann aber für die Aktualität, Richtigkeit, Vollständigkeit und Qualität sowie für die jederzeitige Verfügbarkeit des Kartendienstes keine Gewähr übernommen werden. Rechtsverbindliche Aussagen zu den einzelnen Geofachthemen können nur auf Grundlage der Originalverordnungen bzw. Satzungen von den zuständigen Stellen getroffen werden. Eine Haftung für Schäden, die aus der Nutzung der in dieser Anwendung angebotenen Informationen entsteht, ist ausgeschlossen.",
+    "plain_text": "Ein Geoportal ist eine webbasierte Plattform, die den Zugang zu geographischen Informationen und Diensten ermöglicht. Unser Geoportal bietet eine zentrale Anlaufstelle, um geographische Daten, Karten und weitere geospezifische Informationen zu suchen und anzusehen. Sie können die Karten interaktiv erkunden, indem Sie verschiedene Datensätze ein- und ausblenden, herein- und herauszoomen und auf die Datensätze klicken, um nähere Informationen abzurufen. Zurzeit sind folgende Themen im Geoportal abrufbar: Die Entsorgungsanlagen, Altkleidersammelstellen und Glascontainer im Landkreis Oldenburg werden auf einen Blick dargestellt. Es werden Auskünfte zum geförderten Breitbandausbau im Landkreis Oldenburg zur Verfügung gestellt. Aufrufbar sind Informationen zu den Ausbaugebieten der Projektphasen 1, 2 und 3. Die interaktive Karte stellt die gemeldeten und bestätigten Eichenprozessionsspinner-Vorkommen im Landkreis Oldenburg im aktuellen Kalenderjahr dar. Zudem sind auch die Vorkommen aus 2022 bis 2024 einsehbar. Die interaktive Karte ist nur bei einem gegenwärtigen Fall aufrufbar. Sie zeigt je nach vorliegender Situation die Schutz- und Überwachungszone für den Landkreis Oldenburg. Aktuelle Informationen zum Thema Geflügelpest entnehmen Sie bitte der Seite Aktuelles zur Geflügelpest 2025. In der interaktiven Karte sind die Grundwassermessstellen im Landkreis Oldenburg mit dem jeweiligen Nitratwertbereich einzusehen. Es werden zudem noch Informationen zum Borprofil, Grundwassergleichen und Fotos als PDF-Datei bereitgehalten. Es wird eine Übersicht über die Schornsteinfegerbezirke im Landkreis Oldenburg gezeigt. Mit einem Klick in den jeweiligen Bezirk erscheint ein Infofenster mit Namen und den Kontaktdaten des zuständigen Schornsteinfegers. Auf der Karte sind die bislang über LEADER geförderten Projekte im Landkreis Oldenburg dargestellt. Des Weiteren sind noch Informationen zur Förderperiode, Fertigstellung und einer Kurzbeschreibung der jeweiligen Projekte zu entnehmen. Was man unter einer LEADER-Region versteht, können Sie auf den Internetseiten LEADER nachlesen. Der Karte können die naturschutzrelevanten Themen im Landkreis Oldenburg entnommen werden. Dazu zählen FFH-Gebiete, Vogelschutzgebiete, Naturschutzgebiete, Landschaftsschutzgebiete, Naturdenkmale, geschützte Landschaftsbestandteile, besonderes geschützte Biotope und Wallhecken. In der Karte sind die Standorte aller Schulen und Schulbezirke im Landkreis Oldenburg einsehbar. In der Kartenanwendung können Sie sich informieren, inwiefern Ihr Gebäude für die Photovoltaik, Solarthermie und Dachbegrünung geeignet ist. Es können der interaktiven Karte Überschwemmungsgebiete, Trinkwasserschutzgebiete sowie Trinkwassergewinnungsgebiete für den Landkreis Oldenburg entnommen werden. Durch Drücken und Halten der linken Maustaste können Sie den Kartenausschnitt verschieben. Über das Mausrädchen können Sie heran- und herauszoomen. Über das Plus und Minus Zeichen kann ebenfalls heran- und herausgezoomt werden. Mithilfe des Home-Buttons ändert sich der Kartenausschnitt automatisch auf das gesamte Kreisgebiet. Durch das Klicken auf das Kreis-Symbol sehen sie Ihre aktuelle Position auf der Karte. In der Suchleiste können Sie Adressen eintippen und erhalten hilfreiche Suchvorschläge. In der Menüleiste gibt es die Möglichkeit zwischen der Legenden-, Inhalts-, Info- und Druckansicht (von links nach rechts) zu wechseln. Klickt man auf einen Button, werden die jeweiligen Informationen im Anzeigefenster sichtbar. Welche Informationen im Anzeigefenster gezeigt werden, ist abhängig von Ihrer Auswahl in der Menüleiste. Falls das Fenster stören sollte, können Sie es über das ‚X‘ schließen oder über die zwei nach oben gerichteten Pfeile einklappen. Das Pop-up-Fenster öffnet sich nur, wenn sie in der Karte auf einen Punkt, Linie oder Fläche klicken, die nicht zur Hintergrundkarte gehören. Nach dem Öffnen sind nähere Informationen zu dem jeweiligen Datensatz einsehbar Die bereitgestellten Informationen sind nach bestem Wissen und Gewissen erarbeitet und geprüft worden. Wegen der Vielzahl der Geodaten kann aber für die Aktualität, Richtigkeit, Vollständigkeit und Qualität sowie für die jederzeitige Verfügbarkeit des Kartendienstes keine Gewähr übernommen werden. Rechtsverbindliche Aussagen zu den einzelnen Geofachthemen können nur auf Grundlage der Originalverordnungen bzw. Satzungen von den zuständigen Stellen getroffen werden. Eine Haftung für Schäden, die aus der Nutzung der in dieser Anwendung angebotenen Informationen entsteht, ist ausgeschlossen.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+      "timestamp": "2025-10-29T11:07:42.038Z",
+      "sectionType": "main"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+    "title": "Inhaltsbereich",
+    "content": "Volltextsuche Suchen Sie sind hier: Landkreis und Verwaltung/Geoportal Inhalt vorlesen Seite merken Seite drucken Geoportal Was ist ein Geoportal? Ein Geoportal ist eine webbasierte Plattform, die den Zugang zu geographischen Informationen und Diensten ermöglicht. Unser Geoportal bietet eine zentrale Anlaufstelle, um geographische Daten, Karten und weitere geospezifische Informationen zu suchen und anzusehen. Sie können die Karten interaktiv erkunden, indem Sie verschiedene Datensätze ein- und ausblenden, herein- und herauszoomen und auf die Datensätze klicken, um nähere Informationen abzurufen. Zum Geoportal Zurzeit sind folgende Themen im Geoportal abrufbar: Abfallwirtschaft Die Entsorgungsanlagen, Altkleidersammelstellen und Glascontainer im Landkreis Oldenburg werden auf einen Blick dargestellt. Breitbandausbau Es werden Auskünfte zum geförderten Breitbandausbau im Landkreis Oldenburg zur Verfügung gestellt. Aufrufbar sind Informationen zu den Ausbaugebieten der Projektphasen 1, 2 und 3. Eichenprozessionsspinner Die interaktive Karte stellt die gemeldeten und bestätigten Eichenprozessionsspinner-Vorkommen im Landkreis Oldenburg im aktuellen Kalenderjahr dar. Zudem sind auch die Vorkommen aus 2022 bis 2024 einsehbar. Geflügelpest Die interaktive Karte ist nur bei einem gegenwärtigen Fall aufrufbar. Sie zeigt je nach vorliegender Situation die Schutz- und Überwachungszone für den Landkreis Oldenburg. Aktuelle Informationen zum Thema Geflügelpest entnehmen Sie bitte der Seite Aktuelles zur Geflügelpest 2025. Grundwassermessstellen In der interaktiven Karte sind die Grundwassermessstellen im Landkreis Oldenburg mit dem jeweiligen Nitratwertbereich einzusehen. Es werden zudem noch Informationen zum Borprofil, Grundwassergleichen und Fotos als PDF-Datei bereitgehalten. Kehrbezirke Es wird eine Übersicht über die Schornsteinfegerbezirke im Landkreis Oldenburg gezeigt. Mit einem Klick in den jeweiligen Bezirk erscheint ein Infofenster mit Namen und den Kontaktdaten des zuständigen Schornsteinfegers. LEADER-Projekte Auf der Karte sind die bislang über LEADER geförderten Projekte im Landkreis Oldenburg dargestellt. Des Weiteren sind noch Informationen zur Förderperiode, Fertigstellung und einer Kurzbeschreibung der jeweiligen Projekte zu entnehmen. Was man unter einer LEADER-Region versteht, können Sie auf den Internetseiten LEADER nachlesen. Naturschutz Der Karte können die naturschutzrelevanten Themen im Landkreis Oldenburg entnommen werden. Dazu zählen FFH-Gebiete, Vogelschutzgebiete, Naturschutzgebiete, Landschaftsschutzgebiete, Naturdenkmale, geschützte Landschaftsbestandteile, besonderes geschützte Biotope und Wallhecken. Schulstandorte und Schulbezirke In der Karte sind die Standorte aller Schulen und Schulbezirke im Landkreis Oldenburg einsehbar. Solar- und Gründachkataster In der Kartenanwendung können Sie sich informieren, inwiefern Ihr Gebäude für die Photovoltaik, Solarthermie und Dachbegrünung geeignet ist. Überschwemmungs- / Wasserschutzgebiete Es können der interaktiven Karte Überschwemmungsgebiete, Trinkwasserschutzgebiete sowie Trinkwassergewinnungsgebiete für den Landkreis Oldenburg entnommen werden. Benutzerhilfe Allgemeine Hinweise1 Navigationsleiste2 Suchleiste3 Menüleiste4 Anzeigefenster5 Pop-Up-Fenster Allgemeine HinweiseDurch Drücken und Halten der linken Maustaste können Sie den Kartenausschnitt verschieben. Über das Mausrädchen können Sie heran- und herauszoomen.1 NavigationsleisteÜber das Plus und Minus Zeichen kann ebenfalls heran- und herausgezoomt werden. Mithilfe des Home-Buttons ändert sich der Kartenausschnitt automatisch auf das gesamte Kreisgebiet. Durch das Klicken auf das Kreis-Symbol sehen sie Ihre aktuelle Position auf der Karte.2 SuchleisteIn der Suchleiste können Sie Adressen eintippen und erhalten hilfreiche Suchvorschläge. 3 MenüleisteIn der Menüleiste gibt es die Möglichkeit zwischen der Legenden-, Inhalts-, Info- und Druckansicht (von links nach rechts) zu wechseln. Klickt man auf einen Button, werden die jeweiligen Informationen im Anzeigefenster sichtbar. 4 AnzeigefensterWelche Informationen im Anzeigefenster gezeigt werden, ist abhängig von Ihrer Auswahl in der Menüleiste. Falls das Fenster stören sollte, können Sie es über das ‚X‘ schließen oder über die zwei nach oben gerichteten Pfeile einklappen.5 Pop-up-FensterDas Pop-up-Fenster öffnet sich nur, wenn sie in der Karte auf einen Punkt, Linie oder Fläche klicken, die nicht zur Hintergrundkarte gehören. Nach dem Öffnen sind nähere Informationen zu dem jeweiligen Datensatz einsehbar Nutzungsbedingungen Die bereitgestellten Informationen sind nach bestem Wissen und Gewissen erarbeitet und geprüft worden. Wegen der Vielzahl der Geodaten kann aber für die Aktualität, Richtigkeit, Vollständigkeit und Qualität sowie für die jederzeitige Verfügbarkeit des Kartendienstes keine Gewähr übernommen werden.Rechtsverbindliche Aussagen zu den einzelnen Geofachthemen können nur auf Grundlage der Originalverordnungen bzw. Satzungen von den zuständigen Stellen getroffen werden. Eine Haftung für Schäden, die aus der Nutzung der in dieser Anwendung angebotenen Informationen entsteht, ist ausgeschlossen. Zurück",
+    "plain_text": "Volltextsuche Suchen Sie sind hier: Landkreis und Verwaltung/Geoportal Inhalt vorlesen Seite merken Seite drucken Geoportal Was ist ein Geoportal? Ein Geoportal ist eine webbasierte Plattform, die den Zugang zu geographischen Informationen und Diensten ermöglicht. Unser Geoportal bietet eine zentrale Anlaufstelle, um geographische Daten, Karten und weitere geospezifische Informationen zu suchen und anzusehen. Sie können die Karten interaktiv erkunden, indem Sie verschiedene Datensätze ein- und ausblenden, herein- und herauszoomen und auf die Datensätze klicken, um nähere Informationen abzurufen. Zum Geoportal Zurzeit sind folgende Themen im Geoportal abrufbar: Abfallwirtschaft Die Entsorgungsanlagen, Altkleidersammelstellen und Glascontainer im Landkreis Oldenburg werden auf einen Blick dargestellt. Breitbandausbau Es werden Auskünfte zum geförderten Breitbandausbau im Landkreis Oldenburg zur Verfügung gestellt. Aufrufbar sind Informationen zu den Ausbaugebieten der Projektphasen 1, 2 und 3. Eichenprozessionsspinner Die interaktive Karte stellt die gemeldeten und bestätigten Eichenprozessionsspinner-Vorkommen im Landkreis Oldenburg im aktuellen Kalenderjahr dar. Zudem sind auch die Vorkommen aus 2022 bis 2024 einsehbar. Geflügelpest Die interaktive Karte ist nur bei einem gegenwärtigen Fall aufrufbar. Sie zeigt je nach vorliegender Situation die Schutz- und Überwachungszone für den Landkreis Oldenburg. Aktuelle Informationen zum Thema Geflügelpest entnehmen Sie bitte der Seite Aktuelles zur Geflügelpest 2025. Grundwassermessstellen In der interaktiven Karte sind die Grundwassermessstellen im Landkreis Oldenburg mit dem jeweiligen Nitratwertbereich einzusehen. Es werden zudem noch Informationen zum Borprofil, Grundwassergleichen und Fotos als PDF-Datei bereitgehalten. Kehrbezirke Es wird eine Übersicht über die Schornsteinfegerbezirke im Landkreis Oldenburg gezeigt. Mit einem Klick in den jeweiligen Bezirk erscheint ein Infofenster mit Namen und den Kontaktdaten des zuständigen Schornsteinfegers. LEADER-Projekte Auf der Karte sind die bislang über LEADER geförderten Projekte im Landkreis Oldenburg dargestellt. Des Weiteren sind noch Informationen zur Förderperiode, Fertigstellung und einer Kurzbeschreibung der jeweiligen Projekte zu entnehmen. Was man unter einer LEADER-Region versteht, können Sie auf den Internetseiten LEADER nachlesen. Naturschutz Der Karte können die naturschutzrelevanten Themen im Landkreis Oldenburg entnommen werden. Dazu zählen FFH-Gebiete, Vogelschutzgebiete, Naturschutzgebiete, Landschaftsschutzgebiete, Naturdenkmale, geschützte Landschaftsbestandteile, besonderes geschützte Biotope und Wallhecken. Schulstandorte und Schulbezirke In der Karte sind die Standorte aller Schulen und Schulbezirke im Landkreis Oldenburg einsehbar. Solar- und Gründachkataster In der Kartenanwendung können Sie sich informieren, inwiefern Ihr Gebäude für die Photovoltaik, Solarthermie und Dachbegrünung geeignet ist. Überschwemmungs- / Wasserschutzgebiete Es können der interaktiven Karte Überschwemmungsgebiete, Trinkwasserschutzgebiete sowie Trinkwassergewinnungsgebiete für den Landkreis Oldenburg entnommen werden. Benutzerhilfe Allgemeine Hinweise1 Navigationsleiste2 Suchleiste3 Menüleiste4 Anzeigefenster5 Pop-Up-Fenster Allgemeine HinweiseDurch Drücken und Halten der linken Maustaste können Sie den Kartenausschnitt verschieben. Über das Mausrädchen können Sie heran- und herauszoomen.1 NavigationsleisteÜber das Plus und Minus Zeichen kann ebenfalls heran- und herausgezoomt werden. Mithilfe des Home-Buttons ändert sich der Kartenausschnitt automatisch auf das gesamte Kreisgebiet. Durch das Klicken auf das Kreis-Symbol sehen sie Ihre aktuelle Position auf der Karte.2 SuchleisteIn der Suchleiste können Sie Adressen eintippen und erhalten hilfreiche Suchvorschläge. 3 MenüleisteIn der Menüleiste gibt es die Möglichkeit zwischen der Legenden-, Inhalts-, Info- und Druckansicht (von links nach rechts) zu wechseln. Klickt man auf einen Button, werden die jeweiligen Informationen im Anzeigefenster sichtbar. 4 AnzeigefensterWelche Informationen im Anzeigefenster gezeigt werden, ist abhängig von Ihrer Auswahl in der Menüleiste. Falls das Fenster stören sollte, können Sie es über das ‚X‘ schließen oder über die zwei nach oben gerichteten Pfeile einklappen.5 Pop-up-FensterDas Pop-up-Fenster öffnet sich nur, wenn sie in der Karte auf einen Punkt, Linie oder Fläche klicken, die nicht zur Hintergrundkarte gehören. Nach dem Öffnen sind nähere Informationen zu dem jeweiligen Datensatz einsehbar Nutzungsbedingungen Die bereitgestellten Informationen sind nach bestem Wissen und Gewissen erarbeitet und geprüft worden. Wegen der Vielzahl der Geodaten kann aber für die Aktualität, Richtigkeit, Vollständigkeit und Qualität sowie für die jederzeitige Verfügbarkeit des Kartendienstes keine Gewähr übernommen werden.Rechtsverbindliche Aussagen zu den einzelnen Geofachthemen können nur auf Grundlage der Originalverordnungen bzw. Satzungen von den zuständigen Stellen getroffen werden. Eine Haftung für Schäden, die aus der Nutzung der in dieser Anwendung angebotenen Informationen entsteht, ist ausgeschlossen. Zurück",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/geoportal/",
+      "timestamp": "2025-10-29T11:07:42.038Z",
+      "sectionType": "heading"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/breitbandausbau-900001625-21700.html?naviID=900000039&brotID=900000039&rubrik=900000002",
+    "title": "Breitbandausbau",
+    "content": "Breitbandausbau",
+    "plain_text": "Breitbandausbau",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Breitbandausbau",
+        "url": "https://www.oldenburg-kreis.de/portal/seiten/breitbandausbau-900001625-21700.html?naviID=900000039&brotID=900000039&rubrik=900000002",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/",
+      "timestamp": "2025-10-29T11:07:42.038Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/downloads/datei/Y2VmY2JiNzU1ZWE5ZjI0MkdMQmFZQWRmZjVxUlExbmZsY3hHcy9qaFRRSmQyd3JCNUtKd1lqVUNwK0NSS1cySmx4L2dwYXJsUkI1RHJycWdoV2NOREZERlJwMXNVVmJBK21kamtPeTA0bkpsU3Z0ZXBmak1VT3VXYzcrZ0tMSUlHZy9XWkUzTkpHblB6b3oxOHo3b25VU0JPVmhDQlRSb1V3RFZGNExmWlRuUWo0L0Q2SUJubnVDaS9ITWExY1ZvZXY2dzVrWERUd2hwVlpxMQ",
+    "title": "Meilensteinübersicht Ausbauphase, Stand 01.10.2025",
+    "content": "Meilensteinübersicht Ausbauphase, Stand 01.10.2025",
+    "plain_text": "Meilensteinübersicht Ausbauphase, Stand 01.10.2025",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Meilensteinübersicht Ausbauphase, Stand 01.10.2025",
+        "url": "https://www.oldenburg-kreis.de/downloads/datei/Y2VmY2JiNzU1ZWE5ZjI0MkdMQmFZQWRmZjVxUlExbmZsY3hHcy9qaFRRSmQyd3JCNUtKd1lqVUNwK0NSS1cySmx4L2dwYXJsUkI1RHJycWdoV2NOREZERlJwMXNVVmJBK21kamtPeTA0bkpsU3Z0ZXBmak1VT3VXYzcrZ0tMSUlHZy9XWkUzTkpHblB6b3oxOHo3b25VU0JPVmhDQlRSb1V3RFZGNExmWlRuUWo0L0Q2SUJubnVDaS9ITWExY1ZvZXY2dzVrWERUd2hwVlpxMQ",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/",
+      "timestamp": "2025-10-29T11:07:42.038Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/",
+    "title": "Unbekannt",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
+    "contacts": [
+      {
+        "type": "phone",
+        "value": "900000001"
+      }
+    ],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "contact",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/",
+      "timestamp": "2025-10-29T11:07:42.038Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/",
+    "title": "Breitbandausbau im Landkreis Oldenburg - 3. Ausbauprojekt",
+    "content": "Eine leistungsfähige digitale Infrastruktur ist heute immer mehr Grundvoraussetzung für wirtschaftliches Wachstum und eine zukunftsfähige Region. Die Breitbandförderung unterstützt gezielt den Ausbau von Gigabitfähigen Internetanschlüssen in unterversorgten Gebieten, dort wo ein eigenwirtschaftlicher Ausbau nicht möglich/ nicht attraktiv ist. Im Rahmen des eigenwirtschaftlichen Ausbaus, welcher primär vorgesehen ist, stehen wir im regelmäßigen Austausch mit den Telekommunikationsunternehmen (TKU) in unserer Region. Wer unterstützt uns im Rahmen des geförderten Breitbandausbaus? Wir als Landkreis Oldenburg können mithilfe von Zuwendungen des Bundesministeriums für Digitales und Verkehr und auch des Niedersächsischen Ministerium für Wirtschaft, Verkehr, Bauen und Digitalisierung das Breitbandnetz ausbauen lassen. Welche Adressen fallen unter die sogenannten „unversorgten Adressen“? Das geförderte dritte Ausbauprojekt des Landkreises zielt drauf ab, die sogenannten „Weißen- Flecken“ gefördert auszubauen. Als „Weiße- Flecken“ werden Haushalte bezeichnet, die mit einer Internetversorgung von unter 30 Mbit/s gemeldet sind. Im Rahmen eines zuvor durchgeführten Markterkundungsverfahren (MEV) wurden seitens der TKU die jeweiligen Bandbreiten der einzelnen Haushalte übermittelt. Somit sind die Adressen unterversorgt, welche in diesem MEV mit einer Versorgung von unter 30 Mbit/s gemeldet wurden. Auch im dritten Förderverfahren haben wir ein Ausschreibungsverfahren durchgeführt, auf dieses sich die TKU bewerben konnten. Schlussendlich hat die EWE TEL GmbH den Zuschlag erhalten und baut für den Landkreis Oldenburg die Breitbandnetze aus. Im derzeit dritten Förderverfahren werden nach den bereits geplanten 3.451 Adressen noch weitere rund 1.200 Adressen gefördert ausgebaut. Das hat zur Folge, dass sich das Ausbauende in das Jahr 2027 terminieren wird. Für Adressen, welche Bestandteil des 3. geförderten Ausbauprojektes sind, besteht die Möglichkeit einen kostenlosen Hausanschluss, also die Anbindung des Hauses an das Glasfasernetz, bei der EWE TEL GmbH zu beauftragen. Es gibt des Weiteren auch die Möglichkeit einen Hausanschluss an das Glasfasernetz zu beantragen, ohne dabei eine Vertragsverpflichtung mit der EWE TEL GmbH einzugehen. Informationen zur Vermarktung hält die EWE TEL GmbH im Rahmen des Ausbaus bereit. Die Beantragung des Hausanschlusses muss jedoch selbständig in Auftrag gegeben werden. Da, wie bereits oben genannt, der Breitbandausbau mit Fördermitteln vom Bund und vom Land realisiert wird, muss der offenen und diskriminierungsfreie Zugang zum gebauten Netzt auch anderen Marktteilnehmern zur Verfügung stehen (open access). Aus der „Meilensteinplanung“ gehen die Ausbaudaten der einzelnen kreisangehörigen Kommunen hervor. Die Planung wird kontinuierlich gemäß Planstand angepasst. Ebenfalls haben Sie die Möglichkeit auf unserem „Geo- Portal“ des Landkreises Oldenburg sich einen Überblick über die vorgesehenen Ausbaupolygone zu machen. Auch diese werden regelmäßig seitens des Landkreises angepasst. Meilensteinübersicht Ausbauphase, Stand 01.10.2025 Der Ausbau des 1. Projektes begann mit dem ersten Spatenstich am 18.01.2018. Aufgrund schlechter Witterung in Form von länger andauernden Frostperioden im Februar und März 2018 verzögerte sich der Baubeginn in einer Anzahl von Ausbaugebieten. Aufgrund dieser Verzögerung konnte die ursprünglich erstellte Meilensteinplanung nicht eingehalten werden. Innerhalb des Ausbaugebiets wurden 2.746 Haushalte und 218 mit einer Bandbreite von 50 Mbit/s und mehr versorgt. Insgesamt waren Tiefbauarbeiten von ca. 125 km erforderlich. Außerdem wurden ca. 131 km Leerrohr und ca. 136 km Glasfaser verbaut. Das Projekt konnte nach erteilten Fristverlängerungen des Bewilligungszeitraumes zum 31.12.2019 fertiggestellt und für den Betrieb freigegeben werden. Der Ausbau des 2. Projektes begann mit dem ersten Spatenstich am 31.01.2020. Innerhalb der Ausbaugebiete wurden insgesamt 951 Haushalte, 18 Gewerbebetriebe und 35 Schulen) mit einer Bandbreite von 50 Mbit/s und mehr versorgt. Insgesamt waren Tiefbauarbeiten von ca. 169 km erforderlich. Außerdem wurden ca. 210 km Leerrohr und ca. 108 km Glasfaser verbaut. Das Projekt konnte nach erteilten Fristverlängerungen des Bewilligungszeitraumes zum 29.12.2021 fertiggestellt und für den Betrieb freigegeben werden. Projekt 3, 1. Abschnitt (Gewerbegebiete) Der Ausbau des 1. Abschnitts unseres 3. Projektes (Gewerbegebiete) begann mit dem ersten Spatenstich am 01.04.2022. Insgesamt sollten 25 Gewerbegebiete in acht kreisangehörigen Kommunen nach Ausbauende mit einer nutzbaren Bandbreite von mindestens 1 Gbit/s angeschlossen werden. Innerhalb der Ausbaugebiete wurden insgesamt 596 Unternehmen mit einer Bandbreite von bis zu 1 Gbit/s versorgt. Insgesamt waren Tiefbauarbeiten von ca. 37 km erforderlich. Außerdem wurden ca. 78 km Leerrohr und ca. 49 km Glasfaser verbaut. Das Ausbauprojekt konnte fristgerecht zum 31.03.2023 fertiggestellt und für den Betrieb freigegeben werden.",
+    "plain_text": "Eine leistungsfähige digitale Infrastruktur ist heute immer mehr Grundvoraussetzung für wirtschaftliches Wachstum und eine zukunftsfähige Region. Die Breitbandförderung unterstützt gezielt den Ausbau von Gigabitfähigen Internetanschlüssen in unterversorgten Gebieten, dort wo ein eigenwirtschaftlicher Ausbau nicht möglich/ nicht attraktiv ist. Im Rahmen des eigenwirtschaftlichen Ausbaus, welcher primär vorgesehen ist, stehen wir im regelmäßigen Austausch mit den Telekommunikationsunternehmen (TKU) in unserer Region. Wer unterstützt uns im Rahmen des geförderten Breitbandausbaus? Wir als Landkreis Oldenburg können mithilfe von Zuwendungen des Bundesministeriums für Digitales und Verkehr und auch des Niedersächsischen Ministerium für Wirtschaft, Verkehr, Bauen und Digitalisierung das Breitbandnetz ausbauen lassen. Welche Adressen fallen unter die sogenannten „unversorgten Adressen“? Das geförderte dritte Ausbauprojekt des Landkreises zielt drauf ab, die sogenannten „Weißen- Flecken“ gefördert auszubauen. Als „Weiße- Flecken“ werden Haushalte bezeichnet, die mit einer Internetversorgung von unter 30 Mbit/s gemeldet sind. Im Rahmen eines zuvor durchgeführten Markterkundungsverfahren (MEV) wurden seitens der TKU die jeweiligen Bandbreiten der einzelnen Haushalte übermittelt. Somit sind die Adressen unterversorgt, welche in diesem MEV mit einer Versorgung von unter 30 Mbit/s gemeldet wurden. Auch im dritten Förderverfahren haben wir ein Ausschreibungsverfahren durchgeführt, auf dieses sich die TKU bewerben konnten. Schlussendlich hat die EWE TEL GmbH den Zuschlag erhalten und baut für den Landkreis Oldenburg die Breitbandnetze aus. Im derzeit dritten Förderverfahren werden nach den bereits geplanten 3.451 Adressen noch weitere rund 1.200 Adressen gefördert ausgebaut. Das hat zur Folge, dass sich das Ausbauende in das Jahr 2027 terminieren wird. Für Adressen, welche Bestandteil des 3. geförderten Ausbauprojektes sind, besteht die Möglichkeit einen kostenlosen Hausanschluss, also die Anbindung des Hauses an das Glasfasernetz, bei der EWE TEL GmbH zu beauftragen. Es gibt des Weiteren auch die Möglichkeit einen Hausanschluss an das Glasfasernetz zu beantragen, ohne dabei eine Vertragsverpflichtung mit der EWE TEL GmbH einzugehen. Informationen zur Vermarktung hält die EWE TEL GmbH im Rahmen des Ausbaus bereit. Die Beantragung des Hausanschlusses muss jedoch selbständig in Auftrag gegeben werden. Da, wie bereits oben genannt, der Breitbandausbau mit Fördermitteln vom Bund und vom Land realisiert wird, muss der offenen und diskriminierungsfreie Zugang zum gebauten Netzt auch anderen Marktteilnehmern zur Verfügung stehen (open access). Aus der „Meilensteinplanung“ gehen die Ausbaudaten der einzelnen kreisangehörigen Kommunen hervor. Die Planung wird kontinuierlich gemäß Planstand angepasst. Ebenfalls haben Sie die Möglichkeit auf unserem „Geo- Portal“ des Landkreises Oldenburg sich einen Überblick über die vorgesehenen Ausbaupolygone zu machen. Auch diese werden regelmäßig seitens des Landkreises angepasst. Meilensteinübersicht Ausbauphase, Stand 01.10.2025 Der Ausbau des 1. Projektes begann mit dem ersten Spatenstich am 18.01.2018. Aufgrund schlechter Witterung in Form von länger andauernden Frostperioden im Februar und März 2018 verzögerte sich der Baubeginn in einer Anzahl von Ausbaugebieten. Aufgrund dieser Verzögerung konnte die ursprünglich erstellte Meilensteinplanung nicht eingehalten werden. Innerhalb des Ausbaugebiets wurden 2.746 Haushalte und 218 mit einer Bandbreite von 50 Mbit/s und mehr versorgt. Insgesamt waren Tiefbauarbeiten von ca. 125 km erforderlich. Außerdem wurden ca. 131 km Leerrohr und ca. 136 km Glasfaser verbaut. Das Projekt konnte nach erteilten Fristverlängerungen des Bewilligungszeitraumes zum 31.12.2019 fertiggestellt und für den Betrieb freigegeben werden. Der Ausbau des 2. Projektes begann mit dem ersten Spatenstich am 31.01.2020. Innerhalb der Ausbaugebiete wurden insgesamt 951 Haushalte, 18 Gewerbebetriebe und 35 Schulen) mit einer Bandbreite von 50 Mbit/s und mehr versorgt. Insgesamt waren Tiefbauarbeiten von ca. 169 km erforderlich. Außerdem wurden ca. 210 km Leerrohr und ca. 108 km Glasfaser verbaut. Das Projekt konnte nach erteilten Fristverlängerungen des Bewilligungszeitraumes zum 29.12.2021 fertiggestellt und für den Betrieb freigegeben werden. Projekt 3, 1. Abschnitt (Gewerbegebiete) Der Ausbau des 1. Abschnitts unseres 3. Projektes (Gewerbegebiete) begann mit dem ersten Spatenstich am 01.04.2022. Insgesamt sollten 25 Gewerbegebiete in acht kreisangehörigen Kommunen nach Ausbauende mit einer nutzbaren Bandbreite von mindestens 1 Gbit/s angeschlossen werden. Innerhalb der Ausbaugebiete wurden insgesamt 596 Unternehmen mit einer Bandbreite von bis zu 1 Gbit/s versorgt. Insgesamt waren Tiefbauarbeiten von ca. 37 km erforderlich. Außerdem wurden ca. 78 km Leerrohr und ca. 49 km Glasfaser verbaut. Das Ausbauprojekt konnte fristgerecht zum 31.03.2023 fertiggestellt und für den Betrieb freigegeben werden.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/",
+      "timestamp": "2025-10-29T11:07:42.039Z",
+      "sectionType": "main"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/",
+    "title": "Inhaltsbereich",
+    "content": "Volltextsuche Suchen Sie sind hier: Landkreis und Verwaltung/Breitbandausbau Inhalt vorlesen Seite merken Seite drucken Breitbandausbau im Landkreis Oldenburg - 3. Ausbauprojekt Breitbandförderung im Landkreis Oldenburg Eine leistungsfähige digitale Infrastruktur ist heute immer mehr Grundvoraussetzung für wirtschaftliches Wachstum und eine zukunftsfähige Region. Die Breitbandförderung unterstützt gezielt den Ausbau von Gigabitfähigen Internetanschlüssen in unterversorgten Gebieten, dort wo ein eigenwirtschaftlicher Ausbau nicht möglich/ nicht attraktiv ist. Im Rahmen des eigenwirtschaftlichen Ausbaus, welcher primär vorgesehen ist, stehen wir im regelmäßigen Austausch mit den Telekommunikationsunternehmen (TKU) in unserer Region. Wer unterstützt uns im Rahmen des geförderten Breitbandausbaus? Wir als Landkreis Oldenburg können mithilfe von Zuwendungen des Bundesministeriums für Digitales und Verkehr und auch des Niedersächsischen Ministerium für Wirtschaft, Verkehr, Bauen und Digitalisierung das Breitbandnetz ausbauen lassen. Welche Adressen fallen unter die sogenannten „unversorgten Adressen“? Das geförderte dritte Ausbauprojekt des Landkreises zielt drauf ab, die sogenannten „Weißen- Flecken“ gefördert auszubauen. Als „Weiße- Flecken“ werden Haushalte bezeichnet, die mit einer Internetversorgung von unter 30 Mbit/s gemeldet sind. Im Rahmen eines zuvor durchgeführten Markterkundungsverfahren (MEV) wurden seitens der TKU die jeweiligen Bandbreiten der einzelnen Haushalte übermittelt. Somit sind die Adressen unterversorgt, welche in diesem MEV mit einer Versorgung von unter 30 Mbit/s gemeldet wurden. Auch im dritten Förderverfahren haben wir ein Ausschreibungsverfahren durchgeführt, auf dieses sich die TKU bewerben konnten. Schlussendlich hat die EWE TEL GmbH den Zuschlag erhalten und baut für den Landkreis Oldenburg die Breitbandnetze aus. Im derzeit dritten Förderverfahren werden nach den bereits geplanten 3.451 Adressen noch weitere rund 1.200 Adressen gefördert ausgebaut. Das hat zur Folge, dass sich das Ausbauende in das Jahr 2027 terminieren wird. Für Adressen, welche Bestandteil des 3. geförderten Ausbauprojektes sind, besteht die Möglichkeit einen kostenlosen Hausanschluss, also die Anbindung des Hauses an das Glasfasernetz, bei der EWE TEL GmbH zu beauftragen. Es gibt des Weiteren auch die Möglichkeit einen Hausanschluss an das Glasfasernetz zu beantragen, ohne dabei eine Vertragsverpflichtung mit der EWE TEL GmbH einzugehen. Informationen zur Vermarktung hält die EWE TEL GmbH im Rahmen des Ausbaus bereit. Die Beantragung des Hausanschlusses muss jedoch selbständig in Auftrag gegeben werden. Da, wie bereits oben genannt, der Breitbandausbau mit Fördermitteln vom Bund und vom Land realisiert wird, muss der offenen und diskriminierungsfreie Zugang zum gebauten Netzt auch anderen Marktteilnehmern zur Verfügung stehen (open access). Aus der „Meilensteinplanung“ gehen die Ausbaudaten der einzelnen kreisangehörigen Kommunen hervor. Die Planung wird kontinuierlich gemäß Planstand angepasst. Ebenfalls haben Sie die Möglichkeit auf unserem „Geo- Portal“ des Landkreises Oldenburg sich einen Überblick über die vorgesehenen Ausbaupolygone zu machen. Auch diese werden regelmäßig seitens des Landkreises angepasst. Meilensteine zum 3. Breitbandausbauprojekt 2. Abschnitt (Privatadresse u. Gewerbebetriebe) Meilensteinübersicht Ausbauphase, Stand 01.10.2025 Informationen zu abgeschlossenen Projekten Projekt 1Der Ausbau des 1. Projektes begann mit dem ersten Spatenstich am 18.01.2018. Aufgrund schlechter Witterung in Form von länger andauernden Frostperioden im Februar und März 2018 verzögerte sich der Baubeginn in einer Anzahl von Ausbaugebieten. Aufgrund dieser Verzögerung konnte die ursprünglich erstellte Meilensteinplanung nicht eingehalten werden. Innerhalb des Ausbaugebiets wurden 2.746 Haushalte und 218 mit einer Bandbreite von 50 Mbit/s und mehr versorgt.Insgesamt waren Tiefbauarbeiten von ca. 125 km erforderlich. Außerdem wurden ca. 131 km Leerrohr und ca. 136 km Glasfaser verbaut. Das Projekt konnte nach erteilten Fristverlängerungen des Bewilligungszeitraumes zum 31.12.2019 fertiggestellt und für den Betrieb freigegeben werden. Projekt 2Der Ausbau des 2. Projektes begann mit dem ersten Spatenstich am 31.01.2020.Innerhalb der Ausbaugebiete wurden insgesamt 951 Haushalte, 18 Gewerbebetriebe und 35 Schulen) mit einer Bandbreite von 50 Mbit/s und mehr versorgt.Insgesamt waren Tiefbauarbeiten von ca. 169 km erforderlich. Außerdem wurden ca. 210 km Leerrohr und ca. 108 km Glasfaser verbaut. Das Projekt konnte nach erteilten Fristverlängerungen des Bewilligungszeitraumes zum 29.12.2021 fertiggestellt und für den Betrieb freigegeben werden. Projekt 3, 1. Abschnitt (Gewerbegebiete)Der Ausbau des 1. Abschnitts unseres 3. Projektes (Gewerbegebiete) begann mit dem ersten Spatenstich am 01.04.2022. Insgesamt sollten 25 Gewerbegebiete in acht kreisangehörigen Kommunen nach Ausbauende mit einer nutzbaren Bandbreite von mindestens 1 Gbit/s angeschlossen werden. Innerhalb der Ausbaugebiete wurden insgesamt 596 Unternehmen mit einer Bandbreite von bis zu 1 Gbit/s versorgt. Insgesamt waren Tiefbauarbeiten von ca. 37 km erforderlich. Außerdem wurden ca. 78 km Leerrohr und ca. 49 km Glasfaser verbaut. Das Ausbauprojekt konnte fristgerecht zum 31.03.2023 fertiggestellt und für den Betrieb freigegeben werden. Zurück",
+    "plain_text": "Volltextsuche Suchen Sie sind hier: Landkreis und Verwaltung/Breitbandausbau Inhalt vorlesen Seite merken Seite drucken Breitbandausbau im Landkreis Oldenburg - 3. Ausbauprojekt Breitbandförderung im Landkreis Oldenburg Eine leistungsfähige digitale Infrastruktur ist heute immer mehr Grundvoraussetzung für wirtschaftliches Wachstum und eine zukunftsfähige Region. Die Breitbandförderung unterstützt gezielt den Ausbau von Gigabitfähigen Internetanschlüssen in unterversorgten Gebieten, dort wo ein eigenwirtschaftlicher Ausbau nicht möglich/ nicht attraktiv ist. Im Rahmen des eigenwirtschaftlichen Ausbaus, welcher primär vorgesehen ist, stehen wir im regelmäßigen Austausch mit den Telekommunikationsunternehmen (TKU) in unserer Region. Wer unterstützt uns im Rahmen des geförderten Breitbandausbaus? Wir als Landkreis Oldenburg können mithilfe von Zuwendungen des Bundesministeriums für Digitales und Verkehr und auch des Niedersächsischen Ministerium für Wirtschaft, Verkehr, Bauen und Digitalisierung das Breitbandnetz ausbauen lassen. Welche Adressen fallen unter die sogenannten „unversorgten Adressen“? Das geförderte dritte Ausbauprojekt des Landkreises zielt drauf ab, die sogenannten „Weißen- Flecken“ gefördert auszubauen. Als „Weiße- Flecken“ werden Haushalte bezeichnet, die mit einer Internetversorgung von unter 30 Mbit/s gemeldet sind. Im Rahmen eines zuvor durchgeführten Markterkundungsverfahren (MEV) wurden seitens der TKU die jeweiligen Bandbreiten der einzelnen Haushalte übermittelt. Somit sind die Adressen unterversorgt, welche in diesem MEV mit einer Versorgung von unter 30 Mbit/s gemeldet wurden. Auch im dritten Förderverfahren haben wir ein Ausschreibungsverfahren durchgeführt, auf dieses sich die TKU bewerben konnten. Schlussendlich hat die EWE TEL GmbH den Zuschlag erhalten und baut für den Landkreis Oldenburg die Breitbandnetze aus. Im derzeit dritten Förderverfahren werden nach den bereits geplanten 3.451 Adressen noch weitere rund 1.200 Adressen gefördert ausgebaut. Das hat zur Folge, dass sich das Ausbauende in das Jahr 2027 terminieren wird. Für Adressen, welche Bestandteil des 3. geförderten Ausbauprojektes sind, besteht die Möglichkeit einen kostenlosen Hausanschluss, also die Anbindung des Hauses an das Glasfasernetz, bei der EWE TEL GmbH zu beauftragen. Es gibt des Weiteren auch die Möglichkeit einen Hausanschluss an das Glasfasernetz zu beantragen, ohne dabei eine Vertragsverpflichtung mit der EWE TEL GmbH einzugehen. Informationen zur Vermarktung hält die EWE TEL GmbH im Rahmen des Ausbaus bereit. Die Beantragung des Hausanschlusses muss jedoch selbständig in Auftrag gegeben werden. Da, wie bereits oben genannt, der Breitbandausbau mit Fördermitteln vom Bund und vom Land realisiert wird, muss der offenen und diskriminierungsfreie Zugang zum gebauten Netzt auch anderen Marktteilnehmern zur Verfügung stehen (open access). Aus der „Meilensteinplanung“ gehen die Ausbaudaten der einzelnen kreisangehörigen Kommunen hervor. Die Planung wird kontinuierlich gemäß Planstand angepasst. Ebenfalls haben Sie die Möglichkeit auf unserem „Geo- Portal“ des Landkreises Oldenburg sich einen Überblick über die vorgesehenen Ausbaupolygone zu machen. Auch diese werden regelmäßig seitens des Landkreises angepasst. Meilensteine zum 3. Breitbandausbauprojekt 2. Abschnitt (Privatadresse u. Gewerbebetriebe) Meilensteinübersicht Ausbauphase, Stand 01.10.2025 Informationen zu abgeschlossenen Projekten Projekt 1Der Ausbau des 1. Projektes begann mit dem ersten Spatenstich am 18.01.2018. Aufgrund schlechter Witterung in Form von länger andauernden Frostperioden im Februar und März 2018 verzögerte sich der Baubeginn in einer Anzahl von Ausbaugebieten. Aufgrund dieser Verzögerung konnte die ursprünglich erstellte Meilensteinplanung nicht eingehalten werden. Innerhalb des Ausbaugebiets wurden 2.746 Haushalte und 218 mit einer Bandbreite von 50 Mbit/s und mehr versorgt.Insgesamt waren Tiefbauarbeiten von ca. 125 km erforderlich. Außerdem wurden ca. 131 km Leerrohr und ca. 136 km Glasfaser verbaut. Das Projekt konnte nach erteilten Fristverlängerungen des Bewilligungszeitraumes zum 31.12.2019 fertiggestellt und für den Betrieb freigegeben werden. Projekt 2Der Ausbau des 2. Projektes begann mit dem ersten Spatenstich am 31.01.2020.Innerhalb der Ausbaugebiete wurden insgesamt 951 Haushalte, 18 Gewerbebetriebe und 35 Schulen) mit einer Bandbreite von 50 Mbit/s und mehr versorgt.Insgesamt waren Tiefbauarbeiten von ca. 169 km erforderlich. Außerdem wurden ca. 210 km Leerrohr und ca. 108 km Glasfaser verbaut. Das Projekt konnte nach erteilten Fristverlängerungen des Bewilligungszeitraumes zum 29.12.2021 fertiggestellt und für den Betrieb freigegeben werden. Projekt 3, 1. Abschnitt (Gewerbegebiete)Der Ausbau des 1. Abschnitts unseres 3. Projektes (Gewerbegebiete) begann mit dem ersten Spatenstich am 01.04.2022. Insgesamt sollten 25 Gewerbegebiete in acht kreisangehörigen Kommunen nach Ausbauende mit einer nutzbaren Bandbreite von mindestens 1 Gbit/s angeschlossen werden. Innerhalb der Ausbaugebiete wurden insgesamt 596 Unternehmen mit einer Bandbreite von bis zu 1 Gbit/s versorgt. Insgesamt waren Tiefbauarbeiten von ca. 37 km erforderlich. Außerdem wurden ca. 78 km Leerrohr und ca. 49 km Glasfaser verbaut. Das Ausbauprojekt konnte fristgerecht zum 31.03.2023 fertiggestellt und für den Betrieb freigegeben werden. Zurück",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "digitalisierung",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/breitbandausbau/",
+      "timestamp": "2025-10-29T11:07:42.039Z",
+      "sectionType": "heading"
+    }
+  }
+]

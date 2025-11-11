@@ -17,30 +17,36 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      
-      - name: Install Railway CLI
+      - name: Setup jq (für JSON-Parsing)
         run: |
-          curl -fsSL https://railway.app/install.sh | sh
-          echo "$HOME/.railway/bin" >> $GITHUB_PATH
+          sudo apt-get update
+          sudo apt-get install -y jq
       
-      - name: Deploy to Railway
+      - name: Deploy to Railway via REST API
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
-        working-directory: kaya-frontend
         run: |
-          export PATH="$HOME/.railway/bin:$PATH"
-          export RAILWAY_TOKEN="${{ secrets.RAILWAY_TOKEN }}"
+          # Railway REST API: Service-ID für kaya-frontend abrufen
+          SERVICE_ID=$(curl -s -X GET \
+            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://api.railway.app/v1/projects/$RAILWAY_PROJECT_ID/services" | \
+            jq -r '.services[] | select(.name == "kaya-frontend") | .id')
           
-          # Railway CLI Token-Authentifizierung: Token explizit in Config setzen
-          mkdir -p ~/.railway
-          echo "{\"token\":\"$RAILWAY_TOKEN\"}" > ~/.railway/config.json
+          if [ -z "$SERVICE_ID" ]; then
+            echo "❌ Service 'kaya-frontend' nicht gefunden"
+            exit 1
+          fi
           
-          railway --version
-          railway link -p $RAILWAY_PROJECT_ID -s kaya-frontend
-          railway up --detach
+          echo "✅ Service-ID gefunden: $SERVICE_ID"
+          
+          # Deployment via REST API auslösen
+          curl -X POST \
+            -H "Authorization: Bearer $RAILWAY_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://api.railway.app/v1/services/$SERVICE_ID/deployments" \
+            -d '{"source": "github"}'
+          
+          echo "✅ Deployment ausgelöst für kaya-frontend"
 

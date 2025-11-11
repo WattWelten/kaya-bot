@@ -1,0 +1,1245 @@
+[
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000003&brotID=900000003&id=900000003&navi_id=900000003",
+    "title": "Jugend und Familie",
+    "content": "Sie sind hier: Jugend und Familie{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000003&amp;brotID=900000003&amp;id=900000003&amp;navi_id=900000003\",\"name\":\"Jugend und Familie\"}}]} Inhalt vorlesen Seite merken Seite drucken",
+    "plain_text": "Sie sind hier: Jugend und Familie{\"@context\":\"https:\\/\\/schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https:\\/\\/www.oldenburg-kreis.de\\/portal\\/sitemap.html?naviID=900000003&amp;brotID=900000003&amp;id=900000003&amp;navi_id=900000003\",\"name\":\"Jugend und Familie\"}}]} Inhalt vorlesen Seite merken Seite drucken",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Jugend und Familie",
+        "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000003&brotID=900000003&id=900000003&navi_id=900000003",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/",
+    "title": "Kinderschutz",
+    "content": "KinderschutzSchutz- und KlärungsstelleGesetzlicher JugendschutzFührungszeugnisseKinderschutz-Beratung",
+    "plain_text": "KinderschutzSchutz- und KlärungsstelleGesetzlicher JugendschutzFührungszeugnisseKinderschutz-Beratung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Kinderschutz",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/schutz-und-klaerungsstelle/",
+    "title": "Schutz- und Klärungsstelle",
+    "content": "Schutz- und Klärungsstelle",
+    "plain_text": "Schutz- und Klärungsstelle",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Schutz- und Klärungsstelle",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/schutz-und-klaerungsstelle/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/gesetzlicher-jugendschutz/",
+    "title": "Gesetzlicher Jugendschutz",
+    "content": "Gesetzlicher Jugendschutz",
+    "plain_text": "Gesetzlicher Jugendschutz",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Gesetzlicher Jugendschutz",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/gesetzlicher-jugendschutz/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/fuehrungszeugnisse/",
+    "title": "Führungszeugnisse",
+    "content": "Führungszeugnisse",
+    "plain_text": "Führungszeugnisse",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Führungszeugnisse",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/fuehrungszeugnisse/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/kinderschutz-beratung/",
+    "title": "Kinderschutz-Beratung",
+    "content": "Kinderschutz-Beratung",
+    "plain_text": "Kinderschutz-Beratung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Kinderschutz-Beratung",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderschutz/kinderschutz-beratung/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/",
+    "title": "Allg. Sozialer Dienst",
+    "content": "Allg. Sozialer DienstBezirkssozialarbeitStationäre JugendhilfeAdoptionsvermittlung & PflegekinderdienstJugendhilfe im StrafverfahrenSchutz- und Klärungsstelle",
+    "plain_text": "Allg. Sozialer DienstBezirkssozialarbeitStationäre JugendhilfeAdoptionsvermittlung & PflegekinderdienstJugendhilfe im StrafverfahrenSchutz- und Klärungsstelle",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Allg. Sozialer Dienst",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/bezirkssozialarbeit/",
+    "title": "Bezirkssozialarbeit",
+    "content": "Bezirkssozialarbeit",
+    "plain_text": "Bezirkssozialarbeit",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Bezirkssozialarbeit",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/bezirkssozialarbeit/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/stationaere-jugendhilfe/",
+    "title": "Stationäre Jugendhilfe",
+    "content": "Stationäre Jugendhilfe",
+    "plain_text": "Stationäre Jugendhilfe",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Stationäre Jugendhilfe",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/stationaere-jugendhilfe/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/adoptionsvermittlung-pflegekinderdienst/",
+    "title": "Adoptionsvermittlung & Pflegekinderdienst",
+    "content": "Adoptionsvermittlung & Pflegekinderdienst",
+    "plain_text": "Adoptionsvermittlung & Pflegekinderdienst",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Adoptionsvermittlung & Pflegekinderdienst",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/adoptionsvermittlung-pflegekinderdienst/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/jugendhilfe-im-strafverfahren/",
+    "title": "Jugendhilfe im Strafverfahren",
+    "content": "Jugendhilfe im Strafverfahren",
+    "plain_text": "Jugendhilfe im Strafverfahren",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Jugendhilfe im Strafverfahren",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/jugendhilfe-im-strafverfahren/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/schutz-und-klaerungsstelle/",
+    "title": "Schutz- und Klärungsstelle",
+    "content": "Schutz- und Klärungsstelle",
+    "plain_text": "Schutz- und Klärungsstelle",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Schutz- und Klärungsstelle",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/allg-sozialer-dienst/schutz-und-klaerungsstelle/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/eingliederungshilfe/",
+    "title": "Eingliederungshilfe",
+    "content": "Eingliederungshilfe",
+    "plain_text": "Eingliederungshilfe",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Eingliederungshilfe",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/eingliederungshilfe/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/",
+    "title": "Jugendamt",
+    "content": "JugendamtWirtschaftliche JugendhilfeJugendhilfeplanungAusbildungsförderung",
+    "plain_text": "JugendamtWirtschaftliche JugendhilfeJugendhilfeplanungAusbildungsförderung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Jugendamt",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/wirtschaftliche-jugendhilfe/",
+    "title": "Wirtschaftliche Jugendhilfe",
+    "content": "Wirtschaftliche Jugendhilfe",
+    "plain_text": "Wirtschaftliche Jugendhilfe",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Wirtschaftliche Jugendhilfe",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/wirtschaftliche-jugendhilfe/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/jugendhilfeplanung/",
+    "title": "Jugendhilfeplanung",
+    "content": "Jugendhilfeplanung",
+    "plain_text": "Jugendhilfeplanung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Jugendhilfeplanung",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/jugendhilfeplanung/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/ausbildungsfoerderung/",
+    "title": "Ausbildungsförderung",
+    "content": "Ausbildungsförderung",
+    "plain_text": "Ausbildungsförderung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Ausbildungsförderung",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/ausbildungsfoerderung/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/beratungsangebote/",
+    "title": "Beratungsangebote",
+    "content": "Beratungsangebote",
+    "plain_text": "Beratungsangebote",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Beratungsangebote",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/beratungsangebote/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/beratungsangebote/beratungsstellen/",
+    "title": "Beratungsstellen",
+    "content": "Beratungsstellen",
+    "plain_text": "Beratungsstellen",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Beratungsstellen",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/beratungsangebote/beratungsstellen/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendarbeit/",
+    "title": "Jugendarbeit",
+    "content": "Jugendarbeit",
+    "plain_text": "Jugendarbeit",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Jugendarbeit",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendarbeit/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendarbeit/jugendzentren/",
+    "title": "Jugendzentren",
+    "content": "Jugendzentren",
+    "plain_text": "Jugendzentren",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Jugendzentren",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendarbeit/jugendzentren/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendarbeit/kreisjugendring/",
+    "title": "Kreisjugendring",
+    "content": "Kreisjugendring",
+    "plain_text": "Kreisjugendring",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Kreisjugendring",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendarbeit/kreisjugendring/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/",
+    "title": "Jugendsozialarbeit",
+    "content": "JugendsozialarbeitKoordinierungsstelle SchulverweigerungSchulpflichterfüllung in JugendwerkstättenMobiler Dienst - SchulsozialarbeitPACEJugendwerkstatt LUPO",
+    "plain_text": "JugendsozialarbeitKoordinierungsstelle SchulverweigerungSchulpflichterfüllung in JugendwerkstättenMobiler Dienst - SchulsozialarbeitPACEJugendwerkstatt LUPO",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Jugendsozialarbeit",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/koordinierungsstelle-schulverweigerung/",
+    "title": "Koordinierungsstelle Schulverweigerung",
+    "content": "Koordinierungsstelle Schulverweigerung",
+    "plain_text": "Koordinierungsstelle Schulverweigerung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Koordinierungsstelle Schulverweigerung",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/koordinierungsstelle-schulverweigerung/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/schulpflichterfuellung-in-jugendwerkstaetten/",
+    "title": "Schulpflichterfüllung in Jugendwerkstätten",
+    "content": "Schulpflichterfüllung in Jugendwerkstätten",
+    "plain_text": "Schulpflichterfüllung in Jugendwerkstätten",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Schulpflichterfüllung in Jugendwerkstätten",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/schulpflichterfuellung-in-jugendwerkstaetten/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/mobiler-dienst-schulsozialarbeit/",
+    "title": "Mobiler Dienst - Schulsozialarbeit",
+    "content": "Mobiler Dienst - Schulsozialarbeit",
+    "plain_text": "Mobiler Dienst - Schulsozialarbeit",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Mobiler Dienst - Schulsozialarbeit",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/mobiler-dienst-schulsozialarbeit/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/pace/",
+    "title": "PACE",
+    "content": "PACE",
+    "plain_text": "PACE",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "PACE",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/pace/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/jugendwerkstatt-lupo/",
+    "title": "Jugendwerkstatt LUPO",
+    "content": "Jugendwerkstatt LUPO",
+    "plain_text": "Jugendwerkstatt LUPO",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Jugendwerkstatt LUPO",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendsozialarbeit/jugendwerkstatt-lupo/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/",
+    "title": "Kinderbetreuung",
+    "content": "KinderbetreuungKindertagespflegeKindertagesstättenWeitere Angebote für Familien",
+    "plain_text": "KinderbetreuungKindertagespflegeKindertagesstättenWeitere Angebote für Familien",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Kinderbetreuung",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/kindertagespflege/",
+    "title": "Kindertagespflege",
+    "content": "Kindertagespflege",
+    "plain_text": "Kindertagespflege",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Kindertagespflege",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/kindertagespflege/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/kindertagesstaetten/",
+    "title": "Kindertagesstätten",
+    "content": "Kindertagesstätten",
+    "plain_text": "Kindertagesstätten",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Kindertagesstätten",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/kindertagesstaetten/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/weitere-angebote-fuer-familien/",
+    "title": "Weitere Angebote für Familien",
+    "content": "Weitere Angebote für Familien",
+    "plain_text": "Weitere Angebote für Familien",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Weitere Angebote für Familien",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/kinderbetreuung/weitere-angebote-fuer-familien/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/",
+    "title": "Frühe Hilfen - Angebote für Kinder von 0-3",
+    "content": "Frühe Hilfen - Angebote für Kinder von 0-3",
+    "plain_text": "Frühe Hilfen - Angebote für Kinder von 0-3",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Frühe Hilfen - Angebote für Kinder von 0-3",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/caf-kinderwagen-bobbycar/",
+    "title": "Café Kinderwagen / Bobbycar",
+    "content": "Café Kinderwagen / Bobbycar",
+    "plain_text": "Café Kinderwagen / Bobbycar",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Café Kinderwagen / Bobbycar",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/caf-kinderwagen-bobbycar/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/caf-kinderwagen-bobbycar-unterwegs/",
+    "title": "Café Kinderwagen/Bobbycar unterwegs",
+    "content": "Café Kinderwagen/Bobbycar unterwegs",
+    "plain_text": "Café Kinderwagen/Bobbycar unterwegs",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Café Kinderwagen/Bobbycar unterwegs",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/caf-kinderwagen-bobbycar-unterwegs/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/familienhebammen/",
+    "title": "Familienhebammen",
+    "content": "Familienhebammen",
+    "plain_text": "Familienhebammen",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Familienhebammen",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/familienhebammen/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/zuwachs-kommt/",
+    "title": "Zuwachs kommt",
+    "content": "Zuwachs kommt",
+    "plain_text": "Zuwachs kommt",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Zuwachs kommt",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/zuwachs-kommt/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/eltern-coaching/",
+    "title": "Eltern-Coaching",
+    "content": "Eltern-Coaching",
+    "plain_text": "Eltern-Coaching",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Eltern-Coaching",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/eltern-coaching/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/familienlotsen/",
+    "title": "Familienlotsen",
+    "content": "Familienlotsen",
+    "plain_text": "Familienlotsen",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Familienlotsen",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/familienlotsen/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/elternkurse/",
+    "title": "Elternkurse",
+    "content": "Elternkurse",
+    "plain_text": "Elternkurse",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Elternkurse",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/elternkurse/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/waldgruppe/",
+    "title": "Waldgruppe",
+    "content": "Waldgruppe",
+    "plain_text": "Waldgruppe",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Waldgruppe",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/fruehe-hilfen-angebote-fuer-kinder-von-0-3/waldgruppe/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/",
+    "title": "Sozialzentrum",
+    "content": "SozialzentrumUnterhaltsvorschussBAföGElterngeldInfopunkt",
+    "plain_text": "SozialzentrumUnterhaltsvorschussBAföGElterngeldInfopunkt",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Sozialzentrum",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/unterhaltsvorschuss/",
+    "title": "Unterhaltsvorschuss",
+    "content": "Unterhaltsvorschuss",
+    "plain_text": "Unterhaltsvorschuss",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Unterhaltsvorschuss",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/unterhaltsvorschuss/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/bafoeg/",
+    "title": "BAföG",
+    "content": "BAföG",
+    "plain_text": "BAföG",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "BAföG",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/bafoeg/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/elterngeld/",
+    "title": "Elterngeld",
+    "content": "Elterngeld",
+    "plain_text": "Elterngeld",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Elterngeld",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/elterngeld/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/infopunkt/",
+    "title": "Infopunkt",
+    "content": "Infopunkt",
+    "plain_text": "Infopunkt",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Infopunkt",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/sozialzentrum/infopunkt/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/",
+    "title": "Unterhalt & Sorgerecht",
+    "content": "Unterhalt & SorgerechtAmtspflegschaften / AmtsvormundschaftenBeistandschaftenElterliche SorgeVaterschaftsfeststellungUnterhaltsbeurkundungen",
+    "plain_text": "Unterhalt & SorgerechtAmtspflegschaften / AmtsvormundschaftenBeistandschaftenElterliche SorgeVaterschaftsfeststellungUnterhaltsbeurkundungen",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Unterhalt & Sorgerecht",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/amtspflegschaften-amtsvormundschaften/",
+    "title": "Amtspflegschaften / Amtsvormundschaften",
+    "content": "Amtspflegschaften / Amtsvormundschaften",
+    "plain_text": "Amtspflegschaften / Amtsvormundschaften",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Amtspflegschaften / Amtsvormundschaften",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/amtspflegschaften-amtsvormundschaften/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/beistandschaften/",
+    "title": "Beistandschaften",
+    "content": "Beistandschaften",
+    "plain_text": "Beistandschaften",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Beistandschaften",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/beistandschaften/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/elterliche-sorge/",
+    "title": "Elterliche Sorge",
+    "content": "Elterliche Sorge",
+    "plain_text": "Elterliche Sorge",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Elterliche Sorge",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/elterliche-sorge/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/vaterschaftsfeststellung/",
+    "title": "Vaterschaftsfeststellung",
+    "content": "Vaterschaftsfeststellung",
+    "plain_text": "Vaterschaftsfeststellung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Vaterschaftsfeststellung",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/vaterschaftsfeststellung/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/unterhaltsbeurkundungen/",
+    "title": "Unterhaltsbeurkundungen",
+    "content": "Unterhaltsbeurkundungen",
+    "plain_text": "Unterhaltsbeurkundungen",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Unterhaltsbeurkundungen",
+        "url": "https://www.oldenburg-kreis.de/jugend-und-familie/unterhalt-sorgerecht/unterhaltsbeurkundungen/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+    "title": "Unbekannt",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
+    "contacts": [
+      {
+        "type": "phone",
+        "value": "900000003"
+      }
+    ],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "jugend",
+      "type": "contact",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+    "title": "Jugend und Familie",
+    "content": "Adoptionsvermittlung & Pflegekinderdienst Koordinierungsstelle Schulverweigerung Schulpflichterfüllung in Jugendwerkstätten Mobiler Dienst - Schulsozialarbeit Frühe Hilfen - Angebote für Kinder von 0-3 Café Kinderwagen/Bobbycar unterwegs Amtspflegschaften / Amtsvormundschaften • KinderschutzSchutz- und KlärungsstelleGesetzlicher JugendschutzFührungszeugnisseKinderschutz-Beratung • Allg. Sozialer DienstBezirkssozialarbeitStationäre JugendhilfeAdoptionsvermittlung & PflegekinderdienstJugendhilfe im StrafverfahrenSchutz- und Klärungsstelle • Adoptionsvermittlung & Pflegekinderdienst • JugendamtWirtschaftliche JugendhilfeJugendhilfeplanungAusbildungsförderung • BeratungsangeboteBeratungsstellen • JugendarbeitJugendzentrenKreisjugendring • JugendsozialarbeitKoordinierungsstelle SchulverweigerungSchulpflichterfüllung in JugendwerkstättenMobiler Dienst - SchulsozialarbeitPACEJugendwerkstatt LUPO • Koordinierungsstelle Schulverweigerung • Schulpflichterfüllung in Jugendwerkstätten • Mobiler Dienst - Schulsozialarbeit • KinderbetreuungKindertagespflegeKindertagesstättenWeitere Angebote für Familien • Frühe Hilfen - Angebote für Kinder von 0-3Café Kinderwagen / BobbycarCafé Kinderwagen/Bobbycar unterwegsFamilienhebammenZuwachs kommtEltern-CoachingFamilienlotsenElternkurseWaldgruppe • Café Kinderwagen/Bobbycar unterwegs • SozialzentrumUnterhaltsvorschussBAföGElterngeldInfopunkt • Unterhalt & SorgerechtAmtspflegschaften / AmtsvormundschaftenBeistandschaftenElterliche SorgeVaterschaftsfeststellungUnterhaltsbeurkundungen • Amtspflegschaften / Amtsvormundschaften",
+    "plain_text": "Adoptionsvermittlung & Pflegekinderdienst Koordinierungsstelle Schulverweigerung Schulpflichterfüllung in Jugendwerkstätten Mobiler Dienst - Schulsozialarbeit Frühe Hilfen - Angebote für Kinder von 0-3 Café Kinderwagen/Bobbycar unterwegs Amtspflegschaften / Amtsvormundschaften • KinderschutzSchutz- und KlärungsstelleGesetzlicher JugendschutzFührungszeugnisseKinderschutz-Beratung • Allg. Sozialer DienstBezirkssozialarbeitStationäre JugendhilfeAdoptionsvermittlung & PflegekinderdienstJugendhilfe im StrafverfahrenSchutz- und Klärungsstelle • Adoptionsvermittlung & Pflegekinderdienst • JugendamtWirtschaftliche JugendhilfeJugendhilfeplanungAusbildungsförderung • BeratungsangeboteBeratungsstellen • JugendarbeitJugendzentrenKreisjugendring • JugendsozialarbeitKoordinierungsstelle SchulverweigerungSchulpflichterfüllung in JugendwerkstättenMobiler Dienst - SchulsozialarbeitPACEJugendwerkstatt LUPO • Koordinierungsstelle Schulverweigerung • Schulpflichterfüllung in Jugendwerkstätten • Mobiler Dienst - Schulsozialarbeit • KinderbetreuungKindertagespflegeKindertagesstättenWeitere Angebote für Familien • Frühe Hilfen - Angebote für Kinder von 0-3Café Kinderwagen / BobbycarCafé Kinderwagen/Bobbycar unterwegsFamilienhebammenZuwachs kommtEltern-CoachingFamilienlotsenElternkurseWaldgruppe • Café Kinderwagen/Bobbycar unterwegs • SozialzentrumUnterhaltsvorschussBAföGElterngeldInfopunkt • Unterhalt & SorgerechtAmtspflegschaften / AmtsvormundschaftenBeistandschaftenElterliche SorgeVaterschaftsfeststellungUnterhaltsbeurkundungen • Amtspflegschaften / Amtsvormundschaften",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "jugend",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z",
+      "sectionType": "main"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+    "title": "Inhaltsbereich",
+    "content": "Volltextsuche Suchen Sie sind hier: Jugend und Familie Inhalt vorlesen Seite merken Seite drucken Jugend und FamilieKinderschutzSchutz- und KlärungsstelleGesetzlicher JugendschutzFührungszeugnisseKinderschutz-BeratungAllg. Sozialer DienstBezirkssozialarbeitStationäre JugendhilfeAdoptionsvermittlung & PflegekinderdienstJugendhilfe im StrafverfahrenSchutz- und KlärungsstelleEingliederungshilfeJugendamtWirtschaftliche JugendhilfeJugendhilfeplanungAusbildungsförderungBeratungsangeboteBeratungsstellenJugendarbeitJugendzentrenKreisjugendringJugendsozialarbeitKoordinierungsstelle SchulverweigerungSchulpflichterfüllung in JugendwerkstättenMobiler Dienst - SchulsozialarbeitPACEJugendwerkstatt LUPOKinderbetreuungKindertagespflegeKindertagesstättenWeitere Angebote für FamilienFrühe Hilfen - Angebote für Kinder von 0-3Café Kinderwagen / BobbycarCafé Kinderwagen/Bobbycar unterwegsFamilienhebammenZuwachs kommtEltern-CoachingFamilienlotsenElternkurseWaldgruppeSozialzentrumUnterhaltsvorschussBAföGElterngeldInfopunktUnterhalt & SorgerechtAmtspflegschaften / AmtsvormundschaftenBeistandschaftenElterliche SorgeVaterschaftsfeststellungUnterhaltsbeurkundungenZurück",
+    "plain_text": "Volltextsuche Suchen Sie sind hier: Jugend und Familie Inhalt vorlesen Seite merken Seite drucken Jugend und FamilieKinderschutzSchutz- und KlärungsstelleGesetzlicher JugendschutzFührungszeugnisseKinderschutz-BeratungAllg. Sozialer DienstBezirkssozialarbeitStationäre JugendhilfeAdoptionsvermittlung & PflegekinderdienstJugendhilfe im StrafverfahrenSchutz- und KlärungsstelleEingliederungshilfeJugendamtWirtschaftliche JugendhilfeJugendhilfeplanungAusbildungsförderungBeratungsangeboteBeratungsstellenJugendarbeitJugendzentrenKreisjugendringJugendsozialarbeitKoordinierungsstelle SchulverweigerungSchulpflichterfüllung in JugendwerkstättenMobiler Dienst - SchulsozialarbeitPACEJugendwerkstatt LUPOKinderbetreuungKindertagespflegeKindertagesstättenWeitere Angebote für FamilienFrühe Hilfen - Angebote für Kinder von 0-3Café Kinderwagen / BobbycarCafé Kinderwagen/Bobbycar unterwegsFamilienhebammenZuwachs kommtEltern-CoachingFamilienlotsenElternkurseWaldgruppeSozialzentrumUnterhaltsvorschussBAföGElterngeldInfopunktUnterhalt & SorgerechtAmtspflegschaften / AmtsvormundschaftenBeistandschaftenElterliche SorgeVaterschaftsfeststellungUnterhaltsbeurkundungenZurück",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "jugend",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/",
+      "timestamp": "2025-10-29T11:07:42.009Z",
+      "sectionType": "heading"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/jugendamt-900000147-21700.html?naviID=900000033&brotID=900000033&rubrik=900000004",
+    "title": "Jugendamt",
+    "content": "Jugendamt",
+    "plain_text": "Jugendamt",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Jugendamt",
+        "url": "https://www.oldenburg-kreis.de/portal/seiten/jugendamt-900000147-21700.html?naviID=900000033&brotID=900000033&rubrik=900000004",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://ratsinfo.oldenburg-kreis.de/ratsinfo/lkoldenburg/person/details/231",
+    "title": "Personendetails - Provox IIP (oldenburg-kreis.de)",
+    "content": "Vorsitzender des Jugendhilfeausschusses ist Herr Ralf Spille:",
+    "plain_text": "Vorsitzender des Jugendhilfeausschusses ist Herr Ralf Spille:",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Personendetails - Provox IIP (oldenburg-kreis.de)",
+        "url": "https://ratsinfo.oldenburg-kreis.de/ratsinfo/lkoldenburg/person/details/231",
+        "valid": false
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "http://ratsinfo.oldenburg-kreis.de/ratsinfo/lkoldenburg/organization/details/14",
+    "title": "https://ratsinfo.oldenburg-kreis.de/ratsinfo/lkoldenburg/organization/details/14",
+    "content": "Die aktuellen Mitglieder des Jugendhilfeausschusses finden Sie hier:",
+    "plain_text": "Die aktuellen Mitglieder des Jugendhilfeausschusses finden Sie hier:",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "https://ratsinfo.oldenburg-kreis.de/ratsinfo/lkoldenburg/organization/details/14",
+        "url": "http://ratsinfo.oldenburg-kreis.de/ratsinfo/lkoldenburg/organization/details/14",
+        "valid": false
+      }
+    ],
+    "metadata": {
+      "agent": "jugend",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/",
+    "title": "Unbekannt",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
+    "contacts": [
+      {
+        "type": "phone",
+        "value": "900000003"
+      }
+    ],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "jugend",
+      "type": "contact",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/",
+      "timestamp": "2025-10-29T11:07:42.009Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/",
+    "title": "Inhaltsbereich",
+    "content": "Volltextsuche Suchen Sie sind hier: Jugend und Familie/Jugendamt Inhalt vorlesen Seite merken Seite drucken Jugendamt Das Jugendamt besteht aus zwei Teilen, dem Jugendhilfeausschuss und der Verwaltung des Jugendamtes. Der Jugendhilfeausschuss hat die Aufgabe, auf die Probleme von jungen Menschen und Familien zu reagieren, Anregungen und Vorschläge zur Weiterentwicklung aufzunehmen sowie die örtlichen Jugendhilfeangebote zu fördern und zu planen. Ihm gehören Mitglieder des Kreistages, in der Jugendhilfe erfahrene Bürgerinnen und Bürger an sowie Personen, die von den anerkannten Trägern der freien Jugendhilfe und den Jugendverbänden vorgeschlagen werden. Vorsitzender des Jugendhilfeausschusses ist Herr Ralf Spille:Personendetails - Provox IIP (oldenburg-kreis.de) Die aktuellen Mitglieder des Jugendhilfeausschusses finden Sie hier:https://ratsinfo.oldenburg-kreis.de/ratsinfo/lkoldenburg/organization/details/14 Die Verwaltung des Jugendamts setzt die Beschlüsse des Jugendhilfeausschusses um und nimmt die Aufgaben nach dem 8. Sozialgesetzbuch (SGB VIII) wahr. Wir unterstützen Eltern und Erziehungsberechtigte bei der Erziehung, Betreuung und Bildung von Kindern und Jugendlichen. Dabei setzen wir auf vorbeugende, familienunterstützende Angebote, die dazu beitragen, positive Lebensbedingungen für Familien zu schaffen. Das Aufgabenspektrum reicht von der Organisation von Kinderbetreuung über die Erziehungsberatung und den Schutz des Kindeswohls bis hin zur Förderung von Angeboten für Jugendliche und zur Schaffung einer kinder- und familienfreundlichen Umwelt. An das Jugendamt kann sich jede und jeder wenden, insbesondere auch Kinder und Jugendliche, wenn sie Probleme haben oder in Notsituationen sind. Zurück",
+    "plain_text": "Volltextsuche Suchen Sie sind hier: Jugend und Familie/Jugendamt Inhalt vorlesen Seite merken Seite drucken Jugendamt Das Jugendamt besteht aus zwei Teilen, dem Jugendhilfeausschuss und der Verwaltung des Jugendamtes. Der Jugendhilfeausschuss hat die Aufgabe, auf die Probleme von jungen Menschen und Familien zu reagieren, Anregungen und Vorschläge zur Weiterentwicklung aufzunehmen sowie die örtlichen Jugendhilfeangebote zu fördern und zu planen. Ihm gehören Mitglieder des Kreistages, in der Jugendhilfe erfahrene Bürgerinnen und Bürger an sowie Personen, die von den anerkannten Trägern der freien Jugendhilfe und den Jugendverbänden vorgeschlagen werden. Vorsitzender des Jugendhilfeausschusses ist Herr Ralf Spille:Personendetails - Provox IIP (oldenburg-kreis.de) Die aktuellen Mitglieder des Jugendhilfeausschusses finden Sie hier:https://ratsinfo.oldenburg-kreis.de/ratsinfo/lkoldenburg/organization/details/14 Die Verwaltung des Jugendamts setzt die Beschlüsse des Jugendhilfeausschusses um und nimmt die Aufgaben nach dem 8. Sozialgesetzbuch (SGB VIII) wahr. Wir unterstützen Eltern und Erziehungsberechtigte bei der Erziehung, Betreuung und Bildung von Kindern und Jugendlichen. Dabei setzen wir auf vorbeugende, familienunterstützende Angebote, die dazu beitragen, positive Lebensbedingungen für Familien zu schaffen. Das Aufgabenspektrum reicht von der Organisation von Kinderbetreuung über die Erziehungsberatung und den Schutz des Kindeswohls bis hin zur Förderung von Angeboten für Jugendliche und zur Schaffung einer kinder- und familienfreundlichen Umwelt. An das Jugendamt kann sich jede und jeder wenden, insbesondere auch Kinder und Jugendliche, wenn sie Probleme haben oder in Notsituationen sind. Zurück",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "jugend",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/jugend-und-familie/jugendamt/",
+      "timestamp": "2025-10-29T11:07:42.010Z",
+      "sectionType": "heading"
+    }
+  }
+]

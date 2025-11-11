@@ -1,10 +1,12 @@
-# Dependencies
-node_modules
+# Dependencies (werden im Dockerfile installiert)
+node_modules/
 npm-debug.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Git
-.git
+.git/
 .gitignore
 .gitattributes
 
@@ -13,12 +15,12 @@ npm-debug.log*
 .env.local
 .env.*.local
 
-# Logs
+# Logs (werden zur Laufzeit geschrieben)
 logs/
 *.log
 *.log.*
 
-# Memory files
+# Memory files (werden zur Laufzeit erstellt)
 memory/
 
 # Development files
@@ -30,8 +32,8 @@ llm_service_new_character.md
 *.md
 
 # IDE
-.vscode
-.idea
+.vscode/
+.idea/
 *.swp
 *.swo
 *~
@@ -53,4 +55,9 @@ tests/
 
 # Documentation
 docs/
+
+# Build outputs (werden nicht benötigt)
+*.map
+coverage/
+.nyc_output/
 

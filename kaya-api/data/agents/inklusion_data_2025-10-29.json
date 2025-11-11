@@ -1,0 +1,295 @@
+[
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
+    "title": "Startseite",
+    "content": "Wechseln Sie bitte zur oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Startseite",
+        "url": "https://www.oldenburg-kreis.de/portal/startseite.html",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/suche.html",
+    "title": "Suche",
+    "content": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Wechseln Sie bitte zur Startseite oder zur , um die gewünschten Informationen zu erhalten.",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Suche",
+        "url": "https://www.oldenburg-kreis.de/portal/suche.html",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/",
+    "title": "Unbekannt",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
+    "contacts": [
+      {
+        "type": "phone",
+        "value": "15000"
+      }
+    ],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "contact",
+      "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/",
+    "title": "Die Datei wurde nicht gefunden.",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Sie verwenden ein altes Lesezeichen / alte Adresse. Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt. Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/",
+      "timestamp": "2025-10-29T11:07:42.037Z",
+      "sectionType": "heading"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/",
+    "title": "Landkreis Oldenburg",
+    "content": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "plain_text": "Entschuldigung. Diese Datei wurde leider nicht gefunden. Dies kann folgende Gründe haben: Wechseln Sie bitte zur Startseite oder zur Suche, um die gewünschten Informationen zu erhalten. • Sie verwenden ein altes Lesezeichen / alte Adresse. • Über eine Suchmaschine haben Sie ein veraltetes Ergebnis angeklickt.",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/gesundheit-und-soziales/inklusion/",
+      "timestamp": "2025-10-29T11:07:42.037Z",
+      "sectionType": "fallback"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000001&brotID=900000001&id=900000003&navi_id=900000001",
+    "title": "Landkreis und Verwaltung",
+    "content": "/Kreisverwaltung/Kurzvorstellung der Ämter/Amt für Teilhabe und Soziale Sicherung",
+    "plain_text": "/Kreisverwaltung/Kurzvorstellung der Ämter/Amt für Teilhabe und Soziale Sicherung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Landkreis und Verwaltung",
+        "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000001&brotID=900000001&id=900000003&navi_id=900000001",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/kreisverwaltung-900000137-21700.html?naviID=900000040&brotID=900000040&rubrik=900000002",
+    "title": "Kreisverwaltung",
+    "content": "/Kurzvorstellung der Ämter/Amt für Teilhabe und Soziale Sicherung",
+    "plain_text": "/Kurzvorstellung der Ämter/Amt für Teilhabe und Soziale Sicherung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Kreisverwaltung",
+        "url": "https://www.oldenburg-kreis.de/portal/seiten/kreisverwaltung-900000137-21700.html?naviID=900000040&brotID=900000040&rubrik=900000002",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000143&brotID=900000143&id=900000004&navi_id=900000143",
+    "title": "Kurzvorstellung der Ämter",
+    "content": "Amt für Teilhabe und Soziale Sicherung",
+    "plain_text": "Amt für Teilhabe und Soziale Sicherung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Kurzvorstellung der Ämter",
+        "url": "https://www.oldenburg-kreis.de/portal/sitemap.html?naviID=900000143&brotID=900000143&id=900000004&navi_id=900000143",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/portal/seiten/amt-fuer-teilhabe-und-soziale-sicherung-900000201-21700.html?naviID=900000155&brotID=900000155&rubrik=900000005",
+    "title": "Amt für Teilhabe und Soziale Sicherung",
+    "content": "Amt für Teilhabe und Soziale Sicherung",
+    "plain_text": "Amt für Teilhabe und Soziale Sicherung",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Amt für Teilhabe und Soziale Sicherung",
+        "url": "https://www.oldenburg-kreis.de/portal/seiten/amt-fuer-teilhabe-und-soziale-sicherung-900000201-21700.html?naviID=900000155&brotID=900000155&rubrik=900000005",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "http://www.oldenburg-kreis.de/frauenhaus",
+    "title": "Frauen- und Kinderschutzhaus des Landkreises Oldenburg",
+    "content": "Frauen- und Kinderschutzhaus des Landkreises Oldenburg",
+    "plain_text": "Frauen- und Kinderschutzhaus des Landkreises Oldenburg",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Frauen- und Kinderschutzhaus des Landkreises Oldenburg",
+        "url": "http://www.oldenburg-kreis.de/frauenhaus",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/aufwind/",
+    "title": "Frauen- und Mädchenberatung „Aufwind“",
+    "content": "Frauen- und Mädchenberatung „Aufwind“",
+    "plain_text": "Frauen- und Mädchenberatung „Aufwind“",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Frauen- und Mädchenberatung „Aufwind“",
+        "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/aufwind/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/biss/",
+    "title": "Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
+    "content": "Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
+    "plain_text": "Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
+    "contacts": [],
+    "forms": [],
+    "links": [
+      {
+        "title": "Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
+        "url": "http://www.oldenburg-kreis.de/gesundheit-und-soziales/aufgaben-der-sozialen-sicherung/biss/",
+        "valid": true
+      }
+    ],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "link",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+    "title": "Unbekannt",
+    "content": "Unbekannt",
+    "plain_text": "Unbekannt",
+    "contacts": [
+      {
+        "type": "phone",
+        "value": "900000001"
+      }
+    ],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "contact",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+    "title": "Amt für Teilhabe und Soziale Sicherung",
+    "content": "Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: • Frauen- und Kinderschutzhaus des Landkreises Oldenburg • Frauen- und Mädchenberatung „Aufwind“ • Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
+    "plain_text": "Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: • Frauen- und Kinderschutzhaus des Landkreises Oldenburg • Frauen- und Mädchenberatung „Aufwind“ • Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS)",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z",
+      "sectionType": "main"
+    }
+  },
+  {
+    "url": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+    "title": "Inhaltsbereich",
+    "content": "Volltextsuche Suchen Sie sind hier: Landkreis und Verwaltung/Kreisverwaltung/Kurzvorstellung der Ämter/Amt für Teilhabe und Soziale Sicherung Inhalt vorlesen Seite merken Seite drucken Amt für Teilhabe und Soziale Sicherung Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: Frauen- und Kinderschutzhaus des Landkreises Oldenburg Frauen- und Mädchenberatung „Aufwind“ Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS) Zurück",
+    "plain_text": "Volltextsuche Suchen Sie sind hier: Landkreis und Verwaltung/Kreisverwaltung/Kurzvorstellung der Ämter/Amt für Teilhabe und Soziale Sicherung Inhalt vorlesen Seite merken Seite drucken Amt für Teilhabe und Soziale Sicherung Im Amt für Teilhabe und Soziale Sicherung ist ein sehr vielfältiges Leistungsspektrum der „Sozialer Hilfen“ nach dem Sozialgesetzbuch (SGB XII), dem Asylbewerberleistungsgesetz (AsylbLG), dem Wohngeldgesetz (WoGG) sowie der Teilhabe und Inklusion von Menschen mit Behinderungen nach dem SGB IX zusammengeführt. Die Leistungsbereiche der Grundsicherung im Alter und bei Erwerbsminderung (SGB XII), die Leistungen nach dem Asylbewerberleistungsgesetz (AsylbLG) sowie dem Wohngeldgesetz (WoGG) werden in Kooperation mit den kreisangehörigen Kommunen direkt vor Ort in der Gemeinde-, Samtgemeinde bzw. Stadtverwaltung angeboten. Leistungen der Hilfe zur Pflege (SGB XII), die Bestattungskostenübernahme (SGB XII), Hilfen für blinde Menschen sowie die vielfältigen Leistungsangebote der Eingliederungshilfe zur Teilhabe von Menschen mit Behinderungen (SGB IX) sind hingegen im Kreishaus verortet. Im Senioren- und Pflegestützpunkt Niedersachsen im Landkreis Oldenburg (SPN) werden wertvolle Hilfen und Angebote für Seniorinnen und Senioren, insbesondere auch Beratungsangebote für Menschen mit Pflegebedarf unter einem Dach angeboten. Als Hilfestellung „Gegen Gewalt an Frauen“ sind im Amt für Teilhabe und Soziale Sicherung die folgenden Schutz- und Beratungseinrichtungen verortet und bieten bedarfsgerechte Hilfen an: Frauen- und Kinderschutzhaus des Landkreises Oldenburg Frauen- und Mädchenberatung „Aufwind“ Beratungs- und Interventionsstelle bei häuslicher Gewalt (BISS) Zurück",
+    "contacts": [],
+    "forms": [],
+    "links": [],
+    "metadata": {
+      "agent": "inklusion",
+      "type": "content",
+      "source": "https://www.oldenburg-kreis.de/landkreis-und-verwaltung/kreisverwaltung/kurzvorstellung-der-aemter/amt-fuer-teilhabe-und-soziale-sicherung/",
+      "timestamp": "2025-10-29T11:07:42.037Z",
+      "sectionType": "heading"
+    }
+  }
+]

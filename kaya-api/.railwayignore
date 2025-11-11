@@ -1,5 +1,13 @@
-# Ignore Railpack detection
+# Ignore Railpack/Nixpacks detection
 railpack-plan.json
 .railpack/
 nixpacks.toml
+
+# Ignore large directories (werden nicht für Build benötigt)
+memory/
+logs/
+scripts/
+docs/
+node_modules/
+
 
