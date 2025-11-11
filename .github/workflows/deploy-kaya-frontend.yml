@@ -32,20 +32,20 @@ jobs:
           # PATH setzen (für beide Installationsmethoden)
           export PATH="$HOME/.railway/bin:$(npm config get prefix)/bin:$PATH"
           
-          # Railway CLI Token als Environment Variable setzen
+          # Railway CLI Token setzen (Projekt-Token für railway up)
           export RAILWAY_TOKEN="$RAILWAY_TOKEN"
           
+          # Token auch in .railway-token Datei speichern (Fallback)
+          echo "$RAILWAY_TOKEN" > .railway-token
+          
           # Prüfe Railway CLI
-          railway --version || railway --version
+          railway --version
           
-          # Authentifizierung prüfen
-          railway whoami || echo "⚠️ whoami fehlgeschlagen, versuche trotzdem Deployment"
-          
-          # Link zum Projekt und Service
-          railway link -p $RAILWAY_PROJECT_ID -s kaya-frontend || echo "⚠️ link fehlgeschlagen"
+          # Link zum Projekt und Service (mit Projekt-Token sollte das funktionieren)
+          railway link -p $RAILWAY_PROJECT_ID -s kaya-frontend
           
           # Deployment auslösen
-          railway up --detach || (echo "❌ railway up fehlgeschlagen" && exit 1)
+          railway up --detach
           
           echo "✅ Deployment ausgelöst für kaya-frontend"
 
