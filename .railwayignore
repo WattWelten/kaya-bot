@@ -17,10 +17,20 @@ logs/
 dist/
 build/
 
+# Andere Services (nur für kaya-api und kaya-frontend benötigt)
+ki_backend/
+kaya-crawler/
+
 # Crawler-Daten (nur für kaya-crawler benötigt, nicht für API/Frontend)
 kaya-crawler/data/raw/
 kaya-crawler/data/backup/
 kaya-crawler/logs/
+
+# Große JSON-Daten-Dateien (nicht für Build benötigt)
+**/*_data.json
+**/*_compressed.json
+**/*.json.bak
+**/*_backup.json
 
 # Dokumentation
 docs/
@@ -66,3 +76,6 @@ kaya-crawler/scripts/
 *.zip
 *.tar.gz
 *.log
+*.exe
+*.dll
+*.bin
