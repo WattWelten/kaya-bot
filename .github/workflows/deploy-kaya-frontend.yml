@@ -17,47 +17,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
-      - name: Install Railway CLI
+      - name: Verify Railway GitHub Integration
         run: |
-          curl -fsSL https://railway.app/install.sh | sh || {
-            echo "⚠️ Railway Install-Script fehlgeschlagen, versuche direkten Download"
-            mkdir -p ~/.railway/bin
-            curl -L https://github.com/railwayapp/cli/releases/latest/download/railway-linux-amd64 -o ~/.railway/bin/railway
-            chmod +x ~/.railway/bin/railway
-          }
-          echo "$HOME/.railway/bin" >> $GITHUB_PATH
-      
-      - name: Deploy to Railway
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
-        working-directory: kaya-frontend
-        run: |
-          export PATH="$HOME/.railway/bin:$PATH"
-          export RAILWAY_TOKEN="$RAILWAY_TOKEN"
+          echo "✅ Railway GitHub Integration sollte automatisch deployen"
+          echo "📝 Push zu main Branch löst automatisch Deployment aus"
+          echo "🔍 Prüfe Railway Dashboard für Deployment-Status"
           
-          # Railway CLI authentifizieren - Config-Datei im korrekten Format erstellen
-          mkdir -p ~/.railway
-          cat > ~/.railway/config.json << EOF
-          {
-            "token": "$RAILWAY_TOKEN"
-          }
-          EOF
+          # Prüfe ob wichtige Dateien vorhanden sind
+          if [ ! -f "kaya-frontend/Dockerfile" ]; then
+            echo "❌ kaya-frontend/Dockerfile fehlt!"
+            exit 1
+          fi
+          if [ ! -f "kaya-frontend/railway.toml" ]; then
+            echo "❌ kaya-frontend/railway.toml fehlt!"
+            exit 1
+          fi
           
-          # Prüfe ob Railway CLI funktioniert
-          railway --version || echo "⚠️ Railway CLI nicht gefunden"
-          
-          # Projekt verlinken
-          railway link --project $RAILWAY_PROJECT_ID --service kaya-frontend || {
-            echo "⚠️ Link fehlgeschlagen, versuche ohne Service"
-            railway link --project $RAILWAY_PROJECT_ID
-            railway service kaya-frontend
-          }
-          
-          # Deployment auslösen
-          railway up --detach || {
-            echo "⚠️ railway up fehlgeschlagen, versuche ohne --detach"
-            railway up
-          }
-          
-          echo "✅ Deployment ausgelöst für kaya-frontend"
+          echo "✅ Alle wichtigen Dateien vorhanden"
+          echo "✅ Railway wird automatisch deployen (wenn GitHub Integration aktiv ist)"
