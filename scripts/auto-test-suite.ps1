@@ -8,10 +8,10 @@ param(
 
 $ErrorActionPreference = "Continue"
 
-function Write-TestStep { param($msg) Write-Host "`n🧪 $msg" -ForegroundColor Cyan }
-function Write-TestSuccess { param($msg) Write-Host "✅ $msg" -ForegroundColor Green }
-function Write-TestError { param($msg) Write-Host "❌ $msg" -ForegroundColor Red }
-function Write-TestInfo { param($msg) Write-Host "ℹ️ $msg" -ForegroundColor Gray }
+function Write-TestStep { param($msg) Write-Host "`n[TEST] $msg" -ForegroundColor Cyan }
+function Write-TestSuccess { param($msg) Write-Host "[OK] $msg" -ForegroundColor Green }
+function Write-TestError { param($msg) Write-Host "[FAIL] $msg" -ForegroundColor Red }
+function Write-TestInfo { param($msg) Write-Host "[INFO] $msg" -ForegroundColor Gray }
 
 # Test 1: Health Check
 function Test-HealthCheck {
@@ -209,7 +209,7 @@ try {
     $allPassed = Invoke-TestSuite
     exit ($allPassed ? 0 : 1)
 } catch {
-    Write-TestError "Test Suite Fehler: $_"
+    Write-TestError "Test Suite Fehler: $($_.Exception.Message)"
     exit 1
 }
 
