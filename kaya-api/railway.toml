@@ -4,7 +4,7 @@ dockerfilePath = "./Dockerfile"
 watchPatterns = []
 
 [deploy]
-startCommand = ""
+startCommand = "node kaya_server.js"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"

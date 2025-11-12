@@ -32,10 +32,6 @@ COPY --from=builder /app/public ./public
 # Exponiere Port
 EXPOSE ${PORT:-3000}
 
-# Health Check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:${PORT:-3000}/ || exit 1
-
 # Starte den Server
 CMD sh -c "serve -s dist -l ${PORT:-3000}"
 

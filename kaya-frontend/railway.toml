@@ -4,7 +4,7 @@ dockerfilePath = "./Dockerfile"
 watchPatterns = []
 
 [deploy]
-startCommand = ""
+startCommand = "npx --yes serve@14.2.1 dist -s -n -l $PORT"
 healthcheckPath = "/"
 healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
