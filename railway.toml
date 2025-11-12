@@ -1,8 +1,5 @@
 # Railway Project Configuration
 # Services werden über ihre eigenen railway.toml Dateien konfiguriert
 # Jeder Service (kaya-api, kaya-frontend) hat seine eigene railway.toml im Service-Verzeichnis
-
-[build]
-builder = "DOCKERFILE"
-# dockerfilePath wird in Service-spezifischen railway.toml Dateien definiert
+# KEINE [build] Section hier - würde Service-Konfigurationen überschreiben!
 
